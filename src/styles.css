@@ -2198,6 +2198,7 @@ p {
   padding: 28px;
   display: grid;
   grid-template-columns: 42px minmax(0, 1fr) 24px;
+  align-content: center;
   align-items: start;
   gap: 16px;
   border-radius: 32px;
