@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /perlas/
+
+Sitemap: https://seroffm.github.io/perlas/sitemap.xml
