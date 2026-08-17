@@ -1,0 +1,14 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="1770" height="1770" viewBox="0 0 1770 1770" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="bg-circle.svg" clip-path="url(#clip0_0_58)">
+<path id="Ellipse 2" d="M885 1770C1373.77 1770 1770 1373.77 1770 885C1770 396.228 1373.77 0 885 0C396.228 0 0 396.228 0 885C0 1373.77 396.228 1770 885 1770Z" fill="url(#paint0_radial_0_58)"/>
+</g>
+<defs>
+<radialGradient id="paint0_radial_0_58" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(885.181 885.181) scale(885)">
+<stop stop-color="white"/>
+<stop offset="1" stop-color="#E7EFFA"/>
+</radialGradient>
+<clipPath id="clip0_0_58">
+<rect width="1770" height="1770" fill="white"/>
+</clipPath>
+</defs>
+</svg>
