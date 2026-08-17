@@ -13,6 +13,8 @@ const startOptions = ['So bald wie möglich', 'In 1–3 Monaten', 'Später / noc
 
 export default function QuoteModal({ isOpen, initialService, serviceNames, onClose }: QuoteModalProps) {
   const closeButtonRef = useRef<HTMLButtonElement>(null)
+  const dialogRef = useRef<HTMLElement>(null)
+  const openerRef = useRef<HTMLElement | null>(null)
   const [step, setStep] = useState(0)
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [error, setError] = useState('')
@@ -30,22 +32,88 @@ export default function QuoteModal({ isOpen, initialService, serviceNames, onClo
   useEffect(() => {
     if (!isOpen) return
 
+    openerRef.current = document.activeElement instanceof HTMLElement ? document.activeElement : null
     setStep(0)
     setIsSubmitted(false)
     setError('')
     setSelectedServices(initialService ? [initialService] : [])
-    document.body.style.overflow = 'hidden'
-    closeButtonRef.current?.focus()
 
-    const handleEscape = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') onClose()
+    const scrollPosition = window.scrollY
+    const scrollbarGap = window.innerWidth - document.documentElement.clientWidth
+    const previousBodyStyles = {
+      overflow: document.body.style.overflow,
+      position: document.body.style.position,
+      top: document.body.style.top,
+      width: document.body.style.width,
+      paddingRight: document.body.style.paddingRight,
+    }
+    const previousHtmlOverflow = document.documentElement.style.overflow
+    const backgroundElements = Array.from(document.getElementById('root')?.children ?? [])
+      .filter((element) => !element.classList.contains('quote-overlay')) as HTMLElement[]
+    const previousAriaHidden = backgroundElements.map((element) => element.getAttribute('aria-hidden'))
+
+    document.body.classList.add('quote-is-open')
+    document.body.style.overflow = 'hidden'
+    document.body.style.position = 'fixed'
+    document.body.style.top = `-${scrollPosition}px`
+    document.body.style.width = '100%'
+    document.body.style.paddingRight = scrollbarGap > 0 ? `${scrollbarGap}px` : previousBodyStyles.paddingRight
+    document.documentElement.style.overflow = 'hidden'
+
+    backgroundElements.forEach((element) => {
+      element.inert = true
+      element.setAttribute('aria-hidden', 'true')
+    })
+
+    window.requestAnimationFrame(() => closeButtonRef.current?.focus())
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        onClose()
+        return
+      }
+
+      if (event.key !== 'Tab' || !dialogRef.current) return
+
+      const focusableElements = Array.from(dialogRef.current.querySelectorAll<HTMLElement>(
+        'button:not([disabled]), a[href], input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])',
+      )).filter((element) => !element.inert && element.offsetParent !== null)
+
+      const firstElement = focusableElements[0]
+      const lastElement = focusableElements[focusableElements.length - 1]
+
+      if (!firstElement || !lastElement) return
+
+      if (event.shiftKey && document.activeElement === firstElement) {
+        event.preventDefault()
+        lastElement.focus()
+      } else if (!event.shiftKey && document.activeElement === lastElement) {
+        event.preventDefault()
+        firstElement.focus()
+      }
     }
 
-    window.addEventListener('keydown', handleEscape)
+    window.addEventListener('keydown', handleKeyDown)
 
     return () => {
-      document.body.style.overflow = ''
-      window.removeEventListener('keydown', handleEscape)
+      document.body.classList.remove('quote-is-open')
+      document.body.style.overflow = previousBodyStyles.overflow
+      document.body.style.position = previousBodyStyles.position
+      document.body.style.top = previousBodyStyles.top
+      document.body.style.width = previousBodyStyles.width
+      document.body.style.paddingRight = previousBodyStyles.paddingRight
+      document.documentElement.style.overflow = previousHtmlOverflow
+
+      backgroundElements.forEach((element, index) => {
+        element.inert = false
+        const previousValue = previousAriaHidden[index]
+        if (previousValue === null) element.removeAttribute('aria-hidden')
+        else element.setAttribute('aria-hidden', previousValue)
+      })
+
+      window.scrollTo(0, scrollPosition)
+      openerRef.current?.focus({ preventScroll: true })
+      window.removeEventListener('keydown', handleKeyDown)
     }
   }, [initialService, isOpen, onClose])
 
@@ -97,7 +165,7 @@ export default function QuoteModal({ isOpen, initialService, serviceNames, onClo
 
   return (
     <div className="quote-overlay" onMouseDown={(event) => event.target === event.currentTarget && onClose()}>
-      <section className="quote-modal" role="dialog" aria-modal="true" aria-labelledby="quote-title">
+      <section className="quote-modal" role="dialog" aria-modal="true" aria-labelledby="quote-title" ref={dialogRef}>
         <button
           className="quote-close"
           type="button"

@@ -1,0 +1,176 @@
+[
+  {
+    "slug": "objektpflege",
+    "title": "Objektpflege",
+    "text": "Regelmäßige Kontrollgänge und verlässliche Pflege für Wohn- und Gewerbeobjekte.",
+    "detail": "Regelmäßige Objektpflege im Rhein-Main-Gebiet: Wir kontrollieren vereinbarte Bereiche, melden Auffälligkeiten und halten Aufgaben für Verwaltung und Eigentümer nachvollziehbar fest.",
+    "image": "perlas-property.png",
+    "seoTitle": "Objektpflege im Rhein-Main-Gebiet | PERLAS",
+    "seoDescription": "Planbare Objektpflege für Wohnanlagen und Gewerbeobjekte im Rhein-Main-Gebiet – mit Kontrollgängen, Dokumentation und festen Ansprechpartnern.",
+    "scopeIntro": "Der Leistungsplan richtet sich nach Objektart, Nutzung und gewünschtem Turnus. So entsteht keine anonyme Pauschale, sondern ein klarer Ablauf für genau die Bereiche, die betreut werden sollen.",
+    "scopeCards": [
+      { "title": "Kontrollgänge", "text": "Gemeinschaftsflächen, Zugänge und Außenbereiche werden im vereinbarten Rhythmus kontrolliert. Auffälligkeiten werden gemeldet und nachvollziehbar festgehalten." },
+      { "title": "Sauberkeit & Ordnung", "text": "Wir behalten den gepflegten Gesamteindruck im Blick und stimmen wiederkehrende Aufgaben rund um Innen- und Außenflächen mit Ihnen ab." },
+      { "title": "Kleine Maßnahmen", "text": "Überschaubare Aufgaben erledigen wir im vereinbarten Rahmen direkt. Bei größeren Themen koordinieren wir die nächsten Schritte oder einen passenden Fachbetrieb." }
+    ],
+    "benefits": [
+      { "title": "Planbare Betreuung", "text": "Aufgaben, Intervalle und Zuständigkeiten werden vor dem Start eindeutig festgelegt." },
+      { "title": "Digitale Dokumentation", "text": "Wiederkehrende Einsätze und festgestellte Punkte bleiben für die Abstimmung nachvollziehbar." },
+      { "title": "Ein fester Kontakt", "text": "Verwaltung und Eigentümer wissen, wer Rückfragen aufnimmt und Maßnahmen koordiniert." }
+    ],
+    "audiences": ["WEG- und Mietwohnanlagen", "Büro-, Praxis- und Gewerbeobjekte", "Private und gemischt genutzte Immobilien"],
+    "boundaryTitle": "Leistungsumfang statt Überraschungen",
+    "boundaryText": "Welche Bereiche kontrolliert und welche Aufgaben direkt ausgeführt werden, halten wir im Leistungsplan fest. Prüfungen oder Arbeiten, die einen zugelassenen Fachbetrieb erfordern, werden nicht ersetzt – auf Wunsch koordinieren wir die weitere Bearbeitung.",
+    "faqs": [
+      { "question": "Was gehört zur regelmäßigen Objektpflege?", "answer": "Je nach Objekt umfasst sie Kontrollgänge, die Prüfung vereinbarter Gemeinschafts- und Außenbereiche, Zustandsmeldungen sowie kleinere Aufgaben im festgelegten Leistungsrahmen." },
+      { "question": "Wie häufig finden die Kontrollgänge statt?", "answer": "Der Turnus wird nach Größe, Nutzung und Bedarf des Objekts vereinbart – beispielsweise wöchentlich, vierzehntägig oder in einem individuell festgelegten Rhythmus." },
+      { "question": "Für welche Objekte eignet sich die Betreuung?", "answer": "Perla’s betreut unter anderem Wohnanlagen, Mehrfamilienhäuser, Büroflächen, Praxen und Gewerbeobjekte im Rhein-Main-Gebiet." },
+      { "question": "Wovon hängen die Kosten ab?", "answer": "Entscheidend sind Objektgröße, gewünschte Leistungen, Flächen und Einsatzturnus. Nach einer kurzen Abstimmung und bei Bedarf einer Begehung erhalten Sie ein individuelles Angebot." }
+    ]
+  },
+  {
+    "slug": "wartung-instandhaltung",
+    "title": "Wartung & Instandhaltung",
+    "text": "Kleinreparaturen, technische Sichtkontrollen und koordinierte Maßnahmen aus einer Hand.",
+    "detail": "Wir kümmern uns um überschaubare Reparaturen, kontrollieren vereinbarte Bereiche der Haustechnik und koordinieren bei komplexeren Arbeiten die passenden Fachfirmen.",
+    "image": "perlas-service.jpg",
+    "seoTitle": "Wartung & Instandhaltung Rhein-Main | PERLAS",
+    "seoDescription": "Wartung und Instandhaltung für Immobilien: Kleinreparaturen, technische Sichtkontrollen, Fotodokumentation und Koordination von Fachfirmen.",
+    "scopeIntro": "Kleine Mängel werden schnell zum großen Aufwand, wenn Meldung, Zuständigkeit und Bearbeitung auseinanderfallen. Wir bündeln diese Schritte und dokumentieren den vereinbarten Ablauf.",
+    "scopeCards": [
+      { "title": "Kleinreparaturen", "text": "Überschaubare Arbeiten an Türen, Fenstern, Beleuchtung oder Ausstattung führen wir aus, sofern sie in den vereinbarten und fachlich zulässigen Rahmen fallen." },
+      { "title": "Technische Sichtkontrollen", "text": "Vereinbarte Bereiche der Haustechnik sowie erkennbare Schäden an Gebäude und Außenflächen werden kontrolliert und dokumentiert." },
+      { "title": "Fachfirmen koordinieren", "text": "Bei komplexeren Störungen unterstützen wir bei der Abstimmung mit geeigneten Fachbetrieben und bleiben für die Objektseite ansprechbar." }
+    ],
+    "benefits": [
+      { "title": "Früh erkennen", "text": "Regelmäßige Sichtkontrollen helfen, auffällige Veränderungen zeitnah zu melden." },
+      { "title": "Zuständigkeit klären", "text": "Ein Ansprechpartner bündelt Meldung, Rückfrage und den nächsten sinnvollen Schritt." },
+      { "title": "Arbeiten dokumentieren", "text": "Durchgeführte Maßnahmen und offene Punkte bleiben transparent nachvollziehbar." }
+    ],
+    "audiences": ["Hausverwaltungen und WEGs", "Gewerbe- und Büroimmobilien", "Praxen und kleinere Einzelobjekte"],
+    "boundaryTitle": "Hausmeisterservice mit klarer fachlicher Grenze",
+    "boundaryText": "Perla’s übernimmt Kleinreparaturen und Sichtkontrollen im vereinbarten Rahmen. Elektro-, Heizungs-, Brandschutz- oder andere zulassungspflichtige Facharbeiten bleiben qualifizierten Fachbetrieben vorbehalten; deren Einsatz kann koordiniert werden.",
+    "faqs": [
+      { "question": "Welche Kleinreparaturen übernimmt Perla’s?", "answer": "Typische Beispiele sind überschaubare Arbeiten an Türen, Griffen, Beleuchtung und Ausstattung. Der konkrete Umfang wird objektbezogen festgelegt." },
+      { "question": "Wer kümmert sich um größere technische Schäden?", "answer": "Wenn ein Fachbetrieb nötig ist, melden wir den Handlungsbedarf und können die weitere Abstimmung mit einer geeigneten Fachfirma koordinieren." },
+      { "question": "Werden Einsätze dokumentiert?", "answer": "Ja. Vereinbarte Kontrollen, ausgeführte Maßnahmen und offene Punkte können digital und bei Bedarf mit Fotos dokumentiert werden." },
+      { "question": "Ist auch eine laufende Betreuung möglich?", "answer": "Ja. Wartung und Instandhaltung können mit regelmäßiger Objektpflege zu einem planbaren Leistungsumfang kombiniert werden." }
+    ]
+  },
+  {
+    "slug": "gebaeudereinigung",
+    "title": "Gebäudereinigung",
+    "text": "Saubere Treppenhäuser, Büros, Gemeinschaftsflächen und gepflegte Außenbereiche.",
+    "detail": "Individuelle Reinigungspläne für Wohnanlagen, Büroflächen, Praxen und Gewerbeobjekte sorgen für verlässlich gepflegte Flächen und klare Qualitätsstandards.",
+    "image": "perlas-office.png",
+    "seoTitle": "Gebäudereinigung Sulzbach & Rhein-Main | PERLAS",
+    "seoDescription": "Gebäudereinigung für Treppenhäuser, Büros, Praxen und Gemeinschaftsflächen in Sulzbach, Frankfurt und dem Rhein-Main-Gebiet.",
+    "scopeIntro": "Flächen, Nutzung und Besucherfrequenz bestimmen, welche Reinigung wirklich sinnvoll ist. Wir legen Bereiche, Intervalle und Qualitätskontrolle gemeinsam fest.",
+    "scopeCards": [
+      { "title": "Innen- & Gemeinschaftsflächen", "text": "Treppenhäuser, Eingangsbereiche und vereinbarte Gemeinschaftsflächen werden nach einem abgestimmten Reinigungsplan gepflegt." },
+      { "title": "Büro- & Praxisflächen", "text": "Für Arbeits-, Empfangs- und Sanitärbereiche stimmen wir Zeiten und Umfang auf die Nutzung des Objekts ab." },
+      { "title": "Grund- & Sonderreinigung", "text": "Grundreinigungen, Glasflächen, Tiefgaragen oder Flächen nach Renovierungen können objektbezogen in das Angebot aufgenommen werden." }
+    ],
+    "benefits": [
+      { "title": "Passender Turnus", "text": "Der Reinigungsrhythmus orientiert sich an Fläche, Nutzung und gewünschtem Standard." },
+      { "title": "Definierte Bereiche", "text": "Im Leistungsverzeichnis steht transparent, welche Flächen und Aufgaben enthalten sind." },
+      { "title": "Kontrollierte Qualität", "text": "Absprachen und Rückmeldungen laufen über klare Ansprechpartner und nachvollziehbare Abläufe." }
+    ],
+    "audiences": ["Treppenhäuser und Wohnanlagen", "Büros, Praxen und Kanzleien", "Gewerbeflächen und Gemeinschaftsbereiche"],
+    "boundaryTitle": "Ein Reinigungsplan, der zum Objekt passt",
+    "boundaryText": "Materialien, Zugänglichkeit, Reinigungszeiten und gewünschtes Ergebnis werden vorab geklärt. Besondere Anforderungen oder Spezialreinigungen werden separat bewertet und nur dann verbindlich eingeplant, wenn Verfahren und Umfang feststehen.",
+    "faqs": [
+      { "question": "Welche Flächen können gereinigt werden?", "answer": "Zum Angebot gehören je nach Vereinbarung Treppenhäuser, Eingangs- und Gemeinschaftsbereiche, Büros, Praxisräume, Sanitärbereiche sowie ausgewählte Außen- oder Parkflächen." },
+      { "question": "Wie wird der Reinigungsumfang festgelegt?", "answer": "Wir erfassen Flächen, Nutzung, gewünschte Intervalle und besondere Anforderungen. Daraus entsteht ein objektbezogenes Leistungsverzeichnis." },
+      { "question": "Sind auch Grundreinigungen möglich?", "answer": "Ja. Grund- und ausgewählte Sonderreinigungen können nach Besichtigung und klarer Abgrenzung zusätzlich angeboten werden." },
+      { "question": "In welchem Gebiet ist Perla’s tätig?", "answer": "Der Schwerpunkt liegt im Main-Taunus-Kreis und im Rhein-Main-Gebiet, darunter Sulzbach, Frankfurt, Eschborn, Bad Soden, Schwalbach und Hofheim." }
+    ]
+  },
+  {
+    "slug": "gartenpflege",
+    "title": "Gartenpflege",
+    "text": "Planbare Pflege von Grünanlagen, Hecken, Wegen und saisonalen Außenflächen.",
+    "detail": "Wir pflegen Grün- und Außenanlagen im Rhein-Main-Gebiet mit einem abgestimmten Saisonplan – von Rasen und Hecken bis zu Wegen, Höfen und Parkflächen.",
+    "image": "perlas-team.png",
+    "seoTitle": "Gartenpflege Sulzbach & Rhein-Main | PERLAS",
+    "seoDescription": "Gartenpflege für Wohnanlagen, Unternehmen und private Außenflächen: Rasen, Hecken, Wege und saisonale Pflege im Rhein-Main-Gebiet.",
+    "scopeIntro": "Eine gute Außenanlage braucht nicht jeden Monat dieselben Arbeiten. Deshalb richten wir Rhythmus und Aufgaben nach Fläche, Vegetation und Jahreszeit aus.",
+    "scopeCards": [
+      { "title": "Rasen & Grünflächen", "text": "Regelmäßiges Mähen sowie vereinbarte Pflegearbeiten halten Rasen- und Grünflächen dauerhaft ordentlich und nutzbar." },
+      { "title": "Hecken & Bepflanzung", "text": "Rückschnitt und Pflege werden saisonal geplant und auf die vorhandene Bepflanzung sowie den vereinbarten Umfang abgestimmt." },
+      { "title": "Wege & Außenflächen", "text": "Laub, Schmutz und unerwünschter Bewuchs auf vereinbarten Wegen, Höfen oder Parkflächen werden im Pflegeplan berücksichtigt." }
+    ],
+    "benefits": [
+      { "title": "Saisonal geplant", "text": "Die Aufgaben folgen dem tatsächlichen Bedarf im Frühjahr, Sommer, Herbst und Winter." },
+      { "title": "Flächen klar erfasst", "text": "Vor dem Start werden Grünbereiche, Wege und gewünschte Pflegeintervalle aufgenommen." },
+      { "title": "Kombinierbar", "text": "Gartenpflege lässt sich sinnvoll mit Objektpflege, Reinigung und Winterdienst verbinden." }
+    ],
+    "audiences": ["Wohnanlagen und gemeinschaftliche Gärten", "Firmengelände und Parkflächen", "Private Grün- und Außenanlagen"],
+    "boundaryTitle": "Saisonale Aufgaben transparent abstimmen",
+    "boundaryText": "Pflegearbeiten, Entsorgung und Intervalle werden im Angebot konkret beschrieben. Größere Baumarbeiten, Fällungen oder genehmigungspflichtige Maßnahmen werden gesondert geprüft und bei Bedarf mit einem geeigneten Fachbetrieb geplant.",
+    "faqs": [
+      { "question": "Welche Arbeiten gehören zur Gartenpflege?", "answer": "Je nach Fläche gehören Rasenpflege, Hecken- und Pflanzenschnitt, Laubentfernung sowie die Pflege vereinbarter Wege und Außenflächen dazu." },
+      { "question": "Gibt es feste Pflegeintervalle?", "answer": "Der Turnus richtet sich nach Jahreszeit, Vegetation, Flächengröße und gewünschtem Erscheinungsbild. Daraus erstellen wir einen passenden Saisonplan." },
+      { "question": "Kann Gartenpflege mit anderen Leistungen kombiniert werden?", "answer": "Ja. Besonders häufig wird sie mit regelmäßiger Objektpflege, Außenreinigung oder Winterdienst zu einem gemeinsamen Ablauf verbunden." },
+      { "question": "Übernimmt Perla’s auch große Baumarbeiten?", "answer": "Solche Maßnahmen werden separat beurteilt. Wenn besondere Technik, Genehmigungen oder Fachkenntnisse erforderlich sind, wird ein geeigneter Fachbetrieb eingebunden." }
+    ]
+  },
+  {
+    "slug": "winterdienst",
+    "title": "Winterdienst",
+    "text": "Planbares Räumen und Streuen für vereinbarte Wege, Zugänge und Außenflächen.",
+    "detail": "Mit einem objektbezogenen Einsatzplan betreuen wir vereinbarte Wege und Zugänge bei winterlicher Witterung und dokumentieren die ausgeführten Einsätze.",
+    "image": "perlas-property.png",
+    "seoTitle": "Winterdienst Rhein-Main für Immobilien | PERLAS",
+    "seoDescription": "Winterdienst für Wohnanlagen und Gewerbeobjekte im Rhein-Main-Gebiet – mit abgestimmten Räumflächen, Einsatzplanung und Dokumentation.",
+    "scopeIntro": "Vor Saisonbeginn klären wir Flächen, Prioritäten, Zugänge und den vereinbarten Leistungsrahmen. Damit steht fest, wo und wie der Winterdienst organisiert wird.",
+    "scopeCards": [
+      { "title": "Räumflächen festlegen", "text": "Wege, Hauseingänge und weitere zu betreuende Bereiche werden vorab aufgenommen und eindeutig im Leistungsumfang benannt." },
+      { "title": "Räumen & Streuen", "text": "Die vereinbarten Flächen werden entsprechend dem abgestimmten Einsatzplan bei winterlicher Witterung bearbeitet." },
+      { "title": "Einsätze dokumentieren", "text": "Durchgeführte Einsätze werden nachvollziehbar festgehalten, damit Verwaltung und Eigentümer den Überblick behalten." }
+    ],
+    "benefits": [
+      { "title": "Vorbereitet starten", "text": "Flächen, Zugänge und Abläufe werden vor Beginn der Wintersaison geklärt." },
+      { "title": "Prioritäten kennen", "text": "Wichtige Laufwege und Eingänge sind im objektbezogenen Plan eindeutig erfasst." },
+      { "title": "Nachvollziehbar bleiben", "text": "Die Dokumentation schafft eine klare Grundlage für Rückfragen und Abstimmungen." }
+    ],
+    "audiences": ["WEG- und Mietwohnanlagen", "Büro-, Praxis- und Gewerbeobjekte", "Private Immobilien mit vereinbarten Außenflächen"],
+    "boundaryTitle": "Flächen und Leistungszeiten vorher festlegen",
+    "boundaryText": "Winterdienst wird objektbezogen vereinbart. Welche Flächen, Zugänge und Einsatzbedingungen enthalten sind, ergibt sich aus dem Vertrag und dem aufgenommenen Objekt – nicht aus einer pauschalen Zusage für beliebige Bereiche.",
+    "faqs": [
+      { "question": "Welche Flächen übernimmt der Winterdienst?", "answer": "Betreut werden die vorab aufgenommenen und vertraglich vereinbarten Wege, Eingänge oder Außenflächen des jeweiligen Objekts." },
+      { "question": "Wie wird der Einsatz vorbereitet?", "answer": "Vor Saisonbeginn werden Flächen, Zugänglichkeit, Prioritäten und der gewünschte Leistungsumfang gemeinsam festgelegt." },
+      { "question": "Werden Winterdiensteinsätze dokumentiert?", "answer": "Ja. Die vereinbarten Einsätze können digital festgehalten werden und bleiben dadurch für Rückfragen nachvollziehbar." },
+      { "question": "Kann Winterdienst Teil der Objektbetreuung sein?", "answer": "Ja. Er lässt sich mit Objektpflege, Außenreinigung und Gartenpflege in einem abgestimmten Jahresablauf kombinieren." }
+    ]
+  },
+  {
+    "slug": "wohnungswechsel",
+    "title": "Wohnungswechsel",
+    "text": "Unterstützung bei Übergaben, Entrümpelungen, Räumungen und gewerblichen Umzügen.",
+    "detail": "Wir unterstützen Verwaltungen, Eigentümer und Unternehmen bei Wohnungswechseln, Räumungen und Übergaben – mit klar abgestimmten Aufgaben und einem verlässlichen Ansprechpartner.",
+    "image": "perlas-service.jpg",
+    "seoTitle": "Wohnungswechsel & Entrümpelung Rhein-Main | PERLAS",
+    "seoDescription": "Unterstützung bei Wohnungswechsel, Entrümpelung, Räumung und Übergabe im Rhein-Main-Gebiet – abgestimmt für Verwaltungen und Eigentümer.",
+    "scopeIntro": "Bei einem Nutzerwechsel greifen viele kleine Aufgaben ineinander. Wir klären vorher, was übernommen, geräumt, transportiert oder für die nächste Nutzung vorbereitet werden soll.",
+    "scopeCards": [
+      { "title": "Übergaben vorbereiten", "text": "Vereinbarte Räume und Aufgaben werden für Übergabe, Rücknahme oder weitere Bearbeitung vorbereitet." },
+      { "title": "Entrümpeln & räumen", "text": "Nicht mehr benötigte Gegenstände und vereinbarte Bereiche werden nach klarer Abstimmung geräumt und für die Entsorgung vorbereitet." },
+      { "title": "Umzüge unterstützen", "text": "Bei gewerblichen oder objektbezogenen Umzügen unterstützen wir die praktische Koordination im vereinbarten Leistungsumfang." }
+    ],
+    "benefits": [
+      { "title": "Aufgaben bündeln", "text": "Ein Ansprechpartner koordiniert die vereinbarten Schritte rund um Räumung und Übergabe." },
+      { "title": "Umfang vorab klären", "text": "Räume, Gegenstände, Zugänge und Zeitfenster werden vor Beginn eindeutig aufgenommen." },
+      { "title": "Folgeschritte vorbereiten", "text": "Nach der Räumung kann die Fläche gezielt für Reinigung, Reparatur oder Neuvermietung übergeben werden." }
+    ],
+    "audiences": ["Hausverwaltungen und Eigentümer", "Wohnungs- und Gewerbewechsel", "Büros, Praxen und kleinere Unternehmen"],
+    "boundaryTitle": "Vor der Räumung wissen alle, was gemeint ist",
+    "boundaryText": "Menge, Zugänglichkeit, Transportwege, Entsorgungsart und gewünschter Endzustand werden vorab abgestimmt. Besondere oder gefährliche Stoffe sowie außergewöhnliche Transporte müssen gesondert geprüft werden.",
+    "faqs": [
+      { "question": "Was übernimmt Perla’s bei einem Wohnungswechsel?", "answer": "Je nach Vereinbarung unterstützen wir bei der Vorbereitung von Übergaben, Räumungen, Entrümpelungen und den abgestimmten Folgeschritten." },
+      { "question": "Ist eine Besichtigung vor dem Angebot nötig?", "answer": "Bei größeren Räumungen oder unklarem Umfang ist eine Besichtigung sinnvoll, damit Menge, Zugänge und gewünschter Endzustand realistisch angeboten werden können." },
+      { "question": "Kann anschließend auch gereinigt werden?", "answer": "Ja. Eine anschließende Grund- oder Gebäudereinigung kann als eigener Leistungsbaustein abgestimmt werden." },
+      { "question": "Unterstützt Perla’s auch gewerbliche Umzüge?", "answer": "Unterstützung bei kleineren gewerblichen oder bürobezogenen Umzügen ist möglich, wenn Umfang, Transportwege und Zeitfenster vorab geklärt sind." }
+    ]
+  }
+]

@@ -23,6 +23,7 @@ import {
   type LucideIcon,
 } from 'lucide-react'
 import QuoteModal from './QuoteModal'
+import serviceContent from './service-data.json'
 
 const BASE_PATH = import.meta.env.BASE_URL
 const A = `${BASE_PATH}assets/`
@@ -38,6 +39,113 @@ function getPagePath() {
   }
 
   return window.location.pathname
+}
+
+function ensureMeta(selector: string, attributes: Record<string, string>) {
+  let element = document.head.querySelector<HTMLMetaElement>(selector)
+
+  if (!element) {
+    element = document.createElement('meta')
+    document.head.appendChild(element)
+  }
+
+  Object.entries(attributes).forEach(([name, value]) => element?.setAttribute(name, value))
+}
+
+function usePageSeo(service?: Feature) {
+  useEffect(() => {
+    const siteUrl = new URL(BASE_PATH, window.location.origin)
+    const pageUrl = service ? new URL(`leistungen/${service.slug}/`, siteUrl) : siteUrl
+    const title = service?.seoTitle ?? 'Perla’s Objektbetreuung | Hausmeisterservice Rhein-Main'
+    const description = service?.seoDescription
+      ?? 'Perla’s Objektbetreuung bietet Hausmeisterservice, Objektpflege, Reinigung und Gebäudedienstleistungen im Main-Taunus-Kreis und Rhein-Main-Gebiet.'
+    const imageUrl = new URL(`${BASE_PATH}assets/perlas-hero.png`, window.location.origin)
+
+    document.title = title
+    ensureMeta('meta[name="description"]', { name: 'description', content: description })
+    ensureMeta('meta[name="robots"]', { name: 'robots', content: 'index,follow,max-image-preview:large' })
+    ensureMeta('meta[property="og:title"]', { property: 'og:title', content: title })
+    ensureMeta('meta[property="og:description"]', { property: 'og:description', content: description })
+    ensureMeta('meta[property="og:type"]', { property: 'og:type', content: 'website' })
+    ensureMeta('meta[property="og:url"]', { property: 'og:url', content: pageUrl.href })
+    ensureMeta('meta[property="og:image"]', { property: 'og:image', content: imageUrl.href })
+    ensureMeta('meta[name="twitter:card"]', { name: 'twitter:card', content: 'summary_large_image' })
+
+    let canonical = document.head.querySelector<HTMLLinkElement>('link[rel="canonical"]')
+    if (!canonical) {
+      canonical = document.createElement('link')
+      canonical.rel = 'canonical'
+      document.head.appendChild(canonical)
+    }
+    canonical.href = pageUrl.href
+
+    const businessId = `${siteUrl.href}#business`
+    const business = {
+      '@type': 'HomeAndConstructionBusiness',
+      '@id': businessId,
+      name: 'Perla’s Objektbetreuung',
+      url: siteUrl.href,
+      telephone: '+49 177 6867145',
+      email: 'mail@perlas.de',
+      foundingDate: '1999',
+      image: imageUrl.href,
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: 'Hauptstraße 1',
+        postalCode: '65843',
+        addressLocality: 'Sulzbach (Taunus)',
+        addressCountry: 'DE',
+      },
+      areaServed: ['Main-Taunus-Kreis', 'Rhein-Main-Gebiet'],
+    }
+    const structuredData = service
+      ? {
+          '@context': 'https://schema.org',
+          '@graph': [
+            business,
+            {
+              '@type': 'Service',
+              '@id': `${pageUrl.href}#service`,
+              name: service.title,
+              description: service.detail,
+              url: pageUrl.href,
+              provider: { '@id': businessId },
+              areaServed: ['Main-Taunus-Kreis', 'Rhein-Main-Gebiet'],
+            },
+            {
+              '@type': 'BreadcrumbList',
+              itemListElement: [
+                { '@type': 'ListItem', position: 1, name: 'Startseite', item: siteUrl.href },
+                { '@type': 'ListItem', position: 2, name: 'Leistungen', item: `${siteUrl.href}#leistungen` },
+                { '@type': 'ListItem', position: 3, name: service.title, item: pageUrl.href },
+              ],
+            },
+          ],
+        }
+      : {
+          '@context': 'https://schema.org',
+          '@graph': [
+            business,
+            {
+              '@type': 'WebSite',
+              '@id': `${siteUrl.href}#website`,
+              url: siteUrl.href,
+              name: 'PERLAS',
+              alternateName: 'Perla’s Objektbetreuung',
+              inLanguage: 'de-DE',
+            },
+          ],
+        }
+
+    let structuredDataScript = document.head.querySelector<HTMLScriptElement>('#perlas-structured-data')
+    if (!structuredDataScript) {
+      structuredDataScript = document.createElement('script')
+      structuredDataScript.id = 'perlas-structured-data'
+      structuredDataScript.type = 'application/ld+json'
+      document.head.appendChild(structuredDataScript)
+    }
+    structuredDataScript.textContent = JSON.stringify(structuredData)
+  }, [service])
 }
 
 type ButtonLinkProps = {
@@ -139,17 +247,9 @@ const partners: Partner[] = [
   { name: 'Büroflächen', mark: 'BF' },
 ]
 
-type Feature = {
-  icon: LucideIcon
-  slug: string
-  title: string
-  text: string
-  detail: string
-  bullets: string[]
-  image: string
-}
+type Feature = (typeof serviceContent)[number] & { icon: LucideIcon }
 
-const features: Feature[] = [
+const featureBasics = [
   {
     icon: Building2,
     slug: 'objektpflege',
@@ -205,6 +305,11 @@ const features: Feature[] = [
     image: 'perlas-service.jpg',
   },
 ]
+
+const features: Feature[] = serviceContent.map((service) => ({
+  ...service,
+  icon: featureBasics.find((feature) => feature.slug === service.slug)?.icon ?? Building2,
+}))
 
 const insights = [
   {
@@ -579,7 +684,7 @@ function FeatureSection({ onQuoteOpen }: { onQuoteOpen: (service?: string) => vo
           {features.map((feature) => {
             const Icon = feature.icon
             return (
-              <a className="feature-item" href={`${BASE_PATH}leistungen/${feature.slug}`} key={feature.title}>
+              <a className="feature-item" href={`${BASE_PATH}leistungen/${feature.slug}/`} key={feature.title}>
                 <div className="feature-icon" aria-hidden="true">
                   <Icon strokeWidth={1.8} />
                 </div>
@@ -627,21 +732,41 @@ function ServiceDetailPage({ service, onQuoteOpen }: { service: Feature; onQuote
         </div>
       </section>
 
-      <section className="service-benefits" aria-labelledby="service-benefits-heading" data-reveal="up">
-        <div>
-          <span className="eyebrow">Klar. Verlässlich. Dokumentiert.</span>
-          <h2 id="service-benefits-heading">Damit im Alltag nichts liegen bleibt.</h2>
-          <p>
-            Wir stimmen Rhythmus, Umfang und Kommunikation exakt auf Ihr Objekt ab — mit
-            einem festen Ansprechpartner und transparenten Abläufen.
-          </p>
+      <section className="service-overview" aria-labelledby="service-overview-heading">
+        <div className="service-section-heading" data-reveal="left">
+          <span className="eyebrow">Leistungsumfang</span>
+          <h2 id="service-overview-heading">Was wir bei {service.title} konkret übernehmen.</h2>
+          <p>{service.scopeIntro}</p>
         </div>
-        <div className="service-benefit-list">
-          {service.bullets.map((bullet, index) => (
-            <article key={bullet}>
+        <div className="service-scope-grid" data-reveal="right" style={{ '--reveal-delay': '80ms' } as CSSProperties}>
+          {service.scopeCards.map((item, index) => (
+            <article className="service-scope-card" key={item.title}>
               <span>0{index + 1}</span>
-              <CheckCircle2 aria-hidden="true" />
-              <h3>{bullet}</h3>
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="service-fit" aria-labelledby="service-fit-heading">
+        <div className="service-fit-copy" data-reveal="left">
+          <span className="eyebrow">Passend zum Objekt</span>
+          <h2 id="service-fit-heading">Für wen sich diese Leistung eignet.</h2>
+          <ul className="service-audience-list">
+            {service.audiences.map((audience) => (
+              <li key={audience}><CheckCircle2 aria-hidden="true" /> {audience}</li>
+            ))}
+          </ul>
+        </div>
+        <div className="service-benefit-list" data-reveal="right" style={{ '--reveal-delay': '80ms' } as CSSProperties}>
+          {service.benefits.map((benefit, index) => (
+            <article key={benefit.title}>
+              <span>0{index + 1}</span>
+              <div>
+                <h3>{benefit.title}</h3>
+                <p>{benefit.text}</p>
+              </div>
             </article>
           ))}
         </div>
@@ -653,13 +778,41 @@ function ServiceDetailPage({ service, onQuoteOpen }: { service: Feature; onQuote
         <div><ShieldCheck aria-hidden="true" /><strong>Qualität sichern</strong><span>Ergebnisse transparent dokumentieren und optimieren.</span></div>
       </section>
 
+      <section className="service-boundary" data-reveal="up">
+        <div>
+          <span className="eyebrow">Transparent vereinbart</span>
+          <h2>{service.boundaryTitle}</h2>
+          <p>{service.boundaryText}</p>
+        </div>
+        <button className="button button--yellow" type="button" onClick={() => onQuoteOpen(service.title)}>
+          <span>Leistungsumfang besprechen</span>
+          <img src={`${A}arrow.svg`} alt="" />
+        </button>
+      </section>
+
+      <section className="service-faq" aria-labelledby="service-faq-heading">
+        <div className="service-section-heading" data-reveal="left">
+          <span className="eyebrow">Häufige Fragen</span>
+          <h2 id="service-faq-heading">Gut zu wissen, bevor wir starten.</h2>
+          <p>Die wichtigsten Antworten zu Umfang, Ablauf und Einsatzgebiet.</p>
+        </div>
+        <div className="service-faq-list" data-reveal="right" style={{ '--reveal-delay': '80ms' } as CSSProperties}>
+          {service.faqs.map((faq) => (
+            <details key={faq.question}>
+              <summary>{faq.question}<span aria-hidden="true">+</span></summary>
+              <p>{faq.answer}</p>
+            </details>
+          ))}
+        </div>
+      </section>
+
       <section className="service-more" data-reveal="up">
         <h2>Weitere Leistungen</h2>
         <div>
           {features.filter((item) => item.slug !== service.slug).slice(0, 3).map((item) => {
             const MoreIcon = item.icon
             return (
-              <a href={`${BASE_PATH}leistungen/${item.slug}`} key={item.slug}>
+              <a href={`${BASE_PATH}leistungen/${item.slug}/`} key={item.slug}>
                 <MoreIcon aria-hidden="true" />
                 <strong>{item.title}</strong>
                 <ArrowUpRight aria-hidden="true" />
@@ -793,6 +946,7 @@ export default function App() {
   const serviceSlug = getPagePath().match(/^\/leistungen\/([^/]+)\/?$/)?.[1]
   const activeService = features.find((service) => service.slug === serviceSlug)
 
+  usePageSeo(activeService)
   useRevealAnimations(activeService?.slug)
 
   const openQuote = useCallback((service?: string) => {
