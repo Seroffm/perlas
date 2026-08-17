@@ -24,8 +24,21 @@ import {
 } from 'lucide-react'
 import QuoteModal from './QuoteModal'
 
-const A = '/assets/'
+const BASE_PATH = import.meta.env.BASE_URL
+const A = `${BASE_PATH}assets/`
 const WHATSAPP_URL = 'https://wa.me/491776867145?text=Hallo%20Perla%E2%80%99s%20Team%2C%20ich%20interessiere%20mich%20f%C3%BCr%20Ihre%20Objektbetreuung.'
+
+const homeHref = (hash = '') => `${BASE_PATH}${hash}`
+
+function getPagePath() {
+  const baseWithoutTrailingSlash = BASE_PATH.replace(/\/$/, '')
+
+  if (baseWithoutTrailingSlash && window.location.pathname.startsWith(baseWithoutTrailingSlash)) {
+    return window.location.pathname.slice(baseWithoutTrailingSlash.length) || '/'
+  }
+
+  return window.location.pathname
+}
 
 type ButtonLinkProps = {
   children: string
@@ -237,7 +250,7 @@ function Header() {
   return (
     <header className={menuOpen ? 'site-header menu-is-open' : 'site-header'}>
       <div className="nav-wrap">
-        <a className="wordmark" href="/" aria-label="PERLAS Startseite">PERLAS</a>
+        <a className="wordmark" href={homeHref()} aria-label="PERLAS Startseite">PERLAS</a>
         <button
           className="menu-toggle"
           type="button"
@@ -249,13 +262,13 @@ function Header() {
           {menuOpen ? <X aria-hidden="true" /> : <Menu aria-hidden="true" />}
         </button>
         <nav id="main-navigation" className={menuOpen ? 'is-open' : ''} aria-label="Hauptnavigation">
-          <a href="/#leistungen" onClick={closeMenu}>Leistungen</a>
-          <a href="/#ablauf" onClick={closeMenu}>Ablauf</a>
-          <a href="/#ueber-uns" onClick={closeMenu}>Über uns</a>
-          <a className="company-link" href="/#einblicke" onClick={closeMenu}>
+          <a href={homeHref('#leistungen')} onClick={closeMenu}>Leistungen</a>
+          <a href={homeHref('#ablauf')} onClick={closeMenu}>Ablauf</a>
+          <a href={homeHref('#ueber-uns')} onClick={closeMenu}>Über uns</a>
+          <a className="company-link" href={homeHref('#einblicke')} onClick={closeMenu}>
             Einblicke <img src={`${A}dropdown.svg`} alt="" />
           </a>
-          <a className="sign-in" href="/#kontakt" onClick={closeMenu}>Kontakt</a>
+          <a className="sign-in" href={homeHref('#kontakt')} onClick={closeMenu}>Kontakt</a>
         </nav>
       </div>
     </header>
@@ -294,7 +307,7 @@ function WhatsAppButton() {
 
 function MobileIsland({ onQuoteOpen }: { onQuoteOpen: () => void }) {
   const [activeItem, setActiveItem] = useState<'start' | 'services' | 'quote' | 'whatsapp'>(() => {
-    if (window.location.pathname.startsWith('/leistungen') || window.location.hash === '#leistungen') {
+    if (getPagePath().startsWith('/leistungen') || window.location.hash === '#leistungen') {
       return 'services'
     }
 
@@ -303,7 +316,7 @@ function MobileIsland({ onQuoteOpen }: { onQuoteOpen: () => void }) {
 
   useEffect(() => {
     const syncActiveItem = () => {
-      if (window.location.pathname.startsWith('/leistungen') || window.location.hash === '#leistungen') {
+      if (getPagePath().startsWith('/leistungen') || window.location.hash === '#leistungen') {
         setActiveItem('services')
       } else if (window.location.hash === '#top' || window.location.hash === '') {
         setActiveItem('start')
@@ -318,7 +331,7 @@ function MobileIsland({ onQuoteOpen }: { onQuoteOpen: () => void }) {
     <nav className="mobile-island" aria-label="Mobile Schnellnavigation">
       <a
         className={activeItem === 'start' ? 'is-active' : ''}
-        href="/#top"
+        href={homeHref('#top')}
         aria-current={activeItem === 'start' ? 'page' : undefined}
         onClick={() => setActiveItem('start')}
       >
@@ -327,7 +340,7 @@ function MobileIsland({ onQuoteOpen }: { onQuoteOpen: () => void }) {
       </a>
       <a
         className={activeItem === 'services' ? 'is-active' : ''}
-        href="/#leistungen"
+        href={homeHref('#leistungen')}
         aria-current={activeItem === 'services' ? 'page' : undefined}
         onClick={() => setActiveItem('services')}
       >
@@ -566,7 +579,7 @@ function FeatureSection({ onQuoteOpen }: { onQuoteOpen: (service?: string) => vo
           {features.map((feature) => {
             const Icon = feature.icon
             return (
-              <a className="feature-item" href={`/leistungen/${feature.slug}`} key={feature.title}>
+              <a className="feature-item" href={`${BASE_PATH}leistungen/${feature.slug}`} key={feature.title}>
                 <div className="feature-icon" aria-hidden="true">
                   <Icon strokeWidth={1.8} />
                 </div>
@@ -596,7 +609,7 @@ function ServiceDetailPage({ service, onQuoteOpen }: { service: Feature; onQuote
     <main className="service-page">
       <section className="service-detail-hero">
         <div className="service-detail-copy" data-reveal="left">
-          <a className="service-breadcrumb" href="/#leistungen">Leistungen / {service.title}</a>
+          <a className="service-breadcrumb" href={homeHref('#leistungen')}>Leistungen / {service.title}</a>
           <div className="service-detail-icon"><Icon aria-hidden="true" strokeWidth={1.8} /></div>
           <span className="eyebrow">Perla’s Objektbetreuung</span>
           <h1>{service.title}</h1>
@@ -646,7 +659,7 @@ function ServiceDetailPage({ service, onQuoteOpen }: { service: Feature; onQuote
           {features.filter((item) => item.slug !== service.slug).slice(0, 3).map((item) => {
             const MoreIcon = item.icon
             return (
-              <a href={`/leistungen/${item.slug}`} key={item.slug}>
+              <a href={`${BASE_PATH}leistungen/${item.slug}`} key={item.slug}>
                 <MoreIcon aria-hidden="true" />
                 <strong>{item.title}</strong>
                 <ArrowUpRight aria-hidden="true" />
@@ -733,13 +746,13 @@ function Footer() {
         <nav className="footer-nav" aria-label="Footer-Navigation">
           <h2>Perla’s</h2>
           {[
-            ['Leistungen', '/#leistungen'],
-            ['Ablauf', '/#ablauf'],
-            ['Über uns', '/#ueber-uns'],
-            ['Einblicke', '/#einblicke'],
-            ['Kontakt', '/#kontakt'],
+            ['Leistungen', '#leistungen'],
+            ['Ablauf', '#ablauf'],
+            ['Über uns', '#ueber-uns'],
+            ['Einblicke', '#einblicke'],
+            ['Kontakt', '#kontakt'],
           ].map(([item, href]) => (
-            <a href={href} key={item}>
+            <a href={homeHref(href)} key={item}>
               <span aria-hidden="true" /> {item}
             </a>
           ))}
@@ -777,7 +790,7 @@ function Footer() {
 export default function App() {
   const [quoteOpen, setQuoteOpen] = useState(false)
   const [quoteService, setQuoteService] = useState<string | undefined>()
-  const serviceSlug = window.location.pathname.match(/^\/leistungen\/([^/]+)\/?$/)?.[1]
+  const serviceSlug = getPagePath().match(/^\/leistungen\/([^/]+)\/?$/)?.[1]
   const activeService = features.find((service) => service.slug === serviceSlug)
 
   useRevealAnimations(activeService?.slug)
