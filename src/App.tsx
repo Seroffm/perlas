@@ -60,10 +60,15 @@ function usePageSeo(service?: Feature) {
     const description = service?.seoDescription
       ?? 'Perla’s Objektbetreuung bietet Hausmeisterservice, Objektpflege, Reinigung und Gebäudedienstleistungen im Main-Taunus-Kreis und Rhein-Main-Gebiet.'
     const imageUrl = new URL(`${BASE_PATH}assets/perlas-hero.png`, window.location.origin)
+    const indexingOverride = import.meta.env.VITE_PERLAS_INDEX_SITE
+    const indexingEnabled = indexingOverride
+      ? indexingOverride === 'true'
+      : !window.location.hostname.endsWith('github.io')
+    const robots = indexingEnabled ? 'index,follow,max-image-preview:large' : 'noindex,nofollow'
 
     document.title = title
     ensureMeta('meta[name="description"]', { name: 'description', content: description })
-    ensureMeta('meta[name="robots"]', { name: 'robots', content: 'index,follow,max-image-preview:large' })
+    ensureMeta('meta[name="robots"]', { name: 'robots', content: robots })
     ensureMeta('meta[property="og:title"]', { property: 'og:title', content: title })
     ensureMeta('meta[property="og:description"]', { property: 'og:description', content: description })
     ensureMeta('meta[property="og:type"]', { property: 'og:type', content: 'website' })

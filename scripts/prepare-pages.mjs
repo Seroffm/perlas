@@ -8,6 +8,11 @@ const appPath = fileURLToPath(new URL('../src/App.tsx', import.meta.url))
 const sourceIndexPath = fileURLToPath(new URL('../index.html', import.meta.url))
 const siteUrl = new URL(process.env.PERLAS_SITE_URL ?? 'https://seroffm.github.io/perlas/')
 const basePath = siteUrl.pathname.endsWith('/') ? siteUrl.pathname : `${siteUrl.pathname}/`
+const indexingOverride = process.env.PERLAS_INDEX_SITE
+const indexingEnabled = indexingOverride == null
+  ? !siteUrl.hostname.endsWith('github.io')
+  : indexingOverride === 'true'
+const pageRobots = indexingEnabled ? 'index,follow,max-image-preview:large' : 'noindex,nofollow'
 const services = JSON.parse(await readFile(serviceDataPath, 'utf8'))
 const indexTemplate = await readFile(indexPath, 'utf8')
 
@@ -120,7 +125,7 @@ function serviceMarkup(service) {
   return `${staticHeader()}<main class="seo-static-main"><nav aria-label="Brotkrümeln"><a href="${basePath}">Startseite</a> / <a href="${basePath}#leistungen">Leistungen</a> / ${escapeHtml(service.title)}</nav><section class="seo-static-hero"><p>Hausmeisterservice im Rhein-Main-Gebiet</p><h1>${escapeHtml(service.title)}</h1><p>${escapeHtml(service.detail)}</p><a href="${basePath}#kontakt">Individuelles Angebot anfragen</a></section><section><h2>Was wir bei ${escapeHtml(service.title)} konkret übernehmen</h2><p>${escapeHtml(service.scopeIntro)}</p><div class="seo-static-grid">${scopes}</div></section><section><h2>Für diese Objekte geeignet</h2><ul>${audiences}</ul><h2>${escapeHtml(service.boundaryTitle)}</h2><p>${escapeHtml(service.boundaryText)}</p></section><section><h2>Häufige Fragen zu ${escapeHtml(service.title)}</h2>${faqs}</section><nav aria-label="Weitere Leistungen"><h2>Weitere Leistungen</h2><ul class="seo-static-links">${serviceLinks(service.slug)}</ul></nav></main>`
 }
 
-function buildPage({ title, description, url, markup, data, robots = 'index,follow,max-image-preview:large' }) {
+function buildPage({ title, description, url, markup, data, robots = pageRobots }) {
   const socialImage = new URL(`${basePath}assets/perlas-hero.png`, siteUrl.origin).href
   const extraHead = `
     <meta name="robots" content="${robots}" />
@@ -171,10 +176,14 @@ const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 ${sitemapUrls.map((url) => `  <url><loc>${url}</loc><lastmod>${lastModified}</lastmod></url>`).join('\n')}
 </urlset>
 `
-const robots = `User-agent: *
+const robots = indexingEnabled
+  ? `User-agent: *
 Allow: ${basePath}
 
 Sitemap: ${new URL(`${basePath}sitemap.xml`, siteUrl.origin).href}
+`
+  : `User-agent: *
+Disallow: ${basePath}
 `
 
 await writeFile(`${distPath}sitemap.xml`, sitemap)
