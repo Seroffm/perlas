@@ -5,6 +5,7 @@ import {
   CheckCircle2,
   ChevronLeft,
   ChevronRight,
+  ChevronUp,
   ClipboardCheck,
   Clock3,
   Home,
@@ -385,33 +386,94 @@ function Header() {
   )
 }
 
-function WhatsAppButton() {
+function ContactDock() {
+  const [isOpen, setIsOpen] = useState(false)
+  const dockRef = useRef<HTMLElement>(null)
   const label = 'WhatsApp'
 
+  useEffect(() => {
+    if (!isOpen) return
+
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setIsOpen(false)
+    }
+    const closeOutside = (event: PointerEvent) => {
+      if (!dockRef.current?.contains(event.target as Node)) setIsOpen(false)
+    }
+
+    window.addEventListener('keydown', closeOnEscape)
+    document.addEventListener('pointerdown', closeOutside)
+    return () => {
+      window.removeEventListener('keydown', closeOnEscape)
+      document.removeEventListener('pointerdown', closeOutside)
+    }
+  }, [isOpen])
+
   return (
-    <a
-      className="whatsapp-button"
-      href={WHATSAPP_URL}
-      target="_blank"
-      rel="noreferrer"
-      aria-label="PERLAS über WhatsApp kontaktieren"
-    >
-      <span className="whatsapp-orb" aria-hidden="true" />
-      <span className="whatsapp-icon" aria-hidden="true">
-        <MessageCircle />
-      </span>
-      <span className="whatsapp-label" aria-hidden="true">
-        {label.split('').map((letter, index) => (
-          <span
-            className="whatsapp-letter"
-            style={{ '--letter-index': index } as CSSProperties}
-            key={`${letter}-${index}`}
-          >
-            {letter}
+    <aside className={isOpen ? 'contact-dock is-open' : 'contact-dock'} ref={dockRef} aria-label="Direkte Kontaktmöglichkeiten">
+      <div className="contact-dock-panel" id="contact-dock-panel" aria-hidden={!isOpen}>
+        <span className="eyebrow">Direkter Draht</span>
+        <strong>Wie dürfen wir helfen?</strong>
+        <p>Wählen Sie einfach den Kontaktweg, der für Sie am schnellsten ist.</p>
+        <nav aria-label="Kontaktwege">
+          <a className="is-whatsapp" href={WHATSAPP_URL} target="_blank" rel="noreferrer" onClick={() => setIsOpen(false)}>
+            <MessageCircle aria-hidden="true" />
+            <span><strong>WhatsApp</strong><small>Nachricht schreiben</small></span>
+            <ArrowUpRight aria-hidden="true" />
+          </a>
+          <a href="tel:+491776867145" onClick={() => setIsOpen(false)}>
+            <Phone aria-hidden="true" />
+            <span><strong>Direkt anrufen</strong><small>0177 68 67 145</small></span>
+            <ArrowUpRight aria-hidden="true" />
+          </a>
+          <a href="mailto:mail@perlas.de" onClick={() => setIsOpen(false)}>
+            <Mail aria-hidden="true" />
+            <span><strong>E-Mail schreiben</strong><small>mail@perlas.de</small></span>
+            <ArrowUpRight aria-hidden="true" />
+          </a>
+          <a href={homeHref('#kontakt')} onClick={() => setIsOpen(false)}>
+            <ClipboardCheck aria-hidden="true" />
+            <span><strong>Kontaktseite</strong><small>Allgemeine Anfrage senden</small></span>
+            <ArrowUpRight aria-hidden="true" />
+          </a>
+        </nav>
+      </div>
+      <div className="contact-dock-bar">
+        <a
+          className="whatsapp-button"
+          href={WHATSAPP_URL}
+          target="_blank"
+          rel="noreferrer"
+          aria-label="PERLAS über WhatsApp kontaktieren"
+        >
+          <span className="whatsapp-orb" aria-hidden="true" />
+          <span className="whatsapp-icon" aria-hidden="true">
+            <MessageCircle />
           </span>
-        ))}
-      </span>
-    </a>
+          <span className="whatsapp-label" aria-hidden="true">
+            {label.split('').map((letter, index) => (
+              <span
+                className="whatsapp-letter"
+                style={{ '--letter-index': index } as CSSProperties}
+                key={`${letter}-${index}`}
+              >
+                {letter}
+              </span>
+            ))}
+          </span>
+        </a>
+        <button
+          className="contact-dock-toggle"
+          type="button"
+          aria-label={isOpen ? 'Weitere Kontaktwege schließen' : 'Weitere Kontaktwege öffnen'}
+          aria-expanded={isOpen}
+          aria-controls="contact-dock-panel"
+          onClick={() => setIsOpen((current) => !current)}
+        >
+          <ChevronUp aria-hidden="true" />
+        </button>
+      </div>
+    </aside>
   )
 }
 
@@ -490,7 +552,7 @@ function Hero() {
         <h1>Ihre Immobilie. Einfach gut betreut.</h1>
         <p className="hero-lead">
           Seit 1999 steht Perla’s für zuverlässige Objektpflege, digitale Abläufe und
-          persönlichen Service — lokal, transparent und immer ansprechbar.
+          persönlichen Service. Lokal, transparent und immer ansprechbar.
         </p>
         <div className="button-row">
           <ButtonLink href="#kontakt" arrow>Unverbindlich anfragen</ButtonLink>
@@ -665,8 +727,8 @@ function About() {
         <h2>Seit 1999 für Sie und Ihre Immobilie da.</h2>
         <p>
           Wir verbinden persönliche Betreuung mit digitaler Einsatzplanung. So bleiben
-          Aufgaben, Zuständigkeiten und Ergebnisse jederzeit nachvollziehbar — für
-          Eigentümer, Mieter und Hausverwaltungen.
+          Aufgaben, Zuständigkeiten und Ergebnisse für Eigentümer, Mieter und
+          Hausverwaltungen jederzeit nachvollziehbar.
         </p>
         <div className="about-actions">
           <ButtonLink href="#kontakt" arrow>Objektbetreuung anfragen</ButtonLink>
@@ -714,6 +776,10 @@ function FeatureSection({ onQuoteOpen }: { onQuoteOpen: (service?: string) => vo
 
 function ServiceDetailPage({ service, onQuoteOpen }: { service: Feature; onQuoteOpen: (service?: string) => void }) {
   const Icon = service.icon
+  const emailHref = `mailto:mail@perlas.de?subject=${encodeURIComponent(`Anfrage zu ${service.title}`)}`
+  const relatedServices = service.relatedServices
+    .map((slug) => features.find((item) => item.slug === slug))
+    .filter((item): item is Feature => Boolean(item))
 
   return (
     <main className="service-page">
@@ -730,6 +796,10 @@ function ServiceDetailPage({ service, onQuoteOpen }: { service: Feature; onQuote
               <img src={`${A}arrow.svg`} alt="" />
             </button>
             <a className="button button--outline" href="tel:+491776867145">Direkt anrufen</a>
+          </div>
+          <div className="service-hero-links" aria-label="Weitere Kontaktmöglichkeiten">
+            <a href={emailHref}><Mail aria-hidden="true" /> E-Mail schreiben</a>
+            <a href={homeHref('#kontakt')}><MessageCircle aria-hidden="true" /> Allgemein Kontakt aufnehmen</a>
           </div>
         </div>
         <div className="service-detail-image" data-reveal="right" style={{ '--reveal-delay': '80ms' } as CSSProperties}>
@@ -749,6 +819,9 @@ function ServiceDetailPage({ service, onQuoteOpen }: { service: Feature; onQuote
               <span>0{index + 1}</span>
               <h3>{item.title}</h3>
               <p>{item.text}</p>
+              <ul>
+                {item.items.map((detail) => <li key={detail}>{detail}</li>)}
+              </ul>
             </article>
           ))}
         </div>
@@ -778,9 +851,16 @@ function ServiceDetailPage({ service, onQuoteOpen }: { service: Feature; onQuote
       </section>
 
       <section className="service-process" data-reveal="up">
-        <div><ClipboardCheck aria-hidden="true" /><strong>Bedarf aufnehmen</strong><span>Objekt, Leistung und Rhythmus gemeinsam klären.</span></div>
-        <div><Clock3 aria-hidden="true" /><strong>Einsatz planen</strong><span>Klare Zuständigkeiten und verlässliche Termine.</span></div>
-        <div><ShieldCheck aria-hidden="true" /><strong>Qualität sichern</strong><span>Ergebnisse transparent dokumentieren und optimieren.</span></div>
+        {service.processSteps.map((step, index) => {
+          const ProcessIcon = [ClipboardCheck, Clock3, ShieldCheck][index] ?? ClipboardCheck
+          return (
+            <div key={step.title}>
+              <ProcessIcon aria-hidden="true" />
+              <strong>{step.title}</strong>
+              <span>{step.text}</span>
+            </div>
+          )
+        })}
       </section>
 
       <section className="service-boundary" data-reveal="up">
@@ -811,15 +891,49 @@ function ServiceDetailPage({ service, onQuoteOpen }: { service: Feature; onQuote
         </div>
       </section>
 
+      <section className="service-contact" aria-labelledby="service-contact-heading" data-reveal="up">
+        <div className="service-contact-primary">
+          <span className="eyebrow">Ihr nächster Schritt</span>
+          <h2 id="service-contact-heading">Lassen Sie uns kurz über Ihr Objekt sprechen.</h2>
+          <p>Sie entscheiden, wie Sie Kontakt aufnehmen möchten. Das Angebotsformular führt strukturiert durch die wichtigsten Angaben. Genauso gern können Sie direkt anrufen oder eine kurze Nachricht schreiben.</p>
+          <button className="button button--yellow" type="button" onClick={() => onQuoteOpen(service.title)}>
+            <span>Angebot für {service.title} anfragen</span>
+            <img src={`${A}arrow.svg`} alt="" />
+          </button>
+        </div>
+        <div className="service-contact-options" aria-label="Alternative Kontaktwege">
+          <a href="tel:+491776867145">
+            <Phone aria-hidden="true" />
+            <span><strong>Direkt anrufen</strong><small>0177 68 67 145</small></span>
+            <ArrowUpRight aria-hidden="true" />
+          </a>
+          <a href={emailHref}>
+            <Mail aria-hidden="true" />
+            <span><strong>E-Mail schreiben</strong><small>mail@perlas.de</small></span>
+            <ArrowUpRight aria-hidden="true" />
+          </a>
+          <a href={homeHref('#kontakt')}>
+            <MessageCircle aria-hidden="true" />
+            <span><strong>Allgemeiner Kontakt</strong><small>Zur Kontaktseite</small></span>
+            <ArrowUpRight aria-hidden="true" />
+          </a>
+        </div>
+      </section>
+
       <section className="service-more" data-reveal="up">
-        <h2>Weitere Leistungen</h2>
+        <span className="eyebrow">Passende Leistungen</span>
+        <h2>Diese Leistungen könnten ebenfalls relevant sein.</h2>
+        <p>Viele Aufgaben greifen im Immobilienalltag ineinander. Diese drei Leistungen ergänzen {service.title} besonders sinnvoll.</p>
         <div>
-          {features.filter((item) => item.slug !== service.slug).slice(0, 3).map((item) => {
+          {relatedServices.map((item) => {
             const MoreIcon = item.icon
             return (
               <a href={`${BASE_PATH}leistungen/${item.slug}/`} key={item.slug}>
                 <MoreIcon aria-hidden="true" />
-                <strong>{item.title}</strong>
+                <span>
+                  <strong>{item.title}</strong>
+                  <small>{item.text}</small>
+                </span>
                 <ArrowUpRight aria-hidden="true" />
               </a>
             )
@@ -979,7 +1093,7 @@ export default function App() {
         </main>
       )}
       <Footer />
-      <WhatsAppButton />
+      <ContactDock />
       <MobileIsland onQuoteOpen={() => openQuote()} />
       <QuoteModal
         isOpen={quoteOpen}

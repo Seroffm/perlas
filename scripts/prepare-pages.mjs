@@ -109,20 +109,30 @@ function serviceLinks(currentSlug) {
     .join('')
 }
 
+function relatedServiceLinks(service) {
+  return service.relatedServices
+    .map((slug) => services.find((entry) => entry.slug === slug))
+    .filter(Boolean)
+    .map((entry) => `<li><a href="${basePath}leistungen/${entry.slug}/">${escapeHtml(entry.title)}</a><p>${escapeHtml(entry.text)}</p></li>`)
+    .join('')
+}
+
 function staticHeader() {
   return `<header class="seo-static-header"><a href="${basePath}">PERLAS</a><nav aria-label="Hauptnavigation"><a href="${basePath}#leistungen">Leistungen</a><a href="${basePath}#ablauf">Ablauf</a><a href="${basePath}#ueber-uns">Über uns</a><a href="${basePath}#kontakt">Kontakt</a></nav></header>`
 }
 
 function homeMarkup() {
-  return `${staticHeader()}<main class="seo-static-main"><section class="seo-static-hero"><p>Hausmeisterservice im Rhein-Main-Gebiet</p><h1>Ihre Immobilie. Einfach gut betreut.</h1><p>Seit 1999 steht Perla’s für zuverlässige Objektpflege, digitale Abläufe und persönlichen Service – lokal, transparent und immer ansprechbar.</p><a href="${basePath}#kontakt">Unverbindlich anfragen</a></section><section><h2>Leistungen für Wohn- und Gewerbeimmobilien</h2><p>Perla’s betreut Wohnanlagen, Büros, Praxen und Gewerbeobjekte im Main-Taunus-Kreis und Rhein-Main-Gebiet.</p><ul class="seo-static-links">${serviceLinks()}</ul></section><section><h2>Klar geplant und nachvollziehbar dokumentiert</h2><p>Aufgaben, Intervalle und Zuständigkeiten werden objektbezogen abgestimmt. Ein fester Ansprechpartner bündelt Rückfragen und die nächsten Schritte.</p></section></main>`
+  return `${staticHeader()}<main class="seo-static-main"><section class="seo-static-hero"><p>Hausmeisterservice im Rhein-Main-Gebiet</p><h1>Ihre Immobilie. Einfach gut betreut.</h1><p>Seit 1999 steht Perla’s für zuverlässige Objektpflege, digitale Abläufe und persönlichen Service. Lokal, transparent und immer ansprechbar.</p><a href="${basePath}#kontakt">Unverbindlich anfragen</a></section><section><h2>Leistungen für Wohn- und Gewerbeimmobilien</h2><p>Perla’s betreut Wohnanlagen, Büros, Praxen und Gewerbeobjekte im Main-Taunus-Kreis und Rhein-Main-Gebiet.</p><ul class="seo-static-links">${serviceLinks()}</ul></section><section><h2>Klar geplant und nachvollziehbar dokumentiert</h2><p>Aufgaben, Intervalle und Zuständigkeiten werden objektbezogen abgestimmt. Ein fester Ansprechpartner bündelt Rückfragen und die nächsten Schritte.</p></section></main>`
 }
 
 function serviceMarkup(service) {
-  const scopes = service.scopeCards.map((item) => `<article><h3>${escapeHtml(item.title)}</h3><p>${escapeHtml(item.text)}</p></article>`).join('')
+  const scopes = service.scopeCards.map((item) => `<article><h3>${escapeHtml(item.title)}</h3><p>${escapeHtml(item.text)}</p><ul>${item.items.map((detail) => `<li>${escapeHtml(detail)}</li>`).join('')}</ul></article>`).join('')
+  const process = service.processSteps.map((item) => `<article><h3>${escapeHtml(item.title)}</h3><p>${escapeHtml(item.text)}</p></article>`).join('')
   const audiences = service.audiences.map((item) => `<li>${escapeHtml(item)}</li>`).join('')
   const faqs = service.faqs.map((item) => `<details open><summary>${escapeHtml(item.question)}</summary><p>${escapeHtml(item.answer)}</p></details>`).join('')
+  const related = relatedServiceLinks(service)
 
-  return `${staticHeader()}<main class="seo-static-main"><nav aria-label="Brotkrümeln"><a href="${basePath}">Startseite</a> / <a href="${basePath}#leistungen">Leistungen</a> / ${escapeHtml(service.title)}</nav><section class="seo-static-hero"><p>Hausmeisterservice im Rhein-Main-Gebiet</p><h1>${escapeHtml(service.title)}</h1><p>${escapeHtml(service.detail)}</p><a href="${basePath}#kontakt">Individuelles Angebot anfragen</a></section><section><h2>Was wir bei ${escapeHtml(service.title)} konkret übernehmen</h2><p>${escapeHtml(service.scopeIntro)}</p><div class="seo-static-grid">${scopes}</div></section><section><h2>Für diese Objekte geeignet</h2><ul>${audiences}</ul><h2>${escapeHtml(service.boundaryTitle)}</h2><p>${escapeHtml(service.boundaryText)}</p></section><section><h2>Häufige Fragen zu ${escapeHtml(service.title)}</h2>${faqs}</section><nav aria-label="Weitere Leistungen"><h2>Weitere Leistungen</h2><ul class="seo-static-links">${serviceLinks(service.slug)}</ul></nav></main>`
+  return `${staticHeader()}<main class="seo-static-main"><nav aria-label="Brotkrümeln"><a href="${basePath}">Startseite</a> / <a href="${basePath}#leistungen">Leistungen</a> / ${escapeHtml(service.title)}</nav><section class="seo-static-hero"><p>Hausmeisterservice im Rhein-Main-Gebiet</p><h1>${escapeHtml(service.title)}</h1><p>${escapeHtml(service.detail)}</p><a href="${basePath}#kontakt">Individuelles Angebot anfragen</a><a href="tel:+491776867145">Direkt anrufen</a><a href="mailto:mail@perlas.de">E-Mail schreiben</a></section><section><h2>Was wir bei ${escapeHtml(service.title)} konkret übernehmen</h2><p>${escapeHtml(service.scopeIntro)}</p><div class="seo-static-grid">${scopes}</div></section><section><h2>So läuft die Zusammenarbeit ab</h2><div class="seo-static-grid">${process}</div></section><section><h2>Für diese Objekte geeignet</h2><ul>${audiences}</ul><h2>${escapeHtml(service.boundaryTitle)}</h2><p>${escapeHtml(service.boundaryText)}</p></section><section><h2>Häufige Fragen zu ${escapeHtml(service.title)}</h2>${faqs}</section><section><h2>Wie möchten Sie Kontakt aufnehmen?</h2><p>Nutzen Sie das Angebotsformular oder sprechen Sie direkt mit Perla’s.</p><ul><li><a href="${basePath}#kontakt">Angebot für ${escapeHtml(service.title)} anfragen</a></li><li><a href="tel:+491776867145">Direkt anrufen: 0177 68 67 145</a></li><li><a href="mailto:mail@perlas.de">E-Mail an mail@perlas.de schreiben</a></li></ul></section><nav aria-label="Passende Leistungen"><h2>Diese Leistungen könnten ebenfalls relevant sein</h2><ul class="seo-static-links">${related}</ul></nav></main>`
 }
 
 function buildPage({ title, description, url, markup, data, robots = pageRobots }) {
