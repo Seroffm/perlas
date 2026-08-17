@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useLayoutEffect, useRef, useState, type CSSProperties } from 'react'
 import {
   ArrowUpRight,
+  BriefcaseBusiness,
   Building2,
   CheckCircle2,
   ChevronLeft,
@@ -9,6 +10,8 @@ import {
   ClipboardCheck,
   Clock3,
   Home,
+  Hospital,
+  KeyRound,
   Mail,
   MapPin,
   Menu,
@@ -23,6 +26,7 @@ import {
   X,
   type LucideIcon,
 } from 'lucide-react'
+import CookieConsent from './CookieConsent'
 import QuoteModal from './QuoteModal'
 import serviceContent from './service-data.json'
 
@@ -240,17 +244,15 @@ const proofStats = [
   ['1', 'starkes Team'],
 ]
 
-// Die neutralen Einträge können später direkt durch freigegebene Kundenlogos
-// ergänzt werden. Das Layout unterstützt sowohl Wortmarken als auch Bilddateien.
-type Partner = { name: string; mark: string; logo?: string }
+type Partner = { name: string; href: string; icon: LucideIcon }
 
 const partners: Partner[] = [
-  { name: 'Hausverwaltungen', mark: 'HV' },
-  { name: 'Wohnanlagen', mark: 'WEG' },
-  { name: 'Gewerbeobjekte', mark: 'GO' },
-  { name: 'Praxen', mark: 'PR' },
-  { name: 'Eigentümer', mark: 'EI' },
-  { name: 'Büroflächen', mark: 'BF' },
+  { name: 'Hausverwaltungen', href: `${BASE_PATH}leistungen/objektpflege/`, icon: KeyRound },
+  { name: 'Wohnanlagen', href: `${BASE_PATH}leistungen/objektpflege/`, icon: Home },
+  { name: 'Gewerbeobjekte', href: `${BASE_PATH}leistungen/wartung-instandhaltung/`, icon: Building2 },
+  { name: 'Praxen', href: `${BASE_PATH}leistungen/gebaeudereinigung/`, icon: Hospital },
+  { name: 'Eigentümer', href: `${BASE_PATH}leistungen/wartung-instandhaltung/`, icon: ShieldCheck },
+  { name: 'Büroflächen', href: `${BASE_PATH}leistungen/gebaeudereinigung/`, icon: BriefcaseBusiness },
 ]
 
 type Feature = (typeof serviceContent)[number] & { icon: LucideIcon }
@@ -321,26 +323,53 @@ const insights = [
   {
     image: 'perlas-office.png',
     tag: 'Über uns',
-    title: 'Unsere Geschichte: Über 25 Jahre Vertrauen und Qualität',
-    text: 'Seit 1999 ist Perla’s Objektbetreuung ein zuverlässiger Partner, der sich mit Herz und Verstand um Immobilien kümmert.',
+    title: 'Wie Perla’s seit 1999 gewachsen ist',
+    text: 'Ein Blick auf unsere Arbeit, unser Team und die Grundsätze, nach denen wir Immobilien betreuen.',
   },
   {
     image: 'perlas-property.png',
     tag: 'Ratgeber',
-    title: 'Effiziente Objektverwaltung: So hilft ein Hausmeisterservice',
-    text: 'Wie klare Zuständigkeiten, regelmäßige Kontrollen und digitale Dokumentation Zeit und Kosten sparen.',
+    title: 'Was eine gute Objektbetreuung im Alltag abnimmt',
+    text: 'Kontrollgänge, feste Zuständigkeiten und verständliche Rückmeldungen entlasten Verwaltung und Eigentümer.',
   },
   {
     image: 'perlas-service.jpg',
     tag: 'Checkliste',
-    title: 'Den richtigen Hausmeisterservice finden: Tipps & Hinweise',
-    text: 'Worauf Hausverwaltungen und Eigentümer bei Leistung, Kommunikation und Reaktionszeit achten sollten.',
+    title: 'Woran Sie einen passenden Hausmeisterservice erkennen',
+    text: 'Welche Aufgaben ins Leistungsverzeichnis gehören und was bei Kommunikation und Erreichbarkeit zählt.',
   },
   {
     image: 'perlas-team.png',
     tag: 'Praxiswissen',
-    title: 'Saisonale Objektpflege: Gut vorbereitet durch das ganze Jahr',
-    text: 'Welche Aufgaben im Frühjahr, Sommer, Herbst und Winter den Wert und die Sicherheit einer Immobilie erhalten.',
+    title: 'Welche Arbeiten im Jahresverlauf anstehen',
+    text: 'Von der Grünpflege bis zum Winterdienst: So lassen sich wiederkehrende Aufgaben sinnvoll planen.',
+  },
+]
+
+const heroSlides = [
+  {
+    image: 'perlas-hero.png',
+    alt: 'Mitarbeiter von Perla’s bei einer digitalen Objektkontrolle',
+    label: 'Objektkontrolle vor Ort',
+    position: '50% center',
+  },
+  {
+    image: 'perlas-team.png',
+    alt: 'Das Team von Perla’s Objektbetreuung',
+    label: 'Das Perlas Team',
+    position: '50% center',
+  },
+  {
+    image: 'perlas-property.png',
+    alt: 'Wohnanlage im Rhein-Main-Gebiet',
+    label: 'Betreute Wohnimmobilien',
+    position: '58% center',
+  },
+  {
+    image: 'perlas-office.png',
+    alt: 'Mitarbeiter von Perla’s bei der Einsatzplanung',
+    label: 'Persönliche Ansprechpartner',
+    position: '52% center',
   },
 ]
 
@@ -544,6 +573,18 @@ function MobileIsland({ onQuoteOpen }: { onQuoteOpen: () => void }) {
 }
 
 function Hero() {
+  const [activeSlide, setActiveSlide] = useState(0)
+
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+
+    const interval = window.setInterval(() => {
+      setActiveSlide((current) => (current + 1) % heroSlides.length)
+    }, 5200)
+
+    return () => window.clearInterval(interval)
+  }, [])
+
   return (
     <section className="hero" id="top">
       <img className="hero-circle" src={`${A}bg-circle.svg`} alt="" />
@@ -551,20 +592,27 @@ function Hero() {
         <p className="eyebrow">Hausmeisterservice im Rhein-Main-Gebiet</p>
         <h1>Ihre Immobilie. Einfach gut betreut.</h1>
         <p className="hero-lead">
-          Seit 1999 steht Perla’s für zuverlässige Objektpflege, digitale Abläufe und
-          persönlichen Service. Lokal, transparent und immer ansprechbar.
+          Seit 1999 kümmern wir uns um Wohnanlagen, Gewerbeobjekte und Außenflächen im
+          Rhein-Main-Gebiet. Sie haben einen festen Ansprechpartner und wissen, was am Objekt erledigt wurde.
         </p>
         <div className="button-row">
           <ButtonLink href="#kontakt" arrow>Unverbindlich anfragen</ButtonLink>
           <ButtonLink href="#leistungen" kind="outline">Leistungen ansehen</ButtonLink>
         </div>
       </div>
-      <div className="hero-art">
-        <img
-          className="hero-photo"
-          src={`${A}perlas-hero.png`}
-          alt="Mitarbeiter von Perla’s bei der digitalen Objektkontrolle"
-        />
+      <div className="hero-art" aria-roledescription="Karussell" aria-label="Einblicke in die Arbeit von Perla’s">
+        <div className="hero-slides" aria-live="off">
+          {heroSlides.map((slide, index) => (
+            <figure className={index === activeSlide ? 'hero-slide is-active' : 'hero-slide'} aria-hidden={index !== activeSlide} key={slide.image}>
+              <img
+                src={`${A}${slide.image}`}
+                alt={index === activeSlide ? slide.alt : ''}
+                style={{ objectPosition: slide.position }}
+              />
+              <figcaption>{slide.label}</figcaption>
+            </figure>
+          ))}
+        </div>
         <div className="hero-proof" aria-label="25 Jahre Erfahrung">
           <strong>25+</strong>
           <span>Jahre Erfahrung</span>
@@ -581,6 +629,18 @@ function Hero() {
             <p>Lokal im Rhein-Main-Gebiet</p>
           </div>
         </div>
+        <div className="hero-slider-controls" aria-label="Bild auswählen">
+          {heroSlides.map((slide, index) => (
+            <button
+              className={index === activeSlide ? 'is-active' : ''}
+              type="button"
+              aria-label={`${slide.label} anzeigen`}
+              aria-current={index === activeSlide ? 'true' : undefined}
+              onClick={() => setActiveSlide(index)}
+              key={slide.image}
+            />
+          ))}
+        </div>
       </div>
     </section>
   )
@@ -593,24 +653,28 @@ function PartnerMarquee() {
       role={duplicate ? 'presentation' : 'list'}
       aria-hidden={duplicate ? true : undefined}
     >
-      {partners.map((partner) => (
-        <div className="partner-mark" role={duplicate ? undefined : 'listitem'} key={partner.name}>
-          {partner.logo ? (
-            <img src={`${A}${partner.logo}`} alt={partner.name} />
-          ) : (
-            <>
-              <span aria-hidden="true">{partner.mark}</span>
-              <strong>{partner.name}</strong>
-            </>
-          )}
-        </div>
-      ))}
+      {partners.map((partner) => {
+        const Icon = partner.icon
+        return (
+          <a
+            className="partner-mark"
+            role={duplicate ? undefined : 'listitem'}
+            href={partner.href}
+            tabIndex={duplicate ? -1 : undefined}
+            key={partner.name}
+          >
+            <span aria-hidden="true"><Icon strokeWidth={1.9} /></span>
+            <strong>{partner.name}</strong>
+            <ArrowUpRight aria-hidden="true" />
+          </a>
+        )
+      })}
     </div>
   )
 
   return (
     <section className="partner-strip" aria-labelledby="partner-strip-heading" data-reveal="fade">
-      <p id="partner-strip-heading">Partner und Auftraggeber im Rhein-Main-Gebiet</p>
+      <p id="partner-strip-heading">Für diese Immobilien und Auftraggeber arbeiten wir</p>
       <div className="partner-marquee">
         <div className="partner-track">
           {renderPartners()}
@@ -724,15 +788,15 @@ function About() {
   return (
     <section className="about" id="ueber-uns">
       <div className="about-copy" data-reveal="left">
-        <h2>Seit 1999 für Sie und Ihre Immobilie da.</h2>
+        <h2>Wir kennen die Gebäude und die Menschen dahinter.</h2>
         <p>
-          Wir verbinden persönliche Betreuung mit digitaler Einsatzplanung. So bleiben
-          Aufgaben, Zuständigkeiten und Ergebnisse für Eigentümer, Mieter und
-          Hausverwaltungen jederzeit nachvollziehbar.
+          Perla’s ist seit 1999 im Rhein-Main-Gebiet unterwegs. Wir sprechen Aufgaben vor Ort ab,
+          planen die Einsätze digital und geben verständlich Rückmeldung. So muss die Verwaltung
+          nicht jedem offenen Punkt selbst hinterherlaufen.
         </p>
         <div className="about-actions">
-          <ButtonLink href="#kontakt" arrow>Objektbetreuung anfragen</ButtonLink>
-          <ButtonLink href="#ablauf" kind="outline">So arbeiten wir</ButtonLink>
+          <ButtonLink href="#kontakt" arrow>Betreuung besprechen</ButtonLink>
+          <ButtonLink href="#ablauf" kind="outline">Unser Ablauf</ButtonLink>
         </div>
       </div>
       <div className="about-image" data-reveal="right" style={{ '--reveal-delay': '80ms' } as CSSProperties}>
@@ -745,7 +809,7 @@ function About() {
 function FeatureSection({ onQuoteOpen }: { onQuoteOpen: (service?: string) => void }) {
   return (
     <section className="features" id="leistungen" aria-labelledby="features-heading">
-      <h2 id="features-heading" data-reveal="up">Alles, was Ihre Immobilie zuverlässig braucht</h2>
+      <h2 id="features-heading" data-reveal="up">Was wir rund um Ihre Immobilie übernehmen</h2>
       <div className="feature-panel" data-reveal="scale" style={{ '--reveal-delay': '100ms' } as CSSProperties}>
         <div className="feature-grid">
           {features.map((feature) => {
@@ -764,10 +828,10 @@ function FeatureSection({ onQuoteOpen }: { onQuoteOpen: (service?: string) => vo
         </div>
         <div className="feature-actions">
           <button className="button button--yellow" type="button" onClick={() => onQuoteOpen()}>
-            <span>Individuelles Angebot</span>
+            <span>Angebot zusammenstellen</span>
             <img src={`${A}arrow.svg`} alt="" />
           </button>
-          <ButtonLink href="#ablauf" kind="outline">Ablauf kennenlernen</ButtonLink>
+          <ButtonLink href="#ablauf" kind="outline">So läuft die Betreuung</ButtonLink>
         </div>
       </div>
     </section>
@@ -944,31 +1008,32 @@ function ServiceDetailPage({ service, onQuoteOpen }: { service: Feature; onQuote
   )
 }
 
-function ProcessCards() {
+function ClosingContact({ onQuoteOpen }: { onQuoteOpen: () => void }) {
   return (
-    <section className="help-cards" id="ablauf">
-      <article className="story-card" data-reveal="left">
-        <h2>Planbar von Anfang an</h2>
-        <p>Bedarf verstehen, Angebot abstimmen und die Betreuung zuverlässig starten.</p>
-        <ButtonLink href="#kontakt" kind="purple" compact arrow>Erstgespräch starten</ButtonLink>
-      </article>
-      <article className="help-card" data-reveal="right" style={{ '--reveal-delay': '80ms' } as CSSProperties}>
-        <h2>Direkter Draht</h2>
-        <p>Feste Ansprechpartner und schnelle Rückmeldung statt Warteschleife.</p>
-        <ButtonLink href="tel:+491776867145" kind="outline" compact>0177 68 67 145</ButtonLink>
-      </article>
-    </section>
-  )
-}
-
-function CallToAction() {
-  return (
-    <section className="cta-section">
-      <h2 data-reveal="up">Genug von unklaren Zuständigkeiten?</h2>
-      <p data-reveal="up" style={{ '--reveal-delay': '80ms' } as CSSProperties}>Wir melden uns innerhalb von 24 Stunden zurück.</p>
-      <div className="button-row" data-reveal="up" style={{ '--reveal-delay': '150ms' } as CSSProperties}>
-        <ButtonLink href="#kontakt" arrow>Anfrage senden</ButtonLink>
-        <ButtonLink href="tel:+491776867145" kind="outline-light">Direkt anrufen</ButtonLink>
+    <section className="closing-contact" id="ablauf">
+      <div className="closing-contact-copy" data-reveal="left">
+        <span className="eyebrow">So starten wir</span>
+        <h2>Ein klarer Plan für Ihre Immobilie.</h2>
+        <p>
+          Wir sehen uns an, was vor Ort gebraucht wird, stimmen Aufgaben und Intervalle mit Ihnen ab
+          und halten die Zuständigkeiten verständlich fest.
+        </p>
+        <ol className="closing-steps">
+          <li><span>01</span><div><strong>Objekt besprechen</strong><small>Sie schildern uns die Immobilie und die Aufgaben, die Sie abgeben möchten.</small></div></li>
+          <li><span>02</span><div><strong>Leistungen festlegen</strong><small>Wir klären Umfang, Rhythmus und Ansprechpartner ohne unnötige Umwege.</small></div></li>
+          <li><span>03</span><div><strong>Betreuung starten</strong><small>Die Einsätze beginnen nach einem Ablauf, den beide Seiten kennen.</small></div></li>
+        </ol>
+      </div>
+      <div className="closing-contact-card" data-reveal="right" style={{ '--reveal-delay': '90ms' } as CSSProperties}>
+        <MessageCircle aria-hidden="true" />
+        <h3>Wie möchten Sie starten?</h3>
+        <p>Stellen Sie Ihre Anfrage zusammen oder sprechen Sie direkt mit uns.</p>
+        <button className="button button--yellow" type="button" onClick={onQuoteOpen}>
+          <span>Angebot anfragen</span>
+          <img src={`${A}arrow.svg`} alt="" />
+        </button>
+        <a className="closing-contact-link" href="tel:+491776867145"><Phone aria-hidden="true" /> 0177 68 67 145</a>
+        <a className="closing-contact-link" href="mailto:mail@perlas.de"><Mail aria-hidden="true" /> mail@perlas.de</a>
       </div>
     </section>
   )
@@ -1002,7 +1067,7 @@ function Footer() {
     <footer className="footer" id="kontakt">
       <div className="footer-grid" data-reveal="up">
         <div className="footer-meta">
-          <h2>Pflegen. Erhalten. Entlasten.</h2>
+          <h2>Direkt erreichbar.</h2>
           <div className="contact-list">
             <a href="tel:+491776867145"><Phone aria-hidden="true" /> 0177 68 67 145</a>
             <a href="mailto:mail@perlas.de"><Mail aria-hidden="true" /> mail@perlas.de</a>
@@ -1011,6 +1076,9 @@ function Footer() {
           <div className="legal-links">
             <a href="https://perlas.de/impressum/">Impressum</a>
             <a href="https://perlas.de/datenschutz/">Datenschutz</a>
+            <button type="button" onClick={() => window.dispatchEvent(new Event('perlas:open-cookie-settings'))}>
+              Cookie-Einstellungen
+            </button>
           </div>
           <p>© 2026 Perla’s Objektbetreuung GmbH &amp; Co. KG</p>
         </div>
@@ -1034,10 +1102,10 @@ function Footer() {
           <div className="contact-card">
             <img src={`${A}newsletter-mark.svg`} alt="" />
             <div className="form-content">
-              <h2>Kostenloses Erstgespräch</h2>
+              <h2>Lassen Sie uns über Ihr Objekt sprechen</h2>
               <p>
-                Lassen Sie uns gemeinsam die beste Lösung für Ihre Immobilie finden.
-                Persönlich, unverbindlich und klar.
+                Schreiben Sie kurz, welche Immobilie Sie betreuen lassen möchten.
+                Wir klären die nächsten Schritte persönlich mit Ihnen.
               </p>
               <a className="contact-card-button" href="mailto:mail@perlas.de?subject=Anfrage%20zur%20Objektbetreuung">
                 Anfrage senden
@@ -1087,8 +1155,7 @@ export default function App() {
           <Reviews />
           <About />
           <FeatureSection onQuoteOpen={openQuote} />
-          <ProcessCards />
-          <CallToAction />
+          <ClosingContact onQuoteOpen={() => openQuote()} />
           <Insights />
         </main>
       )}
@@ -1101,6 +1168,7 @@ export default function App() {
         serviceNames={features.map((service) => service.title)}
         onClose={closeQuote}
       />
+      <CookieConsent />
     </>
   )
 }
