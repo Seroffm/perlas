@@ -574,16 +574,22 @@ function MobileIsland({ onQuoteOpen }: { onQuoteOpen: () => void }) {
 
 function Hero() {
   const [activeSlide, setActiveSlide] = useState(0)
+  const [sliderResetKey, setSliderResetKey] = useState(0)
 
   useEffect(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
 
-    const interval = window.setInterval(() => {
+    const timeout = window.setTimeout(() => {
       setActiveSlide((current) => (current + 1) % heroSlides.length)
     }, 5200)
 
-    return () => window.clearInterval(interval)
-  }, [])
+    return () => window.clearTimeout(timeout)
+  }, [activeSlide, sliderResetKey])
+
+  const selectSlide = (index: number) => {
+    setActiveSlide(index)
+    setSliderResetKey((current) => current + 1)
+  }
 
   return (
     <section className="hero" id="top">
@@ -636,7 +642,7 @@ function Hero() {
               type="button"
               aria-label={`${slide.label} anzeigen`}
               aria-current={index === activeSlide ? 'true' : undefined}
-              onClick={() => setActiveSlide(index)}
+              onClick={() => selectSlide(index)}
               key={slide.image}
             />
           ))}
