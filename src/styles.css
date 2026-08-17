@@ -1690,10 +1690,16 @@ p {
   background: var(--yellow);
 }
 
+.footer-side {
+  display: grid;
+  align-content: start;
+  gap: 22px;
+}
+
 .footer-side .contact-card {
   position: relative;
-  height: 232px;
-  padding: 35px 36px 36px;
+  min-height: 280px;
+  padding: 38px 36px;
   overflow: hidden;
   color: var(--navy);
   border-radius: 42px;
@@ -1703,10 +1709,16 @@ p {
 .footer-side .contact-card > img {
   position: absolute;
   top: 0;
-  left: 123px;
+  right: 38px;
+  left: auto;
   width: 189px;
-  height: 232px;
+  height: 100%;
+  object-fit: contain;
   opacity: 0.36;
+}
+
+.footer-side .contact-card h2 {
+  max-width: 330px;
 }
 
 .form-content {
@@ -1716,13 +1728,14 @@ p {
 
 .form-content p {
   margin-top: 21px;
+  max-width: 350px;
   font-size: 15px;
   line-height: 20px;
 }
 
 .contact-card-button {
   min-height: 38px;
-  margin-top: 28px;
+  margin-top: 24px;
   padding: 0 20px;
   display: inline-flex;
   align-items: center;
@@ -1809,14 +1822,14 @@ p {
 }
 
 .service-area {
-  width: 316px;
-  height: 104px;
-  margin: 155px 0 0 auto;
-  padding: 20px 24px;
+  width: 100%;
+  min-height: 104px;
+  margin: 0;
+  padding: 22px 26px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  border-radius: 12px;
+  border-radius: 24px;
   color: var(--navy);
   background: #fff;
 }
@@ -4328,7 +4341,7 @@ p {
 
   .footer-side .contact-card {
     height: auto;
-    min-height: 250px;
+    min-height: 280px;
   }
 
   .email-field {
@@ -4344,7 +4357,7 @@ p {
   }
 
   .service-area {
-    margin-top: 48px;
+    margin-top: 0;
   }
 
   .trademark {
