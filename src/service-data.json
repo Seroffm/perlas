@@ -3,11 +3,11 @@
     "slug": "objektpflege",
     "title": "Objektbetreuung",
     "text": "Ein fester Ansprechpartner kümmert sich um Kontrollen, Ordnung und die laufenden Aufgaben Ihrer Immobilie.",
-    "detail": "Wir behalten Ihre Immobilie im Alltag im Blick, kümmern uns um vereinbarte Aufgaben und melden frühzeitig, wenn etwas erledigt werden muss. So wissen Verwaltung, Eigentümer und Nutzer jederzeit, an wen sie sich wenden können.",
+    "detail": "Wir behalten Ihre Immobilie im Alltag im Blick, erledigen die festgelegten Aufgaben und melden uns frühzeitig, wenn Handlungsbedarf besteht. Verwaltung, Eigentümer und Nutzer haben dabei einen festen Ansprechpartner.",
     "image": "perlas-property.png",
     "seoTitle": "Objektbetreuung im Rhein-Main-Gebiet | PERLAS",
     "seoDescription": "Persönliche Objektbetreuung für Wohnanlagen und Gewerbeimmobilien mit Kontrollgängen, Dokumentation und festen Ansprechpartnern im Rhein-Main-Gebiet.",
-    "scopeIntro": "Keine Immobilie funktioniert genau wie die andere. Vor dem Start sehen wir uns deshalb die Flächen, die Nutzung und die bisherigen Abläufe an. Gemeinsam legen wir fest, was regelmäßig kontrolliert wird, welche Aufgaben wir direkt erledigen und wann wir Sie informieren.",
+    "scopeIntro": "Vor dem Start sehen wir uns die Flächen, ihre Nutzung und die bisherigen Abläufe an. Danach legen wir gemeinsam fest, was regelmäßig kontrolliert wird, welche Aufgaben wir direkt erledigen und wann Sie eine Rückmeldung erhalten.",
     "scopeCards": [
       {
         "title": "Regelmäßige Kontrollgänge",
@@ -21,12 +21,12 @@
       },
       {
         "title": "Meldungen aufnehmen",
-        "text": "Hinweise von Bewohnern, Mietern oder der Verwaltung laufen nicht ins Leere. Wir nehmen die Meldung auf, prüfen die Situation vor Ort und geben eine klare Rückmeldung zum nächsten Schritt.",
+        "text": "Hinweise von Bewohnern, Mietern oder der Verwaltung nehmen wir direkt auf. Wir prüfen die Situation vor Ort und teilen dem zuständigen Ansprechpartner mit, wie es weitergeht.",
         "items": ["Vor-Ort-Prüfung gemeldeter Mängel", "Fotos und verständliche Zustandsmeldung", "Abstimmung mit Verwaltung oder Eigentümer"]
       },
       {
         "title": "Kleine Aufgaben direkt erledigen",
-        "text": "Was im vereinbarten Hausmeisterrahmen liegt, erledigen wir ohne unnötige Umwege. Dazu können einfache Handgriffe, der Austausch kleiner Verbrauchsteile oder das Nachstellen von Ausstattung gehören.",
+        "text": "Kleine Hausmeisterarbeiten erledigen wir nach Absprache direkt. Dazu gehören zum Beispiel einfache Handgriffe, der Austausch kleiner Verbrauchsteile oder das Nachstellen von Ausstattung.",
         "items": ["Leuchtmittel und Verbrauchsteile", "Einfache Handgriffe an Ausstattung", "Kleine Maßnahmen nach Freigabe"]
       },
       {
@@ -36,23 +36,23 @@
       },
       {
         "title": "Übersichtlich dokumentieren",
-        "text": "Sie erhalten keine unverständliche Sammlung einzelner Nachrichten. Kontrollen, erledigte Aufgaben und offene Punkte werden so festgehalten, dass der aktuelle Stand schnell nachvollziehbar bleibt.",
-        "items": ["Dokumentation wiederkehrender Einsätze", "Fotohinweise bei Auffälligkeiten", "Klare Liste offener Maßnahmen"]
+        "text": "Kontrollen, erledigte Aufgaben und offene Punkte fassen wir übersichtlich zusammen. Bei Auffälligkeiten können Fotos die Rückmeldung ergänzen.",
+        "items": ["Übersicht der regelmäßigen Einsätze", "Fotos bei Auffälligkeiten", "Offene Maßnahmen auf einen Blick"]
       }
     ],
     "processSteps": [
       { "title": "Objekt kennenlernen", "text": "Bei einer Begehung nehmen wir Flächen, Zugänge, Besonderheiten und bestehende Abläufe auf." },
       { "title": "Betreuung festlegen", "text": "Sie erhalten einen verständlichen Leistungsplan mit Aufgaben, Intervallen und Ansprechpartnern." },
-      { "title": "Im Alltag entlasten", "text": "Wir führen die vereinbarten Einsätze durch, melden Auffälligkeiten und halten den Stand nachvollziehbar fest." }
+      { "title": "Im Alltag entlasten", "text": "Wir übernehmen die festgelegten Einsätze, melden Auffälligkeiten und informieren über erledigte sowie offene Aufgaben." }
     ],
     "benefits": [
       { "title": "Jemand hat das Objekt wirklich im Blick", "text": "Regelmäßige Präsenz hilft dabei, kleine Auffälligkeiten zu erkennen, bevor daraus unnötiger Aufwand entsteht." },
       { "title": "Weniger Abstimmung für die Verwaltung", "text": "Meldungen, Rückfragen und Termine laufen über einen festen Kontakt statt über viele einzelne Stellen." },
-      { "title": "Ein Zustand, der nachvollziehbar bleibt", "text": "Durch kurze Berichte und Fotos lässt sich auch aus der Entfernung erkennen, was erledigt wurde und was noch ansteht." }
+      { "title": "Sie sehen, was am Objekt passiert", "text": "Kurze Berichte und Fotos zeigen auch aus der Entfernung, was erledigt wurde und was noch ansteht." }
     ],
     "audiences": ["WEG- und Mietwohnanlagen", "Büro-, Praxis- und Gewerbeobjekte", "Private und gemischt genutzte Immobilien"],
     "boundaryTitle": "Sie wissen vorher, was wir übernehmen",
-    "boundaryText": "Wir halten die betreuten Bereiche und Aufgaben im Leistungsplan fest. Arbeiten, für die eine besondere Zulassung oder ein Fachbetrieb erforderlich ist, führen wir nicht selbst aus. Auf Wunsch kümmern wir uns aber um die Abstimmung und begleiten den Termin am Objekt.",
+    "boundaryText": "Im Leistungsplan stehen die betreuten Bereiche und Aufgaben. Arbeiten, für die eine besondere Zulassung oder ein Fachbetrieb erforderlich ist, führen wir nicht selbst aus. Auf Wunsch organisieren wir den Zugang und begleiten den Termin am Objekt.",
     "relatedServices": ["wartung-instandhaltung", "gebaeudereinigung", "gartenpflege"],
     "faqs": [
       { "question": "Was gehört zu einer laufenden Objektbetreuung?", "answer": "Der genaue Umfang richtet sich nach dem Objekt. Häufig gehören Kontrollgänge, Zustandsmeldungen, Ordnung in vereinbarten Bereichen, kleine Hausmeisteraufgaben und die Koordination weiterer Maßnahmen dazu." },
@@ -69,7 +69,7 @@
     "image": "perlas-service.jpg",
     "seoTitle": "Wartung & Instandhaltung Rhein-Main | PERLAS",
     "seoDescription": "Wartung und Instandhaltung für Immobilien mit Kleinreparaturen, Sichtkontrollen, Fotodokumentation und Koordination geeigneter Fachbetriebe.",
-    "scopeIntro": "Eine lockere Türklinke, eine ausgefallene Leuchte oder eine feuchte Stelle wirken zunächst klein. Bleiben solche Punkte liegen, kosten sie später oft mehr Zeit und Abstimmung. Wir prüfen, was direkt erledigt werden kann, dokumentieren den Zustand und kümmern uns um den nächsten sinnvollen Schritt.",
+    "scopeIntro": "Eine lockere Türklinke, eine ausgefallene Leuchte oder eine feuchte Stelle wirken zunächst klein. Bleiben solche Punkte liegen, verursachen sie später oft mehr Aufwand. Wir prüfen den Mangel, halten den Zustand fest und klären, ob wir ihn direkt beheben können oder ein Fachbetrieb benötigt wird.",
     "scopeCards": [
       {
         "title": "Türen, Fenster und Beschläge",
@@ -78,7 +78,7 @@
       },
       {
         "title": "Beleuchtung und Ausstattung",
-        "text": "Defekte Beleuchtung in Gemeinschaftsbereichen fällt sofort auf und kann Wege unsicher machen. Wir prüfen die Ursache im zulässigen Rahmen und tauschen vereinbarte Verbrauchsteile aus.",
+        "text": "Defekte Beleuchtung in Gemeinschaftsbereichen fällt sofort auf und kann Wege unsicher machen. Bei einfachen Hausmeisterarbeiten prüfen wir die Ursache und tauschen zuvor festgelegte Verbrauchsteile aus.",
         "items": ["Leuchtmittel in vereinbarten Bereichen", "Abdeckungen und sichtbare Befestigungen", "Hinweise auf weitergehende Elektroarbeiten"]
       },
       {
@@ -105,7 +105,7 @@
     "processSteps": [
       { "title": "Mangel prüfen", "text": "Wir sehen uns die Situation vor Ort an und klären, ob eine kleine Reparatur ausreicht oder Fachwissen nötig ist." },
       { "title": "Maßnahme abstimmen", "text": "Sie erfahren, was wir direkt erledigen können, welches Material benötigt wird und ob ein Fachbetrieb eingebunden werden sollte." },
-      { "title": "Bearbeitung dokumentieren", "text": "Nach der Ausführung erhalten Sie eine klare Rückmeldung mit erledigten Arbeiten und möglichen Folgeschritten." }
+      { "title": "Rückmeldung nach der Arbeit", "text": "Nach der Ausführung erfahren Sie, was erledigt wurde und ob weitere Arbeiten notwendig sind." }
     ],
     "benefits": [
       { "title": "Kleine Mängel bleiben nicht liegen", "text": "Eine regelmäßige Sichtkontrolle schafft einen verlässlichen Weg von der Feststellung bis zur Bearbeitung." },
@@ -113,8 +113,8 @@
       { "title": "Die Verwaltung behält den Überblick", "text": "Erledigte Arbeiten und offene Punkte werden nicht nur mündlich weitergegeben, sondern verständlich dokumentiert." }
     ],
     "audiences": ["Hausverwaltungen und Wohnungseigentümergemeinschaften", "Gewerbe-, Büro- und Praxisimmobilien", "Mehrfamilienhäuser und kleinere Einzelobjekte"],
-    "boundaryTitle": "Hausmeisterarbeiten mit einer klaren fachlichen Grenze",
-    "boundaryText": "Perla’s übernimmt kleine Reparaturen und Sichtkontrollen im vereinbarten Rahmen. Elektroarbeiten, Arbeiten an Heizungsanlagen, Brandschutzprüfungen und andere zulassungspflichtige Tätigkeiten bleiben qualifizierten Fachbetrieben vorbehalten. Deren Einsatz können wir für Sie vorbereiten und am Objekt begleiten.",
+    "boundaryTitle": "Was wir selbst erledigen können",
+    "boundaryText": "Perla’s übernimmt kleine Reparaturen und Sichtkontrollen aus dem Hausmeisterbereich. Elektroarbeiten, Arbeiten an Heizungsanlagen, Brandschutzprüfungen und andere zulassungspflichtige Tätigkeiten bleiben qualifizierten Fachbetrieben vorbehalten. Wir können deren Einsatz vorbereiten und am Objekt begleiten.",
     "relatedServices": ["objektpflege", "gebaeudereinigung", "wohnungswechsel"],
     "faqs": [
       { "question": "Welche Kleinreparaturen übernimmt Perla’s?", "answer": "Typische Beispiele sind Arbeiten an Griffen, Beschlägen, Beleuchtung und losem Inventar. Ob wir eine Reparatur direkt ausführen können, hängt vom konkreten Schaden und den fachlichen Anforderungen ab." },
@@ -126,70 +126,70 @@
   {
     "slug": "gebaeudereinigung",
     "title": "Gebäudereinigung",
-    "text": "Saubere Treppenhäuser, Büros, Gemeinschaftsflächen und Parkbereiche nach einem nachvollziehbaren Reinigungsplan.",
-    "detail": "Wir reinigen Wohnanlagen, Büros, Praxen und Gewerbeflächen so, wie es zum Gebäude und seiner Nutzung passt. Sie erhalten einen klaren Plan, feste Reinigungsbereiche und einen Ansprechpartner, wenn sich der Bedarf verändert.",
+    "text": "Reinigung für Treppenhäuser, Büros, Gemeinschaftsflächen und Parkbereiche nach einem festen Plan.",
+    "detail": "Wir reinigen Wohnanlagen, Büros, Praxen und Gewerbeflächen nach ihrem tatsächlichen Bedarf. Vor dem Start legen wir Räume, Aufgaben, Zeiten und Intervalle fest. Bei Fragen oder Änderungen steht ein fester Ansprechpartner zur Verfügung.",
     "image": "perlas-office.png",
     "seoTitle": "Gebäudereinigung Sulzbach & Rhein-Main | PERLAS",
     "seoDescription": "Gebäudereinigung für Treppenhäuser, Büros, Praxen, Parkhäuser und Gemeinschaftsflächen in Sulzbach, Frankfurt und dem Rhein-Main-Gebiet.",
-    "scopeIntro": "Ein kleines Büro braucht einen anderen Ablauf als ein häufig genutztes Treppenhaus oder eine größere Wohnanlage. Wir erfassen die Flächen, stimmen passende Zeiten ab und legen gemeinsam fest, woran eine gute Reinigung für Sie erkennbar ist.",
+    "scopeIntro": "Ein kleines Büro braucht einen anderen Reinigungsablauf als ein stark genutztes Treppenhaus oder eine große Wohnanlage. Bei der Besichtigung erfassen wir Räume, Materialien und Nutzung. Daraus entstehen konkrete Aufgaben, Reinigungszeiten und Intervalle.",
     "scopeCards": [
       {
         "title": "Treppenhäuser und Eingänge",
-        "text": "Eingangsbereiche und Treppenhäuser prägen den ersten Eindruck eines Gebäudes. Wir reinigen Böden, Handläufe und vereinbarte Kontaktflächen in einem Rhythmus, der zur Nutzung passt.",
+        "text": "Eingangsbereiche und Treppenhäuser werden täglich unterschiedlich stark genutzt. Wir reinigen Böden, Handläufe und die festgelegten Kontaktflächen in den vorgesehenen Intervallen.",
         "items": ["Böden, Stufen und Podeste", "Handläufe und gut erreichbare Flächen", "Eingangstüren und Briefkastenbereiche"]
       },
       {
         "title": "Büros und Arbeitsbereiche",
-        "text": "Die Reinigung wird so geplant, dass der Arbeitsalltag möglichst wenig gestört wird. Welche Tische, Böden, Küchen und Nebenräume dazugehören, halten wir im Leistungsverzeichnis fest.",
+        "text": "Die Reinigung planen wir so, dass der Arbeitsalltag möglichst wenig gestört wird. Im Leistungsverzeichnis steht, welche Böden, Oberflächen, Küchen und Nebenräume dazugehören.",
         "items": ["Boden- und Oberflächenreinigung", "Teeküchen und Aufenthaltsbereiche", "Abfallbehälter nach Vereinbarung"]
       },
       {
         "title": "Praxen und Sanitärbereiche",
-        "text": "In stark genutzten Wasch- und Sanitärbereichen kommt es auf verlässliche Routinen an. Wir stimmen Reinigungsmittel, Häufigkeit und Kontrollpunkte auf die jeweilige Fläche ab.",
+        "text": "Stark genutzte Wasch- und Sanitärbereiche benötigen feste Routinen. Vor Beginn klären wir Reinigungsmittel, Häufigkeit und die Bereiche, die besonders beachtet werden sollen.",
         "items": ["Waschbecken und Sanitärkeramik", "Spiegel und gut erreichbare Oberflächen", "Verbrauchsmaterial nach Vereinbarung"]
       },
       {
         "title": "Glas und Rahmen",
-        "text": "Glasflächen, Eingangselemente und erreichbare Rahmen können regelmäßig oder als gesonderter Termin gereinigt werden. Vorab klären wir Zugang, Höhe und den gewünschten Umfang.",
+        "text": "Glasflächen, Eingangselemente und erreichbare Rahmen reinigen wir regelmäßig oder bei einem einzelnen Termin. Vorab prüfen wir Zugang, Höhe und Umfang der Arbeiten.",
         "items": ["Fenster und Glastüren", "Rahmen und Fensterbänke", "Glastrennwände im Innenbereich"]
       },
       {
         "title": "Tiefgaragen und Parkflächen",
-        "text": "In Parkhäusern und Tiefgaragen sammeln sich Staub, Laub und Straßenschmutz. Wir planen die Reinigung nach Flächengröße, Zugänglichkeit und dem laufenden Fahrzeugverkehr.",
+        "text": "In Parkhäusern und Tiefgaragen sammeln sich Staub, Laub und Straßenschmutz. Flächengröße, Zugänge und Fahrzeugverkehr bestimmen, wie die Reinigung durchgeführt werden kann.",
         "items": ["Fahr- und Stellflächen", "Zugänge und Treppenbereiche", "Entfernung von losem Schmutz"]
       },
       {
         "title": "Grund- und Übergabereinigung",
-        "text": "Nach Umbauten, Nutzerwechseln oder längerer Nutzung reicht eine normale Unterhaltsreinigung oft nicht aus. Wir besichtigen die Fläche und legen fest, welche intensive Bearbeitung sinnvoll ist.",
+        "text": "Nach Umbauten, Nutzerwechseln oder längerer Nutzung reicht eine normale Unterhaltsreinigung oft nicht aus. Wir besichtigen die Fläche und besprechen, welche Bereiche intensiver gereinigt werden müssen.",
         "items": ["Grundreinigung geeigneter Böden", "Reinigung nach Renovierungsarbeiten", "Vorbereitung für Übergabe oder Neubezug"]
       }
     ],
     "processSteps": [
-      { "title": "Flächen aufnehmen", "text": "Wir erfassen Räume, Materialien, Nutzung und sensible Bereiche bei einer gemeinsamen Begehung." },
-      { "title": "Reinigungsplan erstellen", "text": "Aufgaben, Intervalle, Zeiten und Qualitätskriterien werden verständlich im Leistungsverzeichnis festgehalten." },
-      { "title": "Qualität im Alltag sichern", "text": "Ein fester Ansprechpartner nimmt Rückmeldungen auf und passt den Ablauf an, wenn sich die Nutzung verändert." }
+      { "title": "Flächen aufnehmen", "text": "Bei der Begehung erfassen wir Räume, Materialien, Nutzung und Bereiche mit besonderen Anforderungen." },
+      { "title": "Aufgaben und Zeiten festlegen", "text": "Das Leistungsverzeichnis nennt die betreuten Bereiche, die einzelnen Arbeiten, ihre Intervalle und die vorgesehenen Reinigungszeiten." },
+      { "title": "Ausführung prüfen", "text": "Der Ansprechpartner prüft die betreuten Bereiche regelmäßig. Er nimmt Rückmeldungen auf und sieht sich den betroffenen Bereich bei Bedarf erneut an." }
     ],
     "benefits": [
-      { "title": "Der Umfang ist eindeutig", "text": "Sie sehen im Leistungsverzeichnis, welche Räume, Flächen und Aufgaben enthalten sind." },
-      { "title": "Die Reinigung passt zum Gebäude", "text": "Intervalle und Zeiten richten sich nach Nutzung, Besucheraufkommen und dem gewünschten Erscheinungsbild." },
-      { "title": "Rückmeldungen kommen direkt an", "text": "Wenn sich etwas ändert oder eine Fläche mehr Aufmerksamkeit braucht, gibt es einen klaren Ansprechpartner." }
+      { "title": "Sie wissen, was gereinigt wird", "text": "Das Leistungsverzeichnis zeigt, welche Räume, Flächen und Aufgaben zum Auftrag gehören." },
+      { "title": "Die Ausführung lässt sich prüfen", "text": "Betreute Bereiche und Aufgaben sind festgehalten. Dadurch lassen sich Abweichungen leichter erkennen und ansprechen." },
+      { "title": "Rückmeldungen werden direkt bearbeitet", "text": "Der Ansprechpartner nimmt Hinweise auf, prüft den betroffenen Bereich und bespricht eine notwendige Nacharbeit oder Anpassung." }
     ],
     "audiences": ["Treppenhäuser und Wohnanlagen", "Büros, Praxen und Kanzleien", "Gewerbeflächen, Tiefgaragen und Gemeinschaftsbereiche"],
-    "boundaryTitle": "Ein Reinigungsplan, den beide Seiten verstehen",
-    "boundaryText": "Vor dem Start klären wir Materialien, Zugänge, Reinigungszeiten und das gewünschte Ergebnis. Spezialverfahren, große Höhen oder besondere Verschmutzungen prüfen wir gesondert. So erhalten Sie ein Angebot, das zur tatsächlichen Aufgabe passt.",
-    "relatedServices": ["objektpflege", "gartenpflege", "wohnungswechsel"],
+    "boundaryTitle": "Der Reinigungsumfang steht vor dem Start fest",
+    "boundaryText": "Vor Beginn erfassen wir Materialien, Zugänge, Reinigungszeiten und den gewünschten Umfang. Diese Angaben stehen im Leistungsverzeichnis. Bei einer Rückmeldung sehen wir uns den betroffenen Bereich an und besprechen, ob eine Nacharbeit oder eine Änderung des Ablaufs nötig ist. Spezialverfahren, große Höhen und besondere Verschmutzungen prüfen wir separat.",
+    "relatedServices": ["objektpflege", "wartung-instandhaltung", "wohnungswechsel"],
     "faqs": [
       { "question": "Welche Flächen können gereinigt werden?", "answer": "Je nach Vereinbarung reinigen wir Treppenhäuser, Eingänge, Büros, Praxisräume, Sanitärbereiche, Glasflächen, Gemeinschaftsräume sowie ausgewählte Tiefgaragen und Parkbereiche." },
-      { "question": "Wie wird der Reinigungsumfang festgelegt?", "answer": "Wir erfassen die Räume, Materialien und Nutzung vor Ort. Daraus entsteht ein Leistungsverzeichnis mit konkreten Aufgaben, Intervallen und vereinbarten Reinigungszeiten." },
+      { "question": "Wie wird der Reinigungsumfang festgelegt?", "answer": "Wir erfassen Räume, Materialien und Nutzung vor Ort. Das Leistungsverzeichnis hält anschließend fest, welche Bereiche betreut werden, welche Aufgaben dazugehören und in welchen Intervallen gereinigt wird." },
       { "question": "Sind auch einmalige Grundreinigungen möglich?", "answer": "Ja. Vor einer Grund- oder Übergabereinigung sehen wir uns die Fläche an und stimmen ab, welches Ergebnis erreicht werden soll. So lassen sich Aufwand und geeignete Verfahren realistisch planen." },
-      { "question": "In welchem Gebiet ist Perla’s tätig?", "answer": "Unser Schwerpunkt liegt im Main-Taunus-Kreis und im Rhein-Main-Gebiet. Dazu gehören unter anderem Sulzbach, Frankfurt, Eschborn, Bad Soden, Schwalbach und Hofheim." }
+      { "question": "Was passiert, wenn eine Reinigung nicht wie erwartet ausgeführt wurde?", "answer": "Der Ansprechpartner nimmt die Rückmeldung auf und prüft den betroffenen Bereich. Danach wird besprochen, ob eine Nacharbeit erforderlich ist oder der Reinigungsablauf angepasst werden sollte." }
     ]
   },
   {
     "slug": "gartenpflege",
     "title": "Garten- & Außenanlagenpflege",
     "text": "Rasen, Hecken, Wege und Außenflächen erhalten genau die Pflege, die zur Jahreszeit und zum Objekt passt.",
-    "detail": "Wir kümmern uns um Grünflächen und Außenanlagen von Wohn- und Gewerbeimmobilien. Statt starrer Standardtermine planen wir die Arbeiten passend zu Vegetation, Flächengröße und Jahreszeit.",
+    "detail": "Wir kümmern uns um Grünflächen und Außenanlagen von Wohn- und Gewerbeimmobilien. Die Termine richten sich nach Vegetation, Flächengröße und Jahreszeit.",
     "image": "perlas-team.png",
     "seoTitle": "Garten- & Außenanlagenpflege Rhein-Main | PERLAS",
     "seoDescription": "Garten- und Außenanlagenpflege für Wohnanlagen und Unternehmen mit Rasenpflege, Heckenschnitt, Laubbeseitigung und sauberen Wegen im Rhein-Main-Gebiet.",
@@ -197,7 +197,7 @@
     "scopeCards": [
       {
         "title": "Rasen und Grünflächen",
-        "text": "Wir mähen die vereinbarten Flächen in einem passenden Rhythmus und achten auf saubere Übergänge zu Wegen und Beeten. Zusätzliche Pflegeschritte stimmen wir vorher mit Ihnen ab.",
+        "text": "Wir mähen die festgelegten Flächen in einem Rhythmus, der zur Jahreszeit und zum Wachstum passt. Dabei achten wir auf saubere Übergänge zu Wegen und Beeten. Zusätzliche Arbeiten besprechen wir vorab.",
         "items": ["Regelmäßiger Rasenschnitt", "Pflege von Rasenkanten", "Aufnahme des Schnittguts nach Vereinbarung"]
       },
       {
@@ -228,7 +228,7 @@
     ],
     "processSteps": [
       { "title": "Außenflächen ansehen", "text": "Wir erfassen Rasen, Hecken, Beete, Wege und die Zugänglichkeit der einzelnen Bereiche." },
-      { "title": "Saisonplan abstimmen", "text": "Sie erhalten eine verständliche Planung für regelmäßige und saisonale Arbeiten." },
+      { "title": "Arbeiten über das Jahr planen", "text": "Wir verteilen regelmäßige Pflege und saisonale Aufgaben auf die passenden Zeiträume." },
       { "title": "Pflege laufend anpassen", "text": "Wir berücksichtigen Witterung und tatsächlichen Bedarf und sprechen notwendige Zusatzarbeiten vorher mit Ihnen ab." }
     ],
     "benefits": [
@@ -250,62 +250,62 @@
   {
     "slug": "winterdienst",
     "title": "Winterdienst",
-    "text": "Vereinbarte Wege und Eingänge werden mit einem klaren Einsatzplan geräumt, gestreut und dokumentiert.",
-    "detail": "Wir bereiten Ihr Objekt vor Beginn der Wintersaison sorgfältig vor. Gemeinsam legen wir fest, welche Wege, Eingänge und Zufahrten betreut werden und in welcher Reihenfolge die Flächen bearbeitet werden sollen.",
+    "text": "Wir räumen und streuen die zuvor festgelegten Wege und Eingänge. Zeitpunkt und bearbeitete Flächen werden festgehalten.",
+    "detail": "Vor Beginn der Wintersaison nehmen wir Wege, Eingänge und Zufahrten am Objekt auf. Gemeinsam bestimmen wir, welche Flächen zuerst bearbeitet werden und unter welchen Wetterbedingungen ein Einsatz notwendig ist.",
     "image": "perlas-property.png",
     "seoTitle": "Winterdienst Rhein-Main für Immobilien | PERLAS",
     "seoDescription": "Winterdienst für Wohnanlagen und Gewerbeobjekte im Rhein-Main-Gebiet mit aufgenommenen Räumflächen, abgestimmter Einsatzplanung und Dokumentation.",
-    "scopeIntro": "Ein zuverlässiger Winterdienst beginnt nicht erst beim ersten Schnee. Vor der Saison nehmen wir das Grundstück auf, klären Zugänge und markieren die wichtigen Laufwege. Dadurch kennt das Team die Flächen und kann sich bei winterlicher Witterung an einem eindeutigen Plan orientieren.",
+    "scopeIntro": "Die Vorbereitung beginnt vor dem ersten Schnee. Wir gehen das Grundstück ab, prüfen die Zugänge und erfassen die wichtigen Laufwege. So weiß das Team bei winterlichem Wetter, welche Bereiche zum Auftrag gehören und in welcher Reihenfolge es sie bearbeitet.",
     "scopeCards": [
       {
         "title": "Räumflächen aufnehmen",
-        "text": "Wir gehen die Außenbereiche gemeinsam mit Ihnen ab und halten fest, welche Wege und Zugänge zum Auftrag gehören. Besonderheiten werden direkt im Objektplan vermerkt.",
+        "text": "Vor der Saison gehen wir die Außenbereiche mit Ihnen ab. Wege, Zugänge und Besonderheiten tragen wir in den Objektplan ein.",
         "items": ["Hauseingänge und Hauptwege", "Zugänge zu Müll- und Nebenflächen", "Vereinbarte Zufahrten und Stellbereiche"]
       },
       {
         "title": "Prioritäten festlegen",
-        "text": "Nicht jede Fläche ist gleich wichtig. Gemeinsam bestimmen wir, welche Laufwege zuerst bearbeitet werden und welche Bereiche anschließend folgen.",
+        "text": "Nicht jede Fläche ist gleich wichtig. Wir bestimmen gemeinsam, welche Laufwege zuerst bearbeitet werden und welche Bereiche danach folgen.",
         "items": ["Häufig genutzte Eingänge", "Wege zu wichtigen Gebäudebereichen", "Besondere Gefahrenstellen am Objekt"]
       },
       {
         "title": "Schnee räumen",
-        "text": "Die vereinbarten Flächen werden mit geeigneten Arbeitsmitteln von Schnee befreit. Vorgehen und Umfang richten sich nach dem aufgenommenen Objekt und den vertraglichen Absprachen.",
+        "text": "Unser Team befreit die aufgenommenen Flächen mit geeigneten Arbeitsmitteln von Schnee. Der Objektplan zeigt, welche Laufwege, Eingänge und Nutzflächen dazugehören.",
         "items": ["Laufwege und Zuwegungen", "Eingangs- und Übergangsbereiche", "Freihalten vereinbarter Nutzflächen"]
       },
       {
         "title": "Glätte behandeln",
-        "text": "Bei winterlicher Glätte bearbeiten wir die festgelegten Flächen im vereinbarten Rahmen. Welche Streumittel eingesetzt werden können, wird passend zum Objekt abgestimmt.",
+        "text": "Bei winterlicher Glätte streuen wir die festgelegten Flächen. Welches Streumittel verwendet werden kann, klären wir vor Saisonbeginn anhand der örtlichen Gegebenheiten.",
         "items": ["Abgestimmte Streubereiche", "Geeignete Streumittel nach Vereinbarung", "Besondere Aufmerksamkeit an Übergängen"]
       },
       {
         "title": "Einsatz dokumentieren",
-        "text": "Nach dem Einsatz wird festgehalten, wann und in welchen Bereichen gearbeitet wurde. Das schafft eine verlässliche Grundlage für Rückfragen der Verwaltung oder Eigentümer.",
+        "text": "Nach dem Einsatz notieren wir Zeitpunkt und bearbeitete Bereiche. Besondere Bedingungen oder Auffälligkeiten können in der Rückmeldung ergänzt werden.",
         "items": ["Datum und Einsatzzeit", "Bearbeitete Flächen", "Hinweise auf besondere Bedingungen"]
       },
       {
         "title": "Saison vor- und nachbereiten",
-        "text": "Vor dem Winter prüfen wir Zugänge und Arbeitswege. Nach der Saison können Streugutreste aufgenommen und die betreuten Bereiche wieder in die laufende Außenpflege übergeben werden.",
+        "text": "Vor dem Winter prüfen wir Zugänge und Arbeitswege. Nach der Saison können wir Streugutreste aufnehmen und die Flächen wieder in die laufende Außenpflege übernehmen.",
         "items": ["Kontrolle der Zugänglichkeit", "Abstimmung von Lager- und Materialfragen", "Übergang zur Frühjahrsreinigung"]
       }
     ],
     "processSteps": [
-      { "title": "Flächen vor Ort aufnehmen", "text": "Wir klären Wege, Eingänge, Zufahrten, Prioritäten und Besonderheiten direkt am Objekt." },
-      { "title": "Einsatzplan vorbereiten", "text": "Alle vereinbarten Bereiche und Abläufe werden vor Beginn der Saison eindeutig dokumentiert." },
-      { "title": "Einsätze nachvollziehbar festhalten", "text": "Durchgeführte Arbeiten werden mit Zeitpunkt, Flächen und besonderen Hinweisen dokumentiert." }
+      { "title": "Flächen vor Ort aufnehmen", "text": "Wir erfassen Wege, Eingänge, Zufahrten und Besonderheiten direkt am Objekt." },
+      { "title": "Prioritäten und Einsätze planen", "text": "Vor Saisonbeginn legen wir die Reihenfolge der Flächen und die Bedingungen für einen Einsatz fest." },
+      { "title": "Einsätze festhalten", "text": "Nach jedem Einsatz notieren wir Zeitpunkt, bearbeitete Flächen und besondere Hinweise." }
     ],
     "benefits": [
-      { "title": "Das Team kennt die Flächen vor dem ersten Einsatz", "text": "Eine gründliche Aufnahme verhindert Unklarheiten, wenn bei winterlicher Witterung schnell gehandelt werden muss." },
-      { "title": "Wichtige Wege haben eine klare Priorität", "text": "Eingänge und häufig genutzte Laufwege werden im Objektplan eindeutig benannt." },
-      { "title": "Einsätze bleiben nachvollziehbar", "text": "Zeitpunkt und bearbeitete Bereiche können bei späteren Rückfragen transparent zugeordnet werden." }
+      { "title": "Das Team kennt die Flächen", "text": "Die Aufnahme vor Saisonbeginn zeigt, welche Wege und Zugänge bei winterlichem Wetter bearbeitet werden müssen." },
+      { "title": "Wichtige Wege kommen zuerst", "text": "Eingänge und häufig genutzte Laufwege erhalten im Objektplan eine feste Priorität." },
+      { "title": "Rückfragen lassen sich schnell klären", "text": "Zeitpunkt und bearbeitete Bereiche werden nach dem Einsatz festgehalten." }
     ],
-    "audiences": ["WEG- und Mietwohnanlagen", "Büro-, Praxis- und Gewerbeobjekte", "Private Immobilien mit klar aufgenommenen Außenflächen"],
-    "boundaryTitle": "Der Auftrag gilt für klar benannte Flächen",
-    "boundaryText": "Winterdienst wird immer objektbezogen vereinbart. Welche Bereiche, Einsatzbedingungen und Leistungen enthalten sind, ergibt sich aus dem Vertrag und dem gemeinsam aufgenommenen Objekt. Nicht erfasste Flächen sind nicht automatisch Teil des Auftrags.",
+    "audiences": ["WEG- und Mietwohnanlagen", "Büro-, Praxis- und Gewerbeobjekte", "Private Immobilien mit zuvor erfassten Außenflächen"],
+    "boundaryTitle": "Welche Flächen zum Auftrag gehören",
+    "boundaryText": "Vor Saisonbeginn erfassen wir gemeinsam alle zu betreuenden Flächen. Im Auftrag stehen Wege, Eingänge, Zufahrten, Prioritäten und Einsatzbedingungen. Flächen, die bei der Aufnahme nicht berücksichtigt wurden, gehören nicht automatisch dazu.",
     "relatedServices": ["objektpflege", "gartenpflege", "gebaeudereinigung"],
     "faqs": [
       { "question": "Welche Flächen übernimmt der Winterdienst?", "answer": "Betreut werden die Wege, Eingänge, Zufahrten oder Außenbereiche, die vorab aufgenommen und im Auftrag eindeutig festgehalten wurden." },
-      { "question": "Wie wird der Einsatz vorbereitet?", "answer": "Vor Saisonbeginn besichtigen wir das Objekt. Dabei klären wir Flächen, Zugänge, Prioritäten, mögliche Lagerorte und besondere Stellen, die das Team kennen muss." },
-      { "question": "Werden die Einsätze dokumentiert?", "answer": "Ja. Je nach Vereinbarung werden Zeitpunkt, bearbeitete Flächen und besondere Bedingungen dokumentiert. Dadurch bleibt der Ablauf für Verwaltung und Eigentümer nachvollziehbar." },
+      { "question": "Wie wird der Einsatz vorbereitet?", "answer": "Vor Saisonbeginn besichtigen wir das Objekt. Dabei erfassen wir Flächen, Zugänge, Prioritäten, mögliche Lagerorte und besondere Stellen. Gemeinsam besprechen wir auch, unter welchen Wetterbedingungen ein Einsatz notwendig ist." },
+      { "question": "Werden die Einsätze dokumentiert?", "answer": "Ja. Nach dem Einsatz können Zeitpunkt, bearbeitete Flächen und besondere Bedingungen festgehalten werden. Verwaltung und Eigentümer erhalten damit eine Übersicht über die ausgeführten Arbeiten." },
       { "question": "Kann Winterdienst Teil einer ganzjährigen Betreuung sein?", "answer": "Ja. Winterdienst lässt sich mit Objektbetreuung, Außenanlagenpflege und Gebäudereinigung verbinden. So gibt es auch beim Saisonwechsel einen festen Ansprechpartner." }
     ]
   },
@@ -313,11 +313,11 @@
     "slug": "wohnungswechsel",
     "title": "Wohnungswechsel & Räumung",
     "text": "Übergaben, Räumungen und die Vorbereitung für Reinigung oder Neuvermietung werden aus einer Hand koordiniert.",
-    "detail": "Bei einem Wohnungs- oder Nutzerwechsel kommen viele Aufgaben gleichzeitig zusammen. Wir klären den Umfang vor Ort, koordinieren die vereinbarten Arbeiten und bereiten die Räume für Übergabe, Reinigung oder den nächsten Nutzungsschritt vor.",
+    "detail": "Bei einem Wohnungs- oder Nutzerwechsel fallen oft mehrere Arbeiten gleichzeitig an. Wir besichtigen die Räume, erfassen den Umfang und planen den Termin. Danach können Räumung, Reinigung und kleinere Arbeiten in der richtigen Reihenfolge erfolgen.",
     "image": "perlas-service.jpg",
     "seoTitle": "Wohnungswechsel & Räumung Rhein-Main | PERLAS",
     "seoDescription": "Unterstützung bei Wohnungswechsel, Entrümpelung, Räumung und Übergabe im Rhein-Main-Gebiet mit klarer Vorbereitung für Reinigung und Neuvermietung.",
-    "scopeIntro": "Eine Räumung lässt sich erst dann sinnvoll planen, wenn Menge, Zugänge und gewünschter Endzustand bekannt sind. Wir sehen uns die Räume an, besprechen den Umgang mit vorhandenen Gegenständen und verbinden bei Bedarf Räumung, kleine Arbeiten und Reinigung zu einem klaren Ablauf.",
+    "scopeIntro": "Vor dem Angebot sehen wir uns die Räume, die vorhandenen Gegenstände und die Transportwege an. Gemeinsam klären wir, was bleiben soll, was entfernt werden darf und in welchem Zustand die Fläche am Ende benötigt wird. Wenn gewünscht, planen wir Reinigung und kleinere Arbeiten direkt mit ein.",
     "scopeCards": [
       {
         "title": "Besichtigung und Umfang klären",
@@ -326,48 +326,48 @@
       },
       {
         "title": "Gegenstände sortieren",
-        "text": "Nicht alles in einer Wohnung soll automatisch entsorgt werden. Wir stimmen vor Beginn eindeutig ab, welche Gegenstände verbleiben, bereitgestellt oder ausgeräumt werden.",
+        "text": "Nicht alles in einer Wohnung soll entfernt werden. Vor Beginn kennzeichnen wir gemeinsam, welche Gegenstände bleiben, bereitgestellt oder ausgeräumt werden sollen.",
         "items": ["Verbleibende Gegenstände kennzeichnen", "Bereitstellung nach Vereinbarung", "Trennung unterschiedlicher Materialien"]
       },
       {
         "title": "Wohnungen und Nebenräume räumen",
-        "text": "Wir räumen die vereinbarten Bereiche und achten dabei auf eine geordnete Vorgehensweise. Keller, Abstellräume oder kleinere Außenbereiche können nach Besichtigung einbezogen werden.",
+        "text": "Wir räumen die zuvor aufgenommenen Räume und Nebenflächen. Keller, Abstellräume oder kleinere Außenbereiche können nach der Besichtigung in den Auftrag aufgenommen werden.",
         "items": ["Wohn- und Gewerberäume", "Keller und Abstellbereiche", "Vereinbarte Nebenflächen"]
       },
       {
         "title": "Entsorgung vorbereiten",
-        "text": "Art und Menge der zu entsorgenden Gegenstände werden vorab bewertet. Für besondere Materialien oder größere Mengen stimmen wir den passenden Entsorgungsweg gesondert ab.",
+        "text": "Vor Beginn erfassen wir Art und Menge der Gegenstände. Bei besonderen Materialien oder größeren Mengen prüfen wir gesondert, welcher Entsorgungsweg infrage kommt.",
         "items": ["Sortierte Bereitstellung", "Abstimmung geeigneter Entsorgungswege", "Gesonderte Prüfung besonderer Stoffe"]
       },
       {
         "title": "Übergabe vorbereiten",
-        "text": "Nach der Räumung prüfen wir die vereinbarten Räume gemeinsam oder anhand einer Dokumentation. Offene Schäden und notwendige Folgearbeiten werden verständlich festgehalten.",
+        "text": "Nach der Räumung prüfen wir die aufgenommenen Räume gemeinsam oder anhand von Fotos. Dabei halten wir sichtbare Schäden und noch notwendige Reparatur- oder Reinigungsarbeiten fest.",
         "items": ["Kontrolle des vereinbarten Endzustands", "Fotodokumentation der Räume", "Hinweise auf Reparatur- oder Reinigungsbedarf"]
       },
       {
         "title": "Reinigung und Folgearbeiten verbinden",
-        "text": "Wenn die Räume anschließend gereinigt oder kleinere Mängel bearbeitet werden sollen, planen wir die Reihenfolge direkt mit. Dadurch müssen Sie die einzelnen Schritte nicht selbst koordinieren.",
+        "text": "Auf Wunsch schließen sich Reinigung oder kleinere Reparaturen direkt an die Räumung an. Wir planen die Termine so, dass die Arbeiten in der richtigen Reihenfolge stattfinden.",
         "items": ["Grund- oder Übergabereinigung", "Kleine Reparaturen nach Freigabe", "Vorbereitung für Neuvermietung oder Neubezug"]
       }
     ],
     "processSteps": [
-      { "title": "Räume und Aufgabe besichtigen", "text": "Wir klären Menge, Zugänge, Gegenstände und den gewünschten Zustand nach Abschluss der Arbeiten." },
-      { "title": "Reihenfolge und Termin planen", "text": "Räumung, Entsorgung, kleine Reparaturen und Reinigung werden sinnvoll aufeinander abgestimmt." },
-      { "title": "Fläche geordnet übergeben", "text": "Zum Abschluss erhalten Sie eine Rückmeldung zum Zustand und zu eventuell noch offenen Punkten." }
+      { "title": "Räume besichtigen", "text": "Wir erfassen Gegenstände, Transportwege und den gewünschten Zustand nach Abschluss der Arbeiten." },
+      { "title": "Termin und Arbeiten festlegen", "text": "Wir legen fest, wann geräumt wird und ob anschließend Entsorgung, kleine Reparaturen oder Reinigung folgen." },
+      { "title": "Ergebnis prüfen", "text": "Zum Abschluss sehen wir uns die Fläche an und informieren über sichtbare Schäden oder noch offene Arbeiten." }
     ],
     "benefits": [
       { "title": "Der Aufwand wird vor Beginn realistisch eingeschätzt", "text": "Eine Besichtigung verhindert Missverständnisse bei Menge, Zugang und gewünschtem Endzustand." },
-      { "title": "Mehrere Schritte laufen in der richtigen Reihenfolge", "text": "Räumung, Reinigung und kleine Reparaturen können über einen Ansprechpartner organisiert werden." },
-      { "title": "Die nächste Nutzung lässt sich schneller vorbereiten", "text": "Nach Abschluss ist klar, was erledigt wurde und welche Punkte vor Übergabe oder Neuvermietung noch offen sind." }
+      { "title": "Ein Ansprechpartner für mehrere Arbeiten", "text": "Räumung, Reinigung und kleine Reparaturen können über einen Kontakt organisiert werden." },
+      { "title": "Die Räume sind für die Übergabe vorbereitet", "text": "Nach Abschluss sehen Sie, was erledigt wurde und welche Arbeiten vor Übergabe oder Neuvermietung noch ausstehen." }
     ],
     "audiences": ["Hausverwaltungen und Immobilieneigentümer", "Wohnungs- und Gewerbewechsel", "Büros, Praxen und kleinere Unternehmen"],
-    "boundaryTitle": "Menge, Zugang und Endzustand werden vorher geklärt",
-    "boundaryText": "Wir nehmen Räume, Transportwege und die vorgesehenen Gegenstände vorab auf. Gefährliche Stoffe, besonders schwere Gegenstände oder außergewöhnliche Transporte müssen gesondert geprüft und gegebenenfalls durch einen spezialisierten Betrieb übernommen werden.",
+    "boundaryTitle": "Was vor der Räumung geprüft werden muss",
+    "boundaryText": "Vor dem Angebot sehen wir uns Räume, Transportwege und die zu entfernenden Gegenstände an. Gefährliche Stoffe, besonders schwere Gegenstände und außergewöhnliche Transporte benötigen eine gesonderte Prüfung. Falls nötig, muss dafür ein spezialisierter Betrieb eingesetzt werden.",
     "relatedServices": ["gebaeudereinigung", "wartung-instandhaltung", "objektpflege"],
     "faqs": [
-      { "question": "Was übernimmt Perla’s bei einem Wohnungswechsel?", "answer": "Je nach Vereinbarung unterstützen wir bei Besichtigung, Sortierung, Räumung, Vorbereitung der Entsorgung und Übergabe. Reinigung und kleinere Folgearbeiten können direkt mit eingeplant werden." },
-      { "question": "Ist eine Besichtigung vor dem Angebot nötig?", "answer": "Bei größeren Räumungen ist eine Besichtigung sehr sinnvoll. Nur so lassen sich Menge, Transportwege, besondere Gegenstände und der gewünschte Endzustand realistisch einschätzen." },
-      { "question": "Kann anschließend auch gereinigt werden?", "answer": "Ja. Eine Grund- oder Übergabereinigung kann direkt nach der Räumung eingeplant werden. Dadurch bleiben Reihenfolge und Zuständigkeit klar." },
+      { "question": "Was übernimmt Perla’s bei einem Wohnungswechsel?", "answer": "Möglich sind Besichtigung, Sortierung, Räumung, Vorbereitung der Entsorgung und die Kontrolle der Fläche zum Abschluss. Reinigung und kleinere Folgearbeiten können bei Bedarf direkt eingeplant werden." },
+      { "question": "Ist eine Besichtigung vor dem Angebot nötig?", "answer": "Bei größeren Räumungen ist eine Besichtigung empfehlenswert. Nur vor Ort lassen sich Menge, Transportwege, besondere Gegenstände und der gewünschte Endzustand realistisch einschätzen." },
+      { "question": "Kann anschließend auch gereinigt werden?", "answer": "Ja. Eine Grund- oder Übergabereinigung kann direkt nach der Räumung stattfinden. Ob sie Teil des Auftrags ist, wird vor Beginn festgelegt." },
       { "question": "Unterstützt Perla’s auch gewerbliche Wechsel?", "answer": "Kleinere Büro-, Praxis- oder Gewerbewechsel sind möglich, wenn Räume, Inventar, Transportwege und Zeitfenster vorab aufgenommen wurden." }
     ]
   }

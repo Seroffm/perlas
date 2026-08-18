@@ -507,13 +507,15 @@ function ContactDock() {
 }
 
 function MobileIsland({ onQuoteOpen }: { onQuoteOpen: () => void }) {
-  const [activeItem, setActiveItem] = useState<'start' | 'services' | 'quote' | 'whatsapp'>(() => {
+  const [activeItem, setActiveItem] = useState<'start' | 'services' | 'quote' | 'contact'>(() => {
     if (getPagePath().startsWith('/leistungen') || window.location.hash === '#leistungen') {
       return 'services'
     }
 
     return 'start'
   })
+  const [contactOpen, setContactOpen] = useState(false)
+  const islandRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
     const syncActiveItem = () => {
@@ -528,13 +530,50 @@ function MobileIsland({ onQuoteOpen }: { onQuoteOpen: () => void }) {
     return () => window.removeEventListener('hashchange', syncActiveItem)
   }, [])
 
+  useEffect(() => {
+    if (!contactOpen) return
+
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setContactOpen(false)
+    }
+    const closeOutside = (event: PointerEvent) => {
+      if (!islandRef.current?.contains(event.target as Node)) setContactOpen(false)
+    }
+
+    window.addEventListener('keydown', closeOnEscape)
+    document.addEventListener('pointerdown', closeOutside)
+    return () => {
+      window.removeEventListener('keydown', closeOnEscape)
+      document.removeEventListener('pointerdown', closeOutside)
+    }
+  }, [contactOpen])
+
   return (
-    <nav className="mobile-island" aria-label="Mobile Schnellnavigation">
+    <nav className="mobile-island" aria-label="Mobile Schnellnavigation" ref={islandRef}>
+      {contactOpen && (
+        <div className="mobile-contact-panel" id="mobile-contact-panel" aria-label="Direkte Kontaktmöglichkeiten">
+          <a href={WHATSAPP_URL} target="_blank" rel="noreferrer" onClick={() => setContactOpen(false)}>
+            <MessageCircle aria-hidden="true" />
+            <span><strong>WhatsApp</strong><small>Nachricht schreiben</small></span>
+            <ArrowUpRight aria-hidden="true" />
+          </a>
+          <a href="tel:+491776867145" onClick={() => setContactOpen(false)}>
+            <Phone aria-hidden="true" />
+            <span><strong>Direkt anrufen</strong><small>0177 68 67 145</small></span>
+            <ArrowUpRight aria-hidden="true" />
+          </a>
+          <a href="mailto:mail@perlas.de" onClick={() => setContactOpen(false)}>
+            <Mail aria-hidden="true" />
+            <span><strong>E-Mail schreiben</strong><small>mail@perlas.de</small></span>
+            <ArrowUpRight aria-hidden="true" />
+          </a>
+        </div>
+      )}
       <a
         className={activeItem === 'start' ? 'is-active' : ''}
         href={homeHref('#top')}
         aria-current={activeItem === 'start' ? 'page' : undefined}
-        onClick={() => setActiveItem('start')}
+        onClick={() => { setActiveItem('start'); setContactOpen(false) }}
       >
         <Home aria-hidden="true" />
         <span>Start</span>
@@ -543,7 +582,7 @@ function MobileIsland({ onQuoteOpen }: { onQuoteOpen: () => void }) {
         className={activeItem === 'services' ? 'is-active' : ''}
         href={homeHref('#leistungen')}
         aria-current={activeItem === 'services' ? 'page' : undefined}
-        onClick={() => setActiveItem('services')}
+        onClick={() => { setActiveItem('services'); setContactOpen(false) }}
       >
         <Building2 aria-hidden="true" />
         <span>Leistungen</span>
@@ -552,22 +591,21 @@ function MobileIsland({ onQuoteOpen }: { onQuoteOpen: () => void }) {
         className={activeItem === 'quote' ? 'is-active' : ''}
         type="button"
         aria-pressed={activeItem === 'quote'}
-        onClick={() => { setActiveItem('quote'); onQuoteOpen() }}
+        onClick={() => { setActiveItem('quote'); setContactOpen(false); onQuoteOpen() }}
       >
         <ClipboardCheck aria-hidden="true" />
         <span>Angebot</span>
       </button>
-      <a
-        className={activeItem === 'whatsapp' ? 'is-active' : ''}
-        href={WHATSAPP_URL}
-        target="_blank"
-        rel="noreferrer"
-        aria-current={activeItem === 'whatsapp' ? 'page' : undefined}
-        onClick={() => setActiveItem('whatsapp')}
+      <button
+        className={activeItem === 'contact' ? 'is-active' : ''}
+        type="button"
+        aria-expanded={contactOpen}
+        aria-controls="mobile-contact-panel"
+        onClick={() => { setActiveItem('contact'); setContactOpen((current) => !current) }}
       >
         <MessageCircle aria-hidden="true" />
-        <span>WhatsApp</span>
-      </a>
+        <span>Kontakt</span>
+      </button>
     </nav>
   )
 }
@@ -899,8 +937,8 @@ function ServiceDetailPage({ service, onQuoteOpen }: { service: Feature; onQuote
 
       <section className="service-fit" aria-labelledby="service-fit-heading">
         <div className="service-fit-copy" data-reveal="left">
-          <span className="eyebrow">Passend zum Objekt</span>
-          <h2 id="service-fit-heading">Für wen sich diese Leistung eignet.</h2>
+          <span className="eyebrow">Geeignete Objekte</span>
+          <h2 id="service-fit-heading">Für diese Objekte bieten wir die Leistung an.</h2>
           <ul className="service-audience-list">
             {service.audiences.map((audience) => (
               <li key={audience}><CheckCircle2 aria-hidden="true" /> {audience}</li>
@@ -935,7 +973,7 @@ function ServiceDetailPage({ service, onQuoteOpen }: { service: Feature; onQuote
 
       <section className="service-boundary" data-reveal="up">
         <div>
-          <span className="eyebrow">Transparent vereinbart</span>
+          <span className="eyebrow">Leistungsgrenzen</span>
           <h2>{service.boundaryTitle}</h2>
           <p>{service.boundaryText}</p>
         </div>
@@ -948,8 +986,8 @@ function ServiceDetailPage({ service, onQuoteOpen }: { service: Feature; onQuote
       <section className="service-faq" aria-labelledby="service-faq-heading">
         <div className="service-section-heading" data-reveal="left">
           <span className="eyebrow">Häufige Fragen</span>
-          <h2 id="service-faq-heading">Gut zu wissen, bevor wir starten.</h2>
-          <p>Die wichtigsten Antworten zu Umfang, Ablauf und Einsatzgebiet.</p>
+          <h2 id="service-faq-heading">Häufige Fragen zu {service.title}.</h2>
+          <p>Antworten zu Leistungsumfang, Ablauf und Einsatzgebiet.</p>
         </div>
         <div className="service-faq-list" data-reveal="right" style={{ '--reveal-delay': '80ms' } as CSSProperties}>
           {service.faqs.map((faq) => (
@@ -993,7 +1031,7 @@ function ServiceDetailPage({ service, onQuoteOpen }: { service: Feature; onQuote
       <section className="service-more" data-reveal="up">
         <span className="eyebrow">Passende Leistungen</span>
         <h2>Diese Leistungen könnten ebenfalls relevant sein.</h2>
-        <p>Viele Aufgaben greifen im Immobilienalltag ineinander. Diese drei Leistungen ergänzen {service.title} besonders sinnvoll.</p>
+        <p>Je nach Immobilie können diese drei Leistungen {service.title} ergänzen.</p>
         <div>
           {relatedServices.map((item) => {
             const MoreIcon = item.icon
@@ -1079,6 +1117,10 @@ function Footer() {
             <a href="mailto:mail@perlas.de"><Mail aria-hidden="true" /> mail@perlas.de</a>
             <p><MapPin aria-hidden="true" /> Hauptstraße 1, 65843 Sulzbach</p>
           </div>
+          <p className="footer-description">
+            Hausmeisterservice, Objektpflege und Gebäudedienstleistungen für Wohnanlagen,
+            Gewerbeobjekte, Praxen und Hausverwaltungen im Rhein-Main-Gebiet.
+          </p>
           <div className="legal-links">
             <a href="https://perlas.de/impressum/">Impressum</a>
             <a href="https://perlas.de/datenschutz/">Datenschutz</a>
@@ -1124,10 +1166,6 @@ function Footer() {
           </div>
         </div>
 
-        <p className="trademark">
-          Hausmeisterservice, Objektpflege und Gebäudedienstleistungen für Wohnanlagen,
-          Gewerbeobjekte, Praxen und Hausverwaltungen im gesamten Rhein-Main-Gebiet.
-        </p>
       </div>
     </footer>
   )
