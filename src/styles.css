@@ -1648,7 +1648,7 @@ p {
 }
 
 .legal-links {
-  margin-top: 48px;
+  margin-top: 34px;
   display: flex;
   flex-wrap: wrap;
   gap: 26px;
@@ -1796,6 +1796,16 @@ p {
   color: var(--yellow);
 }
 
+.footer-description {
+  max-width: 290px;
+  margin-top: 34px;
+  padding-top: 24px;
+  border-top: 1px solid rgb(255 255 255 / 24%);
+  color: rgb(255 255 255 / 76%);
+  font-size: 12px;
+  line-height: 18px;
+}
+
 .email-field,
 .form-success {
   height: 34px;
@@ -1859,15 +1869,6 @@ p {
 .service-area span {
   margin-top: 8px;
   font-size: 11px;
-  line-height: 15px;
-}
-
-.trademark {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 550px;
-  font-size: 12px;
   line-height: 15px;
 }
 
@@ -3540,11 +3541,6 @@ p {
     gap: 42px;
   }
 
-  .trademark {
-    position: static;
-    margin-top: 50px;
-    grid-column: 1 / -1;
-  }
 }
 
 @media (max-width: 950px) {
@@ -3794,6 +3790,75 @@ p {
     background: rgb(2 3 59 / 94%);
     box-shadow: 0 18px 48px rgb(2 3 59 / 34%), inset 0 1px rgb(255 255 255 / 10%);
     backdrop-filter: blur(18px);
+  }
+
+  .mobile-contact-panel {
+    position: absolute;
+    right: 0;
+    bottom: calc(100% + 12px);
+    left: 0;
+    width: 100%;
+    padding: 10px;
+    display: grid;
+    gap: 7px;
+    border: 1px solid rgb(255 255 255 / 16%);
+    border-radius: 24px;
+    background: rgb(2 3 59 / 97%);
+    box-shadow: 0 18px 48px rgb(2 3 59 / 34%);
+    backdrop-filter: blur(18px);
+  }
+
+  .mobile-contact-panel a {
+    min-height: 58px;
+    padding: 9px 12px;
+    display: grid;
+    grid-template-columns: 30px minmax(0, 1fr) 18px;
+    align-items: center;
+    gap: 11px;
+    border-radius: 17px;
+    color: #fff;
+    background: rgb(255 255 255 / 9%);
+  }
+
+  .mobile-contact-panel a:hover,
+  .mobile-contact-panel a:focus-visible {
+    color: var(--navy);
+    background: var(--yellow);
+    outline: none;
+  }
+
+  .mobile-contact-panel a > svg:first-child {
+    width: 21px;
+    height: 21px;
+    color: var(--yellow);
+  }
+
+  .mobile-contact-panel a:hover > svg:first-child,
+  .mobile-contact-panel a:focus-visible > svg:first-child {
+    color: var(--purple);
+  }
+
+  .mobile-contact-panel a > svg:last-child {
+    width: 16px;
+    height: 16px;
+  }
+
+  .mobile-contact-panel strong,
+  .mobile-contact-panel small {
+    display: block;
+  }
+
+  .mobile-contact-panel strong {
+    font-size: 13px;
+    line-height: 17px;
+  }
+
+  .mobile-contact-panel small {
+    margin-top: 2px;
+    color: currentColor;
+    font-size: 10px;
+    line-height: 14px;
+    opacity: 0.72;
   }
 
   .mobile-island::before {
@@ -4389,11 +4454,6 @@ p {
   }
 
   .service-area {
-    margin-top: 0;
-  }
-
-  .trademark {
-    width: auto;
     margin-top: 0;
   }
 
