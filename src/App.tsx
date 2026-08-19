@@ -4,6 +4,7 @@ import {
   BriefcaseBusiness,
   Building2,
   CheckCircle2,
+  ChevronDown,
   ChevronLeft,
   ChevronRight,
   ChevronUp,
@@ -35,6 +36,7 @@ const BASE_PATH = import.meta.env.BASE_URL
 const A = `${BASE_PATH}assets/`
 const WHATSAPP_URL = 'https://wa.me/491776867145?text=Hallo%20Perla%E2%80%99s%20Team%2C%20ich%20interessiere%20mich%20f%C3%BCr%20Ihre%20Objektbetreuung.'
 const CONTACT_PATH = `${BASE_PATH}kontakt/`
+const FACILITY_PATH = `${BASE_PATH}facility-management/`
 
 const homeHref = (hash = '') => `${BASE_PATH}${hash}`
 
@@ -59,20 +61,30 @@ function ensureMeta(selector: string, attributes: Record<string, string>) {
   Object.entries(attributes).forEach(([name, value]) => element?.setAttribute(name, value))
 }
 
-function usePageSeo(service?: Feature, isContactPage = false) {
+function usePageSeo(service?: Feature, pageKind: 'home' | 'contact' | 'facility' = 'home') {
   useEffect(() => {
     const siteUrl = new URL(BASE_PATH, window.location.origin)
+    const isContactPage = pageKind === 'contact'
+    const isFacilityPage = pageKind === 'facility'
     const pageUrl = service
       ? new URL(`leistungen/${service.slug}/`, siteUrl)
       : isContactPage
         ? new URL('kontakt/', siteUrl)
-        : siteUrl
+        : isFacilityPage
+          ? new URL('facility-management/', siteUrl)
+          : siteUrl
     const title = service?.seoTitle
-      ?? (isContactPage ? 'Kontakt & Anfrage | Perla’s Facility Services' : 'Perla’s Facility Services | Objektbetreuung Rhein-Main')
+      ?? (isContactPage
+        ? 'Kontakt & Anfrage | Perla’s Facility Management'
+        : isFacilityPage
+          ? 'Facility Management Rhein-Main | Perla’s Objektbetreuung'
+          : 'Perla’s Facility Management | Objektbetreuung Rhein-Main')
     const description = service?.seoDescription
       ?? (isContactPage
         ? 'Kontaktieren Sie Perla’s per Telefon, E-Mail, WhatsApp oder Anfrageformular und besprechen Sie die Betreuung Ihrer Immobilie im Rhein-Main-Gebiet.'
-        : 'Perla’s bündelt Facility Services und professionelle Objektbetreuung für Hausverwaltungen, Wohnanlagen und Gewerbeimmobilien im Rhein-Main-Gebiet.')
+        : isFacilityPage
+          ? 'Facility Management für Hausverwaltungen, größere Wohnanlagen, Gewerbeimmobilien und institutionelle Gebäude im Rhein-Main-Gebiet.'
+          : 'Perla’s bündelt Facility Management und professionelle Objektbetreuung für Hausverwaltungen, Wohnanlagen und Gewerbeimmobilien im Rhein-Main-Gebiet.')
     const imageUrl = new URL(`${BASE_PATH}assets/perlas-hero.png`, window.location.origin)
     const indexingOverride = import.meta.env.VITE_PERLAS_INDEX_SITE
     const indexingEnabled = indexingOverride
@@ -157,20 +169,36 @@ function usePageSeo(service?: Feature, isContactPage = false) {
               },
             ],
           }
-        : {
-          '@context': 'https://schema.org',
-          '@graph': [
-            business,
-            {
-              '@type': 'WebSite',
-              '@id': `${siteUrl.href}#website`,
-              url: siteUrl.href,
-              name: 'PERLAS',
-              alternateName: 'Perla’s Objektbetreuung',
-              inLanguage: 'de-DE',
-            },
-          ],
-        }
+        : isFacilityPage
+          ? {
+              '@context': 'https://schema.org',
+              '@graph': [
+                business,
+                {
+                  '@type': 'WebPage',
+                  '@id': `${pageUrl.href}#facility-management`,
+                  url: pageUrl.href,
+                  name: 'Facility Management von Perla’s Objektbetreuung',
+                  description,
+                  inLanguage: 'de-DE',
+                  mainEntity: { '@id': businessId },
+                },
+              ],
+            }
+          : {
+              '@context': 'https://schema.org',
+              '@graph': [
+                business,
+                {
+                  '@type': 'WebSite',
+                  '@id': `${siteUrl.href}#website`,
+                  url: siteUrl.href,
+                  name: 'PERLAS',
+                  alternateName: 'Perla’s Objektbetreuung',
+                  inLanguage: 'de-DE',
+                },
+              ],
+            }
 
     let structuredDataScript = document.head.querySelector<HTMLScriptElement>('#perlas-structured-data')
     if (!structuredDataScript) {
@@ -180,7 +208,7 @@ function usePageSeo(service?: Feature, isContactPage = false) {
       document.head.appendChild(structuredDataScript)
     }
     structuredDataScript.textContent = JSON.stringify(structuredData)
-  }, [isContactPage, service])
+  }, [pageKind, service])
 }
 
 type ButtonLinkProps = {
@@ -272,12 +300,12 @@ const proofStats = [
 type Partner = { name: string; href: string; icon: LucideIcon }
 
 const partners: Partner[] = [
-  { name: 'Hausverwaltungen', href: homeHref('#hausverwaltungen'), icon: KeyRound },
-  { name: 'Größere Wohnanlagen', href: homeHref('#hausverwaltungen'), icon: Home },
-  { name: 'Gewerbeimmobilien', href: homeHref('#gewerbeimmobilien'), icon: Building2 },
-  { name: 'Bürogebäude', href: homeHref('#institutionelle-gebaeude'), icon: BriefcaseBusiness },
-  { name: 'Unternehmensstandorte', href: homeHref('#gewerbeimmobilien'), icon: ShieldCheck },
-  { name: 'Institutionelle Gebäude', href: homeHref('#institutionelle-gebaeude'), icon: Hospital },
+  { name: 'Hausverwaltungen', href: `${FACILITY_PATH}#hausverwaltungen`, icon: KeyRound },
+  { name: 'Größere Wohnanlagen', href: `${FACILITY_PATH}#wohnanlagen`, icon: Home },
+  { name: 'Gewerbeimmobilien', href: `${FACILITY_PATH}#gewerbeimmobilien`, icon: Building2 },
+  { name: 'Bürogebäude', href: `${FACILITY_PATH}#institutionelle-gebaeude`, icon: BriefcaseBusiness },
+  { name: 'Unternehmensstandorte', href: `${FACILITY_PATH}#gewerbeimmobilien`, icon: ShieldCheck },
+  { name: 'Institutionelle Gebäude', href: `${FACILITY_PATH}#institutionelle-gebaeude`, icon: Hospital },
 ]
 
 type Feature = (typeof serviceContent)[number] & { icon: LucideIcon }
@@ -385,22 +413,41 @@ const audienceSolutions = [
   {
     id: 'hausverwaltungen',
     icon: KeyRound,
-    title: 'Hausverwaltungen & Wohnanlagen',
-    text: 'Für professionell verwaltete Wohnanlagen und Mehrfamilienhausbestände bündeln wir die laufenden Aufgaben an Gebäude und Außenflächen.',
+    title: 'Hausverwaltungen',
+    navLabel: 'Hausverwaltungen',
+    text: 'Klare Zuständigkeiten und gebündelte Rückmeldungen für professionell verwaltete Immobilienbestände.',
+    requirements: ['Ein Ansprechpartner für laufende Aufgaben', 'Abgestimmte Leistungsintervalle', 'Nachvollziehbare Zustands- und Leistungsmeldungen'],
+    approach: 'Wir stimmen die benötigten Leistungen objektbezogen ab und führen Rückmeldungen zu einem übersichtlichen Gesamtbild zusammen.',
     services: ['objektpflege', 'gebaeudereinigung', 'wartung-instandhaltung', 'gartenpflege', 'winterdienst'],
+  },
+  {
+    id: 'wohnanlagen',
+    icon: Home,
+    title: 'Größere Wohnanlagen & Immobilienbestände',
+    navLabel: 'Größere Wohnanlagen',
+    text: 'Laufende Betreuung gemeinschaftlich genutzter Gebäude- und Außenbereiche mit planbaren Abläufen.',
+    requirements: ['Regelmäßige Objekt- und Sichtkontrollen', 'Pflege von Gemeinschafts- und Außenflächen', 'Koordination saisonaler und wiederkehrender Aufgaben'],
+    approach: 'Gebäude, Außenanlagen und Zugänge werden in einem abgestimmten Betreuungskonzept betrachtet. Auffälligkeiten werden frühzeitig weitergegeben.',
+    services: ['objektpflege', 'gebaeudereinigung', 'wartung-instandhaltung', 'gartenpflege', 'winterdienst', 'wohnungswechsel'],
   },
   {
     id: 'gewerbeimmobilien',
     icon: Building2,
     title: 'Gewerbeimmobilien & Unternehmensstandorte',
+    navLabel: 'Gewerbeimmobilien',
     text: 'Objektbetreuung, Reinigung und technische Aufgaben werden so kombiniert, dass der laufende Betrieb möglichst wenig beeinträchtigt wird.',
+    requirements: ['Planbare Einsätze im laufenden Betrieb', 'Gepflegte Innen- und Außenbereiche', 'Klare Weitergabe technischer Auffälligkeiten'],
+    approach: 'Leistungen und Einsatzzeiten richten sich nach Objekt, Nutzung und Zugänglichkeit. Notwendige Facharbeiten werden mit geeigneten Fachbetrieben abgestimmt.',
     services: ['objektpflege', 'wartung-instandhaltung', 'gebaeudereinigung', 'gartenpflege', 'winterdienst'],
   },
   {
     id: 'institutionelle-gebaeude',
     icon: Hospital,
     title: 'Büro-, Praxis- & institutionelle Gebäude',
+    navLabel: 'Institutionelle Gebäude',
     text: 'Für regelmäßig genutzte Gebäude verbinden wir feste Zuständigkeiten mit planbaren Leistungen für Innen- und Außenbereiche.',
+    requirements: ['Verlässliche Abläufe bei regelmäßiger Nutzung', 'Saubere und gepflegte Gemeinschaftsflächen', 'Dokumentierte Kontrollen und Rückmeldungen'],
+    approach: 'Wir legen Aufgaben, Intervalle und Ansprechpartner gemeinsam fest. Bei technischen Fachthemen koordinieren wir die Weitergabe an geeignete Spezialisten.',
     services: ['objektpflege', 'gebaeudereinigung', 'wartung-instandhaltung', 'winterdienst', 'gartenpflege'],
   },
 ]
@@ -420,14 +467,14 @@ const insights = [
   },
   {
     image: 'perlas-hero.png',
-    tag: 'Facility Services',
+    tag: 'Facility Management',
     title: 'Was ein belastbares Betreuungskonzept ausmacht',
     text: 'Welche Aufgaben, Leistungsintervalle und Zuständigkeiten in ein verständliches Leistungsverzeichnis gehören.',
   },
   {
     image: 'perlas-team.png',
     tag: 'Praxiswissen',
-    title: 'Wie sich Facility Services über das Jahr planen lassen',
+    title: 'Wie sich Facility-Leistungen über das Jahr planen lassen',
     text: 'Reinigung, Außenanlagenpflege, Wartung und Winterdienst benötigen unterschiedliche Leistungsintervalle.',
   },
 ]
@@ -461,35 +508,86 @@ const heroSlides = [
 
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
+  const [facilityOpen, setFacilityOpen] = useState(false)
 
   useEffect(() => {
     const closeOnEscape = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') setMenuOpen(false)
+      if (event.key === 'Escape') {
+        setMenuOpen(false)
+        setFacilityOpen(false)
+      }
     }
 
     window.addEventListener('keydown', closeOnEscape)
     return () => window.removeEventListener('keydown', closeOnEscape)
   }, [])
 
-  const closeMenu = () => setMenuOpen(false)
+  const closeMenu = () => {
+    setMenuOpen(false)
+    setFacilityOpen(false)
+  }
 
   return (
     <header className={menuOpen ? 'site-header menu-is-open' : 'site-header'}>
       <div className="nav-wrap">
-        <a className="wordmark" href={homeHref()} aria-label="PERLAS Startseite">PERLAS</a>
+        <a className="wordmark" href={homeHref()} aria-label="Perla’s Objektbetreuung Startseite">
+          <img src={`${A}perlas-logo.svg`} alt="Perla’s Objektbetreuung GmbH & Co. KG" />
+        </a>
         <button
           className="menu-toggle"
           type="button"
           aria-label={menuOpen ? 'Menü schließen' : 'Menü öffnen'}
           aria-expanded={menuOpen}
           aria-controls="main-navigation"
-          onClick={() => setMenuOpen((current) => !current)}
+          onClick={() => {
+            setMenuOpen((current) => !current)
+            if (menuOpen) setFacilityOpen(false)
+          }}
         >
           {menuOpen ? <X aria-hidden="true" /> : <Menu aria-hidden="true" />}
         </button>
         <nav id="main-navigation" className={menuOpen ? 'is-open' : ''} aria-label="Hauptnavigation">
-          <a href={homeHref('#facility-services')} onClick={closeMenu}>Facility Services</a>
-          <a href={homeHref('#objekte')} onClick={closeMenu}>Objekte</a>
+          <div
+            className={facilityOpen ? 'nav-facility is-open' : 'nav-facility'}
+            onMouseEnter={() => {
+              if (window.matchMedia('(hover: hover)').matches) setFacilityOpen(true)
+            }}
+            onMouseLeave={() => {
+              if (window.matchMedia('(hover: hover)').matches) setFacilityOpen(false)
+            }}
+            onFocus={(event) => {
+              if (event.target instanceof HTMLAnchorElement) setFacilityOpen(true)
+            }}
+            onBlur={(event) => {
+              if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setFacilityOpen(false)
+            }}
+          >
+            <div className="nav-facility-trigger">
+              <a href={FACILITY_PATH} onClick={closeMenu}>Facility Management</a>
+              <button
+                type="button"
+                aria-label={facilityOpen ? 'Zielgruppen im Facility Management schließen' : 'Zielgruppen im Facility Management anzeigen'}
+                aria-expanded={facilityOpen}
+                aria-controls="facility-navigation"
+                onClick={() => setFacilityOpen((current) => !current)}
+              >
+                <ChevronDown aria-hidden="true" />
+              </button>
+            </div>
+            <div className="facility-dropdown" id="facility-navigation">
+              <span>Facility Management für</span>
+              {audienceSolutions.map((audience) => {
+                const Icon = audience.icon
+                return (
+                  <a href={`${FACILITY_PATH}#${audience.id}`} onClick={closeMenu} key={audience.id}>
+                    <Icon aria-hidden="true" />
+                    <strong>{audience.navLabel}</strong>
+                    <ArrowUpRight aria-hidden="true" />
+                  </a>
+                )
+              })}
+            </div>
+          </div>
           <a href={homeHref('#leistungen')} onClick={closeMenu}>Leistungen</a>
           <a href={homeHref('#ueber-uns')} onClick={closeMenu}>Über uns</a>
           <a className="sign-in" href={CONTACT_PATH} onClick={closeMenu}>Kontakt</a>
@@ -595,7 +693,7 @@ function MobileIsland({ onQuoteOpen }: { onQuoteOpen: () => void }) {
     if (getPagePath().startsWith('/kontakt')) return 'contact'
 
     if (
-      getPagePath().startsWith('/leistungen')
+      getPagePath().startsWith('/leistungen') || getPagePath().startsWith('/facility-management')
       || ['#facility-services', '#objekte', '#leistungen'].includes(window.location.hash)
     ) {
       return 'services'
@@ -609,7 +707,7 @@ function MobileIsland({ onQuoteOpen }: { onQuoteOpen: () => void }) {
       if (getPagePath().startsWith('/kontakt')) {
         setActiveItem('contact')
       } else if (
-        getPagePath().startsWith('/leistungen')
+        getPagePath().startsWith('/leistungen') || getPagePath().startsWith('/facility-management')
         || ['#facility-services', '#objekte', '#leistungen'].includes(window.location.hash)
       ) {
         setActiveItem('services')
@@ -635,7 +733,7 @@ function MobileIsland({ onQuoteOpen }: { onQuoteOpen: () => void }) {
       </a>
       <a
         className={activeItem === 'services' ? 'is-active' : ''}
-        href={homeHref('#facility-services')}
+        href={FACILITY_PATH}
         aria-current={activeItem === 'services' ? 'page' : undefined}
         onClick={() => setActiveItem('services')}
       >
@@ -687,16 +785,16 @@ function Hero() {
     <section className="hero" id="top">
       <img className="hero-circle" src={`${A}bg-circle.svg`} alt="" />
       <div className="hero-copy">
-        <p className="eyebrow">Facility Services im Rhein-Main-Gebiet</p>
-        <h1>Ganzheitliche Betreuung für professionell verwaltete Immobilien.</h1>
+        <p className="eyebrow">Facility Management im Rhein-Main-Gebiet</p>
+        <h1>Facility Management für professionell verwaltete Immobilien.</h1>
         <p className="hero-lead">
-          Perla’s verbindet Objektbetreuung, technische Betreuung, Gebäudereinigung,
+          Perla’s verbindet Objektbetreuung, technische Koordination, Gebäudereinigung,
           Außenanlagenpflege und Winterdienst. Hausverwaltungen und gewerbliche Auftraggeber
           erhalten einen festen Ansprechpartner für die laufenden Aufgaben ihrer Immobilien.
         </p>
         <div className="button-row">
           <ButtonLink href={CONTACT_PATH} arrow>Betreuung anfragen</ButtonLink>
-          <ButtonLink href="#facility-services" kind="outline">Facility Services</ButtonLink>
+          <ButtonLink href={FACILITY_PATH} kind="outline">Facility Management</ButtonLink>
         </div>
       </div>
       <div className="hero-art" aria-roledescription="Karussell" aria-label="Einblicke in die Arbeit von Perla’s">
@@ -749,15 +847,15 @@ function FacilityOverview() {
   return (
     <section className="facility-overview" id="facility-services" aria-labelledby="facility-heading">
       <div className="facility-copy" data-reveal="left">
-        <span className="eyebrow">Facility Management &amp; Services</span>
+        <span className="eyebrow">Facility Management</span>
         <h2 id="facility-heading">Mehrere Leistungen. Ein abgestimmtes Betreuungskonzept.</h2>
         <p>
           Perla’s verbindet Objektbetreuung, Reinigung, Wartung, Außenanlagenpflege und
           Winterdienst zu einem objektbezogenen Leistungsplan. So werden mehrere laufende Aufgaben
           über einen Ansprechpartner, abgestimmte Intervalle und klare Rückmeldungen koordiniert.
         </p>
-        <ButtonLink href="#objekte" arrow>Betreuung nach Objektart</ButtonLink>
-        <nav className="facility-service-links" aria-label="Facility Services im Detail">
+        <ButtonLink href={FACILITY_PATH} arrow>Facility Management ansehen</ButtonLink>
+        <nav className="facility-service-links" aria-label="Einzelleistungen im Detail">
           {coreFeatures.map((service) => (
             <a href={`${BASE_PATH}leistungen/${service.slug}/`} key={service.slug}>
               {service.title}<ArrowUpRight aria-hidden="true" />
@@ -813,7 +911,7 @@ function PartnerMarquee() {
 
   return (
     <section className="partner-strip" aria-labelledby="partner-strip-heading" data-reveal="fade">
-      <p id="partner-strip-heading">Facility Services für professionelle Auftraggeber und verwaltete Immobilien</p>
+      <p id="partner-strip-heading">Facility Management für professionelle Auftraggeber und verwaltete Immobilien</p>
       <div className="partner-marquee">
         <div className="partner-track">
           {renderPartners()}
@@ -828,24 +926,21 @@ function AudienceSolutions() {
   return (
     <section className="audience-solutions" id="objekte" aria-labelledby="audience-heading">
       <div className="audience-heading" data-reveal="up">
-        <span className="eyebrow">Objekte &amp; Auftraggeber</span>
-        <h2 id="audience-heading">Welche Leistungen zu Ihrer Immobilie passen.</h2>
+        <span className="eyebrow">Facility Management nach Zielgruppe</span>
+        <h2 id="audience-heading">Betreuung passend zu Bestand, Nutzung und Organisation.</h2>
         <p>
-          Für größere Wohnanlagen, Gewerbeimmobilien und regelmäßig genutzte Gebäude kombinieren
-          wir die benötigten Facility Services zu einer laufenden Betreuung.
+          Auf der Facility-Management-Seite finden Hausverwaltungen und gewerbliche Auftraggeber
+          die passende Einordnung für ihre Objekte – mit den jeweils relevanten Leistungen.
         </p>
       </div>
       <div className="audience-grid">
         {audienceSolutions.map((audience, index) => {
           const Icon = audience.icon
-          const linkedServices = audience.services
-            .map((slug) => features.find((feature) => feature.slug === slug))
-            .filter((feature): feature is Feature => Boolean(feature))
 
           return (
-            <article
+            <a
               className="audience-card"
-              id={audience.id}
+              href={`${FACILITY_PATH}#${audience.id}`}
               data-reveal="up"
               style={{ '--reveal-delay': `${index * 70}ms` } as CSSProperties}
               key={audience.id}
@@ -853,33 +948,193 @@ function AudienceSolutions() {
               <div className="audience-card-icon"><Icon aria-hidden="true" /></div>
               <h3>{audience.title}</h3>
               <p>{audience.text}</p>
-              <nav aria-label={`Leistungen für ${audience.title}`}>
-                {linkedServices.map((service) => (
-                  <a href={`${BASE_PATH}leistungen/${service.slug}/`} key={service.slug}>
-                    {service.title}<ArrowUpRight aria-hidden="true" />
-                  </a>
-                ))}
-              </nav>
-            </article>
+              <span className="audience-card-link">Bereich ansehen <ArrowUpRight aria-hidden="true" /></span>
+            </a>
           )
         })}
       </div>
-      <div className="audience-visuals" data-reveal="up">
-        <figure>
-          <img src={`${A}perlas-property.png`} alt="Größere Wohnanlage im Rhein-Main-Gebiet" />
-          <figcaption>Größere Wohnanlagen &amp; Immobilienbestände</figcaption>
-        </figure>
-        <figure>
-          <img src={`${A}perlas-office.png`} alt="Mitarbeiter von Perla’s bei der Einsatzplanung im Büro" />
-          <figcaption>Einsatzplanung &amp; feste Ansprechpartner</figcaption>
-        </figure>
-        <div className="audience-image-placeholder" role="img" aria-label="Bildplatzhalter für eine größere Gewerbeimmobilie oder ein Verwaltungsgebäude">
-          <Building2 aria-hidden="true" />
-          <small>Bildmotiv vorgesehen</small>
-          <strong>Größere Gewerbeimmobilie / Verwaltungsgebäude</strong>
-        </div>
-      </div>
     </section>
+  )
+}
+
+function FacilityManagementPage({ onQuoteOpen }: { onQuoteOpen: () => void }) {
+  const targetImages: Record<string, { src: string; alt: string }> = {
+    hausverwaltungen: {
+      src: 'perlas-office.png',
+      alt: 'Einsatzplanung für professionell verwaltete Immobilien',
+    },
+    wohnanlagen: {
+      src: 'perlas-property.png',
+      alt: 'Größere Wohnanlage im Rhein-Main-Gebiet',
+    },
+    gewerbeimmobilien: {
+      src: 'perlas-hero.png',
+      alt: 'Objektkontrolle an einer gewerblich genutzten Immobilie',
+    },
+    'institutionelle-gebaeude': {
+      src: 'perlas-team.png',
+      alt: 'Team für die laufende Objektbetreuung',
+    },
+  }
+
+  return (
+    <main className="facility-page">
+      <section className="fm-hero">
+        <div className="fm-hero-copy" data-reveal="left">
+          <a className="service-breadcrumb" href={homeHref()}>Startseite / Facility Management</a>
+          <span className="eyebrow">Facility Management im Rhein-Main-Gebiet</span>
+          <h1>Gebäude ganzheitlich betreuen. Aufgaben klar koordinieren.</h1>
+          <p>
+            Perla’s bündelt die laufenden Aufgaben größerer und professionell verwalteter
+            Immobilien in einem objektbezogenen Betreuungskonzept. Hausverwaltungen und
+            gewerbliche Auftraggeber erhalten feste Zuständigkeiten, abgestimmte Intervalle und
+            nachvollziehbare Rückmeldungen.
+          </p>
+          <div className="button-row">
+            <ButtonLink href={CONTACT_PATH} arrow>Betreuung besprechen</ButtonLink>
+            <ButtonLink href="#zielgruppen" kind="outline">Passenden Bereich wählen</ButtonLink>
+          </div>
+          <dl className="fm-hero-facts">
+            <div><dt>Ein Ansprechpartner</dt><dd>für die laufende Abstimmung</dd></div>
+            <div><dt>Klare Intervalle</dt><dd>für wiederkehrende Aufgaben</dd></div>
+            <div><dt>Verständliche Rückmeldungen</dt><dd>zu Zustand und Handlungsbedarf</dd></div>
+          </dl>
+        </div>
+        <figure className="fm-hero-visual" data-reveal="right" style={{ '--reveal-delay': '90ms' } as CSSProperties}>
+          <img src={`${A}perlas-property.png`} alt="Professionell verwaltete Wohnanlage im Rhein-Main-Gebiet" />
+          <figcaption>
+            <Building2 aria-hidden="true" />
+            <span><strong>Facility Management mit Überblick</strong><small>Objekt · Aufgaben · Zuständigkeiten</small></span>
+          </figcaption>
+        </figure>
+      </section>
+
+      <section className="fm-principles" aria-labelledby="fm-principles-heading">
+        <div className="fm-section-heading" data-reveal="up">
+          <span className="eyebrow">Was Facility Management bei Perla’s bedeutet</span>
+          <h2 id="fm-principles-heading">Erst das Objekt verstehen. Dann Leistungen sinnvoll verbinden.</h2>
+          <p>
+            Ausgangspunkt ist nicht eine einzelne Tätigkeit, sondern der laufende Bedarf der
+            Immobilie. Daraus entstehen abgestimmte Aufgaben, Intervalle und Zuständigkeiten.
+          </p>
+        </div>
+        <div className="fm-principle-grid" data-reveal="up" style={{ '--reveal-delay': '90ms' } as CSSProperties}>
+          {facilityPillars.map((pillar) => {
+            const Icon = pillar.icon
+            return (
+              <article key={pillar.title}>
+                <Icon aria-hidden="true" />
+                <h3>{pillar.title}</h3>
+                <p>{pillar.text}</p>
+              </article>
+            )
+          })}
+        </div>
+        <aside className="fm-specialist-note" data-reveal="up">
+          <ShieldCheck aria-hidden="true" />
+          <div>
+            <strong>Technische Themen klar eingeordnet</strong>
+            <p>
+              Sichtkontrollen, Zustandsmeldungen und die organisatorische Abstimmung gehören zur
+              Objektbetreuung. Sobald eine fachliche Prüfung oder eine entsprechende
+              Qualifikation erforderlich ist, koordinieren wir die weitere Bearbeitung mit einem
+              geeigneten Fachbetrieb und stellen sie nicht als eigene Fachleistung dar.
+            </p>
+          </div>
+        </aside>
+      </section>
+
+      <section className="fm-targets" id="zielgruppen" aria-labelledby="fm-targets-heading">
+        <div className="fm-section-heading" data-reveal="up">
+          <span className="eyebrow">Objekte &amp; Auftraggeber</span>
+          <h2 id="fm-targets-heading">Facility Management nach Nutzung und Organisationsform.</h2>
+          <p>
+            Wählen Sie den Bereich, der Ihrem Bestand am nächsten kommt. Verlinkt sind jeweils
+            ausschließlich Leistungen, für die bereits eine eigene Detailseite vorhanden ist.
+          </p>
+        </div>
+        <div className="fm-target-list">
+          {audienceSolutions.map((audience, index) => {
+            const Icon = audience.icon
+            const linkedServices = audience.services
+              .map((slug) => features.find((feature) => feature.slug === slug))
+              .filter((feature): feature is Feature => Boolean(feature))
+            const image = targetImages[audience.id]
+
+            return (
+              <article className="fm-target" id={audience.id} key={audience.id}>
+                <div className="fm-target-copy" data-reveal={index % 2 === 0 ? 'left' : 'right'}>
+                  <div className="fm-target-title">
+                    <span><Icon aria-hidden="true" /></span>
+                    <div><small>Facility Management für</small><h3>{audience.title}</h3></div>
+                  </div>
+                  <p className="fm-target-lead">{audience.text}</p>
+                  <h4>Typische Anforderungen</h4>
+                  <ul>
+                    {audience.requirements.map((requirement) => (
+                      <li key={requirement}><CheckCircle2 aria-hidden="true" /> {requirement}</li>
+                    ))}
+                  </ul>
+                  <div className="fm-target-approach">
+                    <strong>Unser Ansatz</strong>
+                    <p>{audience.approach}</p>
+                  </div>
+                  <nav className="fm-service-links" aria-label={`Vorhandene Leistungen für ${audience.title}`}>
+                    <span>Passende Leistungsseiten</span>
+                    {linkedServices.map((service) => (
+                      <a href={`${BASE_PATH}leistungen/${service.slug}/`} key={service.slug}>
+                        {service.title}<ArrowUpRight aria-hidden="true" />
+                      </a>
+                    ))}
+                  </nav>
+                </div>
+                <figure className="fm-target-image" data-reveal={index % 2 === 0 ? 'right' : 'left'}>
+                  <img src={`${A}${image.src}`} alt={image.alt} />
+                  <figcaption>{audience.navLabel}</figcaption>
+                </figure>
+              </article>
+            )
+          })}
+        </div>
+      </section>
+
+      <section className="fm-complex" aria-labelledby="fm-complex-heading">
+        <div className="fm-complex-copy" data-reveal="left">
+          <span className="eyebrow">Größere &amp; komplexere Objekte</span>
+          <h2 id="fm-complex-heading">Auch viele Teilbereiche bleiben als Gesamtablauf steuerbar.</h2>
+          <p>
+            Bei umfangreicheren Immobilienbeständen werden wiederkehrende Aufgaben nach Flächen,
+            Nutzung und Zuständigkeit gegliedert. So bleibt erkennbar, was regelmäßig betreut,
+            kontrolliert, gemeldet oder durch einen Fachbetrieb bearbeitet werden muss.
+          </p>
+          <ButtonLink href={CONTACT_PATH} kind="outline-light" arrow>Objektstruktur besprechen</ButtonLink>
+        </div>
+        <div className="fm-complex-grid" data-reveal="right" style={{ '--reveal-delay': '90ms' } as CSSProperties}>
+          {[
+            ['Gebäude & Gemeinschaftsflächen', 'Reinigung, Objektpflege und regelmäßige Kontrollgänge werden in passenden Intervallen geplant.'],
+            ['Außenanlagen & Winter', 'Grünpflege, Wege, Zugänge und saisonale Winterdienste werden aufeinander abgestimmt.'],
+            ['Parkflächen & Tiefgaragen', 'Sauberkeit, sichtbare Auffälligkeiten und organisatorischer Handlungsbedarf fließen in die Rückmeldung ein.'],
+            ['Technische Anlagen', 'Sichtkontrollen und Meldungen werden koordiniert; fachliche Prüfungen und Arbeiten bleiben bei geeigneten Fachbetrieben.'],
+          ].map(([title, text], index) => (
+            <article key={title}><span>0{index + 1}</span><h3>{title}</h3><p>{text}</p></article>
+          ))}
+        </div>
+      </section>
+
+      <section className="fm-cta" data-reveal="up">
+        <div>
+          <span className="eyebrow">Nächster Schritt</span>
+          <h2>Welche Betreuung braucht Ihr Objekt?</h2>
+          <p>Wir erfassen Immobilie, Nutzung und laufende Aufgaben und besprechen daraus einen passenden Leistungsumfang.</p>
+        </div>
+        <div className="fm-cta-actions">
+          <button className="button button--yellow" type="button" onClick={onQuoteOpen}>
+            <span>Angebot anfragen</span><img src={`${A}arrow.svg`} alt="" />
+          </button>
+          <a href="tel:+491776867145"><Phone aria-hidden="true" /> 0177 68 67 145</a>
+        </div>
+      </section>
+    </main>
   )
 }
 
@@ -1010,7 +1265,7 @@ function FeatureSection({ onQuoteOpen }: { onQuoteOpen: (service?: string) => vo
     <section className="features" id="leistungen" aria-labelledby="features-heading">
       <div className="features-heading" data-reveal="up">
         <span className="eyebrow">Kernleistungen</span>
-        <h2 id="features-heading">Facility Services für die laufende Immobilienbetreuung.</h2>
+        <h2 id="features-heading">Einzelleistungen für die laufende Immobilienbetreuung.</h2>
         <p>Diese fünf Leistungen stehen bei der regelmäßigen Betreuung größerer und professionell verwalteter Objekte im Vordergrund.</p>
       </div>
       <div className="feature-panel" data-reveal="scale" style={{ '--reveal-delay': '100ms' } as CSSProperties}>
@@ -1235,7 +1490,7 @@ function ClosingContact({ onQuoteOpen }: { onQuoteOpen: () => void }) {
         </p>
         <ol className="closing-steps">
           <li><span>01</span><div><strong>Immobilie und Anforderungen erfassen</strong><small>Wir nehmen Flächen, Nutzung, Zugänge und die laufenden Aufgaben vor Ort auf.</small></div></li>
-          <li><span>02</span><div><strong>Facility Services zusammenstellen</strong><small>Leistungen, Intervalle, Zuständigkeiten und Qualitätskontrollen werden festgelegt.</small></div></li>
+          <li><span>02</span><div><strong>Facility-Leistungen zusammenstellen</strong><small>Leistungen, Intervalle, Zuständigkeiten und Qualitätskontrollen werden festgelegt.</small></div></li>
           <li><span>03</span><div><strong>Betreuung und Dokumentation starten</strong><small>Die Einsätze beginnen nach dem abgestimmten Plan. Rückmeldungen laufen über einen festen Ansprechpartner.</small></div></li>
         </ol>
       </div>
@@ -1289,7 +1544,7 @@ function Footer() {
             <p><MapPin aria-hidden="true" /> Hauptstraße 1, 65843 Sulzbach</p>
           </div>
           <p className="footer-description">
-            Facility Services und professionelle Objektbetreuung für Hausverwaltungen,
+            Facility Management und professionelle Objektbetreuung für Hausverwaltungen,
             Wohnanlagen, Gewerbeimmobilien und institutionelle Gebäude im Rhein-Main-Gebiet.
           </p>
           <div className="legal-links">
@@ -1305,8 +1560,8 @@ function Footer() {
         <nav className="footer-nav" aria-label="Footer-Navigation">
           <h2>Perla’s</h2>
           {[
-            ['Facility Services', '#facility-services'],
-            ['Objekte', '#objekte'],
+            ['Facility Management', 'facility-management/'],
+            ['Zielgruppen', 'facility-management/#zielgruppen'],
             ['Leistungen', '#leistungen'],
             ['Ablauf', '#ablauf'],
             ['Kontakt', 'kontakt/'],
@@ -1347,11 +1602,12 @@ export default function App() {
   const [quoteService, setQuoteService] = useState<string | undefined>()
   const pagePath = getPagePath()
   const isContactPage = /^\/kontakt\/?$/.test(pagePath)
+  const isFacilityPage = /^\/facility-management\/?$/.test(pagePath)
   const serviceSlug = pagePath.match(/^\/leistungen\/([^/]+)\/?$/)?.[1]
   const activeService = features.find((service) => service.slug === serviceSlug)
 
-  usePageSeo(activeService, isContactPage)
-  useRevealAnimations(isContactPage ? 'contact' : activeService?.slug)
+  usePageSeo(activeService, isContactPage ? 'contact' : isFacilityPage ? 'facility' : 'home')
+  useRevealAnimations(isContactPage ? 'contact' : isFacilityPage ? 'facility' : activeService?.slug)
 
   const openQuote = useCallback((service?: string) => {
     setQuoteService(service)
@@ -1367,6 +1623,8 @@ export default function App() {
         <ServiceDetailPage service={activeService} onQuoteOpen={openQuote} />
       ) : isContactPage ? (
         <ContactPage onQuoteOpen={() => openQuote()} />
+      ) : isFacilityPage ? (
+        <FacilityManagementPage onQuoteOpen={() => openQuote()} />
       ) : (
         <main>
           <Hero />

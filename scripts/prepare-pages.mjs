@@ -30,16 +30,23 @@ const lastModified = new Date(Math.max(...sourceStats.map((entry) => entry.mtime
   .slice(0, 10)
 
 const homeSeo = {
-  title: 'Perla’s Facility Services | Objektbetreuung Rhein-Main',
-  description: 'Perla’s bündelt Facility Services und professionelle Objektbetreuung für Hausverwaltungen, Wohnanlagen und Gewerbeimmobilien im Rhein-Main-Gebiet.',
+  title: 'Perla’s Facility Management | Objektbetreuung Rhein-Main',
+  description: 'Perla’s bündelt Facility Management und professionelle Objektbetreuung für Hausverwaltungen, Wohnanlagen und Gewerbeimmobilien im Rhein-Main-Gebiet.',
   url: siteUrl.href,
 }
 
 const contactUrl = new URL(`${basePath}kontakt/`, siteUrl.origin)
 const contactSeo = {
-  title: 'Kontakt & Anfrage | Perla’s Facility Services',
+  title: 'Kontakt & Anfrage | Perla’s Facility Management',
   description: 'Kontaktieren Sie Perla’s per Telefon, E-Mail, WhatsApp oder Anfrageformular und besprechen Sie die Betreuung Ihrer Immobilie im Rhein-Main-Gebiet.',
   url: contactUrl.href,
+}
+
+const facilityUrl = new URL(`${basePath}facility-management/`, siteUrl.origin)
+const facilitySeo = {
+  title: 'Facility Management Rhein-Main | Perla’s Objektbetreuung',
+  description: 'Facility Management für Hausverwaltungen, größere Wohnanlagen, Gewerbeimmobilien und institutionelle Gebäude im Rhein-Main-Gebiet.',
+  url: facilityUrl.href,
 }
 
 const escapeHtml = (value) => String(value)
@@ -135,6 +142,24 @@ function contactStructuredData() {
   }
 }
 
+function facilityStructuredData() {
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
+      businessData,
+      {
+        '@type': 'WebPage',
+        '@id': `${facilityUrl.href}#facility-management`,
+        url: facilityUrl.href,
+        name: 'Facility Management von Perla’s Objektbetreuung',
+        description: facilitySeo.description,
+        inLanguage: 'de-DE',
+        mainEntity: { '@id': businessId },
+      },
+    ],
+  }
+}
+
 function serviceLinks(currentSlug, coreOnly = false) {
   return services
     .filter((service) => service.slug !== currentSlug && (!coreOnly || coreServiceSlugs.has(service.slug)))
@@ -151,11 +176,50 @@ function relatedServiceLinks(service) {
 }
 
 function staticHeader() {
-  return `<header class="seo-static-header"><a href="${basePath}">PERLAS</a><nav aria-label="Hauptnavigation"><a href="${basePath}#facility-services">Facility Services</a><a href="${basePath}#objekte">Objekte</a><a href="${basePath}#leistungen">Leistungen</a><a href="${basePath}#ueber-uns">Über uns</a><a href="${basePath}kontakt/">Kontakt</a></nav></header>`
+  return `<header class="seo-static-header"><a href="${basePath}"><img src="${basePath}assets/perlas-logo.svg" alt="Perla’s Objektbetreuung GmbH &amp; Co. KG" /></a><nav aria-label="Hauptnavigation"><a href="${basePath}facility-management/">Facility Management</a><a href="${basePath}#leistungen">Leistungen</a><a href="${basePath}">Über uns</a><a href="${basePath}kontakt/">Kontakt</a></nav></header>`
+}
+
+function selectedServiceLinks(slugs) {
+  return slugs
+    .map((slug) => services.find((service) => service.slug === slug))
+    .filter(Boolean)
+    .map((service) => `<li><a href="${basePath}leistungen/${service.slug}/">${escapeHtml(service.title)}</a></li>`)
+    .join('')
 }
 
 function homeMarkup() {
-  return `${staticHeader()}<main class="seo-static-main"><section class="seo-static-hero"><p>Facility Services im Rhein-Main-Gebiet</p><h1>Ganzheitliche Betreuung für professionell verwaltete Immobilien.</h1><p>Perla’s bündelt Objektbetreuung, technische Themen, Reinigung, Außenanlagenpflege und Winterdienst. Hausverwaltungen und gewerbliche Auftraggeber erhalten einen festen Ansprechpartner für die laufenden Aufgaben ihrer Immobilien.</p><a href="${basePath}kontakt/">Betreuung anfragen</a></section><section id="facility-services"><h2>Mehrere Leistungen. Ein abgestimmtes Betreuungskonzept.</h2><p>Aufgaben, Leistungsintervalle und Zuständigkeiten werden für die laufende Betreuung klar koordiniert und nachvollziehbar dokumentiert.</p><ul class="seo-static-links">${serviceLinks(undefined, true)}</ul><p>Ergänzende Leistung: <a href="${basePath}leistungen/wohnungswechsel/">Wohnungswechsel &amp; Räumung</a></p></section><section id="objekte"><h2>Lösungen für professionell verwaltete Objekte</h2><p>Unsere Facility Services richten sich an Hausverwaltungen, größere Wohnanlagen, Gewerbeimmobilien, Unternehmensstandorte sowie Büro-, Praxis- und institutionelle Gebäude.</p></section><section id="leistungen"><h2>Kernleistungen für den laufenden Immobilienbetrieb</h2><p>Objektpflege, Wartung, Gebäudereinigung, Außenanlagenpflege und Winterdienst werden passend zu Objekt und Nutzung zusammengestellt.</p></section></main>`
+  return `${staticHeader()}<main class="seo-static-main"><section class="seo-static-hero"><p>Facility Management im Rhein-Main-Gebiet</p><h1>Facility Management für professionell verwaltete Immobilien.</h1><p>Perla’s bündelt Objektbetreuung, technische Koordination, Reinigung, Außenanlagenpflege und Winterdienst. Hausverwaltungen und gewerbliche Auftraggeber erhalten einen festen Ansprechpartner für die laufenden Aufgaben ihrer Immobilien.</p><a href="${basePath}kontakt/">Betreuung anfragen</a><a href="${basePath}facility-management/">Facility Management ansehen</a></section><section id="facility-services"><h2>Mehrere Leistungen. Ein abgestimmtes Betreuungskonzept.</h2><p>Aufgaben, Leistungsintervalle und Zuständigkeiten werden für die laufende Betreuung klar koordiniert und nachvollziehbar dokumentiert.</p><ul class="seo-static-links">${serviceLinks(undefined, true)}</ul><p>Ergänzende Leistung: <a href="${basePath}leistungen/wohnungswechsel/">Wohnungswechsel &amp; Räumung</a></p></section><section id="objekte"><h2>Facility Management nach Zielgruppe</h2><p><a href="${basePath}facility-management/#hausverwaltungen">Hausverwaltungen</a>, <a href="${basePath}facility-management/#wohnanlagen">größere Wohnanlagen</a>, <a href="${basePath}facility-management/#gewerbeimmobilien">Gewerbeimmobilien</a> und <a href="${basePath}facility-management/#institutionelle-gebaeude">institutionelle Gebäude</a> finden ihre Einordnung auf der Facility-Management-Seite.</p></section><section id="leistungen"><h2>Kernleistungen für den laufenden Immobilienbetrieb</h2><p>Objektpflege, Wartung, Gebäudereinigung, Außenanlagenpflege und Winterdienst werden passend zu Objekt und Nutzung zusammengestellt.</p></section></main>`
+}
+
+function facilityMarkup() {
+  const targets = [
+    {
+      id: 'hausverwaltungen',
+      title: 'Hausverwaltungen',
+      text: 'Klare Zuständigkeiten und gebündelte Rückmeldungen für professionell verwaltete Immobilienbestände.',
+      services: ['objektpflege', 'gebaeudereinigung', 'wartung-instandhaltung', 'gartenpflege', 'winterdienst'],
+    },
+    {
+      id: 'wohnanlagen',
+      title: 'Größere Wohnanlagen & Immobilienbestände',
+      text: 'Laufende Betreuung gemeinschaftlich genutzter Gebäude- und Außenbereiche mit planbaren Abläufen.',
+      services: ['objektpflege', 'gebaeudereinigung', 'wartung-instandhaltung', 'gartenpflege', 'winterdienst', 'wohnungswechsel'],
+    },
+    {
+      id: 'gewerbeimmobilien',
+      title: 'Gewerbeimmobilien & Unternehmensstandorte',
+      text: 'Objektbetreuung, Reinigung und technische Aufgaben werden passend zu Nutzung und laufendem Betrieb kombiniert.',
+      services: ['objektpflege', 'wartung-instandhaltung', 'gebaeudereinigung', 'gartenpflege', 'winterdienst'],
+    },
+    {
+      id: 'institutionelle-gebaeude',
+      title: 'Büro-, Praxis- & institutionelle Gebäude',
+      text: 'Feste Zuständigkeiten und planbare Leistungen für regelmäßig genutzte Innen- und Außenbereiche.',
+      services: ['objektpflege', 'gebaeudereinigung', 'wartung-instandhaltung', 'winterdienst', 'gartenpflege'],
+    },
+  ].map((target) => `<section id="${target.id}"><h2>Facility Management für ${escapeHtml(target.title)}</h2><p>${escapeHtml(target.text)}</p><ul class="seo-static-links">${selectedServiceLinks(target.services)}</ul></section>`).join('')
+
+  return `${staticHeader()}<main class="seo-static-main"><section class="seo-static-hero"><p>Facility Management im Rhein-Main-Gebiet</p><h1>Gebäude ganzheitlich betreuen. Aufgaben klar koordinieren.</h1><p>Perla’s bündelt die laufenden Aufgaben größerer und professionell verwalteter Immobilien in einem objektbezogenen Betreuungskonzept.</p><a href="${basePath}kontakt/">Betreuung besprechen</a></section><section><h2>Erst das Objekt verstehen. Dann Leistungen sinnvoll verbinden.</h2><p>Aufgaben, Intervalle, Zuständigkeiten und Rückmeldungen werden objektbezogen abgestimmt. Sichtkontrollen und organisatorische Koordination gehören zur Betreuung. Fachliche Prüfungen und Arbeiten werden mit geeigneten Fachbetrieben koordiniert und nicht als eigene Fachleistung dargestellt.</p></section>${targets}<section><h2>Größere und komplexere Objekte</h2><p>Gebäude- und Gemeinschaftsflächen, Außenanlagen, Winterdienst, Parkflächen, Tiefgaragen und technische Themen werden nach Zuständigkeit gegliedert. Technische Facharbeiten bleiben bei geeigneten Fachbetrieben.</p><a href="${basePath}kontakt/">Objektstruktur besprechen</a></section></main>`
 }
 
 function contactMarkup() {
@@ -219,6 +283,13 @@ await writeFile(`${distPath}kontakt/index.html`, buildPage({
   data: contactStructuredData(),
 }))
 
+await mkdir(`${distPath}facility-management/`, { recursive: true })
+await writeFile(`${distPath}facility-management/index.html`, buildPage({
+  ...facilitySeo,
+  markup: facilityMarkup(),
+  data: facilityStructuredData(),
+}))
+
 await Promise.all(services.map(async (service) => {
   const targetPath = `${distPath}leistungen/${service.slug}/`
   const url = serviceUrl(service).href
@@ -232,7 +303,7 @@ await Promise.all(services.map(async (service) => {
   }))
 }))
 
-const sitemapUrls = [siteUrl.href, contactUrl.href, ...services.map((service) => serviceUrl(service).href)]
+const sitemapUrls = [siteUrl.href, facilityUrl.href, contactUrl.href, ...services.map((service) => serviceUrl(service).href)]
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${sitemapUrls.map((url) => `  <url><loc>${url}</loc><lastmod>${lastModified}</lastmod></url>`).join('\n')}
