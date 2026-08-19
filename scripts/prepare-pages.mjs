@@ -14,6 +14,13 @@ const indexingEnabled = indexingOverride == null
   : indexingOverride === 'true'
 const pageRobots = indexingEnabled ? 'index,follow,max-image-preview:large' : 'noindex,nofollow'
 const services = JSON.parse(await readFile(serviceDataPath, 'utf8'))
+const coreServiceSlugs = new Set([
+  'objektpflege',
+  'wartung-instandhaltung',
+  'gebaeudereinigung',
+  'gartenpflege',
+  'winterdienst',
+])
 const indexTemplate = await readFile(indexPath, 'utf8')
 
 const sourceStats = await Promise.all([serviceDataPath, appPath, sourceIndexPath].map((path) => stat(path)))
@@ -22,8 +29,8 @@ const lastModified = new Date(Math.max(...sourceStats.map((entry) => entry.mtime
   .slice(0, 10)
 
 const homeSeo = {
-  title: 'Perla’s Objektbetreuung | Hausmeisterservice Rhein-Main',
-  description: 'Perla’s Objektbetreuung bietet Hausmeisterservice, Objektpflege, Reinigung und Gebäudedienstleistungen im Main-Taunus-Kreis und Rhein-Main-Gebiet.',
+  title: 'Perla’s Facility Services | Objektbetreuung Rhein-Main',
+  description: 'Perla’s bündelt Facility Services und professionelle Objektbetreuung für Hausverwaltungen, Wohnanlagen und Gewerbeimmobilien im Rhein-Main-Gebiet.',
   url: siteUrl.href,
 }
 
@@ -102,9 +109,9 @@ function structuredData(service) {
   }
 }
 
-function serviceLinks(currentSlug) {
+function serviceLinks(currentSlug, coreOnly = false) {
   return services
-    .filter((service) => service.slug !== currentSlug)
+    .filter((service) => service.slug !== currentSlug && (!coreOnly || coreServiceSlugs.has(service.slug)))
     .map((service) => `<li><a href="${basePath}leistungen/${service.slug}/">${escapeHtml(service.title)}</a></li>`)
     .join('')
 }
@@ -118,11 +125,11 @@ function relatedServiceLinks(service) {
 }
 
 function staticHeader() {
-  return `<header class="seo-static-header"><a href="${basePath}">PERLAS</a><nav aria-label="Hauptnavigation"><a href="${basePath}#leistungen">Leistungen</a><a href="${basePath}#ablauf">Ablauf</a><a href="${basePath}#ueber-uns">Über uns</a><a href="${basePath}#kontakt">Kontakt</a></nav></header>`
+  return `<header class="seo-static-header"><a href="${basePath}">PERLAS</a><nav aria-label="Hauptnavigation"><a href="${basePath}#facility-services">Facility Services</a><a href="${basePath}#objekte">Objekte</a><a href="${basePath}#leistungen">Leistungen</a><a href="${basePath}#ueber-uns">Über uns</a><a href="${basePath}#kontakt">Kontakt</a></nav></header>`
 }
 
 function homeMarkup() {
-  return `${staticHeader()}<main class="seo-static-main"><section class="seo-static-hero"><p>Hausmeisterservice im Rhein-Main-Gebiet</p><h1>Ihre Immobilie. Einfach gut betreut.</h1><p>Seit 1999 kümmern wir uns um Wohnanlagen, Gewerbeobjekte und Außenflächen im Rhein-Main-Gebiet. Sie haben einen festen Ansprechpartner und wissen, was am Objekt erledigt wurde.</p><a href="${basePath}#kontakt">Unverbindlich anfragen</a></section><section><h2>Was wir rund um Ihre Immobilie übernehmen</h2><p>Perla’s betreut Wohnanlagen, Büros, Praxen und Gewerbeobjekte im Main-Taunus-Kreis und Rhein-Main-Gebiet.</p><ul class="seo-static-links">${serviceLinks()}</ul></section><section><h2>Ein klarer Plan für Ihre Immobilie</h2><p>Wir sehen uns an, was vor Ort gebraucht wird, stimmen Aufgaben und Intervalle mit Ihnen ab und halten die Zuständigkeiten verständlich fest.</p></section></main>`
+  return `${staticHeader()}<main class="seo-static-main"><section class="seo-static-hero"><p>Facility Services im Rhein-Main-Gebiet</p><h1>Ganzheitliche Betreuung für professionell verwaltete Immobilien.</h1><p>Perla’s bündelt Objektbetreuung, technische Themen, Reinigung, Außenanlagenpflege und Winterdienst. Hausverwaltungen und gewerbliche Auftraggeber erhalten einen festen Ansprechpartner für die laufenden Aufgaben ihrer Immobilien.</p><a href="${basePath}#kontakt">Betreuung anfragen</a></section><section id="facility-services"><h2>Mehrere Leistungen. Ein abgestimmtes Betreuungskonzept.</h2><p>Aufgaben, Leistungsintervalle und Zuständigkeiten werden für die laufende Betreuung klar koordiniert und nachvollziehbar dokumentiert.</p><ul class="seo-static-links">${serviceLinks(undefined, true)}</ul><p>Ergänzende Leistung: <a href="${basePath}leistungen/wohnungswechsel/">Wohnungswechsel &amp; Räumung</a></p></section><section id="objekte"><h2>Lösungen für professionell verwaltete Objekte</h2><p>Unsere Facility Services richten sich an Hausverwaltungen, größere Wohnanlagen, Gewerbeimmobilien, Unternehmensstandorte sowie Büro-, Praxis- und institutionelle Gebäude.</p></section><section id="leistungen"><h2>Kernleistungen für den laufenden Immobilienbetrieb</h2><p>Objektpflege, Wartung, Gebäudereinigung, Außenanlagenpflege und Winterdienst werden passend zu Objekt und Nutzung zusammengestellt.</p></section></main>`
 }
 
 function serviceMarkup(service) {
@@ -132,7 +139,7 @@ function serviceMarkup(service) {
   const faqs = service.faqs.map((item) => `<details open><summary>${escapeHtml(item.question)}</summary><p>${escapeHtml(item.answer)}</p></details>`).join('')
   const related = relatedServiceLinks(service)
 
-  return `${staticHeader()}<main class="seo-static-main"><nav aria-label="Brotkrümeln"><a href="${basePath}">Startseite</a> / <a href="${basePath}#leistungen">Leistungen</a> / ${escapeHtml(service.title)}</nav><section class="seo-static-hero"><p>Hausmeisterservice im Rhein-Main-Gebiet</p><h1>${escapeHtml(service.title)}</h1><p>${escapeHtml(service.detail)}</p><a href="${basePath}#kontakt">Individuelles Angebot anfragen</a><a href="tel:+491776867145">Direkt anrufen</a><a href="mailto:mail@perlas.de">E-Mail schreiben</a></section><section><h2>Was wir bei ${escapeHtml(service.title)} konkret übernehmen</h2><p>${escapeHtml(service.scopeIntro)}</p><div class="seo-static-grid">${scopes}</div></section><section><h2>So läuft die Zusammenarbeit ab</h2><div class="seo-static-grid">${process}</div></section><section><h2>Für diese Objekte geeignet</h2><ul>${audiences}</ul><h2>${escapeHtml(service.boundaryTitle)}</h2><p>${escapeHtml(service.boundaryText)}</p></section><section><h2>Häufige Fragen zu ${escapeHtml(service.title)}</h2>${faqs}</section><section><h2>Wie möchten Sie Kontakt aufnehmen?</h2><p>Nutzen Sie das Angebotsformular oder sprechen Sie direkt mit Perla’s.</p><ul><li><a href="${basePath}#kontakt">Angebot für ${escapeHtml(service.title)} anfragen</a></li><li><a href="tel:+491776867145">Direkt anrufen: 0177 68 67 145</a></li><li><a href="mailto:mail@perlas.de">E-Mail an mail@perlas.de schreiben</a></li></ul></section><nav aria-label="Passende Leistungen"><h2>Diese Leistungen könnten ebenfalls relevant sein</h2><ul class="seo-static-links">${related}</ul></nav></main>`
+  return `${staticHeader()}<main class="seo-static-main"><nav aria-label="Brotkrümeln"><a href="${basePath}">Startseite</a> / <a href="${basePath}#leistungen">Leistungen</a> / ${escapeHtml(service.title)}</nav><section class="seo-static-hero"><p>Facility Services im Rhein-Main-Gebiet</p><h1>${escapeHtml(service.title)}</h1><p>${escapeHtml(service.detail)}</p><a href="${basePath}#kontakt">Individuelles Angebot anfragen</a><a href="tel:+491776867145">Direkt anrufen</a><a href="mailto:mail@perlas.de">E-Mail schreiben</a></section><section><h2>Was wir bei ${escapeHtml(service.title)} konkret übernehmen</h2><p>${escapeHtml(service.scopeIntro)}</p><div class="seo-static-grid">${scopes}</div></section><section><h2>So läuft die Zusammenarbeit ab</h2><div class="seo-static-grid">${process}</div></section><section><h2>Für diese Objekte geeignet</h2><ul>${audiences}</ul><h2>${escapeHtml(service.boundaryTitle)}</h2><p>${escapeHtml(service.boundaryText)}</p></section><section><h2>Häufige Fragen zu ${escapeHtml(service.title)}</h2>${faqs}</section><section><h2>Wie möchten Sie Kontakt aufnehmen?</h2><p>Nutzen Sie das Angebotsformular oder sprechen Sie direkt mit Perla’s.</p><ul><li><a href="${basePath}#kontakt">Angebot für ${escapeHtml(service.title)} anfragen</a></li><li><a href="tel:+491776867145">Direkt anrufen: 0177 68 67 145</a></li><li><a href="mailto:mail@perlas.de">E-Mail an mail@perlas.de schreiben</a></li></ul></section><nav aria-label="Passende Leistungen"><h2>Diese Leistungen könnten ebenfalls relevant sein</h2><ul class="seo-static-links">${related}</ul></nav></main>`
 }
 
 function buildPage({ title, description, url, markup, data, robots = pageRobots }) {
