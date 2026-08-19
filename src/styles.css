@@ -1313,11 +1313,12 @@ p {
 .audience-grid {
   margin-top: 56px;
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 22px;
 }
 
 .audience-card {
+  min-width: 0;
   min-height: 400px;
   padding: 28px;
   display: flex;
@@ -1353,17 +1354,24 @@ p {
 }
 
 .audience-card h3 {
+  max-width: 100%;
   margin-top: 28px;
-  font-size: 23px;
-  line-height: 1.2;
+  font-size: clamp(20px, 1.7vw, 23px);
+  line-height: 1.25;
   letter-spacing: -0.4px;
+  overflow-wrap: anywhere;
+  word-break: normal;
+  hyphens: auto;
+  text-wrap: balance;
 }
 
 .audience-card > p {
+  max-width: 100%;
   margin-top: 18px;
   color: rgb(2 3 59 / 66%);
   font-size: 15px;
   line-height: 1.6;
+  overflow-wrap: anywhere;
 }
 
 .audience-card-link {
@@ -1660,35 +1668,42 @@ p {
 }
 
 .about {
-  height: 664px;
-  padding-top: 84px;
+  height: auto;
+  min-height: 0;
+  padding: 84px 0 96px;
   display: grid;
-  grid-template-columns: 588px 468px;
+  grid-template-columns: minmax(0, 528px) minmax(360px, 468px);
+  align-items: center;
   gap: 60px;
   justify-content: center;
   background: #fff;
 }
 
 .about-copy {
-  padding: 2px 36px 0 60px;
+  min-width: 0;
+  padding: 2px 20px 0 40px;
 }
 
 .about-copy h2 {
-  width: 447px;
+  width: auto;
+  max-width: 100%;
   font-size: 36px;
   line-height: 1.2;
   letter-spacing: -0.72px;
+  overflow-wrap: anywhere;
 }
 
 .about-copy > p {
-  width: 448px;
+  width: auto;
+  max-width: 100%;
   margin-top: 36px;
   font-size: 20px;
   line-height: 1.4;
+  overflow-wrap: anywhere;
 }
 
 .about-actions {
-  margin-top: 72px;
+  margin-top: 48px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -1730,8 +1745,10 @@ p {
 }
 
 .features {
+  position: relative;
   height: auto;
-  padding: 84px 0 96px;
+  padding: 96px 0;
+  border-top: 1px solid rgb(2 3 59 / 7%);
   background: #eef3f7;
 }
 
@@ -2142,8 +2159,9 @@ p {
 }
 
 .footer {
-  height: 776px;
-  padding-top: 96px;
+  height: auto;
+  min-height: 0;
+  padding: 88px 0 56px;
   color: #fff;
   background: var(--navy);
 }
@@ -2151,10 +2169,12 @@ p {
 .footer-grid {
   position: relative;
   width: 1056px;
-  height: 584px;
+  height: auto;
+  min-height: 0;
   margin: 0 auto;
   display: grid;
   grid-template-columns: 312px 188px 436px;
+  align-items: start;
   gap: 60px;
 }
 
@@ -3196,11 +3216,19 @@ p {
 }
 
 .contact-breadcrumb {
-  display: inline-flex;
+  width: max-content;
+  max-width: 100%;
+  display: flex;
   margin-bottom: 36px;
   color: var(--purple);
   font-size: 13px;
   font-weight: 800;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.contact-page-hero-copy > .eyebrow {
+  display: block;
 }
 
 .contact-page-hero-copy h1 {
@@ -5498,7 +5526,7 @@ p {
   }
 
   .footer {
-    padding: 84px 7vw;
+    padding: 76px 7vw 52px;
   }
 
   .footer-grid {
@@ -6711,13 +6739,13 @@ p {
   }
 
   .footer {
-    padding: 72px 24px max(140px, calc(110px + env(safe-area-inset-bottom)));
+    padding: 64px 24px max(104px, calc(94px + env(safe-area-inset-bottom)));
   }
 
   .footer-grid {
     display: flex;
     flex-direction: column;
-    gap: 64px;
+    gap: 48px;
   }
 
   .footer-nav {
