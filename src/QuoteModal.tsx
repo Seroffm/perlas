@@ -8,7 +8,7 @@ type QuoteModalProps = {
   onClose: () => void
 }
 
-const propertyTypes = ['Wohnanlage', 'Gewerbeobjekt', 'Praxis / Büro', 'Privatimmobilie']
+const propertyTypes = ['Wohnanlage', 'Gewerbeimmobilie', 'Büro / Praxis', 'Institutionelles Gebäude']
 const startOptions = ['So bald wie möglich', 'In 1–3 Monaten', 'Später / noch offen']
 
 export default function QuoteModal({ isOpen, initialService, serviceNames, onClose }: QuoteModalProps) {

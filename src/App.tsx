@@ -27,12 +27,14 @@ import {
   type LucideIcon,
 } from 'lucide-react'
 import CookieConsent from './CookieConsent'
+import ContactPage from './ContactPage'
 import QuoteModal from './QuoteModal'
 import serviceContent from './service-data.json'
 
 const BASE_PATH = import.meta.env.BASE_URL
 const A = `${BASE_PATH}assets/`
 const WHATSAPP_URL = 'https://wa.me/491776867145?text=Hallo%20Perla%E2%80%99s%20Team%2C%20ich%20interessiere%20mich%20f%C3%BCr%20Ihre%20Objektbetreuung.'
+const CONTACT_PATH = `${BASE_PATH}kontakt/`
 
 const homeHref = (hash = '') => `${BASE_PATH}${hash}`
 
@@ -57,13 +59,20 @@ function ensureMeta(selector: string, attributes: Record<string, string>) {
   Object.entries(attributes).forEach(([name, value]) => element?.setAttribute(name, value))
 }
 
-function usePageSeo(service?: Feature) {
+function usePageSeo(service?: Feature, isContactPage = false) {
   useEffect(() => {
     const siteUrl = new URL(BASE_PATH, window.location.origin)
-    const pageUrl = service ? new URL(`leistungen/${service.slug}/`, siteUrl) : siteUrl
-    const title = service?.seoTitle ?? 'Perla’s Facility Services | Objektbetreuung Rhein-Main'
+    const pageUrl = service
+      ? new URL(`leistungen/${service.slug}/`, siteUrl)
+      : isContactPage
+        ? new URL('kontakt/', siteUrl)
+        : siteUrl
+    const title = service?.seoTitle
+      ?? (isContactPage ? 'Kontakt & Anfrage | Perla’s Facility Services' : 'Perla’s Facility Services | Objektbetreuung Rhein-Main')
     const description = service?.seoDescription
-      ?? 'Perla’s bündelt Facility Services und professionelle Objektbetreuung für Hausverwaltungen, Wohnanlagen und Gewerbeimmobilien im Rhein-Main-Gebiet.'
+      ?? (isContactPage
+        ? 'Kontaktieren Sie Perla’s per Telefon, E-Mail, WhatsApp oder Anfrageformular und besprechen Sie die Betreuung Ihrer Immobilie im Rhein-Main-Gebiet.'
+        : 'Perla’s bündelt Facility Services und professionelle Objektbetreuung für Hausverwaltungen, Wohnanlagen und Gewerbeimmobilien im Rhein-Main-Gebiet.')
     const imageUrl = new URL(`${BASE_PATH}assets/perlas-hero.png`, window.location.origin)
     const indexingOverride = import.meta.env.VITE_PERLAS_INDEX_SITE
     const indexingEnabled = indexingOverride
@@ -132,7 +141,23 @@ function usePageSeo(service?: Feature) {
             },
           ],
         }
-      : {
+      : isContactPage
+        ? {
+            '@context': 'https://schema.org',
+            '@graph': [
+              business,
+              {
+                '@type': 'ContactPage',
+                '@id': `${pageUrl.href}#contact-page`,
+                url: pageUrl.href,
+                name: 'Kontakt zu Perla’s Objektbetreuung',
+                description,
+                inLanguage: 'de-DE',
+                mainEntity: { '@id': businessId },
+              },
+            ],
+          }
+        : {
           '@context': 'https://schema.org',
           '@graph': [
             business,
@@ -155,7 +180,7 @@ function usePageSeo(service?: Feature) {
       document.head.appendChild(structuredDataScript)
     }
     structuredDataScript.textContent = JSON.stringify(structuredData)
-  }, [service])
+  }, [isContactPage, service])
 }
 
 type ButtonLinkProps = {
@@ -467,7 +492,7 @@ function Header() {
           <a href={homeHref('#objekte')} onClick={closeMenu}>Objekte</a>
           <a href={homeHref('#leistungen')} onClick={closeMenu}>Leistungen</a>
           <a href={homeHref('#ueber-uns')} onClick={closeMenu}>Über uns</a>
-          <a className="sign-in" href={homeHref('#kontakt')} onClick={closeMenu}>Kontakt</a>
+          <a className="sign-in" href={CONTACT_PATH} onClick={closeMenu}>Kontakt</a>
         </nav>
       </div>
     </header>
@@ -519,7 +544,7 @@ function ContactDock() {
             <span><strong>E-Mail schreiben</strong><small>mail@perlas.de</small></span>
             <ArrowUpRight aria-hidden="true" />
           </a>
-          <a href={homeHref('#kontakt')} onClick={() => setIsOpen(false)}>
+          <a href={CONTACT_PATH} onClick={() => setIsOpen(false)}>
             <ClipboardCheck aria-hidden="true" />
             <span><strong>Kontaktseite</strong><small>Allgemeine Anfrage senden</small></span>
             <ArrowUpRight aria-hidden="true" />
@@ -567,6 +592,8 @@ function ContactDock() {
 
 function MobileIsland({ onQuoteOpen }: { onQuoteOpen: () => void }) {
   const [activeItem, setActiveItem] = useState<'start' | 'services' | 'quote' | 'contact'>(() => {
+    if (getPagePath().startsWith('/kontakt')) return 'contact'
+
     if (
       getPagePath().startsWith('/leistungen')
       || ['#facility-services', '#objekte', '#leistungen'].includes(window.location.hash)
@@ -576,12 +603,12 @@ function MobileIsland({ onQuoteOpen }: { onQuoteOpen: () => void }) {
 
     return 'start'
   })
-  const [contactOpen, setContactOpen] = useState(false)
-  const islandRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
     const syncActiveItem = () => {
-      if (
+      if (getPagePath().startsWith('/kontakt')) {
+        setActiveItem('contact')
+      } else if (
         getPagePath().startsWith('/leistungen')
         || ['#facility-services', '#objekte', '#leistungen'].includes(window.location.hash)
       ) {
@@ -595,50 +622,13 @@ function MobileIsland({ onQuoteOpen }: { onQuoteOpen: () => void }) {
     return () => window.removeEventListener('hashchange', syncActiveItem)
   }, [])
 
-  useEffect(() => {
-    if (!contactOpen) return
-
-    const closeOnEscape = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') setContactOpen(false)
-    }
-    const closeOutside = (event: PointerEvent) => {
-      if (!islandRef.current?.contains(event.target as Node)) setContactOpen(false)
-    }
-
-    window.addEventListener('keydown', closeOnEscape)
-    document.addEventListener('pointerdown', closeOutside)
-    return () => {
-      window.removeEventListener('keydown', closeOnEscape)
-      document.removeEventListener('pointerdown', closeOutside)
-    }
-  }, [contactOpen])
-
   return (
-    <nav className="mobile-island" aria-label="Mobile Schnellnavigation" ref={islandRef}>
-      {contactOpen && (
-        <div className="mobile-contact-panel" id="mobile-contact-panel" aria-label="Direkte Kontaktmöglichkeiten">
-          <a href={WHATSAPP_URL} target="_blank" rel="noreferrer" onClick={() => setContactOpen(false)}>
-            <MessageCircle aria-hidden="true" />
-            <span><strong>WhatsApp</strong><small>Nachricht schreiben</small></span>
-            <ArrowUpRight aria-hidden="true" />
-          </a>
-          <a href="tel:+491776867145" onClick={() => setContactOpen(false)}>
-            <Phone aria-hidden="true" />
-            <span><strong>Direkt anrufen</strong><small>0177 68 67 145</small></span>
-            <ArrowUpRight aria-hidden="true" />
-          </a>
-          <a href="mailto:mail@perlas.de" onClick={() => setContactOpen(false)}>
-            <Mail aria-hidden="true" />
-            <span><strong>E-Mail schreiben</strong><small>mail@perlas.de</small></span>
-            <ArrowUpRight aria-hidden="true" />
-          </a>
-        </div>
-      )}
+    <nav className="mobile-island" aria-label="Mobile Schnellnavigation">
       <a
         className={activeItem === 'start' ? 'is-active' : ''}
         href={homeHref('#top')}
         aria-current={activeItem === 'start' ? 'page' : undefined}
-        onClick={() => { setActiveItem('start'); setContactOpen(false) }}
+        onClick={() => setActiveItem('start')}
       >
         <Home aria-hidden="true" />
         <span>Start</span>
@@ -647,7 +637,7 @@ function MobileIsland({ onQuoteOpen }: { onQuoteOpen: () => void }) {
         className={activeItem === 'services' ? 'is-active' : ''}
         href={homeHref('#facility-services')}
         aria-current={activeItem === 'services' ? 'page' : undefined}
-        onClick={() => { setActiveItem('services'); setContactOpen(false) }}
+        onClick={() => setActiveItem('services')}
       >
         <Building2 aria-hidden="true" />
         <span>Facility</span>
@@ -656,21 +646,20 @@ function MobileIsland({ onQuoteOpen }: { onQuoteOpen: () => void }) {
         className={activeItem === 'quote' ? 'is-active' : ''}
         type="button"
         aria-pressed={activeItem === 'quote'}
-        onClick={() => { setActiveItem('quote'); setContactOpen(false); onQuoteOpen() }}
+        onClick={() => { setActiveItem('quote'); onQuoteOpen() }}
       >
         <ClipboardCheck aria-hidden="true" />
         <span>Angebot</span>
       </button>
-      <button
+      <a
         className={activeItem === 'contact' ? 'is-active' : ''}
-        type="button"
-        aria-expanded={contactOpen}
-        aria-controls="mobile-contact-panel"
-        onClick={() => { setActiveItem('contact'); setContactOpen((current) => !current) }}
+        href={CONTACT_PATH}
+        aria-current={activeItem === 'contact' ? 'page' : undefined}
+        onClick={() => setActiveItem('contact')}
       >
         <MessageCircle aria-hidden="true" />
         <span>Kontakt</span>
-      </button>
+      </a>
     </nav>
   )
 }
@@ -706,7 +695,7 @@ function Hero() {
           erhalten einen festen Ansprechpartner für die laufenden Aufgaben ihrer Immobilien.
         </p>
         <div className="button-row">
-          <ButtonLink href="#kontakt" arrow>Betreuung anfragen</ButtonLink>
+          <ButtonLink href={CONTACT_PATH} arrow>Betreuung anfragen</ButtonLink>
           <ButtonLink href="#facility-services" kind="outline">Facility Services</ButtonLink>
         </div>
       </div>
@@ -763,9 +752,9 @@ function FacilityOverview() {
         <span className="eyebrow">Facility Management &amp; Services</span>
         <h2 id="facility-heading">Mehrere Leistungen. Ein abgestimmtes Betreuungskonzept.</h2>
         <p>
-          Perla’s bündelt die laufende Objektbetreuung mit Reinigung, Wartung, Außenanlagenpflege
-          und Winterdienst. Aufgaben, Leistungsintervalle und Zuständigkeiten werden für die
-          jeweilige Immobilie festgelegt und über einen Ansprechpartner koordiniert.
+          Perla’s verbindet Objektbetreuung, Reinigung, Wartung, Außenanlagenpflege und
+          Winterdienst zu einem objektbezogenen Leistungsplan. So werden mehrere laufende Aufgaben
+          über einen Ansprechpartner, abgestimmte Intervalle und klare Rückmeldungen koordiniert.
         </p>
         <ButtonLink href="#objekte" arrow>Betreuung nach Objektart</ButtonLink>
         <nav className="facility-service-links" aria-label="Facility Services im Detail">
@@ -1001,10 +990,11 @@ function About() {
         <p>
           Perla’s ist seit 1999 im Rhein-Main-Gebiet tätig. Wir erfassen Aufgaben vor Ort, planen
           wiederkehrende Einsätze und koordinieren bei Bedarf weitere Dienstleister. Verwaltungen
-          erhalten verständliche Rückmeldungen zu erledigten Aufgaben und offenen Punkten.
+          erhalten verständliche Rückmeldungen zu erledigten Aufgaben und offenen Punkten. Aufgaben
+          aus dem klassischen Hausmeisterservice werden dabei in die ganzheitliche Betreuung eingebunden.
         </p>
         <div className="about-actions">
-          <ButtonLink href="#kontakt" arrow>Betreuung besprechen</ButtonLink>
+          <ButtonLink href={CONTACT_PATH} arrow>Betreuung besprechen</ButtonLink>
           <ButtonLink href="#ablauf" kind="outline">Unser Ablauf</ButtonLink>
         </div>
       </div>
@@ -1088,7 +1078,7 @@ function ServiceDetailPage({ service, onQuoteOpen }: { service: Feature; onQuote
           </div>
           <div className="service-hero-links" aria-label="Weitere Kontaktmöglichkeiten">
             <a href={emailHref}><Mail aria-hidden="true" /> E-Mail schreiben</a>
-            <a href={homeHref('#kontakt')}><MessageCircle aria-hidden="true" /> Allgemein Kontakt aufnehmen</a>
+            <a href={CONTACT_PATH}><MessageCircle aria-hidden="true" /> Allgemein Kontakt aufnehmen</a>
           </div>
         </div>
         <div className="service-detail-image" data-reveal="right" style={{ '--reveal-delay': '80ms' } as CSSProperties}>
@@ -1201,7 +1191,7 @@ function ServiceDetailPage({ service, onQuoteOpen }: { service: Feature; onQuote
             <span><strong>E-Mail schreiben</strong><small>mail@perlas.de</small></span>
             <ArrowUpRight aria-hidden="true" />
           </a>
-          <a href={homeHref('#kontakt')}>
+          <a href={CONTACT_PATH}>
             <MessageCircle aria-hidden="true" />
             <span><strong>Allgemeiner Kontakt</strong><small>Zur Kontaktseite</small></span>
             <ArrowUpRight aria-hidden="true" />
@@ -1289,7 +1279,7 @@ function Insights() {
 
 function Footer() {
   return (
-    <footer className="footer" id="kontakt">
+    <footer className="footer" id="seitenende">
       <div className="footer-grid" data-reveal="up">
         <div className="footer-meta">
           <h2>Direkt erreichbar.</h2>
@@ -1319,7 +1309,7 @@ function Footer() {
             ['Objekte', '#objekte'],
             ['Leistungen', '#leistungen'],
             ['Ablauf', '#ablauf'],
-            ['Kontakt', '#kontakt'],
+            ['Kontakt', 'kontakt/'],
           ].map(([item, href]) => (
             <a href={homeHref(href)} key={item}>
               <span aria-hidden="true" /> {item}
@@ -1336,8 +1326,8 @@ function Footer() {
                 Schreiben Sie kurz, welche Immobilie Sie betreuen lassen möchten.
                 Wir klären die nächsten Schritte persönlich mit Ihnen.
               </p>
-              <a className="contact-card-button" href="mailto:mail@perlas.de?subject=Anfrage%20zur%20Objektbetreuung">
-                Anfrage senden
+              <a className="contact-card-button" href={CONTACT_PATH}>
+                Kontaktseite öffnen
               </a>
             </div>
           </div>
@@ -1355,11 +1345,13 @@ function Footer() {
 export default function App() {
   const [quoteOpen, setQuoteOpen] = useState(false)
   const [quoteService, setQuoteService] = useState<string | undefined>()
-  const serviceSlug = getPagePath().match(/^\/leistungen\/([^/]+)\/?$/)?.[1]
+  const pagePath = getPagePath()
+  const isContactPage = /^\/kontakt\/?$/.test(pagePath)
+  const serviceSlug = pagePath.match(/^\/leistungen\/([^/]+)\/?$/)?.[1]
   const activeService = features.find((service) => service.slug === serviceSlug)
 
-  usePageSeo(activeService)
-  useRevealAnimations(activeService?.slug)
+  usePageSeo(activeService, isContactPage)
+  useRevealAnimations(isContactPage ? 'contact' : activeService?.slug)
 
   const openQuote = useCallback((service?: string) => {
     setQuoteService(service)
@@ -1373,6 +1365,8 @@ export default function App() {
       <Header />
       {activeService ? (
         <ServiceDetailPage service={activeService} onQuoteOpen={openQuote} />
+      ) : isContactPage ? (
+        <ContactPage onQuoteOpen={() => openQuote()} />
       ) : (
         <main>
           <Hero />

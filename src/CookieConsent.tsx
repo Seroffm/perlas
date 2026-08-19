@@ -125,9 +125,8 @@ export default function CookieConsent() {
             <span>Ihre Entscheidung</span>
             <h2 id="cookie-banner-title">Cookies nach Ihrer Wahl.</h2>
             <p>
-              Notwendige Speicherungen sorgen dafür, dass die Website funktioniert. Optionale
-              Analyse- oder Marketingdienste werden nur mit Ihrer Zustimmung aktiviert. Aktuell
-              sind keine solchen Dienste eingebunden.
+              Notwendige Speicherungen sorgen dafür, dass die Website funktioniert. Google Maps
+              und andere optionale externe Dienste werden nur mit Ihrer Zustimmung aktiviert.
             </p>
             <a href="https://perlas.de/datenschutz/">Mehr zum Datenschutz</a>
           </div>
@@ -178,7 +177,7 @@ export default function CookieConsent() {
                 <input type="checkbox" checked={analytics} onChange={(event) => setAnalytics(event.target.checked)} />
               </label>
               <label className="cookie-option">
-                <span><strong>Marketing</strong><small>Erlaubt personalisierte Inhalte oder Kampagnenmessung. Aktuell nicht eingebunden.</small></span>
+                <span><strong>Externe Medien</strong><small>Erlaubt das Laden der Google-Maps-Karte auf der Kontaktseite.</small></span>
                 <input type="checkbox" checked={marketing} onChange={(event) => setMarketing(event.target.checked)} />
               </label>
             </div>
