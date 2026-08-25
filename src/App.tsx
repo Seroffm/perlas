@@ -37,6 +37,8 @@ const A = `${BASE_PATH}assets/`
 const WHATSAPP_URL = 'https://wa.me/491776867145?text=Hallo%20Perla%E2%80%99s%20Team%2C%20ich%20interessiere%20mich%20f%C3%BCr%20Ihre%20Objektbetreuung.'
 const CONTACT_PATH = `${BASE_PATH}kontakt/`
 const FACILITY_PATH = `${BASE_PATH}facility-management/`
+const SERVICES_PATH = `${BASE_PATH}leistungen/`
+const ABOUT_PATH = `${BASE_PATH}ueber-uns/`
 
 const homeHref = (hash = '') => `${BASE_PATH}${hash}`
 
@@ -61,30 +63,50 @@ function ensureMeta(selector: string, attributes: Record<string, string>) {
   Object.entries(attributes).forEach(([name, value]) => element?.setAttribute(name, value))
 }
 
-function usePageSeo(service?: Feature, pageKind: 'home' | 'contact' | 'facility' = 'home') {
+type PageKind = 'home' | 'contact' | 'facility' | 'services' | 'about'
+
+function usePageSeo(service?: Feature, pageKind: PageKind = 'home') {
   useEffect(() => {
     const siteUrl = new URL(BASE_PATH, window.location.origin)
-    const isContactPage = pageKind === 'contact'
-    const isFacilityPage = pageKind === 'facility'
+    const servicesUrl = new URL('leistungen/', siteUrl)
+    const pageDefinitions: Record<Exclude<PageKind, 'home'>, { path: string; title: string; description: string; schemaType: string }> = {
+      contact: {
+        path: 'kontakt/',
+        title: 'Kontakt & Anfrage | Perla’s Facility Management',
+        description: 'Kontaktieren Sie Perla’s per Telefon, E-Mail, WhatsApp oder Anfrageformular und besprechen Sie die Betreuung Ihrer Immobilie im Rhein-Main-Gebiet.',
+        schemaType: 'ContactPage',
+      },
+      facility: {
+        path: 'facility-management/',
+        title: 'Facility Management Rhein-Main | Perla’s Objektbetreuung',
+        description: 'Facility Management für Hausverwaltungen, größere Wohnanlagen, Gewerbeimmobilien sowie institutionelle und öffentliche Gebäude im Rhein-Main-Gebiet.',
+        schemaType: 'WebPage',
+      },
+      services: {
+        path: 'leistungen/',
+        title: 'Leistungen für Immobilien | Perla’s Rhein-Main',
+        description: 'Objektpflege, Wartung, Gebäudereinigung, Gartenpflege, Winterdienst und Wohnungswechsel von Perla’s im Rhein-Main-Gebiet.',
+        schemaType: 'CollectionPage',
+      },
+      about: {
+        path: 'ueber-uns/',
+        title: 'Über Perla’s | Objektbetreuung seit 1999',
+        description: 'Lernen Sie Perla’s Objektbetreuung, die Arbeitsweise und die Werte hinter dem Facility Management im Rhein-Main-Gebiet kennen.',
+        schemaType: 'AboutPage',
+      },
+    }
+    const pageDefinition = pageKind === 'home' ? undefined : pageDefinitions[pageKind]
     const pageUrl = service
       ? new URL(`leistungen/${service.slug}/`, siteUrl)
-      : isContactPage
-        ? new URL('kontakt/', siteUrl)
-        : isFacilityPage
-          ? new URL('facility-management/', siteUrl)
-          : siteUrl
+      : pageDefinition
+        ? new URL(pageDefinition.path, siteUrl)
+        : siteUrl
     const title = service?.seoTitle
-      ?? (isContactPage
-        ? 'Kontakt & Anfrage | Perla’s Facility Management'
-        : isFacilityPage
-          ? 'Facility Management Rhein-Main | Perla’s Objektbetreuung'
-          : 'Perla’s Facility Management | Objektbetreuung Rhein-Main')
+      ?? pageDefinition?.title
+      ?? 'Perla’s Facility Management | Objektbetreuung Rhein-Main'
     const description = service?.seoDescription
-      ?? (isContactPage
-        ? 'Kontaktieren Sie Perla’s per Telefon, E-Mail, WhatsApp oder Anfrageformular und besprechen Sie die Betreuung Ihrer Immobilie im Rhein-Main-Gebiet.'
-        : isFacilityPage
-          ? 'Facility Management für Hausverwaltungen, größere Wohnanlagen, Gewerbeimmobilien und institutionelle Gebäude im Rhein-Main-Gebiet.'
-          : 'Perla’s bündelt Facility Management und professionelle Objektbetreuung für Hausverwaltungen, Wohnanlagen und Gewerbeimmobilien im Rhein-Main-Gebiet.')
+      ?? pageDefinition?.description
+      ?? 'Perla’s bündelt Facility Management und professionelle Objektbetreuung für Hausverwaltungen, Wohnanlagen und Gewerbeimmobilien im Rhein-Main-Gebiet.'
     const imageUrl = new URL(`${BASE_PATH}assets/perlas-hero.png`, window.location.origin)
     const indexingOverride = import.meta.env.VITE_PERLAS_INDEX_SITE
     const indexingEnabled = indexingOverride
@@ -147,45 +169,36 @@ function usePageSeo(service?: Feature, pageKind: 'home' | 'contact' | 'facility'
               '@type': 'BreadcrumbList',
               itemListElement: [
                 { '@type': 'ListItem', position: 1, name: 'Startseite', item: siteUrl.href },
-                { '@type': 'ListItem', position: 2, name: 'Leistungen', item: `${siteUrl.href}#leistungen` },
+                { '@type': 'ListItem', position: 2, name: 'Leistungen', item: servicesUrl.href },
                 { '@type': 'ListItem', position: 3, name: service.title, item: pageUrl.href },
               ],
             },
           ],
         }
-      : isContactPage
+      : pageDefinition
         ? {
             '@context': 'https://schema.org',
             '@graph': [
               business,
               {
-                '@type': 'ContactPage',
-                '@id': `${pageUrl.href}#contact-page`,
+                '@type': pageDefinition.schemaType,
+                '@id': `${pageUrl.href}#page`,
                 url: pageUrl.href,
-                name: 'Kontakt zu Perla’s Objektbetreuung',
+                name: title,
                 description,
                 inLanguage: 'de-DE',
                 mainEntity: { '@id': businessId },
               },
+              {
+                '@type': 'BreadcrumbList',
+                itemListElement: [
+                  { '@type': 'ListItem', position: 1, name: 'Startseite', item: siteUrl.href },
+                  { '@type': 'ListItem', position: 2, name: pageKind === 'about' ? 'Über uns' : pageKind === 'services' ? 'Leistungen' : pageKind === 'facility' ? 'Facility Management' : 'Kontakt', item: pageUrl.href },
+                ],
+              },
             ],
           }
-        : isFacilityPage
-          ? {
-              '@context': 'https://schema.org',
-              '@graph': [
-                business,
-                {
-                  '@type': 'WebPage',
-                  '@id': `${pageUrl.href}#facility-management`,
-                  url: pageUrl.href,
-                  name: 'Facility Management von Perla’s Objektbetreuung',
-                  description,
-                  inLanguage: 'de-DE',
-                  mainEntity: { '@id': businessId },
-                },
-              ],
-            }
-          : {
+        : {
               '@context': 'https://schema.org',
               '@graph': [
                 business,
@@ -305,7 +318,7 @@ const partners: Partner[] = [
   { name: 'Gewerbeimmobilien', href: `${FACILITY_PATH}#gewerbeimmobilien`, icon: Building2 },
   { name: 'Bürogebäude', href: `${FACILITY_PATH}#institutionelle-gebaeude`, icon: BriefcaseBusiness },
   { name: 'Unternehmensstandorte', href: `${FACILITY_PATH}#gewerbeimmobilien`, icon: ShieldCheck },
-  { name: 'Institutionelle Gebäude', href: `${FACILITY_PATH}#institutionelle-gebaeude`, icon: Hospital },
+  { name: 'Institutionelle & öffentliche Gebäude', href: `${FACILITY_PATH}#institutionelle-gebaeude`, icon: Hospital },
 ]
 
 type Feature = (typeof serviceContent)[number] & { icon: LucideIcon }
@@ -443,9 +456,9 @@ const audienceSolutions = [
   {
     id: 'institutionelle-gebaeude',
     icon: Hospital,
-    title: 'Büro-, Praxis- & institutionelle Gebäude',
-    navLabel: 'Institutionelle Gebäude',
-    text: 'Für regelmäßig genutzte Gebäude verbinden wir feste Zuständigkeiten mit planbaren Leistungen für Innen- und Außenbereiche.',
+    title: 'Büro-, Praxis-, institutionelle & öffentliche Gebäude',
+    navLabel: 'Institutionelle & öffentliche Gebäude',
+    text: 'Für regelmäßig genutzte institutionelle und öffentliche Gebäude verbinden wir feste Zuständigkeiten mit planbaren Leistungen für Innen- und Außenbereiche.',
     requirements: ['Verlässliche Abläufe bei regelmäßiger Nutzung', 'Saubere und gepflegte Gemeinschaftsflächen', 'Dokumentierte Kontrollen und Rückmeldungen'],
     approach: 'Wir legen Aufgaben, Intervalle und Ansprechpartner gemeinsam fest. Bei technischen Fachthemen koordinieren wir die Weitergabe an geeignete Spezialisten.',
     services: ['objektpflege', 'gebaeudereinigung', 'wartung-instandhaltung', 'winterdienst', 'gartenpflege'],
@@ -588,8 +601,8 @@ function Header() {
               })}
             </div>
           </div>
-          <a href={homeHref('#leistungen')} onClick={closeMenu}>Leistungen</a>
-          <a href={homeHref('#ueber-uns')} onClick={closeMenu}>Über uns</a>
+          <a href={SERVICES_PATH} onClick={closeMenu}>Leistungen</a>
+          <a href={ABOUT_PATH} onClick={closeMenu}>Über uns</a>
           <a className="sign-in" href={CONTACT_PATH} onClick={closeMenu}>Kontakt</a>
         </nav>
       </div>
@@ -733,12 +746,12 @@ function MobileIsland({ onQuoteOpen }: { onQuoteOpen: () => void }) {
       </a>
       <a
         className={activeItem === 'services' ? 'is-active' : ''}
-        href={FACILITY_PATH}
+        href={SERVICES_PATH}
         aria-current={activeItem === 'services' ? 'page' : undefined}
         onClick={() => setActiveItem('services')}
       >
         <Building2 aria-hidden="true" />
-        <span>Facility</span>
+        <span>Leistungen</span>
       </a>
       <button
         className={activeItem === 'quote' ? 'is-active' : ''}
@@ -840,6 +853,227 @@ function Hero() {
         </div>
       </div>
     </section>
+  )
+}
+
+function PageBreadcrumb({ current, parent }: { current: string; parent?: { label: string; href: string } }) {
+  return (
+    <nav className="page-breadcrumb" aria-label="Brotkrümeln">
+      <a href={homeHref()}>Startseite</a>
+      <span aria-hidden="true">/</span>
+      {parent && <><a href={parent.href}>{parent.label}</a><span aria-hidden="true">/</span></>}
+      <span aria-current="page">{current}</span>
+    </nav>
+  )
+}
+
+function HomeOverview() {
+  const highlightedServices = coreFeatures.slice(0, 3)
+
+  return (
+    <section className="home-overview" aria-labelledby="home-overview-heading">
+      <div className="home-section-heading" data-reveal="up">
+        <span className="eyebrow">Perla’s im Überblick</span>
+        <h2 id="home-overview-heading">Der passende Einstieg für Ihr Objekt.</h2>
+        <p>Von der ganzheitlichen Betreuung bis zur einzelnen Leistung: Wählen Sie den Bereich, der zu Ihrem Bedarf passt.</p>
+      </div>
+      <div className="home-path-grid">
+        <a className="home-path-card home-path-card--featured" href={FACILITY_PATH} data-reveal="left">
+          <span className="home-path-icon"><ClipboardCheck aria-hidden="true" /></span>
+          <span className="eyebrow">Facility Management</span>
+          <h3>Mehrere Aufgaben. Ein abgestimmtes Betreuungskonzept.</h3>
+          <p>Für professionell verwaltete Immobilien verbinden wir Leistungen, Intervalle und Rückmeldungen zu einem klaren Gesamtablauf.</p>
+          <span className="home-path-link">Facility Management ansehen <ArrowUpRight aria-hidden="true" /></span>
+        </a>
+        <a className="home-path-card" href={SERVICES_PATH} data-reveal="up" style={{ '--reveal-delay': '60ms' } as CSSProperties}>
+          <span className="home-path-icon"><Wrench aria-hidden="true" /></span>
+          <span className="eyebrow">Leistungen</span>
+          <h3>Einzelleistungen gezielt auswählen.</h3>
+          <p>{highlightedServices.map((service) => service.title).join(' · ')} und weitere Leistungen im Überblick.</p>
+          <span className="home-path-link">Alle Leistungen <ArrowUpRight aria-hidden="true" /></span>
+        </a>
+        <a className="home-path-card" href={ABOUT_PATH} data-reveal="up" style={{ '--reveal-delay': '100ms' } as CSSProperties}>
+          <span className="home-path-icon"><ShieldCheck aria-hidden="true" /></span>
+          <span className="eyebrow">Über uns</span>
+          <h3>Objektbetreuung mit Verantwortung.</h3>
+          <p>Seit 1999 betreut Perla’s Immobilien im Rhein-Main-Gebiet – persönlich, planbar und mit festen Zuständigkeiten.</p>
+          <span className="home-path-link">Perla’s kennenlernen <ArrowUpRight aria-hidden="true" /></span>
+        </a>
+        <a className="home-path-card home-path-card--contact" href={CONTACT_PATH} data-reveal="right" style={{ '--reveal-delay': '140ms' } as CSSProperties}>
+          <span className="home-path-icon"><MessageCircle aria-hidden="true" /></span>
+          <span className="eyebrow">Kontakt</span>
+          <h3>Ihr Objekt persönlich besprechen.</h3>
+          <p>Schildern Sie kurz die Immobilie und den Bedarf. Wir klären gemeinsam, welcher Leistungsumfang sinnvoll ist.</p>
+          <span className="home-path-link">Kontakt aufnehmen <ArrowUpRight aria-hidden="true" /></span>
+        </a>
+      </div>
+    </section>
+  )
+}
+
+function HomeTrust() {
+  return (
+    <section className="home-trust" aria-labelledby="home-trust-heading">
+      <div className="home-trust-copy" data-reveal="left">
+        <span className="eyebrow">Verlässlich im laufenden Betrieb</span>
+        <h2 id="home-trust-heading">Erfahrung, klare Abläufe und ein fester Ansprechpartner.</h2>
+        <p>Perla’s schafft Übersicht über wiederkehrende Aufgaben und hält Rückmeldungen zu Zustand, Leistung und Handlungsbedarf an einer Stelle zusammen.</p>
+        <ButtonLink href={ABOUT_PATH} kind="outline-light" arrow>Mehr über Perla’s</ButtonLink>
+      </div>
+      <div className="home-trust-stats" data-reveal="right" style={{ '--reveal-delay': '80ms' } as CSSProperties}>
+        {proofStats.map(([value, label]) => (
+          <div key={label}><strong>{value}</strong><span>{label}</span></div>
+        ))}
+      </div>
+    </section>
+  )
+}
+
+function HomeContactTeaser({ onQuoteOpen }: { onQuoteOpen: () => void }) {
+  return (
+    <section className="home-contact-teaser" data-reveal="up">
+      <div>
+        <span className="eyebrow">Nächster Schritt</span>
+        <h2>Welche Betreuung braucht Ihre Immobilie?</h2>
+        <p>Wir besprechen Objekt, Nutzung und laufende Aufgaben und leiten daraus einen passenden Leistungsumfang ab.</p>
+      </div>
+      <div className="home-contact-actions">
+        <button className="button button--yellow" type="button" onClick={onQuoteOpen}>
+          <span>Angebot anfragen</span><img src={`${A}arrow.svg`} alt="" />
+        </button>
+        <ButtonLink href={CONTACT_PATH} kind="outline">Zur Kontaktseite</ButtonLink>
+      </div>
+    </section>
+  )
+}
+
+function ServicesOverviewPage({ onQuoteOpen }: { onQuoteOpen: () => void }) {
+  return (
+    <main className="architecture-page services-overview-page">
+      <section className="architecture-hero">
+        <div className="architecture-hero-copy" data-reveal="left">
+          <PageBreadcrumb current="Leistungen" />
+          <span className="eyebrow">Facility Services im Rhein-Main-Gebiet</span>
+          <h1>Leistungen für den laufenden Betrieb Ihrer Immobilie.</h1>
+          <p>Wählen Sie eine einzelne Leistung oder kombinieren Sie mehrere Aufgaben zu einem objektbezogenen Betreuungskonzept.</p>
+          <div className="button-row">
+            <ButtonLink href={CONTACT_PATH} arrow>Leistung anfragen</ButtonLink>
+            <ButtonLink href={FACILITY_PATH} kind="outline">Facility Management</ButtonLink>
+          </div>
+        </div>
+        <figure className="architecture-hero-image" data-reveal="right" style={{ '--reveal-delay': '80ms' } as CSSProperties}>
+          <img src={`${A}perlas-hero.png`} alt="Mitarbeiter von Perla’s bei der Objektkontrolle" />
+          <figcaption>Objektbezogen geplant · verlässlich ausgeführt</figcaption>
+        </figure>
+      </section>
+
+      <section className="services-catalog" aria-labelledby="services-catalog-heading">
+        <div className="architecture-section-heading" data-reveal="up">
+          <span className="eyebrow">Leistungsübersicht</span>
+          <h2 id="services-catalog-heading">Bestehende Leistungen im Detail.</h2>
+          <p>Jede Leistung führt zu einer eigenen Seite mit Leistungsumfang, Ablauf, Einsatzbereichen und klarer fachlicher Einordnung.</p>
+        </div>
+        <div className="services-catalog-grid">
+          {features.map((feature, index) => {
+            const Icon = feature.icon
+            return (
+              <a className="services-catalog-card" href={`${SERVICES_PATH}${feature.slug}/`} data-reveal="up" style={{ '--reveal-delay': `${(index % 3) * 55}ms` } as CSSProperties} key={feature.slug}>
+                <span className="services-catalog-icon"><Icon aria-hidden="true" strokeWidth={1.8} /></span>
+                <div><h3>{feature.title}</h3><p>{feature.text}</p></div>
+                <span>Leistung ansehen <ArrowUpRight aria-hidden="true" /></span>
+              </a>
+            )
+          })}
+        </div>
+      </section>
+
+      <section className="architecture-bridge" data-reveal="up">
+        <div>
+          <span className="eyebrow">Mehrere Leistungen verbinden</span>
+          <h2>Wenn aus Einzelleistungen Facility Management wird.</h2>
+          <p>Bei größeren oder professionell verwalteten Immobilien lassen sich Leistungen, Intervalle, Zuständigkeiten und Rückmeldungen in einem Betreuungskonzept bündeln.</p>
+        </div>
+        <ButtonLink href={FACILITY_PATH} kind="outline-light" arrow>Facility Management ansehen</ButtonLink>
+      </section>
+
+      <section className="architecture-cta" data-reveal="up">
+        <div><span className="eyebrow">Individuell abstimmen</span><h2>Welche Leistungen passen zu Ihrem Objekt?</h2></div>
+        <button className="button button--yellow" type="button" onClick={onQuoteOpen}><span>Angebot anfragen</span><img src={`${A}arrow.svg`} alt="" /></button>
+      </section>
+    </main>
+  )
+}
+
+function AboutPage({ onQuoteOpen }: { onQuoteOpen: () => void }) {
+  const values = [
+    [ShieldCheck, 'Verantwortung', 'Aufgaben, Zuständigkeiten und offene Punkte werden nachvollziehbar eingeordnet.'],
+    [Clock3, 'Planbarkeit', 'Wiederkehrende Leistungen erhalten klare Intervalle und abgestimmte Abläufe.'],
+    [MessageCircle, 'Persönliche Abstimmung', 'Ein fester Ansprechpartner bündelt Rückmeldungen und die laufende Koordination.'],
+    [ClipboardCheck, 'Objektbezug', 'Der tatsächliche Bedarf der Immobilie bildet die Grundlage für den Leistungsumfang.'],
+  ] as const
+
+  return (
+    <main className="architecture-page about-page">
+      <section className="architecture-hero architecture-hero--about">
+        <div className="architecture-hero-copy" data-reveal="left">
+          <PageBreadcrumb current="Über uns" />
+          <span className="eyebrow">Perla’s Objektbetreuung</span>
+          <h1>Seit 1999 für Immobilien im Rhein-Main-Gebiet da.</h1>
+          <p>Perla’s verbindet persönliche Abstimmung mit planbarer Objektbetreuung. Wir erfassen Aufgaben vor Ort, koordinieren wiederkehrende Einsätze und halten Rückmeldungen verständlich zusammen.</p>
+          <div className="button-row">
+            <ButtonLink href={CONTACT_PATH} arrow>Persönlich kennenlernen</ButtonLink>
+            <ButtonLink href={FACILITY_PATH} kind="outline">Unsere Arbeitsweise</ButtonLink>
+          </div>
+        </div>
+        <figure className="architecture-hero-image" data-reveal="right" style={{ '--reveal-delay': '80ms' } as CSSProperties}>
+          <img src={`${A}perlas-team.png`} alt="Das Team von Perla’s Objektbetreuung" />
+          <figcaption>Vor Ort im Rhein-Main-Gebiet</figcaption>
+        </figure>
+      </section>
+
+      <section className="about-story" aria-labelledby="about-story-heading">
+        <div data-reveal="left">
+          <span className="eyebrow">Unser Anspruch</span>
+          <h2 id="about-story-heading">Immobilienbetreuung braucht Übersicht und Verbindlichkeit.</h2>
+        </div>
+        <div data-reveal="right" style={{ '--reveal-delay': '70ms' } as CSSProperties}>
+          <p>Seit 1999 ist Perla’s im Rhein-Main-Gebiet tätig. Aus der klassischen Objektbetreuung ist ein Angebot entstanden, das einzelne Facility Services sinnvoll miteinander verbindet.</p>
+          <p>Ausgangspunkt bleibt immer das konkrete Objekt: seine Nutzung, die Flächen, die wiederkehrenden Aufgaben und die benötigten Zuständigkeiten. So entsteht ein Leistungsumfang, der verständlich bleibt und sich im Alltag steuern lässt.</p>
+          <p>Technische Fachprüfungen und qualifikationsgebundene Arbeiten werden klar abgegrenzt und bei Bedarf mit geeigneten Fachbetrieben koordiniert.</p>
+        </div>
+      </section>
+
+      <section className="about-values" aria-labelledby="about-values-heading">
+        <div className="architecture-section-heading" data-reveal="up">
+          <span className="eyebrow">Wofür wir stehen</span>
+          <h2 id="about-values-heading">Grundsätze für die laufende Zusammenarbeit.</h2>
+        </div>
+        <div className="about-values-grid">
+          {values.map(([Icon, title, text], index) => (
+            <article data-reveal="up" style={{ '--reveal-delay': `${index * 55}ms` } as CSSProperties} key={title}>
+              <Icon aria-hidden="true" /><h3>{title}</h3><p>{text}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="about-method" aria-labelledby="about-method-heading">
+        <div className="architecture-section-heading" data-reveal="left">
+          <span className="eyebrow">So arbeiten wir</span>
+          <h2 id="about-method-heading">Vom Objektbedarf zum klaren Ablauf.</h2>
+        </div>
+        <ol data-reveal="right">
+          <li><span>01</span><div><strong>Objekt verstehen</strong><p>Flächen, Nutzung, Zugänge und laufende Aufgaben werden gemeinsam betrachtet.</p></div></li>
+          <li><span>02</span><div><strong>Leistungen festlegen</strong><p>Aufgaben, Intervalle und Zuständigkeiten werden objektbezogen abgestimmt.</p></div></li>
+          <li><span>03</span><div><strong>Betreuung koordinieren</strong><p>Einsätze, Rückmeldungen und offene Punkte laufen nachvollziehbar zusammen.</p></div></li>
+        </ol>
+      </section>
+
+      <section className="architecture-cta" data-reveal="up">
+        <div><span className="eyebrow">Direkter Austausch</span><h2>Lassen Sie uns über Ihr Objekt sprechen.</h2></div>
+        <button className="button button--yellow" type="button" onClick={onQuoteOpen}><span>Angebot anfragen</span><img src={`${A}arrow.svg`} alt="" /></button>
+      </section>
+    </main>
   )
 }
 
@@ -981,7 +1215,7 @@ function FacilityManagementPage({ onQuoteOpen }: { onQuoteOpen: () => void }) {
     <main className="facility-page">
       <section className="fm-hero">
         <div className="fm-hero-copy" data-reveal="left">
-          <a className="service-breadcrumb" href={homeHref()}>Startseite / Facility Management</a>
+          <PageBreadcrumb current="Facility Management" />
           <span className="eyebrow">Facility Management im Rhein-Main-Gebiet</span>
           <h1>Gebäude ganzheitlich betreuen. Aufgaben klar koordinieren.</h1>
           <p>
@@ -1319,7 +1553,11 @@ function ServiceDetailPage({ service, onQuoteOpen }: { service: Feature; onQuote
     <main className="service-page">
       <section className="service-detail-hero">
         <div className="service-detail-copy" data-reveal="left">
-          <a className="service-breadcrumb" href={homeHref('#leistungen')}>Leistungen / {service.title}</a>
+          <nav className="service-breadcrumb" aria-label="Brotkrümeln">
+            <a href={homeHref()}>Startseite</a><span aria-hidden="true">/</span>
+            <a href={SERVICES_PATH}>Leistungen</a><span aria-hidden="true">/</span>
+            <span aria-current="page">{service.title}</span>
+          </nav>
           <div className="service-detail-icon"><Icon aria-hidden="true" strokeWidth={1.8} /></div>
           <span className="eyebrow">Perla’s Objektbetreuung</span>
           <h1>{service.title}</h1>
@@ -1562,8 +1800,8 @@ function Footer() {
           {[
             ['Facility Management', 'facility-management/'],
             ['Zielgruppen', 'facility-management/#zielgruppen'],
-            ['Leistungen', '#leistungen'],
-            ['Ablauf', '#ablauf'],
+            ['Leistungen', 'leistungen/'],
+            ['Über uns', 'ueber-uns/'],
             ['Kontakt', 'kontakt/'],
           ].map(([item, href]) => (
             <a href={homeHref(href)} key={item}>
@@ -1603,11 +1841,22 @@ export default function App() {
   const pagePath = getPagePath()
   const isContactPage = /^\/kontakt\/?$/.test(pagePath)
   const isFacilityPage = /^\/facility-management\/?$/.test(pagePath)
+  const isServicesPage = /^\/leistungen\/?$/.test(pagePath)
+  const isAboutPage = /^\/ueber-uns\/?$/.test(pagePath)
   const serviceSlug = pagePath.match(/^\/leistungen\/([^/]+)\/?$/)?.[1]
   const activeService = features.find((service) => service.slug === serviceSlug)
+  const pageKind: PageKind = isContactPage
+    ? 'contact'
+    : isFacilityPage
+      ? 'facility'
+      : isServicesPage
+        ? 'services'
+        : isAboutPage
+          ? 'about'
+          : 'home'
 
-  usePageSeo(activeService, isContactPage ? 'contact' : isFacilityPage ? 'facility' : 'home')
-  useRevealAnimations(isContactPage ? 'contact' : isFacilityPage ? 'facility' : activeService?.slug)
+  usePageSeo(activeService, pageKind)
+  useRevealAnimations(activeService?.slug ?? pageKind)
 
   const openQuote = useCallback((service?: string) => {
     setQuoteService(service)
@@ -1625,17 +1874,17 @@ export default function App() {
         <ContactPage onQuoteOpen={() => openQuote()} />
       ) : isFacilityPage ? (
         <FacilityManagementPage onQuoteOpen={() => openQuote()} />
+      ) : isServicesPage ? (
+        <ServicesOverviewPage onQuoteOpen={() => openQuote()} />
+      ) : isAboutPage ? (
+        <AboutPage onQuoteOpen={() => openQuote()} />
       ) : (
         <main>
           <Hero />
-          <FacilityOverview />
+          <HomeOverview />
           <PartnerMarquee />
-          <AudienceSolutions />
-          <Reviews />
-          <About />
-          <FeatureSection onQuoteOpen={openQuote} />
-          <ClosingContact onQuoteOpen={() => openQuote()} />
-          <Insights />
+          <HomeTrust />
+          <HomeContactTeaser onQuoteOpen={() => openQuote()} />
         </main>
       )}
       <Footer />
