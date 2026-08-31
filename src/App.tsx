@@ -1821,7 +1821,9 @@ function Reviews() {
           rel="noreferrer"
           aria-label="Alle Google-Rezensionen von Perla’s Objektbetreuung öffnen"
         >
-          <span className="google-review-mark" aria-hidden="true">G</span>
+          <span className="google-review-mark" aria-hidden="true">
+            <img src={`${A}google-g.svg`} alt="" />
+          </span>
           <span className="google-review-score">
             <strong>5,0</strong>
             <span className="stars" aria-label="5 von 5 Sternen">
@@ -1871,7 +1873,7 @@ function Reviews() {
                 <span aria-hidden="true">{review.author.slice(0, 1)}</span>
                 <div>
                   <strong>{review.author}</strong>
-                  <small>Google · {review.age}</small>
+                  <small><img src={`${A}google-g.svg`} alt="" /> Google · {review.age}</small>
                 </div>
               </div>
             </article>
