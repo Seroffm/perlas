@@ -63,6 +63,20 @@ const aboutSeo = {
   url: aboutUrl.href,
 }
 
+const imprintUrl = new URL(`${basePath}impressum/`, siteUrl.origin)
+const imprintSeo = {
+  title: 'Impressum | Perla’s Objektbetreuung',
+  description: 'Impressum und Anbieterkennzeichnung von Perla’s Objektbetreuung im Rhein-Main-Gebiet.',
+  url: imprintUrl.href,
+}
+
+const privacyUrl = new URL(`${basePath}datenschutz/`, siteUrl.origin)
+const privacySeo = {
+  title: 'Datenschutz | Perla’s Objektbetreuung',
+  description: 'Vorläufige Informationen zum Datenschutz auf der Website von Perla’s Objektbetreuung.',
+  url: privacyUrl.href,
+}
+
 const escapeHtml = (value) => String(value)
   .replaceAll('&', '&amp;')
   .replaceAll('<', '&lt;')
@@ -215,7 +229,7 @@ function relatedServiceLinks(service) {
 }
 
 function staticHeader() {
-  return `<header class="seo-static-header"><a href="${basePath}"><img src="${basePath}assets/perlas-logo.svg" alt="Perla’s Objektbetreuung GmbH &amp; Co. KG" /></a><nav aria-label="Hauptnavigation"><a href="${basePath}facility-management/">Facility Management</a><a href="${basePath}leistungen/">Leistungen</a><a href="${basePath}ueber-uns/">Über uns</a><a href="${basePath}kontakt/">Kontakt</a></nav></header>`
+  return `<header class="seo-static-header"><a href="${basePath}"><img src="${basePath}assets/perlas-logo.svg" alt="Perla’s Objektbetreuung GmbH &amp; Co. KG" /></a><nav aria-label="Hauptnavigation"><a href="${basePath}facility-management/">Facility Management</a><a href="${basePath}leistungen/">Leistungen</a><a href="${basePath}ueber-uns/">Über uns</a><a href="${basePath}kontakt/">Angebot anfragen</a><a href="${basePath}kontakt/">Kontakt</a></nav></header>`
 }
 
 function selectedServiceLinks(slugs) {
@@ -290,6 +304,14 @@ function contactMarkup() {
   ].map(([number, title, text]) => `<article><span>${number}</span><h3>${title}</h3><p>${text}</p></article>`).join('')
 
   return `${staticHeader()}<main class="seo-static-main"><nav aria-label="Brotkrümeln"><a href="${basePath}">Startseite</a> / Kontakt</nav><section class="seo-static-hero"><p>Kontakt zu Perla’s</p><h1>Lassen Sie uns über Ihr Objekt sprechen.</h1><p>Besprechen Sie einzelne Leistungen oder ein abgestimmtes Betreuungskonzept für Ihre Immobilie im Rhein-Main-Gebiet.</p><a href="tel:+491776867145">Direkt anrufen</a></section><section><h2>So erreichen Sie uns</h2><ul><li><a href="tel:+491776867145">Telefon: 0177 68 67 145</a></li><li><a href="mailto:mail@perlas.de">E-Mail: mail@perlas.de</a></li><li>Hauptstraße 1, 65843 Sulzbach (Taunus)</li><li><a href="https://www.google.com/maps/dir/?api=1&amp;destination=Hauptstra%C3%9Fe%201%2C%2065843%20Sulzbach%20(Taunus)%2C%20Deutschland">Route in Google Maps öffnen</a></li></ul></section><section><h2>So läuft Ihre Anfrage ab</h2><div class="seo-static-grid">${steps}</div></section></main>`
+}
+
+function legalMarkup(type) {
+  if (type === 'imprint') {
+    return `${staticHeader()}<main class="seo-static-main"><nav aria-label="Brotkrümeln"><a href="${basePath}">Startseite</a> / Impressum</nav><section class="seo-static-hero"><p>Rechtliche Informationen</p><h1>Impressum</h1><p>Vorläufiger Platzhalter. Fehlende Pflichtangaben werden vor dem finalen Livegang ergänzt.</p></section><section><h2>Angaben zum Anbieter</h2><p>Perla’s Objektbetreuung GmbH &amp; Co. KG<br>Hauptstraße 1<br>65843 Sulzbach (Taunus)<br>Deutschland</p><h2>Kontakt</h2><p>Telefon: 0177 68 67 145<br>E-Mail: mail@perlas.de</p><h2>Noch zu ergänzen</h2><p>Vertretungsberechtigte Person, Registergericht, Registernummer, Umsatzsteuer-ID und inhaltlich verantwortliche Person.</p></section></main>`
+  }
+
+  return `${staticHeader()}<main class="seo-static-main"><nav aria-label="Brotkrümeln"><a href="${basePath}">Startseite</a> / Datenschutz</nav><section class="seo-static-hero"><p>Rechtliche Informationen</p><h1>Datenschutzerklärung</h1><p>Vorläufiger Platzhalter. Die Angaben werden nach der finalen Hosting- und Diensteauswahl rechtlich geprüft und vervollständigt.</p></section><section><h2>Verantwortliche Stelle</h2><p>Perla’s Objektbetreuung GmbH &amp; Co. KG, Hauptstraße 1, 65843 Sulzbach (Taunus), mail@perlas.de</p><h2>Kontaktaufnahme</h2><p>Angaben aus Kontakt- und Angebotsanfragen werden zur Bearbeitung der jeweiligen Anfrage verwendet.</p><h2>Technische Daten und Cookies</h2><p>Server-Protokolle, eingesetzte Dienste, Speicherdauern und Rechtsgrundlagen werden vor dem Produktivbetrieb abschließend ergänzt.</p></section></main>`
 }
 
 function serviceMarkup(service) {
@@ -372,6 +394,30 @@ await writeFile(`${distPath}ueber-uns/index.html`, buildPage({
   }),
 }))
 
+await mkdir(`${distPath}impressum/`, { recursive: true })
+await writeFile(`${distPath}impressum/index.html`, buildPage({
+  ...imprintSeo,
+  markup: legalMarkup('imprint'),
+  data: pageStructuredData({
+    type: 'WebPage',
+    url: imprintUrl.href,
+    name: 'Impressum',
+    description: imprintSeo.description,
+  }),
+}))
+
+await mkdir(`${distPath}datenschutz/`, { recursive: true })
+await writeFile(`${distPath}datenschutz/index.html`, buildPage({
+  ...privacySeo,
+  markup: legalMarkup('privacy'),
+  data: pageStructuredData({
+    type: 'WebPage',
+    url: privacyUrl.href,
+    name: 'Datenschutz',
+    description: privacySeo.description,
+  }),
+}))
+
 await Promise.all(services.map(async (service) => {
   const targetPath = `${distPath}leistungen/${service.slug}/`
   const url = serviceUrl(service).href
@@ -385,7 +431,7 @@ await Promise.all(services.map(async (service) => {
   }))
 }))
 
-const sitemapUrls = [siteUrl.href, facilityUrl.href, servicesUrl.href, aboutUrl.href, contactUrl.href, ...services.map((service) => serviceUrl(service).href)]
+const sitemapUrls = [siteUrl.href, facilityUrl.href, servicesUrl.href, aboutUrl.href, contactUrl.href, imprintUrl.href, privacyUrl.href, ...services.map((service) => serviceUrl(service).href)]
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${sitemapUrls.map((url) => `  <url><loc>${url}</loc><lastmod>${lastModified}</lastmod></url>`).join('\n')}

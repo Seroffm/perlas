@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useLayoutEffect, useRef, useState, type CSSProperties } from 'react'
+import { useCallback, useEffect, useLayoutEffect, useRef, useState, type CSSProperties, type FormEvent } from 'react'
 import {
   ArrowUpRight,
   BriefcaseBusiness,
@@ -39,6 +39,8 @@ const CONTACT_PATH = `${BASE_PATH}kontakt/`
 const FACILITY_PATH = `${BASE_PATH}facility-management/`
 const SERVICES_PATH = `${BASE_PATH}leistungen/`
 const ABOUT_PATH = `${BASE_PATH}ueber-uns/`
+const IMPRINT_PATH = `${BASE_PATH}impressum/`
+const PRIVACY_PATH = `${BASE_PATH}datenschutz/`
 
 const homeHref = (hash = '') => `${BASE_PATH}${hash}`
 
@@ -63,7 +65,7 @@ function ensureMeta(selector: string, attributes: Record<string, string>) {
   Object.entries(attributes).forEach(([name, value]) => element?.setAttribute(name, value))
 }
 
-type PageKind = 'home' | 'contact' | 'facility' | 'services' | 'about'
+type PageKind = 'home' | 'contact' | 'facility' | 'services' | 'about' | 'imprint' | 'privacy'
 
 function usePageSeo(service?: Feature, pageKind: PageKind = 'home') {
   useEffect(() => {
@@ -93,6 +95,18 @@ function usePageSeo(service?: Feature, pageKind: PageKind = 'home') {
         title: 'Über Perla’s | Objektbetreuung seit 1999',
         description: 'Lernen Sie Perla’s Objektbetreuung, die Arbeitsweise und die Werte hinter dem Facility Management im Rhein-Main-Gebiet kennen.',
         schemaType: 'AboutPage',
+      },
+      imprint: {
+        path: 'impressum/',
+        title: 'Impressum | Perla’s Objektbetreuung',
+        description: 'Impressum und Anbieterkennzeichnung von Perla’s Objektbetreuung im Rhein-Main-Gebiet.',
+        schemaType: 'WebPage',
+      },
+      privacy: {
+        path: 'datenschutz/',
+        title: 'Datenschutz | Perla’s Objektbetreuung',
+        description: 'Vorläufige Informationen zum Datenschutz auf der Website von Perla’s Objektbetreuung.',
+        schemaType: 'WebPage',
       },
     }
     const pageDefinition = pageKind === 'home' ? undefined : pageDefinitions[pageKind]
@@ -193,7 +207,7 @@ function usePageSeo(service?: Feature, pageKind: PageKind = 'home') {
                 '@type': 'BreadcrumbList',
                 itemListElement: [
                   { '@type': 'ListItem', position: 1, name: 'Startseite', item: siteUrl.href },
-                  { '@type': 'ListItem', position: 2, name: pageKind === 'about' ? 'Über uns' : pageKind === 'services' ? 'Leistungen' : pageKind === 'facility' ? 'Facility Management' : 'Kontakt', item: pageUrl.href },
+                  { '@type': 'ListItem', position: 2, name: pageKind === 'about' ? 'Über uns' : pageKind === 'services' ? 'Leistungen' : pageKind === 'facility' ? 'Facility Management' : pageKind === 'imprint' ? 'Impressum' : pageKind === 'privacy' ? 'Datenschutz' : 'Kontakt', item: pageUrl.href },
                 ],
               },
             ],
@@ -270,7 +284,7 @@ function ButtonLink({
       href={href}
     >
       <span>{children}</span>
-      {arrow && <img src={`${A}${kind === 'purple' ? 'arrow-white.svg' : 'arrow.svg'}`} alt="" />}
+      {arrow && <img src={`${A}arrow-white.svg`} alt="" />}
     </a>
   )
 }
@@ -529,7 +543,7 @@ const heroSlides = [
   },
 ]
 
-function Header() {
+function Header({ onQuoteOpen }: { onQuoteOpen: () => void }) {
   const [menuOpen, setMenuOpen] = useState(false)
   const [facilityOpen, setFacilityOpen] = useState(false)
 
@@ -613,6 +627,17 @@ function Header() {
           </div>
           <a href={SERVICES_PATH} onClick={closeMenu}>Leistungen</a>
           <a href={ABOUT_PATH} onClick={closeMenu}>Über uns</a>
+          <button
+            className="nav-quote"
+            type="button"
+            onClick={() => {
+              closeMenu()
+              onQuoteOpen()
+            }}
+          >
+            Angebot anfragen
+            <ArrowUpRight aria-hidden="true" />
+          </button>
           <a className="sign-in" href={CONTACT_PATH} onClick={closeMenu}>Kontakt</a>
         </nav>
       </div>
@@ -921,6 +946,48 @@ function HomeOverview() {
   )
 }
 
+function HomeCoreServices() {
+  const homeServices = coreFeatures.slice(0, 4)
+
+  return (
+    <section className="home-core-services" id="leistungen" aria-labelledby="home-core-services-heading">
+      <div className="home-section-heading" data-reveal="up">
+        <span className="eyebrow">Objektbetreuung im Alltag</span>
+        <h2 id="home-core-services-heading">Vier Leistungen für ein gepflegtes Objekt.</h2>
+        <p>Jede Leistung ist einzeln buchbar. Gemeinsam lassen sie sich zu einer Betreuung verbinden, die zu Ihrem Gebäude und seinen Abläufen passt.</p>
+      </div>
+      <div className="home-service-card-grid">
+        {homeServices.map((service, index) => {
+          const Icon = service.icon
+          return (
+            <a
+              className="home-service-card"
+              href={`${BASE_PATH}leistungen/${service.slug}/`}
+              key={service.slug}
+              data-reveal="up"
+              style={{ '--reveal-delay': `${index * 60}ms` } as CSSProperties}
+            >
+              <div className="home-service-card-image">
+                <img src={`${A}${service.image}`} alt={`${service.title} durch Perla’s`} loading="lazy" />
+                <span><Icon aria-hidden="true" /></span>
+              </div>
+              <div className="home-service-card-copy">
+                <div>
+                  <span className="eyebrow">Leistung 0{index + 1}</span>
+                  <h3>{service.title}</h3>
+                </div>
+                <p>{service.text}</p>
+                <span className="home-service-card-link">Leistung ansehen <ArrowUpRight aria-hidden="true" /></span>
+              </div>
+            </a>
+          )
+        })}
+      </div>
+      <ButtonLink href={SERVICES_PATH} kind="purple" arrow>Alle Leistungen ansehen</ButtonLink>
+    </section>
+  )
+}
+
 function HomeTrust() {
   return (
     <section className="home-trust" aria-labelledby="home-trust-heading">
@@ -949,7 +1016,7 @@ function HomeContactTeaser({ onQuoteOpen }: { onQuoteOpen: () => void }) {
       </div>
       <div className="home-contact-actions">
         <button className="button button--yellow" type="button" onClick={onQuoteOpen}>
-          <span>Angebot anfragen</span><img src={`${A}arrow.svg`} alt="" />
+          <span>Angebot anfragen</span><img src={`${A}arrow-white.svg`} alt="" />
         </button>
         <ButtonLink href={CONTACT_PATH} kind="outline">Zur Kontaktseite</ButtonLink>
       </div>
@@ -1008,7 +1075,7 @@ function ServicesOverviewPage({ onQuoteOpen }: { onQuoteOpen: () => void }) {
 
       <section className="architecture-cta" data-reveal="up">
         <div><span className="eyebrow">Individuell abstimmen</span><h2>Was passt zu Ihrem Objekt?</h2></div>
-        <button className="button button--yellow" type="button" onClick={onQuoteOpen}><span>Angebot anfragen</span><img src={`${A}arrow.svg`} alt="" /></button>
+        <button className="button button--yellow" type="button" onClick={onQuoteOpen}><span>Angebot anfragen</span><img src={`${A}arrow-white.svg`} alt="" /></button>
       </section>
     </main>
   )
@@ -1081,7 +1148,7 @@ function AboutPage({ onQuoteOpen }: { onQuoteOpen: () => void }) {
 
       <section className="architecture-cta" data-reveal="up">
         <div><span className="eyebrow">Direkter Austausch</span><h2>Sprechen wir über Ihr Objekt.</h2></div>
-        <button className="button button--yellow" type="button" onClick={onQuoteOpen}><span>Angebot anfragen</span><img src={`${A}arrow.svg`} alt="" /></button>
+        <button className="button button--yellow" type="button" onClick={onQuoteOpen}><span>Angebot anfragen</span><img src={`${A}arrow-white.svg`} alt="" /></button>
       </section>
     </main>
   )
@@ -1381,7 +1448,7 @@ function FacilityManagementPage({ onQuoteOpen }: { onQuoteOpen: () => void }) {
         </div>
         <div className="fm-cta-actions">
           <button className="button button--yellow" type="button" onClick={onQuoteOpen}>
-            <span>Angebot anfragen</span><img src={`${A}arrow.svg`} alt="" />
+            <span>Angebot anfragen</span><img src={`${A}arrow-white.svg`} alt="" />
           </button>
           <a href="tel:+491776867145"><Phone aria-hidden="true" /> 0177 68 67 145</a>
         </div>
@@ -1551,12 +1618,77 @@ function FeatureSection({ onQuoteOpen }: { onQuoteOpen: (service?: string) => vo
         <div className="feature-actions">
           <button className="button button--yellow" type="button" onClick={() => onQuoteOpen()}>
             <span>Angebot zusammenstellen</span>
-            <img src={`${A}arrow.svg`} alt="" />
+            <img src={`${A}arrow-white.svg`} alt="" />
           </button>
           <ButtonLink href="#ablauf" kind="outline">So läuft die Betreuung</ButtonLink>
         </div>
       </div>
     </section>
+  )
+}
+
+function ServiceContactForm({ service }: { service: Feature }) {
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    const formData = new FormData(event.currentTarget)
+    const name = String(formData.get('name') ?? '').trim()
+    const company = String(formData.get('company') ?? '').trim()
+    const email = String(formData.get('email') ?? '').trim()
+    const phone = String(formData.get('phone') ?? '').trim()
+    const message = String(formData.get('message') ?? '').trim()
+    const body = [
+      `Guten Tag, ich interessiere mich für ${service.title}.`,
+      '',
+      `Name: ${name}`,
+      `Unternehmen / Verwaltung: ${company || 'Nicht angegeben'}`,
+      `E-Mail: ${email}`,
+      `Telefon: ${phone || 'Nicht angegeben'}`,
+      '',
+      'Angaben zum Objekt:',
+      message,
+    ].join('\n')
+
+    window.location.href = `mailto:mail@perlas.de?subject=${encodeURIComponent(`Anfrage zu ${service.title}`)}&body=${encodeURIComponent(body)}`
+  }
+
+  return (
+    <form className="service-contact-form" onSubmit={handleSubmit}>
+      <div className="service-contact-form-heading">
+        <span>Direktanfrage</span>
+        <strong>{service.title}</strong>
+      </div>
+      <div className="service-form-grid">
+        <label>
+          <span>Name *</span>
+          <input type="text" name="name" autoComplete="name" required />
+        </label>
+        <label>
+          <span>Unternehmen / Verwaltung</span>
+          <input type="text" name="company" autoComplete="organization" />
+        </label>
+        <label>
+          <span>E-Mail *</span>
+          <input type="email" name="email" autoComplete="email" required />
+        </label>
+        <label>
+          <span>Telefon</span>
+          <input type="tel" name="phone" autoComplete="tel" />
+        </label>
+        <label className="service-form-wide">
+          <span>Was dürfen wir für Sie übernehmen? *</span>
+          <textarea name="message" rows={4} placeholder="Objektart, Ort und gewünschter Leistungsumfang" required />
+        </label>
+      </div>
+      <label className="service-form-consent">
+        <input type="checkbox" name="privacy" required />
+        <span>Ich habe die <a href={PRIVACY_PATH}>Datenschutzhinweise</a> gelesen und stimme der Verarbeitung meiner Angaben zur Bearbeitung der Anfrage zu.</span>
+      </label>
+      <button className="button button--purple" type="submit">
+        <span>Anfrage per E-Mail vorbereiten</span>
+        <img src={`${A}arrow-white.svg`} alt="" />
+      </button>
+      <small>Beim Absenden öffnet sich Ihr E-Mail-Programm mit den eingetragenen Angaben.</small>
+    </form>
   )
 }
 
@@ -1583,7 +1715,7 @@ function ServiceDetailPage({ service, onQuoteOpen }: { service: Feature; onQuote
           <div className="button-row">
             <button className="button button--yellow" type="button" onClick={() => onQuoteOpen(service.title)}>
               <span>Angebot für diese Leistung</span>
-              <img src={`${A}arrow.svg`} alt="" />
+              <img src={`${A}arrow-white.svg`} alt="" />
             </button>
             <a className="button button--outline" href="tel:+491776867145">Direkt anrufen</a>
           </div>
@@ -1653,6 +1785,20 @@ function ServiceDetailPage({ service, onQuoteOpen }: { service: Feature; onQuote
         })}
       </section>
 
+      <section
+        className="service-image-story"
+        style={{ '--service-story-image': `url("${A}${service.image}")` } as CSSProperties}
+        aria-labelledby="service-image-story-heading"
+        data-reveal="up"
+      >
+        <div>
+          <span className="eyebrow">Vor Ort gut organisiert</span>
+          <h2 id="service-image-story-heading">Damit die Leistung im Alltag zuverlässig funktioniert.</h2>
+          <p>{service.processSteps[0]?.text} {service.processSteps[1]?.text}</p>
+          <a href="#service-contact-heading">Anfrage stellen <ArrowUpRight aria-hidden="true" /></a>
+        </div>
+      </section>
+
       <section className="service-boundary" data-reveal="up">
         <div>
           <span className="eyebrow">Leistungsgrenzen</span>
@@ -1661,7 +1807,7 @@ function ServiceDetailPage({ service, onQuoteOpen }: { service: Feature; onQuote
         </div>
         <button className="button button--yellow" type="button" onClick={() => onQuoteOpen(service.title)}>
           <span>Leistungsumfang besprechen</span>
-          <img src={`${A}arrow.svg`} alt="" />
+          <img src={`${A}arrow-white.svg`} alt="" />
         </button>
       </section>
 
@@ -1685,29 +1831,30 @@ function ServiceDetailPage({ service, onQuoteOpen }: { service: Feature; onQuote
         <div className="service-contact-primary">
           <span className="eyebrow">Ihr nächster Schritt</span>
           <h2 id="service-contact-heading">Sprechen wir über Ihr Objekt.</h2>
-          <p>Sie entscheiden, wie Sie Kontakt aufnehmen möchten. Das Angebotsformular führt strukturiert durch die wichtigsten Angaben. Genauso gern können Sie direkt anrufen oder eine kurze Nachricht schreiben.</p>
+          <p>Schildern Sie uns kurz das Objekt und den gewünschten Umfang. Wir melden uns persönlich und klären gemeinsam, welche Ausführung und welche Intervalle sinnvoll sind.</p>
           <button className="button button--yellow" type="button" onClick={() => onQuoteOpen(service.title)}>
-            <span>Angebot für {service.title} anfragen</span>
-            <img src={`${A}arrow.svg`} alt="" />
+            <span>Geführtes Angebotsformular öffnen</span>
+            <img src={`${A}arrow-white.svg`} alt="" />
           </button>
+          <div className="service-contact-options" aria-label="Alternative Kontaktwege">
+            <a href="tel:+491776867145">
+              <Phone aria-hidden="true" />
+              <span><strong>Direkt anrufen</strong><small>0177 68 67 145</small></span>
+              <ArrowUpRight aria-hidden="true" />
+            </a>
+            <a href={emailHref}>
+              <Mail aria-hidden="true" />
+              <span><strong>E-Mail schreiben</strong><small>mail@perlas.de</small></span>
+              <ArrowUpRight aria-hidden="true" />
+            </a>
+            <a href={CONTACT_PATH}>
+              <MessageCircle aria-hidden="true" />
+              <span><strong>Allgemeiner Kontakt</strong><small>Zur Kontaktseite</small></span>
+              <ArrowUpRight aria-hidden="true" />
+            </a>
+          </div>
         </div>
-        <div className="service-contact-options" aria-label="Alternative Kontaktwege">
-          <a href="tel:+491776867145">
-            <Phone aria-hidden="true" />
-            <span><strong>Direkt anrufen</strong><small>0177 68 67 145</small></span>
-            <ArrowUpRight aria-hidden="true" />
-          </a>
-          <a href={emailHref}>
-            <Mail aria-hidden="true" />
-            <span><strong>E-Mail schreiben</strong><small>mail@perlas.de</small></span>
-            <ArrowUpRight aria-hidden="true" />
-          </a>
-          <a href={CONTACT_PATH}>
-            <MessageCircle aria-hidden="true" />
-            <span><strong>Allgemeiner Kontakt</strong><small>Zur Kontaktseite</small></span>
-            <ArrowUpRight aria-hidden="true" />
-          </a>
-        </div>
+        <ServiceContactForm service={service} />
       </section>
 
       <section className="service-more" data-reveal="up">
@@ -1756,7 +1903,7 @@ function ClosingContact({ onQuoteOpen }: { onQuoteOpen: () => void }) {
         <p>Stellen Sie Ihre Anfrage zusammen oder sprechen Sie direkt mit uns.</p>
         <button className="button button--yellow" type="button" onClick={onQuoteOpen}>
           <span>Angebot anfragen</span>
-          <img src={`${A}arrow.svg`} alt="" />
+          <img src={`${A}arrow-white.svg`} alt="" />
         </button>
         <a className="closing-contact-link" href="tel:+491776867145"><Phone aria-hidden="true" /> 0177 68 67 145</a>
         <a className="closing-contact-link" href="mailto:mail@perlas.de"><Mail aria-hidden="true" /> mail@perlas.de</a>
@@ -1788,6 +1935,73 @@ function Insights() {
   )
 }
 
+type LegalPageType = 'imprint' | 'privacy'
+
+function LegalPage({ type }: { type: LegalPageType }) {
+  const isImprint = type === 'imprint'
+
+  return (
+    <main className="legal-page">
+      <section className="legal-hero">
+        <PageBreadcrumb current={isImprint ? 'Impressum' : 'Datenschutz'} />
+        <span className="eyebrow">Rechtliche Informationen</span>
+        <h1>{isImprint ? 'Impressum' : <>Datenschutz<wbr />erklärung</>}</h1>
+        <p>{isImprint ? 'Angaben zum Anbieter dieser Website.' : 'Informationen zum Umgang mit personenbezogenen Daten auf dieser Website.'}</p>
+      </section>
+
+      <section className="legal-content">
+        <aside>
+          <strong>Vorläufiger Platzhalter</strong>
+          <p>Diese Seite ist strukturell vorbereitet, aber noch nicht abschließend rechtlich geprüft. Fehlende Pflichtangaben müssen vor dem finalen Livegang ergänzt werden.</p>
+        </aside>
+        {isImprint ? (
+          <div className="legal-copy">
+            <section>
+              <h2>Angaben gemäß § 5 DDG</h2>
+              <p>Perla’s Objektbetreuung GmbH &amp; Co. KG<br />Hauptstraße 1<br />65843 Sulzbach (Taunus)<br />Deutschland</p>
+            </section>
+            <section>
+              <h2>Vertretung und Register</h2>
+              <p>Vertretungsberechtigte Person: <strong>[wird ergänzt]</strong><br />Registergericht: <strong>[wird ergänzt]</strong><br />Registernummer: <strong>[wird ergänzt]</strong><br />Umsatzsteuer-ID: <strong>[wird ergänzt]</strong></p>
+            </section>
+            <section>
+              <h2>Kontakt</h2>
+              <p>Telefon: <a href="tel:+491776867145">0177 68 67 145</a><br />E-Mail: <a href="mailto:mail@perlas.de">mail@perlas.de</a></p>
+            </section>
+            <section>
+              <h2>Verantwortlich für Inhalte</h2>
+              <p>Verantwortliche Person nach § 18 Abs. 2 MStV: <strong>[wird ergänzt]</strong></p>
+            </section>
+          </div>
+        ) : (
+          <div className="legal-copy">
+            <section>
+              <h2>1. Verantwortliche Stelle</h2>
+              <p>Perla’s Objektbetreuung GmbH &amp; Co. KG<br />Hauptstraße 1, 65843 Sulzbach (Taunus)<br />E-Mail: <a href="mailto:mail@perlas.de">mail@perlas.de</a></p>
+            </section>
+            <section>
+              <h2>2. Daten beim Besuch der Website</h2>
+              <p>Beim Aufruf der Website können technisch notwendige Verbindungsdaten in Server-Protokollen verarbeitet werden. Welche Daten der künftige Hostinganbieter konkret speichert und wie lange sie aufbewahrt werden, wird nach der finalen Hostingentscheidung ergänzt.</p>
+            </section>
+            <section>
+              <h2>3. Kontaktaufnahme und Formulare</h2>
+              <p>Angaben aus Kontakt- und Angebotsanfragen werden ausschließlich verwendet, um die jeweilige Anfrage zu bearbeiten. Das Direktformular auf den Leistungsseiten bereitet derzeit eine E-Mail im E-Mail-Programm des Nutzers vor.</p>
+            </section>
+            <section>
+              <h2>4. Cookies und Einwilligungen</h2>
+              <p>Das Cookie-Banner ermöglicht die Auswahl technisch erforderlicher und optionaler Funktionen. Eine abschließende Auflistung aller eingesetzten Dienste, Speicherdauern und Rechtsgrundlagen wird vor dem Produktivbetrieb ergänzt.</p>
+            </section>
+            <section>
+              <h2>5. Ihre Rechte</h2>
+              <p>Betroffene Personen können im Rahmen der gesetzlichen Voraussetzungen Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung und Datenübertragbarkeit verlangen sowie erteilte Einwilligungen widerrufen. Die zuständige Aufsichtsbehörde wird in der finalen Fassung benannt.</p>
+            </section>
+          </div>
+        )}
+      </section>
+    </main>
+  )
+}
+
 function Footer() {
   return (
     <footer className="footer" id="seitenende">
@@ -1804,8 +2018,8 @@ function Footer() {
             Wohnanlagen, Gewerbeimmobilien und institutionelle Gebäude im Rhein-Main-Gebiet.
           </p>
           <div className="legal-links">
-            <a href="https://perlas.de/impressum/">Impressum</a>
-            <a href="https://perlas.de/datenschutz/">Datenschutz</a>
+            <a href={IMPRINT_PATH}>Impressum</a>
+            <a href={PRIVACY_PATH}>Datenschutz</a>
             <button type="button" onClick={() => window.dispatchEvent(new Event('perlas:open-cookie-settings'))}>
               Cookie-Einstellungen
             </button>
@@ -1861,6 +2075,8 @@ export default function App() {
   const isFacilityPage = /^\/facility-management\/?$/.test(pagePath)
   const isServicesPage = /^\/leistungen\/?$/.test(pagePath)
   const isAboutPage = /^\/ueber-uns\/?$/.test(pagePath)
+  const isImprintPage = /^\/impressum\/?$/.test(pagePath)
+  const isPrivacyPage = /^\/datenschutz\/?$/.test(pagePath)
   const serviceSlug = pagePath.match(/^\/leistungen\/([^/]+)\/?$/)?.[1]
   const activeService = features.find((service) => service.slug === serviceSlug)
   const pageKind: PageKind = isContactPage
@@ -1871,6 +2087,10 @@ export default function App() {
         ? 'services'
         : isAboutPage
           ? 'about'
+          : isImprintPage
+            ? 'imprint'
+            : isPrivacyPage
+              ? 'privacy'
           : 'home'
 
   usePageSeo(activeService, pageKind)
@@ -1885,7 +2105,7 @@ export default function App() {
 
   return (
     <>
-      <Header />
+      <Header onQuoteOpen={() => openQuote()} />
       {activeService ? (
         <ServiceDetailPage service={activeService} onQuoteOpen={openQuote} />
       ) : isContactPage ? (
@@ -1896,10 +2116,15 @@ export default function App() {
         <ServicesOverviewPage onQuoteOpen={() => openQuote()} />
       ) : isAboutPage ? (
         <AboutPage onQuoteOpen={() => openQuote()} />
+      ) : isImprintPage ? (
+        <LegalPage type="imprint" />
+      ) : isPrivacyPage ? (
+        <LegalPage type="privacy" />
       ) : (
         <main>
           <Hero />
           <HomeOverview />
+          <HomeCoreServices />
           <PartnerMarquee />
           <HomeTrust />
           <HomeContactTeaser onQuoteOpen={() => openQuote()} />
