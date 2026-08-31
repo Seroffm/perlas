@@ -51,7 +51,7 @@
       { "title": "Sie sehen, was am Objekt passiert", "text": "Kurze Berichte und Fotos zeigen auch aus der Entfernung, was erledigt wurde und was noch ansteht." }
     ],
     "audiences": ["Professionell verwaltete Wohnanlagen und Mehrfamilienhausbestände", "Büro-, Praxis- und Gewerbeimmobilien", "Größere und gemischt genutzte Immobilien"],
-    "boundaryTitle": "Sie wissen vorher, was wir übernehmen",
+    "boundaryTitle": "Leistungsumfang klar festgelegt",
     "boundaryText": "Im Leistungsplan stehen die betreuten Bereiche und Aufgaben. Arbeiten, für die eine besondere Zulassung oder ein Fachbetrieb erforderlich ist, führen wir nicht selbst aus. Auf Wunsch organisieren wir den Zugang und begleiten den Termin am Objekt.",
     "relatedServices": ["wartung-instandhaltung", "gebaeudereinigung", "gartenpflege"],
     "faqs": [
@@ -113,7 +113,7 @@
       { "title": "Die Verwaltung behält den Überblick", "text": "Erledigte Arbeiten und offene Punkte werden nicht nur mündlich weitergegeben, sondern verständlich dokumentiert." }
     ],
     "audiences": ["Hausverwaltungen und Wohnungseigentümergemeinschaften", "Gewerbe-, Büro- und Praxisimmobilien", "Verwaltete Wohnanlagen und Mehrfamilienhausbestände"],
-    "boundaryTitle": "Was wir selbst erledigen können",
+    "boundaryTitle": "Was wir selbst erledigen",
     "boundaryText": "Perla’s übernimmt kleine Reparaturen und Sichtkontrollen aus dem Hausmeisterbereich. Elektroarbeiten, Arbeiten an Heizungsanlagen, Brandschutzprüfungen und andere zulassungspflichtige Tätigkeiten bleiben qualifizierten Fachbetrieben vorbehalten. Wir können deren Einsatz vorbereiten und am Objekt begleiten.",
     "relatedServices": ["objektpflege", "gebaeudereinigung", "wohnungswechsel"],
     "faqs": [
@@ -175,7 +175,7 @@
       { "title": "Rückmeldungen werden direkt bearbeitet", "text": "Der Ansprechpartner nimmt Hinweise auf, prüft den betroffenen Bereich und bespricht eine notwendige Nacharbeit oder Anpassung." }
     ],
     "audiences": ["Größere Wohnanlagen und Gemeinschaftsflächen", "Bürogebäude, Praxen und institutionelle Gebäude", "Gewerbeflächen, Tiefgaragen und Parkbereiche"],
-    "boundaryTitle": "Der Reinigungsumfang steht vor dem Start fest",
+    "boundaryTitle": "Reinigungsumfang vorab klären",
     "boundaryText": "Vor Beginn erfassen wir Materialien, Zugänge, Reinigungszeiten und den gewünschten Umfang. Diese Angaben stehen im Leistungsverzeichnis. Bei einer Rückmeldung sehen wir uns den betroffenen Bereich an und besprechen, ob eine Nacharbeit oder eine Änderung des Ablaufs nötig ist. Spezialverfahren, große Höhen und besondere Verschmutzungen prüfen wir separat.",
     "relatedServices": ["objektpflege", "wartung-instandhaltung", "wohnungswechsel"],
     "faqs": [
@@ -237,7 +237,7 @@
       { "title": "Saisonwechsel werden planbarer", "text": "Frühjahrsarbeiten, Laubzeit und die Vorbereitung auf den Winter lassen sich frühzeitig einplanen." }
     ],
     "audiences": ["Wohnanlagen und gemeinschaftliche Außenflächen", "Firmengelände, Unternehmensstandorte und Parkflächen", "Außenanlagen institutioneller Gebäude"],
-    "boundaryTitle": "Pflegearbeiten und Zusatzaufgaben sauber trennen",
+    "boundaryTitle": "Pflege und Zusatzaufgaben trennen",
     "boundaryText": "Flächen, Entsorgung und Intervalle werden im Angebot konkret beschrieben. Große Baumarbeiten, Fällungen oder Maßnahmen mit besonderer Technik prüfen wir separat. Wenn nötig, kann ein geeigneter Fachbetrieb eingebunden werden.",
     "relatedServices": ["objektpflege", "winterdienst", "gebaeudereinigung"],
     "faqs": [
@@ -299,7 +299,7 @@
       { "title": "Rückfragen lassen sich schnell klären", "text": "Zeitpunkt und bearbeitete Bereiche werden nach dem Einsatz festgehalten." }
     ],
     "audiences": ["WEG- und Mietwohnanlagen", "Büro-, Praxis- und Gewerbeimmobilien", "Unternehmensstandorte und institutionelle Gebäude"],
-    "boundaryTitle": "Welche Flächen zum Auftrag gehören",
+    "boundaryTitle": "Flächen im Auftrag festlegen",
     "boundaryText": "Vor Saisonbeginn erfassen wir gemeinsam alle zu betreuenden Flächen. Im Auftrag stehen Wege, Eingänge, Zufahrten, Prioritäten und Einsatzbedingungen. Flächen, die bei der Aufnahme nicht berücksichtigt wurden, gehören nicht automatisch dazu.",
     "relatedServices": ["objektpflege", "gartenpflege", "gebaeudereinigung"],
     "faqs": [
@@ -361,7 +361,7 @@
       { "title": "Die Räume sind für die Übergabe vorbereitet", "text": "Nach Abschluss sehen Sie, was erledigt wurde und welche Arbeiten vor Übergabe oder Neuvermietung noch ausstehen." }
     ],
     "audiences": ["Hausverwaltungen und Immobilieneigentümer", "Wohnungs- und Gewerbewechsel", "Büros, Praxen und verwaltete Gewerbeflächen"],
-    "boundaryTitle": "Was vor der Räumung geprüft werden muss",
+    "boundaryTitle": "Vor der Räumung prüfen",
     "boundaryText": "Vor dem Angebot sehen wir uns Räume, Transportwege und die zu entfernenden Gegenstände an. Gefährliche Stoffe, besonders schwere Gegenstände und außergewöhnliche Transporte benötigen eine gesonderte Prüfung. Falls nötig, muss dafür ein spezialisierter Betrieb eingesetzt werden.",
     "relatedServices": ["gebaeudereinigung", "wartung-instandhaltung", "objektpflege"],
     "faqs": [

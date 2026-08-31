@@ -72,8 +72,8 @@ Service-Icons und Leistungsversprechen werden mit warmen Fotografien des Teams, 
 
 | Stil | Desktop | Einsatz |
 |---|---|---|
-| Display | `60 / 75 px`, `800`, `-1.2 px` | Hero und große Editorial-Headline |
-| Section heading | `36 / 45 px`, `800`, `-0.72 px` | Hauptüberschriften von Sektionen |
+| Display | `60 / 75 px`, `800`, `-1.2 px` | Hero-Headline |
+| Section heading | `34–42 / 38–47 px`, `800`, `-0.8 px` | Hauptüberschriften von Sektionen; mobil `28–30 px` |
 | Card heading | `23 / 30 px`, `800`, `-0.48 px` | Karten, Feature- und Footer-Titel |
 | UI heading | `19 / 25 px`, `800`, `-0.4 px` | Navigation, Feature-Namen, große Buttons |
 | Lead body | `20 / 30 px`, `400` | Hero- und About-Text |
@@ -83,7 +83,7 @@ Service-Icons und Leistungsversprechen werden mit warmen Fotografien des Teams, 
 
 ### Typografische Regeln
 
-- Headlines dürfen bewusst auf zwei oder drei Zeilen umbrechen.
+- Sektionstitel bleiben kurz und brechen idealerweise auf höchstens zwei Zeilen um. Nur Hero-Headlines dürfen länger sein.
 - Überschriften sind kompakt, Fließtexte deutlich luftiger.
 - Textblöcke bleiben relativ schmal; gute Lesbarkeit ist wichtiger als maximale Flächennutzung.
 - Buttons und Navigation verwenden immer den schweren Schriftschnitt.
@@ -377,7 +377,7 @@ transition-timing-function: ease;
 2. Wähle eine Bühne: Weiß, Primärblau oder Sekundärblau.
 3. Nutze einen bestehenden Container: `1248`, `1056` oder `840 px`.
 4. Beginne desktop mit `84 px` oberem Abstand.
-5. Verwende eine Section-Headline mit `36 / 45 px` oder eine Display-Headline mit `60 / 75 px`.
+5. Verwende eine kompakte Section-Headline zwischen `34` und `42 px`; nur der Hero nutzt eine größere Display-Headline.
 6. Ergänze genau einen dominanten visuellen Akzent: Foto, Kartenreihe, Icon-Raster oder große CTA-Fläche.
 7. Nutze bestehende Button- und Kartenvarianten, statt neue Formen einzuführen.
 8. Prüfe anschließend Kontrast, Textlänge, mobile Stapelung und Fokuszustände.

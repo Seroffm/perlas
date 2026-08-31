@@ -7684,3 +7684,91 @@ p {
 .closing-contact-link:focus-visible {
   border-color: #fff;
 }
+
+/* Compact section typography across the complete site architecture. */
+.seo-static-main h2,
+.facility-copy h2,
+.audience-heading h2,
+.closing-contact-copy h2,
+.insights > h2,
+.fm-section-heading h2,
+.fm-complex-copy h2,
+.contact-section-heading h2,
+.contact-location-copy h2,
+.home-section-heading h2,
+.architecture-section-heading h2,
+.home-trust-copy h2,
+.architecture-bridge h2,
+.about-story h2 {
+  font-size: clamp(34px, 3vw, 42px);
+  line-height: 1.12;
+  letter-spacing: -0.8px;
+}
+
+.reviews > h2,
+.about-copy h2,
+.features-heading h2 {
+  font-size: clamp(30px, 2.5vw, 34px);
+  line-height: 1.18;
+  letter-spacing: -0.6px;
+}
+
+.service-section-heading h2,
+.service-fit h2,
+.service-boundary h2,
+.service-more h2,
+.service-contact h2 {
+  font-size: clamp(32px, 2.8vw, 36px);
+  line-height: 1.14;
+  letter-spacing: -0.7px;
+}
+
+.fm-cta h2,
+.home-contact-teaser h2,
+.architecture-cta h2 {
+  font-size: clamp(30px, 2.6vw, 34px);
+  line-height: 1.14;
+  letter-spacing: -0.6px;
+}
+
+@media (max-width: 760px) {
+  .seo-static-main h2,
+  .facility-copy h2,
+  .audience-heading h2,
+  .closing-contact-copy h2,
+  .insights > h2,
+  .fm-section-heading h2,
+  .fm-complex-copy h2,
+  .contact-section-heading h2,
+  .contact-location-copy h2,
+  .home-section-heading h2,
+  .architecture-section-heading h2,
+  .home-trust-copy h2,
+  .architecture-bridge h2,
+  .about-story h2 {
+    font-size: 30px;
+    line-height: 1.16;
+    letter-spacing: -0.55px;
+  }
+
+  .reviews > h2,
+  .about-copy h2,
+  .features-heading h2,
+  .fm-cta h2,
+  .home-contact-teaser h2,
+  .architecture-cta h2 {
+    font-size: 28px;
+    line-height: 1.18;
+    letter-spacing: -0.45px;
+  }
+
+  .service-section-heading h2,
+  .service-fit h2,
+  .service-boundary h2,
+  .service-more h2,
+  .service-contact h2 {
+    font-size: 30px;
+    line-height: 1.16;
+    letter-spacing: -0.55px;
+  }
+}

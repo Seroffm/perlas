@@ -147,7 +147,7 @@ export default function ContactPage({ onQuoteOpen }: ContactPageProps) {
       <section className="contact-channels" aria-labelledby="contact-channels-heading">
         <div className="contact-section-heading" data-reveal="up">
           <span className="eyebrow">Ihr direkter Weg zu Perla’s</span>
-          <h2 id="contact-channels-heading">Wählen Sie den Kontaktweg, der für Sie passt.</h2>
+          <h2 id="contact-channels-heading">So erreichen Sie uns.</h2>
           <p>Für eine erste Abstimmung benötigen wir nur wenige Angaben zu Objekt, Standort und gewünschter Betreuung.</p>
         </div>
         <div className="contact-channel-grid" data-reveal="up" style={{ '--reveal-delay': '80ms' } as CSSProperties}>
@@ -177,7 +177,7 @@ export default function ContactPage({ onQuoteOpen }: ContactPageProps) {
       <section className="contact-location" aria-labelledby="contact-location-heading">
         <div className="contact-location-copy" data-reveal="left">
           <span className="eyebrow">Standort &amp; Einsatzgebiet</span>
-          <h2 id="contact-location-heading">Von Sulzbach aus im Rhein-Main-Gebiet für Sie da.</h2>
+          <h2 id="contact-location-heading">Im Rhein-Main-Gebiet für Sie da.</h2>
           <p>
             Perla’s sitzt in Sulzbach (Taunus). Von hier koordinieren wir die laufende Betreuung
             von Wohnanlagen, Gewerbeimmobilien und institutionellen Gebäuden im Rhein-Main-Gebiet.

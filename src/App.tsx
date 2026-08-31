@@ -884,7 +884,7 @@ function HomeOverview() {
     <section className="home-overview" aria-labelledby="home-overview-heading">
       <div className="home-section-heading" data-reveal="up">
         <span className="eyebrow">Perla’s im Überblick</span>
-        <h2 id="home-overview-heading">Der passende Einstieg für Ihr Objekt.</h2>
+        <h2 id="home-overview-heading">Der passende Weg für Ihr Objekt.</h2>
         <p>Von der ganzheitlichen Betreuung bis zur einzelnen Leistung: Wählen Sie den Bereich, der zu Ihrem Bedarf passt.</p>
       </div>
       <div className="home-path-grid">
@@ -926,7 +926,7 @@ function HomeTrust() {
     <section className="home-trust" aria-labelledby="home-trust-heading">
       <div className="home-trust-copy" data-reveal="left">
         <span className="eyebrow">Verlässlich im laufenden Betrieb</span>
-        <h2 id="home-trust-heading">Erfahrung, klare Abläufe und ein fester Ansprechpartner.</h2>
+        <h2 id="home-trust-heading">Erfahrung und klare Abläufe.</h2>
         <p>Perla’s schafft Übersicht über wiederkehrende Aufgaben und hält Rückmeldungen zu Zustand, Leistung und Handlungsbedarf an einer Stelle zusammen.</p>
         <ButtonLink href={ABOUT_PATH} kind="outline-light" arrow>Mehr über Perla’s</ButtonLink>
       </div>
@@ -944,7 +944,7 @@ function HomeContactTeaser({ onQuoteOpen }: { onQuoteOpen: () => void }) {
     <section className="home-contact-teaser" data-reveal="up">
       <div>
         <span className="eyebrow">Nächster Schritt</span>
-        <h2>Welche Betreuung braucht Ihre Immobilie?</h2>
+        <h2>Was braucht Ihre Immobilie?</h2>
         <p>Wir besprechen Objekt, Nutzung und laufende Aufgaben und leiten daraus einen passenden Leistungsumfang ab.</p>
       </div>
       <div className="home-contact-actions">
@@ -980,7 +980,7 @@ function ServicesOverviewPage({ onQuoteOpen }: { onQuoteOpen: () => void }) {
       <section className="services-catalog" aria-labelledby="services-catalog-heading">
         <div className="architecture-section-heading" data-reveal="up">
           <span className="eyebrow">Leistungsübersicht</span>
-          <h2 id="services-catalog-heading">Bestehende Leistungen im Detail.</h2>
+          <h2 id="services-catalog-heading">Unsere Leistungen im Überblick.</h2>
           <p>Jede Leistung führt zu einer eigenen Seite mit Leistungsumfang, Ablauf, Einsatzbereichen und klarer fachlicher Einordnung.</p>
         </div>
         <div className="services-catalog-grid">
@@ -1000,14 +1000,14 @@ function ServicesOverviewPage({ onQuoteOpen }: { onQuoteOpen: () => void }) {
       <section className="architecture-bridge" data-reveal="up">
         <div>
           <span className="eyebrow">Mehrere Leistungen verbinden</span>
-          <h2>Wenn aus Einzelleistungen Facility Management wird.</h2>
+          <h2>Leistungen sinnvoll verbinden.</h2>
           <p>Bei größeren oder professionell verwalteten Immobilien lassen sich Leistungen, Intervalle, Zuständigkeiten und Rückmeldungen in einem Betreuungskonzept bündeln.</p>
         </div>
         <ButtonLink href={FACILITY_PATH} kind="outline-light" arrow>Facility Management ansehen</ButtonLink>
       </section>
 
       <section className="architecture-cta" data-reveal="up">
-        <div><span className="eyebrow">Individuell abstimmen</span><h2>Welche Leistungen passen zu Ihrem Objekt?</h2></div>
+        <div><span className="eyebrow">Individuell abstimmen</span><h2>Was passt zu Ihrem Objekt?</h2></div>
         <button className="button button--yellow" type="button" onClick={onQuoteOpen}><span>Angebot anfragen</span><img src={`${A}arrow.svg`} alt="" /></button>
       </section>
     </main>
@@ -1044,7 +1044,7 @@ function AboutPage({ onQuoteOpen }: { onQuoteOpen: () => void }) {
       <section className="about-story" aria-labelledby="about-story-heading">
         <div data-reveal="left">
           <span className="eyebrow">Unser Anspruch</span>
-          <h2 id="about-story-heading">Immobilienbetreuung braucht Übersicht und Verbindlichkeit.</h2>
+          <h2 id="about-story-heading">Übersicht schafft Verbindlichkeit.</h2>
         </div>
         <div data-reveal="right" style={{ '--reveal-delay': '70ms' } as CSSProperties}>
           <p>Seit 1999 ist Perla’s im Rhein-Main-Gebiet tätig. Aus der klassischen Objektbetreuung ist ein Angebot entstanden, das einzelne Facility Services sinnvoll miteinander verbindet.</p>
@@ -1056,7 +1056,7 @@ function AboutPage({ onQuoteOpen }: { onQuoteOpen: () => void }) {
       <section className="about-values" aria-labelledby="about-values-heading">
         <div className="architecture-section-heading" data-reveal="up">
           <span className="eyebrow">Wofür wir stehen</span>
-          <h2 id="about-values-heading">Grundsätze für die laufende Zusammenarbeit.</h2>
+          <h2 id="about-values-heading">So arbeiten wir zusammen.</h2>
         </div>
         <div className="about-values-grid">
           {values.map(([Icon, title, text], index) => (
@@ -1070,7 +1070,7 @@ function AboutPage({ onQuoteOpen }: { onQuoteOpen: () => void }) {
       <section className="about-method" aria-labelledby="about-method-heading">
         <div className="architecture-section-heading" data-reveal="left">
           <span className="eyebrow">So arbeiten wir</span>
-          <h2 id="about-method-heading">Vom Objektbedarf zum klaren Ablauf.</h2>
+          <h2 id="about-method-heading">Vom Bedarf zum klaren Ablauf.</h2>
         </div>
         <ol data-reveal="right">
           <li><span>01</span><div><strong>Objekt verstehen</strong><p>Flächen, Nutzung, Zugänge und laufende Aufgaben werden gemeinsam betrachtet.</p></div></li>
@@ -1080,7 +1080,7 @@ function AboutPage({ onQuoteOpen }: { onQuoteOpen: () => void }) {
       </section>
 
       <section className="architecture-cta" data-reveal="up">
-        <div><span className="eyebrow">Direkter Austausch</span><h2>Lassen Sie uns über Ihr Objekt sprechen.</h2></div>
+        <div><span className="eyebrow">Direkter Austausch</span><h2>Sprechen wir über Ihr Objekt.</h2></div>
         <button className="button button--yellow" type="button" onClick={onQuoteOpen}><span>Angebot anfragen</span><img src={`${A}arrow.svg`} alt="" /></button>
       </section>
     </main>
@@ -1092,7 +1092,7 @@ function FacilityOverview() {
     <section className="facility-overview" id="facility-services" aria-labelledby="facility-heading">
       <div className="facility-copy" data-reveal="left">
         <span className="eyebrow">Facility Management</span>
-        <h2 id="facility-heading">Mehrere Leistungen. Ein abgestimmtes Betreuungskonzept.</h2>
+        <h2 id="facility-heading">Mehrere Leistungen. Ein klares Konzept.</h2>
         <p>
           Perla’s verbindet Objektbetreuung, Reinigung, Wartung, Außenanlagenpflege und
           Winterdienst zu einem objektbezogenen Leistungsplan. So werden mehrere laufende Aufgaben
@@ -1179,7 +1179,7 @@ function AudienceSolutions() {
     <section className="audience-solutions" id="objekte" aria-labelledby="audience-heading">
       <div className="audience-heading" data-reveal="up">
         <span className="eyebrow">Facility Management nach Zielgruppe</span>
-        <h2 id="audience-heading">Betreuung passend zu Bestand, Nutzung und Organisation.</h2>
+        <h2 id="audience-heading">Betreuung, die zum Objekt passt.</h2>
         <p>
           Auf der Facility-Management-Seite finden Hausverwaltungen und gewerbliche Auftraggeber
           die passende Einordnung für ihre Objekte – mit den jeweils relevanten Leistungen.
@@ -1264,7 +1264,7 @@ function FacilityManagementPage({ onQuoteOpen }: { onQuoteOpen: () => void }) {
       <section className="fm-principles" aria-labelledby="fm-principles-heading">
         <div className="fm-section-heading" data-reveal="up">
           <span className="eyebrow">Was Facility Management bei Perla’s bedeutet</span>
-          <h2 id="fm-principles-heading">Erst das Objekt verstehen. Dann Leistungen sinnvoll verbinden.</h2>
+          <h2 id="fm-principles-heading">Objekt verstehen. Leistungen verbinden.</h2>
           <p>
             Ausgangspunkt ist nicht eine einzelne Tätigkeit, sondern der laufende Bedarf der
             Immobilie. Daraus entstehen abgestimmte Aufgaben, Intervalle und Zuständigkeiten.
@@ -1299,7 +1299,7 @@ function FacilityManagementPage({ onQuoteOpen }: { onQuoteOpen: () => void }) {
       <section className="fm-targets" id="zielgruppen" aria-labelledby="fm-targets-heading">
         <div className="fm-section-heading" data-reveal="up">
           <span className="eyebrow">Objekte &amp; Auftraggeber</span>
-          <h2 id="fm-targets-heading">Facility Management nach Nutzung und Organisationsform.</h2>
+          <h2 id="fm-targets-heading">Facility Management nach Nutzung.</h2>
           <p>
             Wählen Sie den Bereich, der Ihrem Bestand am nächsten kommt. Verlinkt sind jeweils
             ausschließlich Leistungen, für die bereits eine eigene Detailseite vorhanden ist.
@@ -1353,7 +1353,7 @@ function FacilityManagementPage({ onQuoteOpen }: { onQuoteOpen: () => void }) {
       <section className="fm-complex" aria-labelledby="fm-complex-heading">
         <div className="fm-complex-copy" data-reveal="left">
           <span className="eyebrow">Größere &amp; komplexere Objekte</span>
-          <h2 id="fm-complex-heading">Auch viele Teilbereiche bleiben als Gesamtablauf steuerbar.</h2>
+          <h2 id="fm-complex-heading">Komplexe Abläufe klar steuern.</h2>
           <p>
             Bei umfangreicheren Immobilienbeständen werden wiederkehrende Aufgaben nach Flächen,
             Nutzung und Zuständigkeit gegliedert. So bleibt erkennbar, was regelmäßig betreut,
@@ -1376,7 +1376,7 @@ function FacilityManagementPage({ onQuoteOpen }: { onQuoteOpen: () => void }) {
       <section className="fm-cta" data-reveal="up">
         <div>
           <span className="eyebrow">Nächster Schritt</span>
-          <h2>Welche Betreuung braucht Ihr Objekt?</h2>
+          <h2>Was braucht Ihr Objekt?</h2>
           <p>Wir erfassen Immobilie, Nutzung und laufende Aufgaben und besprechen daraus einen passenden Leistungsumfang.</p>
         </div>
         <div className="fm-cta-actions">
@@ -1438,7 +1438,7 @@ function Reviews() {
 
   return (
     <section className="reviews" aria-labelledby="reviews-heading">
-      <h2 id="reviews-heading" data-reveal="up">Was unsere Kunden über die Zusammenarbeit sagen</h2>
+      <h2 id="reviews-heading" data-reveal="up">Was unsere Kunden sagen</h2>
       <div className="review-controls" role="group" aria-label="Bewertungen durchblättern" data-reveal="right">
         <button
           className="review-control"
@@ -1493,7 +1493,7 @@ function About() {
   return (
     <section className="about" id="ueber-uns">
       <div className="about-copy" data-reveal="left">
-        <h2>Ein Ansprechpartner für den laufenden Betrieb Ihrer Immobilien.</h2>
+        <h2>Ein Ansprechpartner für Ihre Immobilie.</h2>
         <p>
           Perla’s ist seit 1999 im Rhein-Main-Gebiet tätig. Wir erfassen Aufgaben vor Ort, planen
           wiederkehrende Einsätze und koordinieren bei Bedarf weitere Dienstleister. Verwaltungen
@@ -1517,7 +1517,7 @@ function FeatureSection({ onQuoteOpen }: { onQuoteOpen: (service?: string) => vo
     <section className="features" id="leistungen" aria-labelledby="features-heading">
       <div className="features-heading" data-reveal="up">
         <span className="eyebrow">Kernleistungen</span>
-        <h2 id="features-heading">Einzelleistungen für die laufende Immobilienbetreuung.</h2>
+        <h2 id="features-heading">Leistungen für Ihre Immobilie.</h2>
         <p>Diese fünf Leistungen stehen bei der regelmäßigen Betreuung größerer und professionell verwalteter Objekte im Vordergrund.</p>
       </div>
       <div className="feature-panel" data-reveal="scale" style={{ '--reveal-delay': '100ms' } as CSSProperties}>
@@ -1599,8 +1599,8 @@ function ServiceDetailPage({ service, onQuoteOpen }: { service: Feature; onQuote
 
       <section className="service-overview" aria-labelledby="service-overview-heading">
         <div className="service-section-heading" data-reveal="left">
-          <span className="eyebrow">Leistungsumfang</span>
-          <h2 id="service-overview-heading">Was wir bei {service.title} konkret übernehmen.</h2>
+          <span className="eyebrow">{service.title}</span>
+          <h2 id="service-overview-heading">Leistung im Überblick.</h2>
           <p>{service.scopeIntro}</p>
         </div>
         <div className="service-scope-grid" data-reveal="right" style={{ '--reveal-delay': '80ms' } as CSSProperties}>
@@ -1620,7 +1620,7 @@ function ServiceDetailPage({ service, onQuoteOpen }: { service: Feature; onQuote
       <section className="service-fit" aria-labelledby="service-fit-heading">
         <div className="service-fit-copy" data-reveal="left">
           <span className="eyebrow">Geeignete Objekte</span>
-          <h2 id="service-fit-heading">Für diese Objekte bieten wir die Leistung an.</h2>
+          <h2 id="service-fit-heading">Passend für diese Objekte.</h2>
           <ul className="service-audience-list">
             {service.audiences.map((audience) => (
               <li key={audience}><CheckCircle2 aria-hidden="true" /> {audience}</li>
@@ -1667,8 +1667,8 @@ function ServiceDetailPage({ service, onQuoteOpen }: { service: Feature; onQuote
 
       <section className="service-faq" aria-labelledby="service-faq-heading">
         <div className="service-section-heading" data-reveal="left">
-          <span className="eyebrow">Häufige Fragen</span>
-          <h2 id="service-faq-heading">Häufige Fragen zu {service.title}.</h2>
+          <span className="eyebrow">Gut zu wissen</span>
+          <h2 id="service-faq-heading">Häufige Fragen.</h2>
           <p>Antworten zu Leistungsumfang, Ablauf und Einsatzgebiet.</p>
         </div>
         <div className="service-faq-list" data-reveal="right" style={{ '--reveal-delay': '80ms' } as CSSProperties}>
@@ -1684,7 +1684,7 @@ function ServiceDetailPage({ service, onQuoteOpen }: { service: Feature; onQuote
       <section className="service-contact" aria-labelledby="service-contact-heading" data-reveal="up">
         <div className="service-contact-primary">
           <span className="eyebrow">Ihr nächster Schritt</span>
-          <h2 id="service-contact-heading">Lassen Sie uns kurz über Ihr Objekt sprechen.</h2>
+          <h2 id="service-contact-heading">Sprechen wir über Ihr Objekt.</h2>
           <p>Sie entscheiden, wie Sie Kontakt aufnehmen möchten. Das Angebotsformular führt strukturiert durch die wichtigsten Angaben. Genauso gern können Sie direkt anrufen oder eine kurze Nachricht schreiben.</p>
           <button className="button button--yellow" type="button" onClick={() => onQuoteOpen(service.title)}>
             <span>Angebot für {service.title} anfragen</span>
@@ -1712,7 +1712,7 @@ function ServiceDetailPage({ service, onQuoteOpen }: { service: Feature; onQuote
 
       <section className="service-more" data-reveal="up">
         <span className="eyebrow">Passende Leistungen</span>
-        <h2>Diese Leistungen könnten ebenfalls relevant sein.</h2>
+        <h2>Passende Leistungen für Ihr Objekt.</h2>
         <p>Je nach Immobilie können diese drei Leistungen {service.title} ergänzen.</p>
         <div>
           {relatedServices.map((item) => {
@@ -1739,7 +1739,7 @@ function ClosingContact({ onQuoteOpen }: { onQuoteOpen: () => void }) {
     <section className="closing-contact" id="ablauf">
       <div className="closing-contact-copy" data-reveal="left">
         <span className="eyebrow">Betreuungskonzept</span>
-        <h2>Leistungen und Intervalle für Ihren Immobilienbestand.</h2>
+        <h2>Leistungen passend zu Ihrem Bestand.</h2>
         <p>
           Bei einer Begehung erfassen wir Objekt, Nutzung und Aufgaben. Daraus entsteht ein
           verständlicher Leistungsplan mit Zuständigkeiten, Intervallen und Ansprechpartnern.
