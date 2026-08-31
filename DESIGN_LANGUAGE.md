@@ -4,12 +4,11 @@
 
 Die Designsprache lässt sich als **„Friendly Reliability“** beschreiben: professionell und vertrauenswürdig, aber nicht distanziert; aufmerksamkeitsstark, aber nicht laut; modern in Form und Farbe, aber klar in der Bedienung.
 
-Die visuelle Spannung entsteht aus vier Gegensätzen:
+Die visuelle Spannung entsteht aus einer bewusst reduzierten Markenpalette:
 
-- Dunkles Navy vermittelt Verlässlichkeit, Seriosität und handwerkliche Kompetenz.
-- Warmes Gelb bringt Optimismus, Energie und menschliche Nähe.
-- Elektrisches Violett signalisiert moderne, digital organisierte Abläufe und markiert fokussierte Aktionen.
-- Sehr helle, leicht bläuliche Flächen geben dem Inhalt Ruhe und viel Luft.
+- Das Primärblau vermittelt Verlässlichkeit, Seriosität und handwerkliche Kompetenz.
+- Das Sekundärblau markiert Aktionen, interaktive Elemente und visuelle Tiefe.
+- Weiß gibt dem Inhalt Ruhe, Klarheit und großzügigen Raum.
 
 Das System vermeidet die typische nüchterne Gebäudedienstleister-Ästhetik. Objektbetreuung wird als Entlastung, Werterhalt und gute Erreichbarkeit erzählt — nicht als austauschbare Pflichterfüllung.
 
@@ -39,29 +38,26 @@ Service-Icons und Leistungsversprechen werden mit warmen Fotografien des Teams, 
 
 | Token | Wert | Rolle |
 |---|---:|---|
-| `ink` | `#02033B` | Primäre Textfarbe, Footer, Konturen, vertrauensvolle Autorität |
-| `action-yellow` | `#FFC247` | Primäre CTA-Farbe, Highlights, positive Aktivierung |
-| `tech-purple` | `#4335DE` | Sekundäre CTA-Farbe, digitaler Akzent, Hero-Rahmen |
-| `surface-ice` | `#F3F8FF` | Ruhige Seitenflächen, Feature- und Editorial-Bereiche |
-| `white` | `#FFFFFF` | Karten, Inhaltsflächen und kontrastreiche Ruhepunkte |
+| `primary` | `#124094` | Primäre Textfarbe, große Farbflächen, Footer und Konturen |
+| `secondary` | `#195B85` | CTA-Flächen, interaktive Zustände, Icons und Bildakzente |
+| `white` | `#FFFFFF` | Seitenhintergrund, Karten und Text auf blauen Flächen |
 
 ### Unterstützende Farben und Verläufe
 
-| Verwendung | Verlauf |
+| Verwendung | Umsetzung |
 |---|---|
-| Social-Proof- und Story-Flächen | `#F7C95F → #FDB235` |
-| Große violette CTA-Fläche | `#2821CF → #4F3FF1 → #3830D8` |
-| Feature-Hintergrund | Weißer Mittelpunkt → `#F6F9FD` → `#EDF4FC` |
-| Header-Tiefenwirkung | `#E7EFFA → transparent` |
+| Große Markenfläche | `#124094` |
+| CTA- und Interaktionsfläche | `#195B85` |
+| Dezente Tiefe | Transparente Varianten von `#124094` oder `#195B85` auf Weiß |
+| Verlauf | Ausschließlich `#124094 → #195B85` oder eine der beiden Farben zu transparent |
 
 ### Farbregeln
 
-- Navy ist die Standardfarbe für Text — kein neutrales Grau oder reines Schwarz.
-- Gelb wird für die wichtigste positive Aktion verwendet, nicht als dekorative Streufarbe.
-- Violett wird sparsam für digitale Organisation, direkte Kontaktpunkte und sekundäre Markenaktionen eingesetzt.
-- Fließtext auf Gelb bleibt Navy; Fließtext auf Violett bleibt Weiß.
-- Weiß ist nicht nur Hintergrund, sondern eine bewusst eingesetzte Kartenfarbe.
-- Pro Sektion sollte eine Akzentfarbe dominieren. Gelb und Violett konkurrieren nicht gleich stark miteinander.
+- `#124094` ist die Standardfarbe für Text und vertrauensbildende Flächen. Reines Schwarz oder neutrales Grau werden nicht verwendet.
+- `#195B85` kennzeichnet die wichtigste Aktion und interaktive Zustände.
+- Weiß ist der durchgängige Seitenhintergrund und zugleich die Kartenfarbe.
+- Text auf beiden Blautönen ist Weiß. Text auf Weiß verwendet vorrangig `#124094`.
+- Weitere Vollfarben sind in der Benutzeroberfläche nicht vorgesehen. Transparenzen dürfen nur aus den beiden Markenfarben oder Weiß entstehen.
 
 ## 3. Typografie
 
@@ -132,7 +128,7 @@ Je größer die semantische Trennung, desto größer der Abstand. Innerhalb eine
 
 #### Split Hero
 
-Links steht eine große Botschaft mit CTA-Paar, rechts eine dominante Bildfläche aus dem Arbeitsalltag. Eine kompakte Faktenkarte liegt als zweite Ebene über der Fotografie. Ein versetzter violetter Rahmen verankert die moderne Markenfarbe.
+Links steht eine große Botschaft mit CTA-Paar, rechts eine dominante Bildfläche aus dem Arbeitsalltag. Eine kompakte Faktenkarte liegt als zweite Ebene über der Fotografie. Ein versetzter sekundärblauer Rahmen verankert die Markenfarbe.
 
 #### Horizontaler Social Proof
 
@@ -140,7 +136,7 @@ Bewertungskarten dürfen an den Bildschirmrändern angeschnitten werden. Dadurch
 
 #### Editorial Split
 
-Text und Fotografie stehen in ungefähr gleich starken Spalten. Die Fotografie erhält eine versetzte gelbe Fläche statt eines klassischen Rahmens.
+Text und Fotografie stehen in ungefähr gleich starken Spalten. Die Fotografie erhält eine versetzte blaue Fläche statt eines klassischen Rahmens.
 
 #### Zentraler Feature-Block
 
@@ -184,7 +180,7 @@ box-shadow: 12px 12px 10px rgb(0 0 0 / 10%);
 Hover-Schatten sind weicher und näher an der Karte:
 
 ```css
-box-shadow: 0 14px 28px rgb(2 3 59 / 12%);
+box-shadow: 0 14px 28px rgb(18 64 148 / 12%);
 ```
 
 Schatten werden nur dort eingesetzt, wo Elemente tatsächlich über einer Fläche schweben: Review-Karten, Feature-Panel und interaktive Editorial-Karten.
@@ -199,8 +195,8 @@ Fotos erhalten keinen dünnen Rahmen. Stattdessen liegt eine kräftige Farbfläc
 
 #### Primary Action
 
-- Gelber Hintergrund
-- Navy Text
+- Sekundärblauer Hintergrund
+- Weißer Text
 - Pill-Form
 - Optionaler Pfeil rechts
 - Einsatz: wichtigste Conversion-Aktion
@@ -208,19 +204,19 @@ Fotos erhalten keinen dünnen Rahmen. Stattdessen liegt eine kräftige Farbfläc
 #### Secondary Outline
 
 - Transparenter Hintergrund
-- `2 px` Navy-Kontur
-- Navy Text
+- `2 px` Kontur in Primärblau
+- Text in Primärblau
 - Einsatz: alternative Plattform oder weniger wichtige Aktion
 
 #### Inverted Outline
 
 - Transparenter Hintergrund
 - Weiße Kontur und weißer Text
-- Einsatz ausschließlich auf violettem oder Navy Hintergrund
+- Einsatz ausschließlich auf primärblauem oder sekundärblauem Hintergrund
 
-#### Purple Action
+#### Compact Action
 
-- Violetter Hintergrund
+- Sekundärblauer Hintergrund
 - Weißer Text
 - Einsatz für kompakte Markenaktionen wie „Kontakt“ oder „Anfrage senden“
 
@@ -253,18 +249,18 @@ CTA-Paare stehen immer in der Reihenfolge **primär → sekundär**. Sie dürfen
 
 ### Kontaktkarte
 
-- Gelbe, stark gerundete Fläche
+- Sekundärblaue, stark gerundete Fläche
 - Großes transparentes Markensymbol im Hintergrund
 - Kurzes Nutzenversprechen und eine eindeutige Kontaktaktion
 - Kontaktweg bleibt kompakt; kein zusätzlicher UI-Ballast
 
 ## 8. Icons und Illustrationen
 
-- Icons sind lineare Vektorgrafiken mit Navy-Kontur und kleinen gelben Akzenten.
+- Icons sind lineare Vektorgrafiken in Primärblau mit gezielten sekundärblauen Akzenten.
 - Die Strichstärke wirkt robust, aber nicht massiv.
 - Icons werden in festen, gleich großen Boxen zentriert.
 - Pfeile sind horizontal, klar und funktional — keine verspielten Chevron-Kaskaden.
-- Social-Media-Icons stehen weiß auf dunklem Navy.
+- Social-Media-Icons stehen weiß auf Primärblau.
 - Neue Icons sollten aus derselben Familie stammen oder formal exakt angepasst werden.
 
 Nicht verwenden:
@@ -288,7 +284,7 @@ Nicht verwenden:
 
 - Eine kompakte Fakten- oder Prozesskarte darf über einer Fotografie liegen.
 - Team und betreute Immobilie bleiben als glaubwürdiger Beweis sichtbar.
-- Gelbe und violette Akzentflächen verbinden Fotografie und Leistungsversprechen mit der Markenwelt.
+- Primärblaue und sekundärblaue Akzentflächen verbinden Fotografie und Leistungsversprechen mit der Markenwelt.
 
 ### Editorial-Bilder
 
@@ -344,8 +340,8 @@ transition-timing-function: ease;
 
 ## 12. Barrierefreiheit
 
-- Navy auf Weiß, Ice oder Gelb bietet den Standardkontrast.
-- Weiß wird nur auf ausreichend dunklem Violett oder Navy eingesetzt.
+- Primärblau auf Weiß bietet den Standardkontrast.
+- Weiß wird auf Primärblau und Sekundärblau eingesetzt.
 - Klickziele sind mindestens `44 × 44 px` groß.
 - Fokuszustände müssen mindestens so deutlich wie Hover-Zustände sein.
 - Text darf nicht ausschließlich über Farbe hierarchisiert werden.
@@ -358,8 +354,8 @@ transition-timing-function: ease;
 ### Do
 
 - Große Headlines mit ruhigen, breiten Flächen kombinieren.
-- Gelb für Optimismus und Conversion reservieren.
-- Navy konsequent als Text- und Vertrauensfarbe verwenden.
+- Sekundärblau für Conversion und Interaktion reservieren.
+- Primärblau konsequent als Text- und Vertrauensfarbe verwenden.
 - Komponenten stark runden und mit viel Innenraum gestalten.
 - Leistungsdetails mit menschlichen Bildern ausbalancieren.
 - Pro Sektion eine eindeutige Hauptaussage und Hauptaktion zeigen.
@@ -370,7 +366,7 @@ transition-timing-function: ease;
 - Keine generische Handwerker-Optik mit austauschbaren Stockfotos und Werkzeug-Collagen.
 - Keine kleinen, engen Kartenraster mit zu viel Inhalt.
 - Keine fünf gleich starken CTA-Farben nebeneinander.
-- Keine neutralgrauen Texte, wenn Navy funktioniert.
+- Keine neutralgrauen Texte, wenn Primärblau funktioniert.
 - Keine harten rechtwinkligen Panels als dominierende Form.
 - Keine dekorativen Schatten auf jedem Element.
 - Keine komplizierte Animation, die von Vertrauen oder Inhalt ablenkt.
@@ -378,7 +374,7 @@ transition-timing-function: ease;
 ## 14. Design-Rezept für neue Sektionen
 
 1. Definiere genau eine Kernbotschaft und höchstens eine primäre Conversion-Aktion.
-2. Wähle eine Bühne: Weiß, Ice, Gelbverlauf, Violettverlauf oder Navy.
+2. Wähle eine Bühne: Weiß, Primärblau oder Sekundärblau.
 3. Nutze einen bestehenden Container: `1248`, `1056` oder `840 px`.
 4. Beginne desktop mit `84 px` oberem Abstand.
 5. Verwende eine Section-Headline mit `36 / 45 px` oder eine Display-Headline mit `60 / 75 px`.
@@ -390,21 +386,19 @@ transition-timing-function: ease;
 
 ```css
 :root {
-  --color-ink: #02033b;
-  --color-action: #ffc247;
-  --color-tech: #4335de;
-  --color-surface: #f3f8ff;
+  --color-primary: #124094;
+  --color-secondary: #195b85;
+  --color-surface: #ffffff;
   --color-white: #ffffff;
 
-  --gradient-warm: linear-gradient(180deg, #f7c95f 0%, #fdb235 100%);
-  --gradient-tech: linear-gradient(130deg, #2821cf 0%, #4f3ff1 58%, #3830d8 100%);
+  --gradient-brand: linear-gradient(130deg, #124094 0%, #195b85 100%);
 
   --radius-panel: 48px;
   --radius-card: 42px;
   --radius-pill: 999px;
 
-  --shadow-card: 12px 12px 10px rgb(0 0 0 / 10%);
-  --shadow-hover: 0 14px 28px rgb(2 3 59 / 12%);
+  --shadow-card: 12px 12px 10px rgb(18 64 148 / 10%);
+  --shadow-hover: 0 14px 28px rgb(18 64 148 / 12%);
 
   --space-1: 12px;
   --space-2: 24px;
@@ -425,8 +419,8 @@ transition-timing-function: ease;
 
 Eine neue Seite gehört visuell zu diesem System, wenn die meisten dieser Fragen mit „Ja“ beantwortet werden:
 
-- Ist Navy die dominante Text- und Vertrauensfarbe?
-- Ist die wichtigste Aktion gelb und klar von der sekundären Aktion unterscheidbar?
+- Ist `#124094` die dominante Text- und Vertrauensfarbe?
+- Ist die wichtigste Aktion mit `#195B85` klar erkennbar?
 - Hat jede Sektion genügend Luft und eine eindeutige visuelle Aufgabe?
 - Sind Karten und Buttons weich, großzügig und stark gerundet?
 - Bleibt die Typografie auf Inter `400` und `800` beschränkt?
@@ -442,8 +436,8 @@ Diese Datei beschreibt die Designsprache als wiederverwendbares System. Die aktu
 ## 17. Aktuelle Erweiterungen
 
 - Die reduzierte Wortmarke **PERLAS** wird typografisch in Inter `800` mit großzügigem Tracking gesetzt.
-- Auf Mobile öffnet ein runder violetter Menü-Button eine weiße, stark gerundete Navigationsfläche.
-- Leistungskarten sind vollständige Links. Hover und Fokus heben die Karte an, färben das Icon violett und zeigen die Zielrichtung klar an.
+- Auf Mobile öffnet ein runder sekundärblauer Menü-Button eine weiße, stark gerundete Navigationsfläche.
+- Leistungskarten sind vollständige Links. Hover und Fokus heben die Karte an, färben das Icon sekundärblau und zeigen die Zielrichtung klar an.
 - Leistungsdetailseiten übernehmen Hero, Akzentflächen, Prozesskarten und CTA-Hierarchie der Hauptseite.
 - Das Angebotsformular erscheint als große Lightbox und führt in drei Schritten durch Objekt, Leistungen und Kontaktdaten.
 - Formularfortschritt, Validierung, Zurück-Navigation und Erfolgszustand bleiben jederzeit sichtbar und eindeutig.
