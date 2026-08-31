@@ -1212,78 +1212,44 @@ p {
   width: max-content;
   display: flex;
   will-change: transform;
-  animation: partner-marquee 34s linear infinite;
+  animation: partner-marquee 46s linear infinite;
 }
 
 .partner-set {
-  padding-right: 64px;
+  padding-right: 22px;
   display: flex;
   align-items: center;
-  gap: 64px;
+  gap: 22px;
 }
 
 .partner-mark {
-  width: 218px;
-  height: 64px;
-  padding: 8px 10px;
-  display: flex;
-  align-items: center;
-  gap: 13px;
-  color: var(--navy);
-  border-radius: 18px;
-  white-space: nowrap;
-  transition: color 180ms ease, background-color 180ms ease, transform 180ms ease;
+  width: 252px;
+  height: 92px;
+  padding: 17px 22px;
+  display: grid;
+  place-items: center;
+  flex: 0 0 252px;
+  overflow: hidden;
+  border: 1px solid rgb(2 3 59 / 9%);
+  border-radius: 24px;
+  background: #fff;
+  box-shadow: 0 12px 30px rgb(2 3 59 / 7%);
 }
 
-.partner-mark > span {
-  width: 42px;
-  height: 42px;
-  flex: 0 0 42px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 14px;
-  color: var(--navy);
-  background: var(--yellow);
+.partner-mark picture {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
 }
 
-.partner-mark > span svg {
-  width: 21px;
-  height: 21px;
-}
-
-.partner-mark > strong {
-  min-width: 0;
-  flex: 1;
-  font-size: 15px;
-  line-height: 20px;
-  letter-spacing: -0.2px;
-}
-
-.partner-mark > svg:last-child {
-  width: 16px;
-  height: 16px;
-  flex: 0 0 16px;
-  opacity: 0.38;
-  transition: transform 180ms ease, opacity 180ms ease;
-}
-
-.partner-mark:hover,
-.partner-mark:focus-visible {
-  color: var(--purple);
-  background: var(--ice);
-  transform: translateY(-2px);
-}
-
-.partner-mark:hover > svg:last-child,
-.partner-mark:focus-visible > svg:last-child {
-  opacity: 1;
-  transform: translate(2px, -2px);
-}
-
-.partner-mark:focus-visible {
-  outline: 3px solid var(--yellow);
-  outline-offset: 2px;
+.partner-mark img {
+  width: 100%;
+  height: 100%;
+  max-width: 214px;
+  max-height: 58px;
+  display: block;
+  object-fit: contain;
 }
 
 .audience-solutions {
@@ -6349,30 +6315,21 @@ p {
   }
 
   .partner-set {
-    padding-right: 36px;
-    gap: 36px;
+    padding-right: 14px;
+    gap: 14px;
   }
 
   .partner-mark {
-    width: 178px;
-    height: 54px;
-    gap: 10px;
+    width: 196px;
+    height: 74px;
+    padding: 13px 16px;
+    flex-basis: 196px;
+    border-radius: 20px;
   }
 
-  .partner-mark > span {
-    width: 38px;
-    height: 38px;
-    flex-basis: 38px;
-    border-radius: 12px;
-  }
-
-  .partner-mark > span svg {
-    width: 19px;
-    height: 19px;
-  }
-
-  .partner-mark > strong {
-    font-size: 13px;
+  .partner-mark img {
+    max-width: 164px;
+    max-height: 48px;
   }
 
   .features-heading h2 {

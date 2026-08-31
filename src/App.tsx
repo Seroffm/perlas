@@ -310,15 +310,25 @@ const proofStats = [
   ['1', 'starkes Team'],
 ]
 
-type Partner = { name: string; href: string; icon: LucideIcon }
+type Partner = {
+  name: string
+  logo: string
+  fallback?: string
+}
 
 const partners: Partner[] = [
-  { name: 'Hausverwaltungen', href: `${FACILITY_PATH}#hausverwaltungen`, icon: KeyRound },
-  { name: 'Größere Wohnanlagen', href: `${FACILITY_PATH}#wohnanlagen`, icon: Home },
-  { name: 'Gewerbeimmobilien', href: `${FACILITY_PATH}#gewerbeimmobilien`, icon: Building2 },
-  { name: 'Bürogebäude', href: `${FACILITY_PATH}#institutionelle-gebaeude`, icon: BriefcaseBusiness },
-  { name: 'Unternehmensstandorte', href: `${FACILITY_PATH}#gewerbeimmobilien`, icon: ShieldCheck },
-  { name: 'Institutionelle & öffentliche Gebäude', href: `${FACILITY_PATH}#institutionelle-gebaeude`, icon: Hospital },
+  { name: 'BundesImmobilien', logo: 'partners/bundesimmobilien.png' },
+  { name: 'David Lloyd Meridian', logo: 'partners/david-lloyd-meridian.png' },
+  { name: 'David Lloyd Clubs', logo: 'partners/david-lloyd-clubs.png' },
+  { name: 'Immtelli', logo: 'partners/immtelli.png' },
+  { name: 'UNIRESTA', logo: 'partners/uniresta.jpeg' },
+  { name: 'VALO Immobilienmanagement', logo: 'partners/valo.png' },
+  { name: 'Zeidler', logo: 'partners/zeidler.webp' },
+  {
+    name: 'Bundesanstalt für Immobilienaufgaben',
+    logo: 'partners/bundesanstalt.webp',
+    fallback: 'partners/bundesanstalt.jpeg',
+  },
 ]
 
 type Feature = (typeof serviceContent)[number] & { icon: LucideIcon }
@@ -1124,28 +1134,36 @@ function PartnerMarquee() {
       role={duplicate ? 'presentation' : 'list'}
       aria-hidden={duplicate ? true : undefined}
     >
-      {partners.map((partner) => {
-        const Icon = partner.icon
-        return (
-          <a
-            className="partner-mark"
-            role={duplicate ? undefined : 'listitem'}
-            href={partner.href}
-            tabIndex={duplicate ? -1 : undefined}
-            key={partner.name}
-          >
-            <span aria-hidden="true"><Icon strokeWidth={1.9} /></span>
-            <strong>{partner.name}</strong>
-            <ArrowUpRight aria-hidden="true" />
-          </a>
-        )
-      })}
+      {partners.map((partner) => (
+        <div
+          className="partner-mark"
+          role={duplicate ? undefined : 'listitem'}
+          key={partner.name}
+        >
+          {partner.fallback ? (
+            <picture>
+              <source srcSet={`${A}${partner.logo}`} type="image/webp" />
+              <img
+                src={`${A}${partner.fallback}`}
+                alt={duplicate ? '' : partner.name}
+                decoding="async"
+              />
+            </picture>
+          ) : (
+            <img
+              src={`${A}${partner.logo}`}
+              alt={duplicate ? '' : partner.name}
+              decoding="async"
+            />
+          )}
+        </div>
+      ))}
     </div>
   )
 
   return (
     <section className="partner-strip" aria-labelledby="partner-strip-heading" data-reveal="fade">
-      <p id="partner-strip-heading">Facility Management für professionelle Auftraggeber und verwaltete Immobilien</p>
+      <p id="partner-strip-heading">Für diese Immobilien und Auftraggeber arbeiten wir</p>
       <div className="partner-marquee">
         <div className="partner-track">
           {renderPartners()}
