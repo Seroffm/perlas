@@ -9234,6 +9234,10 @@ body {
   margin: 0 max(48px, calc((100% - 1120px) / 2)) 100px;
 }
 
+.audience-detail-contact {
+  margin-bottom: 100px;
+}
+
 .audience-detail-cta-actions {
   display: flex;
   flex-wrap: wrap;
@@ -9347,6 +9351,10 @@ body {
 
   .audience-detail-cta {
     margin: 0 24px 88px;
+  }
+
+  .audience-detail-contact {
+    margin-bottom: 88px;
   }
 
   .audience-detail-cta-actions,

@@ -1666,18 +1666,33 @@ function AudienceDetailPage({ audience, onQuoteOpen }: { audience: AudienceSolut
         </div>
       </section>
 
-      <section className="architecture-cta audience-detail-cta" data-reveal="up">
-        <div>
+      <section className="service-contact audience-detail-contact" aria-labelledby="audience-contact-heading" data-reveal="up">
+        <div className="service-contact-primary">
           <span className="eyebrow">Persönlich abstimmen</span>
-          <h2>Passt diese Betreuung zu Ihrem Objekt?</h2>
-          <p>Wir sehen uns Nutzung, Flächen und laufende Aufgaben an und stellen daraus einen passenden Leistungsumfang zusammen.</p>
-        </div>
-        <div className="audience-detail-cta-actions">
+          <h2 id="audience-contact-heading">Passt diese Betreuung zu Ihrem Objekt?</h2>
+          <p>Beschreiben Sie kurz Ihre Immobilie, den Standort und die Aufgaben, die Sie abgeben möchten. Wir prüfen die Angaben und besprechen den passenden Leistungsumfang persönlich mit Ihnen.</p>
           <button className="button button--yellow" type="button" onClick={onQuoteOpen}>
-            <span>Angebot anfragen</span><img src={`${A}arrow-white.svg`} alt="" />
+            <span>Geführtes Angebotsformular öffnen</span><img src={`${A}arrow-white.svg`} alt="" />
           </button>
-          <a href="mailto:mail@perlas.de">E-Mail schreiben</a>
+          <div className="service-contact-options" aria-label="Alternative Kontaktwege">
+            <a href="tel:+491776867145">
+              <Phone aria-hidden="true" />
+              <span><strong>Direkt anrufen</strong><small>0177 68 67 145</small></span>
+              <ArrowUpRight aria-hidden="true" />
+            </a>
+            <a href={`mailto:mail@perlas.de?subject=${encodeURIComponent(`Anfrage zu Facility Management für ${audience.navLabel}`)}`}>
+              <Mail aria-hidden="true" />
+              <span><strong>E-Mail schreiben</strong><small>mail@perlas.de</small></span>
+              <ArrowUpRight aria-hidden="true" />
+            </a>
+            <a href={CONTACT_PATH}>
+              <MessageCircle aria-hidden="true" />
+              <span><strong>Allgemeiner Kontakt</strong><small>Zur Kontaktseite</small></span>
+              <ArrowUpRight aria-hidden="true" />
+            </a>
+          </div>
         </div>
+        <ServiceContactForm subject={`Facility Management für ${audience.navLabel}`} />
       </section>
     </main>
   )
@@ -1853,7 +1868,7 @@ function FeatureSection({ onQuoteOpen }: { onQuoteOpen: (service?: string) => vo
   )
 }
 
-function ServiceContactForm({ service }: { service: Feature }) {
+function ServiceContactForm({ subject }: { subject: string }) {
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     const formData = new FormData(event.currentTarget)
@@ -1863,7 +1878,7 @@ function ServiceContactForm({ service }: { service: Feature }) {
     const phone = String(formData.get('phone') ?? '').trim()
     const message = String(formData.get('message') ?? '').trim()
     const body = [
-      `Guten Tag, ich interessiere mich für ${service.title}.`,
+      `Guten Tag, ich interessiere mich für ${subject}.`,
       '',
       `Name: ${name}`,
       `Unternehmen / Verwaltung: ${company || 'Nicht angegeben'}`,
@@ -1874,14 +1889,14 @@ function ServiceContactForm({ service }: { service: Feature }) {
       message,
     ].join('\n')
 
-    window.location.href = `mailto:mail@perlas.de?subject=${encodeURIComponent(`Anfrage zu ${service.title}`)}&body=${encodeURIComponent(body)}`
+    window.location.href = `mailto:mail@perlas.de?subject=${encodeURIComponent(`Anfrage zu ${subject}`)}&body=${encodeURIComponent(body)}`
   }
 
   return (
     <form className="service-contact-form" onSubmit={handleSubmit}>
       <div className="service-contact-form-heading">
         <span>Direktanfrage</span>
-        <strong>{service.title}</strong>
+        <strong>{subject}</strong>
       </div>
       <div className="service-form-grid">
         <label>
@@ -2093,7 +2108,7 @@ function ServiceDetailPage({ service, onQuoteOpen }: { service: Feature; onQuote
             </a>
           </div>
         </div>
-        <ServiceContactForm service={service} />
+        <ServiceContactForm subject={service.title} />
       </section>
 
       <section className="service-more" data-reveal="up">
@@ -2224,7 +2239,7 @@ function LegalPage({ type }: { type: LegalPageType }) {
             </section>
             <section>
               <h2>3. Kontaktaufnahme und Formulare</h2>
-              <p>Angaben aus Kontakt- und Angebotsanfragen werden ausschließlich verwendet, um die jeweilige Anfrage zu bearbeiten. Das Direktformular auf den Leistungsseiten bereitet derzeit eine E-Mail im E-Mail-Programm des Nutzers vor.</p>
+              <p>Angaben aus Kontakt- und Angebotsanfragen werden ausschließlich verwendet, um die jeweilige Anfrage zu bearbeiten. Die Direktformulare auf den Leistungs- und Zielgruppenseiten bereiten derzeit eine E-Mail im E-Mail-Programm des Nutzers vor.</p>
             </section>
             <section>
               <h2>4. Cookies und Einwilligungen</h2>
