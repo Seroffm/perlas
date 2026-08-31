@@ -2953,7 +2953,7 @@ p {
 
 .fm-cta-actions > a:hover,
 .fm-cta-actions > a:focus-visible {
-  color: inherit;
+  color: var(--primary);
   background: #fff;
 }
 
