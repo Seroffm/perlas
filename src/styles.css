@@ -6897,7 +6897,8 @@ p {
 }
 
 .home-path-card--featured > p {
-  color: rgb(255 255 255 / 78%);
+  color: #fff;
+  -webkit-text-fill-color: #fff;
 }
 
 .home-path-card--contact {
