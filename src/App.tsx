@@ -947,43 +947,62 @@ function HomeOverview() {
 }
 
 function HomeCoreServices() {
-  const homeServices = coreFeatures.slice(0, 4)
+  const homeAudienceImages: Record<string, { src: string; alt: string }> = {
+    hausverwaltungen: {
+      src: 'perlas-office.png',
+      alt: 'Abgestimmte Objektbetreuung für Hausverwaltungen',
+    },
+    wohnanlagen: {
+      src: 'perlas-property.png',
+      alt: 'Professionell betreute größere Wohnanlage',
+    },
+    gewerbeimmobilien: {
+      src: 'perlas-hero.png',
+      alt: 'Objektkontrolle an einer Gewerbeimmobilie',
+    },
+    'institutionelle-gebaeude': {
+      src: 'perlas-team.png',
+      alt: 'Objektbetreuung für institutionelle und öffentliche Gebäude',
+    },
+  }
 
   return (
     <section className="home-core-services" id="leistungen" aria-labelledby="home-core-services-heading">
       <div className="home-section-heading" data-reveal="up">
-        <span className="eyebrow">Objektbetreuung im Alltag</span>
-        <h2 id="home-core-services-heading">Vier Leistungen für ein gepflegtes Objekt.</h2>
-        <p>Jede Leistung ist einzeln buchbar. Gemeinsam lassen sie sich zu einer Betreuung verbinden, die zu Ihrem Gebäude und seinen Abläufen passt.</p>
+        <span className="eyebrow">Betreuung nach Objektart</span>
+        <h2 id="home-core-services-heading">Für Immobilien mit unterschiedlichen Anforderungen.</h2>
+        <p>Wählen Sie den Bereich, der zu Ihrem Objekt oder Bestand passt. Dort finden Sie die relevanten Aufgaben und Leistungsseiten übersichtlich zusammengefasst.</p>
       </div>
       <div className="home-service-card-grid">
-        {homeServices.map((service, index) => {
-          const Icon = service.icon
+        {audienceSolutions.map((audience, index) => {
+          const Icon = audience.icon
+          const image = homeAudienceImages[audience.id]
+
           return (
             <a
               className="home-service-card"
-              href={`${BASE_PATH}leistungen/${service.slug}/`}
-              key={service.slug}
+              href={`${FACILITY_PATH}#${audience.id}`}
+              key={audience.id}
               data-reveal="up"
               style={{ '--reveal-delay': `${index * 60}ms` } as CSSProperties}
             >
               <div className="home-service-card-image">
-                <img src={`${A}${service.image}`} alt={`${service.title} durch Perla’s`} loading="lazy" />
+                <img src={`${A}${image.src}`} alt={image.alt} loading="lazy" decoding="async" />
                 <span><Icon aria-hidden="true" /></span>
               </div>
               <div className="home-service-card-copy">
                 <div>
-                  <span className="eyebrow">Leistung 0{index + 1}</span>
-                  <h3>{service.title}</h3>
+                  <span className="eyebrow">Objektbereich 0{index + 1}</span>
+                  <h3>{audience.navLabel}</h3>
                 </div>
-                <p>{service.text}</p>
-                <span className="home-service-card-link">Leistung ansehen <ArrowUpRight aria-hidden="true" /></span>
+                <p>{audience.text}</p>
+                <span className="home-service-card-link">Bereich ansehen <ArrowUpRight aria-hidden="true" /></span>
               </div>
             </a>
           )
         })}
       </div>
-      <ButtonLink href={SERVICES_PATH} kind="purple" arrow>Alle Leistungen ansehen</ButtonLink>
+      <ButtonLink href={SERVICES_PATH} kind="purple" arrow>Weitere Leistungen</ButtonLink>
     </section>
   )
 }
@@ -2136,6 +2155,23 @@ export default function App() {
 
   usePageSeo(activeService, pageKind)
   useRevealAnimations(activeService?.slug ?? pageKind)
+
+  useEffect(() => {
+    const scrollToCurrentSection = () => {
+      const sectionId = decodeURIComponent(window.location.hash.slice(1))
+      if (!sectionId) return
+
+      window.requestAnimationFrame(() => {
+        window.requestAnimationFrame(() => {
+          document.getElementById(sectionId)?.scrollIntoView({ block: 'start' })
+        })
+      })
+    }
+
+    scrollToCurrentSection()
+    window.addEventListener('hashchange', scrollToCurrentSection)
+    return () => window.removeEventListener('hashchange', scrollToCurrentSection)
+  }, [pageKind])
 
   const openQuote = useCallback((service?: string) => {
     setQuoteService(service)
