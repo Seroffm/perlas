@@ -1,0 +1,57 @@
+[
+  {
+    "id": "objektbetreuung",
+    "title": "Objektbetreuung & Hausmeisterservice (m/w/d)",
+    "department": "Objektservice",
+    "location": "Rhein-Main-Gebiet",
+    "type": "Umfang nach Absprache",
+    "intro": "Sie behalten Gebäude und Außenbereiche im Blick, erledigen vereinbarte Aufgaben und geben Auffälligkeiten verständlich weiter.",
+    "tasks": [
+      "Kontrollgänge in vereinbarten Innen- und Außenbereichen",
+      "Einfache Hausmeisterarbeiten nach Abstimmung",
+      "Dokumentation und Rückmeldung zu Auffälligkeiten"
+    ],
+    "requirements": [
+      "Zuverlässige und selbstständige Arbeitsweise",
+      "Freundliches Auftreten im Kontakt mit Kunden und Nutzern",
+      "Führerschein Klasse B von Vorteil"
+    ]
+  },
+  {
+    "id": "gebaeudereinigung",
+    "title": "Mitarbeiter Gebäudereinigung (m/w/d)",
+    "department": "Reinigung",
+    "location": "Rhein-Main-Gebiet",
+    "type": "Umfang nach Absprache",
+    "intro": "Sie sorgen in Treppenhäusern, Gemeinschaftsflächen, Büros und weiteren vereinbarten Bereichen für ein gepflegtes Erscheinungsbild.",
+    "tasks": [
+      "Unterhaltsreinigung nach objektbezogenem Plan",
+      "Sorgfältiger Umgang mit Flächen und Ausstattung",
+      "Rückmeldung bei Schäden oder besonderen Verschmutzungen"
+    ],
+    "requirements": [
+      "Sorgfalt und ein Blick für saubere Ergebnisse",
+      "Verlässlichkeit bei vereinbarten Einsatzzeiten",
+      "Erfahrung ist willkommen, aber nicht zwingend erforderlich"
+    ]
+  },
+  {
+    "id": "aussenanlagen",
+    "title": "Mitarbeiter Garten- & Außenanlagenpflege (m/w/d)",
+    "department": "Außenanlagen",
+    "location": "Rhein-Main-Gebiet",
+    "type": "Umfang nach Absprache",
+    "intro": "Sie unterstützen bei der regelmäßigen Pflege von Grünflächen, Wegen und Außenbereichen unserer betreuten Immobilien.",
+    "tasks": [
+      "Pflege von Rasen, Hecken und vereinbarten Pflanzflächen",
+      "Sauberhalten von Wegen und Außenbereichen",
+      "Saisonale Arbeiten nach Einsatzplan"
+    ],
+    "requirements": [
+      "Freude an praktischer Arbeit im Freien",
+      "Verantwortungsvoller Umgang mit Geräten",
+      "Zuverlässige Zusammenarbeit im Team"
+    ]
+  }
+]
+

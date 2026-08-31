@@ -30,8 +30,13 @@ import {
 import CookieConsent from './CookieConsent'
 import ContactPage from './ContactPage'
 import QuoteModal from './QuoteModal'
+import BlogPage, { BlogArticlePage } from './BlogPage'
+import CareerPage, { HomeCareerTeaser } from './CareerPage'
 import audienceContent from './audience-data.json'
+import blogContent from './blog-data.json'
+import jobContent from './job-data.json'
 import serviceContent from './service-data.json'
+import type { BlogPostContent, JobOpeningContent } from './content-types'
 
 const BASE_PATH = import.meta.env.BASE_URL
 const A = `${BASE_PATH}assets/`
@@ -40,6 +45,7 @@ const CONTACT_PATH = `${BASE_PATH}kontakt/`
 const FACILITY_PATH = `${BASE_PATH}facility-management/`
 const SERVICES_PATH = `${BASE_PATH}leistungen/`
 const ABOUT_PATH = `${BASE_PATH}ueber-uns/`
+const BLOG_PATH = `${BASE_PATH}blog/`
 const IMPRINT_PATH = `${BASE_PATH}impressum/`
 const PRIVACY_PATH = `${BASE_PATH}datenschutz/`
 
@@ -67,7 +73,10 @@ function ensureMeta(selector: string, attributes: Record<string, string>) {
   Object.entries(attributes).forEach(([name, value]) => element?.setAttribute(name, value))
 }
 
-type PageKind = 'home' | 'contact' | 'facility' | 'services' | 'about' | 'imprint' | 'privacy'
+type PageKind = 'home' | 'contact' | 'facility' | 'services' | 'about' | 'blog' | 'career' | 'imprint' | 'privacy'
+
+const blogPosts = blogContent as BlogPostContent[]
+const jobOpenings = jobContent as JobOpeningContent[]
 
 type AudienceSolutionContent = {
   id: string
@@ -91,7 +100,7 @@ type AudienceSolutionContent = {
 
 type AudienceSolution = AudienceSolutionContent & { icon: LucideIcon }
 
-function usePageSeo(service?: Feature, pageKind: PageKind = 'home', audience?: AudienceSolution) {
+function usePageSeo(service?: Feature, pageKind: PageKind = 'home', audience?: AudienceSolution, article?: BlogPostContent) {
   useEffect(() => {
     const siteUrl = new URL(BASE_PATH, window.location.origin)
     const servicesUrl = new URL('leistungen/', siteUrl)
@@ -121,6 +130,18 @@ function usePageSeo(service?: Feature, pageKind: PageKind = 'home', audience?: A
         description: 'Lernen Sie Perla’s Objektbetreuung, die Arbeitsweise und die Werte hinter dem Facility Management im Rhein-Main-Gebiet kennen.',
         schemaType: 'AboutPage',
       },
+      blog: {
+        path: 'blog/',
+        title: 'Blog: Wissen zur Objektbetreuung | Perla’s',
+        description: 'Praxiswissen zu Facility Management, Objektbetreuung, Gebäudereinigung, Außenanlagen und saisonaler Planung im Rhein-Main-Gebiet.',
+        schemaType: 'CollectionPage',
+      },
+      career: {
+        path: 'karriere/',
+        title: 'Karriere & Jobs | Perla’s Objektbetreuung',
+        description: 'Arbeiten bei Perla’s: Einsatzbereiche in Objektbetreuung, Gebäudereinigung und Außenanlagenpflege im Rhein-Main-Gebiet kennenlernen.',
+        schemaType: 'CollectionPage',
+      },
       imprint: {
         path: 'impressum/',
         title: 'Impressum | Perla’s Objektbetreuung',
@@ -135,22 +156,26 @@ function usePageSeo(service?: Feature, pageKind: PageKind = 'home', audience?: A
       },
     }
     const pageDefinition = pageKind === 'home' ? undefined : pageDefinitions[pageKind]
-    const pageUrl = service
+    const pageUrl = article
+      ? new URL(`blog/${article.slug}/`, siteUrl)
+      : service
       ? new URL(`leistungen/${service.slug}/`, siteUrl)
       : audience
         ? new URL(`facility-management/${audience.id}/`, siteUrl)
       : pageDefinition
         ? new URL(pageDefinition.path, siteUrl)
         : siteUrl
-    const title = audience?.seoTitle
+    const title = article?.seoTitle
+      ?? audience?.seoTitle
       ?? service?.seoTitle
       ?? pageDefinition?.title
       ?? 'Perla’s Facility Management | Objektbetreuung Rhein-Main'
-    const description = audience?.seoDescription
+    const description = article?.seoDescription
+      ?? audience?.seoDescription
       ?? service?.seoDescription
       ?? pageDefinition?.description
       ?? 'Perla’s bündelt Facility Management und professionelle Objektbetreuung für Hausverwaltungen, Wohnanlagen und Gewerbeimmobilien im Rhein-Main-Gebiet.'
-    const imageUrl = new URL(`${BASE_PATH}assets/${audience?.image.src ?? 'perlas-hero.png'}`, window.location.origin)
+    const imageUrl = new URL(`${BASE_PATH}assets/${article?.image ?? audience?.image.src ?? 'perlas-hero.png'}`, window.location.origin)
     const indexingOverride = import.meta.env.VITE_PERLAS_INDEX_SITE
     const indexingEnabled = indexingOverride
       ? indexingOverride === 'true'
@@ -194,7 +219,35 @@ function usePageSeo(service?: Feature, pageKind: PageKind = 'home', audience?: A
       },
       areaServed: ['Main-Taunus-Kreis', 'Rhein-Main-Gebiet'],
     }
-    const structuredData = service
+    const structuredData = article
+      ? {
+          '@context': 'https://schema.org',
+          '@graph': [
+            business,
+            {
+              '@type': 'BlogPosting',
+              '@id': `${pageUrl.href}#article`,
+              headline: article.title,
+              description: article.seoDescription,
+              image: imageUrl.href,
+              datePublished: '2026-08-31',
+              dateModified: '2026-08-31',
+              inLanguage: 'de-DE',
+              author: { '@id': businessId },
+              publisher: { '@id': businessId },
+              mainEntityOfPage: pageUrl.href,
+            },
+            {
+              '@type': 'BreadcrumbList',
+              itemListElement: [
+                { '@type': 'ListItem', position: 1, name: 'Startseite', item: siteUrl.href },
+                { '@type': 'ListItem', position: 2, name: 'Blog', item: new URL('blog/', siteUrl).href },
+                { '@type': 'ListItem', position: 3, name: article.title, item: pageUrl.href },
+              ],
+            },
+          ],
+        }
+      : service
       ? {
           '@context': 'https://schema.org',
           '@graph': [
@@ -264,7 +317,7 @@ function usePageSeo(service?: Feature, pageKind: PageKind = 'home', audience?: A
                 '@type': 'BreadcrumbList',
                 itemListElement: [
                   { '@type': 'ListItem', position: 1, name: 'Startseite', item: siteUrl.href },
-                  { '@type': 'ListItem', position: 2, name: pageKind === 'about' ? 'Über uns' : pageKind === 'services' ? 'Leistungen' : pageKind === 'facility' ? 'Facility Management' : pageKind === 'imprint' ? 'Impressum' : pageKind === 'privacy' ? 'Datenschutz' : 'Kontakt', item: pageUrl.href },
+                  { '@type': 'ListItem', position: 2, name: pageKind === 'about' ? 'Über uns' : pageKind === 'services' ? 'Leistungen' : pageKind === 'facility' ? 'Facility Management' : pageKind === 'blog' ? 'Blog' : pageKind === 'career' ? 'Karriere' : pageKind === 'imprint' ? 'Impressum' : pageKind === 'privacy' ? 'Datenschutz' : 'Kontakt', item: pageUrl.href },
                 ],
               },
             ],
@@ -292,7 +345,7 @@ function usePageSeo(service?: Feature, pageKind: PageKind = 'home', audience?: A
       document.head.appendChild(structuredDataScript)
     }
     structuredDataScript.textContent = JSON.stringify(structuredData)
-  }, [audience, pageKind, service])
+  }, [article, audience, pageKind, service])
 }
 
 type ButtonLinkProps = {
@@ -661,6 +714,7 @@ function Header({ onQuoteOpen }: { onQuoteOpen: () => void }) {
           </div>
           <a href={SERVICES_PATH} onClick={closeMenu}>Leistungen</a>
           <a href={ABOUT_PATH} onClick={closeMenu}>Über uns</a>
+          <a href={BLOG_PATH} onClick={closeMenu}>Blog</a>
           <a href={CONTACT_PATH} onClick={closeMenu}>Kontakt</a>
           <button
             className="nav-quote"
@@ -2273,7 +2327,7 @@ function LegalPage({ type }: { type: LegalPageType }) {
             </section>
             <section>
               <h2>3. Kontaktaufnahme und Formulare</h2>
-              <p>Angaben aus Kontakt- und Angebotsanfragen werden ausschließlich verwendet, um die jeweilige Anfrage zu bearbeiten. Die Direktformulare auf den Leistungs- und Zielgruppenseiten bereiten derzeit eine E-Mail im E-Mail-Programm des Nutzers vor.</p>
+              <p>Angaben aus Kontakt-, Angebots- und Bewerbungsanfragen werden ausschließlich verwendet, um die jeweilige Anfrage zu bearbeiten. Ohne konfiguriertes Backend bereiten die Formulare derzeit eine E-Mail im E-Mail-Programm des Nutzers vor. Nach einer späteren API-Anbindung werden Empfänger, Speicherdauer und technische Verarbeitung vor dem Produktivbetrieb abschließend ergänzt.</p>
             </section>
             <section>
               <h2>4. Cookies und Einwilligungen</h2>
@@ -2322,6 +2376,8 @@ function Footer() {
             ['Zielgruppen', 'facility-management/#zielgruppen'],
             ['Leistungen', 'leistungen/'],
             ['Über uns', 'ueber-uns/'],
+            ['Blog', 'blog/'],
+            ['Karriere', 'karriere/'],
             ['Kontakt', 'kontakt/'],
           ].map(([item, href]) => (
             <a href={homeHref(href)} key={item}>
@@ -2363,12 +2419,16 @@ export default function App() {
   const isFacilityPage = /^\/facility-management\/?$/.test(pagePath)
   const isServicesPage = /^\/leistungen\/?$/.test(pagePath)
   const isAboutPage = /^\/ueber-uns\/?$/.test(pagePath)
+  const isBlogPage = /^\/blog\/?$/.test(pagePath)
+  const isCareerPage = /^\/karriere\/?$/.test(pagePath)
   const isImprintPage = /^\/impressum\/?$/.test(pagePath)
   const isPrivacyPage = /^\/datenschutz\/?$/.test(pagePath)
   const serviceSlug = pagePath.match(/^\/leistungen\/([^/]+)\/?$/)?.[1]
   const activeService = features.find((service) => service.slug === serviceSlug)
   const audienceSlug = pagePath.match(/^\/facility-management\/([^/]+)\/?$/)?.[1]
   const activeAudience = audienceSolutions.find((audience) => audience.id === audienceSlug)
+  const blogSlug = pagePath.match(/^\/blog\/([^/]+)\/?$/)?.[1]
+  const activeBlogPost = blogPosts.find((post) => post.slug === blogSlug)
   const pageKind: PageKind = isContactPage
     ? 'contact'
     : isFacilityPage || activeAudience
@@ -2377,14 +2437,18 @@ export default function App() {
         ? 'services'
         : isAboutPage
           ? 'about'
+          : isBlogPage || activeBlogPost
+            ? 'blog'
+            : isCareerPage
+              ? 'career'
           : isImprintPage
             ? 'imprint'
             : isPrivacyPage
               ? 'privacy'
           : 'home'
 
-  usePageSeo(activeService, pageKind, activeAudience)
-  useRevealAnimations(activeService?.slug ?? activeAudience?.id ?? pageKind)
+  usePageSeo(activeService, pageKind, activeAudience, activeBlogPost)
+  useRevealAnimations(activeService?.slug ?? activeAudience?.id ?? activeBlogPost?.slug ?? pageKind)
 
   useEffect(() => {
     const scrollToCurrentSection = () => {
@@ -2417,6 +2481,8 @@ export default function App() {
         <ServiceDetailPage service={activeService} onQuoteOpen={openQuote} />
       ) : activeAudience ? (
         <AudienceDetailPage audience={activeAudience} onQuoteOpen={() => openQuote(activeAudience.navLabel)} />
+      ) : activeBlogPost ? (
+        <BlogArticlePage post={activeBlogPost} relatedPosts={blogPosts.filter((post) => post.slug !== activeBlogPost.slug)} />
       ) : isContactPage ? (
         <ContactPage onQuoteOpen={() => openQuote()} />
       ) : isFacilityPage ? (
@@ -2425,6 +2491,10 @@ export default function App() {
         <ServicesOverviewPage onQuoteOpen={() => openQuote()} />
       ) : isAboutPage ? (
         <AboutPage onQuoteOpen={() => openQuote()} />
+      ) : isBlogPage ? (
+        <BlogPage posts={blogPosts} />
+      ) : isCareerPage ? (
+        <CareerPage jobs={jobOpenings} />
       ) : isImprintPage ? (
         <LegalPage type="imprint" />
       ) : isPrivacyPage ? (
@@ -2437,6 +2507,7 @@ export default function App() {
           <HomeOverview />
           <HomeCoreServices />
           <HomeTrust />
+          <HomeCareerTeaser />
           <HomeContactTeaser onQuoteOpen={() => openQuote()} />
         </main>
       )}
