@@ -2741,8 +2741,7 @@ p {
 .fm-target-approach {
   margin-top: 28px;
   padding: 22px 24px;
-  border-left: 5px solid var(--primary);
-  border-radius: 0 18px 18px 0;
+  border-radius: 18px;
   background: #fff;
 }
 
