@@ -1063,6 +1063,31 @@ function ServicesOverviewPage({ onQuoteOpen }: { onQuoteOpen: () => void }) {
         </figure>
       </section>
 
+      <section className="services-audience-nav" aria-labelledby="services-audience-heading">
+        <div className="architecture-section-heading" data-reveal="up">
+          <span className="eyebrow">Objekte &amp; Auftraggeber</span>
+          <h2 id="services-audience-heading">Für diese Immobilien arbeiten wir.</h2>
+          <p>Wählen Sie den passenden Bereich und erfahren Sie, wie sich einzelne Leistungen zu einer abgestimmten Betreuung verbinden lassen.</p>
+        </div>
+        <nav className="services-audience-links" aria-label="Facility Management nach Objektart">
+          {audienceSolutions.map((audience, index) => {
+            const Icon = audience.icon
+            return (
+              <a
+                href={`${FACILITY_PATH}#${audience.id}`}
+                data-reveal="up"
+                style={{ '--reveal-delay': `${index * 45}ms` } as CSSProperties}
+                key={audience.id}
+              >
+                <span><Icon aria-hidden="true" /></span>
+                <strong>{audience.navLabel}</strong>
+                <ArrowUpRight aria-hidden="true" />
+              </a>
+            )
+          })}
+        </nav>
+      </section>
+
       <section className="services-catalog" aria-labelledby="services-catalog-heading">
         <div className="architecture-section-heading" data-reveal="up">
           <span className="eyebrow">Leistungsübersicht</span>
