@@ -30,6 +30,7 @@ import {
 import CookieConsent from './CookieConsent'
 import ContactPage from './ContactPage'
 import QuoteModal from './QuoteModal'
+import audienceContent from './audience-data.json'
 import serviceContent from './service-data.json'
 
 const BASE_PATH = import.meta.env.BASE_URL
@@ -43,6 +44,7 @@ const IMPRINT_PATH = `${BASE_PATH}impressum/`
 const PRIVACY_PATH = `${BASE_PATH}datenschutz/`
 
 const homeHref = (hash = '') => `${BASE_PATH}${hash}`
+const audienceHref = (id: string) => `${FACILITY_PATH}${id}/`
 
 function getPagePath() {
   const baseWithoutTrailingSlash = BASE_PATH.replace(/\/$/, '')
@@ -67,10 +69,33 @@ function ensureMeta(selector: string, attributes: Record<string, string>) {
 
 type PageKind = 'home' | 'contact' | 'facility' | 'services' | 'about' | 'imprint' | 'privacy'
 
-function usePageSeo(service?: Feature, pageKind: PageKind = 'home') {
+type AudienceSolutionContent = {
+  id: string
+  title: string
+  navLabel: string
+  text: string
+  seoTitle: string
+  seoDescription: string
+  heroTitle: string
+  heroText: string
+  introTitle: string
+  introText: string
+  requirements: string[]
+  approach: string
+  services: string[]
+  image: { src: string; alt: string }
+  scopeCards: Array<{ title: string; text: string }>
+  process: Array<{ title: string; text: string }>
+  faqs: Array<{ question: string; answer: string }>
+}
+
+type AudienceSolution = AudienceSolutionContent & { icon: LucideIcon }
+
+function usePageSeo(service?: Feature, pageKind: PageKind = 'home', audience?: AudienceSolution) {
   useEffect(() => {
     const siteUrl = new URL(BASE_PATH, window.location.origin)
     const servicesUrl = new URL('leistungen/', siteUrl)
+    const facilityUrl = new URL('facility-management/', siteUrl)
     const pageDefinitions: Record<Exclude<PageKind, 'home'>, { path: string; title: string; description: string; schemaType: string }> = {
       contact: {
         path: 'kontakt/',
@@ -112,16 +137,20 @@ function usePageSeo(service?: Feature, pageKind: PageKind = 'home') {
     const pageDefinition = pageKind === 'home' ? undefined : pageDefinitions[pageKind]
     const pageUrl = service
       ? new URL(`leistungen/${service.slug}/`, siteUrl)
+      : audience
+        ? new URL(`facility-management/${audience.id}/`, siteUrl)
       : pageDefinition
         ? new URL(pageDefinition.path, siteUrl)
         : siteUrl
-    const title = service?.seoTitle
+    const title = audience?.seoTitle
+      ?? service?.seoTitle
       ?? pageDefinition?.title
       ?? 'Perla’s Facility Management | Objektbetreuung Rhein-Main'
-    const description = service?.seoDescription
+    const description = audience?.seoDescription
+      ?? service?.seoDescription
       ?? pageDefinition?.description
       ?? 'Perla’s bündelt Facility Management und professionelle Objektbetreuung für Hausverwaltungen, Wohnanlagen und Gewerbeimmobilien im Rhein-Main-Gebiet.'
-    const imageUrl = new URL(`${BASE_PATH}assets/perlas-hero.png`, window.location.origin)
+    const imageUrl = new URL(`${BASE_PATH}assets/${audience?.image.src ?? 'perlas-hero.png'}`, window.location.origin)
     const indexingOverride = import.meta.env.VITE_PERLAS_INDEX_SITE
     const indexingEnabled = indexingOverride
       ? indexingOverride === 'true'
@@ -189,6 +218,34 @@ function usePageSeo(service?: Feature, pageKind: PageKind = 'home') {
             },
           ],
         }
+      : audience
+        ? {
+            '@context': 'https://schema.org',
+            '@graph': [
+              business,
+              {
+                '@type': 'Service',
+                '@id': `${pageUrl.href}#service`,
+                name: `Facility Management für ${audience.navLabel}`,
+                description: audience.seoDescription,
+                url: pageUrl.href,
+                provider: { '@id': businessId },
+                areaServed: ['Main-Taunus-Kreis', 'Rhein-Main-Gebiet'],
+                audience: {
+                  '@type': 'Audience',
+                  audienceType: audience.navLabel,
+                },
+              },
+              {
+                '@type': 'BreadcrumbList',
+                itemListElement: [
+                  { '@type': 'ListItem', position: 1, name: 'Startseite', item: siteUrl.href },
+                  { '@type': 'ListItem', position: 2, name: 'Facility Management', item: facilityUrl.href },
+                  { '@type': 'ListItem', position: 3, name: audience.navLabel, item: pageUrl.href },
+                ],
+              },
+            ],
+          }
       : pageDefinition
         ? {
             '@context': 'https://schema.org',
@@ -235,7 +292,7 @@ function usePageSeo(service?: Feature, pageKind: PageKind = 'home') {
       document.head.appendChild(structuredDataScript)
     }
     structuredDataScript.textContent = JSON.stringify(structuredData)
-  }, [pageKind, service])
+  }, [audience, pageKind, service])
 }
 
 type ButtonLinkProps = {
@@ -446,48 +503,17 @@ const facilityPillars = [
   },
 ]
 
-const audienceSolutions = [
-  {
-    id: 'hausverwaltungen',
-    icon: KeyRound,
-    title: 'Hausverwaltungen',
-    navLabel: 'Hausverwaltungen',
-    text: 'Klare Zuständigkeiten und gebündelte Rückmeldungen für professionell verwaltete Immobilienbestände.',
-    requirements: ['Ein Ansprechpartner für laufende Aufgaben', 'Abgestimmte Leistungsintervalle', 'Nachvollziehbare Zustands- und Leistungsmeldungen'],
-    approach: 'Wir stimmen die benötigten Leistungen objektbezogen ab und führen Rückmeldungen zu einem übersichtlichen Gesamtbild zusammen.',
-    services: ['objektpflege', 'gebaeudereinigung', 'wartung-instandhaltung', 'gartenpflege', 'winterdienst'],
-  },
-  {
-    id: 'wohnanlagen',
-    icon: Home,
-    title: 'Größere Wohnanlagen & Immobilienbestände',
-    navLabel: 'Größere Wohnanlagen',
-    text: 'Laufende Betreuung gemeinschaftlich genutzter Gebäude- und Außenbereiche mit planbaren Abläufen.',
-    requirements: ['Regelmäßige Objekt- und Sichtkontrollen', 'Pflege von Gemeinschafts- und Außenflächen', 'Koordination saisonaler und wiederkehrender Aufgaben'],
-    approach: 'Gebäude, Außenanlagen und Zugänge werden in einem abgestimmten Betreuungskonzept betrachtet. Auffälligkeiten werden frühzeitig weitergegeben.',
-    services: ['objektpflege', 'gebaeudereinigung', 'wartung-instandhaltung', 'gartenpflege', 'winterdienst', 'wohnungswechsel'],
-  },
-  {
-    id: 'gewerbeimmobilien',
-    icon: Building2,
-    title: 'Gewerbeimmobilien & Unternehmensstandorte',
-    navLabel: 'Gewerbeimmobilien',
-    text: 'Objektbetreuung, Reinigung und technische Aufgaben werden so kombiniert, dass der laufende Betrieb möglichst wenig beeinträchtigt wird.',
-    requirements: ['Planbare Einsätze im laufenden Betrieb', 'Gepflegte Innen- und Außenbereiche', 'Klare Weitergabe technischer Auffälligkeiten'],
-    approach: 'Leistungen und Einsatzzeiten richten sich nach Objekt, Nutzung und Zugänglichkeit. Notwendige Facharbeiten werden mit geeigneten Fachbetrieben abgestimmt.',
-    services: ['objektpflege', 'wartung-instandhaltung', 'gebaeudereinigung', 'gartenpflege', 'winterdienst'],
-  },
-  {
-    id: 'institutionelle-gebaeude',
-    icon: Hospital,
-    title: 'Büro-, Praxis-, institutionelle & öffentliche Gebäude',
-    navLabel: 'Institutionelle & öffentliche Gebäude',
-    text: 'Für regelmäßig genutzte institutionelle und öffentliche Gebäude verbinden wir feste Zuständigkeiten mit planbaren Leistungen für Innen- und Außenbereiche.',
-    requirements: ['Verlässliche Abläufe bei regelmäßiger Nutzung', 'Saubere und gepflegte Gemeinschaftsflächen', 'Dokumentierte Kontrollen und Rückmeldungen'],
-    approach: 'Wir legen Aufgaben, Intervalle und Ansprechpartner gemeinsam fest. Bei technischen Fachthemen koordinieren wir die Weitergabe an geeignete Spezialisten.',
-    services: ['objektpflege', 'gebaeudereinigung', 'wartung-instandhaltung', 'winterdienst', 'gartenpflege'],
-  },
-]
+const audienceIcons: Record<string, LucideIcon> = {
+  hausverwaltungen: KeyRound,
+  wohnanlagen: Home,
+  gewerbeimmobilien: Building2,
+  'institutionelle-gebaeude': Hospital,
+}
+
+const audienceSolutions: AudienceSolution[] = (audienceContent as AudienceSolutionContent[]).map((audience) => ({
+  ...audience,
+  icon: audienceIcons[audience.id] ?? Building2,
+}))
 
 const insights = [
   {
@@ -616,7 +642,7 @@ function Header({ onQuoteOpen }: { onQuoteOpen: () => void }) {
               {audienceSolutions.map((audience) => {
                 const Icon = audience.icon
                 return (
-                  <a href={`${FACILITY_PATH}#${audience.id}`} onClick={closeMenu} key={audience.id}>
+                  <a href={audienceHref(audience.id)} onClick={closeMenu} key={audience.id}>
                     <Icon aria-hidden="true" />
                     <strong>{audience.navLabel}</strong>
                     <ArrowUpRight aria-hidden="true" />
@@ -981,7 +1007,7 @@ function HomeCoreServices() {
           return (
             <a
               className="home-service-card"
-              href={`${FACILITY_PATH}#${audience.id}`}
+              href={audienceHref(audience.id)}
               key={audience.id}
               data-reveal="up"
               style={{ '--reveal-delay': `${index * 60}ms` } as CSSProperties}
@@ -1074,7 +1100,7 @@ function ServicesOverviewPage({ onQuoteOpen }: { onQuoteOpen: () => void }) {
             const Icon = audience.icon
             return (
               <a
-                href={`${FACILITY_PATH}#${audience.id}`}
+                href={audienceHref(audience.id)}
                 data-reveal="up"
                 style={{ '--reveal-delay': `${index * 45}ms` } as CSSProperties}
                 key={audience.id}
@@ -1344,7 +1370,7 @@ function AudienceSolutions() {
           return (
             <a
               className="audience-card"
-              href={`${FACILITY_PATH}#${audience.id}`}
+              href={audienceHref(audience.id)}
               data-reveal="up"
               style={{ '--reveal-delay': `${index * 70}ms` } as CSSProperties}
               key={audience.id}
@@ -1362,25 +1388,6 @@ function AudienceSolutions() {
 }
 
 function FacilityManagementPage({ onQuoteOpen }: { onQuoteOpen: () => void }) {
-  const targetImages: Record<string, { src: string; alt: string }> = {
-    hausverwaltungen: {
-      src: 'perlas-office.png',
-      alt: 'Einsatzplanung für professionell verwaltete Immobilien',
-    },
-    wohnanlagen: {
-      src: 'perlas-property.png',
-      alt: 'Größere Wohnanlage im Rhein-Main-Gebiet',
-    },
-    gewerbeimmobilien: {
-      src: 'perlas-hero.png',
-      alt: 'Objektkontrolle an einer gewerblich genutzten Immobilie',
-    },
-    'institutionelle-gebaeude': {
-      src: 'perlas-team.png',
-      alt: 'Team für die laufende Objektbetreuung',
-    },
-  }
-
   return (
     <main className="facility-page">
       <section className="fm-hero">
@@ -1463,7 +1470,7 @@ function FacilityManagementPage({ onQuoteOpen }: { onQuoteOpen: () => void }) {
             const linkedServices = audience.services
               .map((slug) => features.find((feature) => feature.slug === slug))
               .filter((feature): feature is Feature => Boolean(feature))
-            const image = targetImages[audience.id]
+            const image = audience.image
 
             return (
               <article className="fm-target" id={audience.id} key={audience.id}>
@@ -1483,6 +1490,9 @@ function FacilityManagementPage({ onQuoteOpen }: { onQuoteOpen: () => void }) {
                     <strong>Unser Ansatz</strong>
                     <p>{audience.approach}</p>
                   </div>
+                  <a className="fm-target-detail-link" href={audienceHref(audience.id)}>
+                    Bereich im Detail ansehen <ArrowUpRight aria-hidden="true" />
+                  </a>
                   <nav className="fm-service-links" aria-label={`Vorhandene Leistungen für ${audience.title}`}>
                     <span>Passende Leistungsseiten</span>
                     {linkedServices.map((service) => (
@@ -1536,6 +1546,137 @@ function FacilityManagementPage({ onQuoteOpen }: { onQuoteOpen: () => void }) {
             <span>Angebot anfragen</span><img src={`${A}arrow-white.svg`} alt="" />
           </button>
           <a href="tel:+491776867145"><Phone aria-hidden="true" /> 0177 68 67 145</a>
+        </div>
+      </section>
+    </main>
+  )
+}
+
+function AudienceDetailPage({ audience, onQuoteOpen }: { audience: AudienceSolution; onQuoteOpen: () => void }) {
+  const Icon = audience.icon
+  const linkedServices = audience.services
+    .map((slug) => features.find((service) => service.slug === slug))
+    .filter((service): service is Feature => Boolean(service))
+
+  return (
+    <main className="audience-detail-page">
+      <section className="audience-detail-hero">
+        <div className="audience-detail-hero-copy" data-reveal="left">
+          <PageBreadcrumb current={audience.navLabel} parent={{ label: 'Facility Management', href: FACILITY_PATH }} />
+          <div className="audience-detail-icon"><Icon aria-hidden="true" /></div>
+          <span className="eyebrow">Facility Management für</span>
+          <h1>{audience.heroTitle}</h1>
+          <p>{audience.heroText}</p>
+          <div className="button-row">
+            <button className="button button--yellow" type="button" onClick={onQuoteOpen}>
+              <span>Betreuung anfragen</span><img src={`${A}arrow-white.svg`} alt="" />
+            </button>
+            <a className="button button--outline" href="tel:+491776867145">Direkt anrufen</a>
+          </div>
+        </div>
+        <figure className="audience-detail-hero-image" data-reveal="right" style={{ '--reveal-delay': '80ms' } as CSSProperties}>
+          <img src={`${A}${audience.image.src}`} alt={audience.image.alt} />
+          <figcaption><Icon aria-hidden="true" /><span>{audience.navLabel}</span></figcaption>
+        </figure>
+      </section>
+
+      <section className="audience-detail-scope" aria-labelledby="audience-scope-heading">
+        <div className="architecture-section-heading" data-reveal="up">
+          <span className="eyebrow">Passend zur Nutzung geplant</span>
+          <h2 id="audience-scope-heading">{audience.introTitle}</h2>
+          <p>{audience.introText}</p>
+        </div>
+        <div className="audience-detail-scope-grid">
+          {audience.scopeCards.map((item, index) => (
+            <article data-reveal="up" style={{ '--reveal-delay': `${index * 55}ms` } as CSSProperties} key={item.title}>
+              <span>{String(index + 1).padStart(2, '0')}</span>
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="audience-detail-approach" aria-labelledby="audience-approach-heading">
+        <div data-reveal="left">
+          <span className="eyebrow">Typische Anforderungen</span>
+          <h2 id="audience-approach-heading">Im Alltag zählen klare Zuständigkeiten.</h2>
+          <ul>
+            {audience.requirements.map((requirement) => (
+              <li key={requirement}><CheckCircle2 aria-hidden="true" /><span>{requirement}</span></li>
+            ))}
+          </ul>
+        </div>
+        <article data-reveal="right" style={{ '--reveal-delay': '70ms' } as CSSProperties}>
+          <Icon aria-hidden="true" />
+          <span className="eyebrow">Unser Ansatz</span>
+          <h3>Ein Betreuungskonzept, das zum Objekt passt.</h3>
+          <p>{audience.approach}</p>
+        </article>
+      </section>
+
+      <section className="audience-detail-services" aria-labelledby="audience-services-heading">
+        <div className="architecture-section-heading" data-reveal="up">
+          <span className="eyebrow">Direkt verknüpft</span>
+          <h2 id="audience-services-heading">Passende Leistungen für {audience.navLabel}.</h2>
+          <p>Jede Leistung führt zu einer eigenen Detailseite mit konkretem Umfang, Ablauf und Kontaktmöglichkeit.</p>
+        </div>
+        <div className="audience-detail-service-grid">
+          {linkedServices.map((service, index) => {
+            const ServiceIcon = service.icon
+            return (
+              <a href={`${SERVICES_PATH}${service.slug}/`} data-reveal="up" style={{ '--reveal-delay': `${(index % 3) * 45}ms` } as CSSProperties} key={service.slug}>
+                <span><ServiceIcon aria-hidden="true" /></span>
+                <h3>{service.title}</h3>
+                <p>{service.text}</p>
+                <strong>Leistung ansehen <ArrowUpRight aria-hidden="true" /></strong>
+              </a>
+            )
+          })}
+        </div>
+      </section>
+
+      <section className="audience-detail-process" aria-labelledby="audience-process-heading">
+        <div className="architecture-section-heading" data-reveal="up">
+          <span className="eyebrow">So starten wir</span>
+          <h2 id="audience-process-heading">Vom Objekt zum klaren Ablauf.</h2>
+        </div>
+        <ol>
+          {audience.process.map((step, index) => (
+            <li data-reveal="up" style={{ '--reveal-delay': `${index * 60}ms` } as CSSProperties} key={step.title}>
+              <span>{String(index + 1).padStart(2, '0')}</span>
+              <div><h3>{step.title}</h3><p>{step.text}</p></div>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      <section className="audience-detail-faq" aria-labelledby="audience-faq-heading">
+        <div className="architecture-section-heading" data-reveal="left">
+          <span className="eyebrow">Häufige Fragen</span>
+          <h2 id="audience-faq-heading">Fragen zu {audience.navLabel}.</h2>
+        </div>
+        <div data-reveal="right">
+          {audience.faqs.map((faq) => (
+            <details key={faq.question}>
+              <summary>{faq.question}<ChevronDown aria-hidden="true" /></summary>
+              <p>{faq.answer}</p>
+            </details>
+          ))}
+        </div>
+      </section>
+
+      <section className="architecture-cta audience-detail-cta" data-reveal="up">
+        <div>
+          <span className="eyebrow">Persönlich abstimmen</span>
+          <h2>Passt diese Betreuung zu Ihrem Objekt?</h2>
+          <p>Wir sehen uns Nutzung, Flächen und laufende Aufgaben an und stellen daraus einen passenden Leistungsumfang zusammen.</p>
+        </div>
+        <div className="audience-detail-cta-actions">
+          <button className="button button--yellow" type="button" onClick={onQuoteOpen}>
+            <span>Angebot anfragen</span><img src={`${A}arrow-white.svg`} alt="" />
+          </button>
+          <a href="mailto:mail@perlas.de">E-Mail schreiben</a>
         </div>
       </section>
     </main>
@@ -2177,9 +2318,11 @@ export default function App() {
   const isPrivacyPage = /^\/datenschutz\/?$/.test(pagePath)
   const serviceSlug = pagePath.match(/^\/leistungen\/([^/]+)\/?$/)?.[1]
   const activeService = features.find((service) => service.slug === serviceSlug)
+  const audienceSlug = pagePath.match(/^\/facility-management\/([^/]+)\/?$/)?.[1]
+  const activeAudience = audienceSolutions.find((audience) => audience.id === audienceSlug)
   const pageKind: PageKind = isContactPage
     ? 'contact'
-    : isFacilityPage
+    : isFacilityPage || activeAudience
       ? 'facility'
       : isServicesPage
         ? 'services'
@@ -2191,8 +2334,8 @@ export default function App() {
               ? 'privacy'
           : 'home'
 
-  usePageSeo(activeService, pageKind)
-  useRevealAnimations(activeService?.slug ?? pageKind)
+  usePageSeo(activeService, pageKind, activeAudience)
+  useRevealAnimations(activeService?.slug ?? activeAudience?.id ?? pageKind)
 
   useEffect(() => {
     const scrollToCurrentSection = () => {
@@ -2223,6 +2366,8 @@ export default function App() {
       <Header onQuoteOpen={() => openQuote()} />
       {activeService ? (
         <ServiceDetailPage service={activeService} onQuoteOpen={openQuote} />
+      ) : activeAudience ? (
+        <AudienceDetailPage audience={activeAudience} onQuoteOpen={() => openQuote(activeAudience.navLabel)} />
       ) : isContactPage ? (
         <ContactPage onQuoteOpen={() => openQuote()} />
       ) : isFacilityPage ? (

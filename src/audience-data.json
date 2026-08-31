@@ -1,0 +1,262 @@
+[
+  {
+    "id": "hausverwaltungen",
+    "title": "Hausverwaltungen",
+    "navLabel": "Hausverwaltungen",
+    "text": "Klare Zuständigkeiten und gebündelte Rückmeldungen für professionell verwaltete Immobilienbestände.",
+    "seoTitle": "Facility Management für Hausverwaltungen | Perla’s Rhein-Main",
+    "seoDescription": "Facility Management für Hausverwaltungen im Rhein-Main-Gebiet: Objektkontrollen, Reinigung, Wartungskoordination, Außenanlagen und Winterdienst mit einem Ansprechpartner.",
+    "heroTitle": "Facility Management für Hausverwaltungen im Rhein-Main-Gebiet.",
+    "heroText": "Perla’s bündelt wiederkehrende Aufgaben, Objektkontrollen und Rückmeldungen für professionell verwaltete Immobilien. So behalten Verwaltungen Zustand, Leistungen und offene Punkte über mehrere Objekte hinweg im Blick.",
+    "introTitle": "Laufende Aufgaben zuverlässig an einer Stelle bündeln.",
+    "introText": "Im Verwaltungsalltag müssen viele kleine und wiederkehrende Aufgaben zusammenlaufen. Wir stimmen Leistungen und Intervalle je Objekt ab, übernehmen die Koordination vor Ort und melden verständlich zurück, was erledigt wurde und wo Handlungsbedarf besteht.",
+    "requirements": [
+      "Ein Ansprechpartner für laufende Aufgaben",
+      "Abgestimmte Leistungsintervalle",
+      "Nachvollziehbare Zustands- und Leistungsmeldungen"
+    ],
+    "approach": "Wir stimmen die benötigten Leistungen objektbezogen ab und führen Rückmeldungen zu einem übersichtlichen Gesamtbild zusammen. Jede Immobilie erhält einen nachvollziehbaren Leistungsrahmen mit klaren Zuständigkeiten.",
+    "services": ["objektpflege", "gebaeudereinigung", "wartung-instandhaltung", "gartenpflege", "winterdienst"],
+    "image": {
+      "src": "perlas-office.png",
+      "alt": "Einsatzplanung für professionell verwaltete Immobilien"
+    },
+    "scopeCards": [
+      {
+        "title": "Objekte regelmäßig im Blick behalten",
+        "text": "Vereinbarte Innen- und Außenbereiche werden kontrolliert. Auffälligkeiten, Schäden oder Verschmutzungen werden aufgenommen und mit einer verständlichen Rückmeldung an die Verwaltung weitergegeben."
+      },
+      {
+        "title": "Wiederkehrende Leistungen koordinieren",
+        "text": "Reinigung, Objektpflege, Außenanlagen und saisonale Aufgaben erhalten feste Intervalle. Dadurch lassen sich Einsätze planen und Leistungen je Objekt nachvollziehen."
+      },
+      {
+        "title": "Offene Punkte geordnet weiterführen",
+        "text": "Kleine Aufgaben erledigen wir nach Vereinbarung direkt. Wenn eine Fachfirma erforderlich ist, unterstützen wir bei Zugang und Abstimmung und halten den weiteren Bedarf fest."
+      }
+    ],
+    "process": [
+      {
+        "title": "Bestand und Abläufe aufnehmen",
+        "text": "Wir besprechen Objekte, Flächen, bisherige Abläufe und die Ansprechpartner in der Verwaltung."
+      },
+      {
+        "title": "Leistungen je Objekt festlegen",
+        "text": "Aufgaben, Intervalle und Rückmeldewege werden für jede Immobilie verständlich definiert."
+      },
+      {
+        "title": "Laufend betreuen und rückmelden",
+        "text": "Einsätze werden koordiniert, Auffälligkeiten dokumentiert und offene Maßnahmen abgestimmt."
+      }
+    ],
+    "faqs": [
+      {
+        "question": "Kann Perla’s mehrere Objekte einer Hausverwaltung betreuen?",
+        "answer": "Ja. Der Leistungsumfang wird für jedes Objekt einzeln aufgenommen. Anschließend lassen sich Zuständigkeiten und Rückmeldungen über den gesamten betreuten Bestand einheitlich organisieren."
+      },
+      {
+        "question": "Wie erhält die Verwaltung Rückmeldung zu einem Objekt?",
+        "answer": "Form und Rhythmus der Rückmeldung werden vorab vereinbart. Bei Auffälligkeiten können kurze Zustandsmeldungen und Fotos ergänzt werden, damit der weitere Schritt schnell entschieden werden kann."
+      },
+      {
+        "question": "Übernimmt Perla’s auch technische Facharbeiten?",
+        "answer": "Kleine vereinbarte Hausmeisterarbeiten und Sichtkontrollen können Teil der Betreuung sein. Fachprüfungen und qualifikationsgebundene Arbeiten werden an geeignete Fachbetriebe weitergegeben und bei Bedarf organisatorisch begleitet."
+      }
+    ]
+  },
+  {
+    "id": "wohnanlagen",
+    "title": "Größere Wohnanlagen & Immobilienbestände",
+    "navLabel": "Größere Wohnanlagen",
+    "text": "Laufende Betreuung gemeinschaftlich genutzter Gebäude- und Außenbereiche mit planbaren Abläufen.",
+    "seoTitle": "Facility Management für Wohnanlagen | Perla’s Rhein-Main",
+    "seoDescription": "Facility Management für größere Wohnanlagen im Rhein-Main-Gebiet. Perla’s betreut Gemeinschaftsflächen, Außenanlagen, Zugänge und wiederkehrende Aufgaben.",
+    "heroTitle": "Facility Management für größere Wohnanlagen.",
+    "heroText": "Gemeinschaftsflächen, Zugänge und Außenanlagen werden täglich genutzt und müssen dauerhaft funktionieren. Perla’s verbindet regelmäßige Kontrollen, Pflege und klare Rückmeldungen zu einer planbaren Betreuung.",
+    "introTitle": "Gebäude und Außenbereiche gemeinsam betrachten.",
+    "introText": "Bei größeren Wohnanlagen greifen viele Aufgaben ineinander. Wir ordnen die Betreuung nach Flächen, Nutzung und Jahreszeit und sorgen dafür, dass wiederkehrende Leistungen nicht nebeneinanderher laufen.",
+    "requirements": [
+      "Regelmäßige Objekt- und Sichtkontrollen",
+      "Pflege von Gemeinschafts- und Außenflächen",
+      "Koordination saisonaler und wiederkehrender Aufgaben"
+    ],
+    "approach": "Gebäude, Außenanlagen und Zugänge werden in einem abgestimmten Betreuungskonzept betrachtet. Auffälligkeiten werden frühzeitig weitergegeben, damit Verwaltung oder Eigentümer rechtzeitig entscheiden können.",
+    "services": ["objektpflege", "gebaeudereinigung", "wartung-instandhaltung", "gartenpflege", "winterdienst", "wohnungswechsel"],
+    "image": {
+      "src": "perlas-property.png",
+      "alt": "Größere Wohnanlage im Rhein-Main-Gebiet"
+    },
+    "scopeCards": [
+      {
+        "title": "Gemeinschaftsflächen betreuen",
+        "text": "Treppenhäuser, Eingänge, Flure, Kellerzugänge und weitere vereinbarte Bereiche werden regelmäßig kontrolliert und passend zur Nutzung gepflegt."
+      },
+      {
+        "title": "Außenanlagen und Wege pflegen",
+        "text": "Wege, Höfe, Grünflächen und Zugänge werden über das Jahr hinweg berücksichtigt. Gartenpflege und Winterdienst lassen sich dabei sinnvoll aufeinander abstimmen."
+      },
+      {
+        "title": "Hinweise aus dem Objekt aufnehmen",
+        "text": "Auffälligkeiten aus Kontrollgängen oder Meldungen von Bewohnern werden vor Ort eingeordnet und an den vereinbarten Ansprechpartner weitergegeben."
+      }
+    ],
+    "process": [
+      {
+        "title": "Flächen und Nutzung erfassen",
+        "text": "Wir sehen uns Gemeinschaftsbereiche, Zugänge und Außenflächen an und klären die tatsächliche Nutzung."
+      },
+      {
+        "title": "Jahresplan abstimmen",
+        "text": "Regelmäßige und saisonale Aufgaben werden in passende Intervalle und Zeiträume eingeordnet."
+      },
+      {
+        "title": "Zustand laufend im Blick behalten",
+        "text": "Kontrollen, erledigte Aufgaben und offene Punkte werden verständlich an Verwaltung oder Eigentümer gemeldet."
+      }
+    ],
+    "faqs": [
+      {
+        "question": "Welche Bereiche einer Wohnanlage kann Perla’s betreuen?",
+        "answer": "Der konkrete Umfang richtet sich nach dem Objekt. Typisch sind Eingänge, Treppenhäuser, Flure, Kellerzugänge, Wege, Höfe, Grünflächen und weitere gemeinsam genutzte Bereiche."
+      },
+      {
+        "question": "Können Gartenpflege und Winterdienst gemeinsam geplant werden?",
+        "answer": "Ja. Saisonale Aufgaben werden auf die Flächen und die örtlichen Gegebenheiten abgestimmt. So entstehen klare Übergänge zwischen Grünpflege, Laubbeseitigung und Winterdienst."
+      },
+      {
+        "question": "Wie werden Mängel oder Schäden gemeldet?",
+        "answer": "Auffälligkeiten werden aufgenommen und über den vereinbarten Kontaktweg weitergegeben. Je nach Bedarf ergänzen wir die Meldung mit Fotos und einer kurzen Einordnung der Situation."
+      }
+    ]
+  },
+  {
+    "id": "gewerbeimmobilien",
+    "title": "Gewerbeimmobilien & Unternehmensstandorte",
+    "navLabel": "Gewerbeimmobilien",
+    "text": "Objektbetreuung, Reinigung und technische Aufgaben werden so kombiniert, dass der laufende Betrieb möglichst wenig beeinträchtigt wird.",
+    "seoTitle": "Facility Management für Gewerbeimmobilien | Perla’s Rhein-Main",
+    "seoDescription": "Facility Management für Gewerbeimmobilien und Unternehmensstandorte im Rhein-Main-Gebiet. Planbare Objektbetreuung, Reinigung und technische Koordination.",
+    "heroTitle": "Facility Management für Gewerbeimmobilien und Standorte.",
+    "heroText": "Gewerblich genutzte Immobilien brauchen gepflegte Flächen und verlässliche Abläufe, ohne den Betrieb unnötig zu stören. Perla’s stimmt Einsätze auf Nutzung, Zugänglichkeit und Ansprechpartner vor Ort ab.",
+    "introTitle": "Betreuung, die sich in den laufenden Betrieb einfügt.",
+    "introText": "Ob Bürogebäude, gemischt genutzter Standort oder Gewerbeobjekt: Wir verbinden wiederkehrende Leistungen mit Kontrollgängen und einer klaren Weitergabe technischer Auffälligkeiten.",
+    "requirements": [
+      "Planbare Einsätze im laufenden Betrieb",
+      "Gepflegte Innen- und Außenbereiche",
+      "Klare Weitergabe technischer Auffälligkeiten"
+    ],
+    "approach": "Leistungen und Einsatzzeiten richten sich nach Objekt, Nutzung und Zugänglichkeit. Notwendige Facharbeiten werden mit geeigneten Fachbetrieben abgestimmt, während die organisatorischen Fäden bei einem Ansprechpartner zusammenlaufen.",
+    "services": ["objektpflege", "wartung-instandhaltung", "gebaeudereinigung", "gartenpflege", "winterdienst"],
+    "image": {
+      "src": "perlas-hero.png",
+      "alt": "Objektkontrolle an einer gewerblich genutzten Immobilie"
+    },
+    "scopeCards": [
+      {
+        "title": "Einsätze passend zum Betrieb planen",
+        "text": "Zeitfenster, Zugänge und sensible Bereiche werden vorab geklärt. Wiederkehrende Aufgaben lassen sich dadurch verlässlich ausführen, ohne unnötig in Arbeitsabläufe einzugreifen."
+      },
+      {
+        "title": "Einen gepflegten Eindruck sichern",
+        "text": "Eingangsbereiche, Gemeinschaftsflächen und Außenanlagen werden nach einem nachvollziehbaren Plan betreut und regelmäßig kontrolliert."
+      },
+      {
+        "title": "Technische Auffälligkeiten weitergeben",
+        "text": "Sichtbare Mängel werden aufgenommen und verständlich gemeldet. Wenn Fachwissen erforderlich ist, unterstützen wir bei der Koordination geeigneter Betriebe."
+      }
+    ],
+    "process": [
+      {
+        "title": "Nutzung und Betriebszeiten klären",
+        "text": "Wir erfassen, wann Flächen zugänglich sind und welche Bereiche besondere Abstimmung benötigen."
+      },
+      {
+        "title": "Leistungsfenster festlegen",
+        "text": "Aufgaben und Intervalle werden so geplant, dass sie zum laufenden Betrieb und zum Objekt passen."
+      },
+      {
+        "title": "Qualität und offene Punkte rückmelden",
+        "text": "Durchgeführte Leistungen und Auffälligkeiten werden gebündelt an den zuständigen Ansprechpartner weitergegeben."
+      }
+    ],
+    "faqs": [
+      {
+        "question": "Kann die Betreuung außerhalb der Hauptbetriebszeiten stattfinden?",
+        "answer": "Mögliche Einsatzzeiten werden anhand des Objekts, der Zugänglichkeit und der gewünschten Leistungen abgestimmt. Ziel ist ein Ablauf, der den Betrieb möglichst wenig beeinträchtigt."
+      },
+      {
+        "question": "Welche Gewerbeobjekte betreut Perla’s?",
+        "answer": "Der Leistungsumfang eignet sich unter anderem für Bürogebäude, Unternehmensstandorte und gemischt genutzte Gewerbeimmobilien. Entscheidend sind die konkreten Flächen und Aufgaben vor Ort."
+      },
+      {
+        "question": "Wie werden technische Themen behandelt?",
+        "answer": "Im Rahmen der Betreuung übernehmen wir vereinbarte Sichtkontrollen und Zustandsmeldungen. Fachprüfungen und qualifikationsgebundene Arbeiten bleiben bei geeigneten Fachbetrieben."
+      }
+    ]
+  },
+  {
+    "id": "institutionelle-gebaeude",
+    "title": "Büro-, Praxis-, institutionelle & öffentliche Gebäude",
+    "navLabel": "Institutionelle & öffentliche Gebäude",
+    "text": "Für regelmäßig genutzte institutionelle und öffentliche Gebäude verbinden wir feste Zuständigkeiten mit planbaren Leistungen für Innen- und Außenbereiche.",
+    "seoTitle": "Facility Management für öffentliche Gebäude | Perla’s Rhein-Main",
+    "seoDescription": "Facility Management für Büro-, Praxis-, institutionelle und öffentliche Gebäude im Rhein-Main-Gebiet mit festen Abläufen, Kontrollen und dokumentierten Rückmeldungen.",
+    "heroTitle": "Facility Management für institutionelle und öffentliche Gebäude.",
+    "heroText": "Regelmäßig genutzte Gebäude benötigen verlässliche Abläufe, gepflegte Gemeinschaftsflächen und klar dokumentierte Rückmeldungen. Perla’s stimmt die Betreuung auf Nutzung, Besucheraufkommen und Zuständigkeiten ab.",
+    "introTitle": "Verlässliche Abläufe für regelmäßig genutzte Gebäude.",
+    "introText": "Wo viele Menschen ein- und ausgehen, müssen Reinigung, Objektpflege und organisatorische Kontrollen ineinandergreifen. Wir legen Aufgaben und Intervalle gemeinsam fest und schaffen einen klaren Rückmeldeweg.",
+    "requirements": [
+      "Verlässliche Abläufe bei regelmäßiger Nutzung",
+      "Saubere und gepflegte Gemeinschaftsflächen",
+      "Dokumentierte Kontrollen und Rückmeldungen"
+    ],
+    "approach": "Wir legen Aufgaben, Intervalle und Ansprechpartner gemeinsam fest. Bei technischen Fachthemen koordinieren wir die Weitergabe an geeignete Spezialisten und halten offen gebliebene Maßnahmen nachvollziehbar fest.",
+    "services": ["objektpflege", "gebaeudereinigung", "wartung-instandhaltung", "winterdienst", "gartenpflege"],
+    "image": {
+      "src": "perlas-team.png",
+      "alt": "Team für die laufende Betreuung institutioneller Gebäude"
+    },
+    "scopeCards": [
+      {
+        "title": "Gemeinschaftsbereiche verlässlich betreuen",
+        "text": "Eingänge, Flure, Sanitärbereiche und weitere vereinbarte Flächen werden passend zur Nutzung kontrolliert und nach einem abgestimmten Plan gepflegt."
+      },
+      {
+        "title": "Zugänge und Außenflächen berücksichtigen",
+        "text": "Wege, Eingangsbereiche und saisonale Aufgaben werden in die laufende Betreuung einbezogen, damit das Gebäude sicher und gepflegt erreichbar bleibt."
+      },
+      {
+        "title": "Kontrollen nachvollziehbar dokumentieren",
+        "text": "Auffälligkeiten, erledigte Aufgaben und offene Maßnahmen werden dem zuständigen Ansprechpartner verständlich und auf Wunsch mit Fotos gemeldet."
+      }
+    ],
+    "process": [
+      {
+        "title": "Nutzung und sensible Bereiche erfassen",
+        "text": "Wir klären Besucheraufkommen, Zugänge, Nutzungszeiten und besondere Anforderungen des Gebäudes."
+      },
+      {
+        "title": "Aufgaben und Intervalle abstimmen",
+        "text": "Regelmäßige Leistungen werden passend zu Flächen und Nutzung in einen klaren Ablauf gebracht."
+      },
+      {
+        "title": "Leistungen dokumentieren",
+        "text": "Kontrollen, Auffälligkeiten und weitere Maßnahmen werden an die zuständige Stelle zurückgemeldet."
+      }
+    ],
+    "faqs": [
+      {
+        "question": "Für welche institutionellen Gebäude eignet sich die Betreuung?",
+        "answer": "Der Leistungsumfang kann für Büro- und Praxisgebäude sowie weitere regelmäßig genutzte institutionelle oder öffentliche Immobilien abgestimmt werden. Maßgeblich sind Nutzung, Flächen und Zuständigkeiten."
+      },
+      {
+        "question": "Wie werden sensible oder stark frequentierte Bereiche berücksichtigt?",
+        "answer": "Diese Bereiche werden bei der Objektaufnahme gesondert betrachtet. Einsatzzeiten und Intervalle können anschließend auf Besucheraufkommen und Nutzung abgestimmt werden."
+      },
+      {
+        "question": "Wer erhält die Rückmeldungen zu Kontrollen und Leistungen?",
+        "answer": "Vor dem Start wird ein zuständiger Ansprechpartner festgelegt. An ihn gehen die vereinbarten Rückmeldungen zu Leistungen, Auffälligkeiten und offenen Maßnahmen."
+      }
+    ]
+  }
+]

@@ -4,6 +4,7 @@ import { fileURLToPath } from 'node:url'
 const distPath = fileURLToPath(new URL('../dist/', import.meta.url))
 const indexPath = fileURLToPath(new URL('../dist/index.html', import.meta.url))
 const serviceDataPath = fileURLToPath(new URL('../src/service-data.json', import.meta.url))
+const audienceDataPath = fileURLToPath(new URL('../src/audience-data.json', import.meta.url))
 const appPath = fileURLToPath(new URL('../src/App.tsx', import.meta.url))
 const contactPagePath = fileURLToPath(new URL('../src/ContactPage.tsx', import.meta.url))
 const sourceIndexPath = fileURLToPath(new URL('../index.html', import.meta.url))
@@ -15,6 +16,7 @@ const indexingEnabled = indexingOverride == null
   : indexingOverride === 'true'
 const pageRobots = indexingEnabled ? 'index,follow,max-image-preview:large' : 'noindex,nofollow'
 const services = JSON.parse(await readFile(serviceDataPath, 'utf8'))
+const audiences = JSON.parse(await readFile(audienceDataPath, 'utf8'))
 const coreServiceSlugs = new Set([
   'objektpflege',
   'wartung-instandhaltung',
@@ -24,7 +26,7 @@ const coreServiceSlugs = new Set([
 ])
 const indexTemplate = await readFile(indexPath, 'utf8')
 
-const sourceStats = await Promise.all([serviceDataPath, appPath, contactPagePath, sourceIndexPath].map((path) => stat(path)))
+const sourceStats = await Promise.all([serviceDataPath, audienceDataPath, appPath, contactPagePath, sourceIndexPath].map((path) => stat(path)))
 const lastModified = new Date(Math.max(...sourceStats.map((entry) => entry.mtimeMs)))
   .toISOString()
   .slice(0, 10)
@@ -106,6 +108,41 @@ const businessData = {
 
 function serviceUrl(service) {
   return new URL(`${basePath}leistungen/${service.slug}/`, siteUrl.origin)
+}
+
+function audienceUrl(audience) {
+  return new URL(`${basePath}facility-management/${audience.id}/`, siteUrl.origin)
+}
+
+function audienceStructuredData(audience) {
+  const url = audienceUrl(audience).href
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
+      businessData,
+      {
+        '@type': 'Service',
+        '@id': `${url}#service`,
+        name: `Facility Management für ${audience.navLabel}`,
+        description: audience.seoDescription,
+        url,
+        provider: { '@id': businessId },
+        areaServed: ['Main-Taunus-Kreis', 'Rhein-Main-Gebiet'],
+        audience: {
+          '@type': 'Audience',
+          audienceType: audience.navLabel,
+        },
+      },
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Startseite', item: siteUrl.href },
+          { '@type': 'ListItem', position: 2, name: 'Facility Management', item: facilityUrl.href },
+          { '@type': 'ListItem', position: 3, name: audience.navLabel, item: url },
+        ],
+      },
+    ],
+  }
 }
 
 function structuredData(service) {
@@ -241,36 +278,17 @@ function selectedServiceLinks(slugs) {
 }
 
 function homeMarkup() {
-  return `${staticHeader()}<main class="seo-static-main"><section class="seo-static-hero"><p>Facility Management im Rhein-Main-Gebiet</p><h1>Facility Management für professionell verwaltete Immobilien.</h1><p>Perla’s bündelt Objektbetreuung, technische Koordination, Reinigung, Außenanlagenpflege und Winterdienst. Hausverwaltungen und gewerbliche Auftraggeber erhalten einen festen Ansprechpartner für die laufenden Aufgaben ihrer Immobilien.</p><a href="${basePath}kontakt/">Betreuung anfragen</a><a href="${basePath}facility-management/">Facility Management ansehen</a></section><section><h2>Der passende Einstieg für Ihr Objekt</h2><ul class="seo-static-links"><li><a href="${basePath}facility-management/">Facility Management</a><p>Mehrere Aufgaben in einem abgestimmten Betreuungskonzept.</p></li><li><a href="${basePath}leistungen/">Leistungen</a><p>Einzelleistungen für den laufenden Immobilienbetrieb.</p></li><li><a href="${basePath}ueber-uns/">Über uns</a><p>Perla’s Objektbetreuung seit 1999.</p></li><li><a href="${basePath}kontakt/">Kontakt</a><p>Ihr Objekt persönlich besprechen.</p></li></ul></section><section><h2>Betreuung nach Objektart</h2><ul class="seo-static-links"><li><a href="${basePath}facility-management/#hausverwaltungen">Hausverwaltungen</a></li><li><a href="${basePath}facility-management/#wohnanlagen">Größere Wohnanlagen</a></li><li><a href="${basePath}facility-management/#gewerbeimmobilien">Gewerbeimmobilien</a></li><li><a href="${basePath}facility-management/#institutionelle-gebaeude">Institutionelle &amp; öffentliche Gebäude</a></li></ul><a href="${basePath}leistungen/">Weitere Leistungen</a></section><section><h2>Erfahrung, klare Abläufe und ein fester Ansprechpartner</h2><p>Perla’s schafft Übersicht über wiederkehrende Aufgaben und hält Rückmeldungen zu Zustand, Leistung und Handlungsbedarf an einer Stelle zusammen.</p></section></main>`
+  const targetLinks = audiences
+    .map((audience) => `<li><a href="${basePath}facility-management/${audience.id}/">${escapeHtml(audience.navLabel)}</a></li>`)
+    .join('')
+
+  return `${staticHeader()}<main class="seo-static-main"><section class="seo-static-hero"><p>Facility Management im Rhein-Main-Gebiet</p><h1>Facility Management für professionell verwaltete Immobilien.</h1><p>Perla’s bündelt Objektbetreuung, technische Koordination, Reinigung, Außenanlagenpflege und Winterdienst. Hausverwaltungen und gewerbliche Auftraggeber erhalten einen festen Ansprechpartner für die laufenden Aufgaben ihrer Immobilien.</p><a href="${basePath}kontakt/">Betreuung anfragen</a><a href="${basePath}facility-management/">Facility Management ansehen</a></section><section><h2>Der passende Einstieg für Ihr Objekt</h2><ul class="seo-static-links"><li><a href="${basePath}facility-management/">Facility Management</a><p>Mehrere Aufgaben in einem abgestimmten Betreuungskonzept.</p></li><li><a href="${basePath}leistungen/">Leistungen</a><p>Einzelleistungen für den laufenden Immobilienbetrieb.</p></li><li><a href="${basePath}ueber-uns/">Über uns</a><p>Perla’s Objektbetreuung seit 1999.</p></li><li><a href="${basePath}kontakt/">Kontakt</a><p>Ihr Objekt persönlich besprechen.</p></li></ul></section><section><h2>Betreuung nach Objektart</h2><ul class="seo-static-links">${targetLinks}</ul><a href="${basePath}leistungen/">Weitere Leistungen</a></section><section><h2>Erfahrung, klare Abläufe und ein fester Ansprechpartner</h2><p>Perla’s schafft Übersicht über wiederkehrende Aufgaben und hält Rückmeldungen zu Zustand, Leistung und Handlungsbedarf an einer Stelle zusammen.</p></section></main>`
 }
 
 function facilityMarkup() {
-  const targets = [
-    {
-      id: 'hausverwaltungen',
-      title: 'Hausverwaltungen',
-      text: 'Klare Zuständigkeiten und gebündelte Rückmeldungen für professionell verwaltete Immobilienbestände.',
-      services: ['objektpflege', 'gebaeudereinigung', 'wartung-instandhaltung', 'gartenpflege', 'winterdienst'],
-    },
-    {
-      id: 'wohnanlagen',
-      title: 'Größere Wohnanlagen & Immobilienbestände',
-      text: 'Laufende Betreuung gemeinschaftlich genutzter Gebäude- und Außenbereiche mit planbaren Abläufen.',
-      services: ['objektpflege', 'gebaeudereinigung', 'wartung-instandhaltung', 'gartenpflege', 'winterdienst', 'wohnungswechsel'],
-    },
-    {
-      id: 'gewerbeimmobilien',
-      title: 'Gewerbeimmobilien & Unternehmensstandorte',
-      text: 'Objektbetreuung, Reinigung und technische Aufgaben werden passend zu Nutzung und laufendem Betrieb kombiniert.',
-      services: ['objektpflege', 'wartung-instandhaltung', 'gebaeudereinigung', 'gartenpflege', 'winterdienst'],
-    },
-    {
-      id: 'institutionelle-gebaeude',
-      title: 'Büro-, Praxis-, institutionelle & öffentliche Gebäude',
-      text: 'Feste Zuständigkeiten und planbare Leistungen für regelmäßig genutzte institutionelle und öffentliche Innen- und Außenbereiche.',
-      services: ['objektpflege', 'gebaeudereinigung', 'wartung-instandhaltung', 'winterdienst', 'gartenpflege'],
-    },
-  ].map((target) => `<section id="${target.id}"><h2>Facility Management für ${escapeHtml(target.title)}</h2><p>${escapeHtml(target.text)}</p><ul class="seo-static-links">${selectedServiceLinks(target.services)}</ul></section>`).join('')
+  const targets = audiences
+    .map((audience) => `<section id="${audience.id}"><h2><a href="${basePath}facility-management/${audience.id}/">Facility Management für ${escapeHtml(audience.title)}</a></h2><p>${escapeHtml(audience.text)}</p><a href="${basePath}facility-management/${audience.id}/">Bereich im Detail ansehen</a><ul class="seo-static-links">${selectedServiceLinks(audience.services)}</ul></section>`)
+    .join('')
 
   return `${staticHeader()}<main class="seo-static-main"><nav aria-label="Brotkrümeln"><a href="${basePath}">Startseite</a> / Facility Management</nav><section class="seo-static-hero"><p>Facility Management im Rhein-Main-Gebiet</p><h1>Gebäude ganzheitlich betreuen. Aufgaben klar koordinieren.</h1><p>Perla’s bündelt die laufenden Aufgaben größerer und professionell verwalteter Immobilien in einem objektbezogenen Betreuungskonzept.</p><a href="${basePath}kontakt/">Betreuung besprechen</a></section><section><h2>Erst das Objekt verstehen. Dann Leistungen sinnvoll verbinden.</h2><p>Aufgaben, Intervalle, Zuständigkeiten und Rückmeldungen werden objektbezogen abgestimmt. Sichtkontrollen und organisatorische Koordination gehören zur Betreuung. Fachliche Prüfungen und Arbeiten werden mit geeigneten Fachbetrieben koordiniert und nicht als eigene Fachleistung dargestellt.</p></section>${targets}<section><h2>Größere und komplexere Objekte</h2><p>Gebäude- und Gemeinschaftsflächen, Außenanlagen, Winterdienst, Parkflächen, Tiefgaragen und technische Themen werden nach Zuständigkeit gegliedert. Technische Facharbeiten bleiben bei geeigneten Fachbetrieben.</p><a href="${basePath}kontakt/">Objektstruktur besprechen</a></section></main>`
 }
@@ -280,12 +298,9 @@ function servicesMarkup() {
     .map((service) => `<article><h2><a href="${basePath}leistungen/${service.slug}/">${escapeHtml(service.title)}</a></h2><p>${escapeHtml(service.text)}</p><a href="${basePath}leistungen/${service.slug}/">Leistung ansehen</a></article>`)
     .join('')
 
-  const targets = [
-    ['hausverwaltungen', 'Hausverwaltungen'],
-    ['wohnanlagen', 'Größere Wohnanlagen'],
-    ['gewerbeimmobilien', 'Gewerbeimmobilien'],
-    ['institutionelle-gebaeude', 'Institutionelle & öffentliche Gebäude'],
-  ].map(([id, label]) => `<li><a href="${basePath}facility-management/#${id}">${escapeHtml(label)}</a></li>`).join('')
+  const targets = audiences
+    .map((audience) => `<li><a href="${basePath}facility-management/${audience.id}/">${escapeHtml(audience.navLabel)}</a></li>`)
+    .join('')
 
   return `${staticHeader()}<main class="seo-static-main"><nav aria-label="Brotkrümeln"><a href="${basePath}">Startseite</a> / Leistungen</nav><section class="seo-static-hero"><p>Facility Services im Rhein-Main-Gebiet</p><h1>Leistungen für den laufenden Betrieb Ihrer Immobilie.</h1><p>Wählen Sie eine einzelne Leistung oder kombinieren Sie mehrere Aufgaben zu einem objektbezogenen Betreuungskonzept.</p><a href="${basePath}kontakt/">Leistung anfragen</a><a href="${basePath}facility-management/">Facility Management</a></section><section><h2>Für diese Immobilien arbeiten wir</h2><ul class="seo-static-links">${targets}</ul></section><section><h2>Bestehende Leistungen im Detail</h2><div class="seo-static-grid">${catalog}</div></section><section><h2>Wenn aus Einzelleistungen Facility Management wird</h2><p>Bei größeren oder professionell verwalteten Immobilien lassen sich Leistungen, Intervalle, Zuständigkeiten und Rückmeldungen in einem Betreuungskonzept bündeln.</p><a href="${basePath}facility-management/">Facility Management ansehen</a></section></main>`
 }
@@ -336,6 +351,23 @@ function serviceMarkup(service) {
   return `${staticHeader()}<main class="seo-static-main"><nav aria-label="Brotkrümeln"><a href="${basePath}">Startseite</a> / <a href="${basePath}leistungen/">Leistungen</a> / ${escapeHtml(service.title)}</nav><section class="seo-static-hero"><p>Facility Services im Rhein-Main-Gebiet</p><h1>${escapeHtml(service.title)}</h1><p>${escapeHtml(service.detail)}</p><a href="${basePath}kontakt/">Individuelles Angebot anfragen</a><a href="tel:+491776867145">Direkt anrufen</a><a href="mailto:mail@perlas.de">E-Mail schreiben</a></section><section><h2>Was wir bei ${escapeHtml(service.title)} konkret übernehmen</h2><p>${escapeHtml(service.scopeIntro)}</p><div class="seo-static-grid">${scopes}</div></section><section><h2>So läuft die Zusammenarbeit ab</h2><div class="seo-static-grid">${process}</div></section><section><h2>Für diese Objekte geeignet</h2><ul>${audiences}</ul><h2>${escapeHtml(service.boundaryTitle)}</h2><p>${escapeHtml(service.boundaryText)}</p></section><section><h2>Häufige Fragen zu ${escapeHtml(service.title)}</h2>${faqs}</section><section><h2>Wie möchten Sie Kontakt aufnehmen?</h2><p>Nutzen Sie das Angebotsformular oder sprechen Sie direkt mit Perla’s.</p><ul><li><a href="${basePath}kontakt/">Angebot für ${escapeHtml(service.title)} anfragen</a></li><li><a href="tel:+491776867145">Direkt anrufen: 0177 68 67 145</a></li><li><a href="mailto:mail@perlas.de">E-Mail an mail@perlas.de schreiben</a></li></ul></section><nav aria-label="Passende Leistungen"><h2>Diese Leistungen könnten ebenfalls relevant sein</h2><ul class="seo-static-links">${related}</ul></nav></main>`
 }
 
+function audienceMarkup(audience) {
+  const scopes = audience.scopeCards
+    .map((item) => `<article><h3>${escapeHtml(item.title)}</h3><p>${escapeHtml(item.text)}</p></article>`)
+    .join('')
+  const requirements = audience.requirements
+    .map((item) => `<li>${escapeHtml(item)}</li>`)
+    .join('')
+  const process = audience.process
+    .map((item) => `<article><h3>${escapeHtml(item.title)}</h3><p>${escapeHtml(item.text)}</p></article>`)
+    .join('')
+  const faqs = audience.faqs
+    .map((item) => `<details open><summary>${escapeHtml(item.question)}</summary><p>${escapeHtml(item.answer)}</p></details>`)
+    .join('')
+
+  return `${staticHeader()}<main class="seo-static-main"><nav aria-label="Brotkrümeln"><a href="${basePath}">Startseite</a> / <a href="${basePath}facility-management/">Facility Management</a> / ${escapeHtml(audience.navLabel)}</nav><section class="seo-static-hero"><p>Facility Management für</p><h1>${escapeHtml(audience.heroTitle)}</h1><p>${escapeHtml(audience.heroText)}</p><a href="${basePath}kontakt/">Betreuung anfragen</a><a href="tel:+491776867145">Direkt anrufen</a><img src="${basePath}assets/${escapeHtml(audience.image.src)}" alt="${escapeHtml(audience.image.alt)}"></section><section><h2>${escapeHtml(audience.introTitle)}</h2><p>${escapeHtml(audience.introText)}</p><div class="seo-static-grid">${scopes}</div></section><section><h2>Im Alltag zählen klare Zuständigkeiten</h2><ul>${requirements}</ul><h2>Ein Betreuungskonzept, das zum Objekt passt</h2><p>${escapeHtml(audience.approach)}</p></section><section><h2>Passende Leistungen für ${escapeHtml(audience.navLabel)}</h2><ul class="seo-static-links">${selectedServiceLinks(audience.services)}</ul></section><section><h2>Vom Objekt zum klaren Ablauf</h2><div class="seo-static-grid">${process}</div></section><section><h2>Häufige Fragen zu ${escapeHtml(audience.navLabel)}</h2>${faqs}</section><section><h2>Passt diese Betreuung zu Ihrem Objekt?</h2><p>Wir sehen uns Nutzung, Flächen und laufende Aufgaben an und stellen daraus einen passenden Leistungsumfang zusammen.</p><ul><li><a href="${basePath}kontakt/">Angebot anfragen</a></li><li><a href="tel:+491776867145">Direkt anrufen: 0177 68 67 145</a></li><li><a href="mailto:mail@perlas.de">E-Mail an mail@perlas.de schreiben</a></li></ul></section></main>`
+}
+
 function buildPage({ title, description, url, markup, data, robots = pageRobots }) {
   const socialImage = new URL(`${basePath}assets/perlas-hero.png`, siteUrl.origin).href
   const extraHead = `
@@ -380,6 +412,19 @@ await writeFile(`${distPath}facility-management/index.html`, buildPage({
   ...facilitySeo,
   markup: facilityMarkup(),
   data: facilityStructuredData(),
+}))
+
+await Promise.all(audiences.map(async (audience) => {
+  const targetPath = `${distPath}facility-management/${audience.id}/`
+  const url = audienceUrl(audience).href
+  await mkdir(targetPath, { recursive: true })
+  await writeFile(`${targetPath}index.html`, buildPage({
+    title: audience.seoTitle,
+    description: audience.seoDescription,
+    url,
+    markup: audienceMarkup(audience),
+    data: audienceStructuredData(audience),
+  }))
 }))
 
 await mkdir(`${distPath}leistungen/`, { recursive: true })
@@ -443,7 +488,17 @@ await Promise.all(services.map(async (service) => {
   }))
 }))
 
-const sitemapUrls = [siteUrl.href, facilityUrl.href, servicesUrl.href, aboutUrl.href, contactUrl.href, imprintUrl.href, privacyUrl.href, ...services.map((service) => serviceUrl(service).href)]
+const sitemapUrls = [
+  siteUrl.href,
+  facilityUrl.href,
+  ...audiences.map((audience) => audienceUrl(audience).href),
+  servicesUrl.href,
+  aboutUrl.href,
+  contactUrl.href,
+  imprintUrl.href,
+  privacyUrl.href,
+  ...services.map((service) => serviceUrl(service).href),
+]
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${sitemapUrls.map((url) => `  <url><loc>${url}</loc><lastmod>${lastModified}</lastmod></url>`).join('\n')}
