@@ -282,7 +282,27 @@ function homeMarkup() {
     .map((audience) => `<li><a href="${basePath}facility-management/${audience.id}/">${escapeHtml(audience.navLabel)}</a></li>`)
     .join('')
 
-  return `${staticHeader()}<main class="seo-static-main"><section class="seo-static-hero"><p>Facility Management im Rhein-Main-Gebiet</p><h1>Facility Management für professionell verwaltete Immobilien.</h1><p>Perla’s bündelt Objektbetreuung, technische Koordination, Reinigung, Außenanlagenpflege und Winterdienst. Hausverwaltungen und gewerbliche Auftraggeber erhalten einen festen Ansprechpartner für die laufenden Aufgaben ihrer Immobilien.</p><a href="${basePath}kontakt/">Betreuung anfragen</a><a href="${basePath}facility-management/">Facility Management ansehen</a></section><section><h2>Der passende Einstieg für Ihr Objekt</h2><ul class="seo-static-links"><li><a href="${basePath}facility-management/">Facility Management</a><p>Mehrere Aufgaben in einem abgestimmten Betreuungskonzept.</p></li><li><a href="${basePath}leistungen/">Leistungen</a><p>Einzelleistungen für den laufenden Immobilienbetrieb.</p></li><li><a href="${basePath}ueber-uns/">Über uns</a><p>Perla’s Objektbetreuung seit 1999.</p></li><li><a href="${basePath}kontakt/">Kontakt</a><p>Ihr Objekt persönlich besprechen.</p></li></ul></section><section><h2>Betreuung nach Objektart</h2><ul class="seo-static-links">${targetLinks}</ul><a href="${basePath}leistungen/">Weitere Leistungen</a></section><section><h2>Erfahrung, klare Abläufe und ein fester Ansprechpartner</h2><p>Perla’s schafft Übersicht über wiederkehrende Aufgaben und hält Rückmeldungen zu Zustand, Leistung und Handlungsbedarf an einer Stelle zusammen.</p></section></main>`
+  const partnerNames = [
+    'BundesImmobilien',
+    'David Lloyd Meridian',
+    'David Lloyd Clubs',
+    'Immtelli',
+    'UNIRESTA',
+    'VALO Immobilienmanagement',
+    'Zeidler',
+    'Bundesanstalt für Immobilienaufgaben',
+  ].map((partner) => `<li>${escapeHtml(partner)}</li>`).join('')
+
+  const googleReviews = [
+    ['Amanda Li', 'Freundlich, hilfsbereit und zuverlässig.'],
+    ['Melanie Michaelpillai', 'Zuverlässig und unkompliziert.'],
+    ['Alexis Sheva', 'Kommunikation ist unkompliziert.'],
+    ['Challenge 4 Change', 'Schnell, zuverlässig und immer erreichbar.'],
+    ['Z D', 'Zuverlässig und sorgfältig.'],
+    ['Gabriele Dell Olio', 'Sehr professionelle und saubere Arbeit.'],
+  ].map(([author, copy]) => `<li><blockquote>${escapeHtml(copy)}</blockquote><p>${escapeHtml(author)}, Google-Rezension</p></li>`).join('')
+
+  return `${staticHeader()}<main class="seo-static-main"><section class="seo-static-hero"><p>Facility Management im Rhein-Main-Gebiet</p><h1>Facility Management für professionell verwaltete Immobilien.</h1><p>Perla’s bündelt Objektbetreuung, technische Koordination, Reinigung, Außenanlagenpflege und Winterdienst. Hausverwaltungen und gewerbliche Auftraggeber erhalten einen festen Ansprechpartner für die laufenden Aufgaben ihrer Immobilien.</p><a href="${basePath}kontakt/">Betreuung anfragen</a><a href="${basePath}facility-management/">Facility Management ansehen</a></section><section><h2>Für diese Immobilien und Auftraggeber arbeiten wir</h2><ul>${partnerNames}</ul></section><section><h2>5,0 Sterne aus 32 Google-Rezensionen</h2><p>Kurze Auszüge aus öffentlich abgegebenen Bewertungen für Perla’s Objektbetreuung.</p><ul class="seo-static-links">${googleReviews}</ul><a href="https://www.google.com/search?q=Perla%27s+Objektbetreuung+GmbH+%26+Co.+KG+Sulzbach+Rezensionen">Alle Rezensionen bei Google ansehen</a></section><section><h2>Der passende Einstieg für Ihr Objekt</h2><ul class="seo-static-links"><li><a href="${basePath}facility-management/">Facility Management</a><p>Mehrere Aufgaben in einem abgestimmten Betreuungskonzept.</p></li><li><a href="${basePath}leistungen/">Leistungen</a><p>Einzelleistungen für den laufenden Immobilienbetrieb.</p></li><li><a href="${basePath}ueber-uns/">Über uns</a><p>Perla’s Objektbetreuung seit 1999.</p></li><li><a href="${basePath}kontakt/">Kontakt</a><p>Ihr Objekt persönlich besprechen.</p></li></ul></section><section><h2>Betreuung nach Objektart</h2><ul class="seo-static-links">${targetLinks}</ul><a href="${basePath}leistungen/">Weitere Leistungen</a></section><section><h2>Erfahrung, klare Abläufe und ein fester Ansprechpartner</h2><p>Perla’s schafft Übersicht über wiederkehrende Aufgaben und hält Rückmeldungen zu Zustand, Leistung und Handlungsbedarf an einer Stelle zusammen.</p></section></main>`
 }
 
 function facilityMarkup() {

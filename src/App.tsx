@@ -346,31 +346,39 @@ function ButtonLink({
   )
 }
 
+const GOOGLE_REVIEWS_URL =
+  'https://www.google.com/search?q=Perla%27s+Objektbetreuung+GmbH+%26+Co.+KG+Sulzbach+Rezensionen'
+
 const reviews = [
   {
-    copy:
-      'Seit wir mit Perla’s Objektbetreuung zusammenarbeiten, hat sich die Pflege unserer Immobilien deutlich verbessert. Das Team ist zuverlässig und schnell zur Stelle.',
-    author: 'Michael S.',
+    copy: 'Freundlich, hilfsbereit und zuverlässig.',
+    author: 'Amanda Li',
+    age: 'vor 2 Monaten',
   },
   {
-    copy:
-      'Wir sind begeistert von der Professionalität und dem Engagement. Unsere Mieter wissen, dass ihre Anliegen ernst genommen und schnell bearbeitet werden.',
-    author: 'Claudia M.',
+    copy: 'Zuverlässig und unkompliziert.',
+    author: 'Melanie Michaelpillai',
+    age: 'vor 7 Monaten',
   },
   {
-    copy:
-      'Ob kleine Reparaturen oder die regelmäßige Pflege unserer Außenanlagen: Alles wird prompt und zu unserer vollsten Zufriedenheit erledigt.',
-    author: 'Sabine W.',
+    copy: 'Kommunikation ist unkompliziert.',
+    author: 'Alexis Sheva',
+    age: 'vor einem Jahr',
   },
   {
-    copy:
-      'Als Hausverwaltung kennen wir viele Dienstleister. Perla’s hebt sich durch Qualität, persönlichen Service und absolute Zuverlässigkeit klar ab.',
-    author: 'Emre K.',
+    copy: 'Schnell, zuverlässig und immer erreichbar.',
+    author: 'Challenge 4 Change',
+    age: 'vor einem Jahr',
   },
   {
-    copy:
-      'Besonders die schnelle Reaktionszeit und die transparente Abstimmung geben uns im Alltag die Sicherheit, dass jedes Objekt gut betreut ist.',
-    author: 'Langjähriger Kunde',
+    copy: 'Zuverlässig und sorgfältig.',
+    author: 'Z D',
+    age: 'vor einem Jahr',
+  },
+  {
+    copy: 'Sehr professionelle und saubere Arbeit.',
+    author: 'Gabriele Dell Olio',
+    age: 'vor 7 Monaten',
   },
 ]
 
@@ -1745,27 +1753,55 @@ function Reviews() {
   }
 
   return (
-    <section className="reviews" aria-labelledby="reviews-heading">
-      <h2 id="reviews-heading" data-reveal="up">Was unsere Kunden sagen</h2>
-      <div className="review-controls" role="group" aria-label="Bewertungen durchblättern" data-reveal="right">
-        <button
-          className="review-control"
-          type="button"
-          aria-label="Vorherige Bewertungen"
-          disabled={!canScrollBack}
-          onClick={() => scrollReviews(-1)}
+    <section className="reviews google-reviews" aria-labelledby="reviews-heading">
+      <div className="google-reviews-heading" data-reveal="up">
+        <div>
+          <span className="eyebrow">Google-Bewertungen</span>
+          <h2 id="reviews-heading">Was unsere Kunden sagen.</h2>
+          <p>Kurze Auszüge aus öffentlich abgegebenen Rezensionen für Perla’s Objektbetreuung.</p>
+        </div>
+        <a
+          className="google-review-summary"
+          href={GOOGLE_REVIEWS_URL}
+          target="_blank"
+          rel="noreferrer"
+          aria-label="Alle Google-Rezensionen von Perla’s Objektbetreuung öffnen"
         >
-          <ChevronLeft aria-hidden="true" />
-        </button>
-        <button
-          className="review-control"
-          type="button"
-          aria-label="Weitere Bewertungen"
-          disabled={!canScrollForward}
-          onClick={() => scrollReviews(1)}
-        >
-          <ChevronRight aria-hidden="true" />
-        </button>
+          <span className="google-review-mark" aria-hidden="true">G</span>
+          <span className="google-review-score">
+            <strong>5,0</strong>
+            <span className="stars" aria-label="5 von 5 Sternen">
+              {Array.from({ length: 5 }, (_, index) => (
+                <img src={`${A}star.svg`} alt="" key={index} />
+              ))}
+            </span>
+            <small>32 Rezensionen auf Google</small>
+          </span>
+          <ArrowUpRight aria-hidden="true" />
+        </a>
+      </div>
+      <div className="review-toolbar">
+        <span>Auf Mobilgeräten seitlich wischen</span>
+        <div className="review-controls" role="group" aria-label="Bewertungen durchblättern">
+          <button
+            className="review-control"
+            type="button"
+            aria-label="Vorherige Bewertungen"
+            disabled={!canScrollBack}
+            onClick={() => scrollReviews(-1)}
+          >
+            <ChevronLeft aria-hidden="true" />
+          </button>
+          <button
+            className="review-control"
+            type="button"
+            aria-label="Weitere Bewertungen"
+            disabled={!canScrollForward}
+            onClick={() => scrollReviews(1)}
+          >
+            <ChevronRight aria-hidden="true" />
+          </button>
+        </div>
       </div>
       <div className="review-window" ref={reviewWindowRef} data-reveal="up" style={{ '--reveal-delay': '90ms' } as CSSProperties}>
         <div className="review-track">
@@ -1776,23 +1812,21 @@ function Reviews() {
                   <img src={`${A}star.svg`} alt="" key={index} />
                 ))}
               </div>
-              <p>{review.copy}</p>
-              <strong>{review.author}</strong>
+              <p>„{review.copy}“</p>
+              <div className="review-author">
+                <span aria-hidden="true">{review.author.slice(0, 1)}</span>
+                <div>
+                  <strong>{review.author}</strong>
+                  <small>Google · {review.age}</small>
+                </div>
+              </div>
             </article>
           ))}
         </div>
       </div>
-      <div className="featured proof-band" aria-label="Perla’s in Zahlen" data-reveal="up" style={{ '--reveal-delay': '160ms' } as CSSProperties}>
-        <strong>Perla’s in Zahlen:</strong>
-        <div className="proof-stats">
-          {proofStats.map(([value, label]) => (
-            <div key={label}>
-              <strong>{value}</strong>
-              <span>{label}</span>
-            </div>
-          ))}
-        </div>
-      </div>
+      <a className="google-reviews-link" href={GOOGLE_REVIEWS_URL} target="_blank" rel="noreferrer">
+        Alle Rezensionen bei Google ansehen <ArrowUpRight aria-hidden="true" />
+      </a>
     </section>
   )
 }
@@ -2398,9 +2432,10 @@ export default function App() {
       ) : (
         <main>
           <Hero />
+          <PartnerMarquee />
+          <Reviews />
           <HomeOverview />
           <HomeCoreServices />
-          <PartnerMarquee />
           <HomeTrust />
           <HomeContactTeaser onQuoteOpen={() => openQuote()} />
         </main>
