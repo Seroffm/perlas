@@ -1794,15 +1794,28 @@ function ServiceDetailPage({ service, onQuoteOpen }: { service: Feature; onQuote
           <span className="eyebrow">{service.title}</span>
           <h2 id="service-overview-heading">Leistung im Überblick.</h2>
           <p>{service.scopeIntro}</p>
+          <div className="service-overview-meta" aria-label="Zusammenfassung des Leistungsumfangs">
+            <span>{service.scopeCards.length} Leistungsbereiche</span>
+            <span>Passend zum Objekt planbar</span>
+          </div>
         </div>
         <div className="service-scope-grid" data-reveal="right" style={{ '--reveal-delay': '80ms' } as CSSProperties}>
           {service.scopeCards.map((item, index) => (
             <article className="service-scope-card" key={item.title}>
-              <span>0{index + 1}</span>
-              <h3>{item.title}</h3>
-              <p>{item.text}</p>
-              <ul>
-                {item.items.map((detail) => <li key={detail}>{detail}</li>)}
+              <div className="service-scope-card-head">
+                <span className="service-scope-number">{String(index + 1).padStart(2, '0')}</span>
+                <div>
+                  <h3>{item.title}</h3>
+                  <p>{item.text}</p>
+                </div>
+              </div>
+              <ul aria-label={`Enthaltene Aufgaben: ${item.title}`}>
+                {item.items.map((detail) => (
+                  <li key={detail}>
+                    <CheckCircle2 aria-hidden="true" />
+                    <span>{detail}</span>
+                  </li>
+                ))}
               </ul>
             </article>
           ))}
