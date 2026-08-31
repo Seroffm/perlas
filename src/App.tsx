@@ -1088,6 +1088,20 @@ function AboutPage({ onQuoteOpen }: { onQuoteOpen: () => void }) {
     [MessageCircle, 'Persönliche Abstimmung', 'Ein fester Ansprechpartner bündelt Rückmeldungen und die laufende Koordination.'],
     [ClipboardCheck, 'Objektbezug', 'Der tatsächliche Bedarf der Immobilie bildet die Grundlage für den Leistungsumfang.'],
   ] as const
+  const teamMembers = [
+    {
+      image: 'about-team-portrait-1.jpg',
+      alt: 'Porträt einer Mitarbeiterin von Perla’s Objektbetreuung',
+    },
+    {
+      image: 'about-team-portrait-2.jpeg',
+      alt: 'Porträt eines Mitarbeiters von Perla’s Objektbetreuung',
+    },
+    {
+      image: 'about-team-portrait-3.jpg',
+      alt: 'Porträt eines Mitarbeiters aus dem Team von Perla’s',
+    },
+  ]
 
   return (
     <main className="architecture-page about-page">
@@ -1117,6 +1131,33 @@ function AboutPage({ onQuoteOpen }: { onQuoteOpen: () => void }) {
           <p>Seit 1999 ist Perla’s im Rhein-Main-Gebiet tätig. Aus der klassischen Objektbetreuung ist ein Angebot entstanden, das einzelne Facility Services sinnvoll miteinander verbindet.</p>
           <p>Ausgangspunkt bleibt immer das konkrete Objekt: seine Nutzung, die Flächen, die wiederkehrenden Aufgaben und die benötigten Zuständigkeiten. So entsteht ein Leistungsumfang, der verständlich bleibt und sich im Alltag steuern lässt.</p>
           <p>Technische Fachprüfungen und qualifikationsgebundene Arbeiten werden klar abgegrenzt und bei Bedarf mit geeigneten Fachbetrieben koordiniert.</p>
+        </div>
+      </section>
+
+      <section className="about-team" id="team" aria-labelledby="about-team-heading">
+        <div className="architecture-section-heading" data-reveal="up">
+          <span className="eyebrow">Unser Team</span>
+          <h2 id="about-team-heading">Menschen hinter Perla’s.</h2>
+          <p>Persönliche Ansprechpartner sorgen dafür, dass Absprachen klar bleiben und Aufgaben am Objekt verlässlich zusammenlaufen.</p>
+        </div>
+        <div className="about-team-grid">
+          {teamMembers.map((member, index) => (
+            <figure
+              className="about-team-card"
+              data-reveal="up"
+              style={{ '--reveal-delay': `${index * 70}ms` } as CSSProperties}
+              key={member.image}
+            >
+              <div className="about-team-image">
+                <img src={`${A}${member.image}`} alt={member.alt} loading="lazy" decoding="async" />
+                <span aria-hidden="true">0{index + 1}</span>
+              </div>
+              <figcaption>
+                <strong>Name wird ergänzt</strong>
+                <span>Position wird ergänzt</span>
+              </figcaption>
+            </figure>
+          ))}
         </div>
       </section>
 
