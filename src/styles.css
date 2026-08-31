@@ -2243,7 +2243,7 @@ p {
   min-height: 280px;
   padding: 38px 36px;
   overflow: hidden;
-  color: inherit;
+  color: var(--ink);
   border: 1px solid rgb(255 255 255 / 18%);
   border-radius: 42px;
   background: #fff;
@@ -2251,13 +2251,14 @@ p {
 
 .footer-side .contact-card > img {
   position: absolute;
-  top: 0;
-  right: 38px;
+  right: 18px;
+  bottom: -18px;
   left: auto;
-  width: 189px;
-  height: 100%;
+  width: 150px;
+  height: 184px;
   object-fit: contain;
-  opacity: 0.36;
+  opacity: 0.1;
+  pointer-events: none;
 }
 
 .footer-side .contact-card h2 {
@@ -2267,6 +2268,7 @@ p {
 .form-content {
   position: relative;
   z-index: 1;
+  max-width: 320px;
 }
 
 .form-content p {
@@ -2383,7 +2385,7 @@ p {
   flex-direction: column;
   justify-content: center;
   border-radius: 24px;
-  color: inherit;
+  color: var(--ink);
   background: #fff;
 }
 
@@ -6716,7 +6718,28 @@ p {
 
   .footer-side .contact-card {
     height: auto;
-    min-height: 280px;
+    min-height: 292px;
+    padding: 34px 28px;
+    border-radius: 32px;
+  }
+
+  .footer-side .contact-card > img {
+    right: 4px;
+    bottom: -22px;
+    width: 128px;
+    height: 158px;
+    opacity: 0.08;
+  }
+
+  .footer-side .contact-card h2 {
+    max-width: 290px;
+    font-size: 26px;
+    line-height: 1.14;
+  }
+
+  .footer-side .contact-card .form-content p {
+    max-width: 285px;
+    line-height: 1.5;
   }
 
   .email-field {
