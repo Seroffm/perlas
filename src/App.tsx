@@ -627,6 +627,7 @@ function Header({ onQuoteOpen }: { onQuoteOpen: () => void }) {
           </div>
           <a href={SERVICES_PATH} onClick={closeMenu}>Leistungen</a>
           <a href={ABOUT_PATH} onClick={closeMenu}>Über uns</a>
+          <a href={CONTACT_PATH} onClick={closeMenu}>Kontakt</a>
           <button
             className="nav-quote"
             type="button"
@@ -638,7 +639,6 @@ function Header({ onQuoteOpen }: { onQuoteOpen: () => void }) {
             Angebot anfragen
             <ArrowUpRight aria-hidden="true" />
           </button>
-          <a className="sign-in" href={CONTACT_PATH} onClick={closeMenu}>Kontakt</a>
         </nav>
       </div>
     </header>
