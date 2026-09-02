@@ -1519,6 +1519,7 @@ function FacilityManagementPage() {
             Nutzung und Zuständigkeit gegliedert. So bleibt erkennbar, was regelmäßig betreut,
             kontrolliert, gemeldet oder durch einen Fachbetrieb bearbeitet werden muss.
           </p>
+          <ButtonLink href={CONTACT_PATH} kind="outline" arrow>Kontakt aufnehmen</ButtonLink>
         </div>
         <div className="fm-complex-grid" data-reveal="right" style={{ '--reveal-delay': '90ms' } as CSSProperties}>
           {[
@@ -2392,7 +2393,11 @@ export default function App() {
       ) : activeAudience ? (
         <AudienceDetailPage audience={activeAudience} onQuoteOpen={() => openQuote(activeAudience.navLabel)} />
       ) : activeBlogPost ? (
-        <BlogArticlePage post={activeBlogPost} relatedPosts={blogPosts.filter((post) => post.slug !== activeBlogPost.slug)} />
+        <BlogArticlePage
+          post={activeBlogPost}
+          relatedPosts={blogPosts.filter((post) => post.slug !== activeBlogPost.slug)}
+          services={features.map(({ slug, title, text }) => ({ slug, title, text }))}
+        />
       ) : isContactPage ? (
         <ContactPage onQuoteOpen={() => openQuote()} />
       ) : isFacilityPage ? (

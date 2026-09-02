@@ -8,6 +8,7 @@ export type BlogPostContent = {
   slug: string
   title: string
   category: string
+  relatedServices: string[]
   excerpt: string
   seoTitle: string
   seoDescription: string

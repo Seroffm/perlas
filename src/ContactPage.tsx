@@ -174,27 +174,6 @@ export default function ContactPage({ onQuoteOpen }: ContactPageProps) {
         </div>
       </section>
 
-      <section className="contact-location" aria-labelledby="contact-location-heading">
-        <div className="contact-location-copy" data-reveal="left">
-          <span className="eyebrow">Standort &amp; Einsatzgebiet</span>
-          <h2 id="contact-location-heading">Im Rhein-Main-Gebiet für Sie da.</h2>
-          <p>
-            Perla’s sitzt in Sulzbach (Taunus). Von hier koordinieren wir die laufende Betreuung
-            von Wohnanlagen, Gewerbeimmobilien und institutionellen Gebäuden im Rhein-Main-Gebiet.
-          </p>
-          <address>
-            <MapPin aria-hidden="true" />
-            <span><strong>Perla’s Objektbetreuung</strong>Hauptstraße 1<br />65843 Sulzbach (Taunus)</span>
-          </address>
-          <a className="contact-location-link" href={ROUTE_URL} target="_blank" rel="noreferrer">
-            Route öffnen <ArrowUpRight aria-hidden="true" />
-          </a>
-        </div>
-        <div data-reveal="right" style={{ '--reveal-delay': '80ms' } as CSSProperties}>
-          <LocationMap />
-        </div>
-      </section>
-
       <section className="contact-process" aria-labelledby="contact-process-heading">
         <div className="contact-section-heading" data-reveal="up">
           <span className="eyebrow">Von der Anfrage zur Betreuung</span>
@@ -218,6 +197,27 @@ export default function ContactPage({ onQuoteOpen }: ContactPageProps) {
           <Building2 aria-hidden="true" />
           <div><strong>Bereit für den ersten Schritt?</strong><span>Starten Sie mit den wichtigsten Angaben zu Ihrer Immobilie.</span></div>
           <button className="button button--yellow" type="button" onClick={onQuoteOpen}>Anfrage stellen</button>
+        </div>
+      </section>
+
+      <section className="contact-location" aria-labelledby="contact-location-heading">
+        <div className="contact-location-copy" data-reveal="left">
+          <span className="eyebrow">Standort &amp; Einsatzgebiet</span>
+          <h2 id="contact-location-heading">Im Rhein-Main-Gebiet für Sie da.</h2>
+          <p>
+            Perla’s sitzt in Sulzbach (Taunus). Von hier koordinieren wir die laufende Betreuung
+            von Wohnanlagen, Gewerbeimmobilien und institutionellen Gebäuden im Rhein-Main-Gebiet.
+          </p>
+          <address>
+            <MapPin aria-hidden="true" />
+            <span><strong>Perla’s Objektbetreuung</strong>Hauptstraße 1<br />65843 Sulzbach (Taunus)</span>
+          </address>
+          <a className="contact-location-link" href={ROUTE_URL} target="_blank" rel="noreferrer">
+            Route öffnen <ArrowUpRight aria-hidden="true" />
+          </a>
+        </div>
+        <div data-reveal="right" style={{ '--reveal-delay': '80ms' } as CSSProperties}>
+          <LocationMap />
         </div>
       </section>
     </main>

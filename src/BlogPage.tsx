@@ -11,6 +11,12 @@ type BlogPageProps = {
   posts: BlogPostContent[]
 }
 
+export type BlogServiceLink = {
+  slug: string
+  title: string
+  text: string
+}
+
 export default function BlogPage({ posts }: BlogPageProps) {
   const [activeCategory, setActiveCategory] = useState('Alle')
   const categories = ['Alle', ...Array.from(new Set(posts.map((post) => post.category)))]
@@ -103,7 +109,19 @@ export default function BlogPage({ posts }: BlogPageProps) {
   )
 }
 
-export function BlogArticlePage({ post, relatedPosts }: { post: BlogPostContent; relatedPosts: BlogPostContent[] }) {
+export function BlogArticlePage({
+  post,
+  relatedPosts,
+  services,
+}: {
+  post: BlogPostContent
+  relatedPosts: BlogPostContent[]
+  services: BlogServiceLink[]
+}) {
+  const matchingServices = post.relatedServices
+    .map((slug) => services.find((service) => service.slug === slug))
+    .filter((service): service is BlogServiceLink => Boolean(service))
+
   return (
     <main className="blog-article-page">
       <article>
@@ -169,13 +187,22 @@ export function BlogArticlePage({ post, relatedPosts }: { post: BlogPostContent;
         </div>
       </section>
 
-      <section className="blog-article-cta" data-reveal="up">
+      <section className="blog-article-services" aria-labelledby="blog-article-services-heading">
         <div>
-          <span className="eyebrow">Konkreten Bedarf besprechen</span>
-          <h2>Was braucht Ihre Immobilie?</h2>
-          <p>Wir ordnen Aufgaben, Zuständigkeiten und sinnvolle Intervalle gemeinsam mit Ihnen ein.</p>
+          <span className="eyebrow">Passende Leistungen</span>
+          <h2 id="blog-article-services-heading">Das passt zu diesem Thema.</h2>
+          <p>Diese konkreten Leistungen können den beschriebenen Bedarf an Ihrer Immobilie abdecken.</p>
         </div>
-        <a className="button button--outline-light" href={CONTACT_PATH}>Kontakt aufnehmen <ArrowUpRight aria-hidden="true" /></a>
+        <div className="blog-article-services-grid">
+          {matchingServices.map((service) => (
+            <a href={`${BASE_PATH}leistungen/${service.slug}/`} key={service.slug}>
+              <span>Leistung</span>
+              <h3>{service.title}</h3>
+              <p>{service.text}</p>
+              <strong>Leistung ansehen <ArrowUpRight aria-hidden="true" /></strong>
+            </a>
+          ))}
+        </div>
       </section>
     </main>
   )
