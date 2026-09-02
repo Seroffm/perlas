@@ -10948,3 +10948,293 @@ body {
     justify-content: center;
   }
 }
+
+/* Ruhigere B2B-Startseite: Markenblau gezielt, Inhalte schneller erfassbar. */
+.nav-facility-trigger > a {
+  position: relative;
+  color: var(--primary);
+  font-weight: 850;
+}
+
+.nav-facility-trigger > a::after {
+  position: absolute;
+  right: 0;
+  bottom: 7px;
+  left: 0;
+  height: 2px;
+  content: '';
+  border-radius: 999px;
+  background: var(--primary);
+  transform: scaleX(0.68);
+  transform-origin: left;
+  transition: transform 160ms ease;
+}
+
+.nav-facility-trigger > a:hover::after,
+.nav-facility-trigger > a:focus-visible::after {
+  transform: scaleX(1);
+}
+
+.home-core-services {
+  padding: 92px max(48px, calc((100% - 1120px) / 2));
+  background: #f3f6f8;
+}
+
+.home-service-card-grid {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.home-service-card {
+  min-height: 212px;
+  overflow: visible;
+  border: 1px solid rgb(7 51 114 / 14%);
+  border-radius: 24px;
+  box-shadow: none;
+}
+
+.home-service-card:hover,
+.home-service-card:focus-visible {
+  border-color: rgb(7 51 114 / 34%);
+  box-shadow: 0 14px 30px rgb(7 51 114 / 10%);
+  transform: translateY(-3px);
+}
+
+.home-service-card-copy {
+  min-height: 0;
+  height: 100%;
+  padding: 24px 20px 20px;
+}
+
+.home-service-card-icon {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  color: var(--primary);
+  background: #e7eff5;
+}
+
+.home-service-card-icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.home-service-card-copy h3 {
+  margin-top: 22px;
+  font-size: 18px;
+  line-height: 1.2;
+  letter-spacing: -0.3px;
+}
+
+.home-service-card-link {
+  padding-top: 20px;
+  color: var(--primary);
+  font-size: 12px;
+}
+
+.home-service-card-link svg {
+  width: 24px;
+  height: 24px;
+  padding: 5px;
+}
+
+.home-core-services > .button {
+  margin-top: 30px;
+}
+
+.home-trust {
+  padding: 92px max(48px, calc((100% - 1120px) / 2));
+  color: var(--ink);
+  background: #fff;
+  border-top: 1px solid rgb(7 51 114 / 10%);
+  border-bottom: 1px solid rgb(7 51 114 / 10%);
+}
+
+.home-trust .eyebrow {
+  color: var(--primary);
+}
+
+.home-trust-copy > p {
+  color: rgb(10 11 13 / 70%);
+}
+
+.home-trust-stats > div {
+  min-height: 136px;
+  border-color: rgb(7 51 114 / 14%);
+  color: var(--ink);
+  background: #f3f6f8;
+}
+
+.home-trust-stats strong {
+  color: var(--primary);
+}
+
+.home-trust-stats span {
+  color: rgb(10 11 13 / 64%);
+}
+
+.architecture-bridge {
+  color: var(--ink);
+  background: #eef3f7;
+}
+
+.architecture-bridge .eyebrow {
+  color: var(--primary);
+}
+
+.architecture-bridge p {
+  color: rgb(10 11 13 / 70%);
+}
+
+.fm-complex {
+  padding-top: 96px;
+  padding-bottom: 96px;
+  color: var(--ink);
+  background: #eef3f7;
+}
+
+.fm-complex .eyebrow,
+.fm-complex-grid article > span {
+  color: var(--primary);
+}
+
+.fm-complex-copy > p,
+.fm-complex-grid p {
+  color: rgb(10 11 13 / 68%);
+}
+
+.fm-complex-grid article {
+  min-height: 224px;
+  border-color: rgb(7 51 114 / 14%);
+  background: #fff;
+}
+
+.fm-complex-grid h3 {
+  margin-top: 36px;
+}
+
+.footer-grid {
+  width: min(1120px, calc(100% - 96px));
+  grid-template-columns: minmax(0, 1.1fr) minmax(180px, 0.72fr) minmax(180px, 0.78fr);
+  gap: 58px;
+}
+
+.footer-side {
+  align-content: start;
+}
+
+.footer-side .service-area {
+  min-height: 0;
+  padding: 0;
+  color: #fff;
+  background: transparent;
+}
+
+.footer-side .service-area strong {
+  font-size: 17px;
+}
+
+.footer-side .service-area span {
+  max-width: 230px;
+  color: rgb(255 255 255 / 72%);
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.quote-success > p a {
+  color: var(--primary);
+  font-weight: 800;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+@media (max-width: 1100px) {
+  .home-service-card-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .footer-grid {
+    width: min(100% - 48px, 920px);
+    grid-template-columns: minmax(0, 1.1fr) minmax(180px, 0.8fr) minmax(160px, 0.7fr);
+    gap: 38px;
+  }
+}
+
+@media (max-width: 760px) {
+  .nav-facility-trigger > a::after {
+    bottom: 9px;
+  }
+
+  .home-core-services {
+    padding: 72px 24px;
+  }
+
+  .home-service-card-grid {
+    margin-top: 36px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .home-service-card {
+    min-height: 184px;
+    border-radius: 20px;
+  }
+
+  .home-service-card-copy {
+    padding: 20px 16px 16px;
+  }
+
+  .home-service-card-copy h3 {
+    margin-top: 17px;
+    font-size: 16px;
+  }
+
+  .home-service-card-link {
+    padding-top: 16px;
+    font-size: 10px;
+  }
+
+  .home-service-card-link svg {
+    display: none;
+  }
+
+  .home-trust {
+    padding: 72px 24px;
+  }
+
+  .fm-complex {
+    padding: 72px 24px;
+  }
+
+  .fm-complex-grid article {
+    min-height: 0;
+    padding: 22px;
+  }
+
+  .footer-grid {
+    width: auto;
+    grid-template-columns: 1fr;
+    gap: 42px;
+  }
+
+  .footer-side {
+    padding-top: 4px;
+    border-top: 1px solid rgb(255 255 255 / 22%);
+  }
+
+  .footer-side .service-area {
+    padding-top: 26px;
+  }
+}
+
+@media (max-width: 420px) {
+  .home-service-card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .home-service-card {
+    min-height: 154px;
+  }
+}

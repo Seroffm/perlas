@@ -182,7 +182,7 @@ export default function QuoteModal({ isOpen, initialService, serviceNames, onClo
           <p>Kein Standardpaket. Wir stellen die Leistungen passend zu Ihrem Objekt zusammen.</p>
           <div className="quote-benefits">
             <span><CheckCircle2 aria-hidden="true" /> Unverbindlich</span>
-            <span><CheckCircle2 aria-hidden="true" /> Antwort innerhalb von 24 Stunden</span>
+            <span><CheckCircle2 aria-hidden="true" /> Angaben strukturiert vorbereiten</span>
             <span><CheckCircle2 aria-hidden="true" /> Persönlicher Ansprechpartner</span>
           </div>
         </div>
@@ -191,11 +191,13 @@ export default function QuoteModal({ isOpen, initialService, serviceNames, onClo
           {isSubmitted ? (
             <div className="quote-success" aria-live="polite">
               <div className="quote-success-icon"><Check aria-hidden="true" /></div>
-              <span>Anfrage vorbereitet</span>
+              <span>Angaben vorbereitet</span>
               <h3>Vielen Dank, {name.split(' ')[0]}.</h3>
               <p>
-                Ihre Angaben sind vollständig. Im nächsten Schritt kann diese Oberfläche an das
-                gewünschte CRM oder E-Mail-System angebunden werden.
+                Ihre Angaben wurden nur in dieser Browseransicht vorbereitet und noch nicht
+                übermittelt. Die technische Übermittlung wird derzeit eingerichtet. Bitte senden
+                Sie Ihre Anfrage per E-Mail an <a href="mailto:mail@perlas.de">mail@perlas.de</a> oder
+                rufen Sie uns unter <a href="tel:+491776867145">0177 68 67 145</a> an.
               </p>
               <button className="button button--yellow" type="button" onClick={onClose}>Fertig</button>
             </div>
@@ -285,7 +287,7 @@ export default function QuoteModal({ isOpen, initialService, serviceNames, onClo
                   <>
                     <span className="quote-step-label">Schritt 3 von 3</span>
                     <h3>Wie erreichen wir Sie?</h3>
-                    <p>Wir melden uns persönlich und ohne automatisierte Verkaufsschleife.</p>
+                    <p>Ihre Angaben werden für eine direkte Kontaktaufnahme vorbereitet.</p>
                     <div className="field-grid">
                       <label className="field-label">
                         <span className="field-label-copy">Vor- und Nachname</span>

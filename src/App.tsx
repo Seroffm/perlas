@@ -31,7 +31,7 @@ import CookieConsent from './CookieConsent'
 import ContactPage from './ContactPage'
 import QuoteModal from './QuoteModal'
 import BlogPage, { BlogArticlePage } from './BlogPage'
-import CareerPage, { HomeCareerTeaser } from './CareerPage'
+import CareerPage from './CareerPage'
 import audienceContent from './audience-data.json'
 import blogContent from './blog-data.json'
 import jobContent from './job-data.json'
@@ -394,7 +394,7 @@ function ButtonLink({
       href={href}
     >
       <span>{children}</span>
-      {arrow && <img src={`${A}arrow-white.svg`} alt="" />}
+      {arrow && <img src={`${A}${kind === 'outline' ? 'arrow.svg' : 'arrow-white.svg'}`} alt="" />}
     </a>
   )
 }
@@ -630,7 +630,7 @@ const heroSlides = [
   },
 ]
 
-function Header({ onQuoteOpen }: { onQuoteOpen: () => void }) {
+function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [facilityOpen, setFacilityOpen] = useState(false)
 
@@ -716,17 +716,6 @@ function Header({ onQuoteOpen }: { onQuoteOpen: () => void }) {
           <a href={ABOUT_PATH} onClick={closeMenu}>Über uns</a>
           <a href={BLOG_PATH} onClick={closeMenu}>Blog</a>
           <a href={CONTACT_PATH} onClick={closeMenu}>Kontakt</a>
-          <button
-            className="nav-quote"
-            type="button"
-            onClick={() => {
-              closeMenu()
-              onQuoteOpen()
-            }}
-          >
-            Angebot anfragen
-            <ArrowUpRight aria-hidden="true" />
-          </button>
         </nav>
       </div>
     </header>
@@ -930,7 +919,6 @@ function Hero() {
         </p>
         <div className="button-row">
           <ButtonLink href={CONTACT_PATH} arrow>Betreuung anfragen</ButtonLink>
-          <ButtonLink href={FACILITY_PATH} kind="outline">Facility Management</ButtonLink>
         </div>
       </div>
       <div className="hero-art" aria-roledescription="Karussell" aria-label="Einblicke in die Arbeit von Perla’s">
@@ -942,7 +930,6 @@ function Hero() {
                 alt={index === activeSlide ? slide.alt : ''}
                 style={{ objectPosition: slide.position }}
               />
-              <figcaption>{slide.label}</figcaption>
             </figure>
           ))}
         </div>
@@ -1035,62 +1022,35 @@ function HomeOverview() {
 }
 
 function HomeCoreServices() {
-  const homeAudienceImages: Record<string, { src: string; alt: string }> = {
-    hausverwaltungen: {
-      src: 'perlas-office.png',
-      alt: 'Abgestimmte Objektbetreuung für Hausverwaltungen',
-    },
-    wohnanlagen: {
-      src: 'perlas-property.png',
-      alt: 'Professionell betreute größere Wohnanlage',
-    },
-    gewerbeimmobilien: {
-      src: 'perlas-hero.png',
-      alt: 'Objektkontrolle an einer Gewerbeimmobilie',
-    },
-    'institutionelle-gebaeude': {
-      src: 'perlas-team.png',
-      alt: 'Objektbetreuung für institutionelle und öffentliche Gebäude',
-    },
-  }
-
   return (
     <section className="home-core-services" id="leistungen" aria-labelledby="home-core-services-heading">
       <div className="home-section-heading" data-reveal="up">
-        <span className="eyebrow">Betreuung nach Objektart</span>
-        <h2 id="home-core-services-heading">Für Immobilien mit unterschiedlichen Anforderungen.</h2>
-        <p>Wählen Sie den Bereich, der zu Ihrem Objekt oder Bestand passt. Dort finden Sie die relevanten Aufgaben und Leistungsseiten übersichtlich zusammengefasst.</p>
+        <span className="eyebrow">Kernleistungen</span>
+        <h2 id="home-core-services-heading">Das übernehmen wir für Ihre Immobilie.</h2>
+        <p>Fünf Leistungen, die sich einzeln beauftragen oder im Facility Management sinnvoll verbinden lassen.</p>
       </div>
       <div className="home-service-card-grid">
-        {audienceSolutions.map((audience, index) => {
-          const Icon = audience.icon
-          const image = homeAudienceImages[audience.id]
+        {coreFeatures.map((service, index) => {
+          const Icon = service.icon
 
           return (
             <a
               className="home-service-card"
-              href={audienceHref(audience.id)}
-              key={audience.id}
+              href={`${SERVICES_PATH}${service.slug}/`}
+              key={service.slug}
               data-reveal="up"
               style={{ '--reveal-delay': `${index * 60}ms` } as CSSProperties}
             >
-              <div className="home-service-card-image">
-                <img src={`${A}${image.src}`} alt={image.alt} loading="lazy" decoding="async" />
-                <span><Icon aria-hidden="true" /></span>
-              </div>
               <div className="home-service-card-copy">
-                <div>
-                  <span className="eyebrow">Objektbereich 0{index + 1}</span>
-                  <h3>{audience.navLabel}</h3>
-                </div>
-                <p>{audience.text}</p>
-                <span className="home-service-card-link">Bereich ansehen <ArrowUpRight aria-hidden="true" /></span>
+                <span className="home-service-card-icon"><Icon aria-hidden="true" /></span>
+                <h3>{service.title}</h3>
+                <span className="home-service-card-link">Leistung ansehen <ArrowUpRight aria-hidden="true" /></span>
               </div>
             </a>
           )
         })}
       </div>
-      <ButtonLink href={SERVICES_PATH} kind="purple" arrow>Weitere Leistungen</ButtonLink>
+      <ButtonLink href={SERVICES_PATH} kind="outline" arrow>Alle Leistungen ansehen</ButtonLink>
     </section>
   )
 }
@@ -1102,7 +1062,7 @@ function HomeTrust() {
         <span className="eyebrow">Verlässlich im laufenden Betrieb</span>
         <h2 id="home-trust-heading">Erfahrung und klare Abläufe.</h2>
         <p>Perla’s schafft Übersicht über wiederkehrende Aufgaben und hält Rückmeldungen zu Zustand, Leistung und Handlungsbedarf an einer Stelle zusammen.</p>
-        <ButtonLink href={ABOUT_PATH} kind="outline-light" arrow>Mehr über Perla’s</ButtonLink>
+        <ButtonLink href={ABOUT_PATH} kind="outline" arrow>Mehr über Perla’s</ButtonLink>
       </div>
       <div className="home-trust-stats" data-reveal="right" style={{ '--reveal-delay': '80ms' } as CSSProperties}>
         {proofStats.map(([value, label]) => (
@@ -1113,25 +1073,7 @@ function HomeTrust() {
   )
 }
 
-function HomeContactTeaser({ onQuoteOpen }: { onQuoteOpen: () => void }) {
-  return (
-    <section className="home-contact-teaser" data-reveal="up">
-      <div>
-        <span className="eyebrow">Nächster Schritt</span>
-        <h2>Was braucht Ihre Immobilie?</h2>
-        <p>Wir besprechen Objekt, Nutzung und laufende Aufgaben und leiten daraus einen passenden Leistungsumfang ab.</p>
-      </div>
-      <div className="home-contact-actions">
-        <button className="button button--yellow" type="button" onClick={onQuoteOpen}>
-          <span>Angebot anfragen</span><img src={`${A}arrow-white.svg`} alt="" />
-        </button>
-        <ButtonLink href={CONTACT_PATH} kind="outline">Zur Kontaktseite</ButtonLink>
-      </div>
-    </section>
-  )
-}
-
-function ServicesOverviewPage({ onQuoteOpen }: { onQuoteOpen: () => void }) {
+function ServicesOverviewPage() {
   return (
     <main className="architecture-page services-overview-page">
       <section className="architecture-hero">
@@ -1202,12 +1144,7 @@ function ServicesOverviewPage({ onQuoteOpen }: { onQuoteOpen: () => void }) {
           <h2>Leistungen sinnvoll verbinden.</h2>
           <p>Bei größeren oder professionell verwalteten Immobilien lassen sich Leistungen, Intervalle, Zuständigkeiten und Rückmeldungen in einem Betreuungskonzept bündeln.</p>
         </div>
-        <ButtonLink href={FACILITY_PATH} kind="outline-light" arrow>Facility Management ansehen</ButtonLink>
-      </section>
-
-      <section className="architecture-cta" data-reveal="up">
-        <div><span className="eyebrow">Individuell abstimmen</span><h2>Was passt zu Ihrem Objekt?</h2></div>
-        <button className="button button--yellow" type="button" onClick={onQuoteOpen}><span>Angebot anfragen</span><img src={`${A}arrow-white.svg`} alt="" /></button>
+        <ButtonLink href={FACILITY_PATH} kind="outline" arrow>Facility Management ansehen</ButtonLink>
       </section>
     </main>
   )
@@ -1449,7 +1386,7 @@ function AudienceSolutions() {
   )
 }
 
-function FacilityManagementPage({ onQuoteOpen }: { onQuoteOpen: () => void }) {
+function FacilityManagementPage() {
   return (
     <main className="facility-page">
       <section className="fm-hero">
@@ -1464,7 +1401,6 @@ function FacilityManagementPage({ onQuoteOpen }: { onQuoteOpen: () => void }) {
             nachvollziehbare Rückmeldungen.
           </p>
           <div className="button-row">
-            <ButtonLink href={CONTACT_PATH} arrow>Betreuung besprechen</ButtonLink>
             <ButtonLink href="#zielgruppen" kind="outline">Passenden Bereich wählen</ButtonLink>
           </div>
           <dl className="fm-hero-facts">
@@ -1583,7 +1519,6 @@ function FacilityManagementPage({ onQuoteOpen }: { onQuoteOpen: () => void }) {
             Nutzung und Zuständigkeit gegliedert. So bleibt erkennbar, was regelmäßig betreut,
             kontrolliert, gemeldet oder durch einen Fachbetrieb bearbeitet werden muss.
           </p>
-          <ButtonLink href={CONTACT_PATH} kind="outline-light" arrow>Objektstruktur besprechen</ButtonLink>
         </div>
         <div className="fm-complex-grid" data-reveal="right" style={{ '--reveal-delay': '90ms' } as CSSProperties}>
           {[
@@ -1597,19 +1532,6 @@ function FacilityManagementPage({ onQuoteOpen }: { onQuoteOpen: () => void }) {
         </div>
       </section>
 
-      <section className="fm-cta" data-reveal="up">
-        <div>
-          <span className="eyebrow">Nächster Schritt</span>
-          <h2>Was braucht Ihr Objekt?</h2>
-          <p>Wir erfassen Immobilie, Nutzung und laufende Aufgaben und besprechen daraus einen passenden Leistungsumfang.</p>
-        </div>
-        <div className="fm-cta-actions">
-          <button className="button button--yellow" type="button" onClick={onQuoteOpen}>
-            <span>Angebot anfragen</span><img src={`${A}arrow-white.svg`} alt="" />
-          </button>
-          <a href="tel:+491776867145"><Phone aria-hidden="true" /> 0177 68 67 145</a>
-        </div>
-      </section>
     </main>
   )
 }
@@ -2329,7 +2251,7 @@ function LegalPage({ type }: { type: LegalPageType }) {
             </section>
             <section>
               <h2>3. Kontaktaufnahme und Formulare</h2>
-              <p>Angaben aus Kontakt-, Angebots- und Bewerbungsanfragen werden ausschließlich verwendet, um die jeweilige Anfrage zu bearbeiten. Ohne konfiguriertes Backend bereiten die Formulare derzeit eine E-Mail im E-Mail-Programm des Nutzers vor. Nach einer späteren API-Anbindung werden Empfänger, Speicherdauer und technische Verarbeitung vor dem Produktivbetrieb abschließend ergänzt.</p>
+              <p>Angaben aus Kontakt-, Angebots- und Bewerbungsanfragen werden ausschließlich verwendet, um die jeweilige Anfrage zu bearbeiten. Direktanfragen auf Leistungsseiten öffnen mit den eingegebenen Angaben das E-Mail-Programm des Nutzers. Das Angebotsformular übermittelt Angaben derzeit noch nicht technisch; vor einer späteren API-Anbindung werden Empfänger, Speicherdauer und Verarbeitung abschließend ergänzt.</p>
             </section>
             <section>
               <h2>4. Cookies und Einwilligungen</h2>
@@ -2375,7 +2297,6 @@ function Footer() {
           <h2>Perla’s</h2>
           {[
             ['Facility Management', 'facility-management/'],
-            ['Zielgruppen', 'facility-management/#zielgruppen'],
             ['Leistungen', 'leistungen/'],
             ['Über uns', 'ueber-uns/'],
             ['Blog', 'blog/'],
@@ -2389,19 +2310,6 @@ function Footer() {
         </nav>
 
         <div className="footer-side">
-          <div className="contact-card">
-            <img src={`${A}newsletter-mark.svg`} alt="" />
-            <div className="form-content">
-              <h2>Lassen Sie uns über Ihr Objekt sprechen</h2>
-              <p>
-                Schreiben Sie kurz, welche Immobilie Sie betreuen lassen möchten.
-                Wir klären die nächsten Schritte persönlich mit Ihnen.
-              </p>
-              <a className="contact-card-button" href={CONTACT_PATH}>
-                Kontaktseite öffnen
-              </a>
-            </div>
-          </div>
           <div className="service-area">
             <strong>Im Rhein-Main-Gebiet für Sie da</strong>
             <span>Sulzbach · Frankfurt · Hofheim · Bad Soden · Eschborn · Umgebung</span>
@@ -2478,7 +2386,7 @@ export default function App() {
 
   return (
     <>
-      <Header onQuoteOpen={() => openQuote()} />
+      <Header />
       {activeService ? (
         <ServiceDetailPage service={activeService} onQuoteOpen={openQuote} />
       ) : activeAudience ? (
@@ -2488,9 +2396,9 @@ export default function App() {
       ) : isContactPage ? (
         <ContactPage onQuoteOpen={() => openQuote()} />
       ) : isFacilityPage ? (
-        <FacilityManagementPage onQuoteOpen={() => openQuote()} />
+        <FacilityManagementPage />
       ) : isServicesPage ? (
-        <ServicesOverviewPage onQuoteOpen={() => openQuote()} />
+        <ServicesOverviewPage />
       ) : isAboutPage ? (
         <AboutPage onQuoteOpen={() => openQuote()} />
       ) : isBlogPage ? (
@@ -2504,13 +2412,9 @@ export default function App() {
       ) : (
         <main>
           <Hero />
-          <PartnerMarquee />
-          <Reviews />
           <HomeOverview />
           <HomeCoreServices />
           <HomeTrust />
-          <HomeCareerTeaser />
-          <HomeContactTeaser onQuoteOpen={() => openQuote()} />
         </main>
       )}
       <Footer />
