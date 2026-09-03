@@ -1055,6 +1055,67 @@ function HomeCoreServices() {
   )
 }
 
+function HomeAudienceCards() {
+  const homeAudienceImages: Record<string, { src: string; alt: string }> = {
+    hausverwaltungen: {
+      src: 'perlas-office.png',
+      alt: 'Abgestimmte Objektbetreuung für Hausverwaltungen',
+    },
+    wohnanlagen: {
+      src: 'perlas-property.png',
+      alt: 'Professionell betreute größere Wohnanlage',
+    },
+    gewerbeimmobilien: {
+      src: 'perlas-hero.png',
+      alt: 'Objektkontrolle an einer Gewerbeimmobilie',
+    },
+    'institutionelle-gebaeude': {
+      src: 'perlas-team.png',
+      alt: 'Objektbetreuung für institutionelle und öffentliche Gebäude',
+    },
+  }
+
+  return (
+    <section className="home-audience-cards" aria-labelledby="home-audience-cards-heading">
+      <div className="home-section-heading" data-reveal="up">
+        <span className="eyebrow">Betreuung nach Objektart</span>
+        <h2 id="home-audience-cards-heading">Für Immobilien mit unterschiedlichen Anforderungen.</h2>
+        <p>Wählen Sie den Bereich, der zu Ihrem Objekt oder Bestand passt. Dort finden Sie Aufgaben, Abläufe und relevante Leistungen übersichtlich zusammengefasst.</p>
+      </div>
+      <div className="home-audience-card-grid">
+        {audienceSolutions.map((audience, index) => {
+          const Icon = audience.icon
+          const image = homeAudienceImages[audience.id]
+
+          return (
+            <a
+              className="home-audience-card"
+              href={audienceHref(audience.id)}
+              key={audience.id}
+              data-reveal="up"
+              style={{ '--reveal-delay': `${index * 60}ms` } as CSSProperties}
+            >
+              <div className="home-audience-card-image">
+                <img src={`${A}${image.src}`} alt={image.alt} loading="lazy" decoding="async" />
+                <span><Icon aria-hidden="true" /></span>
+              </div>
+              <div className="home-audience-card-copy">
+                <div>
+                  <span className="eyebrow">Objektbereich 0{index + 1}</span>
+                  <h3>{audience.navLabel}</h3>
+                </div>
+                <p>{audience.text}</p>
+                <span className="home-audience-card-link">Bereich ansehen <ArrowUpRight aria-hidden="true" /></span>
+              </div>
+            </a>
+          )
+        })}
+      </div>
+      <ButtonLink href={FACILITY_PATH} kind="outline" arrow>Alle Objektbereiche ansehen</ButtonLink>
+    </section>
+  )
+}
+
 function HomeTrust() {
   return (
     <section className="home-trust" aria-labelledby="home-trust-heading">
@@ -2295,7 +2356,9 @@ function Footer() {
         </div>
 
         <nav className="footer-nav" aria-label="Footer-Navigation">
-          <h2>Perla’s</h2>
+          <a className="footer-logo" href={homeHref()} aria-label="Perla’s Objektbetreuung Startseite">
+            <img src={`${A}perlas-logo.svg`} alt="Perla’s Objektbetreuung GmbH & Co. KG" />
+          </a>
           {[
             ['Facility Management', 'facility-management/'],
             ['Leistungen', 'leistungen/'],
@@ -2421,6 +2484,7 @@ export default function App() {
           <Reviews />
           <HomeOverview />
           <HomeCoreServices />
+          <HomeAudienceCards />
           <HomeTrust />
         </main>
       )}
