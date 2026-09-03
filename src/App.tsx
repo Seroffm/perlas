@@ -2417,6 +2417,8 @@ export default function App() {
       ) : (
         <main>
           <Hero />
+          <PartnerMarquee />
+          <Reviews />
           <HomeOverview />
           <HomeCoreServices />
           <HomeTrust />
