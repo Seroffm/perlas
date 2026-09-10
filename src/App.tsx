@@ -92,7 +92,7 @@ type AudienceSolutionContent = {
   requirements: string[]
   approach: string
   services: string[]
-  image: { src: string; alt: string }
+  image: { src: string; alt: string; position?: string }
   scopeCards: Array<{ title: string; text: string }>
   process: Array<{ title: string; text: string }>
   faqs: Array<{ question: string; answer: string }>
@@ -175,7 +175,7 @@ function usePageSeo(service?: Feature, pageKind: PageKind = 'home', audience?: A
       ?? service?.seoDescription
       ?? pageDefinition?.description
       ?? 'Perla’s bündelt Facility Management und professionelle Objektbetreuung für Hausverwaltungen, Wohnanlagen und Gewerbeimmobilien im Rhein-Main-Gebiet.'
-    const imageUrl = new URL(`${BASE_PATH}assets/${article?.image ?? audience?.image.src ?? 'perlas-hero.png'}`, window.location.origin)
+    const imageUrl = new URL(`${BASE_PATH}assets/${article?.image ?? audience?.image.src ?? 'kundenbilder/objekte/wohnanlage_modern_02.png'}`, window.location.origin)
     const indexingOverride = import.meta.env.VITE_PERLAS_INDEX_SITE
     const indexingEnabled = indexingOverride
       ? indexingOverride === 'true'
@@ -473,7 +473,7 @@ const featureBasics = [
     text: 'Regelmäßige Kontrollgänge und eine zuverlässige Pflege für Wohn- und Gewerbeobjekte.',
     detail: 'Wir behalten Ihr Objekt im Blick, erkennen Handlungsbedarf frühzeitig und sorgen dafür, dass Gemeinschaftsflächen und Außenbereiche dauerhaft einen gepflegten Eindruck machen.',
     bullets: ['Regelmäßige Objektkontrollen', 'Dokumentierte Zustandsmeldungen', 'Koordination kleiner Maßnahmen'],
-    image: 'perlas-property.png',
+    image: 'kundenbilder/fahrzeuge/perlas_fahrzeug_wohnobjekt_02.png',
   },
   {
     icon: Wrench,
@@ -482,7 +482,7 @@ const featureBasics = [
     text: 'Kleine Reparaturen, technische Kontrollen und präventive Maßnahmen aus einer Hand.',
     detail: 'Von der kleinen Reparatur bis zur koordinierten Wartung kümmern wir uns schnell, nachvollziehbar und mit einem festen Ansprechpartner um den laufenden Werterhalt.',
     bullets: ['Kleinreparaturen', 'Technische Sichtkontrollen', 'Koordination von Fachbetrieben'],
-    image: 'perlas-hero.png',
+    image: 'kundenbilder/leistungen/kleinreparatur_bohren.png',
   },
   {
     icon: Sparkles,
@@ -491,7 +491,7 @@ const featureBasics = [
     text: 'Saubere Treppenhäuser, Büros, Gemeinschaftsflächen und gepflegte Außenbereiche.',
     detail: 'Individuelle Reinigungspläne sorgen für verlässlich saubere Flächen, klare Qualitätsstandards und einen überzeugenden ersten Eindruck bei Mietern und Besuchern.',
     bullets: ['Treppenhaus- und Unterhaltsreinigung', 'Büro- und Praxisflächen', 'Kontrollierte Qualitätsstandards'],
-    image: 'perlas-office.png',
+    image: 'kundenbilder/leistungen/gebaeudereinigung_flur.png',
   },
   {
     icon: TreePine,
@@ -500,7 +500,7 @@ const featureBasics = [
     text: 'Professionelle Pflege von Grünanlagen, Hecken, Wegen und saisonalen Außenflächen.',
     detail: 'Wir pflegen Grünflächen saisonal und vorausschauend, damit Wege, Hecken und Außenanlagen das ganze Jahr über sicher und repräsentativ bleiben.',
     bullets: ['Rasen- und Heckenschnitt', 'Pflege von Beeten und Wegen', 'Saisonale Pflegeplanung'],
-    image: 'perlas-team.png',
+    image: 'kundenbilder/leistungen/aussenanlagen_laubblasen.png',
   },
   {
     icon: Snowflake,
@@ -509,7 +509,7 @@ const featureBasics = [
     text: 'Zuverlässiges Räumen und Streuen für sichere Wege und planbare Abläufe im Winter.',
     detail: 'Mit klaren Einsatzplänen und verlässlicher Dokumentation halten wir Wege und Zugänge bei Schnee und Glätte sicher nutzbar.',
     bullets: ['Räum- und Streudienst', 'Wetterabhängige Einsatzplanung', 'Nachvollziehbare Dokumentation'],
-    image: 'perlas-property.png',
+    image: 'kundenbilder/leistungen/winterdienst_team.png',
   },
   {
     icon: PackageCheck,
@@ -518,7 +518,7 @@ const featureBasics = [
     text: 'Reibungslose Übergaben, Entrümpelungen und Unterstützung bei Umzügen und Räumungen.',
     detail: 'Wir unterstützen Hausverwaltungen und Eigentümer bei Übergaben, Räumungen und der schnellen Vorbereitung von Wohnungen für die nächste Nutzung.',
     bullets: ['Unterstützung bei Übergaben', 'Entrümpelung und Räumung', 'Vorbereitung für die Neuvermietung'],
-    image: 'perlas-property.png',
+    image: 'kundenbilder/leistungen/transport_umzug_lieferung.png',
   },
 ]
 
@@ -578,25 +578,25 @@ const audienceSolutions: AudienceSolution[] = (audienceContent as AudienceSoluti
 
 const insights = [
   {
-    image: 'perlas-office.png',
+    image: 'kundenbilder/team/team_aussenbereich_01.png',
     tag: 'Über uns',
     title: 'Wie Perla’s seit 1999 gewachsen ist',
     text: 'Ein Blick auf unsere Arbeit, unser Team und die Grundsätze, nach denen wir Immobilien betreuen.',
   },
   {
-    image: 'perlas-property.png',
+    image: 'kundenbilder/objekte/wohnanlage_modern_02.png',
     tag: 'Ratgeber',
     title: 'Wie professionelle Objektbetreuung Verwaltungen entlastet',
     text: 'Objektkontrollen, feste Zuständigkeiten und verständliche Rückmeldungen schaffen Übersicht im Immobilienbestand.',
   },
   {
-    image: 'perlas-hero.png',
+    image: 'kundenbilder/leistungen/transport_umzug_lieferung.png',
     tag: 'Facility Management',
     title: 'Was ein belastbares Betreuungskonzept ausmacht',
     text: 'Welche Aufgaben, Leistungsintervalle und Zuständigkeiten in ein verständliches Leistungsverzeichnis gehören.',
   },
   {
-    image: 'perlas-team.png',
+    image: 'kundenbilder/leistungen/winterdienst_team.png',
     tag: 'Praxiswissen',
     title: 'Wie sich Facility-Leistungen über das Jahr planen lassen',
     text: 'Reinigung, Außenanlagenpflege, Wartung und Winterdienst benötigen unterschiedliche Leistungsintervalle.',
@@ -605,30 +605,94 @@ const insights = [
 
 const heroSlides = [
   {
-    image: 'perlas-property.png',
-    alt: 'Größere Wohnanlage im Rhein-Main-Gebiet',
-    label: 'Professionell verwaltete Wohnanlagen',
-    position: '58% center',
-  },
-  {
-    image: 'perlas-hero.png',
-    alt: 'Mitarbeiter von Perla’s bei einer digitalen Objektkontrolle',
-    label: 'Objektkontrolle & Dokumentation',
+    image: 'kundenbilder/objekte/wohnanlage_modern_02.png',
+    alt: 'Moderne betreute Wohnanlage im Rhein-Main-Gebiet',
+    label: 'Professionell betreute Immobilien',
     position: '50% center',
   },
   {
-    image: 'perlas-office.png',
-    alt: 'Mitarbeiter von Perla’s bei der Einsatzplanung',
-    label: 'Koordination & Ansprechpartner',
-    position: '52% center',
+    image: 'kundenbilder/leistungen/gebaeudereinigung_flur.png',
+    alt: 'Mitarbeiter von Perla’s bei der Reinigung eines Gebäudeflurs',
+    label: 'Gebäudereinigung im Einsatz',
+    position: '48% center',
   },
   {
-    image: 'perlas-team.png',
-    alt: 'Das Team von Perla’s Objektbetreuung vor einer Wohnanlage',
-    label: 'Team für laufende Objektbetreuung',
+    image: 'kundenbilder/leistungen/transport_umzug_lieferung.png',
+    alt: 'Mitarbeiter von Perla’s mit Material am Einsatzfahrzeug',
+    label: 'Persönlich vor Ort',
+    position: '50% center',
+  },
+  {
+    image: 'kundenbilder/leistungen/winterdienst_team.png',
+    alt: 'Zwei Mitarbeitende von Perla’s beim Winterdienst',
+    label: 'Winterdienst im Rhein-Main-Gebiet',
     position: '50% center',
   },
 ]
+
+type ServiceGallery = {
+  eyebrow: string
+  title: string
+  intro: string
+  items: Array<{ image: string; label: string; alt: string; position?: string }>
+}
+
+const serviceGalleries: Record<string, ServiceGallery> = {
+  gebaeudereinigung: {
+    eyebrow: 'Referenz aus dem Einsatz',
+    title: 'Parkflächen sauber und nachvollziehbar bearbeiten.',
+    intro: 'Die Aufnahmen zeigen den Geräteeinsatz und die gereinigte Fläche. Umfang und Verfahren werden für jedes Objekt vorab abgestimmt.',
+    items: [
+      {
+        image: 'kundenbilder/vorher_nachher/parkhaus_reinigung_geraet.png',
+        label: 'Im Einsatz',
+        alt: 'Reinigungsgerät von Perla’s im Parkhaus',
+        position: '50% 55%',
+      },
+      {
+        image: 'kundenbilder/vorher_nachher/parkhaus_gereinigt.png',
+        label: 'Gereinigte Fläche',
+        alt: 'Gereinigte Stellfläche in einem Parkhaus',
+        position: '50% 62%',
+      },
+    ],
+  },
+  gartenpflege: {
+    eyebrow: 'Vorher / Nachher',
+    title: 'Außenbereiche sichtbar in Ordnung bringen.',
+    intro: 'Dasselbe Objekt vor und nach dem Einsatz: Wege und angrenzende Flächen werden passend zum vereinbarten Umfang freigeschnitten und gepflegt.',
+    items: [
+      {
+        image: 'kundenbilder/vorher_nachher/aussenbereich_vorher.png',
+        label: 'Vorher',
+        alt: 'Überwachsener Außenbereich vor der Pflege durch Perla’s',
+      },
+      {
+        image: 'kundenbilder/vorher_nachher/aussenbereich_nachher.png',
+        label: 'Nachher',
+        alt: 'Freigeschnittener und gepflegter Außenbereich nach dem Einsatz',
+      },
+    ],
+  },
+}
+
+const serviceStoryImages: Record<string, string> = {
+  objektpflege: 'kundenbilder/objekte/wohnanlage_modern_02.png',
+  'wartung-instandhaltung': 'kundenbilder/leistungen/transport_umzug_lieferung.png',
+  gebaeudereinigung: 'kundenbilder/leistungen/gebaeudereinigung_flur.png',
+  gartenpflege: 'kundenbilder/vorher_nachher/aussenbereich_nachher.png',
+  winterdienst: 'kundenbilder/leistungen/winterdienst_team.png',
+  wohnungswechsel: 'kundenbilder/leistungen/transport_umzug_lieferung.png',
+}
+
+const serviceImagePositions: Record<string, string> = {
+  objektpflege: '50% 52%',
+  'wartung-instandhaltung': '50% 58%',
+  gebaeudereinigung: '52% center',
+  gartenpflege: '50% 46%',
+  winterdienst: '49% center',
+  wohnungswechsel: '40% center',
+}
 
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -1032,6 +1096,7 @@ function HomeCoreServices() {
       <div className="home-service-card-grid">
         {coreFeatures.map((service, index) => {
           const Icon = service.icon
+          const imagePosition = serviceImagePositions[service.slug]
 
           return (
             <a
@@ -1041,9 +1106,14 @@ function HomeCoreServices() {
               data-reveal="up"
               style={{ '--reveal-delay': `${index * 60}ms` } as CSSProperties}
             >
+              <div className="home-service-card-image">
+                <img src={`${A}${service.image}`} alt={`${service.title} im Einsatz bei Perla’s`} loading="lazy" decoding="async" style={{ objectPosition: imagePosition }} />
+                <span><Icon aria-hidden="true" /></span>
+              </div>
               <div className="home-service-card-copy">
-                <span className="home-service-card-icon"><Icon aria-hidden="true" /></span>
+                <span className="eyebrow">Facility Service</span>
                 <h3>{service.title}</h3>
+                <p>{service.text}</p>
                 <span className="home-service-card-link">Leistung ansehen <ArrowUpRight aria-hidden="true" /></span>
               </div>
             </a>
@@ -1149,8 +1219,8 @@ function ServicesOverviewPage() {
           </div>
         </div>
         <figure className="architecture-hero-image" data-reveal="right" style={{ '--reveal-delay': '80ms' } as CSSProperties}>
-          <img src={`${A}perlas-hero.png`} alt="Mitarbeiter von Perla’s bei der Objektkontrolle" />
-          <figcaption>Objektbezogen geplant · verlässlich ausgeführt</figcaption>
+          <img src={`${A}kundenbilder/leistungen/transport_umzug_lieferung.png`} alt="Mitarbeiter von Perla’s mit Material am Einsatzfahrzeug" />
+          <figcaption>Echte Einsätze · objektbezogen geplant · verlässlich ausgeführt</figcaption>
         </figure>
       </section>
 
@@ -1188,8 +1258,12 @@ function ServicesOverviewPage() {
         <div className="services-catalog-grid">
           {features.map((feature, index) => {
             const Icon = feature.icon
+            const imagePosition = serviceImagePositions[feature.slug]
             return (
               <a className="services-catalog-card" href={`${SERVICES_PATH}${feature.slug}/`} data-reveal="up" style={{ '--reveal-delay': `${(index % 3) * 55}ms` } as CSSProperties} key={feature.slug}>
+                <figure className="services-catalog-image">
+                  <img src={`${A}${feature.image}`} alt={`${feature.title} im Einsatz bei Perla’s`} loading="lazy" decoding="async" style={{ objectPosition: imagePosition }} />
+                </figure>
                 <span className="services-catalog-icon"><Icon aria-hidden="true" strokeWidth={1.8} /></span>
                 <div><h3>{feature.title}</h3><p>{feature.text}</p></div>
                 <span>Leistung ansehen <ArrowUpRight aria-hidden="true" /></span>
@@ -1220,8 +1294,8 @@ function AboutPage({ onQuoteOpen }: { onQuoteOpen: () => void }) {
   ] as const
   const teamMembers = [
     {
-      image: 'about-team-portrait-1.jpg',
-      alt: 'Porträt einer Mitarbeiterin von Perla’s Objektbetreuung',
+      image: 'kundenbilder/team/team_aussenbereich_01.png',
+      alt: 'Mitarbeiterin von Perla’s bei einem Außeneinsatz',
     },
     {
       image: 'about-team-portrait-2.jpeg',
@@ -1247,8 +1321,8 @@ function AboutPage({ onQuoteOpen }: { onQuoteOpen: () => void }) {
           </div>
         </div>
         <figure className="architecture-hero-image" data-reveal="right" style={{ '--reveal-delay': '80ms' } as CSSProperties}>
-          <img src={`${A}perlas-team.png`} alt="Das Team von Perla’s Objektbetreuung" />
-          <figcaption>Vor Ort im Rhein-Main-Gebiet</figcaption>
+          <img src={`${A}kundenbilder/leistungen/winterdienst_team.png`} alt="Mitarbeitende von Perla’s beim Winterdienst im Rhein-Main-Gebiet" />
+          <figcaption>Echtes Team · vor Ort im Rhein-Main-Gebiet</figcaption>
         </figure>
       </section>
 
@@ -1346,7 +1420,7 @@ function FacilityOverview() {
         </nav>
       </div>
       <div className="facility-visual" data-reveal="right" style={{ '--reveal-delay': '80ms' } as CSSProperties}>
-        <img src={`${A}perlas-hero.png`} alt="Mitarbeiter von Perla’s bei einer Objektkontrolle und Dokumentation" />
+        <img src={`${A}kundenbilder/fahrzeuge/perlas_fahrzeug_wohnobjekt_02.png`} alt="Perla’s Servicefahrzeug vor einer betreuten Wohnimmobilie" />
         <span>Objektkontrolle · Koordination · Dokumentation</span>
       </div>
       <div className="facility-pillars" data-reveal="up" style={{ '--reveal-delay': '130ms' } as CSSProperties}>
@@ -1471,7 +1545,7 @@ function FacilityManagementPage() {
           </dl>
         </div>
         <figure className="fm-hero-visual" data-reveal="right" style={{ '--reveal-delay': '90ms' } as CSSProperties}>
-          <img src={`${A}perlas-property.png`} alt="Professionell verwaltete Wohnanlage im Rhein-Main-Gebiet" />
+          <img src={`${A}kundenbilder/objekte/wohnanlage_modern_02.png`} alt="Große moderne Wohnanlage im Rhein-Main-Gebiet" />
           <figcaption>
             <Building2 aria-hidden="true" />
             <span><strong>Facility Management mit Überblick</strong><small>Objekt · Aufgaben · Zuständigkeiten</small></span>
@@ -1562,7 +1636,7 @@ function FacilityManagementPage() {
                   </nav>
                 </div>
                 <figure className="fm-target-image" data-reveal={index % 2 === 0 ? 'right' : 'left'}>
-                  <img src={`${A}${image.src}`} alt={image.alt} />
+                  <img src={`${A}${image.src}`} alt={image.alt} style={{ objectPosition: image.position }} />
                   <figcaption>{audience.navLabel}</figcaption>
                 </figure>
               </article>
@@ -1621,7 +1695,7 @@ function AudienceDetailPage({ audience, onQuoteOpen }: { audience: AudienceSolut
           </div>
         </div>
         <figure className="audience-detail-hero-image" data-reveal="right" style={{ '--reveal-delay': '80ms' } as CSSProperties}>
-          <img src={`${A}${audience.image.src}`} alt={audience.image.alt} />
+          <img src={`${A}${audience.image.src}`} alt={audience.image.alt} style={{ objectPosition: audience.image.position }} />
           <figcaption><Icon aria-hidden="true" /><span>{audience.navLabel}</span></figcaption>
         </figure>
       </section>
@@ -1888,7 +1962,7 @@ function About() {
         </div>
       </div>
       <div className="about-image" data-reveal="right" style={{ '--reveal-delay': '80ms' } as CSSProperties}>
-        <img src={`${A}perlas-team.png`} alt="Das Team von Perla’s Objektbetreuung" />
+        <img src={`${A}kundenbilder/team/team_aussenbereich_01.png`} alt="Mitarbeiterin von Perla’s bei einem Außeneinsatz" />
       </div>
     </section>
   )
@@ -2009,6 +2083,9 @@ function ServiceContactForm({ subject }: { subject: string }) {
 
 function ServiceDetailPage({ service, onQuoteOpen }: { service: Feature; onQuoteOpen: (service?: string) => void }) {
   const Icon = service.icon
+  const serviceGallery = serviceGalleries[service.slug]
+  const serviceStoryImage = serviceStoryImages[service.slug] ?? service.image
+  const serviceImagePosition = serviceImagePositions[service.slug]
   const emailHref = `mailto:mail@perlas.de?subject=${encodeURIComponent(`Anfrage zu ${service.title}`)}`
   const relatedServices = service.relatedServices
     .map((slug) => features.find((item) => item.slug === slug))
@@ -2040,7 +2117,7 @@ function ServiceDetailPage({ service, onQuoteOpen }: { service: Feature; onQuote
           </div>
         </div>
         <div className="service-detail-image" data-reveal="right" style={{ '--reveal-delay': '80ms' } as CSSProperties}>
-          <img src={`${A}${service.image}`} alt={`${service.title} von Perla’s Objektbetreuung`} />
+          <img src={`${A}${service.image}`} alt={`${service.title} von Perla’s Objektbetreuung`} style={{ objectPosition: serviceImagePosition }} />
         </div>
       </section>
 
@@ -2113,9 +2190,27 @@ function ServiceDetailPage({ service, onQuoteOpen }: { service: Feature; onQuote
         })}
       </section>
 
+      {serviceGallery && (
+        <section className="service-gallery" aria-labelledby="service-gallery-heading">
+          <div className="service-gallery-heading" data-reveal="up">
+            <span className="eyebrow">{serviceGallery.eyebrow}</span>
+            <h2 id="service-gallery-heading">{serviceGallery.title}</h2>
+            <p>{serviceGallery.intro}</p>
+          </div>
+          <div className="service-gallery-grid">
+            {serviceGallery.items.map((item, index) => (
+              <figure data-reveal="up" style={{ '--reveal-delay': `${index * 70}ms` } as CSSProperties} key={item.image}>
+                <img src={`${A}${item.image}`} alt={item.alt} loading="lazy" decoding="async" style={{ objectPosition: item.position }} />
+                <figcaption>{item.label}</figcaption>
+              </figure>
+            ))}
+          </div>
+        </section>
+      )}
+
       <section
         className="service-image-story"
-        style={{ '--service-story-image': `url("${A}${service.image}")` } as CSSProperties}
+        style={{ '--service-story-image': `url("${A}${serviceStoryImage}")` } as CSSProperties}
         aria-labelledby="service-image-story-heading"
         data-reveal="up"
       >

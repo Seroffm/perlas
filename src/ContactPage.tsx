@@ -136,7 +136,7 @@ export default function ContactPage({ onQuoteOpen }: ContactPageProps) {
           </div>
         </div>
         <figure className="contact-page-hero-visual" data-reveal="right" style={{ '--reveal-delay': '80ms' } as CSSProperties}>
-          <img src={`${ASSETS_PATH}perlas-office.png`} alt="Mitarbeiter von Perla’s bei der Planung einer Objektbetreuung" />
+          <img src={`${ASSETS_PATH}kundenbilder/leistungen/transport_umzug_lieferung.png`} alt="Mitarbeiter von Perla’s mit Servicefahrzeug bei einem Kundeneinsatz" />
           <figcaption>
             <ClipboardCheck aria-hidden="true" />
             <span><strong>Strukturiert anfragen</strong><small>Objekt, Leistungen und Intervalle gemeinsam klären</small></span>

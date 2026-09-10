@@ -95,7 +95,7 @@ export default function CareerPage({ jobs }: CareerPageProps) {
           </div>
         </div>
         <figure className="career-hero-image" data-reveal="right">
-          <img src={`${ASSETS_PATH}perlas-team.png`} alt="Team von Perla’s Objektbetreuung vor einer betreuten Wohnanlage" />
+          <img src={`${ASSETS_PATH}kundenbilder/team/team_aussenbereich_01.png`} alt="Mitarbeiterin von Perla’s bei einem Außeneinsatz" />
           <figcaption><Users aria-hidden="true" /><span><strong>Gemeinsam anpacken</strong><small>Persönlich, zuverlässig und nah am Objekt</small></span></figcaption>
         </figure>
       </section>
@@ -226,7 +226,7 @@ export function HomeCareerTeaser() {
   return (
     <section className="home-career-teaser" aria-labelledby="home-career-heading">
       <figure data-reveal="left">
-        <img src={`${ASSETS_PATH}perlas-team.png`} alt="Team von Perla’s Objektbetreuung" loading="lazy" />
+        <img src={`${ASSETS_PATH}kundenbilder/team/team_aussenbereich_01.png`} alt="Mitarbeiterin von Perla’s bei einem Außeneinsatz" loading="lazy" />
       </figure>
       <div data-reveal="right">
         <span className="eyebrow">Mitarbeiter gesucht</span>

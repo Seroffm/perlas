@@ -125,7 +125,7 @@ const businessData = {
   telephone: '+49 177 6867145',
   email: 'mail@perlas.de',
   foundingDate: '1999',
-  image: new URL(`${basePath}assets/perlas-hero.png`, siteUrl.origin).href,
+  image: new URL(`${basePath}assets/kundenbilder/objekte/wohnanlage_modern_02.png`, siteUrl.origin).href,
   address: {
     '@type': 'PostalAddress',
     streetAddress: 'Hauptstraße 1',
@@ -484,7 +484,7 @@ function audienceMarkup(audience) {
 }
 
 function buildPage({ title, description, url, markup, data, robots = pageRobots, ogType = 'website' }) {
-  const socialImage = new URL(`${basePath}assets/perlas-hero.png`, siteUrl.origin).href
+  const socialImage = new URL(`${basePath}assets/kundenbilder/objekte/wohnanlage_modern_02.png`, siteUrl.origin).href
   const extraHead = `
     <meta name="robots" content="${robots}" />
     <link rel="canonical" href="${url}" />
