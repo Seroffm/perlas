@@ -598,7 +598,7 @@ const specializedServices: SpecializedService[] = [
     label: 'Fachleistung für Wohnanlagen',
     title: 'Spielplatzkontrolle & Spielgeräte\u00ADwartung',
     text: 'Planbare Betreuung von Spielbereichen für Hausverwaltungen, größere Wohnanlagen und institutionelle Auftraggeber.',
-    bullets: ['Regelmäßige Sichtkontrollen', 'Auffälligkeiten nachvollziehbar dokumentieren', 'Notwendige Maßnahmen und Wartung koordinieren'],
+    bullets: ['Regelmäßige Sichtkontrollen', 'Auffälligkeiten nachvollziehbar dokumentieren', 'Notwendige Maßnahmen koordinieren', 'Wartung und Betreuung im vereinbarten Umfang'],
     qualificationNote: 'Prüfumfang und erforderliche Fachkunde werden vor der Beauftragung verbindlich festgelegt.',
     certificationPlaceholder: 'Konkrete Zertifizierung für Prüfung und Wartung wird nach Kundenfreigabe ergänzt.',
   },
