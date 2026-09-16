@@ -53,3 +53,4 @@ Die Auswahl setzt echte Einsätze, Mitarbeitende, Fahrzeuge und betreute Objekte
 | Datei | Einsatz auf der Website | Grundlage und Kennzeichnung |
 | --- | --- | --- |
 | `fahrzeuge/perlas_fuhrpark_ki.png` | Fuhrpark-Sektion auf der Startseite | Mit dem integrierten Bildgenerator aus den beiden echten Perlas-Fahrzeugfotos abgeleitete Visualisierung. Auf der Website ausdrücklich als „Visualisierung auf Basis realer Perla’s-Fahrzeuge“ gekennzeichnet. |
+| `visualisierungen/spielplatz_modern_ki.png` | Karte „Spielplatzkontrolle & Spielgerätewartung“ auf Start- und Leistungsseite | Mit dem integrierten Bildgenerator erstellte, fotorealistische Visualisierung eines modernen gepflegten Spielplatzes. Im Alternativtext ausdrücklich als KI-Visualisierung gekennzeichnet. |

@@ -580,7 +580,8 @@ const specializedServices: SpecializedService[] = [
     imageAlt: 'Professioneller Heckenschnitt mit motorisiertem Schneidgerät in einer gepflegten Außenanlage',
     imagePosition: '50% 45%',
     qualificationNote: 'Erforderliche Fachkunde und Sicherungsmaßnahmen werden vor der Ausführung geprüft.',
-    certificationPlaceholder: 'Konkrete Zertifizierung wird nach Kundenfreigabe ergänzt.',
+    certification: 'Zertifiziert',
+    certificationPlaceholder: 'Konkreter Zertifikatsname wird nach Kundenfreigabe ergänzt.',
   },
   {
     icon: Building2,
@@ -599,8 +600,12 @@ const specializedServices: SpecializedService[] = [
     title: 'Spielplatzkontrolle & Spielgeräte\u00ADwartung',
     text: 'Planbare Betreuung von Spielbereichen für Hausverwaltungen, größere Wohnanlagen und institutionelle Auftraggeber.',
     bullets: ['Regelmäßige Sichtkontrollen', 'Auffälligkeiten nachvollziehbar dokumentieren', 'Notwendige Maßnahmen koordinieren', 'Wartung und Betreuung im vereinbarten Umfang'],
+    image: 'visualisierungen/spielplatz_modern_ki.png',
+    imageAlt: 'KI-Visualisierung eines modernen gepflegten Spielplatzes in einer hochwertigen Wohnanlage',
+    imagePosition: '50% 52%',
     qualificationNote: 'Prüfumfang und erforderliche Fachkunde werden vor der Beauftragung verbindlich festgelegt.',
-    certificationPlaceholder: 'Konkrete Zertifizierung für Prüfung und Wartung wird nach Kundenfreigabe ergänzt.',
+    certification: 'Zertifiziert',
+    certificationPlaceholder: 'Konkreter Zertifikatsname für Prüfung und Wartung wird nach Kundenfreigabe ergänzt.',
   },
   {
     icon: BriefcaseBusiness,
@@ -1108,11 +1113,11 @@ function HomeVideo() {
   return (
     <section className="home-video" aria-labelledby="home-video-heading">
       <div className="home-video-copy" data-reveal="left">
-        <span className="eyebrow">Perla’s Facility Management</span>
-        <h2 id="home-video-heading">Facility Management mit persönlicher Verantwortung.</h2>
+        <span className="eyebrow">Perla’s persönlich</span>
+        <h2 id="home-video-heading">Lernen Sie uns in 54 Sekunden kennen.</h2>
         <p>
-          Lernen Sie Perla’s, unsere Arbeitsweise und die Menschen hinter der professionellen
-          Betreuung von Wohnanlagen, Gewerbeimmobilien und verwalteten Immobilienbeständen kennen.
+          Erhalten Sie einen kurzen Einblick in Perla’s, unsere Arbeitsweise und die Menschen
+          hinter der laufenden Betreuung von Immobilien.
         </p>
         <a href="https://www.youtube.com/watch?v=u8PsU3hYVYU" target="_blank" rel="noreferrer">
           <PlayCircle aria-hidden="true" /> Video auf YouTube öffnen
@@ -1255,6 +1260,9 @@ function SpecializedServices() {
               style={{ '--reveal-delay': `${index * 55}ms` } as CSSProperties}
               key={service.title}
             >
+              {service.certification && (
+                <span className="specialized-service-certificate" aria-label="Zertifizierte Leistung">{service.certification}</span>
+              )}
               <div className={service.image ? 'specialized-service-media' : 'specialized-service-media specialized-service-media--icon'}>
                 {service.image ? (
                   <img
@@ -1278,7 +1286,6 @@ function SpecializedServices() {
                 {service.qualificationNote && (
                   <p className="specialized-service-qualification"><ShieldCheck aria-hidden="true" />{service.qualificationNote}</p>
                 )}
-                {service.certification && <span className="specialized-service-certificate">{service.certification}</span>}
               </div>
             </article>
           )
@@ -1343,9 +1350,9 @@ function HomeAudienceCards() {
   return (
     <section className="home-audience-cards" aria-labelledby="home-audience-cards-heading">
       <div className="home-section-heading" data-reveal="up">
-        <span className="eyebrow">Betreuung nach Objektart</span>
-        <h2 id="home-audience-cards-heading">Für Immobilien mit unterschiedlichen Anforderungen.</h2>
-        <p>Wählen Sie den Bereich, der zu Ihrem Objekt oder Bestand passt. Dort finden Sie Aufgaben, Abläufe und relevante Leistungen übersichtlich zusammengefasst.</p>
+        <span className="eyebrow">Facility Management nach Objektart</span>
+        <h2 id="home-audience-cards-heading">Facility Management für professionell verwaltete Immobilien.</h2>
+        <p>Perla’s koordiniert wiederkehrende Aufgaben, Zuständigkeiten und Rückmeldungen für Hausverwaltungen, Wohnanlagen, Gewerbeimmobilien und institutionelle Gebäude.</p>
       </div>
       <div className="home-audience-card-grid">
         {audienceSolutions.map((audience, index) => {
@@ -1717,7 +1724,7 @@ function PartnerMarquee() {
 
   return (
     <section className="partner-strip" aria-labelledby="partner-strip-heading" data-reveal="fade">
-      <p id="partner-strip-heading">Für diese Immobilien und Auftraggeber arbeiten wir</p>
+      <h2 className="partner-strip-heading" id="partner-strip-heading">Unternehmen und Verwaltungen, die auf Perla’s setzen.</h2>
       <div className="partner-marquee">
         <div className="partner-track">
           {renderPartners()}
@@ -2831,11 +2838,11 @@ export default function App() {
           <HomeVideo />
           <PartnerMarquee />
           <Reviews />
+          <HomeAudienceCards />
           <HomeOverview />
           <HomeCoreServices />
           <SpecializedServices />
           <HomeFleet />
-          <HomeAudienceCards />
           <HomeTrust />
         </main>
       )}

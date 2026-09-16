@@ -1178,11 +1178,17 @@ p {
   background: #fff;
 }
 
-.partner-strip > p {
-  color: inherit;
-  font-size: 14px;
-  line-height: 20px;
+.partner-strip-heading {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 0 24px;
+  color: var(--ink);
+  font-size: clamp(22px, 2.5vw, 32px);
+  font-weight: 850;
+  line-height: 1.15;
+  letter-spacing: -0.6px;
   text-align: center;
+  text-wrap: balance;
 }
 
 .partner-marquee {
@@ -6434,10 +6440,11 @@ p {
     min-height: 250px;
   }
 
-  .partner-strip > p {
+  .partner-strip-heading {
     width: calc(100% - 48px);
     margin: 0 auto;
-    font-size: 13px;
+    padding: 0;
+    font-size: clamp(21px, 6vw, 26px);
   }
 
   .partner-marquee {
@@ -8287,8 +8294,8 @@ body {
   border-bottom: 0;
 }
 
-.partner-strip > p {
-  color: rgb(10 11 13 / 62%);
+.partner-strip-heading {
+  color: var(--ink);
 }
 
 .partner-mark {
@@ -11558,7 +11565,8 @@ body {
 .home-audience-cards {
   padding: 96px max(48px, calc((100% - 1120px) / 2));
   color: var(--ink);
-  background: #fff;
+  border-block: 1px solid rgb(7 51 114 / 7%);
+  background: #eef3f7;
 }
 
 .home-audience-card-grid {
@@ -11655,6 +11663,9 @@ body {
   font-size: clamp(24px, 2.2vw, 31px);
   line-height: 1.16;
   letter-spacing: -0.55px;
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: auto;
 }
 
 .home-audience-card-copy > p {
@@ -11869,6 +11880,7 @@ body {
 }
 
 .specialized-service-card {
+  position: relative;
   min-width: 0;
   overflow: hidden;
   display: grid;
@@ -12020,13 +12032,33 @@ body {
 }
 
 .specialized-service-certificate {
-  margin-top: 16px;
-  padding: 8px 11px;
-  border-radius: 999px;
+  position: absolute;
+  z-index: 4;
+  top: 20px;
+  right: 18px;
+  margin: 0;
+  padding: 10px 15px;
+  border: 2px solid #fff;
+  border-radius: 7px;
   color: #fff;
   background: var(--primary);
-  font-size: 11px;
-  font-weight: 800;
+  box-shadow: 0 9px 24px rgb(2 3 59 / 24%);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.09em;
+  line-height: 1;
+  text-transform: uppercase;
+  transform: rotate(6deg);
+  transform-origin: center;
+}
+
+.specialized-service-certificate::after {
+  position: absolute;
+  inset: 3px;
+  border: 1px solid rgb(255 255 255 / 52%);
+  border-radius: 3px;
+  content: '';
+  pointer-events: none;
 }
 
 .specialized-services-footer {
@@ -12272,6 +12304,13 @@ body {
   .specialized-service-card h3 {
     font-size: clamp(27px, 8vw, 34px);
     letter-spacing: -0.6px;
+  }
+
+  .specialized-service-certificate {
+    top: 15px;
+    right: 14px;
+    padding: 9px 12px;
+    font-size: 10px;
   }
 
   .specialized-services-footer {
