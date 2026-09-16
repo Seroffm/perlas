@@ -6,6 +6,7 @@ const BASE_PATH = import.meta.env.BASE_URL
 const ASSETS_PATH = `${BASE_PATH}assets/`
 const BLOG_PATH = `${BASE_PATH}blog/`
 const CONTACT_PATH = `${BASE_PATH}kontakt/`
+const FEATURED_POST_SLUG = 'objektkontrollen-richtig-dokumentieren'
 
 type BlogPageProps = {
   posts: BlogPostContent[]
@@ -20,7 +21,7 @@ export type BlogServiceLink = {
 export default function BlogPage({ posts }: BlogPageProps) {
   const [activeCategory, setActiveCategory] = useState('Alle')
   const categories = ['Alle', ...Array.from(new Set(posts.map((post) => post.category)))]
-  const featuredPost = posts[0]
+  const featuredPost = posts.find((post) => post.slug === FEATURED_POST_SLUG) ?? posts[0]
   const visiblePosts = useMemo(
     () => activeCategory === 'Alle' ? posts : posts.filter((post) => post.category === activeCategory),
     [activeCategory, posts],
@@ -38,14 +39,19 @@ export default function BlogPage({ posts }: BlogPageProps) {
             saisonaler Planung und den Abläufen hinter einer verlässlichen Objektbetreuung.
           </p>
         </div>
-        <a className="blog-featured" href={`${BLOG_PATH}${featuredPost.slug}/`} data-reveal="right">
-          <img src={`${ASSETS_PATH}${featuredPost.image}`} alt={featuredPost.alt} />
-          <span className="blog-featured-overlay" />
-          <div>
-            <span>{featuredPost.category}</span>
+        <a className="blog-featured" href={`${BLOG_PATH}${featuredPost.slug}/`} data-reveal="up">
+          <span className="blog-featured-media">
+            <img src={`${ASSETS_PATH}${featuredPost.image}`} alt={featuredPost.alt} />
+          </span>
+          <div className="blog-featured-copy">
+            <span className="blog-featured-category">{featuredPost.category}</span>
+            <div className="blog-featured-meta">
+              <span><CalendarDays aria-hidden="true" /> Aktualisiert am {featuredPost.updated}</span>
+              <span><Clock3 aria-hidden="true" /> {featuredPost.readTime}</span>
+            </div>
             <h2>{featuredPost.title}</h2>
             <p>{featuredPost.excerpt}</p>
-            <strong>Beitrag lesen <ArrowUpRight aria-hidden="true" /></strong>
+            <strong>Artikel lesen <ArrowUpRight aria-hidden="true" /></strong>
           </div>
         </a>
       </section>

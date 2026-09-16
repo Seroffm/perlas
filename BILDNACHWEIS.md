@@ -11,8 +11,8 @@ Quelle: `perlas_kundenbilder_FINAL.zip`. Die Originaldateien bleiben unveränder
 | `leistungen/gebaeudereinigung_flur.png` | Startseiten-Hero, Gebäudereinigung, Leistungskarte und Reinigungs-Blog | Hoch aufgelöstes, glaubwürdiges Motiv mit klar erkennbarer Tätigkeit |
 | `leistungen/kleinreparatur_bohren.png` | Wartung & Instandhaltung, Leistungskarte | Konkrete handwerkliche Arbeit statt generischem Gebäudebild |
 | `leistungen/aussenanlagen_laubblasen.png` | Garten- & Außenanlagenpflege, Leistungskarte | Tätigkeit und Einsatzbereich sind unmittelbar verständlich |
-| `leistungen/winterdienst_team.png` | Startseiten-Hero, Winterdienst, Über-uns-Hero und Winterdienst-Blog | Hoch aufgelöstes reales Teamfoto mit Fahrzeug und klarem saisonalem Einsatz |
-| `leistungen/gartenpflege_hecke_01.png` | Startseite, Fachleistung Baumpflege & Baumfällung | Authentisches Kundenmotiv mit erkennbarer motorisierter Gehölzpflege in einer Außenanlage |
+| `leistungen/winterdienst_fahrzeug_nacht_02.png` | Viertes Motiv im Startseiten-Hero | Echtes Perla’s-Fahrzeug im Schnee; wegen des Hochformats und der geringeren Auflösung bewusst mit `contain` und ohne Vergrößerung dargestellt |
+| `leistungen/winterdienst_team.png` | Winterdienst, Über-uns-Hero und Winterdienst-Blog | Größeres Teammotiv für die inhaltlich passenden Winterdienstflächen; nicht mehr als viertes Startseiten-Hero-Motiv eingesetzt |
 | `leistungen/transport_umzug_lieferung.png` | Einzelauftrag, Kontaktseite und Teamdarstellung | Freundlicher Mitarbeitendenkontakt plus passender Transportbezug |
 | `leistungen/entsorgung_kartonage.png` | Müllmanagement | Zeigt den konkreten Umgang mit sortiertem Material ohne eine nicht belegte Entsorgungsleistung zu versprechen |
 | `objekte/wohnanlage_modern_02.png` | Startseiten-Hero, Facility-Management-Hero, Objektkontrollen-Blog und Social-/SEO-Fallback | Hoch aufgelöstes, ruhiges Leitmotiv für größere Immobilien |
@@ -37,7 +37,7 @@ Die bisherigen Referenzen auf `perlas-hero.png`, `perlas-office.png`, `perlas-pr
 | `leistungen/zaunbau_01.png` | Zaunbau wird auf der Website nicht als eigenständige Leistung beworben |
 | `leistungen/zaunbau_team_02.png` | Gleicher Grund wie beim Zaunbau-Motiv; vermeidet eine irreführende Leistungszusage |
 | `leistungen/bodenarbeiten_entfernung.png` | Für großformatige Blogflächen zu niedrig aufgelöst; dort bleibt das hochauflösende Reinigungsmotiv schärfer |
-| `leistungen/winterdienst_fahrzeug_nacht_02.png` | Authentisch, aber für die großformatige Blogdarstellung zu niedrig aufgelöst |
+| `leistungen/gartenpflege_hecke_01.png` | Zeigt vor allem Heckenschnitt und würde Baumpflege oder Baumfällung inhaltlich nicht eindeutig belegen; dort wird bis zu einem passenden echten Foto ein neutraler Platzhalter verwendet |
 | `objekte/objekt_fassade_01.png` | Weniger aussagekräftig als die ausgewählten Objektaufnahmen |
 | `objekte/gewerbeobjekt_gacs_01.png` | Für den großformatigen Blog-Hero zu niedrig aufgelöst; durch die höher aufgelöste Wohnanlage ersetzt |
 | `objekte/wohnanlage_03.png` | Inhaltlich redundant zur stärkeren, moderneren Wohnanlagenaufnahme |

@@ -5,7 +5,7 @@
     "department": "Objektservice",
     "location": "Rhein-Main-Gebiet",
     "type": "Umfang nach Absprache",
-    "intro": "Sie behalten Gebäude und Außenbereiche im Blick, erledigen vereinbarte Aufgaben und geben Auffälligkeiten verständlich weiter.",
+    "intro": "Du behältst Gebäude und Außenbereiche im Blick, erledigst vereinbarte Aufgaben und gibst Auffälligkeiten verständlich weiter.",
     "tasks": [
       "Kontrollgänge in vereinbarten Innen- und Außenbereichen",
       "Einfache Hausmeisterarbeiten nach Abstimmung",
@@ -23,7 +23,7 @@
     "department": "Reinigung",
     "location": "Rhein-Main-Gebiet",
     "type": "Umfang nach Absprache",
-    "intro": "Sie sorgen in Treppenhäusern, Gemeinschaftsflächen, Büros und weiteren vereinbarten Bereichen für ein gepflegtes Erscheinungsbild.",
+    "intro": "Du sorgst in Treppenhäusern, Gemeinschaftsflächen, Büros und weiteren vereinbarten Bereichen für ein gepflegtes Erscheinungsbild.",
     "tasks": [
       "Unterhaltsreinigung nach objektbezogenem Plan",
       "Sorgfältiger Umgang mit Flächen und Ausstattung",
@@ -41,7 +41,7 @@
     "department": "Außenanlagen",
     "location": "Rhein-Main-Gebiet",
     "type": "Umfang nach Absprache",
-    "intro": "Sie unterstützen bei der regelmäßigen Pflege von Grünflächen, Wegen und Außenbereichen unserer betreuten Immobilien.",
+    "intro": "Du unterstützt bei der regelmäßigen Pflege von Grünflächen, Wegen und Außenbereichen unserer betreuten Immobilien.",
     "tasks": [
       "Pflege von Rasen, Hecken und vereinbarten Pflanzflächen",
       "Sauberhalten von Wegen und Außenbereichen",

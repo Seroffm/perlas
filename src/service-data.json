@@ -432,5 +432,206 @@
       { "question": "Kann aus einem Einzelauftrag eine laufende Betreuung entstehen?", "answer": "Ja. Wenn sich wiederkehrender Bedarf zeigt, können wir anschließend passende Leistungen und Intervalle für eine dauerhafte Objektbetreuung vorschlagen." },
       { "question": "Werden Facharbeiten ebenfalls übernommen?", "answer": "Qualifikationsgebundene Arbeiten bleiben bei geeigneten Fachbetrieben. Perla’s kann den Bedarf aufnehmen, den Zugang organisieren und die Ausführung koordinieren." }
     ]
+  },
+  {
+    "slug": "baumpflege-baumfaellung",
+    "title": "Baumpflege & Baumfällung",
+    "text": "Pflege-, Rückschnitt- und Fällarbeiten nach objektbezogener Prüfung und klarer Abstimmung des Arbeitsbereichs.",
+    "detail": "Für betreute Außenanlagen übernimmt Perla’s abgestimmte Pflege-, Rückschnitt- und Fällarbeiten an Bäumen und größeren Gehölzen. Vor jedem Einsatz klären wir Bestand, Zugänglichkeit, Umfeld und den konkreten Auftrag. Erforderliche Sicherungen, Freigaben und die passende Ausführung werden objektbezogen festgelegt.",
+    "image": "",
+    "imageAlt": "",
+    "imageDisplay": "placeholder",
+    "imagePlaceholder": "Einsatzmotiv wird ergänzt",
+    "certified": true,
+    "certificationLabel": "Zertifizierte Fachleistung",
+    "seoTitle": "Baumpflege & Baumfällung Rhein-Main | PERLAS",
+    "seoDescription": "Baumpflege, Rückschnitt und Baumfällung für professionell verwaltete Immobilien im Rhein-Main-Gebiet – mit Vor-Ort-Aufnahme und klar abgestimmtem Leistungsumfang.",
+    "scopeIntro": "Bäume stehen nie für sich allein: Wege, Gebäude, Stellplätze und die Nutzung des Umfelds bestimmen den Einsatz. Deshalb nehmen wir die Situation vor Ort auf und grenzen Pflegeziel, Arbeitsbereich, Sicherung und Abtransport vor Beginn eindeutig ab.",
+    "scopeCards": [
+      {
+        "title": "Bestand und Arbeitsbereich aufnehmen",
+        "text": "Vor der Planung sehen wir uns Baum oder Gehölz, das gewünschte Ergebnis und das direkte Umfeld an. So lassen sich Zugang, Platzbedarf und mögliche Einschränkungen realistisch einordnen.",
+        "items": ["Baum- und Gehölzbestand erfassen", "Zufahrt und Arbeitsraum prüfen", "Gebäude, Wege und Stellplätze im Umfeld berücksichtigen"]
+      },
+      {
+        "title": "Pflege- und Rückschnittarbeiten",
+        "text": "Pflege- und Rückschnittarbeiten werden für den konkreten Bestand und das vereinbarte Ziel festgelegt. Der Umfang wird vor Beginn verständlich beschrieben.",
+        "items": ["Pflege- und Rückschnitt im vereinbarten Umfang", "Störende oder geschädigte Äste einordnen", "Definierte Wege und Flächen freihalten"]
+      },
+      {
+        "title": "Baumfällung objektbezogen planen",
+        "text": "Ist eine Fällung vorgesehen, werden Notwendigkeit, Arbeitsweg, Sicherungsbereich und der Umgang mit dem anfallenden Material vorab abgestimmt.",
+        "items": ["Ausführung nach Vor-Ort-Prüfung", "Arbeits- und Sicherungsbereich festlegen", "Zerlegen und Abtransport nach Vereinbarung"]
+      },
+      {
+        "title": "Zugänge und Umfeld organisieren",
+        "text": "Bewohner, Nutzer, parkende Fahrzeuge und laufende Betriebsabläufe können den Einsatz beeinflussen. Die notwendigen organisatorischen Schritte werden rechtzeitig vorbereitet.",
+        "items": ["Nutzer und Ansprechpartner abstimmen", "Arbeitsflächen und Zufahrten freihalten", "Gerätezugang objektbezogen planen"]
+      },
+      {
+        "title": "Schnittgut und Fläche übergeben",
+        "text": "Zum vereinbarten Abschluss gehören eine geordnete Arbeitsfläche und eine klare Regelung für Schnittgut und weitere Materialien.",
+        "items": ["Schnittgut im Arbeitsbereich sammeln", "Abtransport oder Verbleib festlegen", "Fläche im vereinbarten Zustand übergeben"]
+      },
+      {
+        "title": "Ausführung dokumentieren",
+        "text": "Der ausgeführte Umfang und zusätzlicher Handlungsbedarf werden für Verwaltung oder Eigentümer nachvollziehbar zusammengefasst.",
+        "items": ["Ausgangssituation festhalten", "Ausgeführte Arbeiten rückmelden", "Weiteren Pflegebedarf benennen"]
+      }
+    ],
+    "processSteps": [
+      { "title": "Vor Ort prüfen", "text": "Wir erfassen Bestand, Pflegeziel, Zugang und das genutzte Umfeld direkt am Objekt." },
+      { "title": "Umfang und Sicherung festlegen", "text": "Arbeiten, Arbeitsbereich, Abtransport und erforderliche Freigaben werden vor Beginn eindeutig abgestimmt." },
+      { "title": "Ausführen und übergeben", "text": "Nach Freigabe führen wir den vereinbarten Umfang aus, dokumentieren das Ergebnis und übergeben die Fläche." }
+    ],
+    "benefits": [
+      { "title": "Der Auftrag ist vor Beginn klar abgegrenzt", "text": "Pflegeziel, Arbeitsbereich und Zusatzleistungen werden nicht erst während des Einsatzes entschieden." },
+      { "title": "Das Arbeitsumfeld wird mitgedacht", "text": "Zufahrten, Wege, Gebäude und die laufende Nutzung fließen in die Planung ein." },
+      { "title": "Sie erhalten eine verständliche Rückmeldung", "text": "Ausgeführte Arbeiten und weiterer Handlungsbedarf bleiben für Verwaltung und Eigentümer nachvollziehbar." }
+    ],
+    "audiences": ["Verwaltete Wohnanlagen und Wohnungseigentümergemeinschaften", "Gewerbe-, Büro- und institutionelle Außenanlagen", "Zufahrten, Park- und Gemeinschaftsflächen mit Baum- oder Gehölzbestand"],
+    "boundaryTitle": "Pflege, Fällung und Zusatzarbeiten klar abgrenzen",
+    "boundaryText": "Vor der Ausführung klären wir Eigentümerfreigabe, gegebenenfalls erforderliche Genehmigungen und Schutzvorgaben sowie Zugang und Sicherungsbedarf. Wurzelstockentfernung, Spezialgerät, verkehrsrechtliche Sicherung und weitere Zusatzarbeiten gehören nur dann zum Auftrag, wenn sie ausdrücklich vereinbart wurden. Der konkrete Zertifikatsname wird ergänzt, sobald der bestätigte Nachweis vorliegt.",
+    "relatedServices": ["gartenpflege", "objektpflege", "winterdienst"],
+    "faqs": [
+      { "question": "Welche Arbeiten gehören zur Baumpflege?", "answer": "Der mögliche Umfang reicht von abgestimmten Pflege- und Rückschnittarbeiten bis zur objektbezogen geplanten Fällung. Welche Maßnahme sinnvoll und ausführbar ist, wird vor Ort geprüft." },
+      { "question": "Ist vor dem Angebot eine Besichtigung erforderlich?", "answer": "In der Regel ja. Bestand, Zugang, Arbeitsraum und Umfeld bestimmen Aufwand und Ausführung und lassen sich anhand einer reinen Beschreibung häufig nicht zuverlässig beurteilen." },
+      { "question": "Ist der Abtransport des Schnittguts enthalten?", "answer": "Nur wenn er ausdrücklich vereinbart wurde. Im Angebot wird festgehalten, ob Schnittgut am Objekt verbleibt, gesammelt oder abtransportiert wird." },
+      { "question": "Gehört die Entfernung des Wurzelstocks automatisch dazu?", "answer": "Nein. Arbeiten am Wurzelstock oder im Boden werden separat geprüft und als eigener Leistungsbestandteil vereinbart." }
+    ]
+  },
+  {
+    "slug": "spielplatzkontrolle-spielgeraetewartung",
+    "title": "Spielplatzkontrolle & Spielgerätewartung",
+    "text": "Planbare Kontrollen, nachvollziehbare Zustandsmeldungen und abgestimmte Wartungsarbeiten für gepflegte Spielbereiche.",
+    "detail": "Perla’s betreut Spielbereiche mit vereinbarten Kontrollen, verständlicher Dokumentation und klar abgestimmten Wartungsmaßnahmen. Auffälligkeiten werden festgehalten, Handlungsbedarf wird zeitnah gemeldet und die weitere Bearbeitung mit dem Auftraggeber koordiniert.",
+    "image": "visualisierungen/spielplatz_modern_ki.png",
+    "imageAlt": "Visualisierung eines modernen, gepflegten Spielplatzes in einer Wohnanlage",
+    "imageDisplay": "wide",
+    "imagePosition": "50% 52%",
+    "imageDisclosure": "Visualisierung",
+    "certified": true,
+    "certificationLabel": "Zertifizierte Fachleistung",
+    "seoTitle": "Spielplatzkontrolle & Spielgerätewartung Rhein-Main | PERLAS",
+    "seoDescription": "Spielplatzkontrolle und Spielgerätewartung für Wohnanlagen und institutionelle Auftraggeber mit planbaren Intervallen und nachvollziehbarer Dokumentation.",
+    "scopeIntro": "Vor dem Start erfassen wir Anlage, Geräte, Zugänge und Nutzung. Danach werden Kontrollart, Intervall, Dokumentation und der Umfang möglicher Wartungsarbeiten verbindlich festgelegt.",
+    "scopeCards": [
+      {
+        "title": "Spielbereich aufnehmen",
+        "text": "Zu Beginn erfassen wir den Spielbereich, die vorhandenen Geräte und die organisatorischen Rahmenbedingungen am Standort.",
+        "items": ["Geräte und Flächen übersichtlich erfassen", "Zugänge und Nutzung berücksichtigen", "Standortdaten und Ansprechpartner festlegen"]
+      },
+      {
+        "title": "Vereinbarte Sichtkontrollen",
+        "text": "Bei den festgelegten Terminen achten wir auf sichtbare Veränderungen und Auffälligkeiten an Geräten, Flächen und dem direkten Umfeld.",
+        "items": ["Sichtbare Schäden und Veränderungen", "Lose oder fehlende Teile", "Auffälligkeiten an Fallschutz und Umfeld"]
+      },
+      {
+        "title": "Auffälligkeiten dokumentieren",
+        "text": "Festgestellte Punkte werden so beschrieben, dass Verwaltung oder Betreiber den betroffenen Bereich und den nächsten Schritt eindeutig zuordnen können.",
+        "items": ["Gerät oder Standort eindeutig benennen", "Fotos nach Vereinbarung ergänzen", "Handlungsbedarf verständlich weitergeben"]
+      },
+      {
+        "title": "Wartungsbedarf bearbeiten",
+        "text": "Vereinbarte Wartungsarbeiten führen wir im festgelegten Umfang aus. Weitergehender Reparatur- oder Materialbedarf wird vor der Umsetzung abgestimmt.",
+        "items": ["Pflege- und Wartungsarbeiten nach Auftrag", "Zugängliche Teile im vereinbarten Umfang bearbeiten", "Ersatzteil- oder Reparaturbedarf melden"]
+      },
+      {
+        "title": "Akuten Handlungsbedarf weitergeben",
+        "text": "Erkennen wir einen Punkt, der zeitnah bearbeitet werden sollte, informieren wir den zuständigen Ansprechpartner und stimmen das weitere Vorgehen ab.",
+        "items": ["Zeitnahe Meldung an den Auftraggeber", "Bereich nach Absprache kenntlich machen", "Weitere Maßnahme koordinieren"]
+      },
+      {
+        "title": "Verlauf nachvollziehbar halten",
+        "text": "Kontrollen, erledigte Wartungsarbeiten und offene Maßnahmen werden übersichtlich zusammengeführt.",
+        "items": ["Termine und Ergebnisse festhalten", "Offene Maßnahmen kennzeichnen", "Nächstes Intervall nachvollziehbar planen"]
+      }
+    ],
+    "processSteps": [
+      { "title": "Anlage erfassen", "text": "Wir nehmen Spielbereich, Geräte, Nutzung, Zugänge und Ansprechpartner am Objekt auf." },
+      { "title": "Prüfumfang und Intervall festlegen", "text": "Kontrollart, Häufigkeit, Dokumentation und mögliche Wartungsarbeiten werden verbindlich beschrieben." },
+      { "title": "Kontrollieren und Maßnahmen abstimmen", "text": "Wir führen die vereinbarten Termine durch, dokumentieren Auffälligkeiten und koordinieren notwendige Folgeschritte." }
+    ],
+    "benefits": [
+      { "title": "Auffälligkeiten sind eindeutig zugeordnet", "text": "Gerät, Standort und beobachteter Zustand werden verständlich dokumentiert." },
+      { "title": "Die Verwaltung kennt den Bearbeitungsstand", "text": "Erledigte Arbeiten und offene Maßnahmen bleiben in einer nachvollziehbaren Rückmeldung zusammengefasst." },
+      { "title": "Kontrolle und Wartung greifen ineinander", "text": "Der vereinbarte Ablauf führt von der Feststellung zur abgestimmten weiteren Bearbeitung." }
+    ],
+    "audiences": ["Spielbereiche größerer Wohnanlagen und Immobilienbestände", "Kitas, Schulen und institutionelle Standorte", "Gemeinschaftlich genutzte Außenanlagen"],
+    "boundaryTitle": "Kontrollart und Wartungsumfang vorab festlegen",
+    "boundaryText": "Welche Kontrolle durchgeführt wird, in welchem Intervall sie erfolgt und welche Wartungsarbeiten enthalten sind, wird vor Auftragsbeginn dokumentiert. Reparaturen, Ersatzteile und weitergehende Prüfungen gehören nur nach ausdrücklicher Vereinbarung zum Umfang. Eine konkrete Norm oder Qualifikationsstufe wird erst nach Vorlage des bestätigten Kunden-Nachweises genannt.",
+    "relatedServices": ["objektpflege", "gartenpflege", "wartung-instandhaltung"],
+    "faqs": [
+      { "question": "Was wird bei einer Spielplatzkontrolle betrachtet?", "answer": "Der genaue Prüfumfang wird vorab festgelegt. Typisch sind sichtbare Veränderungen an Geräten, zugänglichen Bauteilen, Fallschutzflächen und dem direkten Spielplatzumfeld." },
+      { "question": "Wie häufig finden Kontrollen statt?", "answer": "Das Intervall richtet sich nach Nutzung, Anlage und vereinbartem Leistungsumfang. Termine und Häufigkeit werden vor Beginn eindeutig dokumentiert." },
+      { "question": "Wie werden Auffälligkeiten gemeldet?", "answer": "Der betroffene Standort oder das Gerät, der sichtbare Zustand und der empfohlene nächste Schritt werden verständlich beschrieben. Fotos können die Rückmeldung ergänzen." },
+      { "question": "Sind Reparaturen automatisch enthalten?", "answer": "Nein. Kleinere Wartungsarbeiten können ausdrücklich vereinbart werden. Reparaturen, Ersatzteile und weitergehende Maßnahmen werden nach Feststellung separat abgestimmt." }
+    ]
+  },
+  {
+    "slug": "buero-einrichtungsservice",
+    "title": "Büro- & Einrichtungsservice",
+    "text": "Möbel und Arbeitsplätze umstellen, interne Büro- und Möbelumzüge unterstützen und Räume für eine neue Nutzung vorbereiten.",
+    "detail": "Perla’s unterstützt Unternehmen und Verwaltungen bei praktischen Veränderungen im Gebäude: Wir stellen Möbel und Arbeitsplätze um, begleiten interne Büro- und Möbelumzüge, bauen vorhandene Einrichtung auf oder ab und bereiten Räume für eine neue Nutzung vor.",
+    "image": "kundenbilder/leistungen/transport_umzug_lieferung.png",
+    "imageAlt": "Mitarbeiter bei einem Transport mit Möbel- und Einrichtungsteilen am Fahrzeug",
+    "imageDisplay": "landscape",
+    "imagePosition": "50% center",
+    "certified": false,
+    "seoTitle": "Büro- & Einrichtungsservice Rhein-Main | PERLAS",
+    "seoDescription": "Büro- und Einrichtungsservice für Unternehmen und Verwaltungen im Rhein-Main-Gebiet: Möbel umstellen, interne Umzüge unterstützen und Räume vorbereiten.",
+    "scopeIntro": "Vor dem Termin klären wir, welche Möbel und Arbeitsplätze bewegt werden, welche Wege und Aufzüge zur Verfügung stehen und wie die Räume anschließend genutzt werden sollen. Daraus entsteht ein klarer Ablauf für Demontage, Transport, Aufbau und Übergabe.",
+    "scopeCards": [
+      {
+        "title": "Möbel und Arbeitsplätze umstellen",
+        "text": "Schreibtische, Stühle, Schränke und weitere vorhandene Einrichtung werden innerhalb des Gebäudes an den vorgesehenen Platz gebracht.",
+        "items": ["Arbeitsplätze neu anordnen", "Schränke und Ablagen umstellen", "Neue Raumaufteilung praktisch umsetzen"]
+      },
+      {
+        "title": "Interne Büro- und Möbelumzüge",
+        "text": "Bei einem Wechsel zwischen Etagen, Räumen oder Gebäudebereichen unterstützen wir den internen Transport und die geordnete Zuordnung.",
+        "items": ["Transportwege vorbereiten", "Möbel und Material intern bewegen", "Zielräume nach Vorgabe einrichten"]
+      },
+      {
+        "title": "Vorhandene Einrichtung auf- und abbauen",
+        "text": "Geeignete vorhandene Möbel und Einrichtungsteile können für die Umstellung demontiert und am Zielort wieder aufgebaut werden.",
+        "items": ["Demontage nach vorheriger Prüfung", "Bauteile geordnet transportieren", "Aufbau am abgestimmten Standort"]
+      },
+      {
+        "title": "Räume für neue Nutzung vorbereiten",
+        "text": "Wir räumen vereinbarte Flächen frei, stellen vorhandene Einrichtung neu zusammen und schaffen die praktische Grundlage für die nächste Nutzung.",
+        "items": ["Arbeitsbereiche freimachen", "Vorhandenes Inventar neu positionieren", "Räume geordnet übergeben"]
+      },
+      {
+        "title": "Lieferungen und Material koordinieren",
+        "text": "Angelieferte Einrichtungs- oder Verbrauchsmaterialien können angenommen, innerhalb des Objekts verteilt und nach Vorgabe bereitgestellt werden.",
+        "items": ["Zugang und Anlieferzeit abstimmen", "Material am Zielort bereitstellen", "Verpackungen nach Vereinbarung sammeln"]
+      },
+      {
+        "title": "Ablauf und Übergabe dokumentieren",
+        "text": "Nach Abschluss prüfen wir gemeinsam die vereinbarte Aufstellung und halten offene Punkte oder zusätzlich benötigte Arbeiten fest.",
+        "items": ["Aufstellung mit Vorgabe abgleichen", "Offene Punkte zurückmelden", "Räume geordnet übergeben"]
+      }
+    ],
+    "processSteps": [
+      { "title": "Räume und Inventar aufnehmen", "text": "Wir erfassen Möbel, Mengen, Transportwege, Zugänge und die gewünschte neue Nutzung." },
+      { "title": "Umstellung konkret planen", "text": "Reihenfolge, Zielräume, Demontage, interne Transporte und Zuständigkeiten werden eindeutig festgelegt." },
+      { "title": "Umsetzen und übergeben", "text": "Wir führen die vereinbarten Arbeiten aus, prüfen die Aufstellung und melden offene Punkte zurück." }
+    ],
+    "benefits": [
+      { "title": "Der laufende Betrieb wird berücksichtigt", "text": "Transportwege, Arbeitszeiten und Reihenfolge werden passend zur Nutzung des Gebäudes geplant." },
+      { "title": "Aufgaben sind konkret statt pauschal beschrieben", "text": "Vor Beginn ist klar, welche Möbel bewegt, welche Räume vorbereitet und welche Arbeiten ausgeführt werden." },
+      { "title": "Ein Ansprechpartner koordiniert den Termin", "text": "Zugang, Ablauf, Rückfragen und Übergabe laufen über einen festen Kontakt." }
+    ],
+    "audiences": ["Büro- und Verwaltungsstandorte", "Praxen, Gewerbeimmobilien und institutionelle Gebäude", "Hausverwaltungen mit gemeinschaftlich genutzten Räumen"],
+    "boundaryTitle": "Einrichtung, Technik und Spezialtransporte trennen",
+    "boundaryText": "Der vereinbarte Umfang umfasst praktische Arbeiten an geeigneter vorhandener Einrichtung. Elektro-, Daten-, Wasser- und sonstige Fachanschlüsse, bauliche Veränderungen, besonders schwere Transporte und Entsorgungsleistungen werden nicht pauschal übernommen. Solche Aufgaben werden vorab separat geprüft und bei Bedarf mit geeigneten Fachbetrieben koordiniert.",
+    "relatedServices": ["einzelauftrag", "wartung-instandhaltung", "objektpflege"],
+    "faqs": [
+      { "question": "Welche Möbel können umgestellt werden?", "answer": "Typisch sind Schreibtische, Stühle, Schränke, Regale und weitere geeignete Einrichtungsteile. Größe, Gewicht, Zustand und Transportweg werden vor der Zusage geprüft." },
+      { "question": "Unterstützt Perla’s auch interne Büroumzüge?", "answer": "Ja. Wir können Möbel und Material zwischen Räumen, Etagen oder Gebäudebereichen bewegen und die Zielräume nach einer abgestimmten Vorgabe einrichten." },
+      { "question": "Werden Möbel auch auf- und abgebaut?", "answer": "Bei geeigneter vorhandener Einrichtung kann die Demontage und der Wiederaufbau vereinbart werden. Komplexe Systeme und Arbeiten mit Fachanschlüssen werden separat geprüft." },
+      { "question": "Können Räume vollständig für eine neue Nutzung vorbereitet werden?", "answer": "Wir können vereinbarte Flächen freiräumen, vorhandenes Inventar neu positionieren und Materialien bereitstellen. Technische Anschlüsse und bauliche Arbeiten gehören nur nach gesonderter Prüfung dazu." }
+    ]
   }
 ]

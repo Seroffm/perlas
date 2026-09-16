@@ -23,6 +23,7 @@ const services = JSON.parse(await readFile(serviceDataPath, 'utf8'))
 const audiences = JSON.parse(await readFile(audienceDataPath, 'utf8'))
 const blogPosts = JSON.parse(await readFile(blogDataPath, 'utf8'))
 const jobs = JSON.parse(await readFile(jobDataPath, 'utf8'))
+const featuredBlogPostSlug = 'objektkontrollen-richtig-dokumentieren'
 const coreServiceSlugs = new Set([
   'objektpflege',
   'wartung-instandhaltung',
@@ -30,6 +31,11 @@ const coreServiceSlugs = new Set([
   'gartenpflege',
   'winterdienst',
   'muellmanagement',
+])
+const specializedDetailSlugs = new Set([
+  'baumpflege-baumfaellung',
+  'spielplatzkontrolle-spielgeraetewartung',
+  'buero-einrichtungsservice',
 ])
 const indexTemplate = await readFile(indexPath, 'utf8')
 
@@ -147,6 +153,11 @@ function audienceUrl(audience) {
 
 function blogPostUrl(post) {
   return new URL(`${basePath}blog/${post.slug}/`, siteUrl.origin)
+}
+
+function blogDateToIso(value) {
+  const match = /^(\d{2})\.(\d{2})\.(\d{4})$/.exec(value)
+  return match ? `${match[3]}-${match[2]}-${match[1]}` : lastModified
 }
 
 function audienceStructuredData(audience) {
@@ -317,7 +328,7 @@ function blogPostStructuredData(post) {
         description: post.seoDescription,
         image: new URL(`${basePath}assets/${post.image}`, siteUrl.origin).href,
         datePublished: '2026-08-31',
-        dateModified: '2026-08-31',
+        dateModified: blogDateToIso(post.updated),
         inLanguage: 'de-DE',
         author: { '@id': businessId },
         publisher: { '@id': businessId },
@@ -350,11 +361,11 @@ function homeMarkup() {
     .join('')
 
   const specializedServices = [
-    { title: 'Baumpflege & Baumfällung', text: 'Eigenständige Fachleistung für Pflege, Rückschnitt und – nach objektbezogener Prüfung – notwendige Fällungen.', certified: true },
-    { title: 'Tiefgaragenreinigung', text: 'Fahrflächen, Stellplätze und Randbereiche mit abgestimmtem Maschinen- und Handeinsatz.' },
-    { title: 'Spielplatzkontrolle & Spielgerätewartung', text: 'Sichtkontrollen, dokumentierte Auffälligkeiten sowie Wartung und Betreuung im vereinbarten Umfang.', certified: true },
-    { title: 'Büro- & Einrichtungsservice', text: 'Unterstützung bei Möblierung, internen Umstellungen und klar abgegrenzten Arbeiten.' },
-  ].map((service) => `<li>${service.certified ? '<span>Zertifiziert</span>' : ''}<strong>${escapeHtml(service.title)}</strong><p>${escapeHtml(service.text)}</p></li>`).join('')
+    { slug: 'baumpflege-baumfaellung', title: 'Baumpflege & Baumfällung', text: 'Eigenständige Fachleistung für Pflege, Rückschnitt und – nach objektbezogener Prüfung – notwendige Fällungen.', certified: true },
+    { slug: 'gebaeudereinigung', title: 'Tiefgaragenreinigung', text: 'Fahrflächen, Stellplätze und Randbereiche mit abgestimmtem Maschinen- und Handeinsatz.' },
+    { slug: 'spielplatzkontrolle-spielgeraetewartung', title: 'Spielplatzkontrolle & Spielgerätewartung', text: 'Sichtkontrollen, dokumentierte Auffälligkeiten sowie Wartung und Betreuung im vereinbarten Umfang.', certified: true },
+    { slug: 'buero-einrichtungsservice', title: 'Büro- & Einrichtungsservice', text: 'Möbel und Arbeitsplätze umstellen, interne Umzüge unterstützen und Räume für eine neue Nutzung vorbereiten.' },
+  ].map((service) => `<li>${service.certified ? '<span>Zertifiziert</span>' : ''}<strong><a href="${basePath}leistungen/${service.slug}/">${escapeHtml(service.title)}</a></strong><p>${escapeHtml(service.text)}</p></li>`).join('')
 
   const partnerNames = [
     'BundesImmobilien',
@@ -398,12 +409,18 @@ function facilityMarkup() {
   const targets = audiences
     .map((audience) => `<section id="${audience.id}"><h2><a href="${basePath}facility-management/${audience.id}/">Facility Management für ${escapeHtml(audience.title)}</a></h2><p>${escapeHtml(audience.text)}</p><a href="${basePath}facility-management/${audience.id}/">Bereich im Detail ansehen</a><ul class="seo-static-links">${selectedServiceLinks(audience.services)}</ul></section>`)
     .join('')
+  const specialists = [
+    ['baumpflege-baumfaellung', 'Baumpflege & Baumfällung', true],
+    ['spielplatzkontrolle-spielgeraetewartung', 'Spielplatzkontrolle & Spielgerätewartung', true],
+    ['buero-einrichtungsservice', 'Büro- & Einrichtungsservice', false],
+  ].map(([slug, title, certified]) => `<li>${certified ? '<span>Zertifiziert</span>' : '<span>Spezialisierte Leistung</span>'}<a href="${basePath}leistungen/${slug}/">${escapeHtml(title)}</a></li>`).join('')
 
-  return `${staticHeader()}<main class="seo-static-main"><nav aria-label="Brotkrümeln"><a href="${basePath}">Startseite</a> / Facility Management</nav><section class="seo-static-hero"><p>Facility Management im Rhein-Main-Gebiet</p><h1>Gebäude ganzheitlich betreuen. Aufgaben klar koordinieren.</h1><p>Perla’s bündelt die laufenden Aufgaben größerer und professionell verwalteter Immobilien in einem objektbezogenen Betreuungskonzept.</p><a href="#zielgruppen">Passenden Bereich wählen</a></section><section><h2>Erst das Objekt verstehen. Dann Leistungen sinnvoll verbinden.</h2><p>Aufgaben, Intervalle, Zuständigkeiten und Rückmeldungen werden objektbezogen abgestimmt. Sichtkontrollen und organisatorische Koordination gehören zur Betreuung. Fachliche Prüfungen und Arbeiten werden mit geeigneten Fachbetrieben koordiniert und nicht als eigene Fachleistung dargestellt.</p></section><div id="zielgruppen">${targets}</div><section><h2>Größere und komplexere Objekte</h2><p>Gebäude- und Gemeinschaftsflächen, Außenanlagen, Winterdienst, Parkflächen, Tiefgaragen und technische Themen werden nach Zuständigkeit gegliedert. Technische Facharbeiten bleiben bei geeigneten Fachbetrieben.</p><a href="${basePath}kontakt/">Kontakt aufnehmen</a></section></main>`
+  return `${staticHeader()}<main class="seo-static-main"><nav aria-label="Brotkrümeln"><a href="${basePath}">Startseite</a> / Facility Management</nav><section class="seo-static-hero"><p>Facility Management im Rhein-Main-Gebiet</p><h1>Gebäude ganzheitlich betreuen. Aufgaben klar koordinieren.</h1><p>Perla’s bündelt die laufenden Aufgaben größerer und professionell verwalteter Immobilien in einem objektbezogenen Betreuungskonzept.</p><a href="#zielgruppen">Passenden Bereich wählen</a></section><section><h2>Erst das Objekt verstehen. Dann Leistungen sinnvoll verbinden.</h2><p>Aufgaben, Intervalle, Zuständigkeiten und Rückmeldungen werden objektbezogen abgestimmt. Sichtkontrollen und organisatorische Koordination gehören zur Betreuung. Fachliche Prüfungen und Arbeiten werden mit geeigneten Fachbetrieben koordiniert und nicht als eigene Fachleistung dargestellt.</p></section><div id="zielgruppen">${targets}</div><section><p>Spezialisierte Zusatzleistungen</p><h2>Ergänzende Fachleistungen für professionell betreute Immobilien</h2><ul class="seo-static-links">${specialists}</ul></section><section><h2>Größere und komplexere Objekte</h2><p>Gebäude- und Gemeinschaftsflächen, Außenanlagen, Winterdienst, Parkflächen, Tiefgaragen und technische Themen werden nach Zuständigkeit gegliedert. Technische Facharbeiten bleiben bei geeigneten Fachbetrieben.</p><a href="${basePath}kontakt/">Kontakt aufnehmen</a></section></main>`
 }
 
 function servicesMarkup() {
   const catalog = services
+    .filter((service) => !specializedDetailSlugs.has(service.slug))
     .map((service) => `<article><h2><a href="${basePath}leistungen/${service.slug}/">${escapeHtml(service.title)}</a></h2><p>${escapeHtml(service.text)}</p><a href="${basePath}leistungen/${service.slug}/">Leistung ansehen</a></article>`)
     .join('')
 
@@ -412,13 +429,13 @@ function servicesMarkup() {
     .join('')
 
   const specialized = [
-    { title: 'Baumpflege & Baumfällung', text: 'Pflege, Rückschnitt und – nach objektbezogener Prüfung – notwendige Fällungen.', certified: true },
-    { title: 'Tiefgaragenreinigung', text: 'Fahrflächen, Stellplätze und Randbereiche mit abgestimmtem Maschinen- und Handeinsatz.' },
-    { title: 'Spielplatzkontrolle & Spielgerätewartung', text: 'Regelmäßige Sichtkontrollen, dokumentierte Auffälligkeiten sowie Wartung und Betreuung im vereinbarten Umfang.', certified: true },
-    { title: 'Büro- & Einrichtungsservice', text: 'Unterstützung bei Möblierung, internen Umstellungen und klar abgegrenzten Arbeiten.' },
-  ].map((service) => `<li>${service.certified ? '<span>Zertifiziert</span>' : ''}<strong>${escapeHtml(service.title)}</strong><p>${escapeHtml(service.text)}</p></li>`).join('')
+    { slug: 'baumpflege-baumfaellung', title: 'Baumpflege & Baumfällung', text: 'Pflege, Rückschnitt und – nach objektbezogener Prüfung – notwendige Fällungen.', certified: true },
+    { slug: 'gebaeudereinigung', title: 'Tiefgaragenreinigung', text: 'Fahrflächen, Stellplätze und Randbereiche mit abgestimmtem Maschinen- und Handeinsatz.' },
+    { slug: 'spielplatzkontrolle-spielgeraetewartung', title: 'Spielplatzkontrolle & Spielgerätewartung', text: 'Regelmäßige Sichtkontrollen, dokumentierte Auffälligkeiten sowie Wartung und Betreuung im vereinbarten Umfang.', certified: true },
+    { slug: 'buero-einrichtungsservice', title: 'Büro- & Einrichtungsservice', text: 'Möbel und Arbeitsplätze umstellen, interne Umzüge unterstützen und Räume für eine neue Nutzung vorbereiten.' },
+  ].map((service) => `<li>${service.certified ? '<span>Zertifiziert</span>' : ''}<strong><a href="${basePath}leistungen/${service.slug}/">${escapeHtml(service.title)}</a></strong><p>${escapeHtml(service.text)}</p></li>`).join('')
 
-  return `${staticHeader()}<main class="seo-static-main"><nav aria-label="Brotkrümeln"><a href="${basePath}">Startseite</a> / Leistungen</nav><section class="seo-static-hero"><p>Facility Services im Rhein-Main-Gebiet</p><h1>Leistungen für den laufenden Betrieb Ihrer Immobilie.</h1><p>Wählen Sie eine einzelne Leistung oder kombinieren Sie mehrere Aufgaben zu einem objektbezogenen Betreuungskonzept.</p><a href="${basePath}kontakt/">Leistung anfragen</a><a href="${basePath}facility-management/">Facility Management</a></section><section><h2>Für diese Immobilien arbeiten wir</h2><ul class="seo-static-links">${targets}</ul></section><section><h2>Bestehende Leistungen im Detail</h2><div class="seo-static-grid">${catalog}</div></section><section><p>Facility Management → regelmäßige Kernleistungen → ergänzende Fachleistungen</p><h2>Ergänzende Fachleistungen für professionell betreute Immobilien.</h2><p>Umfang, Zuständigkeit und erforderliche Fachkunde werden je Leistung vor der Beauftragung geklärt.</p><ul>${specialized}</ul><a href="${basePath}kontakt/">Spezialleistung anfragen</a></section><section><h2>Wenn aus Einzelleistungen Facility Management wird</h2><p>Bei größeren oder professionell verwalteten Immobilien lassen sich Leistungen, Intervalle, Zuständigkeiten und Rückmeldungen in einem Betreuungskonzept bündeln.</p><a href="${basePath}facility-management/">Facility Management ansehen</a></section></main>`
+  return `${staticHeader()}<main class="seo-static-main"><nav aria-label="Brotkrümeln"><a href="${basePath}">Startseite</a> / Leistungen</nav><section class="seo-static-hero"><p>Facility Services im Rhein-Main-Gebiet</p><h1>Leistungen für den laufenden Betrieb Ihrer Immobilie.</h1><p>Wählen Sie eine einzelne Leistung oder kombinieren Sie mehrere Aufgaben zu einem objektbezogenen Betreuungskonzept.</p><a href="${basePath}kontakt/">Leistung anfragen</a><a href="${basePath}facility-management/">Facility Management</a></section><section><h2>Für diese Immobilien arbeiten wir</h2><ul class="seo-static-links">${targets}</ul></section><section><p>Facility Management → regelmäßige Kernleistungen → ergänzende Fachleistungen</p><h2>Ergänzende Fachleistungen für professionell betreute Immobilien.</h2><p>Umfang, Zuständigkeit und erforderliche Fachkunde werden je Leistung vor der Beauftragung geklärt.</p><ul>${specialized}</ul><a href="${basePath}kontakt/">Spezialleistung anfragen</a></section><section><h2>Bestehende Leistungen im Detail</h2><div class="seo-static-grid">${catalog}</div></section><section><h2>Wenn aus Einzelleistungen Facility Management wird</h2><p>Bei größeren oder professionell verwalteten Immobilien lassen sich Leistungen, Intervalle, Zuständigkeiten und Rückmeldungen in einem Betreuungskonzept bündeln.</p><a href="${basePath}facility-management/">Facility Management ansehen</a></section></main>`
 }
 
 function aboutMarkup() {
@@ -437,15 +454,17 @@ function aboutMarkup() {
     [null, 'Porträt wird ergänzt', 'Technischer Service'],
     [null, 'Porträt wird ergänzt', 'Außenanlagenpflege'],
     [null, 'Porträt wird ergänzt', 'Organisation & Kundenkontakt'],
-  ].map(([image, alt, role]) => `<figure>${image ? `<img src="${basePath}assets/${image}" alt="${escapeHtml(alt)}" loading="lazy">` : `<div role="img" aria-label="${escapeHtml(alt)}">Bild wird ergänzt</div>`}<figcaption><strong>Name wird ergänzt</strong><span>${escapeHtml(role)}</span></figcaption></figure>`).join('')
+  ].slice(0, 4).map(([image, alt, role]) => `<figure>${image ? `<img src="${basePath}assets/${image}" alt="${escapeHtml(alt)}" loading="lazy">` : `<div role="img" aria-label="${escapeHtml(alt)}">Bild wird ergänzt</div>`}<figcaption><strong>Name wird ergänzt</strong><span>${escapeHtml(role)}</span></figcaption></figure>`).join('')
 
   return `${staticHeader()}<main class="seo-static-main"><nav aria-label="Brotkrümeln"><a href="${basePath}">Startseite</a> / Über uns</nav><section class="seo-static-hero"><p>Perla’s Objektbetreuung</p><h1>Seit 1999 für Immobilien im Rhein-Main-Gebiet da.</h1><p>Perla’s verbindet persönliche Abstimmung mit planbarer Objektbetreuung. Wir erfassen Aufgaben vor Ort, koordinieren wiederkehrende Einsätze und halten Rückmeldungen verständlich zusammen.</p><a href="${basePath}kontakt/">Persönlich kennenlernen</a></section><section><p>Vorbereiteter Entwurf – Kundendaten werden noch finalisiert.</p><h2>Aus Nähe zum Objekt ist verlässliche Betreuung gewachsen</h2><p>Perla’s begann 1999 mit dem Anspruch, Immobilien persönlich zu kennen, Aufgaben zuverlässig zu erledigen und für Verwaltungen erreichbar zu bleiben. Mit den betreuten Objekten kamen Gebäudereinigung, Außenanlagenpflege, Winterdienst und technische Koordination hinzu.</p><p>Heute arbeitet ein Team aus mehr als zehn Mitarbeitenden an Wohnanlagen, Gewerbeimmobilien und institutionellen Gebäuden im Rhein-Main-Gebiet.</p><ol><li>1999: Start der persönlichen Objektbetreuung</li><li>2000er: Erweiterung der Facility Services</li><li>2010er: Feste Ansprechpartner und dokumentierte Abläufe</li><li>Heute: 10+ Mitarbeitende für größere Immobilien</li></ol></section><section><h2>Menschen hinter Perla’s</h2><p>Acht Teampositionen zeigen die heutige Breite. Namen, Rollen und vier Porträts werden nach Kundenfreigabe ergänzt.</p><div class="seo-static-grid">${team}</div></section><section><h2>Wofür wir stehen</h2><div class="seo-static-grid">${values}</div></section><section><h2>Vom Objektbedarf zum klaren Ablauf</h2><ol><li>Objekt verstehen</li><li>Leistungen festlegen</li><li>Betreuung koordinieren</li></ol></section></main>`
 }
 
 function blogMarkup() {
-  const articles = blogPosts.map((post) => `<article><img src="${basePath}assets/${escapeHtml(post.image)}" alt="${escapeHtml(post.alt)}" loading="lazy"><p>${escapeHtml(post.category)} · ${escapeHtml(post.readTime)}</p><h2><a href="${basePath}blog/${post.slug}/">${escapeHtml(post.title)}</a></h2><p>${escapeHtml(post.excerpt)}</p><a href="${basePath}blog/${post.slug}/">Beitrag lesen</a></article>`).join('')
+  const featuredPost = blogPosts.find((post) => post.slug === featuredBlogPostSlug) ?? blogPosts[0]
+  const featuredArticle = `<article><img src="${basePath}assets/${escapeHtml(featuredPost.image)}" alt="${escapeHtml(featuredPost.alt)}"><p>${escapeHtml(featuredPost.category)} · ${escapeHtml(featuredPost.readTime)}</p><p>Aktualisiert am ${escapeHtml(featuredPost.updated)}</p><h2><a href="${basePath}blog/${featuredPost.slug}/">${escapeHtml(featuredPost.title)}</a></h2><p>${escapeHtml(featuredPost.excerpt)}</p><a href="${basePath}blog/${featuredPost.slug}/">Artikel lesen</a></article>`
+  const articles = blogPosts.map((post) => `<article><img src="${basePath}assets/${escapeHtml(post.image)}" alt="${escapeHtml(post.alt)}" loading="lazy"><p>${escapeHtml(post.category)} · ${escapeHtml(post.readTime)} · Aktualisiert am ${escapeHtml(post.updated)}</p><h2><a href="${basePath}blog/${post.slug}/">${escapeHtml(post.title)}</a></h2><p>${escapeHtml(post.excerpt)}</p><a href="${basePath}blog/${post.slug}/">Weiterlesen</a></article>`).join('')
 
-  return `${staticHeader()}<main class="seo-static-main"><nav aria-label="Brotkrümeln"><a href="${basePath}">Startseite</a> / Blog</nav><section class="seo-static-hero"><p>Wissen aus der Objektbetreuung</p><h1>Praxiswissen für den laufenden Immobilienbetrieb.</h1><p>Verständliche Beiträge zu Facility Management, Gebäudereinigung, Außenanlagen, saisonaler Planung und den Abläufen hinter einer verlässlichen Objektbetreuung.</p></section><section><h2>Alle Beiträge</h2><div class="seo-static-grid">${articles}</div></section><section><h2>Fragen zu Ihrem Objekt?</h2><p>Beschreiben Sie kurz die Immobilie und die Aufgabe, für die Sie eine Lösung suchen.</p><a href="${basePath}kontakt/">Kontakt aufnehmen</a></section></main>`
+  return `${staticHeader()}<main class="seo-static-main"><nav aria-label="Brotkrümeln"><a href="${basePath}">Startseite</a> / Blog</nav><section class="seo-static-hero"><p>Wissen aus der Objektbetreuung</p><h1>Praxiswissen für den laufenden Immobilienbetrieb.</h1><p>Verständliche Beiträge zu Facility Management, Gebäudereinigung, Außenanlagen, saisonaler Planung und den Abläufen hinter einer verlässlichen Objektbetreuung.</p></section><section><h2>Aktueller Beitrag</h2>${featuredArticle}</section><section><h2>Alle Beiträge</h2><div class="seo-static-grid">${articles}</div></section><section><h2>Fragen zu Ihrem Objekt?</h2><p>Beschreiben Sie kurz die Immobilie und die Aufgabe, für die Sie eine Lösung suchen.</p><a href="${basePath}kontakt/">Kontakt aufnehmen</a></section></main>`
 }
 
 function blogArticleMarkup(post) {
@@ -457,13 +476,13 @@ function blogArticleMarkup(post) {
     .map((service) => `<li><a href="${basePath}leistungen/${service.slug}/">${escapeHtml(service.title)}</a><p>${escapeHtml(service.text)}</p></li>`)
     .join('')
 
-  return `${staticHeader()}<main class="seo-static-main"><nav aria-label="Brotkrümeln"><a href="${basePath}">Startseite</a> / <a href="${basePath}blog/">Blog</a> / ${escapeHtml(post.category)}</nav><article><header class="seo-static-hero"><p>${escapeHtml(post.category)} · ${escapeHtml(post.readTime)}</p><h1>${escapeHtml(post.title)}</h1><p>${escapeHtml(post.intro)}</p><img src="${basePath}assets/${escapeHtml(post.image)}" alt="${escapeHtml(post.alt)}"></header>${sections}</article><nav aria-label="Passende Leistungen"><h2>Passende Leistungen zum Thema</h2><ul class="seo-static-links">${matchingServices}</ul></nav><nav aria-label="Weitere Blogbeiträge"><h2>Weitere Beiträge</h2><ul>${related}</ul></nav></main>`
+  return `${staticHeader()}<main class="seo-static-main"><nav aria-label="Brotkrümeln"><a href="${basePath}">Startseite</a> / <a href="${basePath}blog/">Blog</a> / ${escapeHtml(post.category)}</nav><article><header class="seo-static-hero"><p>${escapeHtml(post.category)} · ${escapeHtml(post.readTime)} · Aktualisiert am ${escapeHtml(post.updated)}</p><h1>${escapeHtml(post.title)}</h1><p>${escapeHtml(post.intro)}</p><img src="${basePath}assets/${escapeHtml(post.image)}" alt="${escapeHtml(post.alt)}"></header>${sections}</article><nav aria-label="Passende Leistungen"><h2>Passende Leistungen zum Thema</h2><ul class="seo-static-links">${matchingServices}</ul></nav><nav aria-label="Weitere Blogbeiträge"><h2>Weitere Beiträge</h2><ul>${related}</ul></nav></main>`
 }
 
 function careerMarkup() {
-  const jobCards = jobs.map((job) => `<article><p>${escapeHtml(job.department)} · ${escapeHtml(job.location)} · ${escapeHtml(job.type)}</p><h2>${escapeHtml(job.title)}</h2><p>${escapeHtml(job.intro)}</p><h3>Typische Aufgaben</h3><ul>${job.tasks.map((task) => `<li>${escapeHtml(task)}</li>`).join('')}</ul><h3>Das ist uns wichtig</h3><ul>${job.requirements.map((requirement) => `<li>${escapeHtml(requirement)}</li>`).join('')}</ul></article>`).join('')
+  const jobCards = jobs.map((job) => `<article><p>${escapeHtml(job.department)} · ${escapeHtml(job.location)} · ${escapeHtml(job.type)}</p><h2>${escapeHtml(job.title)}</h2><p>${escapeHtml(job.intro)}</p><h3>Typische Aufgaben</h3><ul>${job.tasks.map((task) => `<li>${escapeHtml(task)}</li>`).join('')}</ul><h3>Das bringst du mit</h3><ul>${job.requirements.map((requirement) => `<li>${escapeHtml(requirement)}</li>`).join('')}</ul></article>`).join('')
 
-  return `${staticHeader()}<main class="seo-static-main"><nav aria-label="Brotkrümeln"><a href="${basePath}">Startseite</a> / Karriere</nav><section class="seo-static-hero"><p>Mitarbeiter gesucht</p><h1>Gute Objektbetreuung entsteht im Team.</h1><p>Wir suchen zuverlässige Menschen, die gerne praktisch arbeiten, Verantwortung übernehmen und unsere Kunden im Rhein-Main-Gebiet freundlich unterstützen.</p><a href="#stellen">Offene Bereiche ansehen</a><a href="#bewerbung">Initiativ bewerben</a></section><section><h2>Was uns in der Zusammenarbeit wichtig ist</h2><ul><li>Verlässlichkeit</li><li>Verantwortung</li><li>Direkte Abstimmung</li></ul></section><section id="stellen"><h2>Hier suchen wir Verstärkung</h2><div class="seo-static-grid">${jobCards}</div></section><section id="bewerbung"><h2>Kurzbewerbung</h2><p>Schicken Sie Ihre wichtigsten Kontaktdaten und den gewünschten Einsatzbereich an Perla’s.</p><form action="mailto:mail@perlas.de" method="post"><label>Name <input name="name" required></label><label>E-Mail <input type="email" name="email" required></label><label>Gewünschter Bereich <select name="role">${jobs.map((job) => `<option>${escapeHtml(job.title)}</option>`).join('')}<option>Initiativbewerbung</option></select></label><label>Nachricht <textarea name="message" required></textarea></label><button type="submit">Bewerbung vorbereiten</button></form><p><a href="mailto:mail@perlas.de?subject=Bewerbung%20bei%20Perla%27s">Direkt an mail@perlas.de schreiben</a></p></section></main>`
+  return `${staticHeader()}<main class="seo-static-main"><nav aria-label="Brotkrümeln"><a href="${basePath}">Startseite</a> / Karriere</nav><section class="seo-static-hero"><p>Komm ins Team</p><h1>Du hast Lust, anzupacken und Verantwortung zu übernehmen?</h1><p>Bei Perla’s arbeitest du an echten Wohn- und Gewerbeobjekten im Rhein-Main-Gebiet. Dich erwarten praktische, abwechslungsreiche Aufgaben, klare Absprachen und ein Team, das sich im Alltag gegenseitig unterstützt.</p><a href="#stellen">Offene Bereiche ansehen</a><a href="#bewerbung">Initiativ bewerben</a></section><section><p>Dein Arbeitsalltag bei Perla’s</p><h2>Praktische Aufgaben. Klare Absprachen. Ein Team, das anpackt.</h2><p>Du siehst, was du geschafft hast, übernimmst Verantwortung für deinen Bereich und kannst dich mit deiner Erfahrung Schritt für Schritt weiterentwickeln.</p><ul><li>Abwechslungsreiche Einsätze</li><li>Ein Team, kurze Wege</li><li>Verantwortung und Entwicklung</li></ul></section><section id="stellen"><h2>Hier suchen wir Verstärkung</h2><p>Gemeinsam klären wir, welcher Bereich zu dir passt und in welchem Umfang du einsteigen möchtest.</p><div class="seo-static-grid">${jobCards}</div></section><section id="bewerbung"><h2>Kurzbewerbung</h2><p>Schick uns deine wichtigsten Kontaktdaten und den gewünschten Einsatzbereich. Ein Lebenslauf ist für den ersten Kontakt nicht zwingend erforderlich.</p><form action="mailto:mail@perlas.de" method="post"><label>Name <input name="name" required></label><label>E-Mail <input type="email" name="email" required></label><label>Gewünschter Bereich <select name="role">${jobs.map((job) => `<option>${escapeHtml(job.title)}</option>`).join('')}<option>Initiativbewerbung</option></select></label><label>Nachricht <textarea name="message" required></textarea></label><button type="submit">Bewerbung vorbereiten</button></form><p><a href="mailto:mail@perlas.de?subject=Bewerbung%20bei%20Perla%27s">Direkt an mail@perlas.de schreiben</a></p></section></main>`
 }
 
 function contactMarkup() {
@@ -493,7 +512,7 @@ function serviceMarkup(service) {
   const faqs = service.faqs.map((item) => `<details open><summary>${escapeHtml(item.question)}</summary><p>${escapeHtml(item.answer)}</p></details>`).join('')
   const related = relatedServiceLinks(service)
 
-  return `${staticHeader()}<main class="seo-static-main"><nav aria-label="Brotkrümeln"><a href="${basePath}">Startseite</a> / <a href="${basePath}leistungen/">Leistungen</a> / ${escapeHtml(service.title)}</nav><section class="seo-static-hero"><p>Facility Services im Rhein-Main-Gebiet</p><h1>${escapeHtml(service.title)}</h1><p>${escapeHtml(service.detail)}</p><a href="${basePath}kontakt/">Individuelles Angebot anfragen</a><a href="tel:+491776867145">Direkt anrufen</a><a href="mailto:mail@perlas.de">E-Mail schreiben</a></section><section><h2>Was wir bei ${escapeHtml(service.title)} konkret übernehmen</h2><p>${escapeHtml(service.scopeIntro)}</p><div class="seo-static-grid">${scopes}</div></section><section><h2>So läuft die Zusammenarbeit ab</h2><div class="seo-static-grid">${process}</div></section><section><h2>Für diese Objekte geeignet</h2><ul>${audiences}</ul><h2>${escapeHtml(service.boundaryTitle)}</h2><p>${escapeHtml(service.boundaryText)}</p></section><section><h2>Häufige Fragen zu ${escapeHtml(service.title)}</h2>${faqs}</section><section><h2>Wie möchten Sie Kontakt aufnehmen?</h2><p>Nutzen Sie das Angebotsformular oder sprechen Sie direkt mit Perla’s.</p><ul><li><a href="${basePath}kontakt/">Angebot für ${escapeHtml(service.title)} anfragen</a></li><li><a href="tel:+491776867145">Direkt anrufen: 0177 68 67 145</a></li><li><a href="mailto:mail@perlas.de">E-Mail an mail@perlas.de schreiben</a></li></ul></section><nav aria-label="Passende Leistungen"><h2>Diese Leistungen könnten ebenfalls relevant sein</h2><ul class="seo-static-links">${related}</ul></nav></main>`
+  return `${staticHeader()}<main class="seo-static-main"><nav aria-label="Brotkrümeln"><a href="${basePath}">Startseite</a> / <a href="${basePath}leistungen/">Leistungen</a> / ${escapeHtml(service.title)}</nav><section class="seo-static-hero"><p>${service.certified ? 'Zertifizierte Fachleistung' : 'Facility Services im Rhein-Main-Gebiet'}</p><h1>${escapeHtml(service.title)}</h1><p>${escapeHtml(service.detail)}</p><a href="${basePath}kontakt/">Individuelles Angebot anfragen</a><a href="tel:+491776867145">Direkt anrufen</a><a href="mailto:mail@perlas.de">E-Mail schreiben</a></section><section><h2>Was wir bei ${escapeHtml(service.title)} konkret übernehmen</h2><p>${escapeHtml(service.scopeIntro)}</p><div class="seo-static-grid">${scopes}</div></section><section><h2>So läuft die Zusammenarbeit ab</h2><div class="seo-static-grid">${process}</div></section><section><h2>Für diese Objekte geeignet</h2><ul>${audiences}</ul><h2>${escapeHtml(service.boundaryTitle)}</h2><p>${escapeHtml(service.boundaryText)}</p></section><section><h2>Häufige Fragen zu ${escapeHtml(service.title)}</h2>${faqs}</section><section><h2>Wie möchten Sie Kontakt aufnehmen?</h2><p>Nutzen Sie das Angebotsformular oder sprechen Sie direkt mit Perla’s.</p><ul><li><a href="${basePath}kontakt/">Angebot für ${escapeHtml(service.title)} anfragen</a></li><li><a href="tel:+491776867145">Direkt anrufen: 0177 68 67 145</a></li><li><a href="mailto:mail@perlas.de">E-Mail an mail@perlas.de schreiben</a></li></ul></section><nav aria-label="Passende Leistungen"><h2>Diese Leistungen könnten ebenfalls relevant sein</h2><ul class="seo-static-links">${related}</ul></nav></main>`
 }
 
 function audienceMarkup(audience) {

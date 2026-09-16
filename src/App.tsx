@@ -234,7 +234,7 @@ function usePageSeo(service?: Feature, pageKind: PageKind = 'home', audience?: A
               description: article.seoDescription,
               image: imageUrl.href,
               datePublished: '2026-08-31',
-              dateModified: '2026-08-31',
+              dateModified: article.updated.split('.').reverse().join('-'),
               inLanguage: 'de-DE',
               author: { '@id': businessId },
               publisher: { '@id': businessId },
@@ -466,7 +466,16 @@ const partners: Partner[] = [
   },
 ]
 
-type Feature = (typeof serviceContent)[number] & { icon: LucideIcon }
+type Feature = (typeof serviceContent)[number] & {
+  icon: LucideIcon
+  certified?: boolean
+  certificationLabel?: string
+  imageAlt?: string
+  imageDisplay?: string
+  imagePlaceholder?: string
+  imagePosition?: string
+  imageDisclosure?: string
+}
 
 const featureBasics = [
   {
@@ -532,6 +541,9 @@ const featureBasics = [
     bullets: ['Einmalige Zusatzarbeiten', 'Vor-Ort-Aufnahme', 'Abgestimmter Leistungsumfang'],
     image: 'kundenbilder/leistungen/transport_umzug_lieferung.png',
   },
+  { icon: TreePine, slug: 'baumpflege-baumfaellung' },
+  { icon: ClipboardCheck, slug: 'spielplatzkontrolle-spielgeraetewartung' },
+  { icon: BriefcaseBusiness, slug: 'buero-einrichtungsservice' },
 ]
 
 const features: Feature[] = serviceContent.map((service) => ({
@@ -552,9 +564,17 @@ const coreFeatures = coreServiceSlugs
   .map((slug) => features.find((feature) => feature.slug === slug))
   .filter((feature): feature is Feature => Boolean(feature))
 
-const supplementaryFeatures = features.filter((feature) => !coreServiceSlugs.includes(feature.slug))
+const specializedDetailSlugs = [
+  'baumpflege-baumfaellung',
+  'spielplatzkontrolle-spielgeraetewartung',
+  'buero-einrichtungsservice',
+]
+
+const standardFeatures = features.filter((feature) => !specializedDetailSlugs.includes(feature.slug))
+const supplementaryFeatures = standardFeatures.filter((feature) => !coreServiceSlugs.includes(feature.slug))
 
 type SpecializedService = {
+  slug?: string
   icon: LucideIcon
   label: string
   title: string
@@ -571,14 +591,12 @@ type SpecializedService = {
 
 const specializedServices: SpecializedService[] = [
   {
+    slug: 'baumpflege-baumfaellung',
     icon: TreePine,
     label: 'Fachleistung Außenanlagen',
     title: 'Baumpflege & Baum\u00ADfällung',
     text: 'Eigenständige Fachleistung für Pflege, Rückschnitt und – nach objektbezogener Prüfung – notwendige Fällungen.',
     bullets: ['Bestand und Zugänglichkeit aufnehmen', 'Pflege- und Rückschnittbedarf einordnen', 'Sicherungsbereich und Ausführung abstimmen'],
-    image: 'kundenbilder/leistungen/gartenpflege_hecke_01.png',
-    imageAlt: 'Professioneller Heckenschnitt mit motorisiertem Schneidgerät in einer gepflegten Außenanlage',
-    imagePosition: '50% 45%',
     qualificationNote: 'Erforderliche Fachkunde und Sicherungsmaßnahmen werden vor der Ausführung geprüft.',
     certification: 'Zertifiziert',
     certificationPlaceholder: 'Konkreter Zertifikatsname wird nach Kundenfreigabe ergänzt.',
@@ -595,6 +613,7 @@ const specializedServices: SpecializedService[] = [
     certificationPlaceholder: 'Qualifikations- oder Verfahrensnachweis wird bei Kundenfreigabe ergänzt.',
   },
   {
+    slug: 'spielplatzkontrolle-spielgeraetewartung',
     icon: ClipboardCheck,
     label: 'Fachleistung für Wohnanlagen',
     title: 'Spielplatzkontrolle & Spielgeräte\u00ADwartung',
@@ -608,11 +627,12 @@ const specializedServices: SpecializedService[] = [
     certificationPlaceholder: 'Konkreter Zertifikatsname für Prüfung und Wartung wird nach Kundenfreigabe ergänzt.',
   },
   {
+    slug: 'buero-einrichtungsservice',
     icon: BriefcaseBusiness,
     label: 'Ergänzende Serviceleistung',
     title: 'Büro- & Einrichtungs\u00ADservice',
-    text: 'Praktische Unterstützung bei Möblierung, internen Umstellungen und klar abgegrenzten Arbeiten im Büroalltag.',
-    bullets: ['Interne Umstellungen unterstützen', 'Einrichtung und Material bereitstellen'],
+    text: 'Konkrete Unterstützung bei Umstellungen, internen Büro- und Möbelumzügen sowie der Vorbereitung neu genutzter Räume.',
+    bullets: ['Möbel und Arbeitsplätze umstellen', 'Vorhandene Einrichtung auf- und abbauen', 'Räume für eine neue Nutzung vorbereiten'],
     supporting: true,
   },
 ]
@@ -699,10 +719,11 @@ const heroSlides = [
     position: '50% center',
   },
   {
-    image: 'kundenbilder/leistungen/winterdienst_team.png',
-    alt: 'Zwei Mitarbeitende von Perla’s beim Winterdienst',
-    label: 'Winterdienst im Rhein-Main-Gebiet',
+    image: 'kundenbilder/leistungen/winterdienst_fahrzeug_nacht_02.png',
+    alt: 'Echtes Perla’s-Einsatzfahrzeug im verschneiten Rhein-Main-Gebiet',
+    label: 'Perla’s-Winterdienst im Einsatz',
     position: '50% center',
+    display: 'portrait',
   },
 ]
 
@@ -772,7 +793,17 @@ const serviceImagePositions: Record<string, string> = {
   einzelauftrag: '40% center',
 }
 
-function Header() {
+const serviceImageDisplays: Record<string, 'portrait' | 'landscape' | 'square'> = {
+  objektpflege: 'square',
+  'wartung-instandhaltung': 'portrait',
+  gebaeudereinigung: 'landscape',
+  gartenpflege: 'portrait',
+  winterdienst: 'landscape',
+  muellmanagement: 'portrait',
+  einzelauftrag: 'landscape',
+}
+
+function Header({ activePage }: { activePage: PageKind }) {
   const [menuOpen, setMenuOpen] = useState(false)
   const [facilityOpen, setFacilityOpen] = useState(false)
 
@@ -829,7 +860,12 @@ function Header() {
             }}
           >
             <div className="nav-facility-trigger">
-              <a href={FACILITY_PATH} onClick={closeMenu}>Facility Management</a>
+              <a
+                className={activePage === 'facility' ? 'is-active' : undefined}
+                href={FACILITY_PATH}
+                aria-current={activePage === 'facility' ? 'page' : undefined}
+                onClick={closeMenu}
+              >Facility Management</a>
               <button
                 type="button"
                 aria-label={facilityOpen ? 'Zielgruppen im Facility Management schließen' : 'Zielgruppen im Facility Management anzeigen'}
@@ -854,11 +890,11 @@ function Header() {
               })}
             </div>
           </div>
-          <a href={SERVICES_PATH} onClick={closeMenu}>Leistungen</a>
-          <a href={ABOUT_PATH} onClick={closeMenu}>Über uns</a>
-          <a href={BLOG_PATH} onClick={closeMenu}>Blog</a>
-          <a href={CAREER_PATH} onClick={closeMenu}>Karriere</a>
-          <a href={CONTACT_PATH} onClick={closeMenu}>Kontakt</a>
+          <a className={activePage === 'services' ? 'is-active' : undefined} href={SERVICES_PATH} aria-current={activePage === 'services' ? 'page' : undefined} onClick={closeMenu}>Leistungen</a>
+          <a className={activePage === 'about' ? 'is-active' : undefined} href={ABOUT_PATH} aria-current={activePage === 'about' ? 'page' : undefined} onClick={closeMenu}>Über uns</a>
+          <a className={activePage === 'blog' ? 'is-active' : undefined} href={BLOG_PATH} aria-current={activePage === 'blog' ? 'page' : undefined} onClick={closeMenu}>Blog</a>
+          <a className={activePage === 'career' ? 'is-active' : undefined} href={CAREER_PATH} aria-current={activePage === 'career' ? 'page' : undefined} onClick={closeMenu}>Karriere</a>
+          <a className={activePage === 'contact' ? 'is-active' : undefined} href={CONTACT_PATH} aria-current={activePage === 'contact' ? 'page' : undefined} onClick={closeMenu}>Kontakt</a>
         </nav>
       </div>
     </header>
@@ -1067,11 +1103,12 @@ function Hero() {
       <div className="hero-art" aria-roledescription="Karussell" aria-label="Einblicke in die Arbeit von Perla’s">
         <div className="hero-slides" aria-live="off">
           {heroSlides.map((slide, index) => (
-            <figure className={index === activeSlide ? 'hero-slide is-active' : 'hero-slide'} aria-hidden={index !== activeSlide} key={slide.image}>
+            <figure className={`${index === activeSlide ? 'hero-slide is-active' : 'hero-slide'}${slide.display === 'portrait' ? ' hero-slide--portrait' : ''}`} aria-hidden={index !== activeSlide} key={slide.image}>
               <img
                 src={`${A}${slide.image}`}
                 alt={index === activeSlide ? slide.alt : ''}
                 style={{ objectPosition: slide.position }}
+                decoding="async"
               />
             </figure>
           ))}
@@ -1213,7 +1250,7 @@ function HomeCoreServices() {
               data-reveal="up"
               style={{ '--reveal-delay': `${index * 60}ms` } as CSSProperties}
             >
-              <div className="home-service-card-image">
+              <div className={`home-service-card-image home-service-card-image--${serviceImageDisplays[service.slug] ?? 'landscape'}`}>
                 <img src={`${A}${service.image}`} alt={`${service.title} im Einsatz bei Perla’s`} loading="lazy" decoding="async" style={{ objectPosition: imagePosition }} />
                 <span><Icon aria-hidden="true" /></span>
               </div>
@@ -1286,6 +1323,11 @@ function SpecializedServices() {
                 {service.qualificationNote && (
                   <p className="specialized-service-qualification"><ShieldCheck aria-hidden="true" />{service.qualificationNote}</p>
                 )}
+                {service.slug && (
+                  <a className="specialized-service-link" href={`${SERVICES_PATH}${service.slug}/`}>
+                    Leistungsdetails ansehen <ArrowUpRight aria-hidden="true" />
+                  </a>
+                )}
               </div>
             </article>
           )
@@ -1328,25 +1370,6 @@ function HomeFleet() {
 }
 
 function HomeAudienceCards() {
-  const homeAudienceImages: Record<string, { src: string; alt: string }> = {
-    hausverwaltungen: {
-      src: 'perlas-office.png',
-      alt: 'Abgestimmte Objektbetreuung für Hausverwaltungen',
-    },
-    wohnanlagen: {
-      src: 'perlas-property.png',
-      alt: 'Professionell betreute größere Wohnanlage',
-    },
-    gewerbeimmobilien: {
-      src: 'perlas-hero.png',
-      alt: 'Objektkontrolle an einer Gewerbeimmobilie',
-    },
-    'institutionelle-gebaeude': {
-      src: 'perlas-team.png',
-      alt: 'Objektbetreuung für institutionelle und öffentliche Gebäude',
-    },
-  }
-
   return (
     <section className="home-audience-cards" aria-labelledby="home-audience-cards-heading">
       <div className="home-section-heading" data-reveal="up">
@@ -1357,7 +1380,8 @@ function HomeAudienceCards() {
       <div className="home-audience-card-grid">
         {audienceSolutions.map((audience, index) => {
           const Icon = audience.icon
-          const image = homeAudienceImages[audience.id]
+          const image = audience.image
+          const imageDisplay = image.src.includes('wohnanlage_') ? 'portrait' : 'landscape'
 
           return (
             <a
@@ -1367,8 +1391,8 @@ function HomeAudienceCards() {
               data-reveal="up"
               style={{ '--reveal-delay': `${index * 60}ms` } as CSSProperties}
             >
-              <div className="home-audience-card-image">
-                <img src={`${A}${image.src}`} alt={image.alt} loading="lazy" decoding="async" />
+              <div className={`home-audience-card-image home-audience-card-image--${imageDisplay}`}>
+                <img src={`${A}${image.src}`} alt={image.alt} loading="lazy" decoding="async" style={{ objectPosition: image.position }} />
                 <span><Icon aria-hidden="true" /></span>
               </div>
               <div className="home-audience-card-copy">
@@ -1409,7 +1433,7 @@ function HomeTrust() {
 function ServicesOverviewPage() {
   return (
     <main className="architecture-page services-overview-page">
-      <section className="architecture-hero">
+      <section className="architecture-hero architecture-hero--services">
         <div className="architecture-hero-copy" data-reveal="left">
           <PageBreadcrumb current="Leistungen" />
           <span className="eyebrow">Facility Services im Rhein-Main-Gebiet</span>
@@ -1451,6 +1475,8 @@ function ServicesOverviewPage() {
         </nav>
       </section>
 
+      <SpecializedServices />
+
       <section className="services-catalog" aria-labelledby="services-catalog-heading">
         <div className="architecture-section-heading" data-reveal="up">
           <span className="eyebrow">Leistungsübersicht</span>
@@ -1458,12 +1484,12 @@ function ServicesOverviewPage() {
           <p>Jede Leistung führt zu einer eigenen Seite mit Leistungsumfang, Ablauf, Einsatzbereichen und klarer fachlicher Einordnung.</p>
         </div>
         <div className="services-catalog-grid">
-          {features.map((feature, index) => {
+          {standardFeatures.map((feature, index) => {
             const Icon = feature.icon
             const imagePosition = serviceImagePositions[feature.slug]
             return (
               <a className="services-catalog-card" href={`${SERVICES_PATH}${feature.slug}/`} data-reveal="up" style={{ '--reveal-delay': `${(index % 3) * 55}ms` } as CSSProperties} key={feature.slug}>
-                <figure className="services-catalog-image">
+                <figure className={`services-catalog-image services-catalog-image--${serviceImageDisplays[feature.slug] ?? 'landscape'}`}>
                   <img src={`${A}${feature.image}`} alt={`${feature.title} im Einsatz bei Perla’s`} loading="lazy" decoding="async" style={{ objectPosition: imagePosition }} />
                 </figure>
                 <span className="services-catalog-icon"><Icon aria-hidden="true" strokeWidth={1.8} /></span>
@@ -1474,8 +1500,6 @@ function ServicesOverviewPage() {
           })}
         </div>
       </section>
-
-      <SpecializedServices />
 
       <section className="architecture-bridge" data-reveal="up">
         <div>
@@ -1490,6 +1514,7 @@ function ServicesOverviewPage() {
 }
 
 function AboutPage({ onQuoteOpen }: { onQuoteOpen: () => void }) {
+  const [showAllTeamMembers, setShowAllTeamMembers] = useState(false)
   const values = [
     [ShieldCheck, 'Verantwortung', 'Aufgaben, Zuständigkeiten und offene Punkte werden nachvollziehbar eingeordnet.'],
     [Clock3, 'Planbarkeit', 'Wiederkehrende Leistungen erhalten klare Intervalle und abgestimmte Abläufe.'],
@@ -1536,6 +1561,37 @@ function AboutPage({ onQuoteOpen }: { onQuoteOpen: () => void }) {
     { id: 'team-08', role: 'Organisation & Kundenkontakt' },
   ]
 
+  const renderTeamMember = (member: (typeof teamMembers)[number], index: number, reveal = false) => (
+    <figure
+      className="about-team-card"
+      {...(reveal ? { 'data-reveal': 'up' } : {})}
+      style={reveal ? { '--reveal-delay': `${index * 70}ms` } as CSSProperties : undefined}
+      key={member.id}
+    >
+      <div className="about-team-image">
+        {member.image ? (
+          <img
+            src={`${A}${member.image}`}
+            alt={member.alt}
+            loading="lazy"
+            decoding="async"
+            style={{ objectPosition: member.position }}
+          />
+        ) : (
+          <div className="about-team-placeholder" role="img" aria-label="Porträt wird ergänzt">
+            <UserRound aria-hidden="true" />
+            <span>Bild wird ergänzt</span>
+          </div>
+        )}
+        <span aria-hidden="true">0{index + 1}</span>
+      </div>
+      <figcaption>
+        <strong>Name wird ergänzt</strong>
+        <span>{member.role}</span>
+      </figcaption>
+    </figure>
+  )
+
   return (
     <main className="architecture-page about-page">
       <section className="architecture-hero architecture-hero--about">
@@ -1581,37 +1637,29 @@ function AboutPage({ onQuoteOpen }: { onQuoteOpen: () => void }) {
           <p>Acht Teampositionen zeigen die heutige Breite von Perla’s. Namen, Rollen und vier noch fehlende Porträts werden nach Kundenfreigabe ergänzt.</p>
         </div>
         <div className="about-team-grid">
-          {teamMembers.map((member, index) => (
-            <figure
-              className="about-team-card"
-              data-reveal="up"
-              style={{ '--reveal-delay': `${index * 70}ms` } as CSSProperties}
-              key={member.id}
-            >
-              <div className="about-team-image">
-                {member.image ? (
-                  <img
-                    src={`${A}${member.image}`}
-                    alt={member.alt}
-                    loading="lazy"
-                    decoding="async"
-                    style={{ objectPosition: member.position }}
-                  />
-                ) : (
-                  <div className="about-team-placeholder" role="img" aria-label="Porträt wird ergänzt">
-                    <UserRound aria-hidden="true" />
-                    <span>Bild wird ergänzt</span>
-                  </div>
-                )}
-                <span aria-hidden="true">0{index + 1}</span>
-              </div>
-              <figcaption>
-                <strong>Name wird ergänzt</strong>
-                <span>{member.role}</span>
-              </figcaption>
-            </figure>
-          ))}
+          {teamMembers.slice(0, 4).map((member, index) => renderTeamMember(member, index, true))}
         </div>
+        <div
+          className={showAllTeamMembers ? 'about-team-expandable is-open' : 'about-team-expandable'}
+          id="additional-team-members"
+          aria-hidden={!showAllTeamMembers}
+        >
+          <div>
+            <div className="about-team-grid about-team-grid--additional">
+              {teamMembers.slice(4).map((member, index) => renderTeamMember(member, index + 4))}
+            </div>
+          </div>
+        </div>
+        <button
+          className="about-team-toggle"
+          type="button"
+          aria-expanded={showAllTeamMembers}
+          aria-controls="additional-team-members"
+          onClick={() => setShowAllTeamMembers((current) => !current)}
+        >
+          {showAllTeamMembers ? 'Weniger anzeigen' : 'Weitere Mitarbeitende anzeigen'}
+          {showAllTeamMembers ? <ChevronUp aria-hidden="true" /> : <ChevronDown aria-hidden="true" />}
+        </button>
       </section>
 
       <section className="about-values" aria-labelledby="about-values-heading">
@@ -1893,6 +1941,8 @@ function FacilityManagementPage() {
           })}
         </div>
       </section>
+
+      <SpecializedServices />
 
       <section className="fm-complex" aria-labelledby="fm-complex-heading">
         <div className="fm-complex-copy" data-reveal="left">
@@ -2344,8 +2394,12 @@ function ServiceContactForm({ subject }: { subject: string }) {
 function ServiceDetailPage({ service, onQuoteOpen }: { service: Feature; onQuoteOpen: (service?: string) => void }) {
   const Icon = service.icon
   const serviceGallery = serviceGalleries[service.slug]
-  const serviceStoryImage = serviceStoryImages[service.slug] ?? service.image
-  const serviceImagePosition = serviceImagePositions[service.slug]
+  const serviceStoryImage = serviceStoryImages[service.slug] ?? (service.imageDisplay === 'wide' ? service.image : '')
+  const serviceImagePosition = service.imagePosition ?? serviceImagePositions[service.slug]
+  const serviceImageDisplay: 'placeholder' | 'wide' | 'landscape' | 'portrait' | 'square' =
+    service.imageDisplay === 'placeholder' || service.imageDisplay === 'wide' || service.imageDisplay === 'landscape'
+      ? service.imageDisplay
+      : serviceImageDisplays[service.slug] ?? 'portrait'
   const emailHref = `mailto:mail@perlas.de?subject=${encodeURIComponent(`Anfrage zu ${service.title}`)}`
   const relatedServices = service.relatedServices
     .map((slug) => features.find((item) => item.slug === slug))
@@ -2353,7 +2407,7 @@ function ServiceDetailPage({ service, onQuoteOpen }: { service: Feature; onQuote
 
   return (
     <main className="service-page">
-      <section className="service-detail-hero">
+      <section className={`service-detail-hero service-detail-hero--${serviceImageDisplay}`}>
         <div className="service-detail-copy" data-reveal="left">
           <nav className="service-breadcrumb" aria-label="Brotkrümeln">
             <a href={homeHref()}>Startseite</a><span aria-hidden="true">/</span>
@@ -2361,7 +2415,11 @@ function ServiceDetailPage({ service, onQuoteOpen }: { service: Feature; onQuote
             <span aria-current="page">{service.title}</span>
           </nav>
           <div className="service-detail-icon"><Icon aria-hidden="true" strokeWidth={1.8} /></div>
-          <span className="eyebrow">Perla’s Objektbetreuung</span>
+          {service.certified ? (
+            <span className="service-certification-label"><ShieldCheck aria-hidden="true" />{service.certificationLabel ?? 'Zertifizierte Fachleistung'}</span>
+          ) : (
+            <span className="eyebrow">Perla’s Objektbetreuung</span>
+          )}
           <h1>{service.title}</h1>
           <p>{service.detail}</p>
           <div className="button-row">
@@ -2376,8 +2434,22 @@ function ServiceDetailPage({ service, onQuoteOpen }: { service: Feature; onQuote
             <a href={CONTACT_PATH}><MessageCircle aria-hidden="true" /> Allgemein Kontakt aufnehmen</a>
           </div>
         </div>
-        <div className="service-detail-image" data-reveal="right" style={{ '--reveal-delay': '80ms' } as CSSProperties}>
-          <img src={`${A}${service.image}`} alt={`${service.title} von Perla’s Objektbetreuung`} style={{ objectPosition: serviceImagePosition }} />
+        <div className={`service-detail-image service-detail-image--${serviceImageDisplay}`} data-reveal="right" style={{ '--reveal-delay': '80ms' } as CSSProperties}>
+          {service.image ? (
+            <img
+              src={`${A}${service.image}`}
+              alt={service.imageAlt || `${service.title} von Perla’s Objektbetreuung`}
+              style={{ objectPosition: serviceImagePosition }}
+              decoding="async"
+            />
+          ) : (
+            <div className="service-detail-image-placeholder" role="img" aria-label={service.imagePlaceholder ?? 'Einsatzmotiv wird ergänzt'}>
+              <Icon aria-hidden="true" />
+              <strong>{service.imagePlaceholder ?? 'Einsatzmotiv wird ergänzt'}</strong>
+              <span>Bis ein passendes echtes Kundenfoto vorliegt, verzichten wir bewusst auf ein unzutreffendes Motiv.</span>
+            </div>
+          )}
+          {service.imageDisclosure && <span className="service-image-disclosure">{service.imageDisclosure}</span>}
         </div>
       </section>
 
@@ -2469,11 +2541,12 @@ function ServiceDetailPage({ service, onQuoteOpen }: { service: Feature; onQuote
       )}
 
       <section
-        className="service-image-story"
-        style={{ '--service-story-image': `url("${A}${serviceStoryImage}")` } as CSSProperties}
+        className={serviceStoryImage ? 'service-image-story' : 'service-image-story service-image-story--placeholder'}
+        style={serviceStoryImage ? { '--service-story-image': `url("${A}${serviceStoryImage}")` } as CSSProperties : undefined}
         aria-labelledby="service-image-story-heading"
         data-reveal="up"
       >
+        {!serviceStoryImage && <Icon className="service-image-story-icon" aria-hidden="true" />}
         <div>
           <span className="eyebrow">Vor Ort gut organisiert</span>
           <h2 id="service-image-story-heading">Damit die Leistung im Alltag zuverlässig funktioniert.</h2>
@@ -2762,7 +2835,7 @@ export default function App() {
     ? 'contact'
     : isFacilityPage || activeAudience
       ? 'facility'
-      : isServicesPage
+      : isServicesPage || activeService
         ? 'services'
         : isAboutPage
           ? 'about'
@@ -2805,7 +2878,7 @@ export default function App() {
 
   return (
     <>
-      <Header />
+      <Header activePage={pageKind} />
       {activeService ? (
         <ServiceDetailPage service={activeService} onQuoteOpen={openQuote} />
       ) : activeAudience ? (

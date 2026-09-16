@@ -42,7 +42,7 @@ export default function CareerPage({ jobs }: CareerPageProps) {
 
     if (attachment && attachment.size > 5 * 1024 * 1024) {
       setStatus('error')
-      setFeedback('Die ausgewählte Datei ist größer als 5 MB. Bitte wählen Sie eine kleinere Datei.')
+      setFeedback('Die ausgewählte Datei ist größer als 5 MB. Bitte wähle eine kleinere Datei.')
       return
     }
 
@@ -63,18 +63,18 @@ export default function CareerPage({ jobs }: CareerPageProps) {
 
       if (result.mode === 'email') {
         setStatus('email')
-        setFeedback('Ihr E-Mail-Programm wird mit den eingetragenen Angaben geöffnet.')
+        setFeedback('Dein E-Mail-Programm wird mit den eingetragenen Angaben geöffnet.')
         window.location.href = careerApplicationMailto(payload)
         return
       }
 
       setStatus('success')
-      setFeedback('Vielen Dank. Ihre Bewerbung wurde erfolgreich übermittelt.')
+      setFeedback('Vielen Dank. Deine Bewerbung wurde erfolgreich übermittelt.')
       form.reset()
       setSelectedRole('Initiativbewerbung')
     } catch {
       setStatus('error')
-      setFeedback('Die Übermittlung war nicht möglich. Bitte senden Sie Ihre Bewerbung direkt an mail@perlas.de.')
+      setFeedback('Die Übermittlung war nicht möglich. Bitte sende deine Bewerbung direkt an mail@perlas.de.')
     }
   }
 
@@ -83,11 +83,12 @@ export default function CareerPage({ jobs }: CareerPageProps) {
       <section className="career-hero" aria-labelledby="career-heading">
         <div className="career-hero-copy" data-reveal="left">
           <a className="page-breadcrumb" href={BASE_PATH}>Startseite / Karriere</a>
-          <span className="eyebrow">Mitarbeiter gesucht</span>
-          <h1 id="career-heading">Gute Objektbetreuung entsteht im Team.</h1>
+          <span className="eyebrow">Komm ins Team</span>
+          <h1 id="career-heading">Du hast Lust, anzupacken und Verantwortung zu übernehmen?</h1>
           <p>
-            Wir suchen zuverlässige Menschen, die gerne praktisch arbeiten, Verantwortung übernehmen
-            und unsere Kunden im Rhein-Main-Gebiet freundlich unterstützen.
+            Bei Perla’s arbeitest du an echten Wohn- und Gewerbeobjekten im Rhein-Main-Gebiet.
+            Dich erwarten praktische, abwechslungsreiche Aufgaben, klare Absprachen und ein Team,
+            das sich im Alltag gegenseitig unterstützt.
           </p>
           <div className="button-row">
             <a className="button button--yellow" href="#stellen">Offene Bereiche ansehen <ArrowUpRight aria-hidden="true" /></a>
@@ -96,20 +97,21 @@ export default function CareerPage({ jobs }: CareerPageProps) {
         </div>
         <figure className="career-hero-image" data-reveal="right">
           <img src={`${ASSETS_PATH}kundenbilder/team/team_aussenbereich_01.png`} alt="Mitarbeiterin von Perla’s bei einem Außeneinsatz" />
-          <figcaption><Users aria-hidden="true" /><span><strong>Gemeinsam anpacken</strong><small>Persönlich, zuverlässig und nah am Objekt</small></span></figcaption>
+          <figcaption><Users aria-hidden="true" /><span><strong>Gemeinsam anpacken</strong><small>Direkt, verlässlich und nah am Objekt</small></span></figcaption>
         </figure>
       </section>
 
       <section className="career-values" aria-labelledby="career-values-heading">
         <div className="career-section-heading" data-reveal="up">
-          <span className="eyebrow">Arbeiten bei Perla’s</span>
-          <h2 id="career-values-heading">Was uns in der Zusammenarbeit wichtig ist.</h2>
+          <span className="eyebrow">Dein Arbeitsalltag bei Perla’s</span>
+          <h2 id="career-values-heading">Praktische Aufgaben. Klare Absprachen. Ein Team, das anpackt.</h2>
+          <p>Du siehst, was du geschafft hast, übernimmst Verantwortung für deinen Bereich und kannst dich mit deiner Erfahrung Schritt für Schritt weiterentwickeln.</p>
         </div>
         <div className="career-value-grid">
           {[
-            [HeartHandshake, 'Verlässlichkeit', 'Absprachen gelten. Im Team und gegenüber unseren Kunden.'],
-            [ShieldCheck, 'Verantwortung', 'Wir gehen sorgfältig mit Immobilien, Ausstattung und Informationen um.'],
-            [Users, 'Direkte Abstimmung', 'Kurze Wege und persönliche Ansprechpartner erleichtern den Arbeitsalltag.'],
+            [HeartHandshake, 'Abwechslungsreiche Einsätze', 'Du arbeitest in Wohnanlagen, Gewerbeobjekten und Außenbereichen – passend zu deinem Einsatzbereich und deiner Erfahrung.'],
+            [Users, 'Ein Team, kurze Wege', 'Du bekommst klare Absprachen, erreichbare Ansprechpartner und Unterstützung, wenn vor Ort etwas ungeklärt ist.'],
+            [ShieldCheck, 'Verantwortung und Entwicklung', 'Du arbeitest selbstständig im vereinbarten Bereich und kannst weitere Aufgaben übernehmen, wenn du dich entwickeln möchtest.'],
           ].map(([Icon, title, text], index) => {
             const ValueIcon = Icon as typeof Users
             return (
@@ -127,7 +129,7 @@ export default function CareerPage({ jobs }: CareerPageProps) {
         <div className="career-section-heading" data-reveal="up">
           <span className="eyebrow">Einsatzbereiche</span>
           <h2 id="career-jobs-heading">Hier suchen wir Verstärkung.</h2>
-          <p>Die genaue Einsatzplanung und der mögliche Umfang werden persönlich abgestimmt.</p>
+          <p>Gemeinsam klären wir, welcher Bereich zu dir passt und in welchem Umfang du einsteigen möchtest.</p>
         </div>
         <div className="career-job-list">
           {jobs.map((job, index) => (
@@ -147,7 +149,7 @@ export default function CareerPage({ jobs }: CareerPageProps) {
                 <div>
                   <strong>Typische Aufgaben</strong>
                   <ul>{job.tasks.map((task) => <li key={task}>{task}</li>)}</ul>
-                  <strong>Das ist uns wichtig</strong>
+                  <strong>Das bringst du mit</strong>
                   <ul>{job.requirements.map((requirement) => <li key={requirement}>{requirement}</li>)}</ul>
                 </div>
               </details>
@@ -160,13 +162,13 @@ export default function CareerPage({ jobs }: CareerPageProps) {
       <section className="career-application" id="bewerbung" aria-labelledby="career-application-heading">
         <div className="career-application-copy" data-reveal="left">
           <span className="eyebrow">Kurzbewerbung</span>
-          <h2 id="career-application-heading">Lernen wir uns kennen.</h2>
+          <h2 id="career-application-heading">Lass uns einander kennenlernen.</h2>
           <p>
-            Schicken Sie uns Ihre wichtigsten Kontaktdaten und den gewünschten Einsatzbereich.
+            Schick uns deine wichtigsten Kontaktdaten und den gewünschten Einsatzbereich.
             Ein Lebenslauf ist hilfreich, für den ersten Kontakt aber nicht zwingend erforderlich.
           </p>
           <ul>
-            <li><CheckCircle2 aria-hidden="true" /> Direkter Kontakt mit Perla’s</li>
+            <li><CheckCircle2 aria-hidden="true" /> Dein direkter Kontakt mit Perla’s</li>
             <li><CheckCircle2 aria-hidden="true" /> Einsatzmöglichkeiten im Rhein-Main-Gebiet</li>
             <li><CheckCircle2 aria-hidden="true" /> Persönliche Abstimmung der nächsten Schritte</li>
           </ul>
@@ -176,7 +178,7 @@ export default function CareerPage({ jobs }: CareerPageProps) {
         <form className="career-form" ref={formRef} onSubmit={handleSubmit} data-reveal="right">
           <div className="career-form-heading">
             <FileText aria-hidden="true" />
-            <div><span>Bewerbung vorbereiten</span><strong>Wenige Angaben genügen für den ersten Kontakt.</strong></div>
+            <div><span>Bewerbung vorbereiten</span><strong>Wenige Angaben genügen für deinen ersten Kontakt.</strong></div>
           </div>
           <div className="career-form-grid">
             <label>
@@ -200,7 +202,7 @@ export default function CareerPage({ jobs }: CareerPageProps) {
             </label>
             <label className="career-form-wide">
               <span>Kurze Nachricht *</span>
-              <textarea name="message" rows={5} placeholder="Erzählen Sie uns kurz etwas über Ihre Erfahrung und Ihren gewünschten Einsatzbereich." required />
+              <textarea name="message" rows={5} placeholder="Erzähl uns kurz etwas über deine Erfahrung und deinen gewünschten Einsatzbereich." required />
             </label>
             <label className="career-form-wide career-file-field">
               <span>Lebenslauf oder Unterlagen (optional, max. 5 MB)</span>
@@ -215,7 +217,7 @@ export default function CareerPage({ jobs }: CareerPageProps) {
             {status === 'submitting' ? 'Wird übermittelt …' : 'Bewerbung absenden'} <ArrowUpRight aria-hidden="true" />
           </button>
           {feedback && <p className={`career-form-feedback is-${status}`} role="status">{feedback}</p>}
-          <small>Bis zur Backend-Anbindung öffnet sich beim Absenden Ihr E-Mail-Programm. Danach erfolgt die Übermittlung direkt und verschlüsselt an die konfigurierte API.</small>
+          <small>Bis zur Backend-Anbindung öffnet sich beim Absenden dein E-Mail-Programm. Danach erfolgt die Übermittlung direkt und verschlüsselt an die konfigurierte API.</small>
         </form>
       </section>
     </main>
@@ -229,10 +231,10 @@ export function HomeCareerTeaser() {
         <img src={`${ASSETS_PATH}kundenbilder/team/team_aussenbereich_01.png`} alt="Mitarbeiterin von Perla’s bei einem Außeneinsatz" loading="lazy" />
       </figure>
       <div data-reveal="right">
-        <span className="eyebrow">Mitarbeiter gesucht</span>
-        <h2 id="home-career-heading">Verstärkung für unser Team im Rhein-Main-Gebiet.</h2>
-        <p>Sie arbeiten zuverlässig, packen gerne mit an und möchten Immobilien im Alltag professionell betreuen? Dann sollten wir uns kennenlernen.</p>
-        <a className="button button--outline-light" href={`${BASE_PATH}karriere/`}>Karriere bei Perla’s <ArrowUpRight aria-hidden="true" /></a>
+        <span className="eyebrow">Komm ins Team</span>
+        <h2 id="home-career-heading">Praktische Arbeit im Rhein-Main-Gebiet.</h2>
+        <p>Du packst gerne mit an, arbeitest zuverlässig und möchtest Verantwortung an echten Immobilien übernehmen? Dann sollten wir uns kennenlernen.</p>
+        <a className="button button--outline-light" href={`${BASE_PATH}karriere/`}>Jobs bei Perla’s <ArrowUpRight aria-hidden="true" /></a>
       </div>
     </section>
   )
