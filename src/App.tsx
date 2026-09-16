@@ -19,10 +19,12 @@ import {
   MessageCircle,
   PackageCheck,
   Phone,
+  PlayCircle,
   ShieldCheck,
   Snowflake,
   Sparkles,
   TreePine,
+  UserRound,
   Wrench,
   X,
   type LucideIcon,
@@ -46,6 +48,7 @@ const FACILITY_PATH = `${BASE_PATH}facility-management/`
 const SERVICES_PATH = `${BASE_PATH}leistungen/`
 const ABOUT_PATH = `${BASE_PATH}ueber-uns/`
 const BLOG_PATH = `${BASE_PATH}blog/`
+const CAREER_PATH = `${BASE_PATH}karriere/`
 const IMPRINT_PATH = `${BASE_PATH}impressum/`
 const PRIVACY_PATH = `${BASE_PATH}datenschutz/`
 
@@ -121,7 +124,7 @@ function usePageSeo(service?: Feature, pageKind: PageKind = 'home', audience?: A
       services: {
         path: 'leistungen/',
         title: 'Leistungen für Immobilien | Perla’s Rhein-Main',
-        description: 'Objektpflege, Wartung, Gebäudereinigung, Gartenpflege, Winterdienst und Wohnungswechsel von Perla’s im Rhein-Main-Gebiet.',
+        description: 'Objektpflege, Wartung, Gebäudereinigung, Gartenpflege, Winterdienst, Müllmanagement und Einzelaufträge von Perla’s im Rhein-Main-Gebiet.',
         schemaType: 'CollectionPage',
       },
       about: {
@@ -439,7 +442,7 @@ const proofStats = [
   ['25+', 'Jahre Erfahrung'],
   ['700+', 'abgeschlossene Projekte'],
   ['1000+', 'glückliche Mieter & Verwaltungen'],
-  ['1', 'starkes Team'],
+  ['10+', 'Mitarbeiter'],
 ]
 
 type Partner = {
@@ -513,11 +516,20 @@ const featureBasics = [
   },
   {
     icon: PackageCheck,
-    slug: 'wohnungswechsel',
-    title: 'Wohnungswechsel',
-    text: 'Reibungslose Übergaben, Entrümpelungen und Unterstützung bei Umzügen und Räumungen.',
-    detail: 'Wir unterstützen Hausverwaltungen und Eigentümer bei Übergaben, Räumungen und der schnellen Vorbereitung von Wohnungen für die nächste Nutzung.',
-    bullets: ['Unterstützung bei Übergaben', 'Entrümpelung und Räumung', 'Vorbereitung für die Neuvermietung'],
+    slug: 'muellmanagement',
+    title: 'Müllmanagement',
+    text: 'Saubere Müllplätze, koordinierte Bereitstellung und verlässliche Kontrollen für größere Immobilien.',
+    detail: 'Wir halten Müllstandorte im Blick, koordinieren vereinbarte Bereitstellungen und melden Auffälligkeiten nachvollziehbar an die Verwaltung.',
+    bullets: ['Kontrolle von Müllstandorten', 'Bereitstellung nach Vereinbarung', 'Dokumentation von Auffälligkeiten'],
+    image: 'kundenbilder/leistungen/entsorgung_kartonage.png',
+  },
+  {
+    icon: BriefcaseBusiness,
+    slug: 'einzelauftrag',
+    title: 'Einzelauftrag',
+    text: 'Klar abgegrenzte Arbeiten für kurzfristigen oder einmaligen Bedarf am Objekt.',
+    detail: 'Wir prüfen einzelne Aufgaben vor Ort, grenzen den Leistungsumfang eindeutig ab und koordinieren die Ausführung mit einem festen Ansprechpartner.',
+    bullets: ['Einmalige Zusatzarbeiten', 'Vor-Ort-Aufnahme', 'Abgestimmter Leistungsumfang'],
     image: 'kundenbilder/leistungen/transport_umzug_lieferung.png',
   },
 ]
@@ -533,6 +545,7 @@ const coreServiceSlugs = [
   'gebaeudereinigung',
   'gartenpflege',
   'winterdienst',
+  'muellmanagement',
 ]
 
 const coreFeatures = coreServiceSlugs
@@ -540,6 +553,29 @@ const coreFeatures = coreServiceSlugs
   .filter((feature): feature is Feature => Boolean(feature))
 
 const supplementaryFeatures = features.filter((feature) => !coreServiceSlugs.includes(feature.slug))
+
+const specializedServices = [
+  {
+    icon: TreePine,
+    title: 'Baumpflege & Baumfällung',
+    text: 'Pflege, Rückschnitt und notwendige Fällungen werden objektbezogen aufgenommen und fachgerecht koordiniert.',
+  },
+  {
+    icon: Building2,
+    title: 'Tiefgaragenreinigung',
+    text: 'Maschinelle und manuelle Reinigung von Fahrflächen, Stellplätzen und schwer erreichbaren Randbereichen.',
+  },
+  {
+    icon: ClipboardCheck,
+    title: 'Spielplatzkontrolle & Spielgerätewartung',
+    text: 'Regelmäßige Sichtkontrollen, dokumentierte Auffälligkeiten und koordinierte Wartung der Spielbereiche.',
+  },
+  {
+    icon: BriefcaseBusiness,
+    title: 'Büro- & Einrichtungsservice',
+    text: 'Praktische Unterstützung bei Möblierung, internen Umstellungen und klar abgegrenzten Arbeiten im Büroalltag.',
+  },
+]
 
 const facilityPillars = [
   {
@@ -682,7 +718,8 @@ const serviceStoryImages: Record<string, string> = {
   gebaeudereinigung: 'kundenbilder/leistungen/gebaeudereinigung_flur.png',
   gartenpflege: 'kundenbilder/vorher_nachher/aussenbereich_nachher.png',
   winterdienst: 'kundenbilder/leistungen/winterdienst_team.png',
-  wohnungswechsel: 'kundenbilder/leistungen/transport_umzug_lieferung.png',
+  muellmanagement: 'kundenbilder/leistungen/entsorgung_kartonage.png',
+  einzelauftrag: 'kundenbilder/leistungen/transport_umzug_lieferung.png',
 }
 
 const serviceImagePositions: Record<string, string> = {
@@ -691,7 +728,8 @@ const serviceImagePositions: Record<string, string> = {
   gebaeudereinigung: '52% center',
   gartenpflege: '50% 46%',
   winterdienst: '49% center',
-  wohnungswechsel: '40% center',
+  muellmanagement: '50% center',
+  einzelauftrag: '40% center',
 }
 
 function Header() {
@@ -779,6 +817,7 @@ function Header() {
           <a href={SERVICES_PATH} onClick={closeMenu}>Leistungen</a>
           <a href={ABOUT_PATH} onClick={closeMenu}>Über uns</a>
           <a href={BLOG_PATH} onClick={closeMenu}>Blog</a>
+          <a href={CAREER_PATH} onClick={closeMenu}>Karriere</a>
           <a href={CONTACT_PATH} onClick={closeMenu}>Kontakt</a>
         </nav>
       </div>
@@ -1030,6 +1069,34 @@ function Hero() {
   )
 }
 
+function HomeVideo() {
+  return (
+    <section className="home-video" aria-labelledby="home-video-heading">
+      <div className="home-video-copy" data-reveal="left">
+        <span className="eyebrow">Perla’s im Einsatz</span>
+        <h2 id="home-video-heading">Objektbetreuung, die man sehen kann.</h2>
+        <p>
+          Lernen Sie Perla’s, unsere Arbeitsweise und die Menschen hinter der laufenden
+          Betreuung größerer Immobilien in einem kurzen Einblick kennen.
+        </p>
+        <a href="https://www.youtube.com/watch?v=u8PsU3hYVYU" target="_blank" rel="noreferrer">
+          <PlayCircle aria-hidden="true" /> Video auf YouTube öffnen
+        </a>
+      </div>
+      <div className="home-video-frame" data-reveal="right" style={{ '--reveal-delay': '80ms' } as CSSProperties}>
+        <iframe
+          src="https://www.youtube-nocookie.com/embed/u8PsU3hYVYU?rel=0"
+          title="Perla’s Objektbetreuung – Einblick in das Unternehmen"
+          loading="lazy"
+          referrerPolicy="strict-origin-when-cross-origin"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowFullScreen
+        />
+      </div>
+    </section>
+  )
+}
+
 function PageBreadcrumb({ current, parent }: { current: string; parent?: { label: string; href: string } }) {
   return (
     <nav className="page-breadcrumb" aria-label="Brotkrümeln">
@@ -1091,7 +1158,7 @@ function HomeCoreServices() {
       <div className="home-section-heading" data-reveal="up">
         <span className="eyebrow">Kernleistungen</span>
         <h2 id="home-core-services-heading">Das übernehmen wir für Ihre Immobilie.</h2>
-        <p>Fünf Leistungen, die sich einzeln beauftragen oder im Facility Management sinnvoll verbinden lassen.</p>
+        <p>Sechs Leistungen, die sich einzeln beauftragen oder im Facility Management sinnvoll verbinden lassen.</p>
       </div>
       <div className="home-service-card-grid">
         {coreFeatures.map((service, index) => {
@@ -1121,6 +1188,65 @@ function HomeCoreServices() {
         })}
       </div>
       <ButtonLink href={SERVICES_PATH} kind="outline" arrow>Alle Leistungen ansehen</ButtonLink>
+    </section>
+  )
+}
+
+function SpecializedServices() {
+  return (
+    <section className="specialized-services" aria-labelledby="specialized-services-heading">
+      <div className="home-section-heading" data-reveal="up">
+        <span className="eyebrow">Spezialisierte Zusatzleistungen</span>
+        <h2 id="specialized-services-heading">Mehr Bedarf am Objekt? Wir koordinieren ihn mit.</h2>
+        <p>
+          Ergänzend zur laufenden Betreuung übernehmen oder koordinieren wir klar abgegrenzte
+          Spezialaufgaben. Umfang, Zuständigkeit und notwendige Fachkunde werden vorab geprüft.
+        </p>
+      </div>
+      <div className="specialized-services-grid">
+        {specializedServices.map(({ icon: Icon, title, text }, index) => (
+          <a
+            className="specialized-service-card"
+            href={CONTACT_PATH}
+            data-reveal="up"
+            style={{ '--reveal-delay': `${index * 55}ms` } as CSSProperties}
+            key={title}
+          >
+            <span><Icon aria-hidden="true" /></span>
+            <h3>{title}</h3>
+            <p>{text}</p>
+            <strong>Bedarf besprechen <ArrowUpRight aria-hidden="true" /></strong>
+          </a>
+        ))}
+      </div>
+    </section>
+  )
+}
+
+function HomeFleet() {
+  return (
+    <section className="home-fleet" aria-labelledby="home-fleet-heading">
+      <div className="home-fleet-copy" data-reveal="left">
+        <span className="eyebrow">Team &amp; Mobilität</span>
+        <h2 id="home-fleet-heading">Einsatzbereit im gesamten Rhein-Main-Gebiet.</h2>
+        <p>
+          Mehrere Teams, abgestimmte Touren und ein wachsender Fuhrpark schaffen die Grundlage,
+          um Wohnanlagen, Gewerbeobjekte und institutionelle Gebäude verlässlich zu betreuen.
+        </p>
+        <div className="home-fleet-facts" aria-label="Kennzahlen zum Einsatz">
+          <span><strong>10+</strong>Mitarbeiter</span>
+          <span><strong>25+</strong>Jahre Erfahrung</span>
+        </div>
+      </div>
+      <figure className="home-fleet-visual" data-reveal="right" style={{ '--reveal-delay': '80ms' } as CSSProperties}>
+        <img
+          src={`${A}kundenbilder/fahrzeuge/perlas_fuhrpark_ki.png`}
+          alt="Visualisierung eines größeren Perla’s-Fuhrparks mit weißen und dunkelblauen Servicefahrzeugen"
+          loading="lazy"
+          decoding="async"
+        />
+        <figcaption>Visualisierung auf Basis realer Perla’s-Fahrzeuge</figcaption>
+      </figure>
     </section>
   )
 }
@@ -1273,6 +1399,8 @@ function ServicesOverviewPage() {
         </div>
       </section>
 
+      <SpecializedServices />
+
       <section className="architecture-bridge" data-reveal="up">
         <div>
           <span className="eyebrow">Mehrere Leistungen verbinden</span>
@@ -1292,19 +1420,44 @@ function AboutPage({ onQuoteOpen }: { onQuoteOpen: () => void }) {
     [MessageCircle, 'Persönliche Abstimmung', 'Ein fester Ansprechpartner bündelt Rückmeldungen und die laufende Koordination.'],
     [ClipboardCheck, 'Objektbezug', 'Der tatsächliche Bedarf der Immobilie bildet die Grundlage für den Leistungsumfang.'],
   ] as const
-  const teamMembers = [
+  const teamMembers: Array<{
+    id: string
+    image?: string
+    alt?: string
+    position?: string
+    role: string
+  }> = [
     {
+      id: 'team-01',
       image: 'kundenbilder/team/team_aussenbereich_01.png',
       alt: 'Mitarbeiterin von Perla’s bei einem Außeneinsatz',
+      role: 'Außenanlagen & Objektkontrolle',
     },
     {
-      image: 'about-team-portrait-2.jpeg',
-      alt: 'Porträt eines Mitarbeiters von Perla’s Objektbetreuung',
+      id: 'team-02',
+      image: 'kundenbilder/leistungen/winterdienst_team.png',
+      alt: 'Mitarbeiter von Perla’s beim Winterdienst',
+      position: '72% 35%',
+      role: 'Winterdienst & Einsatzkoordination',
     },
     {
-      image: 'about-team-portrait-3.jpg',
-      alt: 'Porträt eines Mitarbeiters aus dem Team von Perla’s',
+      id: 'team-03',
+      image: 'kundenbilder/leistungen/transport_umzug_lieferung.png',
+      alt: 'Mitarbeiter bei einem koordinierten Einzelauftrag',
+      position: '24% center',
+      role: 'Einzelaufträge & Logistik',
     },
+    {
+      id: 'team-04',
+      image: 'kundenbilder/leistungen/gebaeudereinigung_flur.png',
+      alt: 'Mitarbeiter von Perla’s bei der Gebäudereinigung',
+      position: '50% 30%',
+      role: 'Gebäudereinigung',
+    },
+    { id: 'team-05', role: 'Objektbetreuung' },
+    { id: 'team-06', role: 'Technischer Service' },
+    { id: 'team-07', role: 'Außenanlagenpflege' },
+    { id: 'team-08', role: 'Organisation & Kundenkontakt' },
   ]
 
   return (
@@ -1328,13 +1481,20 @@ function AboutPage({ onQuoteOpen }: { onQuoteOpen: () => void }) {
 
       <section className="about-story" aria-labelledby="about-story-heading">
         <div data-reveal="left">
-          <span className="eyebrow">Unser Anspruch</span>
-          <h2 id="about-story-heading">Übersicht schafft Verbindlichkeit.</h2>
+          <span className="eyebrow">Unsere Geschichte</span>
+          <h2 id="about-story-heading">Aus Nähe zum Objekt ist verlässliche Betreuung gewachsen.</h2>
+          <span className="about-story-note">Vorbereiteter Entwurf · Kundendaten werden noch finalisiert</span>
         </div>
         <div data-reveal="right" style={{ '--reveal-delay': '70ms' } as CSSProperties}>
-          <p>Seit 1999 ist Perla’s im Rhein-Main-Gebiet tätig. Aus der klassischen Objektbetreuung ist ein Angebot entstanden, das einzelne Facility Services sinnvoll miteinander verbindet.</p>
-          <p>Ausgangspunkt bleibt immer das konkrete Objekt: seine Nutzung, die Flächen, die wiederkehrenden Aufgaben und die benötigten Zuständigkeiten. So entsteht ein Leistungsumfang, der verständlich bleibt und sich im Alltag steuern lässt.</p>
-          <p>Technische Fachprüfungen und qualifikationsgebundene Arbeiten werden klar abgegrenzt und bei Bedarf mit geeigneten Fachbetrieben koordiniert.</p>
+          <p>Perla’s begann 1999 mit einem einfachen Anspruch: Immobilien persönlich kennen, Aufgaben zuverlässig erledigen und für Eigentümer sowie Verwaltungen erreichbar bleiben. Aus ersten Objektbetreuungen in Sulzbach entwickelte sich Schritt für Schritt ein fester Kundenstamm im Rhein-Main-Gebiet.</p>
+          <p>Mit den betreuten Objekten wuchsen auch die Anforderungen. Gebäudereinigung, Außenanlagenpflege, Winterdienst und technische Koordination kamen hinzu. Aus einzelnen Einsätzen entstand eine Arbeitsweise, die Leistungen, Intervalle und Rückmeldungen in einem klaren Betreuungskonzept zusammenführt.</p>
+          <p>Heute arbeitet ein Team aus mehr als zehn Mitarbeitenden an Wohnanlagen, Gewerbeimmobilien und institutionellen Gebäuden. Persönliche Abstimmung bleibt dabei der Kern: Wir betrachten zuerst das konkrete Objekt und organisieren anschließend genau die Leistungen, die im Alltag wirklich gebraucht werden.</p>
+          <ol className="about-timeline" aria-label="Vorläufige Unternehmenshistorie">
+            <li><strong>1999</strong><span>Start der persönlichen Objektbetreuung im Rhein-Main-Gebiet</span></li>
+            <li><strong>2000er</strong><span>Erweiterung um Reinigung, Außenanlagen und Winterdienst</span></li>
+            <li><strong>2010er</strong><span>Mehr Koordination, feste Ansprechpartner und dokumentierte Abläufe</span></li>
+            <li><strong>Heute</strong><span>10+ Mitarbeitende für größere und professionell verwaltete Immobilien</span></li>
+          </ol>
         </div>
       </section>
 
@@ -1342,7 +1502,7 @@ function AboutPage({ onQuoteOpen }: { onQuoteOpen: () => void }) {
         <div className="architecture-section-heading" data-reveal="up">
           <span className="eyebrow">Unser Team</span>
           <h2 id="about-team-heading">Menschen hinter Perla’s.</h2>
-          <p>Persönliche Ansprechpartner sorgen dafür, dass Absprachen klar bleiben und Aufgaben am Objekt verlässlich zusammenlaufen.</p>
+          <p>Acht Teampositionen zeigen die heutige Breite von Perla’s. Namen, Rollen und vier noch fehlende Porträts werden nach Kundenfreigabe ergänzt.</p>
         </div>
         <div className="about-team-grid">
           {teamMembers.map((member, index) => (
@@ -1350,15 +1510,28 @@ function AboutPage({ onQuoteOpen }: { onQuoteOpen: () => void }) {
               className="about-team-card"
               data-reveal="up"
               style={{ '--reveal-delay': `${index * 70}ms` } as CSSProperties}
-              key={member.image}
+              key={member.id}
             >
               <div className="about-team-image">
-                <img src={`${A}${member.image}`} alt={member.alt} loading="lazy" decoding="async" />
+                {member.image ? (
+                  <img
+                    src={`${A}${member.image}`}
+                    alt={member.alt}
+                    loading="lazy"
+                    decoding="async"
+                    style={{ objectPosition: member.position }}
+                  />
+                ) : (
+                  <div className="about-team-placeholder" role="img" aria-label="Porträt wird ergänzt">
+                    <UserRound aria-hidden="true" />
+                    <span>Bild wird ergänzt</span>
+                  </div>
+                )}
                 <span aria-hidden="true">0{index + 1}</span>
               </div>
               <figcaption>
                 <strong>Name wird ergänzt</strong>
-                <span>Position wird ergänzt</span>
+                <span>{member.role}</span>
               </figcaption>
             </figure>
           ))}
@@ -1974,7 +2147,7 @@ function FeatureSection({ onQuoteOpen }: { onQuoteOpen: (service?: string) => vo
       <div className="features-heading" data-reveal="up">
         <span className="eyebrow">Kernleistungen</span>
         <h2 id="features-heading">Leistungen für Ihre Immobilie.</h2>
-        <p>Diese fünf Leistungen stehen bei der regelmäßigen Betreuung größerer und professionell verwalteter Objekte im Vordergrund.</p>
+        <p>Diese sechs Leistungen stehen bei der regelmäßigen Betreuung größerer und professionell verwalteter Objekte im Vordergrund.</p>
       </div>
       <div className="feature-panel" data-reveal="scale" style={{ '--reveal-delay': '100ms' } as CSSProperties}>
         <div className="feature-grid">
@@ -2024,6 +2197,8 @@ function ServiceContactForm({ subject }: { subject: string }) {
     const company = String(formData.get('company') ?? '').trim()
     const email = String(formData.get('email') ?? '').trim()
     const phone = String(formData.get('phone') ?? '').trim()
+    const street = String(formData.get('street') ?? '').trim()
+    const location = String(formData.get('location') ?? '').trim()
     const message = String(formData.get('message') ?? '').trim()
     const body = [
       `Guten Tag, ich interessiere mich für ${subject}.`,
@@ -2032,6 +2207,7 @@ function ServiceContactForm({ subject }: { subject: string }) {
       `Unternehmen / Verwaltung: ${company || 'Nicht angegeben'}`,
       `E-Mail: ${email}`,
       `Telefon: ${phone || 'Nicht angegeben'}`,
+      `Objektadresse: ${street}, ${location}`,
       '',
       'Angaben zum Objekt:',
       message,
@@ -2063,9 +2239,17 @@ function ServiceContactForm({ subject }: { subject: string }) {
           <span>Telefon</span>
           <input type="tel" name="phone" autoComplete="tel" />
         </label>
+        <label>
+          <span>Straße und Hausnummer des Objekts *</span>
+          <input type="text" name="street" autoComplete="street-address" required />
+        </label>
+        <label>
+          <span>PLZ und Ort *</span>
+          <input type="text" name="location" autoComplete="address-level2" required />
+        </label>
         <label className="service-form-wide">
           <span>Was dürfen wir für Sie übernehmen? *</span>
-          <textarea name="message" rows={4} placeholder="Objektart, Ort und gewünschter Leistungsumfang" required />
+          <textarea name="message" rows={4} placeholder="Objektart und gewünschter Leistungsumfang" required />
         </label>
       </div>
       <label className="service-form-consent">
@@ -2576,9 +2760,12 @@ export default function App() {
         <main>
           <Hero />
           <PartnerMarquee />
+          <HomeVideo />
           <Reviews />
           <HomeOverview />
           <HomeCoreServices />
+          <SpecializedServices />
+          <HomeFleet />
           <HomeAudienceCards />
           <HomeTrust />
         </main>

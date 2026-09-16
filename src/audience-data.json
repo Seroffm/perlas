@@ -82,7 +82,7 @@
       "Koordination saisonaler und wiederkehrender Aufgaben"
     ],
     "approach": "Gebäude, Außenanlagen und Zugänge werden in einem abgestimmten Betreuungskonzept betrachtet. Auffälligkeiten werden frühzeitig weitergegeben, damit Verwaltung oder Eigentümer rechtzeitig entscheiden können.",
-    "services": ["objektpflege", "gebaeudereinigung", "wartung-instandhaltung", "gartenpflege", "winterdienst", "wohnungswechsel"],
+    "services": ["objektpflege", "gebaeudereinigung", "wartung-instandhaltung", "gartenpflege", "winterdienst", "muellmanagement", "einzelauftrag"],
     "image": {
       "src": "kundenbilder/objekte/wohnanlage_01.png",
       "alt": "Betreute Wohnanlage mit Balkonen im Rhein-Main-Gebiet",

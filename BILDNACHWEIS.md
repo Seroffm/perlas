@@ -12,7 +12,8 @@ Quelle: `perlas_kundenbilder_FINAL.zip`. Die Originaldateien bleiben unveränder
 | `leistungen/kleinreparatur_bohren.png` | Wartung & Instandhaltung, Leistungskarte | Konkrete handwerkliche Arbeit statt generischem Gebäudebild |
 | `leistungen/aussenanlagen_laubblasen.png` | Garten- & Außenanlagenpflege, Leistungskarte | Tätigkeit und Einsatzbereich sind unmittelbar verständlich |
 | `leistungen/winterdienst_team.png` | Startseiten-Hero, Winterdienst, Über-uns-Hero und Winterdienst-Blog | Hoch aufgelöstes reales Teamfoto mit Fahrzeug und klarem saisonalem Einsatz |
-| `leistungen/transport_umzug_lieferung.png` | Wohnungswechsel, Kontaktseite | Freundlicher Mitarbeitendenkontakt plus passender Transportbezug |
+| `leistungen/transport_umzug_lieferung.png` | Einzelauftrag, Kontaktseite und Teamdarstellung | Freundlicher Mitarbeitendenkontakt plus passender Transportbezug |
+| `leistungen/entsorgung_kartonage.png` | Müllmanagement | Zeigt den konkreten Umgang mit sortiertem Material ohne eine nicht belegte Entsorgungsleistung zu versprechen |
 | `objekte/wohnanlage_modern_02.png` | Startseiten-Hero, Facility-Management-Hero, Objektkontrollen-Blog und Social-/SEO-Fallback | Hoch aufgelöstes, ruhiges Leitmotiv für größere Immobilien |
 | `objekte/wohnanlage_eingang_02.png` | Facility Management für Hausverwaltungen | Gepflegter Gemeinschafts- und Eingangsbereich |
 | `objekte/wohnanlage_01.png` | Facility Management für Wohnanlagen | Eindeutiger Bezug zu verwalteten Mehrfamilienhäusern |
@@ -32,7 +33,6 @@ Die bisherigen Referenzen auf `perlas-hero.png`, `perlas-office.png`, `perlas-pr
 | Datei | Grund |
 | --- | --- |
 | `leistungen/aussenarbeiten_terrasse_01.png` | Sehr spezifischer Terrassenbau; passt nicht sauber zum aktuell beschriebenen Leistungsumfang |
-| `leistungen/entsorgung_kartonage.png` | Thematisch möglich, aber neben dem stärkeren Transportmotiv auf der Wohnungswechsel-Seite redundant |
 | `leistungen/gartenpflege_hecke_01.png` | Tätigkeit ist erkennbar, das Laubbläser-Motiv zeigt Mitarbeitenden- und Markenbezug klarer |
 | `leistungen/zaunbau_01.png` | Zaunbau wird auf der Website nicht als eigenständige Leistung beworben |
 | `leistungen/zaunbau_team_02.png` | Gleicher Grund wie beim Zaunbau-Motiv; vermeidet eine irreführende Leistungszusage |
@@ -47,3 +47,9 @@ Die bisherigen Referenzen auf `perlas-hero.png`, `perlas-office.png`, `perlas-pr
 | `fahrzeuge/perlas_pritsche_01.png` | Für die große Hero-Fläche zu niedrig aufgelöst; dort durch das hochauflösende Transportmotiv ersetzt |
 
 Die Auswahl setzt echte Einsätze, Mitarbeitende, Fahrzeuge und betreute Objekte gezielt ein, ohne jede Seite mit ähnlichen Bildern zu überladen.
+
+## KI-Visualisierung
+
+| Datei | Einsatz auf der Website | Grundlage und Kennzeichnung |
+| --- | --- | --- |
+| `fahrzeuge/perlas_fuhrpark_ki.png` | Fuhrpark-Sektion auf der Startseite | Mit dem integrierten Bildgenerator aus den beiden echten Perlas-Fahrzeugfotos abgeleitete Visualisierung. Auf der Website ausdrücklich als „Visualisierung auf Basis realer Perla’s-Fahrzeuge“ gekennzeichnet. |

@@ -115,7 +115,7 @@
     "audiences": ["Hausverwaltungen und Wohnungseigentümergemeinschaften", "Gewerbe-, Büro- und Praxisimmobilien", "Verwaltete Wohnanlagen und Mehrfamilienhausbestände"],
     "boundaryTitle": "Was wir selbst erledigen",
     "boundaryText": "Perla’s übernimmt kleine Reparaturen und Sichtkontrollen aus dem Hausmeisterbereich. Elektroarbeiten, Arbeiten an Heizungsanlagen, Brandschutzprüfungen und andere zulassungspflichtige Tätigkeiten bleiben qualifizierten Fachbetrieben vorbehalten. Wir können deren Einsatz vorbereiten und am Objekt begleiten.",
-    "relatedServices": ["objektpflege", "gebaeudereinigung", "wohnungswechsel"],
+    "relatedServices": ["objektpflege", "gebaeudereinigung", "einzelauftrag"],
     "faqs": [
       { "question": "Welche Kleinreparaturen übernimmt Perla’s?", "answer": "Typische Beispiele sind Arbeiten an Griffen, Beschlägen, Beleuchtung und losem Inventar. Ob wir eine Reparatur direkt ausführen können, hängt vom konkreten Schaden und den fachlichen Anforderungen ab." },
       { "question": "Was passiert, wenn ein Fachbetrieb benötigt wird?", "answer": "Wir dokumentieren das Schadensbild und stimmen das weitere Vorgehen mit Ihnen ab. Auf Wunsch koordinieren wir den Termin, ermöglichen den Zugang und begleiten den Einsatz vor Ort." },
@@ -177,7 +177,7 @@
     "audiences": ["Größere Wohnanlagen und Gemeinschaftsflächen", "Bürogebäude, Praxen und institutionelle Gebäude", "Gewerbeflächen, Tiefgaragen und Parkbereiche"],
     "boundaryTitle": "Reinigungsumfang vorab klären",
     "boundaryText": "Vor Beginn erfassen wir Materialien, Zugänge, Reinigungszeiten und den gewünschten Umfang. Diese Angaben stehen im Leistungsverzeichnis. Bei einer Rückmeldung sehen wir uns den betroffenen Bereich an und besprechen, ob eine Nacharbeit oder eine Änderung des Ablaufs nötig ist. Spezialverfahren, große Höhen und besondere Verschmutzungen prüfen wir separat.",
-    "relatedServices": ["objektpflege", "wartung-instandhaltung", "wohnungswechsel"],
+    "relatedServices": ["objektpflege", "wartung-instandhaltung", "muellmanagement"],
     "faqs": [
       { "question": "Welche Flächen können gereinigt werden?", "answer": "Je nach Vereinbarung reinigen wir Treppenhäuser, Eingänge, Büros, Praxisräume, Sanitärbereiche, Glasflächen, Gemeinschaftsräume sowie ausgewählte Tiefgaragen und Parkbereiche." },
       { "question": "Wie wird der Reinigungsumfang festgelegt?", "answer": "Wir erfassen Räume, Materialien und Nutzung vor Ort. Das Leistungsverzeichnis hält anschließend fest, welche Bereiche betreut werden, welche Aufgaben dazugehören und in welchen Intervallen gereinigt wird." },
@@ -310,65 +310,127 @@
     ]
   },
   {
-    "slug": "wohnungswechsel",
-    "title": "Wohnungswechsel & Räumung",
-    "text": "Übergaben, Räumungen und die Vorbereitung für Reinigung oder Neuvermietung werden aus einer Hand koordiniert.",
-    "detail": "Bei einem Wohnungs- oder Nutzerwechsel fallen oft mehrere Arbeiten gleichzeitig an. Wir besichtigen die Räume, erfassen den Umfang und planen den Termin. Danach können Räumung, Reinigung und kleinere Arbeiten in der richtigen Reihenfolge erfolgen.",
-    "image": "kundenbilder/leistungen/transport_umzug_lieferung.png",
-    "seoTitle": "Wohnungswechsel & Räumung Rhein-Main | PERLAS",
-    "seoDescription": "Unterstützung bei Wohnungswechsel, Entrümpelung, Räumung und Übergabe im Rhein-Main-Gebiet mit klarer Vorbereitung für Reinigung und Neuvermietung.",
-    "scopeIntro": "Vor dem Angebot sehen wir uns die Räume, die vorhandenen Gegenstände und die Transportwege an. Gemeinsam klären wir, was bleiben soll, was entfernt werden darf und in welchem Zustand die Fläche am Ende benötigt wird. Wenn gewünscht, planen wir Reinigung und kleinere Arbeiten direkt mit ein.",
+    "slug": "muellmanagement",
+    "title": "Müllmanagement",
+    "text": "Saubere Müllplätze, koordinierte Bereitstellung und verlässliche Kontrollen für größere Immobilien.",
+    "detail": "Wir strukturieren wiederkehrende Aufgaben rund um Müllstandorte, Behälter und vereinbarte Bereitstellungen. Auffälligkeiten werden dokumentiert und an Verwaltung oder Entsorgungsbetrieb weitergegeben.",
+    "image": "kundenbilder/leistungen/entsorgung_kartonage.png",
+    "seoTitle": "Müllmanagement für Immobilien Rhein-Main | PERLAS",
+    "seoDescription": "Müllmanagement für Wohnanlagen und Gewerbeimmobilien im Rhein-Main-Gebiet: Kontrollgänge, Behälterbereitstellung, Sauberkeit und dokumentierte Rückmeldungen.",
+    "scopeIntro": "Zu Beginn nehmen wir Müllplätze, Behälter, Zugänge, Abholrhythmen und typische Auffälligkeiten am Objekt auf. Daraus entsteht ein verständlicher Ablauf für Kontrollen, Bereitstellungen und Rückmeldungen.",
     "scopeCards": [
       {
-        "title": "Besichtigung und Umfang klären",
-        "text": "Vor größeren Arbeiten verschaffen wir uns ein realistisches Bild vor Ort. Dabei klären wir, welche Räume dazugehören, was verbleibt und wie die Transportwege aussehen.",
-        "items": ["Räume und Nebenflächen aufnehmen", "Zugänge, Treppen und Aufzüge prüfen", "Gewünschten Endzustand festlegen"]
+        "title": "Müllstandorte kontrollieren",
+        "text": "Bei vereinbarten Kontrollgängen prüfen wir Müllräume und Außenstandorte auf Zugänglichkeit, sichtbare Verschmutzungen und auffällige Ablagerungen.",
+        "items": ["Zugänge und Standorte prüfen", "Überfüllungen erkennen", "Auffälligkeiten dokumentieren"]
       },
       {
-        "title": "Gegenstände sortieren",
-        "text": "Nicht alles in einer Wohnung soll entfernt werden. Vor Beginn kennzeichnen wir gemeinsam, welche Gegenstände bleiben, bereitgestellt oder ausgeräumt werden sollen.",
-        "items": ["Verbleibende Gegenstände kennzeichnen", "Bereitstellung nach Vereinbarung", "Trennung unterschiedlicher Materialien"]
+        "title": "Behälter bereitstellen",
+        "text": "Behälter können nach festgelegtem Plan für die Abholung bereitgestellt und anschließend an ihren Standort zurückgebracht werden.",
+        "items": ["Abholkalender berücksichtigen", "Bereitstellungswege festlegen", "Rückstellung nach Vereinbarung"]
       },
       {
-        "title": "Wohnungen und Nebenräume räumen",
-        "text": "Wir räumen die zuvor aufgenommenen Räume und Nebenflächen. Keller, Abstellräume oder kleinere Außenbereiche können nach der Besichtigung in den Auftrag aufgenommen werden.",
-        "items": ["Wohn- und Gewerberäume", "Keller und Abstellbereiche", "Vereinbarte Nebenflächen"]
+        "title": "Sauberkeit im Umfeld sichern",
+        "text": "Leichte Verunreinigungen rund um Behälter und Sammelstellen werden im vereinbarten Umfang beseitigt.",
+        "items": ["Lose Abfälle aufnehmen", "Standflächen kehren", "Reinigungsbedarf melden"]
       },
       {
-        "title": "Entsorgung vorbereiten",
-        "text": "Vor Beginn erfassen wir Art und Menge der Gegenstände. Bei besonderen Materialien oder größeren Mengen prüfen wir gesondert, welcher Entsorgungsweg infrage kommt.",
-        "items": ["Sortierte Bereitstellung", "Abstimmung geeigneter Entsorgungswege", "Gesonderte Prüfung besonderer Stoffe"]
+        "title": "Fehlwürfe und Sperrmüll melden",
+        "text": "Nicht zuordenbare Ablagerungen oder offensichtliche Fehlwürfe werden fotografisch festgehalten und an die zuständige Stelle gemeldet.",
+        "items": ["Fotodokumentation", "Standort und Umfang festhalten", "Weiteres Vorgehen abstimmen"]
       },
       {
-        "title": "Übergabe vorbereiten",
-        "text": "Nach der Räumung prüfen wir die aufgenommenen Räume gemeinsam oder anhand von Fotos. Dabei halten wir sichtbare Schäden und noch notwendige Reparatur- oder Reinigungsarbeiten fest.",
-        "items": ["Kontrolle des vereinbarten Endzustands", "Fotodokumentation der Räume", "Hinweise auf Reparatur- oder Reinigungsbedarf"]
+        "title": "Entsorgungsbetriebe koordinieren",
+        "text": "Bei Rückfragen oder Zusatzabholungen unterstützen wir die Abstimmung mit dem beauftragten Entsorgungsbetrieb.",
+        "items": ["Ansprechpartner bündeln", "Zugang ermöglichen", "Ergebnis rückmelden"]
       },
       {
-        "title": "Reinigung und Folgearbeiten verbinden",
-        "text": "Auf Wunsch schließen sich Reinigung oder kleinere Reparaturen direkt an die Räumung an. Wir planen die Termine so, dass die Arbeiten in der richtigen Reihenfolge stattfinden.",
-        "items": ["Grund- oder Übergabereinigung", "Kleine Reparaturen nach Freigabe", "Vorbereitung für Neuvermietung oder Neubezug"]
+        "title": "Abläufe dokumentieren",
+        "text": "Wiederkehrende Aufgaben, Sonderfälle und offene Punkte werden für Verwaltung oder Eigentümer nachvollziehbar festgehalten.",
+        "items": ["Kontrollintervalle dokumentieren", "Sonderfälle kennzeichnen", "Offene Punkte weitergeben"]
       }
     ],
     "processSteps": [
-      { "title": "Räume besichtigen", "text": "Wir erfassen Gegenstände, Transportwege und den gewünschten Zustand nach Abschluss der Arbeiten." },
-      { "title": "Termin und Arbeiten festlegen", "text": "Wir legen fest, wann geräumt wird und ob anschließend Entsorgung, kleine Reparaturen oder Reinigung folgen." },
-      { "title": "Ergebnis prüfen", "text": "Zum Abschluss sehen wir uns die Fläche an und informieren über sichtbare Schäden oder noch offene Arbeiten." }
+      { "title": "Standorte aufnehmen", "text": "Wir erfassen Müllplätze, Behälter, Zugänge, Abholtage und wiederkehrende Herausforderungen direkt am Objekt." },
+      { "title": "Aufgaben und Intervalle festlegen", "text": "Kontrollen, Bereitstellungen, Reinigung und Rückmeldungen werden eindeutig in den Leistungsumfang aufgenommen." },
+      { "title": "Auffälligkeiten zurückmelden", "text": "Besondere Ablagerungen, Überfüllungen oder organisatorischer Handlungsbedarf werden zeitnah dokumentiert." }
     ],
     "benefits": [
-      { "title": "Der Aufwand wird vor Beginn realistisch eingeschätzt", "text": "Eine Besichtigung verhindert Missverständnisse bei Menge, Zugang und gewünschtem Endzustand." },
-      { "title": "Ein Ansprechpartner für mehrere Arbeiten", "text": "Räumung, Reinigung und kleine Reparaturen können über einen Kontakt organisiert werden." },
-      { "title": "Die Räume sind für die Übergabe vorbereitet", "text": "Nach Abschluss sehen Sie, was erledigt wurde und welche Arbeiten vor Übergabe oder Neuvermietung noch ausstehen." }
+      { "title": "Müllplätze bleiben besser nutzbar", "text": "Regelmäßige Kontrollen helfen, Zugänge freizuhalten und Verschmutzungen früh zu erkennen." },
+      { "title": "Abholtermine werden planbar begleitet", "text": "Ein abgestimmter Bereitstellungsplan reduziert Rückfragen bei wiederkehrenden Terminen." },
+      { "title": "Die Verwaltung erhält klare Rückmeldungen", "text": "Auffälligkeiten und notwendige Sondermaßnahmen werden nicht nur mündlich, sondern nachvollziehbar gemeldet." }
     ],
-    "audiences": ["Hausverwaltungen und Immobilieneigentümer", "Wohnungs- und Gewerbewechsel", "Büros, Praxen und verwaltete Gewerbeflächen"],
-    "boundaryTitle": "Vor der Räumung prüfen",
-    "boundaryText": "Vor dem Angebot sehen wir uns Räume, Transportwege und die zu entfernenden Gegenstände an. Gefährliche Stoffe, besonders schwere Gegenstände und außergewöhnliche Transporte benötigen eine gesonderte Prüfung. Falls nötig, muss dafür ein spezialisierter Betrieb eingesetzt werden.",
-    "relatedServices": ["gebaeudereinigung", "wartung-instandhaltung", "objektpflege"],
+    "audiences": ["Hausverwaltungen und größere Wohnanlagen", "Büro- und Gewerbeimmobilien", "Institutionelle und öffentliche Gebäude"],
+    "boundaryTitle": "Leistung und Entsorgung klar trennen",
+    "boundaryText": "Perla’s übernimmt die vereinbarten Kontrollen, Bereitstellungen und Reinigungsaufgaben. Abtransport, Verwertung sowie gefährliche oder genehmigungspflichtige Abfälle bleiben Aufgabe zugelassener Entsorgungsfachbetriebe und werden bei Bedarf separat koordiniert.",
+    "relatedServices": ["objektpflege", "gebaeudereinigung", "einzelauftrag"],
     "faqs": [
-      { "question": "Was übernimmt Perla’s bei einem Wohnungswechsel?", "answer": "Möglich sind Besichtigung, Sortierung, Räumung, Vorbereitung der Entsorgung und die Kontrolle der Fläche zum Abschluss. Reinigung und kleinere Folgearbeiten können bei Bedarf direkt eingeplant werden." },
-      { "question": "Ist eine Besichtigung vor dem Angebot nötig?", "answer": "Bei größeren Räumungen ist eine Besichtigung empfehlenswert. Nur vor Ort lassen sich Menge, Transportwege, besondere Gegenstände und der gewünschte Endzustand realistisch einschätzen." },
-      { "question": "Kann anschließend auch gereinigt werden?", "answer": "Ja. Eine Grund- oder Übergabereinigung kann direkt nach der Räumung stattfinden. Ob sie Teil des Auftrags ist, wird vor Beginn festgelegt." },
-      { "question": "Unterstützt Perla’s auch gewerbliche Wechsel?", "answer": "Kleinere Büro-, Praxis- oder Gewerbewechsel sind möglich, wenn Räume, Inventar, Transportwege und Zeitfenster vorab aufgenommen wurden." }
+      { "question": "Was gehört zum Müllmanagement?", "answer": "Je nach Objekt können Kontrollen der Müllstandorte, Behälterbereitstellung, leichte Reinigung, Fotodokumentation und die Abstimmung bei Auffälligkeiten vereinbart werden." },
+      { "question": "Übernimmt Perla’s auch die Entsorgung?", "answer": "Die reguläre Entsorgung und besondere Abfälle bleiben bei zugelassenen Entsorgungsbetrieben. Perla’s kann Zugänge, Bereitstellungen und Rückmeldungen koordinieren." },
+      { "question": "Wie oft werden Müllplätze kontrolliert?", "answer": "Das Intervall richtet sich nach Objektgröße, Abholrhythmus und tatsächlichem Bedarf. Es wird vor Beginn eindeutig im Leistungsumfang festgelegt." },
+      { "question": "Werden Sperrmüll und Fehlwürfe dokumentiert?", "answer": "Ja, wenn dies vereinbart ist. Standort, Umfang und Fotos können an die Verwaltung weitergegeben werden, damit das weitere Vorgehen entschieden werden kann." }
+    ]
+  },
+  {
+    "slug": "einzelauftrag",
+    "title": "Einzelauftrag",
+    "text": "Klar abgegrenzte Arbeiten für kurzfristigen oder einmaligen Bedarf am Objekt.",
+    "detail": "Nicht jede Aufgabe benötigt eine laufende Betreuung. Für einen Einzelauftrag nehmen wir den Bedarf vor Ort auf, grenzen Leistung und Zuständigkeit eindeutig ab und koordinieren die vereinbarte Ausführung.",
+    "image": "kundenbilder/leistungen/transport_umzug_lieferung.png",
+    "seoTitle": "Einzelauftrag für Immobilien Rhein-Main | PERLAS",
+    "seoDescription": "Einmalige Arbeiten für Wohnanlagen, Gewerbeimmobilien, Büros und Praxen im Rhein-Main-Gebiet – klar aufgenommen, angeboten und koordiniert.",
+    "scopeIntro": "Sie schildern uns die konkrete Aufgabe und den gewünschten Termin. Bei Bedarf sehen wir uns die Situation vor Ort an, prüfen Zugänge und Aufwand und halten anschließend genau fest, was zum Einzelauftrag gehört.",
+    "scopeCards": [
+      {
+        "title": "Bedarf vor Ort aufnehmen",
+        "text": "Wir prüfen die Aufgabe, die betroffenen Flächen und alle Zugänge, die für eine realistische Einschätzung wichtig sind.",
+        "items": ["Aufgabe und Ziel klären", "Flächen und Zugänge prüfen", "Aufwand nachvollziehbar einordnen"]
+      },
+      {
+        "title": "Kleine Reparaturen ausführen",
+        "text": "Überschaubare handwerkliche Arbeiten können nach Prüfung als klar abgegrenzter Einzelauftrag übernommen werden.",
+        "items": ["Kleine Montagearbeiten", "Austausch einfacher Bauteile", "Materialbedarf vorab abstimmen"]
+      },
+      {
+        "title": "Flächen vorbereiten",
+        "text": "Räume, Nebenflächen oder Außenbereiche werden für einen vereinbarten Folgetermin vorbereitet.",
+        "items": ["Arbeitsbereiche freimachen", "Material bereitstellen", "Zugänge organisieren"]
+      },
+      {
+        "title": "Transport und Einrichtung unterstützen",
+        "text": "Bei überschaubaren Umstellungen helfen wir beim internen Transport, bei der Platzierung und bei praktischen Einrichtungsschritten.",
+        "items": ["Interne Materialbewegung", "Möbel positionieren", "Arbeitsbereiche einrichten"]
+      },
+      {
+        "title": "Sonderaufgaben koordinieren",
+        "text": "Einmalige Reinigungs-, Außen- oder Organisationsaufgaben lassen sich mit einem festen Ansprechpartner bündeln.",
+        "items": ["Sonderreinigung abstimmen", "Außenarbeiten vorbereiten", "Fachbetriebe bei Bedarf einbinden"]
+      },
+      {
+        "title": "Ergebnis dokumentieren",
+        "text": "Nach Abschluss halten wir das Ergebnis und gegebenenfalls noch offene Punkte verständlich fest.",
+        "items": ["Erledigte Arbeiten prüfen", "Fotos nach Vereinbarung", "Folgebedarf zurückmelden"]
+      }
+    ],
+    "processSteps": [
+      { "title": "Aufgabe schildern", "text": "Sie nennen Objekt, Standort, gewünschtes Ergebnis und den zeitlichen Rahmen." },
+      { "title": "Umfang festlegen", "text": "Wir prüfen die Aufgabe und halten Leistung, Material, Zuständigkeit und Termin nachvollziehbar fest." },
+      { "title": "Auftrag ausführen", "text": "Nach Freigabe koordinieren wir die vereinbarte Arbeit und melden das Ergebnis zurück." }
+    ],
+    "benefits": [
+      { "title": "Auch einmaliger Bedarf wird sauber eingeordnet", "text": "Die Aufgabe erhält einen klaren Umfang, ohne dass sofort eine laufende Betreuung nötig ist." },
+      { "title": "Ein Ansprechpartner bündelt die Abstimmung", "text": "Zugänge, Termin, Material und Rückmeldung laufen über einen festen Kontakt." },
+      { "title": "Folgebedarf wird früh sichtbar", "text": "Wenn Facharbeiten oder weitere Leistungen nötig werden, erhalten Sie eine klare Rückmeldung statt einer ungenauen Zusage." }
+    ],
+    "audiences": ["Hausverwaltungen und Immobilieneigentümer", "Büros, Praxen und Gewerbeobjekte", "Institutionelle und öffentliche Gebäude"],
+    "boundaryTitle": "Einzelauftrag vorab eindeutig abgrenzen",
+    "boundaryText": "Vor der Ausführung prüfen wir Aufwand, Zugänge, Material und notwendige Qualifikationen. Technische Fachprüfungen, genehmigungspflichtige Arbeiten und besondere Transporte werden nicht pauschal zugesagt, sondern bei Bedarf mit geeigneten Fachbetrieben koordiniert.",
+    "relatedServices": ["wartung-instandhaltung", "gebaeudereinigung", "objektpflege"],
+    "faqs": [
+      { "question": "Welche Aufgaben sind als Einzelauftrag möglich?", "answer": "Möglich sind klar abgrenzbare Arbeiten wie kleine Reparaturen, Montagen, interne Umstellungen, Vorbereitungen oder einmalige Reinigungs- und Außenaufgaben. Der genaue Umfang wird vorab geprüft." },
+      { "question": "Ist immer eine Besichtigung nötig?", "answer": "Bei einfachen Aufgaben reichen häufig Fotos und eine genaue Beschreibung. Bei größeren Flächen, schwierigen Zugängen oder unklarem Aufwand ist eine kurze Besichtigung sinnvoll." },
+      { "question": "Kann aus einem Einzelauftrag eine laufende Betreuung entstehen?", "answer": "Ja. Wenn sich wiederkehrender Bedarf zeigt, können wir anschließend passende Leistungen und Intervalle für eine dauerhafte Objektbetreuung vorschlagen." },
+      { "question": "Werden Facharbeiten ebenfalls übernommen?", "answer": "Qualifikationsgebundene Arbeiten bleiben bei geeigneten Fachbetrieben. Perla’s kann den Bedarf aufnehmen, den Zugang organisieren und die Ausführung koordinieren." }
     ]
   }
 ]

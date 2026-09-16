@@ -19,6 +19,7 @@ export default function QuoteModal({ isOpen, initialService, serviceNames, onClo
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [error, setError] = useState('')
   const [propertyType, setPropertyType] = useState('')
+  const [street, setStreet] = useState('')
   const [location, setLocation] = useState('')
   const [selectedServices, setSelectedServices] = useState<string[]>([])
   const [start, setStart] = useState('')
@@ -128,8 +129,8 @@ export default function QuoteModal({ isOpen, initialService, serviceNames, onClo
   }
 
   const validateStep = () => {
-    if (step === 0 && (!propertyType || !location.trim())) {
-      setError('Bitte wählen Sie den Objekttyp und geben Sie den Standort an.')
+    if (step === 0 && (!propertyType || !street.trim() || !location.trim())) {
+      setError('Bitte wählen Sie den Objekttyp und ergänzen Sie Straße, Hausnummer, PLZ und Ort.')
       return false
     }
 
@@ -233,16 +234,30 @@ export default function QuoteModal({ isOpen, initialService, serviceNames, onClo
                         </button>
                       ))}
                     </fieldset>
-                    <label className="field-label">
-                      <span className="field-label-copy">Standort des Objekts</span>
-                      <input
-                        type="text"
-                        value={location}
-                        onChange={(event) => setLocation(event.target.value)}
-                        placeholder="z. B. 65843 Sulzbach"
-                        autoComplete="postal-code"
-                      />
-                    </label>
+                    <div className="field-grid quote-object-address">
+                      <label className="field-label">
+                        <span className="field-label-copy">Straße und Hausnummer des Objekts *</span>
+                        <input
+                          type="text"
+                          value={street}
+                          onChange={(event) => setStreet(event.target.value)}
+                          placeholder="z. B. Hauptstraße 1"
+                          autoComplete="street-address"
+                          required
+                        />
+                      </label>
+                      <label className="field-label">
+                        <span className="field-label-copy">PLZ und Ort *</span>
+                        <input
+                          type="text"
+                          value={location}
+                          onChange={(event) => setLocation(event.target.value)}
+                          placeholder="z. B. 65843 Sulzbach"
+                          autoComplete="address-level2"
+                          required
+                        />
+                      </label>
+                    </div>
                   </>
                 )}
 
