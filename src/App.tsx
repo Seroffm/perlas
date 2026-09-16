@@ -554,26 +554,61 @@ const coreFeatures = coreServiceSlugs
 
 const supplementaryFeatures = features.filter((feature) => !coreServiceSlugs.includes(feature.slug))
 
-const specializedServices = [
+type SpecializedService = {
+  icon: LucideIcon
+  label: string
+  title: string
+  text: string
+  bullets: string[]
+  image?: string
+  imageAlt?: string
+  imagePosition?: string
+  qualificationNote?: string
+  certification?: string
+  certificationPlaceholder?: string
+  supporting?: boolean
+}
+
+const specializedServices: SpecializedService[] = [
   {
     icon: TreePine,
-    title: 'Baumpflege & Baumfällung',
-    text: 'Pflege, Rückschnitt und notwendige Fällungen werden objektbezogen aufgenommen und fachgerecht koordiniert.',
+    label: 'Fachleistung Außenanlagen',
+    title: 'Baumpflege & Baum\u00ADfällung',
+    text: 'Eigenständige Fachleistung für Pflege, Rückschnitt und – nach objektbezogener Prüfung – notwendige Fällungen.',
+    bullets: ['Bestand und Zugänglichkeit aufnehmen', 'Pflege- und Rückschnittbedarf einordnen', 'Sicherungsbereich und Ausführung abstimmen'],
+    image: 'kundenbilder/leistungen/gartenpflege_hecke_01.png',
+    imageAlt: 'Professioneller Heckenschnitt mit motorisiertem Schneidgerät in einer gepflegten Außenanlage',
+    imagePosition: '50% 45%',
+    qualificationNote: 'Erforderliche Fachkunde und Sicherungsmaßnahmen werden vor der Ausführung geprüft.',
+    certificationPlaceholder: 'Konkrete Zertifizierung wird nach Kundenfreigabe ergänzt.',
   },
   {
     icon: Building2,
-    title: 'Tiefgaragenreinigung',
-    text: 'Maschinelle und manuelle Reinigung von Fahrflächen, Stellplätzen und schwer erreichbaren Randbereichen.',
+    label: 'Professionelle Flächenreinigung',
+    title: 'Tiefgaragen\u00ADreinigung',
+    text: 'Systematische Reinigung größerer Park- und Tiefgaragenflächen mit abgestimmtem Maschinen- und Handeinsatz.',
+    bullets: ['Fahrflächen und Stellplätze', 'Randbereiche und schwer zugängliche Zonen', 'Maschinelle Reinigung und manuelle Nacharbeiten'],
+    image: 'kundenbilder/vorher_nachher/parkhaus_reinigung_geraet.png',
+    imageAlt: 'Reinigungsgerät von Perla’s bei der maschinellen Reinigung eines Parkhauses',
+    imagePosition: '50% 56%',
+    certificationPlaceholder: 'Qualifikations- oder Verfahrensnachweis wird bei Kundenfreigabe ergänzt.',
   },
   {
     icon: ClipboardCheck,
-    title: 'Spielplatzkontrolle & Spielgerätewartung',
-    text: 'Regelmäßige Sichtkontrollen, dokumentierte Auffälligkeiten und koordinierte Wartung der Spielbereiche.',
+    label: 'Fachleistung für Wohnanlagen',
+    title: 'Spielplatzkontrolle & Spielgeräte\u00ADwartung',
+    text: 'Planbare Betreuung von Spielbereichen für Hausverwaltungen, größere Wohnanlagen und institutionelle Auftraggeber.',
+    bullets: ['Regelmäßige Sichtkontrollen', 'Auffälligkeiten nachvollziehbar dokumentieren', 'Notwendige Maßnahmen und Wartung koordinieren'],
+    qualificationNote: 'Prüfumfang und erforderliche Fachkunde werden vor der Beauftragung verbindlich festgelegt.',
+    certificationPlaceholder: 'Konkrete Zertifizierung für Prüfung und Wartung wird nach Kundenfreigabe ergänzt.',
   },
   {
     icon: BriefcaseBusiness,
-    title: 'Büro- & Einrichtungsservice',
+    label: 'Ergänzende Serviceleistung',
+    title: 'Büro- & Einrichtungs\u00ADservice',
     text: 'Praktische Unterstützung bei Möblierung, internen Umstellungen und klar abgegrenzten Arbeiten im Büroalltag.',
+    bullets: ['Interne Umstellungen unterstützen', 'Einrichtung und Material bereitstellen'],
+    supporting: true,
   },
 ]
 
@@ -1073,11 +1108,11 @@ function HomeVideo() {
   return (
     <section className="home-video" aria-labelledby="home-video-heading">
       <div className="home-video-copy" data-reveal="left">
-        <span className="eyebrow">Perla’s im Einsatz</span>
-        <h2 id="home-video-heading">Objektbetreuung, die man sehen kann.</h2>
+        <span className="eyebrow">Perla’s Facility Management</span>
+        <h2 id="home-video-heading">Facility Management mit persönlicher Verantwortung.</h2>
         <p>
-          Lernen Sie Perla’s, unsere Arbeitsweise und die Menschen hinter der laufenden
-          Betreuung größerer Immobilien in einem kurzen Einblick kennen.
+          Lernen Sie Perla’s, unsere Arbeitsweise und die Menschen hinter der professionellen
+          Betreuung von Wohnanlagen, Gewerbeimmobilien und verwalteten Immobilienbeständen kennen.
         </p>
         <a href="https://www.youtube.com/watch?v=u8PsU3hYVYU" target="_blank" rel="noreferrer">
           <PlayCircle aria-hidden="true" /> Video auf YouTube öffnen
@@ -1194,30 +1229,64 @@ function HomeCoreServices() {
 
 function SpecializedServices() {
   return (
-    <section className="specialized-services" aria-labelledby="specialized-services-heading">
+    <section className="specialized-services" aria-labelledby="specialized-services-heading" lang="de">
+      <div className="specialized-services-flow" aria-label="Zusammenspiel der Leistungen" data-reveal="up">
+        <span>Facility Management</span>
+        <ChevronRight aria-hidden="true" />
+        <span>Regelmäßige Kernleistungen</span>
+        <ChevronRight aria-hidden="true" />
+        <strong>Ergänzende Fachleistungen</strong>
+      </div>
       <div className="home-section-heading" data-reveal="up">
         <span className="eyebrow">Spezialisierte Zusatzleistungen</span>
-        <h2 id="specialized-services-heading">Mehr Bedarf am Objekt? Wir koordinieren ihn mit.</h2>
+        <h2 id="specialized-services-heading">Ergänzende Fachleistungen für professionell betreute Immobilien.</h2>
         <p>
-          Ergänzend zur laufenden Betreuung übernehmen oder koordinieren wir klar abgegrenzte
-          Spezialaufgaben. Umfang, Zuständigkeit und notwendige Fachkunde werden vorab geprüft.
+          Zusätzlich zu den laufenden Kernleistungen übernimmt oder koordiniert Perla’s
+          spezialisierte Aufgaben. Umfang, Zuständigkeit und erforderliche Fachkunde werden vorab geprüft.
         </p>
       </div>
       <div className="specialized-services-grid">
-        {specializedServices.map(({ icon: Icon, title, text }, index) => (
-          <a
-            className="specialized-service-card"
-            href={CONTACT_PATH}
-            data-reveal="up"
-            style={{ '--reveal-delay': `${index * 55}ms` } as CSSProperties}
-            key={title}
-          >
-            <span><Icon aria-hidden="true" /></span>
-            <h3>{title}</h3>
-            <p>{text}</p>
-            <strong>Bedarf besprechen <ArrowUpRight aria-hidden="true" /></strong>
-          </a>
-        ))}
+        {specializedServices.map((service, index) => {
+          const Icon = service.icon
+          return (
+            <article
+              className={service.supporting ? 'specialized-service-card specialized-service-card--supporting' : 'specialized-service-card'}
+              data-reveal="up"
+              style={{ '--reveal-delay': `${index * 55}ms` } as CSSProperties}
+              key={service.title}
+            >
+              <div className={service.image ? 'specialized-service-media' : 'specialized-service-media specialized-service-media--icon'}>
+                {service.image ? (
+                  <img
+                    src={`${A}${service.image}`}
+                    alt={service.imageAlt}
+                    loading="lazy"
+                    decoding="async"
+                    style={{ objectPosition: service.imagePosition }}
+                  />
+                ) : (
+                  <><Icon aria-hidden="true" /><span>{service.label}</span></>
+                )}
+              </div>
+              <div className="specialized-service-copy">
+                <span className="specialized-service-label">{service.label}</span>
+                <h3>{service.title}</h3>
+                <p>{service.text}</p>
+                <ul>
+                  {service.bullets.map((bullet) => <li key={bullet}><CheckCircle2 aria-hidden="true" />{bullet}</li>)}
+                </ul>
+                {service.qualificationNote && (
+                  <p className="specialized-service-qualification"><ShieldCheck aria-hidden="true" />{service.qualificationNote}</p>
+                )}
+                {service.certification && <span className="specialized-service-certificate">{service.certification}</span>}
+              </div>
+            </article>
+          )
+        })}
+      </div>
+      <div className="specialized-services-footer" data-reveal="up">
+        <p><ShieldCheck aria-hidden="true" /> Erforderliche Fachkunde und Nachweise werden je Leistung vor der Beauftragung geklärt.</p>
+        <ButtonLink href={CONTACT_PATH} kind="outline" arrow>Spezialleistung anfragen</ButtonLink>
       </div>
     </section>
   )
@@ -2759,8 +2828,8 @@ export default function App() {
       ) : (
         <main>
           <Hero />
-          <PartnerMarquee />
           <HomeVideo />
+          <PartnerMarquee />
           <Reviews />
           <HomeOverview />
           <HomeCoreServices />

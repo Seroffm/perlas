@@ -12,6 +12,7 @@ Quelle: `perlas_kundenbilder_FINAL.zip`. Die Originaldateien bleiben unveränder
 | `leistungen/kleinreparatur_bohren.png` | Wartung & Instandhaltung, Leistungskarte | Konkrete handwerkliche Arbeit statt generischem Gebäudebild |
 | `leistungen/aussenanlagen_laubblasen.png` | Garten- & Außenanlagenpflege, Leistungskarte | Tätigkeit und Einsatzbereich sind unmittelbar verständlich |
 | `leistungen/winterdienst_team.png` | Startseiten-Hero, Winterdienst, Über-uns-Hero und Winterdienst-Blog | Hoch aufgelöstes reales Teamfoto mit Fahrzeug und klarem saisonalem Einsatz |
+| `leistungen/gartenpflege_hecke_01.png` | Startseite, Fachleistung Baumpflege & Baumfällung | Authentisches Kundenmotiv mit erkennbarer motorisierter Gehölzpflege in einer Außenanlage |
 | `leistungen/transport_umzug_lieferung.png` | Einzelauftrag, Kontaktseite und Teamdarstellung | Freundlicher Mitarbeitendenkontakt plus passender Transportbezug |
 | `leistungen/entsorgung_kartonage.png` | Müllmanagement | Zeigt den konkreten Umgang mit sortiertem Material ohne eine nicht belegte Entsorgungsleistung zu versprechen |
 | `objekte/wohnanlage_modern_02.png` | Startseiten-Hero, Facility-Management-Hero, Objektkontrollen-Blog und Social-/SEO-Fallback | Hoch aufgelöstes, ruhiges Leitmotiv für größere Immobilien |
@@ -33,7 +34,6 @@ Die bisherigen Referenzen auf `perlas-hero.png`, `perlas-office.png`, `perlas-pr
 | Datei | Grund |
 | --- | --- |
 | `leistungen/aussenarbeiten_terrasse_01.png` | Sehr spezifischer Terrassenbau; passt nicht sauber zum aktuell beschriebenen Leistungsumfang |
-| `leistungen/gartenpflege_hecke_01.png` | Tätigkeit ist erkennbar, das Laubbläser-Motiv zeigt Mitarbeitenden- und Markenbezug klarer |
 | `leistungen/zaunbau_01.png` | Zaunbau wird auf der Website nicht als eigenständige Leistung beworben |
 | `leistungen/zaunbau_team_02.png` | Gleicher Grund wie beim Zaunbau-Motiv; vermeidet eine irreführende Leistungszusage |
 | `leistungen/bodenarbeiten_entfernung.png` | Für großformatige Blogflächen zu niedrig aufgelöst; dort bleibt das hochauflösende Reinigungsmotiv schärfer |
