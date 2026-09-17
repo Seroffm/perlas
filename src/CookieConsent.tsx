@@ -10,6 +10,7 @@ type ConsentPreferences = {
 }
 
 const STORAGE_KEY = 'perlas-cookie-consent-v1'
+const PRIVACY_PATH = `${import.meta.env.BASE_URL}datenschutz/`
 
 function readPreferences(): ConsentPreferences | null {
   try {
@@ -128,7 +129,7 @@ export default function CookieConsent() {
               Notwendige Speicherungen sorgen dafür, dass die Website funktioniert. Google Maps
               und andere optionale externe Dienste werden nur mit Ihrer Zustimmung aktiviert.
             </p>
-            <a href="https://perlas.de/datenschutz/">Mehr zum Datenschutz</a>
+            <a href={PRIVACY_PATH}>Mehr zum Datenschutz</a>
           </div>
           <div className="cookie-banner-actions">
             <button className="cookie-primary" type="button" onClick={() => savePreferences(true, true)}>

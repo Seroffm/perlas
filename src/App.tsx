@@ -37,6 +37,7 @@ import CareerPage from './CareerPage'
 import audienceContent from './audience-data.json'
 import blogContent from './blog-data.json'
 import jobContent from './job-data.json'
+import privacyContent from './privacy-content.json'
 import serviceContent from './service-data.json'
 import type { BlogPostContent, JobOpeningContent } from './content-types'
 
@@ -154,7 +155,7 @@ function usePageSeo(service?: Feature, pageKind: PageKind = 'home', audience?: A
       privacy: {
         path: 'datenschutz/',
         title: 'Datenschutz | Perla’s Objektbetreuung',
-        description: 'Vorläufige Informationen zum Datenschutz auf der Website von Perla’s Objektbetreuung.',
+        description: 'Datenschutzerklärung von Perla’s Objektbetreuung mit Informationen zu Datenverarbeitung, Cookies, Kontaktwegen und Betroffenenrechten.',
         schemaType: 'WebPage',
       },
     }
@@ -2798,6 +2799,51 @@ function Insights() {
 
 type LegalPageType = 'imprint' | 'privacy'
 
+type PrivacyBlock =
+  | { type: 'paragraph'; text: string }
+  | { type: 'subheading'; text: string }
+  | { type: 'list'; items: string[] }
+  | { type: 'contact'; company: string; address: string; phone: string; phoneHref: string; email: string }
+
+type PrivacySectionContent = {
+  id: string
+  title: string
+  blocks: PrivacyBlock[]
+  review?: string
+}
+
+type PrivacyContent = {
+  updated: string
+  lead: string
+  sourceNote: string
+  sections: PrivacySectionContent[]
+}
+
+const privacy = privacyContent as PrivacyContent
+
+function PrivacyBlockContent({ block }: { block: PrivacyBlock }) {
+  if (block.type === 'subheading') {
+    return <h3>{block.text}</h3>
+  }
+
+  if (block.type === 'list') {
+    return <ul>{block.items.map((item) => <li key={item}>{item}</li>)}</ul>
+  }
+
+  if (block.type === 'contact') {
+    return (
+      <address className="legal-contact-address">
+        <strong>{block.company}</strong>
+        <span>{block.address.split('\n').map((line) => <Fragment key={line}>{line}<br /></Fragment>)}</span>
+        <span>Telefon: <a href={`tel:${block.phoneHref}`}>{block.phone}</a></span>
+        <span>E-Mail: <a href={`mailto:${block.email}`}>{block.email}</a></span>
+      </address>
+    )
+  }
+
+  return <p>{block.text}</p>
+}
+
 function LegalPage({ type }: { type: LegalPageType }) {
   const isImprint = type === 'imprint'
 
@@ -2805,58 +2851,72 @@ function LegalPage({ type }: { type: LegalPageType }) {
     <main className="legal-page">
       <section className="legal-hero">
         <PageBreadcrumb current={isImprint ? 'Impressum' : 'Datenschutz'} />
-        <span className="eyebrow">Rechtliche Informationen</span>
+        <span className="eyebrow">{isImprint ? 'Rechtliche Informationen' : 'Rechtliches'}</span>
         <h1>{isImprint ? 'Impressum' : <>Datenschutz<wbr />erklärung</>}</h1>
-        <p>{isImprint ? 'Angaben zum Anbieter dieser Website.' : 'Informationen zum Umgang mit personenbezogenen Daten auf dieser Website.'}</p>
+        <p>{isImprint ? 'Angaben zum Anbieter dieser Website.' : privacy.lead}</p>
+        {!isImprint && <span className="legal-version">Stand: {privacy.updated}</span>}
       </section>
 
-      <section className="legal-content">
-        <aside>
-          <strong>Vorläufiger Platzhalter</strong>
-          <p>Diese Seite ist strukturell vorbereitet, aber noch nicht abschließend rechtlich geprüft. Fehlende Pflichtangaben müssen vor dem finalen Livegang ergänzt werden.</p>
-        </aside>
+      <section className={`legal-content${isImprint ? '' : ' legal-content--privacy'}`}>
         {isImprint ? (
-          <div className="legal-copy">
-            <section>
-              <h2>Angaben gemäß § 5 DDG</h2>
-              <p>Perla’s Objektbetreuung GmbH &amp; Co. KG<br />Hauptstraße 1<br />65843 Sulzbach (Taunus)<br />Deutschland</p>
-            </section>
-            <section>
-              <h2>Vertretung und Register</h2>
-              <p>Vertretungsberechtigte Person: <strong>[wird ergänzt]</strong><br />Registergericht: <strong>[wird ergänzt]</strong><br />Registernummer: <strong>[wird ergänzt]</strong><br />Umsatzsteuer-ID: <strong>[wird ergänzt]</strong></p>
-            </section>
-            <section>
-              <h2>Kontakt</h2>
-              <p>Telefon: <a href="tel:+491776867145">0177 68 67 145</a><br />E-Mail: <a href="mailto:mail@perlas.de">mail@perlas.de</a></p>
-            </section>
-            <section>
-              <h2>Verantwortlich für Inhalte</h2>
-              <p>Verantwortliche Person nach § 18 Abs. 2 MStV: <strong>[wird ergänzt]</strong></p>
-            </section>
-          </div>
+          <>
+            <aside>
+              <strong>Vorläufiger Platzhalter</strong>
+              <p>Diese Seite ist strukturell vorbereitet, aber noch nicht abschließend rechtlich geprüft. Fehlende Pflichtangaben müssen vor dem finalen Livegang ergänzt werden.</p>
+            </aside>
+            <div className="legal-copy">
+              <section>
+                <h2>Angaben gemäß § 5 DDG</h2>
+                <p>Perla’s Objektbetreuung GmbH &amp; Co. KG<br />Hauptstraße 1<br />65843 Sulzbach (Taunus)<br />Deutschland</p>
+              </section>
+              <section>
+                <h2>Vertretung und Register</h2>
+                <p>Vertretungsberechtigte Person: <strong>[wird ergänzt]</strong><br />Registergericht: <strong>[wird ergänzt]</strong><br />Registernummer: <strong>[wird ergänzt]</strong><br />Umsatzsteuer-ID: <strong>[wird ergänzt]</strong></p>
+              </section>
+              <section>
+                <h2>Kontakt</h2>
+                <p>Telefon: <a href="tel:+491776867145">0177 68 67 145</a><br />E-Mail: <a href="mailto:mail@perlas.de">mail@perlas.de</a></p>
+              </section>
+              <section>
+                <h2>Verantwortlich für Inhalte</h2>
+                <p>Verantwortliche Person nach § 18 Abs. 2 MStV: <strong>[wird ergänzt]</strong></p>
+              </section>
+            </div>
+          </>
         ) : (
-          <div className="legal-copy">
-            <section>
-              <h2>1. Verantwortliche Stelle</h2>
-              <p>Perla’s Objektbetreuung GmbH &amp; Co. KG<br />Hauptstraße 1, 65843 Sulzbach (Taunus)<br />E-Mail: <a href="mailto:mail@perlas.de">mail@perlas.de</a></p>
-            </section>
-            <section>
-              <h2>2. Daten beim Besuch der Website</h2>
-              <p>Beim Aufruf der Website können technisch notwendige Verbindungsdaten in Server-Protokollen verarbeitet werden. Welche Daten der künftige Hostinganbieter konkret speichert und wie lange sie aufbewahrt werden, wird nach der finalen Hostingentscheidung ergänzt.</p>
-            </section>
-            <section>
-              <h2>3. Kontaktaufnahme und Formulare</h2>
-              <p>Angaben aus Kontakt-, Angebots- und Bewerbungsanfragen werden ausschließlich verwendet, um die jeweilige Anfrage zu bearbeiten. Direktanfragen auf Leistungsseiten öffnen mit den eingegebenen Angaben das E-Mail-Programm des Nutzers. Das Angebotsformular übermittelt Angaben derzeit noch nicht technisch; vor einer späteren API-Anbindung werden Empfänger, Speicherdauer und Verarbeitung abschließend ergänzt.</p>
-            </section>
-            <section>
-              <h2>4. Cookies und Einwilligungen</h2>
-              <p>Das Cookie-Banner ermöglicht die Auswahl technisch erforderlicher und optionaler Funktionen. Eine abschließende Auflistung aller eingesetzten Dienste, Speicherdauern und Rechtsgrundlagen wird vor dem Produktivbetrieb ergänzt.</p>
-            </section>
-            <section>
-              <h2>5. Ihre Rechte</h2>
-              <p>Betroffene Personen können im Rahmen der gesetzlichen Voraussetzungen Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung und Datenübertragbarkeit verlangen sowie erteilte Einwilligungen widerrufen. Die zuständige Aufsichtsbehörde wird in der finalen Fassung benannt.</p>
-            </section>
-          </div>
+          <>
+            <aside className="legal-toc">
+              <strong>Inhaltsverzeichnis</strong>
+              <nav aria-label="Inhaltsverzeichnis der Datenschutzerklärung">
+                {privacy.sections.map((section) => (
+                  <a href={`#${section.id}`} key={section.id}>{section.title}</a>
+                ))}
+              </nav>
+            </aside>
+            <div className="legal-copy legal-copy--privacy">
+              <div className="legal-source-note">
+                <ShieldCheck aria-hidden="true" />
+                <div>
+                  <strong>Grundlage und Prüfstatus</strong>
+                  <p>{privacy.sourceNote}</p>
+                </div>
+              </div>
+              {privacy.sections.map((section) => (
+                <section id={section.id} key={section.id}>
+                  <h2>{section.title}</h2>
+                  {section.blocks.map((block, index) => (
+                    <PrivacyBlockContent block={block} key={`${section.id}-${block.type}-${index}`} />
+                  ))}
+                  {section.review && (
+                    <aside className="legal-review-note">
+                      <strong>Hinweis zum aktuellen technischen Stand</strong>
+                      <p>{section.review}</p>
+                    </aside>
+                  )}
+                </section>
+              ))}
+            </div>
+          </>
         )}
       </section>
     </main>
