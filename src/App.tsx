@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useLayoutEffect, useRef, useState, type CSSProperties, type FormEvent } from 'react'
+import { Fragment, useCallback, useEffect, useId, useLayoutEffect, useRef, useState, type CSSProperties, type FormEvent, type ReactNode } from 'react'
 import {
   ArrowUpRight,
   BriefcaseBusiness,
@@ -402,6 +402,68 @@ function ButtonLink({
   )
 }
 
+type ExpandableCollectionProps<T> = {
+  items: readonly T[]
+  initialCount: number
+  className: string
+  renderItem: (item: T, index: number) => ReactNode
+  getKey: (item: T, index: number) => string
+  moreLabel?: string
+  lessLabel?: string
+  compact?: boolean
+}
+
+function ExpandableCollection<T>({
+  items,
+  initialCount,
+  className,
+  renderItem,
+  getKey,
+  moreLabel = 'Weitere Leistungen anzeigen',
+  lessLabel = 'Weniger anzeigen',
+  compact = false,
+}: ExpandableCollectionProps<T>) {
+  const [expanded, setExpanded] = useState(false)
+  const disclosureId = `expandable-${useId().replace(/:/g, '')}`
+  const primaryItems = items.slice(0, initialCount)
+  const additionalItems = items.slice(initialCount)
+
+  const renderItems = (collection: readonly T[], offset = 0) => collection.map((item, index) => (
+    <Fragment key={getKey(item, index + offset)}>
+      {renderItem(item, index + offset)}
+    </Fragment>
+  ))
+
+  return (
+    <div className={`expandable-collection${compact ? ' expandable-collection--compact' : ''}`}>
+      <div className={className}>{renderItems(primaryItems)}</div>
+      {additionalItems.length > 0 && (
+        <>
+          <div
+            className={`expandable-collection__extra${expanded ? ' is-expanded' : ''}`}
+            id={disclosureId}
+            aria-hidden={!expanded}
+          >
+            <div className="expandable-collection__extra-inner">
+              <div className={className}>{renderItems(additionalItems, initialCount)}</div>
+            </div>
+          </div>
+          <button
+            className="expandable-collection__toggle"
+            type="button"
+            aria-expanded={expanded}
+            aria-controls={disclosureId}
+            onClick={() => setExpanded((current) => !current)}
+          >
+            <span>{expanded ? lessLabel : moreLabel}</span>
+            <ChevronDown aria-hidden="true" />
+          </button>
+        </>
+      )}
+    </div>
+  )
+}
+
 const GOOGLE_REVIEWS_URL =
   'https://www.google.com/search?q=Perla%27s+Objektbetreuung+GmbH+%26+Co.+KG+Sulzbach+Rezensionen'
 
@@ -561,6 +623,19 @@ const coreServiceSlugs = [
 ]
 
 const coreFeatures = coreServiceSlugs
+  .map((slug) => features.find((feature) => feature.slug === slug))
+  .filter((feature): feature is Feature => Boolean(feature))
+
+const homeCoreServiceSlugs = [
+  'objektpflege',
+  'muellmanagement',
+  'gebaeudereinigung',
+  'wartung-instandhaltung',
+  'gartenpflege',
+  'winterdienst',
+]
+
+const homeCoreFeatures = homeCoreServiceSlugs
   .map((slug) => features.find((feature) => feature.slug === slug))
   .filter((feature): feature is Feature => Boolean(feature))
 
@@ -1186,7 +1261,7 @@ function PageBreadcrumb({ current, parent }: { current: string; parent?: { label
 }
 
 function HomeOverview() {
-  const highlightedServices = coreFeatures.slice(0, 3)
+  const highlightedServices = homeCoreFeatures.slice(0, 3)
 
   return (
     <section className="home-overview" aria-labelledby="home-overview-heading">
@@ -1234,13 +1309,18 @@ function HomeCoreServices() {
     <section className="home-core-services" id="leistungen" aria-labelledby="home-core-services-heading">
       <div className="home-section-heading" data-reveal="up">
         <span className="eyebrow">Kernleistungen</span>
-        <h2 id="home-core-services-heading">Das übernehmen wir für Ihre Immobilie.</h2>
-        <p>Sechs Leistungen, die sich einzeln beauftragen oder im Facility Management sinnvoll verbinden lassen.</p>
+        <h2 id="home-core-services-heading">Unsere Kernleistungen.</h2>
+        <p>Die wichtigsten Leistungen sehen Sie sofort. Weitere Bereiche lassen sich bei Bedarf übersichtlich einblenden.</p>
       </div>
-      <div className="home-service-card-grid">
-        {coreFeatures.map((service, index) => {
+      <ExpandableCollection
+        items={homeCoreFeatures}
+        initialCount={3}
+        className="home-service-card-grid"
+        getKey={(service) => service.slug}
+        renderItem={(service, index) => {
           const Icon = service.icon
           const imagePosition = serviceImagePositions[service.slug]
+          const displayTitle = service.slug === 'objektpflege' ? 'Objektbetreuung' : service.title
 
           return (
             <a
@@ -1256,39 +1336,49 @@ function HomeCoreServices() {
               </div>
               <div className="home-service-card-copy">
                 <span className="eyebrow">Facility Service</span>
-                <h3>{service.title}</h3>
+                <h3>{displayTitle}</h3>
                 <p>{service.text}</p>
                 <span className="home-service-card-link">Leistung ansehen <ArrowUpRight aria-hidden="true" /></span>
               </div>
             </a>
           )
-        })}
-      </div>
+        }}
+      />
       <ButtonLink href={SERVICES_PATH} kind="outline" arrow>Alle Leistungen ansehen</ButtonLink>
     </section>
   )
 }
 
-function SpecializedServices() {
+function SpecializedServices({ certifiedOnly = false }: { certifiedOnly?: boolean }) {
+  const orderedServices = [...specializedServices].sort((left, right) => Number(Boolean(right.certification)) - Number(Boolean(left.certification)))
+  const displayedServices = certifiedOnly
+    ? orderedServices.filter((service) => Boolean(service.certification))
+    : orderedServices
+
   return (
-    <section className="specialized-services" aria-labelledby="specialized-services-heading" lang="de">
+    <section className={`specialized-services${certifiedOnly ? ' specialized-services--certified' : ''}`} aria-labelledby="specialized-services-heading" lang="de">
       <div className="specialized-services-flow" aria-label="Zusammenspiel der Leistungen" data-reveal="up">
         <span>Facility Management</span>
         <ChevronRight aria-hidden="true" />
-        <span>Regelmäßige Kernleistungen</span>
+        <span>{certifiedOnly ? 'Nachgewiesene Fachkunde' : 'Regelmäßige Kernleistungen'}</span>
         <ChevronRight aria-hidden="true" />
-        <strong>Ergänzende Fachleistungen</strong>
+        <strong>{certifiedOnly ? 'Zertifizierte Leistungen' : 'Ergänzende Fachleistungen'}</strong>
       </div>
       <div className="home-section-heading" data-reveal="up">
-        <span className="eyebrow">Spezialisierte Zusatzleistungen</span>
-        <h2 id="specialized-services-heading">Ergänzende Fachleistungen für professionell betreute Immobilien.</h2>
+        <span className="eyebrow">{certifiedOnly ? 'Nachgewiesene Fachkompetenz' : 'Spezialisierte Zusatzleistungen'}</span>
+        <h2 id="specialized-services-heading">{certifiedOnly ? 'Zertifizierte Leistungen.' : 'Ergänzende Fachleistungen für professionell betreute Immobilien.'}</h2>
         <p>
-          Zusätzlich zu den laufenden Kernleistungen übernimmt oder koordiniert Perla’s
-          spezialisierte Aufgaben. Umfang, Zuständigkeit und erforderliche Fachkunde werden vorab geprüft.
+          {certifiedOnly
+            ? 'Für ausgewählte Fachleistungen setzt Perla’s qualifizierte Mitarbeitende und klar definierte Prüf- und Arbeitsabläufe ein.'
+            : 'Zusätzlich zu den laufenden Kernleistungen übernimmt oder koordiniert Perla’s spezialisierte Aufgaben. Umfang, Zuständigkeit und erforderliche Fachkunde werden vorab geprüft.'}
         </p>
       </div>
-      <div className="specialized-services-grid">
-        {specializedServices.map((service, index) => {
+      <ExpandableCollection
+        items={displayedServices}
+        initialCount={certifiedOnly ? displayedServices.length : 2}
+        className="specialized-services-grid"
+        getKey={(service) => service.title}
+        renderItem={(service, index) => {
           const Icon = service.icon
           return (
             <article
@@ -1331,10 +1421,10 @@ function SpecializedServices() {
               </div>
             </article>
           )
-        })}
-      </div>
+        }}
+      />
       <div className="specialized-services-footer" data-reveal="up">
-        <p><ShieldCheck aria-hidden="true" /> Erforderliche Fachkunde und Nachweise werden je Leistung vor der Beauftragung geklärt.</p>
+        <p><ShieldCheck aria-hidden="true" /> {certifiedOnly ? 'Die konkreten Qualifikationen und der vereinbarte Prüfumfang werden vor der Beauftragung transparent festgehalten.' : 'Erforderliche Fachkunde und Nachweise werden je Leistung vor der Beauftragung geklärt.'}</p>
         <ButtonLink href={CONTACT_PATH} kind="outline" arrow>Spezialleistung anfragen</ButtonLink>
       </div>
     </section>
@@ -1483,8 +1573,12 @@ function ServicesOverviewPage() {
           <h2 id="services-catalog-heading">Unsere Leistungen im Überblick.</h2>
           <p>Jede Leistung führt zu einer eigenen Seite mit Leistungsumfang, Ablauf, Einsatzbereichen und klarer fachlicher Einordnung.</p>
         </div>
-        <div className="services-catalog-grid">
-          {standardFeatures.map((feature, index) => {
+        <ExpandableCollection
+          items={standardFeatures}
+          initialCount={6}
+          className="services-catalog-grid"
+          getKey={(feature) => feature.slug}
+          renderItem={(feature, index) => {
             const Icon = feature.icon
             const imagePosition = serviceImagePositions[feature.slug]
             return (
@@ -1497,8 +1591,8 @@ function ServicesOverviewPage() {
                 <span>Leistung ansehen <ArrowUpRight aria-hidden="true" /></span>
               </a>
             )
-          })}
-        </div>
+          }}
+        />
       </section>
 
       <section className="architecture-bridge" data-reveal="up">
@@ -1925,11 +2019,18 @@ function FacilityManagementPage() {
                   </a>
                   <nav className="fm-service-links" aria-label={`Vorhandene Leistungen für ${audience.title}`}>
                     <span>Passende Leistungsseiten</span>
-                    {linkedServices.map((service) => (
-                      <a href={`${BASE_PATH}leistungen/${service.slug}/`} key={service.slug}>
-                        {service.title}<ArrowUpRight aria-hidden="true" />
-                      </a>
-                    ))}
+                    <ExpandableCollection
+                      items={linkedServices}
+                      initialCount={3}
+                      className="fm-service-link-grid"
+                      getKey={(service) => service.slug}
+                      compact
+                      renderItem={(service) => (
+                        <a href={`${BASE_PATH}leistungen/${service.slug}/`}>
+                          {service.title}<ArrowUpRight aria-hidden="true" />
+                        </a>
+                      )}
+                    />
                   </nav>
                 </div>
                 <figure className="fm-target-image" data-reveal={index % 2 === 0 ? 'right' : 'left'}>
@@ -2040,8 +2141,12 @@ function AudienceDetailPage({ audience, onQuoteOpen }: { audience: AudienceSolut
           <h2 id="audience-services-heading">Passende Leistungen für {audience.navLabel}.</h2>
           <p>Jede Leistung führt zu einer eigenen Detailseite mit konkretem Umfang, Ablauf und Kontaktmöglichkeit.</p>
         </div>
-        <div className="audience-detail-service-grid">
-          {linkedServices.map((service, index) => {
+        <ExpandableCollection
+          items={linkedServices}
+          initialCount={3}
+          className="audience-detail-service-grid"
+          getKey={(service) => service.slug}
+          renderItem={(service, index) => {
             const ServiceIcon = service.icon
             return (
               <a href={`${SERVICES_PATH}${service.slug}/`} data-reveal="up" style={{ '--reveal-delay': `${(index % 3) * 45}ms` } as CSSProperties} key={service.slug}>
@@ -2051,8 +2156,8 @@ function AudienceDetailPage({ audience, onQuoteOpen }: { audience: AudienceSolut
                 <strong>Leistung ansehen <ArrowUpRight aria-hidden="true" /></strong>
               </a>
             )
-          })}
-        </div>
+          }}
+        />
       </section>
 
       <section className="audience-detail-process" aria-labelledby="audience-process-heading">
@@ -2911,10 +3016,10 @@ export default function App() {
           <HomeVideo />
           <PartnerMarquee />
           <Reviews />
-          <HomeAudienceCards />
           <HomeOverview />
+          <HomeAudienceCards />
+          <SpecializedServices certifiedOnly />
           <HomeCoreServices />
-          <SpecializedServices />
           <HomeFleet />
           <HomeTrust />
         </main>

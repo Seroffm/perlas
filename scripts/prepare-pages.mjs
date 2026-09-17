@@ -355,16 +355,16 @@ function selectedServiceLinks(slugs) {
 }
 
 function homeMarkup() {
-  const coreServices = services
-    .filter((service) => coreServiceSlugs.has(service.slug))
-    .map((service) => `<li><a href="${basePath}leistungen/${service.slug}/">${escapeHtml(service.title)}</a></li>`)
+  const homeCoreServiceSlugs = ['objektpflege', 'muellmanagement', 'gebaeudereinigung', 'wartung-instandhaltung', 'gartenpflege', 'winterdienst']
+  const coreServices = homeCoreServiceSlugs
+    .map((slug) => services.find((service) => service.slug === slug))
+    .filter(Boolean)
+    .map((service) => `<li><a href="${basePath}leistungen/${service.slug}/">${escapeHtml(service.slug === 'objektpflege' ? 'Objektbetreuung' : service.title)}</a></li>`)
     .join('')
 
-  const specializedServices = [
+  const certifiedServices = [
     { slug: 'baumpflege-baumfaellung', title: 'Baumpflege & Baumfällung', text: 'Eigenständige Fachleistung für Pflege, Rückschnitt und – nach objektbezogener Prüfung – notwendige Fällungen.', certified: true },
-    { slug: 'gebaeudereinigung', title: 'Tiefgaragenreinigung', text: 'Fahrflächen, Stellplätze und Randbereiche mit abgestimmtem Maschinen- und Handeinsatz.' },
     { slug: 'spielplatzkontrolle-spielgeraetewartung', title: 'Spielplatzkontrolle & Spielgerätewartung', text: 'Sichtkontrollen, dokumentierte Auffälligkeiten sowie Wartung und Betreuung im vereinbarten Umfang.', certified: true },
-    { slug: 'buero-einrichtungsservice', title: 'Büro- & Einrichtungsservice', text: 'Möbel und Arbeitsplätze umstellen, interne Umzüge unterstützen und Räume für eine neue Nutzung vorbereiten.' },
   ].map((service) => `<li>${service.certified ? '<span>Zertifiziert</span>' : ''}<strong><a href="${basePath}leistungen/${service.slug}/">${escapeHtml(service.title)}</a></strong><p>${escapeHtml(service.text)}</p></li>`).join('')
 
   const partnerNames = [
@@ -396,10 +396,10 @@ function homeMarkup() {
     `<section><p>Perla’s persönlich</p><h2>Lernen Sie uns in 54 Sekunden kennen.</h2><p>Erhalten Sie einen kurzen Einblick in Perla’s, unsere Arbeitsweise und die Menschen hinter der laufenden Betreuung von Immobilien.</p><iframe src="https://www.youtube-nocookie.com/embed/u8PsU3hYVYU?rel=0" title="Perla’s persönlich – Einblick in das Unternehmen" loading="lazy" allowfullscreen></iframe></section>`,
     `<section><h2>Unternehmen und Verwaltungen, die auf Perla’s setzen.</h2><ul>${partnerNames}</ul></section>`,
     `<section><h2>5,0 Sterne aus 32 Google-Rezensionen</h2><p>Kurze Auszüge aus öffentlich abgegebenen Bewertungen für Perla’s Objektbetreuung.</p><ul class="seo-static-links">${googleReviews}</ul><a href="https://www.google.com/search?q=Perla%27s+Objektbetreuung+GmbH+%26+Co.+KG+Sulzbach+Rezensionen">Alle Rezensionen bei Google ansehen</a></section>`,
+    `<section><p>Perla’s im Überblick</p><h2>Der passende Weg für Ihr Objekt.</h2><ul class="seo-static-links"><li><a href="${basePath}facility-management/">Facility Management</a><p>Mehrere Aufgaben in einem abgestimmten Betreuungskonzept.</p></li><li><a href="${basePath}leistungen/">Leistungen</a><p>Einzelleistungen für den laufenden Immobilienbetrieb.</p></li><li><a href="${basePath}ueber-uns/">Über uns</a><p>Perla’s Objektbetreuung seit 1999.</p></li><li><a href="${basePath}kontakt/">Kontakt</a><p>Ihr Objekt persönlich besprechen.</p></li></ul></section>`,
     `<section><p>Facility Management nach Objektart</p><h2>Facility Management für professionell verwaltete Immobilien.</h2><p>Perla’s koordiniert wiederkehrende Aufgaben, Zuständigkeiten und Rückmeldungen für Hausverwaltungen, Wohnanlagen, Gewerbeimmobilien und institutionelle Gebäude.</p><ul class="seo-static-links">${audienceLinks}</ul><a href="${basePath}facility-management/">Alle Objektbereiche ansehen</a></section>`,
-    `<section><h2>Der passende Einstieg für Ihr Objekt</h2><ul class="seo-static-links"><li><a href="${basePath}facility-management/">Facility Management</a><p>Mehrere Aufgaben in einem abgestimmten Betreuungskonzept.</p></li><li><a href="${basePath}leistungen/">Leistungen</a><p>Einzelleistungen für den laufenden Immobilienbetrieb.</p></li><li><a href="${basePath}ueber-uns/">Über uns</a><p>Perla’s Objektbetreuung seit 1999.</p></li><li><a href="${basePath}kontakt/">Kontakt</a><p>Ihr Objekt persönlich besprechen.</p></li></ul></section>`,
-    `<section><h2>Das übernehmen wir für Ihre Immobilie</h2><p>Sechs Leistungen, die sich einzeln beauftragen oder im Facility Management sinnvoll verbinden lassen.</p><ul class="seo-static-links">${coreServices}</ul><a href="${basePath}leistungen/">Alle Leistungen ansehen</a></section>`,
-    `<section><p>Facility Management → regelmäßige Kernleistungen → ergänzende Fachleistungen</p><h2>Ergänzende Fachleistungen für professionell betreute Immobilien.</h2><p>Umfang, Zuständigkeit und erforderliche Fachkunde werden je Leistung vor der Beauftragung geklärt.</p><ul class="seo-static-links">${specializedServices}</ul><a href="${basePath}kontakt/">Spezialleistung anfragen</a></section>`,
+    `<section><p>Nachgewiesene Fachkompetenz</p><h2>Zertifizierte Leistungen.</h2><p>Die konkreten Qualifikationen und der vereinbarte Prüfumfang werden vor der Beauftragung transparent festgehalten.</p><ul class="seo-static-links">${certifiedServices}</ul><a href="${basePath}kontakt/">Spezialleistung anfragen</a></section>`,
+    `<section><p>Kernleistungen</p><h2>Unsere Kernleistungen.</h2><p>Die wichtigsten Leistungen stehen am Anfang; weitere Bereiche lassen sich im Frontend bei Bedarf einblenden.</p><ul class="seo-static-links">${coreServices}</ul><a href="${basePath}leistungen/">Alle Leistungen ansehen</a></section>`,
     `<section><h2>Einsatzbereit im Rhein-Main-Gebiet</h2><p>10+ Mitarbeitende, abgestimmte Touren und ein wachsender Fuhrpark unterstützen die verlässliche Betreuung größerer Immobilien.</p><img src="${basePath}assets/kundenbilder/fahrzeuge/perlas_fuhrpark_ki.png" alt="Visualisierung eines größeren Perla’s-Fuhrparks"></section>`,
     `<section><h2>Erfahrung und klare Abläufe</h2><p>Perla’s schafft Übersicht über wiederkehrende Aufgaben und hält Rückmeldungen zu Zustand, Leistung und Handlungsbedarf an einer Stelle zusammen.</p></section></main>`,
   ].join('')
