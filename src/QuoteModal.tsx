@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, type FormEvent } from 'react'
 import { ArrowLeft, ArrowRight, Check, CheckCircle2, X } from 'lucide-react'
+import { submitQuoteRequest, type QuoteSubmissionResult } from './backend'
 
 type QuoteModalProps = {
   isOpen: boolean
@@ -9,14 +10,18 @@ type QuoteModalProps = {
 }
 
 const propertyTypes = ['Wohnanlage', 'Gewerbeimmobilie', 'Büro / Praxis', 'Institutionelles Gebäude']
-const startOptions = ['So bald wie möglich', 'In 1–3 Monaten', 'Später / noch offen']
+const startOptions = ['So bald wie möglich', 'In 1 bis 3 Monaten', 'Später / noch offen']
+const BASE_PATH = import.meta.env.BASE_URL
+
+type SubmissionStatus = 'idle' | 'submitting' | 'success' | 'error'
 
 export default function QuoteModal({ isOpen, initialService, serviceNames, onClose }: QuoteModalProps) {
   const closeButtonRef = useRef<HTMLButtonElement>(null)
   const dialogRef = useRef<HTMLElement>(null)
   const openerRef = useRef<HTMLElement | null>(null)
   const [step, setStep] = useState(0)
-  const [isSubmitted, setIsSubmitted] = useState(false)
+  const [submissionStatus, setSubmissionStatus] = useState<SubmissionStatus>('idle')
+  const [submissionResult, setSubmissionResult] = useState<QuoteSubmissionResult | null>(null)
   const [error, setError] = useState('')
   const [propertyType, setPropertyType] = useState('')
   const [street, setStreet] = useState('')
@@ -35,9 +40,20 @@ export default function QuoteModal({ isOpen, initialService, serviceNames, onClo
 
     openerRef.current = document.activeElement instanceof HTMLElement ? document.activeElement : null
     setStep(0)
-    setIsSubmitted(false)
+    setSubmissionStatus('idle')
+    setSubmissionResult(null)
     setError('')
+    setPropertyType('')
+    setStreet('')
+    setLocation('')
     setSelectedServices(initialService ? [initialService] : [])
+    setStart('')
+    setDetails('')
+    setName('')
+    setCompany('')
+    setEmail('')
+    setPhone('')
+    setConsent(false)
 
     const scrollPosition = window.scrollY
     const scrollbarGap = window.innerWidth - document.documentElement.clientWidth
@@ -145,6 +161,7 @@ export default function QuoteModal({ isOpen, initialService, serviceNames, onClo
     }
 
     setError('')
+    if (submissionStatus === 'error') setSubmissionStatus('idle')
     return true
   }
 
@@ -153,7 +170,7 @@ export default function QuoteModal({ isOpen, initialService, serviceNames, onClo
     setStep((current) => Math.min(2, current + 1))
   }
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
 
     if (step < 2) {
@@ -161,7 +178,52 @@ export default function QuoteModal({ isOpen, initialService, serviceNames, onClo
       return
     }
 
-    if (validateStep()) setIsSubmitted(true)
+    if (!validateStep() || submissionStatus === 'submitting') return
+
+    setSubmissionStatus('submitting')
+    setSubmissionResult(null)
+    setError('')
+
+    try {
+      const result = await submitQuoteRequest({
+        propertyType,
+        street: street.trim(),
+        location: location.trim(),
+        services: selectedServices,
+        preferredStart: start,
+        details: details.trim(),
+        name: name.trim(),
+        company: company.trim(),
+        email: email.trim(),
+        phone: phone.trim(),
+      })
+
+      setSubmissionResult(result)
+      setSubmissionStatus('success')
+    } catch (submissionError) {
+      setSubmissionStatus('error')
+      setError(submissionError instanceof Error
+        ? submissionError.message
+        : 'Die Anfrage konnte nicht übermittelt werden. Ihre Eingaben bleiben erhalten. Bitte versuchen Sie es erneut.')
+    }
+  }
+
+  const startAnotherRequest = () => {
+    setStep(0)
+    setSubmissionStatus('idle')
+    setSubmissionResult(null)
+    setError('')
+    setPropertyType('')
+    setStreet('')
+    setLocation('')
+    setSelectedServices(initialService ? [initialService] : [])
+    setStart('')
+    setDetails('')
+    setName('')
+    setCompany('')
+    setEmail('')
+    setPhone('')
+    setConsent(false)
   }
 
   return (
@@ -189,21 +251,37 @@ export default function QuoteModal({ isOpen, initialService, serviceNames, onClo
         </div>
 
         <div className="quote-form-wrap">
-          {isSubmitted ? (
+          {submissionStatus === 'success' ? (
             <div className="quote-success" aria-live="polite">
               <div className="quote-success-icon"><Check aria-hidden="true" /></div>
-              <span>Angaben vorbereitet</span>
-              <h3>Vielen Dank, {name.split(' ')[0]}.</h3>
-              <p>
-                Ihre Angaben wurden nur in dieser Browseransicht vorbereitet und noch nicht
-                übermittelt. Die technische Übermittlung wird derzeit eingerichtet. Bitte senden
-                Sie Ihre Anfrage per E-Mail an <a href="mailto:mail@perlas.de">mail@perlas.de</a> oder
-                rufen Sie uns unter <a href="tel:+491776867145">0177 68 67 145</a> an.
-              </p>
-              <button className="button button--yellow" type="button" onClick={onClose}>Fertig</button>
+              <span>Anfrage erfolgreich</span>
+              <h3>Vielen Dank, {name.trim().split(/\s+/)[0]}.</h3>
+              <p>Ihre Anfrage ist bei uns eingegangen. Wir prüfen Ihre Angaben und melden uns persönlich bei Ihnen.</p>
+              <div className="quote-success-details">
+                <article>
+                  <CheckCircle2 aria-hidden="true" />
+                  <div>
+                    <strong>{submissionResult?.confirmationEmailSent ? 'Bestätigungsmail' : 'Anfrage erfasst'}</strong>
+                    <p>{submissionResult?.confirmationEmailSent
+                      ? 'Eine Bestätigung Ihrer Anfrage erhalten Sie in Kürze per E-Mail.'
+                      : 'Ihre Angaben wurden erfolgreich an Perla’s übermittelt.'}</p>
+                  </div>
+                </article>
+                <article>
+                  <ArrowRight aria-hidden="true" />
+                  <div>
+                    <strong>Wie geht es weiter?</strong>
+                    <p>Wir prüfen Ihre Angaben und melden uns persönlich, um die nächsten Schritte und den passenden Leistungsumfang abzustimmen.</p>
+                  </div>
+                </article>
+              </div>
+              <div className="quote-success-actions">
+                <a className="button button--yellow" href={BASE_PATH} onClick={onClose}>Zurück zur Startseite</a>
+                <button className="quote-success-secondary" type="button" onClick={startAnotherRequest}>Weitere Anfrage stellen</button>
+              </div>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} noValidate>
+            <form onSubmit={handleSubmit} noValidate aria-busy={submissionStatus === 'submitting'}>
               <div className="quote-progress" aria-label={`Schritt ${step + 1} von 3`}>
                 {['Objekt', 'Leistungen', 'Kontakt'].map((label, index) => (
                   <div className={index <= step ? 'is-active' : ''} key={label}>
@@ -265,7 +343,7 @@ export default function QuoteModal({ isOpen, initialService, serviceNames, onClo
                   <>
                     <span className="quote-step-label">Schritt 2 von 3</span>
                     <h3>Was dürfen wir Ihnen abnehmen?</h3>
-                    <p>Mehrfachauswahl möglich — wir bündeln die Leistungen sinnvoll.</p>
+                    <p>Mehrfachauswahl möglich. Wir bündeln die Leistungen sinnvoll.</p>
                     <fieldset className="service-choice-grid">
                       <legend className="sr-only">Leistungen auswählen</legend>
                       {serviceNames.map((service) => (
@@ -291,7 +369,7 @@ export default function QuoteModal({ isOpen, initialService, serviceNames, onClo
                     </fieldset>
                     <label className="field-label">
                       <span className="field-label-copy">
-                        Was sollten wir noch wissen? <small>Optional</small>
+                        Was sollten wir noch wissen? <small>(optional)</small>
                       </span>
                       <textarea value={details} onChange={(event) => setDetails(event.target.value)} placeholder="Besonderheiten, Flächen, aktueller Bedarf …" rows={3} />
                     </label>
@@ -309,7 +387,7 @@ export default function QuoteModal({ isOpen, initialService, serviceNames, onClo
                         <input type="text" value={name} onChange={(event) => setName(event.target.value)} autoComplete="name" />
                       </label>
                       <label className="field-label">
-                        <span className="field-label-copy">Unternehmen <small>Optional</small></span>
+                        <span className="field-label-copy">Unternehmen <small>(optional)</small></span>
                         <input type="text" value={company} onChange={(event) => setCompany(event.target.value)} autoComplete="organization" />
                       </label>
                       <label className="field-label">
@@ -317,7 +395,7 @@ export default function QuoteModal({ isOpen, initialService, serviceNames, onClo
                         <input type="email" value={email} onChange={(event) => setEmail(event.target.value)} autoComplete="email" />
                       </label>
                       <label className="field-label">
-                        <span className="field-label-copy">Telefonnummer <small>Optional</small></span>
+                        <span className="field-label-copy">Telefonnummer <small>(optional)</small></span>
                         <input type="tel" value={phone} onChange={(event) => setPhone(event.target.value)} autoComplete="tel" />
                       </label>
                     </div>
@@ -325,23 +403,24 @@ export default function QuoteModal({ isOpen, initialService, serviceNames, onClo
                       <input type="checkbox" checked={consent} onChange={(event) => setConsent(event.target.checked)} />
                       <span>
                         Ich stimme zu, dass meine Angaben zur Bearbeitung der Anfrage verwendet
-                        werden. Weitere Informationen stehen im Datenschutz.
+                        werden. Weitere Informationen stehen im{' '}
+                        <a href={`${BASE_PATH}datenschutz/`} onClick={(event) => event.stopPropagation()}>Datenschutz</a>.
                       </span>
                     </label>
                   </>
                 )}
               </div>
 
-              {error && <p className="quote-error" role="alert">{error}</p>}
+              {error && <p className={`quote-error${submissionStatus === 'error' ? ' quote-error--submission' : ''}`} role="alert">{error}</p>}
 
               <div className="quote-actions">
                 {step > 0 ? (
-                  <button className="quote-back" type="button" onClick={() => { setError(''); setStep((current) => current - 1) }}>
+                  <button className="quote-back" type="button" disabled={submissionStatus === 'submitting'} onClick={() => { setError(''); setSubmissionStatus('idle'); setStep((current) => current - 1) }}>
                     <ArrowLeft aria-hidden="true" /> Zurück
                   </button>
                 ) : <span />}
-                <button className="quote-next" type="submit">
-                  {step === 2 ? 'Anfrage abschließen' : 'Weiter'} <ArrowRight aria-hidden="true" />
+                <button className="quote-next" type="submit" disabled={submissionStatus === 'submitting'}>
+                  {submissionStatus === 'submitting' ? 'Anfrage wird gesendet …' : step === 2 ? 'Anfrage abschließen' : 'Weiter'} <ArrowRight aria-hidden="true" />
                 </button>
               </div>
             </form>

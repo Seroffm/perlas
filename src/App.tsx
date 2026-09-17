@@ -670,7 +670,7 @@ const specializedServices: SpecializedService[] = [
     icon: TreePine,
     label: 'Fachleistung Außenanlagen',
     title: 'Baumpflege & Baum\u00ADfällung',
-    text: 'Eigenständige Fachleistung für Pflege, Rückschnitt und – nach objektbezogener Prüfung – notwendige Fällungen.',
+    text: 'Eigenständige Fachleistung für Pflege und Rückschnitt. Notwendige Fällungen erfolgen nach objektbezogener Prüfung.',
     bullets: ['Bestand und Zugänglichkeit aufnehmen', 'Pflege- und Rückschnittbedarf einordnen', 'Sicherungsbereich und Ausführung abstimmen'],
     qualificationNote: 'Erforderliche Fachkunde und Sicherungsmaßnahmen werden vor der Ausführung geprüft.',
     certification: 'Zertifiziert',
@@ -1238,7 +1238,7 @@ function HomeVideo() {
       <div className="home-video-frame" data-reveal="right" style={{ '--reveal-delay': '80ms' } as CSSProperties}>
         <iframe
           src="https://www.youtube-nocookie.com/embed/u8PsU3hYVYU?rel=0"
-          title="Perla’s Objektbetreuung – Einblick in das Unternehmen"
+          title="Perla’s Objektbetreuung: Einblick in das Unternehmen"
           loading="lazy"
           referrerPolicy="strict-origin-when-cross-origin"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -1289,7 +1289,7 @@ function HomeOverview() {
           <span className="home-path-icon"><ShieldCheck aria-hidden="true" /></span>
           <span className="eyebrow">Über uns</span>
           <h3>Objektbetreuung mit Verantwortung.</h3>
-          <p>Seit 1999 betreut Perla’s Immobilien im Rhein-Main-Gebiet – persönlich, planbar und mit festen Zuständigkeiten.</p>
+          <p>Seit 1999 betreut Perla’s Immobilien im Rhein-Main-Gebiet. Persönlich, planbar und mit festen Zuständigkeiten.</p>
           <span className="home-path-link">Perla’s kennenlernen <ArrowUpRight aria-hidden="true" /></span>
         </a>
         <a className="home-path-card home-path-card--contact" href={CONTACT_PATH} data-reveal="right" style={{ '--reveal-delay': '140ms' } as CSSProperties}>
@@ -1885,7 +1885,7 @@ function AudienceSolutions() {
         <h2 id="audience-heading">Betreuung, die zum Objekt passt.</h2>
         <p>
           Auf der Facility-Management-Seite finden Hausverwaltungen und gewerbliche Auftraggeber
-          die passende Einordnung für ihre Objekte – mit den jeweils relevanten Leistungen.
+          die passende Einordnung für ihre Objekte mit den jeweils relevanten Leistungen.
         </p>
       </div>
       <div className="audience-grid">

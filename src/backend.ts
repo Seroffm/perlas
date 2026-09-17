@@ -11,6 +11,23 @@ export type CareerSubmissionResult = {
   mode: 'api' | 'email'
 }
 
+export type QuoteRequestPayload = {
+  propertyType: string
+  street: string
+  location: string
+  services: string[]
+  preferredStart: string
+  details: string
+  name: string
+  company: string
+  email: string
+  phone: string
+}
+
+export type QuoteSubmissionResult = {
+  confirmationEmailSent: boolean
+}
+
 const apiBaseUrl = import.meta.env.VITE_PERLAS_API_URL?.trim().replace(/\/$/, '')
 
 export async function submitCareerApplication(
@@ -41,6 +58,60 @@ export async function submitCareerApplication(
   }
 
   return { mode: 'api' }
+}
+
+export async function submitQuoteRequest(
+  payload: QuoteRequestPayload,
+): Promise<QuoteSubmissionResult> {
+  if (!apiBaseUrl) {
+    throw new Error('Die Online-Übermittlung ist derzeit noch nicht verfügbar. Ihre Eingaben bleiben erhalten. Bitte versuchen Sie es später erneut oder kontaktieren Sie uns direkt.')
+  }
+
+  const formData = new FormData()
+  formData.set('propertyType', payload.propertyType)
+  formData.set('street', payload.street)
+  formData.set('location', payload.location)
+  formData.set('services', JSON.stringify(payload.services))
+  formData.set('preferredStart', payload.preferredStart)
+  formData.set('details', payload.details)
+  formData.set('name', payload.name)
+  formData.set('company', payload.company)
+  formData.set('email', payload.email)
+  formData.set('phone', payload.phone)
+  formData.set('source', window.location.href)
+  formData.set('privacyConsent', 'true')
+
+  let response: Response
+  try {
+    response = await fetch(`${apiBaseUrl}/quote-requests`, {
+      method: 'POST',
+      body: formData,
+      headers: {
+        Accept: 'application/json',
+      },
+    })
+  } catch {
+    throw new Error('Die Anfrage konnte wegen einer Verbindungsstörung nicht übermittelt werden. Ihre Eingaben bleiben erhalten. Bitte versuchen Sie es erneut.')
+  }
+
+  if (!response.ok) {
+    throw new Error(`Die Anfrage konnte nicht übermittelt werden (${response.status}). Ihre Eingaben bleiben erhalten.`)
+  }
+
+  const responseType = response.headers.get('content-type') ?? ''
+  let confirmationEmailSent = false
+  if (responseType.includes('application/json')) {
+    try {
+      const responseData = await response.json() as { confirmationEmailSent?: boolean }
+      confirmationEmailSent = responseData.confirmationEmailSent === true
+    } catch {
+      confirmationEmailSent = false
+    }
+  }
+
+  return {
+    confirmationEmailSent,
+  }
 }
 
 export function careerApplicationMailto(payload: CareerApplicationPayload) {

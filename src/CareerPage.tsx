@@ -109,7 +109,7 @@ export default function CareerPage({ jobs }: CareerPageProps) {
         </div>
         <div className="career-value-grid">
           {[
-            [HeartHandshake, 'Abwechslungsreiche Einsätze', 'Du arbeitest in Wohnanlagen, Gewerbeobjekten und Außenbereichen – passend zu deinem Einsatzbereich und deiner Erfahrung.'],
+            [HeartHandshake, 'Abwechslungsreiche Einsätze', 'Du arbeitest in Wohnanlagen, Gewerbeobjekten und Außenbereichen, passend zu deinem Einsatzbereich und deiner Erfahrung.'],
             [Users, 'Ein Team, kurze Wege', 'Du bekommst klare Absprachen, erreichbare Ansprechpartner und Unterstützung, wenn vor Ort etwas ungeklärt ist.'],
             [ShieldCheck, 'Verantwortung und Entwicklung', 'Du arbeitest selbstständig im vereinbarten Bereich und kannst weitere Aufgaben übernehmen, wenn du dich entwickeln möchtest.'],
           ].map(([Icon, title, text], index) => {
