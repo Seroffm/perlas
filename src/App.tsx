@@ -784,13 +784,13 @@ const serviceStoryImages: Record<string, string> = {
 }
 
 const serviceImagePositions: Record<string, string> = {
-  objektpflege: '50% 52%',
-  'wartung-instandhaltung': '50% 58%',
-  gebaeudereinigung: '52% center',
-  gartenpflege: '50% 46%',
-  winterdienst: '49% center',
-  muellmanagement: '50% center',
-  einzelauftrag: '40% center',
+  objektpflege: '50% 72%',
+  'wartung-instandhaltung': '35% 64%',
+  gebaeudereinigung: '55% 50%',
+  gartenpflege: '45% 43%',
+  winterdienst: '47% 50%',
+  muellmanagement: '50% 46%',
+  einzelauftrag: '46% 50%',
 }
 
 const serviceImageDisplays: Record<string, 'portrait' | 'landscape' | 'square'> = {
@@ -861,11 +861,11 @@ function Header({ activePage }: { activePage: PageKind }) {
           >
             <div className="nav-facility-trigger">
               <a
-                className={activePage === 'facility' ? 'is-active' : undefined}
+                className={`nav-link${activePage === 'facility' ? ' is-active' : ''}`}
                 href={FACILITY_PATH}
                 aria-current={activePage === 'facility' ? 'page' : undefined}
                 onClick={closeMenu}
-              >Facility Management</a>
+              ><span>Facility Management</span></a>
               <button
                 type="button"
                 aria-label={facilityOpen ? 'Zielgruppen im Facility Management schließen' : 'Zielgruppen im Facility Management anzeigen'}
@@ -890,11 +890,11 @@ function Header({ activePage }: { activePage: PageKind }) {
               })}
             </div>
           </div>
-          <a className={activePage === 'services' ? 'is-active' : undefined} href={SERVICES_PATH} aria-current={activePage === 'services' ? 'page' : undefined} onClick={closeMenu}>Leistungen</a>
-          <a className={activePage === 'about' ? 'is-active' : undefined} href={ABOUT_PATH} aria-current={activePage === 'about' ? 'page' : undefined} onClick={closeMenu}>Über uns</a>
-          <a className={activePage === 'blog' ? 'is-active' : undefined} href={BLOG_PATH} aria-current={activePage === 'blog' ? 'page' : undefined} onClick={closeMenu}>Blog</a>
-          <a className={activePage === 'career' ? 'is-active' : undefined} href={CAREER_PATH} aria-current={activePage === 'career' ? 'page' : undefined} onClick={closeMenu}>Karriere</a>
-          <a className={activePage === 'contact' ? 'is-active' : undefined} href={CONTACT_PATH} aria-current={activePage === 'contact' ? 'page' : undefined} onClick={closeMenu}>Kontakt</a>
+          <a className={`nav-link${activePage === 'services' ? ' is-active' : ''}`} href={SERVICES_PATH} aria-current={activePage === 'services' ? 'page' : undefined} onClick={closeMenu}><span>Leistungen</span></a>
+          <a className={`nav-link${activePage === 'about' ? ' is-active' : ''}`} href={ABOUT_PATH} aria-current={activePage === 'about' ? 'page' : undefined} onClick={closeMenu}><span>Über uns</span></a>
+          <a className={`nav-link${activePage === 'blog' ? ' is-active' : ''}`} href={BLOG_PATH} aria-current={activePage === 'blog' ? 'page' : undefined} onClick={closeMenu}><span>Blog</span></a>
+          <a className={`nav-link${activePage === 'career' ? ' is-active' : ''}`} href={CAREER_PATH} aria-current={activePage === 'career' ? 'page' : undefined} onClick={closeMenu}><span>Karriere</span></a>
+          <a className={`nav-link${activePage === 'contact' ? ' is-active' : ''}`} href={CONTACT_PATH} aria-current={activePage === 'contact' ? 'page' : undefined} onClick={closeMenu}><span>Kontakt</span></a>
         </nav>
       </div>
     </header>

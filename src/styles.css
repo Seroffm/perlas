@@ -11899,7 +11899,7 @@ body {
 }
 
 .specialized-service-card--supporting {
-  grid-template-rows: 218px 1fr;
+  grid-template-rows: 250px 1fr;
   background: #f9fbfc;
 }
 
@@ -12294,7 +12294,7 @@ body {
   }
 
   .specialized-service-card--supporting {
-    grid-template-rows: 190px 1fr;
+    grid-template-rows: 220px 1fr;
   }
 
   .specialized-service-copy {
@@ -12514,19 +12514,30 @@ body {
   }
 }
 
-/* September 2026: route-aware navigation, native image ratios and compact team expansion. */
+/* September 2026: route-aware navigation, consistent card imagery and compact team expansion. */
 .site-header #main-navigation > a,
 .nav-facility-trigger > a {
   position: relative;
   color: inherit;
   font-weight: 800;
+  text-decoration: none;
 }
 
 .site-header #main-navigation > a::after,
 .nav-facility-trigger > a::after {
+  display: none;
+  content: none;
+}
+
+.site-header .nav-link > span {
+  position: relative;
+  display: inline-block;
+}
+
+.site-header .nav-link > span::after {
   position: absolute;
   right: 0;
-  bottom: 7px;
+  bottom: -8px;
   left: 0;
   height: 2px;
   content: '';
@@ -12537,18 +12548,19 @@ body {
   transition: transform 160ms ease;
 }
 
-.site-header #main-navigation > a:hover::after,
-.site-header #main-navigation > a:focus-visible::after,
-.site-header #main-navigation > a.is-active::after,
-.nav-facility-trigger > a:hover::after,
-.nav-facility-trigger > a:focus-visible::after,
-.nav-facility-trigger > a.is-active::after {
+.site-header .nav-link.is-active > span::after {
   transform: scaleX(1);
 }
 
 .site-header #main-navigation > a.is-active,
 .nav-facility-trigger > a.is-active {
   color: var(--primary);
+  text-decoration: none;
+}
+
+.site-header .nav-link:hover,
+.site-header .nav-link:focus-visible {
+  text-decoration: none;
 }
 
 .hero-slide--portrait {
@@ -12767,25 +12779,15 @@ body {
   aspect-ratio: 827 / 485;
 }
 
-.home-service-card-image--portrait,
-.home-service-card-image--square,
-.services-catalog-image--portrait,
-.services-catalog-image--square,
-.home-audience-card-image--portrait {
-  background:
-    radial-gradient(circle at 50% 42%, rgb(255 255 255 / 14%), transparent 45%),
-    var(--primary);
-}
-
 .home-service-card-image--portrait > img,
 .home-service-card-image--square > img,
 .home-service-card-image--landscape > img,
 .services-catalog-image--portrait img,
 .services-catalog-image--square img,
-.services-catalog-image--landscape img,
-.home-audience-card-image--portrait > img,
-.home-audience-card-image--landscape > img {
-  object-fit: contain;
+.services-catalog-image--landscape img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .home-audience-card:hover .home-audience-card-image > img,
