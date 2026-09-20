@@ -689,9 +689,9 @@ const specializedServices: SpecializedService[] = [
     title: 'Tiefgaragenreinigung',
     text: 'Systematische Reinigung größerer Park- und Tiefgaragenflächen mit abgestimmtem Maschinen- und Handeinsatz.',
     bullets: ['Fahrflächen und Stellplätze', 'Randbereiche und schwer zugängliche Zonen', 'Maschinelle Reinigung und manuelle Nacharbeiten'],
-    image: 'kundenbilder/vorher_nachher/parkhaus_reinigung_geraet.png',
-    imageAlt: 'Reinigungsgerät von Perla’s bei der maschinellen Reinigung eines Parkhauses',
-    imagePosition: '50% 56%',
+    image: 'kundenbilder/leistungen/tiefgarage_saubere_flaeche_01.png',
+    imageAlt: 'Gepflegte, maschinell gereinigte Fahrfläche einer Tiefgarage',
+    imagePosition: '50% 55%',
     certificationPlaceholder: 'Qualifikations- oder Verfahrensnachweis wird bei Kundenfreigabe ergänzt.',
   },
   {
@@ -716,6 +716,9 @@ const specializedServices: SpecializedService[] = [
     title: 'Büro- & Einrichtungsservice',
     text: 'Konkrete Unterstützung bei Umstellungen, internen Büro- und Möbelumzügen sowie der Vorbereitung neu genutzter Räume.',
     bullets: ['Möbel und Arbeitsplätze umstellen', 'Vorhandene Einrichtung auf- und abbauen', 'Räume für eine neue Nutzung vorbereiten'],
+    image: 'perlas-office.png',
+    imageAlt: 'Perla’s Ansprechpartner in einem modernen Büroarbeitsumfeld',
+    imagePosition: '50% 52%',
     supporting: true,
   },
 ]

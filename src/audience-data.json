@@ -16,11 +16,11 @@
       "Nachvollziehbare Zustands- und Leistungsmeldungen"
     ],
     "approach": "Wir stimmen die benötigten Leistungen objektbezogen ab und führen Rückmeldungen zu einem übersichtlichen Gesamtbild zusammen. Jede Immobilie erhält einen nachvollziehbaren Leistungsrahmen mit klaren Zuständigkeiten.",
-    "services": ["objektpflege", "gebaeudereinigung", "wartung-instandhaltung", "gartenpflege", "winterdienst"],
+    "services": ["objektpflege", "gebaeudereinigung", "wartung-instandhaltung", "gartenpflege", "winterdienst", "muellmanagement"],
     "image": {
-      "src": "kundenbilder/objekte/wohnanlage_eingang_02.png",
-      "alt": "Gepflegter Eingangsbereich einer betreuten Wohnanlage",
-      "position": "50% 58%"
+      "src": "kundenbilder/objekte/wohnobjekt_modern_eingang_01.png",
+      "alt": "Heller Eingangsbereich einer modern betreuten Wohnimmobilie",
+      "position": "50% 53%"
     },
     "scopeCards": [
       {

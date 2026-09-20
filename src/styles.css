@@ -9509,10 +9509,13 @@ body {
   margin-top: 48px;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-auto-rows: 1fr;
   gap: 18px;
 }
 
 .audience-detail-service-grid > a {
+  height: 100%;
+  box-sizing: border-box;
   min-height: 300px;
   padding: 28px;
   display: flex;
@@ -13232,6 +13235,10 @@ body {
 .expandable-collection__extra .audience-detail-service-grid,
 .expandable-collection__extra .specialized-services-grid {
   margin-top: 22px;
+}
+
+.audience-detail-services .expandable-collection__extra .audience-detail-service-grid {
+  margin-top: 18px;
 }
 
 .expandable-collection__toggle {
