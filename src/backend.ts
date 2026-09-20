@@ -1,3 +1,5 @@
+import { DEMO_FORM_SUBMIT_DELAY_MS, DEMO_FORM_SUCCESS } from './config'
+
 export type CareerApplicationPayload = {
   name: string
   email: string
@@ -26,6 +28,7 @@ export type QuoteRequestPayload = {
 
 export type QuoteSubmissionResult = {
   confirmationEmailSent: boolean
+  mode: 'demo' | 'api'
 }
 
 const apiBaseUrl = import.meta.env.VITE_PERLAS_API_URL?.trim().replace(/\/$/, '')
@@ -63,6 +66,14 @@ export async function submitCareerApplication(
 export async function submitQuoteRequest(
   payload: QuoteRequestPayload,
 ): Promise<QuoteSubmissionResult> {
+  if (DEMO_FORM_SUCCESS) {
+    await new Promise<void>((resolve) => window.setTimeout(resolve, DEMO_FORM_SUBMIT_DELAY_MS))
+    return {
+      confirmationEmailSent: true,
+      mode: 'demo',
+    }
+  }
+
   if (!apiBaseUrl) {
     throw new Error('Die Online-Übermittlung ist derzeit noch nicht verfügbar. Ihre Eingaben bleiben erhalten. Bitte versuchen Sie es später erneut oder kontaktieren Sie uns direkt.')
   }
@@ -111,6 +122,7 @@ export async function submitQuoteRequest(
 
   return {
     confirmationEmailSent,
+    mode: 'api',
   }
 }
 

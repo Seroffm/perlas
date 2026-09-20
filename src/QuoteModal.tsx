@@ -256,7 +256,7 @@ export default function QuoteModal({ isOpen, initialService, serviceNames, onClo
               <div className="quote-success-icon"><Check aria-hidden="true" /></div>
               <span>Anfrage erfolgreich</span>
               <h3>Vielen Dank, {name.trim().split(/\s+/)[0]}.</h3>
-              <p>Ihre Anfrage ist bei uns eingegangen. Wir prüfen Ihre Angaben und melden uns persönlich bei Ihnen.</p>
+              <p>Ihre Anfrage ist bei uns eingegangen. Wir prüfen Ihre Angaben und melden uns innerhalb von 24 Stunden persönlich bei Ihnen.</p>
               <div className="quote-success-details">
                 <article>
                   <CheckCircle2 aria-hidden="true" />
