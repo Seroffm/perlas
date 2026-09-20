@@ -127,7 +127,7 @@ function usePageSeo(service?: Feature, pageKind: PageKind = 'home', audience?: A
       services: {
         path: 'leistungen/',
         title: 'Leistungen für Immobilien | Perla’s Rhein-Main',
-        description: 'Objektpflege, Wartung, Gebäudereinigung, Gartenpflege, Winterdienst, Müllmanagement und Einzelaufträge von Perla’s im Rhein-Main-Gebiet.',
+        description: 'Objektpflege, Wartung, Gebäudereinigung, Tiefgaragenreinigung, Gartenpflege, Winterdienst, Müllmanagement und Einzelaufträge von Perla’s im Rhein-Main-Gebiet.',
         schemaType: 'CollectionPage',
       },
       about: {
@@ -181,7 +181,7 @@ function usePageSeo(service?: Feature, pageKind: PageKind = 'home', audience?: A
       ?? service?.seoDescription
       ?? pageDefinition?.description
       ?? 'Perla’s bündelt Facility Management und professionelle Objektbetreuung für Hausverwaltungen, Wohnanlagen und Gewerbeimmobilien im Rhein-Main-Gebiet.'
-    const imageUrl = new URL(`${BASE_PATH}assets/${article?.image ?? audience?.image.src ?? 'kundenbilder/objekte/wohnanlage_modern_02.png'}`, window.location.origin)
+    const imageUrl = new URL(`${BASE_PATH}assets/${article?.image ?? audience?.image.src ?? service?.image ?? 'kundenbilder/objekte/wohnanlage_modern_02.png'}`, window.location.origin)
     const indexingOverride = import.meta.env.VITE_PERLAS_INDEX_SITE
     const indexingEnabled = indexingOverride
       ? indexingOverride === 'true'
@@ -409,7 +409,7 @@ type ExpandableCollectionProps<T> = {
   items: readonly T[]
   initialCount: number
   className: string
-  renderItem: (item: T, index: number) => ReactNode
+  renderItem: (item: T, index: number, isAdditional: boolean, isCollapsing: boolean) => ReactNode
   getKey: (item: T, index: number) => string
   moreLabel?: string
   lessLabel?: string
@@ -427,36 +427,49 @@ function ExpandableCollection<T>({
   compact = false,
 }: ExpandableCollectionProps<T>) {
   const [expanded, setExpanded] = useState(false)
+  const [collapsing, setCollapsing] = useState(false)
+  const collapseTimer = useRef<number | null>(null)
   const disclosureId = `expandable-${useId().replace(/:/g, '')}`
-  const primaryItems = items.slice(0, initialCount)
-  const additionalItems = items.slice(initialCount)
+  const displayedItems = expanded ? items : items.slice(0, initialCount)
+  const hasAdditionalItems = items.length > initialCount
 
-  const renderItems = (collection: readonly T[], offset = 0) => collection.map((item, index) => (
-    <Fragment key={getKey(item, index + offset)}>
-      {renderItem(item, index + offset)}
-    </Fragment>
-  ))
+  useEffect(() => () => {
+    if (collapseTimer.current !== null) window.clearTimeout(collapseTimer.current)
+  }, [])
+
+  const toggleExpanded = () => {
+    if (collapsing) return
+
+    if (!expanded) {
+      setExpanded(true)
+      return
+    }
+
+    setCollapsing(true)
+    collapseTimer.current = window.setTimeout(() => {
+      setExpanded(false)
+      setCollapsing(false)
+      collapseTimer.current = null
+    }, 180)
+  }
 
   return (
     <div className={`expandable-collection${compact ? ' expandable-collection--compact' : ''}`}>
-      <div className={className}>{renderItems(primaryItems)}</div>
-      {additionalItems.length > 0 && (
+      <div className={className} id={disclosureId}>
+        {displayedItems.map((item, index) => (
+          <Fragment key={getKey(item, index)}>
+            {renderItem(item, index, index >= initialCount, collapsing)}
+          </Fragment>
+        ))}
+      </div>
+      {hasAdditionalItems && (
         <>
-          <div
-            className={`expandable-collection__extra${expanded ? ' is-expanded' : ''}`}
-            id={disclosureId}
-            aria-hidden={!expanded}
-          >
-            <div className="expandable-collection__extra-inner">
-              <div className={className}>{renderItems(additionalItems, initialCount)}</div>
-            </div>
-          </div>
           <button
             className="expandable-collection__toggle"
             type="button"
             aria-expanded={expanded}
             aria-controls={disclosureId}
-            onClick={() => setExpanded((current) => !current)}
+            onClick={toggleExpanded}
           >
             <span>{expanded ? lessLabel : moreLabel}</span>
             <ChevronDown aria-hidden="true" />
@@ -533,6 +546,7 @@ const partners: Partner[] = [
 
 type Feature = (typeof serviceContent)[number] & {
   icon: LucideIcon
+  eyebrow?: string
   certified?: boolean
   certificationLabel?: string
   imageAlt?: string
@@ -605,6 +619,15 @@ const featureBasics = [
     detail: 'Wir prüfen einzelne Aufgaben vor Ort, grenzen den Leistungsumfang eindeutig ab und koordinieren die Ausführung mit einem festen Ansprechpartner.',
     bullets: ['Einmalige Zusatzarbeiten', 'Vor-Ort-Aufnahme', 'Abgestimmter Leistungsumfang'],
     image: 'kundenbilder/leistungen/transport_umzug_lieferung.png',
+  },
+  {
+    icon: Sparkles,
+    slug: 'tiefgaragenreinigung',
+    title: 'Tiefgaragenreinigung',
+    text: 'Fahrflächen, Stellplätze und Randbereiche mit abgestimmtem Maschinen- und Handeinsatz reinigen.',
+    detail: 'Professionelle Reinigung größerer Park- und Tiefgaragenflächen mit klar abgestimmtem Umfang und passenden Intervallen.',
+    bullets: ['Fahrflächen und Stellplätze', 'Maschinelle Reinigung', 'Manuelle Nacharbeiten'],
+    image: 'kundenbilder/leistungen/tiefgarage_saubere_flaeche_01.png',
   },
   { icon: TreePine, slug: 'baumpflege-baumfaellung' },
   { icon: ClipboardCheck, slug: 'spielplatzkontrolle-spielgeraetewartung' },
@@ -683,17 +706,6 @@ const specializedServices: SpecializedService[] = [
     qualificationNote: 'Fachkunde, Sicherungsmaßnahmen und der konkrete Prüfumfang werden vor der Ausführung verbindlich abgestimmt.',
     certification: 'Zertifiziert',
     certificationPlaceholder: 'Konkreter Zertifikatsname wird nach Kundenfreigabe ergänzt.',
-  },
-  {
-    icon: Building2,
-    label: 'Professionelle Flächenreinigung',
-    title: 'Tiefgaragenreinigung',
-    text: 'Systematische Reinigung größerer Park- und Tiefgaragenflächen mit abgestimmtem Maschinen- und Handeinsatz.',
-    bullets: ['Fahrflächen und Stellplätze', 'Randbereiche und schwer zugängliche Zonen', 'Maschinelle Reinigung und manuelle Nacharbeiten'],
-    image: 'kundenbilder/leistungen/tiefgarage_saubere_flaeche_01.png',
-    imageAlt: 'Gepflegte, maschinell gereinigte Fahrfläche einer Tiefgarage',
-    imagePosition: '50% 55%',
-    certificationPlaceholder: 'Qualifikations- oder Verfahrensnachweis wird bei Kundenfreigabe ergänzt.',
   },
   {
     slug: 'spielplatzkontrolle-spielgeraetewartung',
@@ -821,10 +833,10 @@ type ServiceGallery = {
 }
 
 const serviceGalleries: Record<string, ServiceGallery> = {
-  gebaeudereinigung: {
-    eyebrow: 'Referenz aus dem Einsatz',
-    title: 'Parkflächen sauber und nachvollziehbar bearbeiten.',
-    intro: 'Die Aufnahmen zeigen den Geräteeinsatz und die gereinigte Fläche. Umfang und Verfahren werden für jedes Objekt vorab abgestimmt.',
+  tiefgaragenreinigung: {
+    eyebrow: 'Tiefgaragenreinigung in der Praxis',
+    title: 'Geräteeinsatz und gereinigte Fläche.',
+    intro: 'Die Aufnahmen dokumentieren den praktischen Geräteeinsatz und eine gereinigte Tiefgaragenfläche. Sie werden bewusst nicht als Vorher-Nachher-Paar bezeichnet.',
     items: [
       {
         image: 'kundenbilder/vorher_nachher/parkhaus_reinigung_geraet.png',
@@ -863,6 +875,7 @@ const serviceStoryImages: Record<string, string> = {
   objektpflege: 'kundenbilder/objekte/wohnanlage_modern_02.png',
   'wartung-instandhaltung': 'kundenbilder/leistungen/transport_umzug_lieferung.png',
   gebaeudereinigung: 'kundenbilder/leistungen/gebaeudereinigung_flur.png',
+  tiefgaragenreinigung: 'kundenbilder/leistungen/tiefgarage_saubere_flaeche_01.png',
   gartenpflege: 'kundenbilder/vorher_nachher/aussenbereich_nachher.png',
   winterdienst: 'kundenbilder/leistungen/winterdienst_team.png',
   muellmanagement: 'kundenbilder/leistungen/entsorgung_kartonage.png',
@@ -873,6 +886,7 @@ const serviceImagePositions: Record<string, string> = {
   objektpflege: '50% 72%',
   'wartung-instandhaltung': '35% 64%',
   gebaeudereinigung: '55% 50%',
+  tiefgaragenreinigung: '50% 38%',
   gartenpflege: '45% 43%',
   winterdienst: '47% 50%',
   muellmanagement: '50% 46%',
@@ -883,6 +897,7 @@ const serviceImageDisplays: Record<string, 'portrait' | 'landscape' | 'square'> 
   objektpflege: 'square',
   'wartung-instandhaltung': 'portrait',
   gebaeudereinigung: 'landscape',
+  tiefgaragenreinigung: 'portrait',
   gartenpflege: 'portrait',
   winterdienst: 'landscape',
   muellmanagement: 'portrait',
@@ -1328,18 +1343,18 @@ function HomeCoreServices() {
         initialCount={3}
         className="home-service-card-grid"
         getKey={(service) => service.slug}
-        renderItem={(service, index) => {
+        renderItem={(service, index, isAdditional, isCollapsing) => {
           const Icon = service.icon
           const imagePosition = serviceImagePositions[service.slug]
           const displayTitle = service.slug === 'objektpflege' ? 'Objektbetreuung' : service.title
 
           return (
             <a
-              className="home-service-card"
+              className={`home-service-card${isAdditional ? isCollapsing ? ' expandable-collection__leaving-item' : ' expandable-collection__new-item' : ''}`}
               href={`${SERVICES_PATH}${service.slug}/`}
               key={service.slug}
               data-reveal="up"
-              style={{ '--reveal-delay': `${index * 60}ms` } as CSSProperties}
+              style={{ '--reveal-delay': `${index * 60}ms`, '--expandable-delay': `${Math.max(0, index - 3) * 55}ms` } as CSSProperties}
             >
               <div className={`home-service-card-image home-service-card-image--${serviceImageDisplays[service.slug] ?? 'landscape'}`}>
                 <img src={`${A}${service.image}`} alt={`${service.title} im Einsatz bei Perla’s`} loading="lazy" decoding="async" style={{ objectPosition: imagePosition }} />
@@ -1389,17 +1404,18 @@ function SpecializedServices({ certifiedOnly = false }: { certifiedOnly?: boolea
         initialCount={certifiedOnly ? displayedServices.length : 2}
         className="specialized-services-grid"
         getKey={(service) => service.title}
-        renderItem={(service, index) => {
+        renderItem={(service, index, isAdditional, isCollapsing) => {
           const Icon = service.icon
           return (
             <article
               className={[
                 'specialized-service-card',
+                isAdditional && (isCollapsing ? 'expandable-collection__leaving-item' : 'expandable-collection__new-item'),
                 service.supporting && 'specialized-service-card--supporting',
                 service.certification && 'specialized-service-card--certified',
               ].filter(Boolean).join(' ')}
               data-reveal="up"
-              style={{ '--reveal-delay': `${index * 55}ms` } as CSSProperties}
+              style={{ '--reveal-delay': `${index * 55}ms`, '--expandable-delay': `${Math.max(0, index - 2) * 55}ms` } as CSSProperties}
               key={service.title}
             >
               {service.certification && (
@@ -1596,11 +1612,11 @@ function ServicesOverviewPage() {
           initialCount={6}
           className="services-catalog-grid"
           getKey={(feature) => feature.slug}
-          renderItem={(feature, index) => {
+          renderItem={(feature, index, isAdditional, isCollapsing) => {
             const Icon = feature.icon
             const imagePosition = serviceImagePositions[feature.slug]
             return (
-              <a className="services-catalog-card" href={`${SERVICES_PATH}${feature.slug}/`} data-reveal="up" style={{ '--reveal-delay': `${(index % 3) * 55}ms` } as CSSProperties} key={feature.slug}>
+              <a className={`services-catalog-card${isAdditional ? isCollapsing ? ' expandable-collection__leaving-item' : ' expandable-collection__new-item' : ''}`} href={`${SERVICES_PATH}${feature.slug}/`} data-reveal="up" style={{ '--reveal-delay': `${(index % 3) * 55}ms`, '--expandable-delay': `${Math.max(0, index - 6) * 55}ms` } as CSSProperties} key={feature.slug}>
                 <figure className={`services-catalog-image services-catalog-image--${serviceImageDisplays[feature.slug] ?? 'landscape'}`}>
                   <img src={`${A}${feature.image}`} alt={`${feature.title} im Einsatz bei Perla’s`} loading="lazy" decoding="async" style={{ objectPosition: imagePosition }} />
                 </figure>
@@ -2043,8 +2059,8 @@ function FacilityManagementPage() {
                       className="fm-service-link-grid"
                       getKey={(service) => service.slug}
                       compact
-                      renderItem={(service) => (
-                        <a href={`${BASE_PATH}leistungen/${service.slug}/`}>
+                      renderItem={(service, index, isAdditional, isCollapsing) => (
+                        <a className={isAdditional ? isCollapsing ? 'expandable-collection__leaving-item' : 'expandable-collection__new-item' : undefined} href={`${BASE_PATH}leistungen/${service.slug}/`} style={{ '--expandable-delay': `${Math.max(0, index - 3) * 55}ms` } as CSSProperties}>
                           {service.title}<ArrowUpRight aria-hidden="true" />
                         </a>
                       )}
@@ -2164,10 +2180,10 @@ function AudienceDetailPage({ audience, onQuoteOpen }: { audience: AudienceSolut
           initialCount={3}
           className="audience-detail-service-grid"
           getKey={(service) => service.slug}
-          renderItem={(service, index) => {
+          renderItem={(service, index, isAdditional, isCollapsing) => {
             const ServiceIcon = service.icon
             return (
-              <a href={`${SERVICES_PATH}${service.slug}/`} data-reveal="up" style={{ '--reveal-delay': `${(index % 3) * 45}ms` } as CSSProperties} key={service.slug}>
+              <a className={isAdditional ? isCollapsing ? 'expandable-collection__leaving-item' : 'expandable-collection__new-item' : undefined} href={`${SERVICES_PATH}${service.slug}/`} data-reveal="up" style={{ '--reveal-delay': `${(index % 3) * 45}ms`, '--expandable-delay': `${Math.max(0, index - 3) * 55}ms` } as CSSProperties} key={service.slug}>
                 <span><ServiceIcon aria-hidden="true" /></span>
                 <h3>{service.title}</h3>
                 <p>{service.text}</p>
@@ -2514,6 +2530,28 @@ function ServiceContactForm({ subject }: { subject: string }) {
   )
 }
 
+function ServiceMediaGallery({ gallery }: { gallery: ServiceGallery }) {
+  const headingId = `service-gallery-${useId().replace(/:/g, '')}`
+
+  return (
+    <section className="service-gallery" aria-labelledby={headingId}>
+      <div className="service-gallery-heading" data-reveal="up">
+        <span className="eyebrow">{gallery.eyebrow}</span>
+        <h2 id={headingId}>{gallery.title}</h2>
+        <p>{gallery.intro}</p>
+      </div>
+      <div className="service-gallery-grid">
+        {gallery.items.map((item, index) => (
+          <figure data-reveal="up" style={{ '--reveal-delay': `${index * 70}ms` } as CSSProperties} key={item.image}>
+            <img src={`${A}${item.image}`} alt={item.alt} loading="lazy" decoding="async" style={{ objectPosition: item.position }} />
+            <figcaption>{item.label}</figcaption>
+          </figure>
+        ))}
+      </div>
+    </section>
+  )
+}
+
 function ServiceDetailPage({ service, onQuoteOpen }: { service: Feature; onQuoteOpen: (service?: string) => void }) {
   const Icon = service.icon
   const serviceGallery = serviceGalleries[service.slug]
@@ -2541,7 +2579,7 @@ function ServiceDetailPage({ service, onQuoteOpen }: { service: Feature; onQuote
           {service.certified ? (
             <span className="service-certification-label"><ShieldCheck aria-hidden="true" />{service.certificationLabel ?? 'Zertifizierte Fachleistung'}</span>
           ) : (
-            <span className="eyebrow">Perla’s Objektbetreuung</span>
+            <span className="eyebrow">{service.eyebrow ?? 'Perla’s Objektbetreuung'}</span>
           )}
           <h1>{service.title}</h1>
           <p>{service.detail}</p>
@@ -2645,23 +2683,7 @@ function ServiceDetailPage({ service, onQuoteOpen }: { service: Feature; onQuote
         })}
       </section>
 
-      {serviceGallery && (
-        <section className="service-gallery" aria-labelledby="service-gallery-heading">
-          <div className="service-gallery-heading" data-reveal="up">
-            <span className="eyebrow">{serviceGallery.eyebrow}</span>
-            <h2 id="service-gallery-heading">{serviceGallery.title}</h2>
-            <p>{serviceGallery.intro}</p>
-          </div>
-          <div className="service-gallery-grid">
-            {serviceGallery.items.map((item, index) => (
-              <figure data-reveal="up" style={{ '--reveal-delay': `${index * 70}ms` } as CSSProperties} key={item.image}>
-                <img src={`${A}${item.image}`} alt={item.alt} loading="lazy" decoding="async" style={{ objectPosition: item.position }} />
-                <figcaption>{item.label}</figcaption>
-              </figure>
-            ))}
-          </div>
-        </section>
-      )}
+      {serviceGallery && <ServiceMediaGallery gallery={serviceGallery} />}
 
       <section
         className={serviceStoryImage ? 'service-image-story' : 'service-image-story service-image-story--placeholder'}

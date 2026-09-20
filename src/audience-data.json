@@ -16,7 +16,7 @@
       "Nachvollziehbare Zustands- und Leistungsmeldungen"
     ],
     "approach": "Wir stimmen die benötigten Leistungen objektbezogen ab und führen Rückmeldungen zu einem übersichtlichen Gesamtbild zusammen. Jede Immobilie erhält einen nachvollziehbaren Leistungsrahmen mit klaren Zuständigkeiten.",
-    "services": ["objektpflege", "gebaeudereinigung", "wartung-instandhaltung", "gartenpflege", "winterdienst", "muellmanagement"],
+    "services": ["objektpflege", "gebaeudereinigung", "wartung-instandhaltung", "tiefgaragenreinigung", "gartenpflege", "winterdienst", "muellmanagement"],
     "image": {
       "src": "kundenbilder/objekte/wohnobjekt_modern_eingang_01.png",
       "alt": "Heller Eingangsbereich einer modern betreuten Wohnimmobilie",
@@ -82,7 +82,7 @@
       "Koordination saisonaler und wiederkehrender Aufgaben"
     ],
     "approach": "Gebäude, Außenanlagen und Zugänge werden in einem abgestimmten Betreuungskonzept betrachtet. Auffälligkeiten werden frühzeitig weitergegeben, damit Verwaltung oder Eigentümer rechtzeitig entscheiden können.",
-    "services": ["objektpflege", "gebaeudereinigung", "wartung-instandhaltung", "gartenpflege", "winterdienst", "muellmanagement", "einzelauftrag"],
+    "services": ["objektpflege", "gebaeudereinigung", "wartung-instandhaltung", "tiefgaragenreinigung", "gartenpflege", "winterdienst", "muellmanagement", "einzelauftrag"],
     "image": {
       "src": "kundenbilder/objekte/wohnanlage_01.png",
       "alt": "Betreute Wohnanlage mit Balkonen im Rhein-Main-Gebiet",
@@ -148,7 +148,7 @@
       "Klare Weitergabe technischer Auffälligkeiten"
     ],
     "approach": "Leistungen und Einsatzzeiten richten sich nach Objekt, Nutzung und Zugänglichkeit. Notwendige Facharbeiten werden mit geeigneten Fachbetrieben abgestimmt, während die organisatorischen Fäden bei einem Ansprechpartner zusammenlaufen.",
-    "services": ["objektpflege", "wartung-instandhaltung", "gebaeudereinigung", "gartenpflege", "winterdienst"],
+    "services": ["objektpflege", "wartung-instandhaltung", "gebaeudereinigung", "tiefgaragenreinigung", "gartenpflege", "winterdienst"],
     "image": {
       "src": "kundenbilder/fahrzeuge/perlas_fahrzeug_gewerbe_01.png",
       "alt": "Perla’s Servicefahrzeug an einem Gewerbestandort",
@@ -214,7 +214,7 @@
       "Dokumentierte Kontrollen und Rückmeldungen"
     ],
     "approach": "Wir legen Aufgaben, Intervalle und Ansprechpartner gemeinsam fest. Bei technischen Fachthemen koordinieren wir die Weitergabe an geeignete Spezialisten und halten offen gebliebene Maßnahmen nachvollziehbar fest.",
-    "services": ["objektpflege", "gebaeudereinigung", "wartung-instandhaltung", "winterdienst", "gartenpflege"],
+    "services": ["objektpflege", "gebaeudereinigung", "wartung-instandhaltung", "tiefgaragenreinigung", "winterdienst", "gartenpflege"],
     "image": {
       "src": "kundenbilder/objekte/gewerbeobjekt_dach_02.png",
       "alt": "Großes Gewerbeobjekt als Beispiel für komplexe Gebäudebetreuung",

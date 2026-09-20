@@ -13244,40 +13244,38 @@ body {
   transform: none;
 }
 
-/* Einheitliches Aufklappmuster für Leistungsübersichten. */
+/* Einheitliches Aufklappmuster für Leistungsübersichten. Alle Karten bleiben im selben Grid. */
 .expandable-collection {
   width: 100%;
 }
 
-.expandable-collection__extra {
-  display: grid;
-  grid-template-rows: 0fr;
-  visibility: hidden;
-  opacity: 0;
-  transition: grid-template-rows 380ms cubic-bezier(0.22, 1, 0.36, 1), opacity 220ms ease, visibility 380ms step-end;
+@keyframes serviceCardIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.expandable-collection__extra.is-expanded {
-  grid-template-rows: 1fr;
-  visibility: visible;
-  opacity: 1;
-  transition: grid-template-rows 420ms cubic-bezier(0.22, 1, 0.36, 1), opacity 280ms ease 80ms, visibility 0s;
+@keyframes serviceCardOut {
+  to {
+    opacity: 0;
+    transform: translateY(6px);
+  }
 }
 
-.expandable-collection__extra-inner {
-  min-height: 0;
-  overflow: hidden;
+.expandable-collection__new-item {
+  animation: serviceCardIn 320ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: var(--expandable-delay, 0ms);
 }
 
-.expandable-collection__extra .home-service-card-grid,
-.expandable-collection__extra .services-catalog-grid,
-.expandable-collection__extra .audience-detail-service-grid,
-.expandable-collection__extra .specialized-services-grid {
-  margin-top: 22px;
-}
-
-.audience-detail-services .expandable-collection__extra .audience-detail-service-grid {
-  margin-top: 18px;
+.expandable-collection__leaving-item {
+  pointer-events: none;
+  animation: serviceCardOut 180ms ease both;
 }
 
 .expandable-collection__toggle {
@@ -13325,10 +13323,6 @@ body {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 8px;
-}
-
-.expandable-collection__extra .fm-service-link-grid {
-  margin-top: 8px;
 }
 
 .expandable-collection--compact .expandable-collection__toggle {
@@ -13391,9 +13385,11 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
   .about-team-expandable,
-  .expandable-collection__extra,
+  .expandable-collection__new-item,
+  .expandable-collection__leaving-item,
   .expandable-collection__toggle,
   .expandable-collection__toggle svg {
+    animation: none;
     transition: none;
   }
 }

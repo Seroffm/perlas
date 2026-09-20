@@ -310,6 +310,72 @@
     ]
   },
   {
+    "slug": "tiefgaragenreinigung",
+    "title": "Tiefgaragenreinigung",
+    "eyebrow": "Professionelle Flächenreinigung",
+    "text": "Fahrflächen, Stellplätze und Randbereiche mit abgestimmtem Maschinen- und Handeinsatz reinigen.",
+    "detail": "Perla’s reinigt größere Park- und Tiefgaragenflächen mit einem auf Fläche, Zugänglichkeit und Nutzung abgestimmten Maschinen- und Handeinsatz. Leistungsumfang, Intervalle und Dokumentation werden vor Beginn klar festgelegt.",
+    "image": "kundenbilder/leistungen/tiefgarage_saubere_flaeche_01.png",
+    "imageAlt": "Saubere, hell ausgeleuchtete Fahrfläche einer von Perla’s betreuten Tiefgarage",
+    "imageDisplay": "portrait",
+    "imagePosition": "50% 38%",
+    "seoTitle": "Tiefgaragenreinigung Rhein-Main | PERLAS",
+    "seoDescription": "Tiefgaragenreinigung für Wohnanlagen, Hausverwaltungen, Gewerbeimmobilien und größere Parkflächen im Rhein-Main-Gebiet.",
+    "scopeIntro": "Vor dem Einsatz erfassen wir Flächengröße, Stellplätze, Randbereiche, Ein- und Ausfahrten sowie die Erreichbarkeit einzelner Zonen. Daraus entsteht ein nachvollziehbarer Umfang für maschinelle Reinigung, manuelle Nacharbeiten und passende Intervalle.",
+    "scopeCards": [
+      {
+        "title": "Fahrflächen und Stellplätze",
+        "text": "Vereinbarte Fahrwege und Stellplatzflächen werden passend zu Größe, Untergrund und Nutzung in den Reinigungsplan aufgenommen.",
+        "items": ["Fahrflächen erfassen", "Stellplätze einbeziehen", "Flächenabschnitte eindeutig zuordnen"]
+      },
+      {
+        "title": "Randbereiche und schwer erreichbare Zonen",
+        "text": "Bereiche, die mit der Maschine nicht vollständig erreichbar sind, werden bei der Planung gesondert berücksichtigt.",
+        "items": ["Randzonen aufnehmen", "Ecken und Stützen berücksichtigen", "Zugänglichkeit vorab prüfen"]
+      },
+      {
+        "title": "Ein- und Ausfahrten",
+        "text": "Zufahrten und Übergänge werden nach Vereinbarung in den Flächenumfang einbezogen und passend zum laufenden Verkehr eingeplant.",
+        "items": ["Zufahrtsbereiche abstimmen", "Nutzungszeiten berücksichtigen", "Arbeitsabschnitte festlegen"]
+      },
+      {
+        "title": "Maschinelle Reinigung",
+        "text": "Für größere, zugängliche Flächen wird der geeignete Maschineneinsatz nach den Bedingungen vor Ort abgestimmt.",
+        "items": ["Maschineneinsatz vorbereiten", "Geeignete Flächen bearbeiten", "Ablauf objektbezogen planen"]
+      },
+      {
+        "title": "Manuelle Nacharbeiten",
+        "text": "Vereinbarte Stellen außerhalb der erreichbaren Maschinenfläche können im festgelegten Umfang manuell nachbearbeitet werden.",
+        "items": ["Nicht erreichbare Stellen aufnehmen", "Nacharbeiten abgrenzen", "Ergebnis gemeinsam prüfen"]
+      },
+      {
+        "title": "Intervalle und Dokumentation",
+        "text": "Einmalige Einsätze oder wiederkehrende Reinigungsintervalle werden vorab festgelegt und der ausgeführte Umfang nachvollziehbar festgehalten.",
+        "items": ["Reinigungsintervall abstimmen", "Ausgeführte Bereiche festhalten", "Besonderheiten zurückmelden"]
+      }
+    ],
+    "processSteps": [
+      { "title": "Flächen und Nutzung aufnehmen", "text": "Wir erfassen Fahrflächen, Stellplätze, Randbereiche, Zufahrten und die Nutzung der Tiefgarage vor Ort." },
+      { "title": "Verfahren und Ablauf festlegen", "text": "Maschinen- und Handeinsatz, Flächenabschnitte, Zeiten und Intervalle werden eindeutig abgestimmt." },
+      { "title": "Reinigen und dokumentieren", "text": "Wir bearbeiten den vereinbarten Umfang und melden ausgeführte Bereiche sowie Besonderheiten nachvollziehbar zurück." }
+    ],
+    "benefits": [
+      { "title": "Der Umfang ist vor dem Einsatz klar", "text": "Fahrflächen, Stellplätze, Randbereiche und Zufahrten werden eindeutig in den Auftrag aufgenommen." },
+      { "title": "Maschine und Handarbeit greifen ineinander", "text": "Gut erreichbare Flächen und schwer zugängliche Stellen werden im Ablauf getrennt und sinnvoll koordiniert." },
+      { "title": "Die Durchführung bleibt nachvollziehbar", "text": "Ausgeführte Bereiche, vereinbarte Intervalle und Besonderheiten werden verständlich dokumentiert." }
+    ],
+    "audiences": ["Größere Wohnanlagen und Hausverwaltungen", "Gewerbeimmobilien und Unternehmensstandorte", "Parkhäuser und Tiefgaragen", "Institutionelle Immobilien mit größeren Parkflächen"],
+    "boundaryTitle": "Flächen, Zugänglichkeit und Verfahren vorab klären",
+    "boundaryText": "Welche Flächen gereinigt werden, welche Bereiche maschinell erreichbar sind und welche manuellen Nacharbeiten zum Auftrag gehören, wird vor Beginn festgehalten. Weitergehende Arbeiten oder besondere Verfahren sind nur Bestandteil des Auftrags, wenn sie ausdrücklich geprüft und vereinbart wurden.",
+    "relatedServices": ["gebaeudereinigung", "objektpflege", "wartung-instandhaltung"],
+    "faqs": [
+      { "question": "Welche Bereiche können gereinigt werden?", "answer": "Je nach Vereinbarung können Fahrflächen, Stellplätze, Randbereiche sowie Ein- und Ausfahrten in den Leistungsumfang aufgenommen werden." },
+      { "question": "Wird ausschließlich maschinell gereinigt?", "answer": "Nein. Der geeignete Maschineneinsatz wird mit manuellen Nacharbeiten für vereinbarte, schwer erreichbare Stellen kombiniert." },
+      { "question": "Sind wiederkehrende Reinigungen möglich?", "answer": "Ja. Ein einmaliger Einsatz oder abgestimmte Reinigungsintervalle können passend zu Flächengröße, Nutzung und Bedarf vereinbart werden." },
+      { "question": "Wie wird der ausgeführte Umfang festgehalten?", "answer": "Die bearbeiteten Flächen und relevante Besonderheiten werden nach dem vereinbarten Dokumentationsumfang zurückgemeldet." }
+    ]
+  },
+  {
     "slug": "muellmanagement",
     "title": "Müllmanagement",
     "text": "Saubere Müllplätze, koordinierte Bereitstellung und verlässliche Kontrollen für größere Immobilien.",
