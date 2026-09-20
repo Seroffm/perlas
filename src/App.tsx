@@ -52,6 +52,7 @@ const BLOG_PATH = `${BASE_PATH}blog/`
 const CAREER_PATH = `${BASE_PATH}karriere/`
 const IMPRINT_PATH = `${BASE_PATH}impressum/`
 const PRIVACY_PATH = `${BASE_PATH}datenschutz/`
+const TRUSTLOCAL_URL = 'https://trustlocal.de/hessen/sulzbach/entrumpelung/perlas-objektbetreuung-gmbh-co-kg/'
 
 const homeHref = (hash = '') => `${BASE_PATH}${hash}`
 const audienceHref = (id: string) => `${FACILITY_PATH}${id}/`
@@ -662,6 +663,7 @@ type SpecializedService = {
   qualificationNote?: string
   certification?: string
   certificationPlaceholder?: string
+  isDemoImage?: boolean
   supporting?: boolean
 }
 
@@ -669,18 +671,22 @@ const specializedServices: SpecializedService[] = [
   {
     slug: 'baumpflege-baumfaellung',
     icon: TreePine,
-    label: 'Fachleistung Außenanlagen',
-    title: 'Baumpflege & Baum\u00ADfällung',
+    label: 'Zertifizierte Zusatzleistung',
+    title: 'Baumpflege & Baumfällung',
     text: 'Eigenständige Fachleistung für Pflege und Rückschnitt. Notwendige Fällungen erfolgen nach objektbezogener Prüfung.',
     bullets: ['Bestand und Zugänglichkeit aufnehmen', 'Pflege- und Rückschnittbedarf einordnen', 'Sicherungsbereich und Ausführung abstimmen'],
-    qualificationNote: 'Erforderliche Fachkunde und Sicherungsmaßnahmen werden vor der Ausführung geprüft.',
+    image: 'visualisierungen/baumpflege_demo.png',
+    imageAlt: 'DEMO-Visualisierung: Fachpersonal bei einer gesicherten Baumpflege an einer modernen Wohnanlage',
+    imagePosition: '50% 46%',
+    isDemoImage: true,
+    qualificationNote: 'Fachkunde, Sicherungsmaßnahmen und der konkrete Prüfumfang werden vor der Ausführung verbindlich abgestimmt.',
     certification: 'Zertifiziert',
     certificationPlaceholder: 'Konkreter Zertifikatsname wird nach Kundenfreigabe ergänzt.',
   },
   {
     icon: Building2,
     label: 'Professionelle Flächenreinigung',
-    title: 'Tiefgaragen\u00ADreinigung',
+    title: 'Tiefgaragenreinigung',
     text: 'Systematische Reinigung größerer Park- und Tiefgaragenflächen mit abgestimmtem Maschinen- und Handeinsatz.',
     bullets: ['Fahrflächen und Stellplätze', 'Randbereiche und schwer zugängliche Zonen', 'Maschinelle Reinigung und manuelle Nacharbeiten'],
     image: 'kundenbilder/vorher_nachher/parkhaus_reinigung_geraet.png',
@@ -691,14 +697,15 @@ const specializedServices: SpecializedService[] = [
   {
     slug: 'spielplatzkontrolle-spielgeraetewartung',
     icon: ClipboardCheck,
-    label: 'Fachleistung für Wohnanlagen',
-    title: 'Spielplatzkontrolle & Spielgeräte\u00ADwartung',
+    label: 'Zertifizierte Zusatzleistung',
+    title: 'Spielplatzkontrolle & Spielgerätewartung',
     text: 'Planbare Betreuung von Spielbereichen für Hausverwaltungen, größere Wohnanlagen und institutionelle Auftraggeber.',
     bullets: ['Regelmäßige Sichtkontrollen', 'Auffälligkeiten nachvollziehbar dokumentieren', 'Notwendige Maßnahmen koordinieren', 'Wartung und Betreuung im vereinbarten Umfang'],
-    image: 'visualisierungen/spielplatz_modern_ki.png',
-    imageAlt: 'KI-Visualisierung eines modernen gepflegten Spielplatzes in einer hochwertigen Wohnanlage',
+    image: 'visualisierungen/spielplatzkontrolle_demo.png',
+    imageAlt: 'DEMO-Visualisierung: Fachpersonal bei der Kontrolle eines modernen Spielplatzes in einer Wohnanlage',
     imagePosition: '50% 52%',
-    qualificationNote: 'Prüfumfang und erforderliche Fachkunde werden vor der Beauftragung verbindlich festgelegt.',
+    isDemoImage: true,
+    qualificationNote: 'Prüfumfang, Dokumentation und erforderliche Fachkunde werden vor der Beauftragung verbindlich festgelegt.',
     certification: 'Zertifiziert',
     certificationPlaceholder: 'Konkreter Zertifikatsname für Prüfung und Wartung wird nach Kundenfreigabe ergänzt.',
   },
@@ -706,7 +713,7 @@ const specializedServices: SpecializedService[] = [
     slug: 'buero-einrichtungsservice',
     icon: BriefcaseBusiness,
     label: 'Ergänzende Serviceleistung',
-    title: 'Büro- & Einrichtungs\u00ADservice',
+    title: 'Büro- & Einrichtungsservice',
     text: 'Konkrete Unterstützung bei Umstellungen, internen Büro- und Möbelumzügen sowie der Vorbereitung neu genutzter Räume.',
     bullets: ['Möbel und Arbeitsplätze umstellen', 'Vorhandene Einrichtung auf- und abbauen', 'Räume für eine neue Nutzung vorbereiten'],
     supporting: true,
@@ -1366,11 +1373,11 @@ function SpecializedServices({ certifiedOnly = false }: { certifiedOnly?: boolea
         <strong>{certifiedOnly ? 'Zertifizierte Leistungen' : 'Ergänzende Fachleistungen'}</strong>
       </div>
       <div className="home-section-heading" data-reveal="up">
-        <span className="eyebrow">{certifiedOnly ? 'Nachgewiesene Fachkompetenz' : 'Spezialisierte Zusatzleistungen'}</span>
-        <h2 id="specialized-services-heading">{certifiedOnly ? 'Zertifizierte Leistungen.' : 'Ergänzende Fachleistungen für professionell betreute Immobilien.'}</h2>
+        <span className="eyebrow">{certifiedOnly ? 'Leistungen mit besonderem Prüf- und Sicherheitsanspruch' : 'Spezialisierte Zusatzleistungen'}</span>
+        <h2 id="specialized-services-heading">{certifiedOnly ? 'Zertifizierte Zusatzleistungen.' : 'Ergänzende Fachleistungen für professionell betreute Immobilien.'}</h2>
         <p>
           {certifiedOnly
-            ? 'Für ausgewählte Fachleistungen setzt Perla’s qualifizierte Mitarbeitende und klar definierte Prüf- und Arbeitsabläufe ein.'
+            ? 'Diese Leistungen heben sich bewusst von den klassischen Kernleistungen ab: Sie werden mit klar definiertem Prüfumfang, fachlicher Qualifikation und abgestimmten Sicherheitsabläufen geplant.'
             : 'Zusätzlich zu den laufenden Kernleistungen übernimmt oder koordiniert Perla’s spezialisierte Aufgaben. Umfang, Zuständigkeit und erforderliche Fachkunde werden vorab geprüft.'}
         </p>
       </div>
@@ -1383,7 +1390,11 @@ function SpecializedServices({ certifiedOnly = false }: { certifiedOnly?: boolea
           const Icon = service.icon
           return (
             <article
-              className={service.supporting ? 'specialized-service-card specialized-service-card--supporting' : 'specialized-service-card'}
+              className={[
+                'specialized-service-card',
+                service.supporting && 'specialized-service-card--supporting',
+                service.certification && 'specialized-service-card--certified',
+              ].filter(Boolean).join(' ')}
               data-reveal="up"
               style={{ '--reveal-delay': `${index * 55}ms` } as CSSProperties}
               key={service.title}
@@ -1393,13 +1404,16 @@ function SpecializedServices({ certifiedOnly = false }: { certifiedOnly?: boolea
               )}
               <div className={service.image ? 'specialized-service-media' : 'specialized-service-media specialized-service-media--icon'}>
                 {service.image ? (
-                  <img
-                    src={`${A}${service.image}`}
-                    alt={service.imageAlt}
-                    loading="lazy"
-                    decoding="async"
-                    style={{ objectPosition: service.imagePosition }}
-                  />
+                  <>
+                    <img
+                      src={`${A}${service.image}`}
+                      alt={service.imageAlt}
+                      loading="lazy"
+                      decoding="async"
+                      style={{ objectPosition: service.imagePosition }}
+                    />
+                    {service.isDemoImage && <span className="specialized-service-demo" aria-label="Demo-Bild">DEMO</span>}
+                  </>
                 ) : (
                   <><Icon aria-hidden="true" /><span>{service.label}</span></>
                 )}
@@ -2971,6 +2985,14 @@ function Footer() {
             <strong>Im Rhein-Main-Gebiet für Sie da</strong>
             <span>Sulzbach · Frankfurt · Hofheim · Bad Soden · Eschborn · Umgebung</span>
           </div>
+          <aside className="footer-trust" aria-label="Weitere Bewertungen und Profile">
+            <span className="footer-trust-eyebrow">Weitere Bewertungen &amp; Profile</span>
+            <p>Perla’s ist auch auf externen Plattformen sichtbar.</p>
+            <a href={TRUSTLOCAL_URL} target="_blank" rel="noreferrer">
+              <span><ShieldCheck aria-hidden="true" /> Trustlocal</span>
+              <strong>Profil ansehen <ArrowUpRight aria-hidden="true" /></strong>
+            </a>
+          </aside>
         </div>
 
       </div>
