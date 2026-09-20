@@ -805,10 +805,10 @@ const heroSlides = [
     position: '50% center',
   },
   {
-    image: 'kundenbilder/objekte/gewerbeobjekt_dach_02.png',
-    alt: 'Helles Gewerbeobjekt mit Dachfläche unter blauem Himmel',
-    label: 'Objekte professionell im Blick',
-    position: '50% 52%',
+    image: 'kundenbilder/objekte/wohnobjekt_modern_02.png',
+    alt: 'Hochwertige moderne Wohnimmobilie mit gepflegtem Außenbereich',
+    label: 'Gepflegte Immobilien im Blick',
+    position: '38% 54%',
   },
 ]
 
