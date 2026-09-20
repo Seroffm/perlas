@@ -7,6 +7,7 @@ const serviceDataPath = fileURLToPath(new URL('../src/service-data.json', import
 const audienceDataPath = fileURLToPath(new URL('../src/audience-data.json', import.meta.url))
 const blogDataPath = fileURLToPath(new URL('../src/blog-data.json', import.meta.url))
 const jobDataPath = fileURLToPath(new URL('../src/job-data.json', import.meta.url))
+const imprintDataPath = fileURLToPath(new URL('../src/imprint-content.json', import.meta.url))
 const privacyDataPath = fileURLToPath(new URL('../src/privacy-content.json', import.meta.url))
 const appPath = fileURLToPath(new URL('../src/App.tsx', import.meta.url))
 const contactPagePath = fileURLToPath(new URL('../src/ContactPage.tsx', import.meta.url))
@@ -24,6 +25,7 @@ const services = JSON.parse(await readFile(serviceDataPath, 'utf8'))
 const audiences = JSON.parse(await readFile(audienceDataPath, 'utf8'))
 const blogPosts = JSON.parse(await readFile(blogDataPath, 'utf8'))
 const jobs = JSON.parse(await readFile(jobDataPath, 'utf8'))
+const imprintContent = JSON.parse(await readFile(imprintDataPath, 'utf8'))
 const privacyContent = JSON.parse(await readFile(privacyDataPath, 'utf8'))
 const featuredBlogPostSlug = 'objektkontrollen-richtig-dokumentieren'
 const coreServiceSlugs = new Set([
@@ -46,6 +48,7 @@ const sourceStats = await Promise.all([
   audienceDataPath,
   blogDataPath,
   jobDataPath,
+  imprintDataPath,
   privacyDataPath,
   appPath,
   contactPagePath,
@@ -534,9 +537,33 @@ function privacyMarkup() {
   return `${staticHeader()}<main class="seo-static-main"><nav aria-label="Brotkrümeln"><a href="${basePath}">Startseite</a> / Datenschutz</nav><section class="seo-static-hero"><p>Rechtliche Informationen</p><h1>Datenschutzerklärung</h1><p>${escapeHtml(privacyContent.lead)}</p><p><strong>Stand: ${escapeHtml(privacyContent.updated)}</strong></p></section><nav aria-label="Inhaltsverzeichnis der Datenschutzerklärung"><h2>Inhaltsverzeichnis</h2><ol>${tableOfContents}</ol></nav><section><h2>Grundlage und Prüfstatus</h2><p>${escapeHtml(privacyContent.sourceNote)}</p></section>${sections}</main>`
 }
 
+function imprintBlockMarkup(block) {
+  if (block.type === 'address') {
+    const address = escapeHtml(block.address).replaceAll('\n', '<br>')
+    return `<h3>${escapeHtml(block.heading)}</h3><address><strong>${escapeHtml(block.company)}</strong><br>${address}<br>Telefon: <a href="tel:${escapeHtml(block.phoneHref)}">${escapeHtml(block.phone)}</a><br>E-Mail: <a href="mailto:${escapeHtml(block.email)}">${escapeHtml(block.email)}</a></address>`
+  }
+
+  if (block.type === 'details') {
+    return `<dl>${block.items.map((item) => `<div><dt>${escapeHtml(item.label)}</dt><dd>${escapeHtml(item.value)}</dd></div>`).join('')}</dl>`
+  }
+
+  return `<p>${escapeHtml(block.text)}</p>`
+}
+
+function imprintMarkup() {
+  const tableOfContents = imprintContent.sections
+    .map((section) => `<li><a href="#${escapeHtml(section.id)}">${escapeHtml(section.title)}</a></li>`)
+    .join('')
+  const sections = imprintContent.sections
+    .map((section) => `<section id="${escapeHtml(section.id)}"><h2>${escapeHtml(section.title)}</h2>${section.blocks.map(imprintBlockMarkup).join('')}</section>`)
+    .join('')
+
+  return `${staticHeader()}<main class="seo-static-main"><nav aria-label="Brotkrümeln"><a href="${basePath}">Startseite</a> / Impressum</nav><section class="seo-static-hero"><p>Rechtliches</p><h1>Impressum</h1><p>${escapeHtml(imprintContent.lead)}</p></section><nav aria-label="Inhaltsverzeichnis des Impressums"><h2>Inhaltsverzeichnis</h2><ol>${tableOfContents}</ol></nav>${sections}</main>`
+}
+
 function legalMarkup(type) {
   if (type === 'imprint') {
-    return `${staticHeader()}<main class="seo-static-main"><nav aria-label="Brotkrümeln"><a href="${basePath}">Startseite</a> / Impressum</nav><section class="seo-static-hero"><p>Rechtliche Informationen</p><h1>Impressum</h1><p>Vorläufiger Platzhalter. Fehlende Pflichtangaben werden vor dem finalen Livegang ergänzt.</p></section><section><h2>Angaben zum Anbieter</h2><p>Perla’s Objektbetreuung GmbH &amp; Co. KG<br>Hauptstraße 1<br>65843 Sulzbach (Taunus)<br>Deutschland</p><h2>Kontakt</h2><p>Telefon: 0177 68 67 145<br>E-Mail: mail@perlas.de</p><h2>Noch zu ergänzen</h2><p>Vertretungsberechtigte Person, Registergericht, Registernummer, Umsatzsteuer-ID und inhaltlich verantwortliche Person.</p></section></main>`
+    return imprintMarkup()
   }
 
   return privacyMarkup()

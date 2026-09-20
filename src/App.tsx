@@ -36,6 +36,7 @@ import BlogPage, { BlogArticlePage } from './BlogPage'
 import CareerPage from './CareerPage'
 import audienceContent from './audience-data.json'
 import blogContent from './blog-data.json'
+import imprintContent from './imprint-content.json'
 import jobContent from './job-data.json'
 import privacyContent from './privacy-content.json'
 import serviceContent from './service-data.json'
@@ -2815,6 +2816,16 @@ function Insights() {
 
 type LegalPageType = 'imprint' | 'privacy'
 
+type ImprintBlock =
+  | { type: 'paragraph'; text: string }
+  | { type: 'details'; items: Array<{ label: string; value: string }> }
+  | { type: 'address'; heading: string; company: string; address: string; phone: string; phoneHref: string; email: string }
+
+type ImprintContent = {
+  lead: string
+  sections: Array<{ id: string; title: string; blocks: ImprintBlock[] }>
+}
+
 type PrivacyBlock =
   | { type: 'paragraph'; text: string }
   | { type: 'subheading'; text: string }
@@ -2836,6 +2847,38 @@ type PrivacyContent = {
 }
 
 const privacy = privacyContent as PrivacyContent
+const imprint = imprintContent as ImprintContent
+
+function ImprintBlockContent({ block }: { block: ImprintBlock }) {
+  if (block.type === 'address') {
+    return (
+      <>
+        <h3>{block.heading}</h3>
+        <address className="legal-contact-address">
+          <strong>{block.company}</strong>
+          <span>{block.address.split('\n').map((line) => <Fragment key={line}>{line}<br /></Fragment>)}</span>
+          <span>Telefon: <a href={`tel:${block.phoneHref}`}>{block.phone}</a></span>
+          <span>E-Mail: <a href={`mailto:${block.email}`}>{block.email}</a></span>
+        </address>
+      </>
+    )
+  }
+
+  if (block.type === 'details') {
+    return (
+      <dl className="legal-details">
+        {block.items.map((item) => (
+          <div key={item.label}>
+            <dt>{item.label}</dt>
+            <dd>{item.value}</dd>
+          </div>
+        ))}
+      </dl>
+    )
+  }
+
+  return <p>{block.text}</p>
+}
 
 function PrivacyBlockContent({ block }: { block: PrivacyBlock }) {
   if (block.type === 'subheading') {
@@ -2867,36 +2910,32 @@ function LegalPage({ type }: { type: LegalPageType }) {
     <main className="legal-page">
       <section className="legal-hero">
         <PageBreadcrumb current={isImprint ? 'Impressum' : 'Datenschutz'} />
-        <span className="eyebrow">{isImprint ? 'Rechtliche Informationen' : 'Rechtliches'}</span>
+        <span className="eyebrow">Rechtliches</span>
         <h1>{isImprint ? 'Impressum' : <>Datenschutz<wbr />erklärung</>}</h1>
-        <p>{isImprint ? 'Angaben zum Anbieter dieser Website.' : privacy.lead}</p>
+        <p>{isImprint ? imprint.lead : privacy.lead}</p>
         {!isImprint && <span className="legal-version">Stand: {privacy.updated}</span>}
       </section>
 
-      <section className={`legal-content${isImprint ? '' : ' legal-content--privacy'}`}>
+      <section className={`legal-content legal-content--structured${isImprint ? ' legal-content--imprint' : ' legal-content--privacy'}`}>
         {isImprint ? (
           <>
-            <aside>
-              <strong>Vorläufiger Platzhalter</strong>
-              <p>Diese Seite ist strukturell vorbereitet, aber noch nicht abschließend rechtlich geprüft. Fehlende Pflichtangaben müssen vor dem finalen Livegang ergänzt werden.</p>
+            <aside className="legal-toc">
+              <strong>Inhaltsverzeichnis</strong>
+              <nav aria-label="Inhaltsverzeichnis des Impressums">
+                {imprint.sections.map((section) => (
+                  <a href={`#${section.id}`} key={section.id}>{section.title}</a>
+                ))}
+              </nav>
             </aside>
-            <div className="legal-copy">
-              <section>
-                <h2>Angaben gemäß § 5 DDG</h2>
-                <p>Perla’s Objektbetreuung GmbH &amp; Co. KG<br />Hauptstraße 1<br />65843 Sulzbach (Taunus)<br />Deutschland</p>
-              </section>
-              <section>
-                <h2>Vertretung und Register</h2>
-                <p>Vertretungsberechtigte Person: <strong>[wird ergänzt]</strong><br />Registergericht: <strong>[wird ergänzt]</strong><br />Registernummer: <strong>[wird ergänzt]</strong><br />Umsatzsteuer-ID: <strong>[wird ergänzt]</strong></p>
-              </section>
-              <section>
-                <h2>Kontakt</h2>
-                <p>Telefon: <a href="tel:+491776867145">0177 68 67 145</a><br />E-Mail: <a href="mailto:mail@perlas.de">mail@perlas.de</a></p>
-              </section>
-              <section>
-                <h2>Verantwortlich für Inhalte</h2>
-                <p>Verantwortliche Person nach § 18 Abs. 2 MStV: <strong>[wird ergänzt]</strong></p>
-              </section>
+            <div className="legal-copy legal-copy--imprint">
+              {imprint.sections.map((section) => (
+                <section id={section.id} key={section.id}>
+                  <h2>{section.title}</h2>
+                  {section.blocks.map((block, index) => (
+                    <ImprintBlockContent block={block} key={`${section.id}-${block.type}-${index}`} />
+                  ))}
+                </section>
+              ))}
             </div>
           </>
         ) : (

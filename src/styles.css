@@ -8883,12 +8883,12 @@ body {
   line-height: 1.55;
 }
 
-.legal-content--privacy {
+.legal-content--structured {
   grid-template-columns: minmax(230px, 290px) minmax(0, 720px);
   justify-content: space-between;
 }
 
-.legal-content--privacy > .legal-toc {
+.legal-content--structured > .legal-toc {
   position: sticky;
   top: 112px;
   max-height: calc(100vh - 144px);
@@ -8978,12 +8978,43 @@ body {
   font-weight: 800;
 }
 
-.legal-copy--privacy {
+.legal-copy--privacy,
+.legal-copy--imprint {
   min-width: 0;
 }
 
-.legal-copy--privacy > section {
+.legal-copy--privacy > section,
+.legal-copy--imprint > section {
   scroll-margin-top: 112px;
+}
+
+.legal-details {
+  margin-top: 16px;
+  display: grid;
+  gap: 14px;
+}
+
+.legal-details > div {
+  display: grid;
+  grid-template-columns: minmax(150px, 0.42fr) minmax(0, 1fr);
+  gap: 20px;
+}
+
+.legal-details dt,
+.legal-details dd {
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+.legal-details dt {
+  color: rgb(10 11 13 / 62%);
+  font-weight: 700;
+}
+
+.legal-details dd {
+  margin: 0;
+  color: var(--ink);
+  font-weight: 800;
 }
 
 .legal-source-note {
@@ -9050,6 +9081,9 @@ body {
 
 .legal-copy--privacy,
 .legal-copy--privacy a,
+.legal-copy--imprint,
+.legal-copy--imprint a,
+.legal-details dd,
 .legal-contact-address {
   overflow-wrap: anywhere;
 }
@@ -9094,7 +9128,7 @@ body {
     gap: 48px;
   }
 
-  .legal-content--privacy > .legal-toc {
+  .legal-content--structured > .legal-toc {
     position: static;
     max-height: none;
   }
@@ -9229,6 +9263,11 @@ body {
 
   .legal-copy h2 {
     font-size: 23px;
+  }
+
+  .legal-details > div {
+    grid-template-columns: 1fr;
+    gap: 3px;
   }
 
   .legal-toc nav {

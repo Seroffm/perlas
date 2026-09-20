@@ -1,0 +1,131 @@
+{
+  "lead": "Angaben zum Anbieter dieser Website und rechtliche Hinweise.",
+  "sections": [
+    {
+      "id": "anbieterkennzeichnung",
+      "title": "Anbieterkennzeichnung",
+      "blocks": [
+        {
+          "type": "address",
+          "heading": "Angaben gemäß § 5 DDG",
+          "company": "Perla’s Objektbetreuung GmbH & Co. KG",
+          "address": "Hauptstraße 1\n65843 Sulzbach (Taunus)\nDeutschland",
+          "phone": "+49 177 68 67 145",
+          "phoneHref": "+491776867145",
+          "email": "mail@perlas.de"
+        }
+      ]
+    },
+    {
+      "id": "vertretungsberechtigte",
+      "title": "Vertretungsberechtigte",
+      "blocks": [
+        {
+          "type": "details",
+          "items": [
+            { "label": "Geschäftsführung", "value": "Paolo Perla" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "registereintrag",
+      "title": "Registereintrag",
+      "blocks": [
+        {
+          "type": "details",
+          "items": [
+            { "label": "Registergericht", "value": "Amtsgericht Frankfurt am Main" },
+            { "label": "Handelsregister", "value": "HRA 46445" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kammerzugehoerigkeit",
+      "title": "Kammerzugehörigkeit",
+      "blocks": [
+        { "type": "paragraph", "text": "Handwerkskammer Rhein-Main" }
+      ]
+    },
+    {
+      "id": "umsatzsteuer",
+      "title": "Umsatzsteuer",
+      "blocks": [
+        {
+          "type": "details",
+          "items": [
+            { "label": "Umsatzsteuer-Identifikationsnummer gemäß § 27a UStG", "value": "DE 278829312" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "berufshaftpflichtversicherung",
+      "title": "Berufshaftpflichtversicherung",
+      "blocks": [
+        {
+          "type": "details",
+          "items": [
+            { "label": "Versicherer", "value": "Helvetia Versicherungen" },
+            { "label": "Sitz / Anschrift", "value": "Filialdirektion Frankfurt, Postfach 101059, 60010 Frankfurt am Main" },
+            { "label": "Geltungsraum", "value": "Europa sowie außereuropäische Gebiete, die zum Geltungsbereich des Vertrages über die Europäische Union gehören" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "verantwortlich-fuer-inhalte",
+      "title": "Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV",
+      "blocks": [
+        {
+          "type": "details",
+          "items": [
+            { "label": "Verantwortlich", "value": "Paolo Perla" },
+            { "label": "Anschrift", "value": "Hauptstraße 1, 65843 Sulzbach (Taunus)" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "haftung-fuer-inhalte",
+      "title": "Haftung für Inhalte",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Wir erstellen die Inhalte dieser Website mit größter Sorgfalt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte übernehmen wir jedoch keine Gewähr. Als Diensteanbieter sind wir nach den allgemeinen Gesetzen für eigene Inhalte verantwortlich. Eine Haftung ist erst ab Kenntnis einer konkreten Rechtsverletzung möglich. Bei Bekanntwerden entsprechender Rechtsverletzungen entfernen wir diese Inhalte umgehend."
+        }
+      ]
+    },
+    {
+      "id": "haftung-fuer-links",
+      "title": "Haftung für Links",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Unsere Website enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber verantwortlich. Bei Bekanntwerden von Rechtsverletzungen entfernen wir derartige Links umgehend."
+        }
+      ]
+    },
+    {
+      "id": "urheberrecht",
+      "title": "Urheberrecht",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Die durch uns erstellten Inhalte und Werke auf dieser Website unterliegen dem deutschen Urheberrecht. Downloads und Kopien sind nur für den privaten, nicht kommerziellen Gebrauch gestattet. Sofern Inhalte nicht von uns erstellt wurden, werden die Urheberrechte Dritter beachtet."
+        }
+      ]
+    },
+    {
+      "id": "verbraucherstreitbeilegung",
+      "title": "Verbraucherstreitbeilegung",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Wir sind nicht verpflichtet und nicht bereit, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen."
+        }
+      ]
+    }
+  ]
+}
