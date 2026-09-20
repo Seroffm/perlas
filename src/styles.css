@@ -5132,8 +5132,18 @@ p {
 .cookie-banner-actions .cookie-primary,
 .cookie-settings-actions .cookie-primary {
   color: #fff;
-  border-color: var(--primary);
+  border-color: rgb(255 255 255 / 72%);
   background: var(--primary);
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 20%);
+}
+
+.cookie-banner-actions .cookie-primary:hover,
+.cookie-banner-actions .cookie-primary:focus-visible,
+.cookie-settings-actions .cookie-primary:hover,
+.cookie-settings-actions .cookie-primary:focus-visible {
+  color: #fff;
+  border-color: #fff;
+  background: #0a356f;
 }
 
 .cookie-settings-overlay {

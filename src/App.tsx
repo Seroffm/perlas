@@ -802,11 +802,10 @@ const heroSlides = [
     position: '50% center',
   },
   {
-    image: 'kundenbilder/leistungen/winterdienst_fahrzeug_nacht_02.png',
-    alt: 'Echtes Perla’s-Einsatzfahrzeug im verschneiten Rhein-Main-Gebiet',
-    label: 'Perla’s-Winterdienst im Einsatz',
-    position: '50% center',
-    display: 'portrait',
+    image: 'kundenbilder/objekte/gewerbeobjekt_dach_02.png',
+    alt: 'Helles Gewerbeobjekt mit Dachfläche unter blauem Himmel',
+    label: 'Objekte professionell im Blick',
+    position: '50% 52%',
   },
 ]
 
@@ -1186,7 +1185,7 @@ function Hero() {
       <div className="hero-art" aria-roledescription="Karussell" aria-label="Einblicke in die Arbeit von Perla’s">
         <div className="hero-slides" aria-live="off">
           {heroSlides.map((slide, index) => (
-            <figure className={`${index === activeSlide ? 'hero-slide is-active' : 'hero-slide'}${slide.display === 'portrait' ? ' hero-slide--portrait' : ''}`} aria-hidden={index !== activeSlide} key={slide.image}>
+            <figure className={index === activeSlide ? 'hero-slide is-active' : 'hero-slide'} aria-hidden={index !== activeSlide} key={slide.image}>
               <img
                 src={`${A}${slide.image}`}
                 alt={index === activeSlide ? slide.alt : ''}
