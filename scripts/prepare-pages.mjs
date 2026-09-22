@@ -318,7 +318,7 @@ function relatedServiceLinks(service) {
 }
 
 function staticHeader() {
-  return `<header class="seo-static-header"><a href="${basePath}"><img src="${basePath}assets/perlas-logo.svg" alt="Perla’s Objektbetreuung GmbH &amp; Co. KG" /></a><nav aria-label="Hauptnavigation"><a href="${basePath}facility-management/">Facility Management</a><a href="${basePath}leistungen/">Leistungen</a><a href="${basePath}ueber-uns/">Über uns</a><a href="${basePath}blog/">Blog</a><a href="${basePath}karriere/">Karriere</a><a href="${basePath}kontakt/">Kontakt</a></nav></header>`
+  return `<header class="seo-static-header"><a href="${basePath}"><img src="${basePath}assets/perlas-logo.svg" alt="Perla’s Objektbetreuung GmbH &amp; Co. KG" /></a><nav aria-label="Hauptnavigation"><a href="${basePath}facility-management/">Facility Management</a><a href="${basePath}leistungen/">Leistungen</a><a href="${basePath}ueber-uns/">Über uns</a><a href="${basePath}blog/">Blog</a><a href="${basePath}karriere/">Karriere</a><a class="seo-static-contact" href="${basePath}kontakt/">Kontakt</a></nav></header>`
 }
 
 function blogPostStructuredData(post) {

@@ -13117,7 +13117,9 @@ body {
   text-decoration: none;
 }
 
-.site-header #main-navigation > .nav-link--contact {
+.site-header #main-navigation > .nav-link--contact,
+.site-header #main-navigation > a[href$="/kontakt/"],
+.seo-static-header nav > .seo-static-contact {
   min-height: 46px;
   padding: 0 20px;
   display: inline-flex;
@@ -13131,7 +13133,11 @@ body {
 }
 
 .site-header #main-navigation > .nav-link--contact:hover,
-.site-header #main-navigation > .nav-link--contact:focus-visible {
+.site-header #main-navigation > .nav-link--contact:focus-visible,
+.site-header #main-navigation > a[href$="/kontakt/"]:hover,
+.site-header #main-navigation > a[href$="/kontakt/"]:focus-visible,
+.seo-static-header nav > .seo-static-contact:hover,
+.seo-static-header nav > .seo-static-contact:focus-visible {
   color: #fff;
   background: #0a438d;
   box-shadow: 0 11px 24px rgb(7 51 114 / 26%);
