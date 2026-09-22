@@ -13804,6 +13804,156 @@ body {
   }
 }
 
+/* Kontaktwege als gemeinsame, ruhige Aktionsleiste statt einzelner Karten. */
+.contact-channel-grid {
+  gap: 0;
+  overflow: hidden;
+  border-block: 1px solid rgb(7 51 114 / 16%);
+}
+
+.contact-channel {
+  min-height: 218px;
+  padding: 30px 28px;
+  border: 0;
+  border-radius: 0;
+  color: var(--ink);
+  background: transparent;
+  box-shadow: none;
+  text-decoration: none;
+  transition: color 180ms ease, background-color 180ms ease, transform 180ms ease;
+}
+
+.contact-channel + .contact-channel {
+  border-left: 1px solid rgb(7 51 114 / 16%);
+}
+
+.contact-channel:hover,
+.contact-channel:focus-visible {
+  color: var(--ink);
+  border-color: rgb(7 51 114 / 16%);
+  background: rgb(7 51 114 / 4.5%);
+  box-shadow: none;
+  outline: 3px solid transparent;
+  outline-offset: -3px;
+  transform: translateY(-2px);
+}
+
+.contact-channel:focus-visible {
+  outline-color: rgb(7 51 114 / 38%);
+}
+
+.contact-channel--inquiry,
+.contact-channel--inquiry > svg,
+.contact-channel--inquiry small,
+.contact-channel--inquiry em {
+  color: var(--ink);
+  background: transparent;
+}
+
+.contact-channel--inquiry .contact-channel-icon {
+  color: #fff;
+  background: var(--primary);
+}
+
+.contact-process-cta {
+  margin-top: 72px;
+}
+
+/* Zertifizierte Leistungen als gemeinsamer Premium-Bereich. */
+.specialized-services--certified .specialized-services-grid {
+  gap: 0;
+  overflow: hidden;
+  border: 1px solid rgb(7 51 114 / 16%);
+  border-radius: 32px;
+  background: #fff;
+  box-shadow: 0 16px 38px rgb(7 51 114 / 8%);
+}
+
+.specialized-services--certified .specialized-service-card {
+  border: 0;
+  border-radius: 0;
+  color: var(--ink);
+  background: transparent;
+  box-shadow: none;
+  text-decoration: none;
+  transition: background-color 180ms ease, box-shadow 180ms ease;
+}
+
+.specialized-services--certified .specialized-service-card + .specialized-service-card {
+  border-left: 1px solid rgb(7 51 114 / 16%);
+}
+
+.specialized-services--certified .specialized-service-card:hover,
+.specialized-services--certified .specialized-service-card:focus-visible {
+  color: var(--ink);
+  border-color: rgb(7 51 114 / 16%);
+  background: rgb(7 51 114 / 3.5%);
+  box-shadow: inset 0 0 0 2px rgb(7 51 114 / 10%);
+  outline: none;
+  transform: none;
+}
+
+.specialized-services--certified .specialized-service-card:hover .specialized-service-media img,
+.specialized-services--certified .specialized-service-card:focus-visible .specialized-service-media img {
+  transform: scale(1.018);
+}
+
+@media (max-width: 950px) {
+  .contact-channel-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .contact-channel + .contact-channel {
+    border-left: 0;
+  }
+
+  .contact-channel:nth-child(even) {
+    border-left: 1px solid rgb(7 51 114 / 16%);
+  }
+
+  .contact-channel:nth-child(n + 3) {
+    border-top: 1px solid rgb(7 51 114 / 16%);
+  }
+}
+
+@media (max-width: 760px) {
+  .contact-channel-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-channel {
+    min-height: 156px;
+    padding: 24px 20px;
+  }
+
+  .contact-channel:nth-child(even) {
+    border-left: 0;
+  }
+
+  .contact-channel + .contact-channel,
+  .contact-channel:nth-child(n + 3) {
+    border-top: 1px solid rgb(7 51 114 / 16%);
+  }
+
+  .contact-channel > span:nth-child(2) {
+    padding-top: 24px;
+  }
+
+  .contact-process-cta {
+    margin-top: 44px;
+  }
+
+  .specialized-services--certified .specialized-services-grid {
+    grid-template-columns: 1fr;
+    border-radius: 24px;
+  }
+
+  .specialized-services--certified .specialized-service-card + .specialized-service-card {
+    border-top: 1px solid rgb(7 51 114 / 16%);
+    border-left: 0;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .about-team-expandable,
   .expandable-collection__new-item,

@@ -1432,18 +1432,18 @@ function SpecializedServices({ certifiedOnly = false }: { certifiedOnly?: boolea
         getKey={(service) => service.title}
         renderItem={(service, index, isAdditional, isCollapsing) => {
           const Icon = service.icon
-          return (
-            <article
-              className={[
-                'specialized-service-card',
-                isAdditional && (isCollapsing ? 'expandable-collection__leaving-item' : 'expandable-collection__new-item'),
-                service.supporting && 'specialized-service-card--supporting',
-                service.certification && 'specialized-service-card--certified',
-              ].filter(Boolean).join(' ')}
-              data-reveal="up"
-              style={{ '--reveal-delay': `${index * 55}ms`, '--expandable-delay': `${Math.max(0, index - 2) * 55}ms` } as CSSProperties}
-              key={service.title}
-            >
+          const cardClassName = [
+            'specialized-service-card',
+            isAdditional && (isCollapsing ? 'expandable-collection__leaving-item' : 'expandable-collection__new-item'),
+            service.supporting && 'specialized-service-card--supporting',
+            service.certification && 'specialized-service-card--certified',
+          ].filter(Boolean).join(' ')
+          const cardStyle = {
+            '--reveal-delay': `${index * 55}ms`,
+            '--expandable-delay': `${Math.max(0, index - 2) * 55}ms`,
+          } as CSSProperties
+          const cardContent = (
+            <>
               {service.certification && (
                 <span className="specialized-service-certificate" aria-label="Zertifizierte Leistung">{service.certification}</span>
               )}
@@ -1474,11 +1474,27 @@ function SpecializedServices({ certifiedOnly = false }: { certifiedOnly?: boolea
                   <p className="specialized-service-qualification"><ShieldCheck aria-hidden="true" />{service.qualificationNote}</p>
                 )}
                 {service.slug && (
-                  <a className="specialized-service-link" href={`${SERVICES_PATH}${service.slug}/`}>
+                  <span className="specialized-service-link">
                     Leistungsdetails ansehen <ArrowUpRight aria-hidden="true" />
-                  </a>
+                  </span>
                 )}
               </div>
+            </>
+          )
+
+          return service.slug ? (
+            <a
+              className={cardClassName}
+              data-reveal="up"
+              href={`${SERVICES_PATH}${service.slug}/`}
+              style={cardStyle}
+              key={service.title}
+            >
+              {cardContent}
+            </a>
+          ) : (
+            <article className={cardClassName} data-reveal="up" style={cardStyle} key={service.title}>
+              {cardContent}
             </article>
           )
         }}
