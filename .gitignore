@@ -2,3 +2,5 @@ node_modules/
 dist/
 *.tsbuildinfo
 .tmp-*/
+.deploy-gh-pages/
+PERLAS_WEBSITE_AUDIT.md
