@@ -547,6 +547,7 @@ const partners: Partner[] = [
 type Feature = (typeof serviceContent)[number] & {
   icon: LucideIcon
   eyebrow?: string
+  workflow?: string[]
   certified?: boolean
   certificationLabel?: string
   imageAlt?: string
@@ -712,12 +713,11 @@ const specializedServices: SpecializedService[] = [
     icon: ClipboardCheck,
     label: 'Zertifizierte Zusatzleistung',
     title: 'Spielplatzkontrolle & Spielgerätewartung',
-    text: 'Planbare Betreuung von Spielbereichen für Hausverwaltungen, größere Wohnanlagen und institutionelle Auftraggeber.',
-    bullets: ['Regelmäßige Sichtkontrollen', 'Auffälligkeiten nachvollziehbar dokumentieren', 'Notwendige Maßnahmen koordinieren', 'Wartung und Betreuung im vereinbarten Umfang'],
-    image: 'visualisierungen/spielplatzkontrolle_demo.png',
-    imageAlt: 'DEMO-Visualisierung: Fachpersonal bei der Kontrolle eines modernen Spielplatzes in einer Wohnanlage',
-    imagePosition: '50% 52%',
-    isDemoImage: true,
+    text: 'Planbare Kontrolle, Pflege und Wartung von Spielbereichen für Hausverwaltungen, größere Wohnanlagen und institutionelle Auftraggeber.',
+    bullets: ['Regelmäßige Sichtkontrollen', 'Auffälligkeiten nachvollziehbar dokumentieren', 'Spielbereiche vereinbarungsgemäß sauber halten', 'Wartungsbedarf erkennen und abstimmen'],
+    image: 'kundenbilder/spielplatz/spielplatz_aussen_01.png',
+    imageAlt: 'Heller und gepflegter Außenspielplatz mit modernen Spielgeräten',
+    imagePosition: '50% 62%',
     qualificationNote: 'Prüfumfang, Dokumentation und erforderliche Fachkunde werden vor der Beauftragung verbindlich festgelegt.',
     certification: 'Zertifiziert',
     certificationPlaceholder: 'Konkreter Zertifikatsname für Prüfung und Wartung wird nach Kundenfreigabe ergänzt.',
@@ -869,6 +869,25 @@ const serviceGalleries: Record<string, ServiceGallery> = {
       },
     ],
   },
+  'spielplatzkontrolle-spielgeraetewartung': {
+    eyebrow: 'Spielbereiche in der Praxis',
+    title: 'Außen- und Innenbereiche passend betreuen.',
+    intro: 'Die echten Objektaufnahmen zeigen unterschiedliche Spielgeräte und Flächen. Kontroll-, Reinigungs- und Wartungsumfang werden für jeden Standort verbindlich abgestimmt.',
+    items: [
+      {
+        image: 'kundenbilder/spielplatz/spielplatz_schaukel_nah_01.png',
+        label: 'Spielgerät & Fallschutzfläche',
+        alt: 'Nestschaukel mit umliegender Fallschutzfläche in einer Wohnanlage',
+        position: '50% 56%',
+      },
+      {
+        image: 'kundenbilder/spielplatz/spielbereich_innen_01.png',
+        label: 'Indoor-Spielbereich',
+        alt: 'Gepflegter Indoor-Spielbereich mit Kletter- und Spielelementen',
+        position: '50% 54%',
+      },
+    ],
+  },
 }
 
 const serviceStoryImages: Record<string, string> = {
@@ -880,6 +899,11 @@ const serviceStoryImages: Record<string, string> = {
   winterdienst: 'kundenbilder/leistungen/winterdienst_team.png',
   muellmanagement: 'kundenbilder/leistungen/entsorgung_kartonage.png',
   einzelauftrag: 'kundenbilder/leistungen/transport_umzug_lieferung.png',
+  'spielplatzkontrolle-spielgeraetewartung': 'kundenbilder/spielplatz/spielplatz_aussen_01.png',
+}
+
+const serviceStoryPositions: Record<string, string> = {
+  'spielplatzkontrolle-spielgeraetewartung': '50% 62%',
 }
 
 const serviceImagePositions: Record<string, string> = {
@@ -891,6 +915,7 @@ const serviceImagePositions: Record<string, string> = {
   winterdienst: '47% 50%',
   muellmanagement: '50% 46%',
   einzelauftrag: '46% 50%',
+  'spielplatzkontrolle-spielgeraetewartung': '50% 52%',
 }
 
 const serviceImageDisplays: Record<string, 'portrait' | 'landscape' | 'square'> = {
@@ -902,6 +927,7 @@ const serviceImageDisplays: Record<string, 'portrait' | 'landscape' | 'square'> 
   winterdienst: 'landscape',
   muellmanagement: 'portrait',
   einzelauftrag: 'landscape',
+  'spielplatzkontrolle-spielgeraetewartung': 'portrait',
 }
 
 function Header({ activePage }: { activePage: PageKind }) {
@@ -2556,6 +2582,7 @@ function ServiceDetailPage({ service, onQuoteOpen }: { service: Feature; onQuote
   const Icon = service.icon
   const serviceGallery = serviceGalleries[service.slug]
   const serviceStoryImage = serviceStoryImages[service.slug] ?? (service.imageDisplay === 'wide' ? service.image : '')
+  const serviceStoryPosition = serviceStoryPositions[service.slug] ?? 'center'
   const serviceImagePosition = service.imagePosition ?? serviceImagePositions[service.slug]
   const serviceImageDisplay: 'placeholder' | 'wide' | 'landscape' | 'portrait' | 'square' =
     service.imageDisplay === 'placeholder' || service.imageDisplay === 'wide' || service.imageDisplay === 'landscape'
@@ -2683,11 +2710,30 @@ function ServiceDetailPage({ service, onQuoteOpen }: { service: Feature; onQuote
         })}
       </section>
 
+      {service.workflow && service.workflow.length > 0 && (
+        <section className="service-workflow" aria-labelledby="service-workflow-heading">
+          <div data-reveal="up">
+            <span className="eyebrow">Verbundener Objektservice</span>
+            <h2 id="service-workflow-heading">Ein Ablauf statt einzelner Maßnahmen.</h2>
+            <p>Kontrolle, Pflege und Wartung bauen aufeinander auf. So bleiben Zustand, ausgeführte Aufgaben und notwendige Folgeschritte gemeinsam nachvollziehbar.</p>
+          </div>
+          <ol data-reveal="up" style={{ '--reveal-delay': '70ms' } as CSSProperties}>
+            {service.workflow.map((step, index) => (
+              <li key={step}>
+                <span>{String(index + 1).padStart(2, '0')}</span>
+                <strong>{step}</strong>
+                {index < service.workflow!.length - 1 && <ArrowUpRight aria-hidden="true" />}
+              </li>
+            ))}
+          </ol>
+        </section>
+      )}
+
       {serviceGallery && <ServiceMediaGallery gallery={serviceGallery} />}
 
       <section
         className={serviceStoryImage ? 'service-image-story' : 'service-image-story service-image-story--placeholder'}
-        style={serviceStoryImage ? { '--service-story-image': `url("${A}${serviceStoryImage}")` } as CSSProperties : undefined}
+        style={serviceStoryImage ? { '--service-story-image': `url("${A}${serviceStoryImage}")`, '--service-story-position': serviceStoryPosition } as CSSProperties : undefined}
         aria-labelledby="service-image-story-heading"
         data-reveal="up"
       >
