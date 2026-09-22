@@ -13599,6 +13599,211 @@ body {
   }
 }
 
+/* Einheitlicher vertikaler Seitenrhythmus. Direkt benachbarte helle Bereiche
+   teilen sich einen kompakteren Abstand, statt ihre Innenabstaende zu verdoppeln. */
+:root {
+  --section-space-y: 92px;
+  --section-seam-y: 48px;
+}
+
+.home-video,
+.google-reviews,
+.home-overview,
+.home-audience-cards,
+.specialized-services,
+.home-core-services,
+.home-fleet,
+.home-trust,
+.facility-overview,
+.audience-solutions,
+.services-catalog,
+.about-story,
+.about-team,
+.about-values,
+.about-method,
+.fm-principles,
+.fm-targets,
+.fm-complex,
+.audience-detail-scope,
+.audience-detail-approach,
+.audience-detail-services,
+.audience-detail-process,
+.audience-detail-faq,
+.service-overview,
+.service-fit,
+.service-process,
+.service-workflow,
+.service-faq,
+.service-more,
+.blog-index,
+.blog-related,
+.blog-article-services,
+.career-values,
+.career-jobs,
+.career-application,
+.contact-channels,
+.contact-process,
+.contact-location {
+  padding-block: var(--section-space-y);
+}
+
+/* Startseite: Video, Logos, Bewertungen und Ueberblick liegen auf demselben
+   hellen Hintergrund und brauchen deshalb kuerzere Uebergaenge. */
+.home-video {
+  padding-bottom: 64px;
+}
+
+.partner-strip {
+  padding-bottom: 28px;
+}
+
+.google-reviews {
+  padding-top: 64px;
+  padding-bottom: var(--section-seam-y);
+}
+
+.home-overview {
+  padding-top: var(--section-seam-y);
+}
+
+/* Kontaktseite: Hero, Kontaktwege und Ablauf bilden einen zusammenhaengenden
+   hellen Bereich. Die Naehte entsprechen zusammen jeweils einem Abschnitt. */
+.contact-page-hero {
+  padding-bottom: var(--section-seam-y);
+}
+
+.contact-channels {
+  padding-top: var(--section-seam-y);
+  padding-bottom: var(--section-seam-y);
+}
+
+.contact-process {
+  padding-top: var(--section-seam-y);
+  padding-bottom: var(--section-seam-y);
+}
+
+.contact-location {
+  padding-top: calc(var(--section-seam-y) + 24px);
+}
+
+/* Weitere Seiten mit direkt aufeinanderfolgenden weissen Sektionen. */
+.about-story {
+  padding-bottom: var(--section-seam-y);
+}
+
+.about-team {
+  padding-top: var(--section-seam-y);
+}
+
+.about-method {
+  padding-bottom: var(--section-seam-y);
+}
+
+.architecture-cta {
+  margin-top: var(--section-seam-y);
+}
+
+.blog-hero,
+.career-hero,
+.blog-article-hero {
+  padding-bottom: var(--section-seam-y);
+}
+
+.blog-index,
+.career-values,
+.blog-article-layout {
+  padding-top: var(--section-seam-y);
+}
+
+.career-values {
+  padding-bottom: var(--section-seam-y);
+}
+
+.career-jobs {
+  padding-top: var(--section-seam-y);
+}
+
+.blog-article-layout,
+.blog-related,
+.blog-article-services {
+  padding-bottom: var(--section-seam-y);
+}
+
+.blog-related,
+.blog-article-services {
+  padding-top: var(--section-seam-y);
+}
+
+.audience-detail-hero {
+  padding-bottom: var(--section-seam-y);
+}
+
+.audience-detail-scope {
+  padding-top: var(--section-seam-y);
+}
+
+.audience-detail-services {
+  padding-bottom: var(--section-seam-y);
+}
+
+.audience-detail-process {
+  padding-top: var(--section-seam-y);
+  padding-bottom: var(--section-seam-y);
+}
+
+.audience-detail-faq {
+  padding-top: var(--section-seam-y);
+  padding-bottom: var(--section-seam-y);
+}
+
+.service-workflow {
+  padding-bottom: var(--section-seam-y);
+}
+
+.service-gallery {
+  padding-top: var(--section-seam-y);
+}
+
+.service-faq {
+  margin-top: 0;
+  padding-top: var(--section-seam-y);
+  padding-bottom: var(--section-seam-y);
+}
+
+.service-contact {
+  margin-top: var(--section-seam-y);
+}
+
+@media (max-width: 1100px) {
+  :root {
+    --section-space-y: 80px;
+    --section-seam-y: 40px;
+  }
+}
+
+@media (max-width: 760px) {
+  :root {
+    --section-space-y: 64px;
+    --section-seam-y: 32px;
+  }
+
+  .home-video {
+    padding-bottom: 48px;
+  }
+
+  .partner-strip {
+    padding-bottom: 22px;
+  }
+
+  .google-reviews {
+    padding-top: 48px;
+  }
+
+  .contact-location {
+    padding-top: calc(var(--section-seam-y) + 20px);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .about-team-expandable,
   .expandable-collection__new-item,
