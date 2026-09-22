@@ -1021,7 +1021,7 @@ function Header({ activePage }: { activePage: PageKind }) {
           <a className={`nav-link${activePage === 'about' ? ' is-active' : ''}`} href={ABOUT_PATH} aria-current={activePage === 'about' ? 'page' : undefined} onClick={closeMenu}><span>Über uns</span></a>
           <a className={`nav-link${activePage === 'blog' ? ' is-active' : ''}`} href={BLOG_PATH} aria-current={activePage === 'blog' ? 'page' : undefined} onClick={closeMenu}><span>Blog</span></a>
           <a className={`nav-link${activePage === 'career' ? ' is-active' : ''}`} href={CAREER_PATH} aria-current={activePage === 'career' ? 'page' : undefined} onClick={closeMenu}><span>Karriere</span></a>
-          <a className={`nav-link${activePage === 'contact' ? ' is-active' : ''}`} href={CONTACT_PATH} aria-current={activePage === 'contact' ? 'page' : undefined} onClick={closeMenu}><span>Kontakt</span></a>
+          <a className={`nav-link nav-link--contact${activePage === 'contact' ? ' is-active' : ''}`} href={CONTACT_PATH} aria-current={activePage === 'contact' ? 'page' : undefined} onClick={closeMenu}><span>Kontakt</span></a>
         </nav>
       </div>
     </header>
