@@ -1868,7 +1868,7 @@ function AboutPage({ onQuoteOpen }: { onQuoteOpen: () => void }) {
           <p>Perla’s verbindet persönliche Abstimmung mit planbarer Objektbetreuung. Wir erfassen Aufgaben vor Ort, koordinieren wiederkehrende Einsätze und halten Rückmeldungen verständlich zusammen.</p>
           <div className="button-row">
             <ButtonLink href={CONTACT_PATH} arrow>Persönlich kennenlernen</ButtonLink>
-            <ButtonLink href={FACILITY_PATH} kind="outline">Unsere Arbeitsweise</ButtonLink>
+            <ButtonLink href={FACILITY_PATH} kind="outline">Facility Management entdecken</ButtonLink>
           </div>
         </div>
         <figure className="architecture-hero-image" data-reveal="right" style={{ '--reveal-delay': '80ms' } as CSSProperties}>
