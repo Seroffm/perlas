@@ -1813,10 +1813,10 @@ function AboutPage({ onQuoteOpen }: { onQuoteOpen: () => void }) {
     },
     {
       id: 'team-06',
-      image: 'kundenbilder/team/update-2026-09-23/mitarbeiter_leiter_fassade_01.png',
-      alt: 'Mitarbeiter von Perla’s bei einer Arbeit an der Gebäudefassade',
+      image: 'kundenbilder/leistungen/service-update-2026-09-23/reinigung_waschmaschinen_01.png',
+      alt: 'Mitarbeiter von Perla’s beim Transport einer Waschmaschine',
       position: '50% 38%',
-      role: 'Gebäudeservice & Außenarbeiten',
+      role: 'Reinigung & Objektservice',
     },
     {
       id: 'team-07',
@@ -1827,10 +1827,10 @@ function AboutPage({ onQuoteOpen }: { onQuoteOpen: () => void }) {
     },
     {
       id: 'team-08',
-      image: 'kundenbilder/team/update-2026-09-23/mitarbeiter_teamlogo_daumen_01.png',
-      alt: 'Mitarbeiter von Perla’s mit Teamlogo bei einem Inneneinsatz',
-      position: '50% 31%',
-      role: 'Technischer Objektservice',
+      image: 'kundenbilder/team/update-2026-09-23/mitarbeiter_rechts_unten_ersetzen.png',
+      alt: 'Mitarbeiterin von Perla’s im Büro',
+      position: '50% 28%',
+      role: 'Büro & Organisation',
     },
   ]
 
