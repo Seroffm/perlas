@@ -24,7 +24,6 @@ import {
   Snowflake,
   Sparkles,
   TreePine,
-  UserRound,
   Wrench,
   X,
   type LucideIcon,
@@ -700,10 +699,9 @@ const specializedServices: SpecializedService[] = [
     title: 'Baumpflege & Baumfällung',
     text: 'Eigenständige Fachleistung für Pflege und Rückschnitt. Notwendige Fällungen erfolgen nach objektbezogener Prüfung.',
     bullets: ['Bestand und Zugänglichkeit aufnehmen', 'Pflege- und Rückschnittbedarf einordnen', 'Sicherungsbereich und Ausführung abstimmen'],
-    image: 'visualisierungen/baumpflege_demo.png',
-    imageAlt: 'DEMO-Visualisierung: Fachpersonal bei einer gesicherten Baumpflege an einer modernen Wohnanlage',
-    imagePosition: '50% 46%',
-    isDemoImage: true,
+    image: 'kundenbilder/leistungen/baumpflege/baumfaellung_chainsaw_01.png',
+    imageAlt: 'Fachkraft bei einer Baumfällarbeit mit Schutzkleidung und Motorsäge',
+    imagePosition: '43% 50%',
     qualificationNote: 'Fachkunde, Sicherungsmaßnahmen und der konkrete Prüfumfang werden vor der Ausführung verbindlich abgestimmt.',
     certification: 'Zertifiziert',
     certificationPlaceholder: 'Konkreter Zertifikatsname wird nach Kundenfreigabe ergänzt.',
@@ -729,9 +727,9 @@ const specializedServices: SpecializedService[] = [
     title: 'Büro- & Einrichtungsservice',
     text: 'Konkrete Unterstützung bei Umstellungen, internen Büro- und Möbelumzügen sowie der Vorbereitung neu genutzter Räume.',
     bullets: ['Möbel und Arbeitsplätze umstellen', 'Vorhandene Einrichtung auf- und abbauen', 'Räume für eine neue Nutzung vorbereiten'],
-    image: 'perlas-office.png',
-    imageAlt: 'Perla’s Ansprechpartner in einem modernen Büroarbeitsumfeld',
-    imagePosition: '50% 52%',
+    image: 'kundenbilder/leistungen/service-update-2026-09-23/buero_einrichtungsservice_01.png',
+    imageAlt: 'Mitarbeiter von Perla’s beim Einrichten eines Büroraums',
+    imagePosition: '66% 46%',
     supporting: true,
   },
 ]
@@ -833,6 +831,82 @@ type ServiceGallery = {
 }
 
 const serviceGalleries: Record<string, ServiceGallery> = {
+  'baumpflege-baumfaellung': {
+    eyebrow: 'Baumarbeiten in der Praxis',
+    title: 'Abgestimmte Einsätze mit passender Technik.',
+    intro: 'Die echten Einsatzaufnahmen zeigen Baumarbeiten mit Hubsteiger sowie den kontrollierten Abtrag vor Ort.',
+    items: [
+      {
+        image: 'kundenbilder/leistungen/baumpflege/baumfaellung_hubsteiger_01.png',
+        label: 'Arbeiten mit Hubsteiger',
+        alt: 'Baumpflege mit Hubsteiger in einem abgesicherten Arbeitsbereich',
+        position: '50% 48%',
+      },
+      {
+        image: 'kundenbilder/leistungen/baumpflege/baumfaellung_baumabtrag_01.png',
+        label: 'Kontrollierter Baumabtrag',
+        alt: 'Fachkräfte beim kontrollierten Abtrag eines Baumes an einer Wohnimmobilie',
+        position: '50% 43%',
+      },
+    ],
+  },
+  muellmanagement: {
+    eyebrow: 'Müllmanagement am Objekt',
+    title: 'Mülltonnen planbar bereitstellen und kontrollieren.',
+    intro: 'Die Aufnahmen zeigen reale Mülltonnenstandorte an betreuten Wohnobjekten.',
+    items: [
+      {
+        image: 'kundenbilder/leistungen/muellmanagement/muelltonnen_schwarz_01.png',
+        label: 'Mülltonnenstandort',
+        alt: 'Schwarze Mülltonnen an einem gepflegten Wohnobjekt',
+        position: '50% 58%',
+      },
+      {
+        image: 'kundenbilder/leistungen/muellmanagement/muelltonnen_blau_01.png',
+        label: 'Geordnete Bereitstellung',
+        alt: 'Blaue Mülltonnen geordnet an einer Wohnanlage',
+        position: '50% 56%',
+      },
+    ],
+  },
+  'wartung-instandhaltung': {
+    eyebrow: 'Wartung in der Praxis',
+    title: 'Kleine Arbeiten direkt am Objekt.',
+    intro: 'Die echten Aufnahmen zeigen praktische Wartungs- und Instandhaltungsarbeiten innen und außen.',
+    items: [
+      {
+        image: 'kundenbilder/leistungen/service-update-2026-09-23/wartung_fassade_01.png',
+        label: 'Arbeiten an der Fassade',
+        alt: 'Mitarbeiter von Perla’s bei einer Wartungsarbeit an einer Gebäudefassade',
+        position: '50% 48%',
+      },
+      {
+        image: 'kundenbilder/leistungen/service-update-2026-09-23/wartung_bohren_portrait_01.png',
+        label: 'Technischer Service',
+        alt: 'Mitarbeiter von Perla’s mit Werkzeug für eine Wartungsarbeit',
+        position: '50% 31%',
+      },
+    ],
+  },
+  gebaeudereinigung: {
+    eyebrow: 'Reinigung in der Praxis',
+    title: 'Persönlich und passend zum Objekt.',
+    intro: 'Die echten Einsatzbilder zeigen unser Reinigungsteam und die Betreuung funktionaler Gemeinschaftsbereiche.',
+    items: [
+      {
+        image: 'kundenbilder/team/update-2026-09-23/mitarbeiter_reinigung_maennlich_01.png',
+        label: 'Reinigung vor Ort',
+        alt: 'Mitarbeiter von Perla’s bei der Gebäudereinigung',
+        position: '50% 30%',
+      },
+      {
+        image: 'kundenbilder/leistungen/service-update-2026-09-23/reinigung_waschmaschinen_01.png',
+        label: 'Gemeinschaftsbereiche',
+        alt: 'Mitarbeiter von Perla’s beim Transport einer Waschmaschine in einem Gemeinschaftsbereich',
+        position: '50% 48%',
+      },
+    ],
+  },
   tiefgaragenreinigung: {
     eyebrow: 'Tiefgaragenreinigung in der Praxis',
     title: 'Geräteeinsatz und gereinigte Fläche.',
@@ -892,41 +966,52 @@ const serviceGalleries: Record<string, ServiceGallery> = {
 
 const serviceStoryImages: Record<string, string> = {
   objektpflege: 'kundenbilder/objekte/wohnanlage_modern_02.png',
-  'wartung-instandhaltung': 'kundenbilder/leistungen/transport_umzug_lieferung.png',
-  gebaeudereinigung: 'kundenbilder/leistungen/gebaeudereinigung_flur.png',
+  'wartung-instandhaltung': 'kundenbilder/leistungen/service-update-2026-09-23/wartung_fassade_01.png',
+  gebaeudereinigung: 'kundenbilder/leistungen/service-update-2026-09-23/reinigung_waschmaschinen_01.png',
   tiefgaragenreinigung: 'kundenbilder/leistungen/tiefgarage_saubere_flaeche_01.png',
   gartenpflege: 'kundenbilder/vorher_nachher/aussenbereich_nachher.png',
   winterdienst: 'kundenbilder/leistungen/winterdienst_team.png',
-  muellmanagement: 'kundenbilder/leistungen/entsorgung_kartonage.png',
+  muellmanagement: 'kundenbilder/leistungen/muellmanagement/muelltonnen_blau_01.png',
   einzelauftrag: 'kundenbilder/leistungen/transport_umzug_lieferung.png',
+  'baumpflege-baumfaellung': 'kundenbilder/leistungen/baumpflege/baumfaellung_holztragen_01.png',
+  'buero-einrichtungsservice': 'kundenbilder/leistungen/service-update-2026-09-23/buero_einrichtungsservice_01.png',
   'spielplatzkontrolle-spielgeraetewartung': 'kundenbilder/spielplatz/spielplatz_aussen_01.png',
 }
 
 const serviceStoryPositions: Record<string, string> = {
+  'wartung-instandhaltung': '50% 46%',
+  gebaeudereinigung: '50% 48%',
+  muellmanagement: '50% 56%',
+  'baumpflege-baumfaellung': '50% 44%',
+  'buero-einrichtungsservice': '66% 46%',
   'spielplatzkontrolle-spielgeraetewartung': '50% 62%',
 }
 
 const serviceImagePositions: Record<string, string> = {
   objektpflege: '50% 72%',
-  'wartung-instandhaltung': '35% 64%',
-  gebaeudereinigung: '55% 50%',
+  'wartung-instandhaltung': '50% 42%',
+  gebaeudereinigung: '50% 31%',
   tiefgaragenreinigung: '50% 38%',
   gartenpflege: '45% 43%',
   winterdienst: '47% 50%',
-  muellmanagement: '50% 46%',
+  muellmanagement: '50% 45%',
   einzelauftrag: '46% 50%',
+  'baumpflege-baumfaellung': '43% 50%',
+  'buero-einrichtungsservice': '66% 46%',
   'spielplatzkontrolle-spielgeraetewartung': '50% 52%',
 }
 
 const serviceImageDisplays: Record<string, 'portrait' | 'landscape' | 'square'> = {
   objektpflege: 'square',
-  'wartung-instandhaltung': 'portrait',
-  gebaeudereinigung: 'landscape',
+  'wartung-instandhaltung': 'square',
+  gebaeudereinigung: 'portrait',
   tiefgaragenreinigung: 'portrait',
   gartenpflege: 'portrait',
   winterdienst: 'landscape',
   muellmanagement: 'portrait',
   einzelauftrag: 'landscape',
+  'baumpflege-baumfaellung': 'landscape',
+  'buero-einrichtungsservice': 'portrait',
   'spielplatzkontrolle-spielgeraetewartung': 'portrait',
 }
 
@@ -1684,7 +1769,6 @@ function ServicesOverviewPage() {
 }
 
 function AboutPage({ onQuoteOpen }: { onQuoteOpen: () => void }) {
-  const [showAllTeamMembers, setShowAllTeamMembers] = useState(false)
   const values = [
     [ShieldCheck, 'Verantwortung', 'Aufgaben, Zuständigkeiten und offene Punkte werden nachvollziehbar eingeordnet.'],
     [Clock3, 'Planbarkeit', 'Wiederkehrende Leistungen erhalten klare Intervalle und abgestimmte Abläufe.'],
@@ -1693,70 +1777,88 @@ function AboutPage({ onQuoteOpen }: { onQuoteOpen: () => void }) {
   ] as const
   const teamMembers: Array<{
     id: string
-    image?: string
-    alt?: string
+    image: string
+    alt: string
     position?: string
     role: string
   }> = [
     {
       id: 'team-01',
-      image: 'kundenbilder/team/team_aussenbereich_01.png',
-      alt: 'Mitarbeiterin von Perla’s bei einem Außeneinsatz',
-      role: 'Außenanlagen & Objektkontrolle',
+      image: 'kundenbilder/team/update-2026-09-23/mitarbeiter_reinigung_weiblich_01.png',
+      alt: 'Mitarbeiterin von Perla’s bei der Gebäudereinigung',
+      position: '50% 28%',
+      role: 'Gebäudereinigung',
     },
     {
       id: 'team-02',
-      image: 'kundenbilder/leistungen/winterdienst_team.png',
-      alt: 'Mitarbeiter von Perla’s beim Winterdienst',
-      position: '72% 35%',
-      role: 'Winterdienst & Einsatzkoordination',
+      image: 'kundenbilder/team/update-2026-09-23/mitarbeiter_reinigung_maennlich_01.png',
+      alt: 'Mitarbeiter von Perla’s bei der Reinigung eines Gebäudeflurs',
+      position: '50% 25%',
+      role: 'Reinigung & Objektservice',
     },
     {
       id: 'team-03',
-      image: 'kundenbilder/leistungen/transport_umzug_lieferung.png',
-      alt: 'Mitarbeiter bei einem koordinierten Einzelauftrag',
-      position: '24% center',
-      role: 'Einzelaufträge & Logistik',
+      image: 'kundenbilder/team/update-2026-09-23/mitarbeiter_aelterer_hauswart_01.png',
+      alt: 'Mitarbeiter von Perla’s bei der Hausbetreuung',
+      position: '50% 24%',
+      role: 'Hausbetreuung & Objektkontrolle',
     },
     {
       id: 'team-04',
-      image: 'kundenbilder/leistungen/gebaeudereinigung_flur.png',
-      alt: 'Mitarbeiter von Perla’s bei der Gebäudereinigung',
-      position: '50% 30%',
-      role: 'Gebäudereinigung',
+      image: 'kundenbilder/team/update-2026-09-23/mitarbeiter_bohren_portrait_01.png',
+      alt: 'Mitarbeiter von Perla’s mit Werkzeug für Wartungsarbeiten',
+      position: '50% 24%',
+      role: 'Wartung & Instandhaltung',
     },
-    { id: 'team-05', role: 'Objektbetreuung' },
-    { id: 'team-06', role: 'Technischer Service' },
-    { id: 'team-07', role: 'Außenanlagenpflege' },
-    { id: 'team-08', role: 'Organisation & Kundenkontakt' },
+    {
+      id: 'team-05',
+      image: 'kundenbilder/team/update-2026-09-23/mitarbeiter_bueroeinrichtung_01.png',
+      alt: 'Mitarbeiter von Perla’s beim Einrichten eines Büroraums',
+      position: '66% 33%',
+      role: 'Büro- & Einrichtungsservice',
+    },
+    {
+      id: 'team-06',
+      image: 'kundenbilder/team/update-2026-09-23/mitarbeiter_leiter_fassade_01.png',
+      alt: 'Mitarbeiter von Perla’s bei einer Arbeit an der Gebäudefassade',
+      position: '50% 38%',
+      role: 'Gebäudeservice & Außenarbeiten',
+    },
+    {
+      id: 'team-07',
+      image: 'kundenbilder/team/update-2026-09-23/mitarbeiter_rote_kappe_bohren_01.png',
+      alt: 'Mitarbeiter von Perla’s mit Werkzeug im Innenbereich',
+      position: '50% 27%',
+      role: 'Wartung & Montage',
+    },
+    {
+      id: 'team-08',
+      image: 'kundenbilder/team/update-2026-09-23/mitarbeiter_teamlogo_daumen_01.png',
+      alt: 'Mitarbeiter von Perla’s mit Teamlogo bei einem Inneneinsatz',
+      position: '50% 31%',
+      role: 'Technischer Objektservice',
+    },
   ]
 
   const renderTeamMember = (member: (typeof teamMembers)[number], index: number, reveal = false) => (
     <figure
       className="about-team-card"
       {...(reveal ? { 'data-reveal': 'up' } : {})}
-      style={reveal ? { '--reveal-delay': `${index * 70}ms` } as CSSProperties : undefined}
+      style={reveal ? { '--reveal-delay': `${(index % 4) * 70}ms` } as CSSProperties : undefined}
       key={member.id}
     >
       <div className="about-team-image">
-        {member.image ? (
-          <img
-            src={`${A}${member.image}`}
-            alt={member.alt}
-            loading="lazy"
-            decoding="async"
-            style={{ objectPosition: member.position }}
-          />
-        ) : (
-          <div className="about-team-placeholder" role="img" aria-label="Porträt wird ergänzt">
-            <UserRound aria-hidden="true" />
-            <span>Bild wird ergänzt</span>
-          </div>
-        )}
+        <img
+          src={`${A}${member.image}`}
+          alt={member.alt}
+          loading="lazy"
+          decoding="async"
+          style={{ objectPosition: member.position }}
+        />
         <span aria-hidden="true">0{index + 1}</span>
       </div>
       <figcaption>
-        <strong>Name wird ergänzt</strong>
+        <strong>Teammitglied</strong>
         <span>{member.role}</span>
       </figcaption>
     </figure>
@@ -1776,8 +1878,8 @@ function AboutPage({ onQuoteOpen }: { onQuoteOpen: () => void }) {
           </div>
         </div>
         <figure className="architecture-hero-image" data-reveal="right" style={{ '--reveal-delay': '80ms' } as CSSProperties}>
-          <img src={`${A}kundenbilder/leistungen/winterdienst_team.png`} alt="Mitarbeitende von Perla’s beim Winterdienst im Rhein-Main-Gebiet" />
-          <figcaption>Echtes Team · vor Ort im Rhein-Main-Gebiet</figcaption>
+          <img src={`${A}kundenbilder/team/update-2026-09-23/team_van_daumen_01.png`} alt="Mitarbeiter von Perla’s am beladenen Einsatzfahrzeug" />
+          <figcaption>Echtes Team · einsatzbereit im Rhein-Main-Gebiet</figcaption>
         </figure>
       </section>
 
@@ -1785,7 +1887,10 @@ function AboutPage({ onQuoteOpen }: { onQuoteOpen: () => void }) {
         <div data-reveal="left">
           <span className="eyebrow">Unsere Geschichte</span>
           <h2 id="about-story-heading">Aus Nähe zum Objekt ist verlässliche Betreuung gewachsen.</h2>
-          <span className="about-story-note">Vorbereiteter Entwurf · Kundendaten werden noch finalisiert</span>
+          <figure className="about-founder-portrait">
+            <img src={`${A}kundenbilder/team/update-2026-09-23/gruender_perlas_01.png`} alt="Gründer von Perla’s im Einsatzfahrzeug" loading="lazy" decoding="async" />
+            <figcaption>Gründung und Aufbau von Perla’s</figcaption>
+          </figure>
         </div>
         <div data-reveal="right" style={{ '--reveal-delay': '70ms' } as CSSProperties}>
           <p>Perla’s begann 1999 mit einem einfachen Anspruch: Immobilien persönlich kennen, Aufgaben zuverlässig erledigen und für Eigentümer sowie Verwaltungen erreichbar bleiben. Aus ersten Objektbetreuungen in Sulzbach entwickelte sich Schritt für Schritt ein fester Kundenstamm im Rhein-Main-Gebiet.</p>
@@ -1804,32 +1909,11 @@ function AboutPage({ onQuoteOpen }: { onQuoteOpen: () => void }) {
         <div className="architecture-section-heading" data-reveal="up">
           <span className="eyebrow">Unser Team</span>
           <h2 id="about-team-heading">Menschen hinter Perla’s.</h2>
-          <p>Acht Teampositionen zeigen die heutige Breite von Perla’s. Namen, Rollen und vier noch fehlende Porträts werden nach Kundenfreigabe ergänzt.</p>
+          <p>Acht Mitarbeitende zeigen die heutige Breite von Perla’s. Persönlich, praktisch und mit unterschiedlichen Schwerpunkten für die laufende Betreuung von Immobilien.</p>
         </div>
         <div className="about-team-grid">
-          {teamMembers.slice(0, 4).map((member, index) => renderTeamMember(member, index, true))}
+          {teamMembers.map((member, index) => renderTeamMember(member, index, true))}
         </div>
-        <div
-          className={showAllTeamMembers ? 'about-team-expandable is-open' : 'about-team-expandable'}
-          id="additional-team-members"
-          aria-hidden={!showAllTeamMembers}
-        >
-          <div>
-            <div className="about-team-grid about-team-grid--additional">
-              {teamMembers.slice(4).map((member, index) => renderTeamMember(member, index + 4))}
-            </div>
-          </div>
-        </div>
-        <button
-          className="about-team-toggle"
-          type="button"
-          aria-expanded={showAllTeamMembers}
-          aria-controls="additional-team-members"
-          onClick={() => setShowAllTeamMembers((current) => !current)}
-        >
-          {showAllTeamMembers ? 'Weniger anzeigen' : 'Weitere Mitarbeitende anzeigen'}
-          {showAllTeamMembers ? <ChevronUp aria-hidden="true" /> : <ChevronDown aria-hidden="true" />}
-        </button>
       </section>
 
       <section className="about-values" aria-labelledby="about-values-heading">

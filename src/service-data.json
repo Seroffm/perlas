@@ -66,7 +66,7 @@
     "title": "Wartung & Instandhaltung",
     "text": "Kleine Mängel zügig erledigen, technische Bereiche im Blick behalten und Fachfirmen verlässlich koordinieren.",
     "detail": "Wir kümmern uns um die vielen kleinen Reparaturen und Kontrollen, die im Immobilienalltag anfallen. Wenn ein Fachbetrieb gebraucht wird, bereiten wir den Termin vor, begleiten die Arbeiten am Objekt und halten Sie über den Stand auf dem Laufenden.",
-    "image": "kundenbilder/leistungen/kleinreparatur_bohren.png",
+    "image": "kundenbilder/leistungen/service-update-2026-09-23/wartung_bohren_portrait_02.png",
     "seoTitle": "Wartung & Instandhaltung Rhein-Main | PERLAS",
     "seoDescription": "Wartung und Instandhaltung für Immobilien mit Kleinreparaturen, Sichtkontrollen, Fotodokumentation und Koordination geeigneter Fachbetriebe.",
     "scopeIntro": "Eine lockere Türklinke, eine ausgefallene Leuchte oder eine feuchte Stelle wirken zunächst klein. Bleiben solche Punkte liegen, verursachen sie später oft mehr Aufwand. Wir prüfen den Mangel, halten den Zustand fest und klären, ob wir ihn direkt beheben können oder ein Fachbetrieb benötigt wird.",
@@ -128,7 +128,7 @@
     "title": "Gebäudereinigung",
     "text": "Reinigung für Treppenhäuser, Büros, Gemeinschaftsflächen und Parkbereiche nach einem festen Plan.",
     "detail": "Wir reinigen Wohnanlagen, Büros, Praxen und Gewerbeflächen nach ihrem tatsächlichen Bedarf. Vor dem Start legen wir Räume, Aufgaben, Zeiten und Intervalle fest. Bei Fragen oder Änderungen steht ein fester Ansprechpartner zur Verfügung.",
-    "image": "kundenbilder/leistungen/gebaeudereinigung_flur.png",
+    "image": "kundenbilder/team/update-2026-09-23/mitarbeiter_reinigung_weiblich_01.png",
     "seoTitle": "Gebäudereinigung Sulzbach & Rhein-Main | PERLAS",
     "seoDescription": "Gebäudereinigung für Treppenhäuser, Büros, Praxen, Parkhäuser und Gemeinschaftsflächen in Sulzbach, Frankfurt und dem Rhein-Main-Gebiet.",
     "scopeIntro": "Ein kleines Büro braucht einen anderen Reinigungsablauf als ein stark genutztes Treppenhaus oder eine große Wohnanlage. Bei der Besichtigung erfassen wir Räume, Materialien und Nutzung. Daraus entstehen konkrete Aufgaben, Reinigungszeiten und Intervalle.",
@@ -379,11 +379,11 @@
     "slug": "muellmanagement",
     "title": "Müllmanagement",
     "text": "Saubere Müllplätze, koordinierte Bereitstellung und verlässliche Kontrollen für größere Immobilien.",
-    "detail": "Wir strukturieren wiederkehrende Aufgaben rund um Müllstandorte, Behälter und vereinbarte Bereitstellungen. Auffälligkeiten werden dokumentiert und an Verwaltung oder Entsorgungsbetrieb weitergegeben.",
-    "image": "kundenbilder/leistungen/entsorgung_kartonage.png",
+    "detail": "Wir strukturieren wiederkehrende Aufgaben rund um Müllstandorte, Mülltonnen und vereinbarte Bereitstellungen. Auffälligkeiten werden dokumentiert und an Verwaltung oder Entsorgungsbetrieb weitergegeben.",
+    "image": "kundenbilder/leistungen/muellmanagement/muellmanagement_tonne_bewegen_01.png",
     "seoTitle": "Müllmanagement für Immobilien Rhein-Main | PERLAS",
-    "seoDescription": "Müllmanagement für Wohnanlagen und Gewerbeimmobilien im Rhein-Main-Gebiet: Kontrollgänge, Behälterbereitstellung, Sauberkeit und dokumentierte Rückmeldungen.",
-    "scopeIntro": "Zu Beginn nehmen wir Müllplätze, Behälter, Zugänge, Abholrhythmen und typische Auffälligkeiten am Objekt auf. Daraus entsteht ein verständlicher Ablauf für Kontrollen, Bereitstellungen und Rückmeldungen.",
+    "seoDescription": "Müllmanagement für Wohnanlagen und Gewerbeimmobilien im Rhein-Main-Gebiet: Kontrollgänge, Mülltonnenbereitstellung, Sauberkeit und dokumentierte Rückmeldungen.",
+    "scopeIntro": "Zu Beginn nehmen wir Müllplätze, Mülltonnen, Zugänge, Abholrhythmen und typische Auffälligkeiten am Objekt auf. Daraus entsteht ein verständlicher Ablauf für Kontrollen, Bereitstellungen und Rückmeldungen.",
     "scopeCards": [
       {
         "title": "Müllstandorte kontrollieren",
@@ -391,13 +391,13 @@
         "items": ["Zugänge und Standorte prüfen", "Überfüllungen erkennen", "Auffälligkeiten dokumentieren"]
       },
       {
-        "title": "Behälter bereitstellen",
-        "text": "Behälter können nach festgelegtem Plan für die Abholung bereitgestellt und anschließend an ihren Standort zurückgebracht werden.",
+        "title": "Mülltonnen bereitstellen",
+        "text": "Mülltonnen können nach festgelegtem Plan für die Abholung bereitgestellt und anschließend an ihren Standort zurückgebracht werden.",
         "items": ["Abholkalender berücksichtigen", "Bereitstellungswege festlegen", "Rückstellung nach Vereinbarung"]
       },
       {
         "title": "Sauberkeit im Umfeld sichern",
-        "text": "Leichte Verunreinigungen rund um Behälter und Sammelstellen werden im vereinbarten Umfang beseitigt.",
+        "text": "Leichte Verunreinigungen rund um Mülltonnen und Sammelstellen werden im vereinbarten Umfang beseitigt.",
         "items": ["Lose Abfälle aufnehmen", "Standflächen kehren", "Reinigungsbedarf melden"]
       },
       {
@@ -417,7 +417,7 @@
       }
     ],
     "processSteps": [
-      { "title": "Standorte aufnehmen", "text": "Wir erfassen Müllplätze, Behälter, Zugänge, Abholtage und wiederkehrende Herausforderungen direkt am Objekt." },
+      { "title": "Standorte aufnehmen", "text": "Wir erfassen Müllplätze, Mülltonnen, Zugänge, Abholtage und wiederkehrende Herausforderungen direkt am Objekt." },
       { "title": "Aufgaben und Intervalle festlegen", "text": "Kontrollen, Bereitstellungen, Reinigung und Rückmeldungen werden eindeutig in den Leistungsumfang aufgenommen." },
       { "title": "Auffälligkeiten zurückmelden", "text": "Besondere Ablagerungen, Überfüllungen oder organisatorischer Handlungsbedarf werden zeitnah dokumentiert." }
     ],
@@ -431,7 +431,7 @@
     "boundaryText": "Perla’s übernimmt die vereinbarten Kontrollen, Bereitstellungen und Reinigungsaufgaben. Abtransport, Verwertung sowie gefährliche oder genehmigungspflichtige Abfälle bleiben Aufgabe zugelassener Entsorgungsfachbetriebe und werden bei Bedarf separat koordiniert.",
     "relatedServices": ["objektpflege", "gebaeudereinigung", "einzelauftrag"],
     "faqs": [
-      { "question": "Was gehört zum Müllmanagement?", "answer": "Je nach Objekt können Kontrollen der Müllstandorte, Behälterbereitstellung, leichte Reinigung, Fotodokumentation und die Abstimmung bei Auffälligkeiten vereinbart werden." },
+      { "question": "Was gehört zum Müllmanagement?", "answer": "Je nach Objekt können Kontrollen der Müllstandorte, Mülltonnenbereitstellung, leichte Reinigung, Fotodokumentation und die Abstimmung bei Auffälligkeiten vereinbart werden." },
       { "question": "Übernimmt Perla’s auch die Entsorgung?", "answer": "Die reguläre Entsorgung und besondere Abfälle bleiben bei zugelassenen Entsorgungsbetrieben. Perla’s kann Zugänge, Bereitstellungen und Rückmeldungen koordinieren." },
       { "question": "Wie oft werden Müllplätze kontrolliert?", "answer": "Das Intervall richtet sich nach Objektgröße, Abholrhythmus und tatsächlichem Bedarf. Es wird vor Beginn eindeutig im Leistungsumfang festgelegt." },
       { "question": "Werden Sperrmüll und Fehlwürfe dokumentiert?", "answer": "Ja, wenn dies vereinbart ist. Standort, Umfang und Fotos können an die Verwaltung weitergegeben werden, damit das weitere Vorgehen entschieden werden kann." }
@@ -504,11 +504,10 @@
     "title": "Baumpflege & Baumfällung",
     "text": "Pflege-, Rückschnitt- und Fällarbeiten nach objektbezogener Prüfung und klarer Abstimmung des Arbeitsbereichs.",
     "detail": "Für betreute Außenanlagen übernimmt Perla’s abgestimmte Pflege-, Rückschnitt- und Fällarbeiten an Bäumen und größeren Gehölzen. Vor jedem Einsatz klären wir Bestand, Zugänglichkeit, Umfeld und den konkreten Auftrag. Erforderliche Sicherungen, Freigaben und die passende Ausführung werden objektbezogen festgelegt.",
-    "image": "visualisierungen/baumpflege_demo.png",
-    "imageAlt": "DEMO-Visualisierung: Fachpersonal bei einer gesicherten Baumpflege an einer modernen Wohnanlage",
+    "image": "kundenbilder/leistungen/baumpflege/baumfaellung_chainsaw_01.png",
+    "imageAlt": "Fachkraft bei einer Baumfällarbeit mit Schutzkleidung und Motorsäge",
     "imageDisplay": "wide",
-    "imagePosition": "50% 46%",
-    "imageDisclosure": "DEMO",
+    "imagePosition": "43% 50%",
     "certified": true,
     "certificationLabel": "Zertifizierte Fachleistung",
     "seoTitle": "Baumpflege & Baumfällung Rhein-Main | PERLAS",
@@ -646,10 +645,10 @@
     "title": "Büro- & Einrichtungsservice",
     "text": "Möbel und Arbeitsplätze umstellen, interne Büro- und Möbelumzüge unterstützen und Räume für eine neue Nutzung vorbereiten.",
     "detail": "Perla’s unterstützt Unternehmen und Verwaltungen bei praktischen Veränderungen im Gebäude: Wir stellen Möbel und Arbeitsplätze um, begleiten interne Büro- und Möbelumzüge, bauen vorhandene Einrichtung auf oder ab und bereiten Räume für eine neue Nutzung vor.",
-    "image": "perlas-office.png",
-    "imageAlt": "Perla’s Ansprechpartner in einem modernen Büroarbeitsumfeld",
-    "imageDisplay": "landscape",
-    "imagePosition": "50% 52%",
+    "image": "kundenbilder/leistungen/service-update-2026-09-23/buero_einrichtungsservice_01.png",
+    "imageAlt": "Mitarbeiter von Perla’s beim Einrichten eines Büroraums",
+    "imageDisplay": "portrait",
+    "imagePosition": "66% 46%",
     "certified": false,
     "seoTitle": "Büro- & Einrichtungsservice Rhein-Main | PERLAS",
     "seoDescription": "Büro- und Einrichtungsservice für Unternehmen und Verwaltungen im Rhein-Main-Gebiet: Möbel umstellen, interne Umzüge unterstützen und Räume vorbereiten.",
