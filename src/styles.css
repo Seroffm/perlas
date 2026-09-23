@@ -12765,7 +12765,7 @@ body {
 }
 
 .home-fleet-copy {
-  max-width: 820px;
+  max-width: 760px;
 }
 
 .home-fleet-copy > p {
@@ -12773,34 +12773,9 @@ body {
   color: rgb(255 255 255 / 78%);
 }
 
-.home-fleet-facts {
-  margin-top: 32px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-
-.home-fleet-facts span {
-  min-width: 190px;
-  padding: 18px 22px;
-  display: flex;
-  align-items: baseline;
-  gap: 10px;
-  border: 1px solid rgb(255 255 255 / 22%);
-  border-radius: 18px;
-  background: rgb(255 255 255 / 7%);
-  font-size: 13px;
-  font-weight: 700;
-}
-
-.home-fleet-facts strong {
-  color: #fff;
-  font-size: 26px;
-}
-
 .home-fleet-visual {
   position: relative;
-  margin: 48px 0 0;
+  margin: 38px 0 0;
   overflow: hidden;
   border: 1px solid rgb(255 255 255 / 20%);
   border-radius: 34px;
@@ -12986,18 +12961,6 @@ body {
 
   .specialized-services-footer .button {
     width: 100%;
-  }
-
-  .home-fleet-facts {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .home-fleet-facts span {
-    min-width: 0;
-    padding: 16px;
-    flex-direction: column;
-    gap: 4px;
   }
 
   .home-fleet-visual {

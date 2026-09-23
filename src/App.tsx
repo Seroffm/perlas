@@ -529,8 +529,6 @@ type Partner = {
 }
 
 const partners: Partner[] = [
-  { name: 'BundesImmobilien', logo: 'partners/bundesimmobilien.png' },
-  { name: 'David Lloyd Meridian', logo: 'partners/david-lloyd-meridian.png' },
   { name: 'David Lloyd Clubs', logo: 'partners/david-lloyd-clubs.png' },
   { name: 'Immtelli', logo: 'partners/immtelli.png' },
   { name: 'UNIRESTA', logo: 'partners/uniresta.jpeg' },
@@ -804,10 +802,10 @@ const heroSlides = [
     position: '50% center',
   },
   {
-    image: 'kundenbilder/leistungen/gebaeudereinigung_flur.png',
-    alt: 'Mitarbeiter von Perla’s bei der Reinigung eines Gebäudeflurs',
-    label: 'Gebäudereinigung im Einsatz',
-    position: '48% center',
+    image: 'kundenbilder/objekte/wohnobjekt_modern_eingang_01.png',
+    alt: 'Heller Eingang einer modern betreuten Immobilie',
+    label: 'Professioneller Objektservice',
+    position: '46% 58%',
   },
   {
     image: 'kundenbilder/leistungen/transport_umzug_lieferung.png',
@@ -975,7 +973,7 @@ const serviceStoryImages: Record<string, string> = {
   einzelauftrag: 'kundenbilder/leistungen/transport_umzug_lieferung.png',
   'baumpflege-baumfaellung': 'kundenbilder/leistungen/baumpflege/baumfaellung_holztragen_01.png',
   'buero-einrichtungsservice': 'kundenbilder/leistungen/service-update-2026-09-23/buero_einrichtungsservice_01.png',
-  'spielplatzkontrolle-spielgeraetewartung': 'kundenbilder/spielplatz/spielplatz_aussen_01.png',
+  'spielplatzkontrolle-spielgeraetewartung': 'kundenbilder/spielplatz/spielplatz_wohnanlage_01.png',
 }
 
 const serviceStoryPositions: Record<string, string> = {
@@ -984,7 +982,7 @@ const serviceStoryPositions: Record<string, string> = {
   muellmanagement: '50% 56%',
   'baumpflege-baumfaellung': '50% 44%',
   'buero-einrichtungsservice': '66% 46%',
-  'spielplatzkontrolle-spielgeraetewartung': '50% 62%',
+  'spielplatzkontrolle-spielgeraetewartung': '50% 52%',
 }
 
 const serviceImagePositions: Record<string, string> = {
@@ -1012,7 +1010,7 @@ const serviceImageDisplays: Record<string, 'portrait' | 'landscape' | 'square'> 
   einzelauftrag: 'landscape',
   'baumpflege-baumfaellung': 'landscape',
   'buero-einrichtungsservice': 'portrait',
-  'spielplatzkontrolle-spielgeraetewartung': 'portrait',
+  'spielplatzkontrolle-spielgeraetewartung': 'landscape',
 }
 
 function Header({ activePage }: { activePage: PageKind }) {
@@ -1602,10 +1600,6 @@ function HomeFleet() {
           Mehrere Teams, abgestimmte Touren und ein wachsender Fuhrpark schaffen die Grundlage,
           um Wohnanlagen, Gewerbeobjekte und institutionelle Gebäude verlässlich zu betreuen.
         </p>
-        <div className="home-fleet-facts" aria-label="Kennzahlen zum Einsatz">
-          <span><strong>10+</strong>Mitarbeiter</span>
-          <span><strong>25+</strong>Jahre Erfahrung</span>
-        </div>
       </div>
       <figure className="home-fleet-visual" data-reveal="right" style={{ '--reveal-delay': '80ms' } as CSSProperties}>
         <img
@@ -2692,6 +2686,7 @@ function ServiceDetailPage({ service, onQuoteOpen }: { service: Feature; onQuote
   const relatedServices = service.relatedServices
     .map((slug) => features.find((item) => item.slug === slug))
     .filter((item): item is Feature => Boolean(item))
+  const showServiceBoundary = !['baumpflege-baumfaellung', 'spielplatzkontrolle-spielgeraetewartung'].includes(service.slug)
 
   return (
     <main className="service-page">
@@ -2846,17 +2841,19 @@ function ServiceDetailPage({ service, onQuoteOpen }: { service: Feature; onQuote
         </div>
       </section>
 
-      <section className="service-boundary" data-reveal="up">
-        <div>
-          <span className="eyebrow">Leistungsgrenzen</span>
-          <h2>{service.boundaryTitle}</h2>
-          <p>{service.boundaryText}</p>
-        </div>
-        <button className="button button--yellow" type="button" onClick={() => onQuoteOpen(service.title)}>
-          <span>Leistungsumfang besprechen</span>
-          <img src={`${A}arrow-white.svg`} alt="" />
-        </button>
-      </section>
+      {showServiceBoundary && (
+        <section className="service-boundary" data-reveal="up">
+          <div>
+            <span className="eyebrow">Leistungsgrenzen</span>
+            <h2>{service.boundaryTitle}</h2>
+            <p>{service.boundaryText}</p>
+          </div>
+          <button className="button button--yellow" type="button" onClick={() => onQuoteOpen(service.title)}>
+            <span>Leistungsumfang besprechen</span>
+            <img src={`${A}arrow-white.svg`} alt="" />
+          </button>
+        </section>
+      )}
 
       <section className="service-faq" aria-labelledby="service-faq-heading">
         <div className="service-section-heading" data-reveal="left">

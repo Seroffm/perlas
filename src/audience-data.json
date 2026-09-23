@@ -216,9 +216,9 @@
     "approach": "Wir legen Aufgaben, Intervalle und Ansprechpartner gemeinsam fest. Bei technischen Fachthemen koordinieren wir die Weitergabe an geeignete Spezialisten und halten offen gebliebene Maßnahmen nachvollziehbar fest.",
     "services": ["objektpflege", "gebaeudereinigung", "wartung-instandhaltung", "tiefgaragenreinigung", "winterdienst", "gartenpflege"],
     "image": {
-      "src": "kundenbilder/objekte/gewerbeobjekt_dach_02.png",
-      "alt": "Großes Gewerbeobjekt als Beispiel für komplexe Gebäudebetreuung",
-      "position": "50% center"
+      "src": "kundenbilder/objekte/wohnanlage_eingang_02.png",
+      "alt": "Heller und gepflegter Gebäudeeingang als Beispiel für institutionelle Objektbetreuung",
+      "position": "50% 48%"
     },
     "scopeCards": [
       {
