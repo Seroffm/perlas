@@ -825,7 +825,7 @@ type ServiceGallery = {
   eyebrow: string
   title: string
   intro: string
-  items: Array<{ image: string; label: string; alt: string; position?: string }>
+  items: Array<{ image: string; label: string; alt: string; position?: string; scale?: number; transformOrigin?: string }>
 }
 
 const serviceGalleries: Record<string, ServiceGallery> = {
@@ -951,6 +951,8 @@ const serviceGalleries: Record<string, ServiceGallery> = {
         label: 'Spielbereich in einer Wohnanlage',
         alt: 'Spielgeräte und gepflegte Spielfläche vor einem Wohngebäude',
         position: '50% 48%',
+        scale: 1.48,
+        transformOrigin: '80% 50%',
       },
       {
         image: 'kundenbilder/spielplatz/spielbereich_innen_01.png',
@@ -2648,7 +2650,17 @@ function ServiceMediaGallery({ gallery }: { gallery: ServiceGallery }) {
       <div className="service-gallery-grid">
         {gallery.items.map((item, index) => (
           <figure data-reveal="up" style={{ '--reveal-delay': `${index * 70}ms` } as CSSProperties} key={item.image}>
-            <img src={`${A}${item.image}`} alt={item.alt} loading="lazy" decoding="async" style={{ objectPosition: item.position }} />
+            <img
+              src={`${A}${item.image}`}
+              alt={item.alt}
+              loading="lazy"
+              decoding="async"
+              style={{
+                objectPosition: item.position,
+                transform: item.scale ? `scale(${item.scale})` : undefined,
+                transformOrigin: item.transformOrigin,
+              }}
+            />
             <figcaption>{item.label}</figcaption>
           </figure>
         ))}
@@ -3274,9 +3286,9 @@ export default function App() {
           <Reviews />
           <HomeOverview />
           <HomeAudienceCards />
+          <HomeFleet />
           <SpecializedServices certifiedOnly />
           <HomeCoreServices />
-          <HomeFleet />
           <HomeTrust />
         </main>
       )}
