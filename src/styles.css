@@ -12801,9 +12801,10 @@ body {
 
 .home-fleet-visual img {
   width: 100%;
-  aspect-ratio: 3 / 1;
+  aspect-ratio: 2.15 / 1;
   display: block;
   object-fit: cover;
+  object-position: 50% 56%;
 }
 
 .home-fleet-visual figcaption {
@@ -12985,8 +12986,8 @@ body {
   }
 
   .home-fleet-visual img {
-    aspect-ratio: 1.8 / 1;
-    object-position: 44% center;
+    aspect-ratio: 1.7 / 1;
+    object-position: 50% 54%;
   }
 
   .home-fleet-visual figcaption {

@@ -1582,12 +1582,12 @@ function HomeFleet() {
       </div>
       <figure className="home-fleet-visual" data-reveal="right" style={{ '--reveal-delay': '80ms' } as CSSProperties}>
         <img
-          src={`${A}kundenbilder/fahrzeuge/perlas_fuhrpark_ki.png`}
-          alt="Visualisierung eines größeren Perla’s-Fuhrparks mit weißen und dunkelblauen Servicefahrzeugen"
+          src={`${A}kundenbilder/fahrzeuge/perlas_fuhrpark_real.png`}
+          alt="Perla’s weiße und dunkelblaue Servicefahrzeuge sowie Lkw vor einer Wohnanlage"
           loading="lazy"
           decoding="async"
         />
-        <figcaption>Visualisierung auf Basis realer Perla’s-Fahrzeuge</figcaption>
+        <figcaption>Perla’s Fuhrpark im Einsatz</figcaption>
       </figure>
     </section>
   )
