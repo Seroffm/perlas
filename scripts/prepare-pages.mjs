@@ -406,7 +406,10 @@ function homeMarkup() {
     `<section><p>Kernleistungen</p><h2>Unsere Kernleistungen.</h2><p>Die wichtigsten Leistungen stehen am Anfang; weitere Bereiche lassen sich im Frontend bei Bedarf einblenden.</p><ul class="seo-static-links">${coreServices}</ul><a href="${basePath}leistungen/">Alle Leistungen ansehen</a></section>`,
     `<section><h2>Einsatzbereit im Rhein-Main-Gebiet</h2><p>10+ Mitarbeitende, abgestimmte Touren und ein wachsender Fuhrpark unterstützen die verlässliche Betreuung größerer Immobilien.</p><img src="${basePath}assets/kundenbilder/fahrzeuge/perlas_fuhrpark_ki.png" alt="Visualisierung eines größeren Perla’s-Fuhrparks"></section>`,
     `<section><h2>Erfahrung und klare Abläufe</h2><p>Perla’s schafft Übersicht über wiederkehrende Aufgaben und hält Rückmeldungen zu Zustand, Leistung und Handlungsbedarf an einer Stelle zusammen.</p></section></main>`,
-  ].join('')
+  ].join('').replace(
+    '<section><h2>Einsatzbereit im Rhein-Main-Gebiet</h2>',
+    '<section id="fuhrpark"><p>Fuhrpark &amp; Mobilität</p><h2>Einsatzbereit im Rhein-Main-Gebiet</h2>',
+  )
 }
 
 function facilityMarkup() {
