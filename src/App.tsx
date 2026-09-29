@@ -1569,9 +1569,9 @@ function SpecializedServices({ certifiedOnly = false }: { certifiedOnly?: boolea
 
 function HomeFleet() {
   return (
-    <section className="home-fleet" aria-labelledby="home-fleet-heading">
+    <section className="home-fleet" id="fuhrpark" aria-labelledby="home-fleet-heading">
       <div className="home-fleet-copy" data-reveal="left">
-        <span className="eyebrow">Team &amp; Mobilität</span>
+        <span className="eyebrow">Fuhrpark &amp; Mobilität</span>
         <h2 id="home-fleet-heading">Einsatzbereit im gesamten Rhein-Main-Gebiet.</h2>
         <p>
           Mehrere Teams, abgestimmte Touren und ein wachsender Fuhrpark schaffen die Grundlage,
