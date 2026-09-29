@@ -78,7 +78,7 @@ function ensureMeta(selector: string, attributes: Record<string, string>) {
   Object.entries(attributes).forEach(([name, value]) => element?.setAttribute(name, value))
 }
 
-type PageKind = 'home' | 'contact' | 'facility' | 'services' | 'about' | 'blog' | 'career' | 'imprint' | 'privacy'
+type PageKind = 'home' | 'contact' | 'facility' | 'services' | 'about' | 'blog' | 'career' | 'imprint' | 'privacy' | 'notFound'
 
 const blogPosts = blogContent as BlogPostContent[]
 const jobOpenings = jobContent as JobOpeningContent[]
@@ -107,10 +107,22 @@ type AudienceSolution = AudienceSolutionContent & { icon: LucideIcon }
 
 function usePageSeo(service?: Feature, pageKind: PageKind = 'home', audience?: AudienceSolution, article?: BlogPostContent) {
   useEffect(() => {
+    if (pageKind === 'notFound') {
+      document.title = 'Seite nicht gefunden | Perla’s Objektbetreuung'
+      ensureMeta('meta[name="description"]', {
+        name: 'description',
+        content: 'Die aufgerufene Seite wurde möglicherweise verschoben oder ist nicht mehr verfügbar.',
+      })
+      ensureMeta('meta[name="robots"]', { name: 'robots', content: 'noindex,nofollow' })
+      document.head.querySelector('link[rel="canonical"]')?.remove()
+      document.head.querySelector('#perlas-structured-data')?.remove()
+      return
+    }
+
     const siteUrl = new URL(BASE_PATH, window.location.origin)
     const servicesUrl = new URL('leistungen/', siteUrl)
     const facilityUrl = new URL('facility-management/', siteUrl)
-    const pageDefinitions: Record<Exclude<PageKind, 'home'>, { path: string; title: string; description: string; schemaType: string }> = {
+    const pageDefinitions: Record<Exclude<PageKind, 'home' | 'notFound'>, { path: string; title: string; description: string; schemaType: string }> = {
       contact: {
         path: 'kontakt/',
         title: 'Kontakt & Anfrage | Perla’s Facility Management',
@@ -947,12 +959,10 @@ const serviceGalleries: Record<string, ServiceGallery> = {
     intro: 'Die echten Objektaufnahmen zeigen unterschiedliche Spielgeräte und Flächen. Kontroll-, Reinigungs- und Wartungsumfang werden für jeden Standort verbindlich abgestimmt.',
     items: [
       {
-        image: 'kundenbilder/spielplatz/spielplatz_wohnanlage_01.png',
-        label: 'Spielbereich in einer Wohnanlage',
-        alt: 'Spielgeräte und gepflegte Spielfläche vor einem Wohngebäude',
-        position: '50% 48%',
-        scale: 1.48,
-        transformOrigin: '80% 50%',
+        image: 'kundenbilder/spielplatz/spielplatz_schaukel_nah_01.png',
+        label: 'Schaukelbereich im Außenbereich',
+        alt: 'Großer Nestschaukelbereich auf einer gepflegten Außenspielfläche',
+        position: '48% 54%',
       },
       {
         image: 'kundenbilder/spielplatz/spielbereich_innen_01.png',
@@ -1471,13 +1481,6 @@ function SpecializedServices({ certifiedOnly = false }: { certifiedOnly?: boolea
 
   return (
     <section className={`specialized-services${certifiedOnly ? ' specialized-services--certified' : ''}`} aria-labelledby="specialized-services-heading" lang="de">
-      <div className="specialized-services-flow" aria-label="Zusammenspiel der Leistungen" data-reveal="up">
-        <span>Facility Management</span>
-        <ChevronRight aria-hidden="true" />
-        <span>{certifiedOnly ? 'Nachgewiesene Fachkunde' : 'Regelmäßige Kernleistungen'}</span>
-        <ChevronRight aria-hidden="true" />
-        <strong>{certifiedOnly ? 'Zertifizierte Leistungen' : 'Ergänzende Fachleistungen'}</strong>
-      </div>
       <div className="home-section-heading" data-reveal="up">
         <span className="eyebrow">{certifiedOnly ? 'Leistungen mit besonderem Prüf- und Sicherheitsanspruch' : 'Spezialisierte Zusatzleistungen'}</span>
         <h2 id="specialized-services-heading">{certifiedOnly ? 'Zertifizierte Zusatzleistungen.' : 'Ergänzende Fachleistungen für professionell betreute Immobilien.'}</h2>
@@ -1590,6 +1593,24 @@ function HomeFleet() {
         <figcaption>Perla’s Fuhrpark im Einsatz</figcaption>
       </figure>
     </section>
+  )
+}
+
+function NotFoundPage() {
+  return (
+    <main className="not-found-page">
+      <div className="not-found-page__inner">
+        <span className="eyebrow">SEITE NICHT GEFUNDEN</span>
+        <span className="not-found-page__code" aria-hidden="true">404</span>
+        <h1>Diese Seite gibt es leider nicht.</h1>
+        <p>Die aufgerufene Seite wurde möglicherweise verschoben oder ist nicht mehr verfügbar.</p>
+        <div className="not-found-page__actions">
+          <ButtonLink href={homeHref()} kind="yellow">Zur Startseite</ButtonLink>
+          <ButtonLink href={SERVICES_PATH} kind="outline">Leistungen ansehen</ButtonLink>
+          <ButtonLink href={CONTACT_PATH} kind="outline">Kontakt</ButtonLink>
+        </div>
+      </div>
+    </main>
   )
 }
 
@@ -3198,12 +3219,18 @@ export default function App() {
   const isCareerPage = /^\/karriere\/?$/.test(pagePath)
   const isImprintPage = /^\/impressum\/?$/.test(pagePath)
   const isPrivacyPage = /^\/datenschutz\/?$/.test(pagePath)
+  const normalizedPagePath = pagePath.replace(/\/+$/, '') || '/'
   const serviceSlug = pagePath.match(/^\/leistungen\/([^/]+)\/?$/)?.[1]
   const activeService = features.find((service) => service.slug === serviceSlug)
   const audienceSlug = pagePath.match(/^\/facility-management\/([^/]+)\/?$/)?.[1]
   const activeAudience = audienceSolutions.find((audience) => audience.id === audienceSlug)
   const blogSlug = pagePath.match(/^\/blog\/([^/]+)\/?$/)?.[1]
   const activeBlogPost = blogPosts.find((post) => post.slug === blogSlug)
+  const isKnownRoute = normalizedPagePath === '/'
+    || isContactPage || isFacilityPage || isServicesPage || isAboutPage || isBlogPage
+    || isCareerPage || isImprintPage || isPrivacyPage
+    || Boolean(activeService || activeAudience || activeBlogPost)
+  const isNotFoundPage = !isKnownRoute
   const pageKind: PageKind = isContactPage
     ? 'contact'
     : isFacilityPage || activeAudience
@@ -3220,7 +3247,9 @@ export default function App() {
             ? 'imprint'
             : isPrivacyPage
               ? 'privacy'
-          : 'home'
+            : isNotFoundPage
+              ? 'notFound'
+              : 'home'
 
   usePageSeo(activeService, pageKind, activeAudience, activeBlogPost)
   useRevealAnimations(activeService?.slug ?? activeAudience?.id ?? activeBlogPost?.slug ?? pageKind)
@@ -3278,6 +3307,8 @@ export default function App() {
         <LegalPage type="imprint" />
       ) : isPrivacyPage ? (
         <LegalPage type="privacy" />
+      ) : isNotFoundPage ? (
+        <NotFoundPage />
       ) : (
         <main>
           <Hero />

@@ -321,6 +321,10 @@ function staticHeader() {
   return `<header class="seo-static-header"><a href="${basePath}"><img src="${basePath}assets/perlas-logo.svg" alt="Perla’s Objektbetreuung GmbH &amp; Co. KG" /></a><nav aria-label="Hauptnavigation"><a href="${basePath}facility-management/">Facility Management</a><a href="${basePath}leistungen/">Leistungen</a><a href="${basePath}ueber-uns/">Über uns</a><a href="${basePath}blog/">Blog</a><a href="${basePath}karriere/">Karriere</a><a class="seo-static-contact" href="${basePath}kontakt/">Kontakt</a></nav></header>`
 }
 
+function notFoundMarkup() {
+  return `${staticHeader()}<main class="not-found-page"><div class="not-found-page__inner"><span class="eyebrow">SEITE NICHT GEFUNDEN</span><span class="not-found-page__code" aria-hidden="true">404</span><h1>Diese Seite gibt es leider nicht.</h1><p>Die aufgerufene Seite wurde möglicherweise verschoben oder ist nicht mehr verfügbar.</p><div class="not-found-page__actions"><a class="button button--yellow" href="${basePath}"><span>Zur Startseite</span></a><a class="button button--outline" href="${basePath}leistungen/"><span>Leistungen ansehen</span></a><a class="button button--outline" href="${basePath}kontakt/"><span>Kontakt</span></a></div></div></main>`
+}
+
 function blogPostStructuredData(post) {
   const url = blogPostUrl(post).href
   return {
@@ -441,7 +445,7 @@ function servicesMarkup() {
     { slug: 'buero-einrichtungsservice', title: 'Büro- & Einrichtungsservice', text: 'Möbel und Arbeitsplätze umstellen, interne Umzüge unterstützen und Räume für eine neue Nutzung vorbereiten.' },
   ].map((service) => `<li>${service.certified ? '<span>Zertifiziert</span>' : ''}<strong><a href="${basePath}leistungen/${service.slug}/">${escapeHtml(service.title)}</a></strong><p>${escapeHtml(service.text)}</p></li>`).join('')
 
-  return `${staticHeader()}<main class="seo-static-main"><nav aria-label="Brotkrümeln"><a href="${basePath}">Startseite</a> / Leistungen</nav><section class="seo-static-hero"><p>Facility Services im Rhein-Main-Gebiet</p><h1>Leistungen für den laufenden Betrieb Ihrer Immobilie.</h1><p>Wählen Sie eine einzelne Leistung oder kombinieren Sie mehrere Aufgaben zu einem objektbezogenen Betreuungskonzept.</p><a href="${basePath}kontakt/">Leistung anfragen</a><a href="${basePath}facility-management/">Facility Management</a></section><section><h2>Für diese Immobilien arbeiten wir</h2><ul class="seo-static-links">${targets}</ul></section><section><p>Facility Management → regelmäßige Kernleistungen → ergänzende Fachleistungen</p><h2>Ergänzende Fachleistungen für professionell betreute Immobilien.</h2><p>Umfang, Zuständigkeit und erforderliche Fachkunde werden je Leistung vor der Beauftragung geklärt.</p><ul>${specialized}</ul><a href="${basePath}kontakt/">Spezialleistung anfragen</a></section><section><h2>Bestehende Leistungen im Detail</h2><div class="seo-static-grid">${catalog}</div></section><section><h2>Wenn aus Einzelleistungen Facility Management wird</h2><p>Bei größeren oder professionell verwalteten Immobilien lassen sich Leistungen, Intervalle, Zuständigkeiten und Rückmeldungen in einem Betreuungskonzept bündeln.</p><a href="${basePath}facility-management/">Facility Management ansehen</a></section></main>`
+  return `${staticHeader()}<main class="seo-static-main"><nav aria-label="Brotkrümeln"><a href="${basePath}">Startseite</a> / Leistungen</nav><section class="seo-static-hero"><p>Facility Services im Rhein-Main-Gebiet</p><h1>Leistungen für den laufenden Betrieb Ihrer Immobilie.</h1><p>Wählen Sie eine einzelne Leistung oder kombinieren Sie mehrere Aufgaben zu einem objektbezogenen Betreuungskonzept.</p><a href="${basePath}kontakt/">Leistung anfragen</a><a href="${basePath}facility-management/">Facility Management</a></section><section><h2>Für diese Immobilien arbeiten wir</h2><ul class="seo-static-links">${targets}</ul></section><section><h2>Ergänzende Fachleistungen für professionell betreute Immobilien.</h2><p>Umfang, Zuständigkeit und erforderliche Fachkunde werden je Leistung vor der Beauftragung geklärt.</p><ul>${specialized}</ul><a href="${basePath}kontakt/">Spezialleistung anfragen</a></section><section><h2>Bestehende Leistungen im Detail</h2><div class="seo-static-grid">${catalog}</div></section><section><h2>Wenn aus Einzelleistungen Facility Management wird</h2><p>Bei größeren oder professionell verwalteten Immobilien lassen sich Leistungen, Intervalle, Zuständigkeiten und Rückmeldungen in einem Betreuungskonzept bündeln.</p><a href="${basePath}facility-management/">Facility Management ansehen</a></section></main>`
 }
 
 function aboutMarkup() {
@@ -586,7 +590,7 @@ function serviceMarkup(service) {
     : service.slug === 'gartenpflege'
       ? `<section><p>Vorher / Nachher</p><h2>Außenbereiche sichtbar in Ordnung bringen.</h2><p>Dasselbe Objekt vor und nach dem Einsatz.</p><div class="seo-static-grid"><figure><img src="${basePath}assets/kundenbilder/vorher_nachher/aussenbereich_vorher.png" alt="Überwachsener Außenbereich vor der Pflege durch Perla’s"><figcaption>Vorher</figcaption></figure><figure><img src="${basePath}assets/kundenbilder/vorher_nachher/aussenbereich_nachher.png" alt="Freigeschnittener und gepflegter Außenbereich nach dem Einsatz"><figcaption>Nachher</figcaption></figure></div></section>`
       : service.slug === 'spielplatzkontrolle-spielgeraetewartung'
-        ? `<section><p>Spielbereiche in der Praxis</p><h2>Außen- und Innenbereiche passend betreuen.</h2><p>Echte Objektaufnahmen zeigen unterschiedliche Spielgeräte und Flächen.</p><div class="seo-static-grid"><figure><img src="${basePath}assets/kundenbilder/spielplatz/spielplatz_aussen_01.png" alt="Heller Außenspielplatz mit modernen Spielgeräten"><figcaption>Außenspielplatz</figcaption></figure><figure><img src="${basePath}assets/kundenbilder/spielplatz/spielplatz_wohnanlage_01.png" alt="Spielgeräte und gepflegte Spielfläche vor einem Wohngebäude"><figcaption>Spielbereich in einer Wohnanlage</figcaption></figure><figure><img src="${basePath}assets/kundenbilder/spielplatz/spielbereich_innen_01.png" alt="Gepflegter Indoor-Spielbereich"><figcaption>Indoor-Spielbereich</figcaption></figure></div></section>`
+        ? `<section><p>Spielbereiche in der Praxis</p><h2>Außen- und Innenbereiche passend betreuen.</h2><p>Echte Objektaufnahmen zeigen unterschiedliche Spielgeräte und Flächen.</p><div class="seo-static-grid"><figure><img src="${basePath}assets/kundenbilder/spielplatz/spielplatz_aussen_01.png" alt="Heller Außenspielplatz mit modernen Spielgeräten"><figcaption>Außenspielplatz</figcaption></figure><figure><img src="${basePath}assets/kundenbilder/spielplatz/spielplatz_schaukel_nah_01.png" alt="Großer Nestschaukelbereich auf einer gepflegten Außenspielfläche"><figcaption>Schaukelbereich im Außenbereich</figcaption></figure><figure><img src="${basePath}assets/kundenbilder/spielplatz/spielbereich_innen_01.png" alt="Gepflegter Indoor-Spielbereich"><figcaption>Indoor-Spielbereich</figcaption></figure></div></section>`
         : ''
 
   return `${staticHeader()}<main class="seo-static-main"><nav aria-label="Brotkrümeln"><a href="${basePath}">Startseite</a> / <a href="${basePath}leistungen/">Leistungen</a> / ${escapeHtml(service.title)}</nav><section class="seo-static-hero"><p>${service.eyebrow ? escapeHtml(service.eyebrow) : service.certified ? 'Zertifizierte Fachleistung' : 'Facility Services im Rhein-Main-Gebiet'}</p><h1>${escapeHtml(service.title)}</h1><p>${escapeHtml(service.detail)}</p><a href="${basePath}kontakt/">Individuelles Angebot anfragen</a><a href="tel:+491776867145">Direkt anrufen</a><a href="mailto:mail@perlas.de">E-Mail schreiben</a><img src="${basePath}assets/${escapeHtml(service.image)}" alt="${escapeHtml(service.imageAlt || `${service.title} von Perla’s Objektbetreuung`)}"></section><section><h2>Was wir bei ${escapeHtml(service.title)} konkret übernehmen</h2><p>${escapeHtml(service.scopeIntro)}</p><div class="seo-static-grid">${scopes}</div></section><section><h2>So läuft die Zusammenarbeit ab</h2><div class="seo-static-grid">${process}</div></section>${workflow}<section><h2>Für diese Objekte geeignet</h2><ul>${audiences}</ul>${boundary}</section>${gallery}<section><h2>Häufige Fragen zu ${escapeHtml(service.title)}</h2>${faqs}</section><section><h2>Wie möchten Sie Kontakt aufnehmen?</h2><p>Nutzen Sie das Angebotsformular oder sprechen Sie direkt mit Perla’s.</p><ul><li><a href="${basePath}kontakt/">Angebot für ${escapeHtml(service.title)} anfragen</a></li><li><a href="tel:+491776867145">Direkt anrufen: 0177 68 67 145</a></li><li><a href="mailto:mail@perlas.de">E-Mail an mail@perlas.de schreiben</a></li></ul></section><nav aria-label="Passende Leistungen"><h2>Diese Leistungen könnten ebenfalls relevant sein</h2><ul class="seo-static-links">${related}</ul></nav></main>`
@@ -614,16 +618,16 @@ function buildPage({ title, description, url, markup, data, robots = pageRobots,
   const socialImage = new URL(`${basePath}assets/kundenbilder/objekte/wohnanlage_modern_02.png`, siteUrl.origin).href
   const extraHead = `
     <meta name="robots" content="${robots}" />
-    <link rel="canonical" href="${url}" />
+    ${url ? `<link rel="canonical" href="${url}" />` : ''}
     <meta property="og:locale" content="de_DE" />
     <meta property="og:type" content="${ogType}" />
     <meta property="og:site_name" content="PERLAS" />
     <meta property="og:title" content="${escapeHtml(title)}" />
     <meta property="og:description" content="${escapeHtml(description)}" />
-    <meta property="og:url" content="${url}" />
+    ${url ? `<meta property="og:url" content="${url}" />` : ''}
     <meta property="og:image" content="${socialImage}" />
     <meta name="twitter:card" content="summary_large_image" />
-    <script id="perlas-structured-data" type="application/ld+json">${JSON.stringify(data).replaceAll('<', '\\u003c')}</script>`
+    ${data ? `<script id="perlas-structured-data" type="application/ld+json">${JSON.stringify(data).replaceAll('<', '\\u003c')}</script>` : ''}`
 
   return indexTemplate
     .replace(/<title>[\s\S]*?<\/title>/, `<title>${escapeHtml(title)}</title>`)
@@ -635,10 +639,10 @@ function buildPage({ title, description, url, markup, data, robots = pageRobots,
 const homePage = buildPage({ ...homeSeo, markup: homeMarkup(), data: structuredData() })
 await writeFile(indexPath, homePage)
 await writeFile(`${distPath}404.html`, buildPage({
-  ...homeSeo,
-  markup: homeMarkup(),
-  data: structuredData(),
-  robots: 'noindex,follow',
+  title: 'Seite nicht gefunden | Perla’s Objektbetreuung',
+  description: 'Die aufgerufene Seite wurde möglicherweise verschoben oder ist nicht mehr verfügbar.',
+  markup: notFoundMarkup(),
+  robots: 'noindex,nofollow',
 }))
 await writeFile(`${distPath}.nojekyll`, '')
 
