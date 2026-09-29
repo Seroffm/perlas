@@ -9,6 +9,7 @@ const blogDataPath = fileURLToPath(new URL('../src/blog-data.json', import.meta.
 const jobDataPath = fileURLToPath(new URL('../src/job-data.json', import.meta.url))
 const imprintDataPath = fileURLToPath(new URL('../src/imprint-content.json', import.meta.url))
 const privacyDataPath = fileURLToPath(new URL('../src/privacy-content.json', import.meta.url))
+const googleReviewsDataPath = fileURLToPath(new URL('../src/google-reviews-data.json', import.meta.url))
 const appPath = fileURLToPath(new URL('../src/App.tsx', import.meta.url))
 const contactPagePath = fileURLToPath(new URL('../src/ContactPage.tsx', import.meta.url))
 const blogPagePath = fileURLToPath(new URL('../src/BlogPage.tsx', import.meta.url))
@@ -27,6 +28,7 @@ const blogPosts = JSON.parse(await readFile(blogDataPath, 'utf8'))
 const jobs = JSON.parse(await readFile(jobDataPath, 'utf8'))
 const imprintContent = JSON.parse(await readFile(imprintDataPath, 'utf8'))
 const privacyContent = JSON.parse(await readFile(privacyDataPath, 'utf8'))
+const googleReviewData = JSON.parse(await readFile(googleReviewsDataPath, 'utf8'))
 const featuredBlogPostSlug = 'objektkontrollen-richtig-dokumentieren'
 const coreServiceSlugs = new Set([
   'objektpflege',
@@ -50,6 +52,7 @@ const sourceStats = await Promise.all([
   jobDataPath,
   imprintDataPath,
   privacyDataPath,
+  googleReviewsDataPath,
   appPath,
   contactPagePath,
   blogPagePath,
@@ -386,14 +389,9 @@ function homeMarkup() {
     'Bundesanstalt für Immobilienaufgaben',
   ].map((partner) => `<li>${escapeHtml(partner)}</li>`).join('')
 
-  const googleReviews = [
-    ['Amanda Li', 'Freundlich, hilfsbereit und zuverlässig.'],
-    ['Melanie Michaelpillai', 'Zuverlässig und unkompliziert.'],
-    ['Alexis Sheva', 'Kommunikation ist unkompliziert.'],
-    ['Challenge 4 Change', 'Schnell, zuverlässig und immer erreichbar.'],
-    ['Z D', 'Zuverlässig und sorgfältig.'],
-    ['Gabriele Dell Olio', 'Sehr professionelle und saubere Arbeit.'],
-  ].map(([author, copy]) => `<li><blockquote>${escapeHtml(copy)}</blockquote><p>${escapeHtml(author)}, Google-Rezension</p></li>`).join('')
+  const googleReviews = googleReviewData.reviews
+    .map((review) => `<li><blockquote>${escapeHtml(review.text)}</blockquote><p>${escapeHtml(review.author)}, Google-Rezension</p></li>`)
+    .join('')
 
   const audienceLinks = audiences
     .map((audience) => `<li><a href="${basePath}facility-management/${audience.id}/">${escapeHtml(audience.navLabel)}</a><p>${escapeHtml(audience.text)}</p></li>`)
@@ -403,7 +401,7 @@ function homeMarkup() {
     `${staticHeader()}<main class="seo-static-main"><section class="seo-static-hero"><p>Facility Management im Rhein-Main-Gebiet</p><h1>Facility Management für professionell verwaltete Immobilien.</h1><p>Perla’s bündelt Objektbetreuung, technische Koordination, Reinigung, Außenanlagenpflege und Winterdienst. Hausverwaltungen und gewerbliche Auftraggeber erhalten einen festen Ansprechpartner für die laufenden Aufgaben ihrer Immobilien.</p><a href="${basePath}kontakt/">Betreuung anfragen</a></section>`,
     `<section><p>Perla’s persönlich</p><h2>Lernen Sie uns in 54 Sekunden kennen.</h2><p>Erhalten Sie einen kurzen Einblick in Perla’s, unsere Arbeitsweise und die Menschen hinter der laufenden Betreuung von Immobilien.</p><iframe src="https://www.youtube-nocookie.com/embed/u8PsU3hYVYU?rel=0" title="Perla’s persönlich: Einblick in das Unternehmen" loading="lazy" allowfullscreen></iframe></section>`,
     `<section><h2>Unternehmen und Verwaltungen, die auf Perla’s setzen.</h2><ul>${partnerNames}</ul></section>`,
-    `<section><h2>5,0 Sterne aus 32 Google-Rezensionen</h2><p>Kurze Auszüge aus öffentlich abgegebenen Bewertungen für Perla’s Objektbetreuung.</p><ul class="seo-static-links">${googleReviews}</ul><a href="https://www.google.com/search?q=Perla%27s+Objektbetreuung+GmbH+%26+Co.+KG+Sulzbach+Rezensionen">Alle Rezensionen bei Google ansehen</a></section>`,
+    `<section><h2>${escapeHtml(googleReviewData.rating)} Sterne aus ${googleReviewData.reviewCount} Google-Rezensionen</h2><p>Kurze Auszüge aus öffentlich abgegebenen Bewertungen für Perla’s Objektbetreuung.</p><ul class="seo-static-links">${googleReviews}</ul><a href="${escapeHtml(googleReviewData.profileUrl)}" target="_blank" rel="noreferrer">Alle Rezensionen bei Google ansehen</a></section>`,
     `<section><p>Perla’s im Überblick</p><h2>Der passende Weg für Ihr Objekt.</h2><ul class="seo-static-links"><li><a href="${basePath}facility-management/">Facility Management</a><p>Mehrere Aufgaben in einem abgestimmten Betreuungskonzept.</p></li><li><a href="${basePath}leistungen/">Leistungen</a><p>Einzelleistungen für den laufenden Immobilienbetrieb.</p></li><li><a href="${basePath}ueber-uns/">Über uns</a><p>Perla’s Objektbetreuung seit 1999.</p></li><li><a href="${basePath}kontakt/">Kontakt</a><p>Ihr Objekt persönlich besprechen.</p></li></ul></section>`,
     `<section><p>Facility Management nach Objektart</p><h2>Facility Management für professionell verwaltete Immobilien.</h2><p>Perla’s koordiniert wiederkehrende Aufgaben, Zuständigkeiten und Rückmeldungen für Hausverwaltungen, Wohnanlagen, Gewerbeimmobilien und institutionelle Gebäude.</p><ul class="seo-static-links">${audienceLinks}</ul><a href="${basePath}facility-management/">Alle Objektbereiche ansehen</a></section>`,
     `<section><p>Nachgewiesene Fachkompetenz</p><h2>Zertifizierte Leistungen.</h2><p>Die konkreten Qualifikationen und der vereinbarte Prüfumfang werden vor der Beauftragung transparent festgehalten.</p><ul class="seo-static-links">${certifiedServices}</ul><a href="${basePath}kontakt/">Spezialleistung anfragen</a></section>`,

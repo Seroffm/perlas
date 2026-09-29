@@ -39,6 +39,7 @@ import imprintContent from './imprint-content.json'
 import jobContent from './job-data.json'
 import privacyContent from './privacy-content.json'
 import serviceContent from './service-data.json'
+import googleReviewData from './google-reviews-data.json'
 import type { BlogPostContent, JobOpeningContent } from './content-types'
 
 const BASE_PATH = import.meta.env.BASE_URL
@@ -491,41 +492,8 @@ function ExpandableCollection<T>({
   )
 }
 
-const GOOGLE_REVIEWS_URL =
-  'https://www.google.com/search?q=Perla%27s+Objektbetreuung+GmbH+%26+Co.+KG+Sulzbach+Rezensionen'
-
-const reviews = [
-  {
-    copy: 'Freundlich, hilfsbereit und zuverlässig.',
-    author: 'Amanda Li',
-    age: 'vor 2 Monaten',
-  },
-  {
-    copy: 'Zuverlässig und unkompliziert.',
-    author: 'Melanie Michaelpillai',
-    age: 'vor 7 Monaten',
-  },
-  {
-    copy: 'Kommunikation ist unkompliziert.',
-    author: 'Alexis Sheva',
-    age: 'vor einem Jahr',
-  },
-  {
-    copy: 'Schnell, zuverlässig und immer erreichbar.',
-    author: 'Challenge 4 Change',
-    age: 'vor einem Jahr',
-  },
-  {
-    copy: 'Zuverlässig und sorgfältig.',
-    author: 'Z D',
-    age: 'vor einem Jahr',
-  },
-  {
-    copy: 'Sehr professionelle und saubere Arbeit.',
-    author: 'Gabriele Dell Olio',
-    age: 'vor 7 Monaten',
-  },
-]
+const GOOGLE_REVIEWS_URL = googleReviewData.profileUrl
+const reviews = googleReviewData.reviews
 
 const proofStats = [
   ['25+', 'Jahre Erfahrung'],
@@ -2450,13 +2418,13 @@ function Reviews() {
             <img src={`${A}google-g.svg`} alt="" />
           </span>
           <span className="google-review-score">
-            <strong>5,0</strong>
-            <span className="stars" aria-label="5 von 5 Sternen">
-              {Array.from({ length: 5 }, (_, index) => (
+            <strong>{googleReviewData.rating}</strong>
+            <span className="stars" aria-label={`${googleReviewData.rating} von 5 Sternen`}>
+              {Array.from({ length: Math.round(Number(googleReviewData.rating.replace(',', '.'))) }, (_, index) => (
                 <img src={`${A}star.svg`} alt="" key={index} />
               ))}
             </span>
-            <small>32 Rezensionen auf Google</small>
+            <small>{googleReviewData.reviewCount} Rezensionen auf Google</small>
           </span>
           <ArrowUpRight aria-hidden="true" />
         </a>
@@ -2487,17 +2455,17 @@ function Reviews() {
         <div className="review-track">
           {reviews.map((review) => (
             <article className="review-card" key={review.author}>
-              <div className="stars" aria-label="5 von 5 Sternen">
-                {Array.from({ length: 5 }, (_, index) => (
+              <div className="stars" aria-label={`${review.rating} von 5 Sternen`}>
+                {Array.from({ length: review.rating }, (_, index) => (
                   <img src={`${A}star.svg`} alt="" key={index} />
                 ))}
               </div>
-              <p>„{review.copy}“</p>
+              <p>„{review.text}“</p>
               <div className="review-author">
                 <span aria-hidden="true">{review.author.slice(0, 1)}</span>
                 <div>
                   <strong>{review.author}</strong>
-                  <small><img src={`${A}google-g.svg`} alt="" /> Google · {review.age}</small>
+                  <small><img src={`${A}google-g.svg`} alt="" /> Google · {review.date}</small>
                 </div>
               </div>
             </article>
