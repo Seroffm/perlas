@@ -802,10 +802,10 @@ const heroSlides = [
     position: '50% center',
   },
   {
-    image: 'kundenbilder/objekte/wohnobjekt_modern_eingang_01.png',
-    alt: 'Heller Eingang einer modern betreuten Immobilie',
-    label: 'Professioneller Objektservice',
-    position: '46% 58%',
+    image: 'kundenbilder/leistungen/gebaeudereinigung_flur.png',
+    alt: 'Perla’s Mitarbeiter bei der Gebäudereinigung in einem betreuten Objekt',
+    label: 'Facility Management im Einsatz',
+    position: '52% 48%',
   },
   {
     image: 'kundenbilder/fahrzeuge/perlas_fahrzeug_wohnobjekt_02.png',
