@@ -366,7 +366,7 @@ function useRevealAnimations(routeKey?: string) {
     const elements = Array.from(document.querySelectorAll<HTMLElement>('[data-reveal]'))
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
-    if (reducedMotion) return
+    if (reducedMotion || window.matchMedia('(max-width: 760px)').matches || typeof IntersectionObserver === 'undefined') return
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
@@ -808,10 +808,10 @@ const heroSlides = [
     position: '46% 58%',
   },
   {
-    image: 'kundenbilder/leistungen/transport_umzug_lieferung.png',
-    alt: 'Mitarbeiter von Perla’s mit Material am Einsatzfahrzeug',
+    image: 'kundenbilder/fahrzeuge/perlas_fahrzeug_wohnobjekt_02.png',
+    alt: 'Perla’s Einsatzfahrzeug vor einer betreuten Wohnimmobilie',
     label: 'Persönlich vor Ort',
-    position: '50% center',
+    position: '52% 54%',
   },
   {
     image: 'kundenbilder/objekte/wohnobjekt_modern_02.png',
@@ -947,10 +947,10 @@ const serviceGalleries: Record<string, ServiceGallery> = {
     intro: 'Die echten Objektaufnahmen zeigen unterschiedliche Spielgeräte und Flächen. Kontroll-, Reinigungs- und Wartungsumfang werden für jeden Standort verbindlich abgestimmt.',
     items: [
       {
-        image: 'kundenbilder/spielplatz/spielplatz_schaukel_nah_01.png',
-        label: 'Spielgerät & Fallschutzfläche',
-        alt: 'Nestschaukel mit umliegender Fallschutzfläche in einer Wohnanlage',
-        position: '50% 56%',
+        image: 'kundenbilder/spielplatz/spielplatz_wohnanlage_01.png',
+        label: 'Spielbereich in einer Wohnanlage',
+        alt: 'Spielgeräte und gepflegte Spielfläche vor einem Wohngebäude',
+        position: '50% 48%',
       },
       {
         image: 'kundenbilder/spielplatz/spielbereich_innen_01.png',
@@ -960,29 +960,6 @@ const serviceGalleries: Record<string, ServiceGallery> = {
       },
     ],
   },
-}
-
-const serviceStoryImages: Record<string, string> = {
-  objektpflege: 'kundenbilder/objekte/wohnanlage_modern_02.png',
-  'wartung-instandhaltung': 'kundenbilder/leistungen/service-update-2026-09-23/wartung_fassade_01.png',
-  gebaeudereinigung: 'kundenbilder/leistungen/service-update-2026-09-23/reinigung_waschmaschinen_01.png',
-  tiefgaragenreinigung: 'kundenbilder/leistungen/tiefgarage_saubere_flaeche_01.png',
-  gartenpflege: 'kundenbilder/vorher_nachher/aussenbereich_nachher.png',
-  winterdienst: 'kundenbilder/leistungen/winterdienst_team.png',
-  muellmanagement: 'kundenbilder/leistungen/muellmanagement/muelltonnen_blau_01.png',
-  einzelauftrag: 'kundenbilder/leistungen/transport_umzug_lieferung.png',
-  'baumpflege-baumfaellung': 'kundenbilder/leistungen/baumpflege/baumfaellung_holztragen_01.png',
-  'buero-einrichtungsservice': 'kundenbilder/leistungen/service-update-2026-09-23/buero_einrichtungsservice_01.png',
-  'spielplatzkontrolle-spielgeraetewartung': 'kundenbilder/spielplatz/spielplatz_wohnanlage_01.png',
-}
-
-const serviceStoryPositions: Record<string, string> = {
-  'wartung-instandhaltung': '50% 46%',
-  gebaeudereinigung: '50% 48%',
-  muellmanagement: '50% 56%',
-  'baumpflege-baumfaellung': '50% 44%',
-  'buero-einrichtungsservice': '66% 46%',
-  'spielplatzkontrolle-spielgeraetewartung': '50% 52%',
 }
 
 const serviceImagePositions: Record<string, string> = {
@@ -1247,12 +1224,12 @@ function MobileIsland({ onQuoteOpen }: { onQuoteOpen: () => void }) {
       </a>
       <a
         className={activeItem === 'services' ? 'is-active' : ''}
-        href={SERVICES_PATH}
+        href={FACILITY_PATH}
         aria-current={activeItem === 'services' ? 'page' : undefined}
         onClick={() => setActiveItem('services')}
       >
         <Building2 aria-hidden="true" />
-        <span>Leistungen</span>
+        <span>Facility Management</span>
       </a>
       <button
         className={activeItem === 'quote' ? 'is-active' : ''}
@@ -1771,6 +1748,7 @@ function AboutPage({ onQuoteOpen }: { onQuoteOpen: () => void }) {
   ] as const
   const teamMembers: Array<{
     id: string
+    name: string
     image: string
     alt: string
     position?: string
@@ -1778,6 +1756,7 @@ function AboutPage({ onQuoteOpen }: { onQuoteOpen: () => void }) {
   }> = [
     {
       id: 'team-01',
+      name: 'Melanie',
       image: 'kundenbilder/team/update-2026-09-23/mitarbeiter_reinigung_weiblich_01.png',
       alt: 'Mitarbeiterin von Perla’s bei der Gebäudereinigung',
       position: '50% 28%',
@@ -1785,6 +1764,7 @@ function AboutPage({ onQuoteOpen }: { onQuoteOpen: () => void }) {
     },
     {
       id: 'team-02',
+      name: 'Michael',
       image: 'kundenbilder/team/update-2026-09-23/mitarbeiter_reinigung_maennlich_01.png',
       alt: 'Mitarbeiter von Perla’s bei der Reinigung eines Gebäudeflurs',
       position: '50% 25%',
@@ -1792,6 +1772,7 @@ function AboutPage({ onQuoteOpen }: { onQuoteOpen: () => void }) {
     },
     {
       id: 'team-03',
+      name: 'Roland',
       image: 'kundenbilder/team/update-2026-09-23/mitarbeiter_aelterer_hauswart_01.png',
       alt: 'Mitarbeiter von Perla’s bei der Hausbetreuung',
       position: '50% 24%',
@@ -1799,6 +1780,7 @@ function AboutPage({ onQuoteOpen }: { onQuoteOpen: () => void }) {
     },
     {
       id: 'team-04',
+      name: 'Jannic',
       image: 'kundenbilder/team/update-2026-09-23/mitarbeiter_bohren_portrait_01.png',
       alt: 'Mitarbeiter von Perla’s mit Werkzeug für Wartungsarbeiten',
       position: '50% 24%',
@@ -1806,6 +1788,7 @@ function AboutPage({ onQuoteOpen }: { onQuoteOpen: () => void }) {
     },
     {
       id: 'team-05',
+      name: 'Marco',
       image: 'kundenbilder/team/update-2026-09-23/mitarbeiter_bueroeinrichtung_01.png',
       alt: 'Mitarbeiter von Perla’s beim Einrichten eines Büroraums',
       position: '66% 33%',
@@ -1813,6 +1796,7 @@ function AboutPage({ onQuoteOpen }: { onQuoteOpen: () => void }) {
     },
     {
       id: 'team-06',
+      name: 'Salvatore',
       image: 'kundenbilder/leistungen/service-update-2026-09-23/reinigung_waschmaschinen_01.png',
       alt: 'Mitarbeiter von Perla’s beim Transport einer Waschmaschine',
       position: '50% 38%',
@@ -1820,6 +1804,7 @@ function AboutPage({ onQuoteOpen }: { onQuoteOpen: () => void }) {
     },
     {
       id: 'team-07',
+      name: 'Florian',
       image: 'kundenbilder/team/update-2026-09-23/mitarbeiter_rote_kappe_bohren_01.png',
       alt: 'Mitarbeiter von Perla’s mit Werkzeug im Innenbereich',
       position: '50% 27%',
@@ -1827,6 +1812,7 @@ function AboutPage({ onQuoteOpen }: { onQuoteOpen: () => void }) {
     },
     {
       id: 'team-08',
+      name: 'Petra',
       image: 'kundenbilder/team/update-2026-09-23/mitarbeiter_rechts_unten_ersetzen.png',
       alt: 'Mitarbeiterin von Perla’s im Büro',
       position: '50% 28%',
@@ -1852,7 +1838,7 @@ function AboutPage({ onQuoteOpen }: { onQuoteOpen: () => void }) {
         <span aria-hidden="true">0{index + 1}</span>
       </div>
       <figcaption>
-        <strong>Teammitglied</strong>
+        <strong>{member.name}</strong>
         <span>{member.role}</span>
       </figcaption>
     </figure>
@@ -2453,7 +2439,6 @@ function Reviews() {
         </a>
       </div>
       <div className="review-toolbar">
-        <span>Auf Mobilgeräten seitlich wischen</span>
         <div className="review-controls" role="group" aria-label="Bewertungen durchblättern">
           <button
             className="review-control"
@@ -2675,8 +2660,6 @@ function ServiceMediaGallery({ gallery }: { gallery: ServiceGallery }) {
 function ServiceDetailPage({ service, onQuoteOpen }: { service: Feature; onQuoteOpen: (service?: string) => void }) {
   const Icon = service.icon
   const serviceGallery = serviceGalleries[service.slug]
-  const serviceStoryImage = serviceStoryImages[service.slug] ?? (service.imageDisplay === 'wide' ? service.image : '')
-  const serviceStoryPosition = serviceStoryPositions[service.slug] ?? 'center'
   const serviceImagePosition = service.imagePosition ?? serviceImagePositions[service.slug]
   const serviceImageDisplay: 'placeholder' | 'wide' | 'landscape' | 'portrait' | 'square' =
     service.imageDisplay === 'placeholder' || service.imageDisplay === 'wide' || service.imageDisplay === 'landscape'
@@ -2691,7 +2674,7 @@ function ServiceDetailPage({ service, onQuoteOpen }: { service: Feature; onQuote
   return (
     <main className="service-page">
       <section className={`service-detail-hero service-detail-hero--${serviceImageDisplay}`}>
-        <div className="service-detail-copy" data-reveal="left">
+        <div className={`service-detail-copy${service.slug === 'gartenpflege' ? ' service-detail-copy--gartenpflege' : ''}`} data-reveal="left">
           <nav className="service-breadcrumb" aria-label="Brotkrümeln">
             <a href={homeHref()}>Startseite</a><span aria-hidden="true">/</span>
             <a href={SERVICES_PATH}>Leistungen</a><span aria-hidden="true">/</span>
@@ -2825,21 +2808,6 @@ function ServiceDetailPage({ service, onQuoteOpen }: { service: Feature; onQuote
       )}
 
       {serviceGallery && <ServiceMediaGallery gallery={serviceGallery} />}
-
-      <section
-        className={serviceStoryImage ? 'service-image-story' : 'service-image-story service-image-story--placeholder'}
-        style={serviceStoryImage ? { '--service-story-image': `url("${A}${serviceStoryImage}")`, '--service-story-position': serviceStoryPosition } as CSSProperties : undefined}
-        aria-labelledby="service-image-story-heading"
-        data-reveal="up"
-      >
-        {!serviceStoryImage && <Icon className="service-image-story-icon" aria-hidden="true" />}
-        <div>
-          <span className="eyebrow">Vor Ort gut organisiert</span>
-          <h2 id="service-image-story-heading">Damit die Leistung im Alltag zuverlässig funktioniert.</h2>
-          <p>{service.processSteps[0]?.text} {service.processSteps[1]?.text}</p>
-          <a href="#service-contact-heading">Anfrage stellen <ArrowUpRight aria-hidden="true" /></a>
-        </div>
-      </section>
 
       {showServiceBoundary && (
         <section className="service-boundary" data-reveal="up">

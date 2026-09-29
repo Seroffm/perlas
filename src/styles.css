@@ -6171,11 +6171,11 @@ p {
   .mobile-island {
     position: fixed;
     z-index: 90;
-    right: 16px;
+    right: 10px;
     bottom: max(10px, env(safe-area-inset-bottom));
-    left: 16px;
-    width: min(calc(100% - 32px), 326px);
-    height: 64px;
+    left: 10px;
+    width: min(calc(100vw - 20px), 420px);
+    height: 68px;
     margin: 0 auto;
     padding: 6px;
     display: grid;
@@ -6264,7 +6264,7 @@ p {
   .mobile-island > a,
   .mobile-island > button {
     min-width: 0;
-    height: 52px;
+    height: 56px;
     padding: 5px 2px 4px;
     display: flex;
     flex-direction: column;
@@ -6280,6 +6280,14 @@ p {
     line-height: 1;
     cursor: pointer;
     transition: color 160ms ease, background-color 160ms ease, transform 160ms ease;
+  }
+
+  .mobile-island > a > span,
+  .mobile-island > button > span {
+    max-width: 100%;
+    line-height: 1.08;
+    text-align: center;
+    text-wrap: balance;
   }
 
   .mobile-island > a:hover,
@@ -6883,6 +6891,14 @@ p {
     font-size: clamp(34px, 9vw, 50px);
     letter-spacing: -1.2px;
     overflow-wrap: break-word;
+  }
+
+  .service-detail-copy--gartenpflege h1 {
+    font-size: clamp(26px, 7.3vw, 31px);
+    line-height: 1.12;
+    letter-spacing: -0.9px;
+    hyphens: none;
+    overflow-wrap: normal;
   }
 
   .service-detail-copy > p {
