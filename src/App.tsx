@@ -99,6 +99,7 @@ type AudienceSolutionContent = {
   approach: string
   services: string[]
   image: { src: string; alt: string; position?: string }
+  cardImage?: { src: string; alt: string; position?: string }
   detailImage?: { src: string; alt: string; position?: string }
   scopeCards: Array<{ title: string; text: string }>
   process: Array<{ title: string; text: string }>
@@ -1641,7 +1642,7 @@ function HomeAudienceCards() {
       <div className="home-audience-card-grid">
         {audienceSolutions.map((audience, index) => {
           const Icon = audience.icon
-          const image = audience.image
+          const image = audience.cardImage ?? audience.image
           const imageDisplay = image.src.includes('wohnanlage_') ? 'portrait' : 'landscape'
 
           return (
