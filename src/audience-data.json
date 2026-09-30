@@ -225,6 +225,11 @@
       "alt": "Heller und gepflegter Gebäudeeingang als Beispiel für institutionelle Objektbetreuung",
       "position": "50% 48%"
     },
+    "detailImage": {
+      "src": "kundenbilder/hero/institutionelles-gebaeude.jpg",
+      "alt": "Größeres institutionelles Gebäude im Rhein-Main-Gebiet",
+      "position": "50% 15%"
+    },
     "scopeCards": [
       {
         "title": "Gemeinschaftsbereiche verlässlich betreuen",
