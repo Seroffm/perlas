@@ -99,6 +99,7 @@ type AudienceSolutionContent = {
   approach: string
   services: string[]
   image: { src: string; alt: string; position?: string }
+  detailImage?: { src: string; alt: string; position?: string }
   scopeCards: Array<{ title: string; text: string }>
   process: Array<{ title: string; text: string }>
   faqs: Array<{ question: string; answer: string }>
@@ -193,7 +194,7 @@ function usePageSeo(service?: Feature, pageKind: PageKind = 'home', audience?: A
       ?? service?.seoDescription
       ?? pageDefinition?.description
       ?? 'Perla’s bündelt Facility Management und professionelle Objektbetreuung für Hausverwaltungen, Wohnanlagen und Gewerbeimmobilien im Rhein-Main-Gebiet.'
-    const imageUrl = new URL(`${BASE_PATH}assets/${article?.image ?? audience?.image.src ?? service?.image ?? 'kundenbilder/objekte/wohnanlage_modern_02.png'}`, window.location.origin)
+    const imageUrl = new URL(`${BASE_PATH}assets/${article?.image ?? audience?.detailImage?.src ?? audience?.image.src ?? service?.image ?? 'kundenbilder/objekte/wohnanlage_modern_02.png'}`, window.location.origin)
     const indexingOverride = import.meta.env.VITE_PERLAS_INDEX_SITE
     const indexingEnabled = indexingOverride
       ? indexingOverride === 'true'
@@ -2252,6 +2253,7 @@ function FacilityManagementPage() {
 
 function AudienceDetailPage({ audience, onQuoteOpen }: { audience: AudienceSolution; onQuoteOpen: () => void }) {
   const Icon = audience.icon
+  const heroImage = audience.detailImage ?? audience.image
   const linkedServices = audience.services
     .map((slug) => features.find((service) => service.slug === slug))
     .filter((service): service is Feature => Boolean(service))
@@ -2273,7 +2275,7 @@ function AudienceDetailPage({ audience, onQuoteOpen }: { audience: AudienceSolut
           </div>
         </div>
         <figure className="audience-detail-hero-image" data-reveal="right" style={{ '--reveal-delay': '80ms' } as CSSProperties}>
-          <img src={`${A}${audience.image.src}`} alt={audience.image.alt} style={{ objectPosition: audience.image.position }} />
+          <img src={`${A}${heroImage.src}`} alt={heroImage.alt} style={{ objectPosition: heroImage.position }} />
           <figcaption><Icon aria-hidden="true" /><span>{audience.navLabel}</span></figcaption>
         </figure>
       </section>
