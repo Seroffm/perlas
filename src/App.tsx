@@ -1352,43 +1352,90 @@ function PageBreadcrumb({ current, parent }: { current: string; parent?: { label
   )
 }
 
-function HomeOverview() {
-  const highlightedServices = homeCoreFeatures.slice(0, 3)
+function HomeDigitalWorkflow() {
+  const workflow = [
+    {
+      number: '01',
+      title: 'Digitale Einsatzplanung',
+      text: 'Wiederkehrende Einsätze, Zuständigkeiten und Termine werden übersichtlich geplant.',
+    },
+    {
+      number: '02',
+      title: 'Digitale Dokumentation',
+      text: 'Durchgeführte Arbeiten und relevante Informationen werden dem Objekt zugeordnet dokumentiert.',
+    },
+    {
+      number: '03',
+      title: 'Transparenz',
+      text: 'Erledigte Aufgaben bleiben zentral erfasst und für die laufende Betreuung nachvollziehbar.',
+    },
+    {
+      number: '04',
+      title: 'Digitale Objektmappe',
+      text: 'Objektinformationen lassen sich gebündelt verwalten, statt sie auf Papier und einzelne Notizen zu verteilen.',
+    },
+  ]
 
+  return (
+    <section className="home-digital-workflow" aria-labelledby="home-digital-workflow-heading">
+      <div className="home-digital-workflow-copy" data-reveal="left">
+        <span className="eyebrow">So arbeitet Perla’s</span>
+        <h2 id="home-digital-workflow-heading">Objektbetreuung digital organisiert.</h2>
+        <p>
+          Klare Planung und nachvollziehbare Dokumentation unterstützen die tägliche Betreuung.
+          Aufgaben, Termine und Rückmeldungen bleiben strukturiert einem Objekt zugeordnet.
+        </p>
+        <a className="home-digital-software" href="https://hausmeisterapp.com/" target="_blank" rel="noreferrer">
+          <span>Für Planung und Dokumentation nutzen wir</span>
+          <strong>HausmeisterApp</strong>
+          <small>Offizielle Website ansehen <ArrowUpRight aria-hidden="true" /></small>
+        </a>
+      </div>
+      <ol className="home-digital-workflow-list" data-reveal="right">
+        {workflow.map((item) => (
+          <li key={item.number}>
+            <span aria-hidden="true">{item.number}</span>
+            <div>
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </section>
+  )
+}
+
+function HomeOverview() {
   return (
     <section className="home-overview" aria-labelledby="home-overview-heading">
       <div className="home-section-heading" data-reveal="up">
         <span className="eyebrow">Perla’s im Überblick</span>
         <h2 id="home-overview-heading">Der passende Weg für Ihr Objekt.</h2>
-        <p>Von der ganzheitlichen Betreuung bis zur einzelnen Leistung: Wählen Sie den Bereich, der zu Ihrem Bedarf passt.</p>
       </div>
       <div className="home-path-grid">
         <a className="home-path-card home-path-card--featured" href={FACILITY_PATH} data-reveal="left">
           <span className="home-path-icon"><ClipboardCheck aria-hidden="true" /></span>
-          <span className="eyebrow">Facility Management</span>
-          <h3>Mehrere Aufgaben. Ein abgestimmtes Betreuungskonzept.</h3>
-          <p>Für professionell verwaltete Immobilien verbinden wir Leistungen, Intervalle und Rückmeldungen zu einem klaren Gesamtablauf.</p>
+          <h3>Facility Management</h3>
+          <p>Mehrere Leistungen abgestimmt betreuen.</p>
           <span className="home-path-link">Facility Management ansehen <ArrowUpRight aria-hidden="true" /></span>
         </a>
         <a className="home-path-card" href={SERVICES_PATH} data-reveal="up" style={{ '--reveal-delay': '60ms' } as CSSProperties}>
           <span className="home-path-icon"><Wrench aria-hidden="true" /></span>
-          <span className="eyebrow">Leistungen</span>
-          <h3>Einzelleistungen gezielt auswählen.</h3>
-          <p>{highlightedServices.map((service) => service.title).join(' · ')} und weitere Leistungen im Überblick.</p>
+          <h3>Leistungen</h3>
+          <p>Einzelleistungen gezielt auswählen.</p>
           <span className="home-path-link">Alle Leistungen <ArrowUpRight aria-hidden="true" /></span>
         </a>
         <a className="home-path-card" href={ABOUT_PATH} data-reveal="up" style={{ '--reveal-delay': '100ms' } as CSSProperties}>
           <span className="home-path-icon"><ShieldCheck aria-hidden="true" /></span>
-          <span className="eyebrow">Über uns</span>
-          <h3>Objektbetreuung mit Verantwortung.</h3>
-          <p>Seit 1999 betreut Perla’s Immobilien im Rhein-Main-Gebiet. Persönlich, planbar und mit festen Zuständigkeiten.</p>
-          <span className="home-path-link">Perla’s kennenlernen <ArrowUpRight aria-hidden="true" /></span>
+          <h3>Über uns</h3>
+          <p>Perla’s persönlich kennenlernen.</p>
+          <span className="home-path-link">Über uns <ArrowUpRight aria-hidden="true" /></span>
         </a>
         <a className="home-path-card home-path-card--contact" href={CONTACT_PATH} data-reveal="right" style={{ '--reveal-delay': '140ms' } as CSSProperties}>
           <span className="home-path-icon"><MessageCircle aria-hidden="true" /></span>
-          <span className="eyebrow">Kontakt</span>
-          <h3>Ihr Objekt persönlich besprechen.</h3>
-          <p>Schildern Sie kurz die Immobilie und den Bedarf. Wir klären gemeinsam, welcher Leistungsumfang sinnvoll ist.</p>
+          <h3>Kontakt</h3>
+          <p>Ihr Objekt persönlich besprechen.</p>
           <span className="home-path-link">Kontakt aufnehmen <ArrowUpRight aria-hidden="true" /></span>
         </a>
       </div>
@@ -3283,6 +3330,7 @@ export default function App() {
           <HomeVideo />
           <PartnerMarquee />
           <Reviews />
+          <HomeDigitalWorkflow />
           <HomeOverview />
           <HomeAudienceCards />
           <HomeFleet />
