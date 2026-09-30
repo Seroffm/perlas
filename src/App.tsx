@@ -2118,7 +2118,7 @@ function FacilityManagementPage() {
           <img src={`${A}kundenbilder/objekte/wohnanlage_modern_02.png`} alt="Große moderne Wohnanlage im Rhein-Main-Gebiet" />
           <figcaption>
             <Building2 aria-hidden="true" />
-            <span><strong>Facility Management mit Überblick</strong><small>Objekt · Aufgaben · Zuständigkeiten</small></span>
+            <span><strong>Objektbetreuung klar koordiniert</strong><small>Leistungen · Intervalle · Rückmeldungen</small></span>
           </figcaption>
         </figure>
       </section>
