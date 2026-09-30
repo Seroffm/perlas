@@ -18,11 +18,6 @@
     "approach": "Wir stimmen die benötigten Leistungen objektbezogen ab und führen Rückmeldungen zu einem übersichtlichen Gesamtbild zusammen. Jede Immobilie erhält einen nachvollziehbaren Leistungsrahmen mit klaren Zuständigkeiten.",
     "services": ["objektpflege", "gebaeudereinigung", "wartung-instandhaltung", "tiefgaragenreinigung", "gartenpflege", "winterdienst", "muellmanagement"],
     "image": {
-      "src": "kundenbilder/objekte/wohnobjekt_modern_eingang_01.png",
-      "alt": "Heller Eingangsbereich einer modern betreuten Wohnimmobilie",
-      "position": "50% 53%"
-    },
-    "cardImage": {
       "src": "kundenbilder/objekte/hausverwaltungen-besprechung.jpg",
       "alt": "Besprechung zur professionellen Objektbetreuung mit einer Hausverwaltung",
       "position": "50% 50%"
