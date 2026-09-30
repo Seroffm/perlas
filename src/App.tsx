@@ -777,28 +777,28 @@ const insights = [
 
 const heroSlides = [
   {
-    image: 'kundenbilder/objekte/wohnanlage_modern_02.png',
-    alt: 'Moderne betreute Wohnanlage im Rhein-Main-Gebiet',
-    label: 'Professionell betreute Immobilien',
-    position: '50% center',
+    image: 'kundenbilder/hero/facility-management-objekt.jpg',
+    alt: 'Modernes, professionell betreutes Verwaltungsgebäude mit gepflegten Außenanlagen',
+    label: 'Facility Management',
+    position: '50% 50%',
   },
   {
-    image: 'kundenbilder/leistungen/gebaeudereinigung_flur.png',
-    alt: 'Perla’s Mitarbeiter bei der Gebäudereinigung in einem betreuten Objekt',
-    label: 'Facility Management im Einsatz',
-    position: '52% 48%',
+    image: 'kundenbilder/hero/mitarbeiter-persoenlicher-service.jpg',
+    alt: 'Perla’s Mitarbeiter vor einem geöffneten Transporter mit Material für den persönlichen Objektservice',
+    label: 'Mitarbeiter und persönlicher Service',
+    position: '39% 50%',
   },
   {
-    image: 'kundenbilder/fahrzeuge/perlas_fahrzeug_wohnobjekt_02.png',
-    alt: 'Perla’s Einsatzfahrzeug vor einer betreuten Wohnimmobilie',
-    label: 'Persönlich vor Ort',
-    position: '52% 54%',
+    image: 'kundenbilder/hero/institutionelles-gebaeude.jpg',
+    alt: 'Größeres institutionelles Gebäude im Rhein-Main-Gebiet',
+    label: 'Öffentliche und institutionelle Gebäude',
+    position: '50% 15%',
   },
   {
-    image: 'kundenbilder/objekte/wohnobjekt_modern_02.png',
-    alt: 'Hochwertige moderne Wohnimmobilie mit gepflegtem Außenbereich',
-    label: 'Gepflegte Immobilien im Blick',
-    position: '38% 54%',
+    image: 'kundenbilder/hero/hausverwaltungen-mehrfamilienhaus.jpg',
+    alt: 'Betreutes Mehrfamilienhaus mit gepflegtem Außenbereich',
+    label: 'Hausverwaltungen und Mehrfamilienhäuser',
+    position: '48% 50%',
   },
 ]
 
