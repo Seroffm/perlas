@@ -789,10 +789,10 @@ const heroSlides = [
     position: '39% 50%',
   },
   {
-    image: 'kundenbilder/hero/institutionelles-gebaeude.jpg',
-    alt: 'Größeres institutionelles Gebäude im Rhein-Main-Gebiet',
+    image: 'kundenbilder/hero/institutionelles-gebaeude-backstein.jpg',
+    alt: 'Historisches institutionelles Backsteingebäude mit gepflastertem Innenhof',
     label: 'Öffentliche und institutionelle Gebäude',
-    position: '50% 15%',
+    position: '50% 50%',
   },
   {
     image: 'kundenbilder/hero/hausverwaltungen-mehrfamilienhaus.jpg',
