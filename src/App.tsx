@@ -924,7 +924,7 @@ const serviceGalleries: Record<string, ServiceGallery> = {
   'spielplatzkontrolle-spielgeraetewartung': {
     eyebrow: 'Spielbereiche in der Praxis',
     title: 'Außen- und Innenbereiche passend betreuen.',
-    intro: 'Die echten Objektaufnahmen zeigen unterschiedliche Spielgeräte und Flächen. Kontroll-, Reinigungs- und Wartungsumfang werden für jeden Standort verbindlich abgestimmt.',
+    intro: 'Die echten Objektaufnahmen zeigen unterschiedliche Spielgeräte und Flächen. Sichtkontrollen, Dokumentation, Reinigung und Pflege werden für jeden Standort verbindlich abgestimmt. Weiterführende Arbeiten können mit geeigneten Partnerbetrieben koordiniert werden.',
     items: [
       {
         image: 'kundenbilder/spielplatz/spielplatz_schaukel_nah_01.png',
@@ -1793,12 +1793,12 @@ function AboutPage({ onQuoteOpen }: { onQuoteOpen: () => void }) {
     role: string
   }> = [
     {
-      id: 'team-01',
-      name: 'Melanie',
-      image: 'kundenbilder/team/update-2026-09-23/mitarbeiter_reinigung_weiblich_01.png',
-      alt: 'Mitarbeiterin von Perla’s bei der Gebäudereinigung',
-      position: '50% 28%',
-      role: 'Gebäudereinigung',
+      id: 'team-06',
+      name: 'Salvatore',
+      image: 'kundenbilder/leistungen/service-update-2026-09-23/reinigung_waschmaschinen_01.png',
+      alt: 'Mitarbeiter von Perla’s beim Transport einer Waschmaschine',
+      position: '50% 38%',
+      role: 'Ansprechpartner und Objektservice',
     },
     {
       id: 'team-02',
@@ -1833,12 +1833,12 @@ function AboutPage({ onQuoteOpen }: { onQuoteOpen: () => void }) {
       role: 'Büro- & Einrichtungsservice',
     },
     {
-      id: 'team-06',
-      name: 'Salvatore',
-      image: 'kundenbilder/leistungen/service-update-2026-09-23/reinigung_waschmaschinen_01.png',
-      alt: 'Mitarbeiter von Perla’s beim Transport einer Waschmaschine',
-      position: '50% 38%',
-      role: 'Reinigung & Objektservice',
+      id: 'team-01',
+      name: 'Melanie',
+      image: 'kundenbilder/team/update-2026-09-23/mitarbeiter_reinigung_weiblich_01.png',
+      alt: 'Mitarbeiterin von Perla’s bei der Gebäudereinigung',
+      position: '50% 28%',
+      role: 'Gebäudereinigung',
     },
     {
       id: 'team-07',
@@ -2717,7 +2717,7 @@ function ServiceDetailPage({ service, onQuoteOpen }: { service: Feature; onQuote
   const relatedServices = service.relatedServices
     .map((slug) => features.find((item) => item.slug === slug))
     .filter((item): item is Feature => Boolean(item))
-  const showServiceBoundary = !['baumpflege-baumfaellung', 'spielplatzkontrolle-spielgeraetewartung'].includes(service.slug)
+  const showServiceBoundary = service.slug !== 'baumpflege-baumfaellung'
 
   return (
     <main className="service-page">
@@ -2841,7 +2841,7 @@ function ServiceDetailPage({ service, onQuoteOpen }: { service: Feature; onQuote
           <div data-reveal="up">
             <span className="eyebrow">Verbundener Objektservice</span>
             <h2 id="service-workflow-heading">Ein Ablauf statt einzelner Maßnahmen.</h2>
-            <p>Kontrolle, Pflege und Wartung bauen aufeinander auf. So bleiben Zustand, ausgeführte Aufgaben und notwendige Folgeschritte gemeinsam nachvollziehbar.</p>
+            <p>Vereinbarte Sichtkontrollen, Dokumentation, Reinigung und Pflege bauen aufeinander auf. Weiterführende Arbeiten können mit geeigneten Partnerbetrieben koordiniert werden.</p>
           </div>
           <ol data-reveal="up" style={{ '--reveal-delay': '70ms' } as CSSProperties}>
             {service.workflow.map((step, index) => (

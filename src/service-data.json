@@ -569,8 +569,8 @@
   {
     "slug": "spielplatzkontrolle-spielgeraetewartung",
     "title": "Spielplatzkontrolle & Spielgerätewartung",
-    "text": "Planbare Kontrollen, nachvollziehbare Zustandsmeldungen sowie abgestimmte Reinigung, Pflege und Wartung für Spielbereiche.",
-    "detail": "Perla’s verbindet vereinbarte Kontrollen, verständliche Dokumentation, Reinigung und Pflege sowie klar abgestimmte Wartungsmaßnahmen für Spielbereiche. Auffälligkeiten werden festgehalten, Handlungsbedarf wird zeitnah gemeldet und die weitere Bearbeitung mit dem Auftraggeber koordiniert.",
+    "text": "Planbare Betreuung, vereinbarte Sichtkontrollen, nachvollziehbare Dokumentation sowie Reinigung und Pflege für Spielbereiche.",
+    "detail": "Perla’s übernimmt die vereinbarten Sichtkontrollen, die nachvollziehbare Dokumentation sowie Reinigungs- und Pflegeaufgaben rund um Spielbereiche. Auffälligkeiten und notwendiger Handlungsbedarf werden eindeutig festgehalten. Sind weiterführende Arbeiten oder besondere Fachkenntnisse erforderlich, koordinieren wir die weitere Bearbeitung mit dem Auftraggeber und geeigneten Partnerbetrieben.",
     "image": "kundenbilder/spielplatz/spielplatz_aussen_01.png",
     "imageAlt": "Heller und gepflegter Außenspielplatz mit modernen Spielgeräten",
     "imageDisplay": "landscape",
@@ -578,8 +578,8 @@
     "certified": true,
     "certificationLabel": "Zertifizierte Fachleistung",
     "seoTitle": "Spielplatzkontrolle & Spielgerätewartung Rhein-Main | PERLAS",
-    "seoDescription": "Spielplatzkontrolle, Spielgerätewartung und vereinbarte Reinigung für Wohnanlagen und institutionelle Auftraggeber mit planbaren Intervallen und Dokumentation.",
-    "scopeIntro": "Vor dem Start erfassen wir Anlage, Geräte, Flächen, Zugänge und Nutzung. Danach werden Kontrollart, Intervall, Dokumentation sowie der Umfang von Reinigung, Pflege und möglichen Wartungsarbeiten verbindlich festgelegt.",
+    "seoDescription": "Betreuung von Spielbereichen mit vereinbarten Sichtkontrollen, Dokumentation, Reinigung und Pflege sowie Koordination geeigneter Partnerbetriebe.",
+    "scopeIntro": "Vor dem Start erfassen wir Anlage, Geräte, Flächen, Zugänge und Nutzung. Danach werden Art und Intervall der vereinbarten Sichtkontrollen, die Dokumentation sowie der Umfang von Reinigung und Pflege verbindlich festgelegt. Für weiterführende Arbeiten kann ein geeigneter Partnerbetrieb eingebunden werden.",
     "scopeCards": [
       {
         "title": "Spielbereich aufnehmen",
@@ -597,47 +597,47 @@
         "items": ["Gerät oder Standort eindeutig benennen", "Fotos nach Vereinbarung ergänzen", "Handlungsbedarf verständlich weitergeben"]
       },
       {
-        "title": "Wartungsbedarf bearbeiten",
-        "text": "Vereinbarte Wartungsarbeiten führen wir im festgelegten Umfang aus. Weitergehender Reparatur- oder Materialbedarf wird vor der Umsetzung abgestimmt.",
-        "items": ["Pflege- und Wartungsarbeiten nach Auftrag", "Zugängliche Teile im vereinbarten Umfang bearbeiten", "Ersatzteil- oder Reparaturbedarf melden"]
+        "title": "Wartungsbedarf koordinieren",
+        "text": "Einfache, eindeutig vereinbarte Pflege- und Wartungsaufgaben werden im festgelegten Umfang übernommen. Weiterführende Reparaturen oder Arbeiten mit besonderen fachlichen Anforderungen stimmen wir mit dem Auftraggeber ab und koordinieren sie bei Bedarf mit einem geeigneten Partnerbetrieb.",
+        "items": ["Vereinbarte Pflege- und Wartungsaufgaben einordnen", "Reparatur- und Materialbedarf dokumentieren", "Geeigneten Partnerbetrieb bei Bedarf koordinieren"]
       },
       {
         "title": "Reinigung und Pflege von Spielbereichen",
         "text": "Spielplatzflächen, Aufenthaltsbereiche und Spielgeräte können im vereinbarten Umfang gereinigt und sauber gehalten werden. Auffälligkeiten werden dabei direkt in die Rückmeldung aufgenommen.",
-        "items": ["Lose Verunreinigungen entfernen", "Spielgeräte vereinbarungsgemäß reinigen", "Fallschutz- und Aufenthaltsflächen kontrollieren und reinigen"]
+        "items": ["Lose Verunreinigungen entfernen", "Spielgeräte vereinbarungsgemäß reinigen", "Fallschutz- und Aufenthaltsflächen auf sichtbare Verunreinigungen kontrollieren und reinigen"]
       },
       {
-        "title": "Akuten Handlungsbedarf weitergeben",
-        "text": "Erkennen wir einen Punkt, der zeitnah bearbeitet werden sollte, informieren wir den zuständigen Ansprechpartner und stimmen das weitere Vorgehen ab.",
-        "items": ["Zeitnahe Meldung an den Auftraggeber", "Bereich nach Absprache kenntlich machen", "Weitere Maßnahme koordinieren"]
+        "title": "Akuten Handlungsbedarf koordinieren",
+        "text": "Erkennen wir einen Punkt, der zeitnah bearbeitet werden sollte, informieren wir den zuständigen Ansprechpartner, dokumentieren den Bedarf und koordinieren auf Wunsch die weitere Bearbeitung mit einem geeigneten Partnerbetrieb.",
+        "items": ["Zeitnahe Meldung an den Auftraggeber", "Bereich nach Absprache kenntlich machen", "Partnerbetrieb für weitere Maßnahmen koordinieren"]
       },
       {
         "title": "Verlauf nachvollziehbar halten",
-        "text": "Kontrollen, erledigte Wartungsarbeiten und offene Maßnahmen werden übersichtlich zusammengeführt.",
-        "items": ["Termine und Ergebnisse festhalten", "Offene Maßnahmen kennzeichnen", "Nächstes Intervall nachvollziehbar planen"]
+        "text": "Sichtkontrollen, erledigte Betreuungsaufgaben und mit Partnerbetrieben abgestimmte Maßnahmen werden übersichtlich zusammengeführt.",
+        "items": ["Termine und Ergebnisse festhalten", "Offene und koordinierte Maßnahmen kennzeichnen", "Nächstes Intervall nachvollziehbar planen"]
       }
     ],
     "processSteps": [
       { "title": "Anlage und Leistungsumfang erfassen", "text": "Wir nehmen Spielbereich, Geräte, Flächen, Nutzung und Zugänge auf und legen Kontroll-, Reinigungs- und Pflegeumfang fest." },
-      { "title": "Kontrollieren, dokumentieren und pflegen", "text": "Wir führen die vereinbarten Kontrollen und Reinigungsaufgaben zusammen aus und halten Auffälligkeiten nachvollziehbar fest." },
-      { "title": "Wartungsbedarf und Folgeschritte abstimmen", "text": "Erkannter Wartungsbedarf, mögliche Arbeiten und weitergehende Maßnahmen werden mit dem zuständigen Ansprechpartner koordiniert." }
+      { "title": "Kontrollieren, dokumentieren und pflegen", "text": "Wir führen die vereinbarten Sichtkontrollen und Reinigungsaufgaben zusammen aus und halten Auffälligkeiten nachvollziehbar fest." },
+      { "title": "Wartungsbedarf und Folgeschritte abstimmen", "text": "Erkannter Wartungsbedarf und weitergehende Maßnahmen werden mit dem zuständigen Ansprechpartner abgestimmt. Wenn besondere Fachkenntnisse erforderlich sind, kann Perla’s die Umsetzung mit einem geeigneten Partnerbetrieb koordinieren." }
     ],
-    "workflow": ["Kontrollieren", "Auffälligkeiten dokumentieren", "Reinigen und pflegen", "Wartungsbedarf erkennen", "Weitere Maßnahmen abstimmen"],
+    "workflow": ["Vereinbarte Sichtkontrolle durchführen", "Auffälligkeiten dokumentieren", "Reinigen und pflegen", "Wartungsbedarf erkennen", "Partnerbetrieb bei Bedarf koordinieren"],
     "benefits": [
       { "title": "Auffälligkeiten sind eindeutig zugeordnet", "text": "Gerät, Standort und beobachteter Zustand werden verständlich dokumentiert." },
-      { "title": "Die Verwaltung kennt den Bearbeitungsstand", "text": "Erledigte Arbeiten und offene Maßnahmen bleiben in einer nachvollziehbaren Rückmeldung zusammengefasst." },
-      { "title": "Kontrolle, Reinigung und Wartung greifen ineinander", "text": "Der vereinbarte Ablauf verbindet die Zustandskontrolle mit laufender Sauberkeit und der abgestimmten weiteren Bearbeitung." }
+      { "title": "Die Verwaltung kennt den Bearbeitungsstand", "text": "Erledigte Betreuungsaufgaben, koordinierte Maßnahmen und offene Punkte bleiben in einer nachvollziehbaren Rückmeldung zusammengefasst." },
+      { "title": "Betreuung und weitere Bearbeitung greifen ineinander", "text": "Der vereinbarte Ablauf verbindet Sichtkontrolle, Dokumentation, Reinigung und Pflege mit der koordinierten Einbindung geeigneter Partnerbetriebe." }
     ],
     "audiences": ["Spielbereiche größerer Wohnanlagen und Immobilienbestände", "Kitas, Schulen und institutionelle Standorte", "Gemeinschaftlich genutzte Außenanlagen"],
-    "boundaryTitle": "Kontrollart und Wartungsumfang vorab festlegen",
-    "boundaryText": "Welche Kontrolle durchgeführt wird, in welchem Intervall sie erfolgt und welche Reinigungs-, Pflege- und Wartungsarbeiten enthalten sind, wird vor Auftragsbeginn dokumentiert. Reparaturen, Ersatzteile, Spezialreinigungen und weitergehende Prüfungen gehören nur nach ausdrücklicher Vereinbarung zum Umfang. Eine konkrete Norm oder Qualifikationsstufe wird erst nach Vorlage des bestätigten Kunden-Nachweises genannt.",
+    "boundaryTitle": "Betreuungsumfang und Zuständigkeiten vorab festlegen",
+    "boundaryText": "Welche vereinbarten Sichtkontrollen Perla’s durchführt, in welchem Intervall sie erfolgen und welche Reinigungs- und Pflegeaufgaben enthalten sind, wird vor Auftragsbeginn dokumentiert. Weitergehende Prüfungen, Reparaturen und Arbeiten mit besonderen fachlichen Anforderungen werden nicht als eigene Leistung zugesagt. Perla’s kann die weitere Bearbeitung mit geeigneten Partnerbetrieben koordinieren.",
     "relatedServices": ["objektpflege", "gartenpflege", "wartung-instandhaltung"],
     "faqs": [
-      { "question": "Was wird bei einer Spielplatzkontrolle betrachtet?", "answer": "Der genaue Prüfumfang wird vorab festgelegt. Typisch sind sichtbare Veränderungen an Geräten, zugänglichen Bauteilen, Fallschutzflächen und dem direkten Spielplatzumfeld." },
+      { "question": "Was wird bei einer Spielplatzkontrolle betrachtet?", "answer": "Der Umfang der vereinbarten Sichtkontrolle wird vorab festgelegt. Typisch sind sichtbare Veränderungen an Geräten, zugänglichen Bauteilen, Fallschutzflächen und dem direkten Spielplatzumfeld. Weitergehende fachliche Prüfungen werden bei Bedarf mit einem geeigneten Partnerbetrieb abgestimmt." },
       { "question": "Wie häufig finden Kontrollen statt?", "answer": "Das Intervall richtet sich nach Nutzung, Anlage und vereinbartem Leistungsumfang. Termine und Häufigkeit werden vor Beginn eindeutig dokumentiert." },
-      { "question": "Wie werden Auffälligkeiten gemeldet?", "answer": "Der betroffene Standort oder das Gerät, der sichtbare Zustand und der empfohlene nächste Schritt werden verständlich beschrieben. Fotos können die Rückmeldung ergänzen." },
+      { "question": "Wie werden Auffälligkeiten gemeldet?", "answer": "Der betroffene Standort oder das Gerät, der sichtbare Zustand und der abzustimmende nächste Schritt werden verständlich beschrieben. Fotos können die Rückmeldung ergänzen." },
       { "question": "Kann Perla’s Spielbereiche auch reinigen?", "answer": "Ja. Spielplatzflächen, lose Verunreinigungen, vereinbarte Bereiche an Spielgeräten sowie Fallschutz- und Aufenthaltsflächen können im festgelegten Umfang gereinigt und sauber gehalten werden. Besondere Reinigungsverfahren sind nur nach gesonderter Prüfung und Vereinbarung enthalten." },
-      { "question": "Sind Reparaturen automatisch enthalten?", "answer": "Nein. Kleinere Wartungsarbeiten können ausdrücklich vereinbart werden. Reparaturen, Ersatzteile und weitergehende Maßnahmen werden nach Feststellung separat abgestimmt." }
+      { "question": "Sind Reparaturen automatisch enthalten?", "answer": "Nein. Einfache Pflege- oder Wartungsaufgaben können ausdrücklich vereinbart werden. Reparaturen, Ersatzteile und Arbeiten mit besonderen fachlichen Anforderungen werden separat abgestimmt und können durch Perla’s mit einem geeigneten Partnerbetrieb koordiniert werden." }
     ]
   },
   {

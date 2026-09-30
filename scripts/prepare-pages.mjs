@@ -455,17 +455,17 @@ function aboutMarkup() {
     ['Objektbezug', 'Der tatsächliche Bedarf der Immobilie bildet die Grundlage für den Leistungsumfang.'],
   ].map(([title, text]) => `<article><h2>${title}</h2><p>${text}</p></article>`).join('')
   const team = [
-    ['kundenbilder/team/team_aussenbereich_01.png', 'Mitarbeiterin von Perla’s bei einem Außeneinsatz', 'Außenanlagen & Objektkontrolle'],
-    ['kundenbilder/leistungen/winterdienst_team.png', 'Mitarbeiter von Perla’s beim Winterdienst', 'Winterdienst & Einsatzkoordination'],
-    ['kundenbilder/leistungen/transport_umzug_lieferung.png', 'Mitarbeiter bei einem koordinierten Einzelauftrag', 'Einzelaufträge & Logistik'],
-    ['kundenbilder/leistungen/gebaeudereinigung_flur.png', 'Mitarbeiter von Perla’s bei der Gebäudereinigung', 'Gebäudereinigung'],
-    [null, 'Porträt wird ergänzt', 'Objektbetreuung'],
-    [null, 'Porträt wird ergänzt', 'Technischer Service'],
-    [null, 'Porträt wird ergänzt', 'Außenanlagenpflege'],
-    [null, 'Porträt wird ergänzt', 'Organisation & Kundenkontakt'],
-  ].slice(0, 4).map(([image, alt, role]) => `<figure>${image ? `<img src="${basePath}assets/${image}" alt="${escapeHtml(alt)}" loading="lazy">` : `<div role="img" aria-label="${escapeHtml(alt)}">Bild wird ergänzt</div>`}<figcaption><strong>Name wird ergänzt</strong><span>${escapeHtml(role)}</span></figcaption></figure>`).join('')
+    ['Salvatore', 'kundenbilder/leistungen/service-update-2026-09-23/reinigung_waschmaschinen_01.png', 'Mitarbeiter von Perla’s beim Transport einer Waschmaschine', 'Ansprechpartner und Objektservice'],
+    ['Michael', 'kundenbilder/team/update-2026-09-23/mitarbeiter_reinigung_maennlich_01.png', 'Mitarbeiter von Perla’s bei der Reinigung eines Gebäudeflurs', 'Reinigung & Objektservice'],
+    ['Roland', 'kundenbilder/team/update-2026-09-23/mitarbeiter_aelterer_hauswart_01.png', 'Mitarbeiter von Perla’s bei der Hausbetreuung', 'Hausbetreuung & Objektkontrolle'],
+    ['Jannic', 'kundenbilder/team/update-2026-09-23/mitarbeiter_bohren_portrait_01.png', 'Mitarbeiter von Perla’s mit Werkzeug für Wartungsarbeiten', 'Wartung & Instandhaltung'],
+    ['Marco', 'kundenbilder/team/update-2026-09-23/mitarbeiter_bueroeinrichtung_01.png', 'Mitarbeiter von Perla’s beim Einrichten eines Büroraums', 'Büro- & Einrichtungsservice'],
+    ['Melanie', 'kundenbilder/team/update-2026-09-23/mitarbeiter_reinigung_weiblich_01.png', 'Mitarbeiterin von Perla’s bei der Gebäudereinigung', 'Gebäudereinigung'],
+    ['Florian', 'kundenbilder/team/update-2026-09-23/mitarbeiter_rote_kappe_bohren_01.png', 'Mitarbeiter von Perla’s mit Werkzeug im Innenbereich', 'Wartung & Montage'],
+    ['Petra', 'kundenbilder/team/update-2026-09-23/mitarbeiter_rechts_unten_ersetzen.png', 'Mitarbeiterin von Perla’s im Büro', 'Büro & Organisation'],
+  ].map(([name, image, alt, role]) => `<figure><img src="${basePath}assets/${image}" alt="${escapeHtml(alt)}" loading="lazy"><figcaption><strong>${escapeHtml(name)}</strong><span>${escapeHtml(role)}</span></figcaption></figure>`).join('')
 
-  return `${staticHeader()}<main class="seo-static-main"><nav aria-label="Brotkrümeln"><a href="${basePath}">Startseite</a> / Über uns</nav><section class="seo-static-hero"><p>Perla’s Objektbetreuung</p><h1>Seit 1999 für Immobilien im Rhein-Main-Gebiet da.</h1><p>Perla’s verbindet persönliche Abstimmung mit planbarer Objektbetreuung. Wir erfassen Aufgaben vor Ort, koordinieren wiederkehrende Einsätze und halten Rückmeldungen verständlich zusammen.</p><a href="${basePath}kontakt/">Persönlich kennenlernen</a></section><section><p>Vorbereiteter Entwurf. Kundendaten werden noch finalisiert.</p><h2>Aus Nähe zum Objekt ist verlässliche Betreuung gewachsen</h2><p>Perla’s begann 1999 mit dem Anspruch, Immobilien persönlich zu kennen, Aufgaben zuverlässig zu erledigen und für Verwaltungen erreichbar zu bleiben. Mit den betreuten Objekten kamen Gebäudereinigung, Außenanlagenpflege, Winterdienst und technische Koordination hinzu.</p><p>Heute arbeitet ein Team aus mehr als zehn Mitarbeitenden an Wohnanlagen, Gewerbeimmobilien und institutionellen Gebäuden im Rhein-Main-Gebiet.</p><ol><li>1999: Start der persönlichen Objektbetreuung</li><li>2000er: Erweiterung der Facility Services</li><li>2010er: Feste Ansprechpartner und dokumentierte Abläufe</li><li>Heute: 10+ Mitarbeitende für größere Immobilien</li></ol></section><section><h2>Menschen hinter Perla’s</h2><p>Acht Teampositionen zeigen die heutige Breite. Namen, Rollen und vier Porträts werden nach Kundenfreigabe ergänzt.</p><div class="seo-static-grid">${team}</div></section><section><h2>Wofür wir stehen</h2><div class="seo-static-grid">${values}</div></section><section><h2>Vom Objektbedarf zum klaren Ablauf</h2><ol><li>Objekt verstehen</li><li>Leistungen festlegen</li><li>Betreuung koordinieren</li></ol></section></main>`
+  return `${staticHeader()}<main class="seo-static-main"><nav aria-label="Brotkrümeln"><a href="${basePath}">Startseite</a> / Über uns</nav><section class="seo-static-hero"><p>Perla’s Objektbetreuung</p><h1>Seit 1999 für Immobilien im Rhein-Main-Gebiet da.</h1><p>Perla’s verbindet persönliche Abstimmung mit planbarer Objektbetreuung. Wir erfassen Aufgaben vor Ort, koordinieren wiederkehrende Einsätze und halten Rückmeldungen verständlich zusammen.</p><a href="${basePath}kontakt/">Persönlich kennenlernen</a></section><section><p>Vorbereiteter Entwurf. Kundendaten werden noch finalisiert.</p><h2>Aus Nähe zum Objekt ist verlässliche Betreuung gewachsen</h2><p>Perla’s begann 1999 mit dem Anspruch, Immobilien persönlich zu kennen, Aufgaben zuverlässig zu erledigen und für Verwaltungen erreichbar zu bleiben. Mit den betreuten Objekten kamen Gebäudereinigung, Außenanlagenpflege, Winterdienst und technische Koordination hinzu.</p><p>Heute arbeitet ein Team aus mehr als zehn Mitarbeitenden an Wohnanlagen, Gewerbeimmobilien und institutionellen Gebäuden im Rhein-Main-Gebiet.</p><ol><li>1999: Start der persönlichen Objektbetreuung</li><li>2000er: Erweiterung der Facility Services</li><li>2010er: Feste Ansprechpartner und dokumentierte Abläufe</li><li>Heute: 10+ Mitarbeitende für größere Immobilien</li></ol></section><section><h2>Menschen hinter Perla’s</h2><p>Acht Mitarbeitende zeigen die heutige Breite des Teams.</p><div class="seo-static-grid">${team}</div></section><section><h2>Wofür wir stehen</h2><div class="seo-static-grid">${values}</div></section><section><h2>Vom Objektbedarf zum klaren Ablauf</h2><ol><li>Objekt verstehen</li><li>Leistungen festlegen</li><li>Betreuung koordinieren</li></ol></section></main>`
 }
 
 function blogMarkup() {
@@ -578,7 +578,7 @@ function serviceMarkup(service) {
   const audiences = service.audiences.map((item) => `<li>${escapeHtml(item)}</li>`).join('')
   const faqs = service.faqs.map((item) => `<details open><summary>${escapeHtml(item.question)}</summary><p>${escapeHtml(item.answer)}</p></details>`).join('')
   const related = relatedServiceLinks(service)
-  const boundary = ['baumpflege-baumfaellung', 'spielplatzkontrolle-spielgeraetewartung'].includes(service.slug)
+  const boundary = service.slug === 'baumpflege-baumfaellung'
     ? ''
     : `<h2>${escapeHtml(service.boundaryTitle)}</h2><p>${escapeHtml(service.boundaryText)}</p>`
   const workflow = service.workflow?.length
