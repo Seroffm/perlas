@@ -12405,8 +12405,18 @@ body {
 .home-audience-card-grid {
   margin-top: 48px;
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(10, minmax(0, 1fr));
   gap: 24px;
+}
+
+.home-audience-card:nth-child(1),
+.home-audience-card:nth-child(4) {
+  grid-column: span 6;
+}
+
+.home-audience-card:nth-child(2),
+.home-audience-card:nth-child(3) {
+  grid-column: span 4;
 }
 
 .home-audience-card {
@@ -12552,6 +12562,16 @@ body {
 
 .footer-nav .footer-logo + a {
   margin-top: 42px;
+}
+
+@media (max-width: 1000px) {
+  .home-audience-card-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .home-audience-card-grid > .home-audience-card {
+    grid-column: auto;
+  }
 }
 
 @media (max-width: 760px) {
