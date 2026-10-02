@@ -2514,7 +2514,7 @@ function Reviews() {
                 <span aria-hidden="true">{review.author.slice(0, 1)}</span>
                 <div>
                   <strong>{review.author}</strong>
-                  <small><img src={`${A}google-g.svg`} alt="" /> Google · {review.date}</small>
+                  <small><img src={`${A}google-g.svg`} alt="" /> Google{'date' in review && review.date ? ` · ${review.date}` : ''}</small>
                 </div>
               </div>
             </article>

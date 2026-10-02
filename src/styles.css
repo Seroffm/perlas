@@ -10566,6 +10566,65 @@ body {
   color: #000;
 }
 
+@media (min-width: 901px) {
+  .google-review-summary {
+    grid-template-columns: 40px minmax(0, 1fr) 18px;
+    gap: 12px;
+  }
+
+  .google-review-mark {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+  }
+
+  .google-review-mark img {
+    width: 20px;
+    height: 20px;
+  }
+
+  .google-review-summary .stars img {
+    width: 14px;
+    height: 14px;
+  }
+
+  .google-review-summary > svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .google-reviews .review-control {
+    width: 40px;
+    height: 40px;
+  }
+
+  .google-reviews .review-control svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .google-reviews .review-card .stars {
+    gap: 3px;
+    margin-bottom: 26px;
+  }
+
+  .google-reviews .review-card .stars img {
+    width: 16px;
+    height: 16px;
+  }
+
+  .google-reviews .review-author {
+    gap: 10px;
+  }
+
+  .google-reviews .review-author > span {
+    width: 32px;
+    height: 32px;
+    flex-basis: 32px;
+    font-size: 12px;
+  }
+}
+
 @media (max-width: 900px) {
   .google-reviews {
     padding: 80px 7vw;
