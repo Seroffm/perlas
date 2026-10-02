@@ -806,14 +806,96 @@ type ServiceGallery = {
   eyebrow: string
   title: string
   intro: string
+  large?: boolean
   items: Array<{ image: string; label: string; alt: string; position?: string; scale?: number; transformOrigin?: string }>
 }
 
+const projectPhotos = {
+  gardenBefore: {
+    image: 'kundenbilder/leistungen/projektfotos/Gartenpflege_Gepflegter_Gartenweg_01.jpg',
+    label: 'Gartenweg während der Pflege',
+    alt: 'Gartenweg mit frisch geschnittenen Ästen auf dem Pflaster während der Pflege',
+    position: '50% 58%',
+  },
+  gardenAfter: {
+    image: 'kundenbilder/leistungen/projektfotos/Gartenpflege_Gepflegter_Gartenweg_02.jpg',
+    label: 'Freigeschnittener Gartenweg',
+    alt: 'Freigeräumter gepflasterter Gartenweg zwischen Hecken und Grünbewuchs',
+    position: '50% 58%',
+  },
+  pavedWalkway: {
+    image: 'kundenbilder/leistungen/projektfotos/Aussenanlagen_Gepflasterter_Weg_am_Gebaeude.jpg',
+    label: 'Gepflegter Weg am Gebäude',
+    alt: 'Gepflasterter Weg mit gepflegten Rasenstreifen zwischen Gebäuden',
+    position: '50% 65%',
+  },
+  gardenWork: {
+    image: 'kundenbilder/leistungen/projektfotos/Gartenpflege_Arbeitsgeraet_am_Heckenweg.jpg',
+    label: 'Pflege am Heckenweg',
+    alt: 'Arbeitsgerät bei der Pflege eines bewachsenen Heckenwegs',
+    position: '50% 60%',
+  },
+  entrance: {
+    image: 'kundenbilder/leistungen/projektfotos/Objektbetreuung_Gepflegter_Eingangsbereich.jpg',
+    label: 'Gepflegter Eingangsbereich',
+    alt: 'Gepflasterter Eingang eines Wohngebäudes mit gepflegten Hecken',
+    position: '50% 55%',
+  },
+  brickCourt: {
+    image: 'kundenbilder/leistungen/projektfotos/Objektbetreuung_Gepflegter_Hof_Backsteingebaeude.jpg',
+    label: 'Hof am Backsteingebäude',
+    alt: 'Sauberer gepflasterter Hof vor einem Backsteingebäude',
+    position: '50% 50%',
+  },
+  residentialCourt: {
+    image: 'kundenbilder/leistungen/projektfotos/Objektbetreuung_Gepflegter_Hof_Wohngebaeude.jpg',
+    label: 'Hof einer Wohnanlage',
+    alt: 'Gepflasterter Hof vor einem Wohngebäude mit Stellplätzen',
+    position: '50% 65%',
+  },
+  workCourtyard: {
+    image: 'kundenbilder/leistungen/projektfotos/Objektbetreuung_Innenhof_Arbeitseinsatz.jpg',
+    label: 'Arbeitseinsatz im Innenhof',
+    alt: 'Gepflasterter Innenhof mit Fahrzeug und Arbeitsgerät von Perla’s',
+    position: '50% 60%',
+  },
+  residentialBuilding: {
+    image: 'kundenbilder/leistungen/projektfotos/Objektbetreuung_Wohnanlage_Aussenansicht.jpg',
+    label: 'Gepflegte Wohnanlage',
+    alt: 'Wohnanlage mit geschnittenen Hecken und gepflegtem Außenbereich',
+    position: '50% 60%',
+  },
+} satisfies Record<string, ServiceGallery['items'][number]>
+
 const serviceGalleries: Record<string, ServiceGallery> = {
+  objektpflege: {
+    eyebrow: 'Objektpflege vor Ort',
+    title: 'Gepflegte Wege, Eingänge und Wohnanlagen.',
+    intro: 'Projektfotos zeigen regelmäßig betreute Außenbereiche an unterschiedlichen Wohnobjekten.',
+    items: [projectPhotos.gardenAfter, projectPhotos.entrance, projectPhotos.residentialBuilding],
+  },
+  winterdienst: {
+    eyebrow: 'Wege und Zugänge am Objekt',
+    title: 'Flächen, die auch im Winter erreichbar bleiben sollen.',
+    intro: 'Die Projektfotos zeigen Wege und Eingänge, für die saisonale Betreuung und sichere Zugänge geplant werden.',
+    items: [projectPhotos.pavedWalkway, projectPhotos.entrance],
+  },
+  einzelauftrag: {
+    eyebrow: 'Einzeleinsätze vor Ort',
+    title: 'Arbeiten an Wegen und Innenhöfen.',
+    intro: 'Die Projektfotos zeigen einen Arbeitseinsatz im Innenhof und Pflegearbeiten an einem Heckenweg.',
+    items: [projectPhotos.workCourtyard, projectPhotos.gardenWork],
+  },
+  'buero-einrichtungsservice': {
+    eyebrow: 'Betreute Gebäudestandorte',
+    title: 'Gebäude und Außenbereiche im Blick.',
+    intro: 'Die Projektfotos zeigen Gebäudestandorte, an denen abgestimmte Objekt- und Einzelarbeiten stattfinden können.',
+    items: [projectPhotos.brickCourt, projectPhotos.residentialCourt],
+  },
   'baumpflege-baumfaellung': {
     eyebrow: 'Baumarbeiten in der Praxis',
     title: 'Abgestimmte Einsätze mit passender Technik.',
-    intro: 'Die echten Einsatzaufnahmen zeigen Baumarbeiten mit Hubsteiger sowie den kontrollierten Abtrag vor Ort.',
+    intro: 'Einsatzaufnahmen zeigen Baumarbeiten mit Hubsteiger und kontrolliertem Abtrag. Der Gartenweg ergänzt das Umfeld der Außenpflege.',
     items: [
       {
         image: 'kundenbilder/leistungen/baumpflege/baumfaellung_hubsteiger_01.png',
@@ -827,12 +909,13 @@ const serviceGalleries: Record<string, ServiceGallery> = {
         alt: 'Fachkräfte beim kontrollierten Abtrag eines Baumes an einer Wohnimmobilie',
         position: '50% 43%',
       },
+      projectPhotos.gardenBefore,
     ],
   },
   muellmanagement: {
     eyebrow: 'Müllmanagement am Objekt',
     title: 'Mülltonnen planbar bereitstellen und kontrollieren.',
-    intro: 'Die Aufnahmen zeigen reale Mülltonnenstandorte an betreuten Wohnobjekten.',
+    intro: 'Die Aufnahmen zeigen Mülltonnenstandorte und den gepflegten Hof eines Wohnobjekts.',
     items: [
       {
         image: 'kundenbilder/leistungen/muellmanagement/muelltonnen_schwarz_01.png',
@@ -846,12 +929,13 @@ const serviceGalleries: Record<string, ServiceGallery> = {
         alt: 'Blaue Mülltonnen geordnet an einer Wohnanlage',
         position: '50% 56%',
       },
+      projectPhotos.residentialCourt,
     ],
   },
   'wartung-instandhaltung': {
     eyebrow: 'Wartung in der Praxis',
     title: 'Kleine Arbeiten direkt am Objekt.',
-    intro: 'Die echten Aufnahmen zeigen praktische Wartungs- und Instandhaltungsarbeiten innen und außen.',
+    intro: 'Einsatzaufnahmen zeigen Arbeiten innen und außen sowie Wege und einen Innenhof betreuter Objekte.',
     items: [
       {
         image: 'kundenbilder/leistungen/service-update-2026-09-23/wartung_fassade_01.png',
@@ -865,12 +949,14 @@ const serviceGalleries: Record<string, ServiceGallery> = {
         alt: 'Mitarbeiter von Perla’s mit Werkzeug für eine Wartungsarbeit',
         position: '50% 31%',
       },
+      projectPhotos.pavedWalkway,
+      projectPhotos.workCourtyard,
     ],
   },
   gebaeudereinigung: {
     eyebrow: 'Reinigung in der Praxis',
     title: 'Persönlich und passend zum Objekt.',
-    intro: 'Die echten Einsatzbilder zeigen unser Reinigungsteam und die Betreuung funktionaler Gemeinschaftsbereiche.',
+    intro: 'Einsatzbilder zeigen das Reinigungsteam und einen sauber gehaltenen Hofbereich am Gebäude.',
     items: [
       {
         image: 'kundenbilder/team/update-2026-09-23/mitarbeiter_reinigung_maennlich_01.png',
@@ -884,12 +970,13 @@ const serviceGalleries: Record<string, ServiceGallery> = {
         alt: 'Mitarbeiter von Perla’s beim Transport einer Waschmaschine in einem Gemeinschaftsbereich',
         position: '50% 48%',
       },
+      projectPhotos.brickCourt,
     ],
   },
   tiefgaragenreinigung: {
     eyebrow: 'Tiefgaragenreinigung in der Praxis',
     title: 'Geräteeinsatz und gereinigte Fläche.',
-    intro: 'Die Aufnahmen dokumentieren den praktischen Geräteeinsatz und eine gereinigte Tiefgaragenfläche. Sie werden bewusst nicht als Vorher-Nachher-Paar bezeichnet.',
+    intro: 'Die Aufnahmen dokumentieren Geräteeinsatz und gereinigte Tiefgaragenfläche, ergänzt durch den Hof und die Stellplätze eines Wohnobjekts.',
     items: [
       {
         image: 'kundenbilder/vorher_nachher/parkhaus_reinigung_geraet.png',
@@ -903,29 +990,27 @@ const serviceGalleries: Record<string, ServiceGallery> = {
         alt: 'Gereinigte Stellfläche in einem Parkhaus',
         position: '50% 62%',
       },
+      projectPhotos.residentialCourt,
     ],
   },
   gartenpflege: {
-    eyebrow: 'Vorher / Nachher',
-    title: 'Außenbereiche sichtbar in Ordnung bringen.',
-    intro: 'Dasselbe Objekt vor und nach dem Einsatz: Wege und angrenzende Flächen werden passend zum vereinbarten Umfang freigeschnitten und gepflegt.',
+    eyebrow: 'Garten- und Landschaftspflege vor Ort',
+    title: 'Gepflegte Wege und Außenbereiche.',
+    intro: 'Projektfotos zeigen einen Gartenweg während und nach dem Rückschnitt sowie gepflegte Wege, Eingänge und Wohnanlagen. Ein Bild dokumentiert die laufende Gartenarbeit.',
+    large: true,
     items: [
-      {
-        image: 'kundenbilder/vorher_nachher/aussenbereich_vorher.png',
-        label: 'Vorher',
-        alt: 'Überwachsener Außenbereich vor der Pflege durch Perla’s',
-      },
-      {
-        image: 'kundenbilder/vorher_nachher/aussenbereich_nachher.png',
-        label: 'Nachher',
-        alt: 'Freigeschnittener und gepflegter Außenbereich nach dem Einsatz',
-      },
+      projectPhotos.gardenAfter,
+      projectPhotos.gardenBefore,
+      projectPhotos.pavedWalkway,
+      projectPhotos.entrance,
+      projectPhotos.residentialBuilding,
+      projectPhotos.gardenWork,
     ],
   },
   'spielplatzkontrolle-spielgeraetewartung': {
     eyebrow: 'Spielbereiche in der Praxis',
     title: 'Außen- und Innenbereiche passend betreuen.',
-    intro: 'Die echten Objektaufnahmen zeigen unterschiedliche Spielgeräte und Flächen. Sichtkontrollen, Dokumentation, Reinigung und Pflege werden für jeden Standort verbindlich abgestimmt. Weiterführende Arbeiten können mit geeigneten Partnerbetrieben koordiniert werden.',
+    intro: 'Objektaufnahmen zeigen Spielbereiche innen und außen sowie eine gepflegte Wohnanlage als Standortumfeld. Sichtkontrollen und Pflege werden für jeden Standort abgestimmt.',
     items: [
       {
         image: 'kundenbilder/spielplatz/spielplatz_schaukel_nah_01.png',
@@ -939,6 +1024,7 @@ const serviceGalleries: Record<string, ServiceGallery> = {
         alt: 'Gepflegter Indoor-Spielbereich mit Kletter- und Spielelementen',
         position: '50% 54%',
       },
+      projectPhotos.residentialBuilding,
     ],
   },
 }
@@ -2690,7 +2776,7 @@ function ServiceMediaGallery({ gallery }: { gallery: ServiceGallery }) {
         <h2 id={headingId}>{gallery.title}</h2>
         <p>{gallery.intro}</p>
       </div>
-      <div className="service-gallery-grid">
+      <div className={`service-gallery-grid${gallery.large ? ' service-gallery-grid--large' : gallery.items.length === 3 ? ' service-gallery-grid--three' : ''}`}>
         {gallery.items.map((item, index) => (
           <figure data-reveal="up" style={{ '--reveal-delay': `${index * 70}ms` } as CSSProperties} key={item.image}>
             <img
@@ -2862,8 +2948,6 @@ function ServiceDetailPage({ service, onQuoteOpen }: { service: Feature; onQuote
         </section>
       )}
 
-      {serviceGallery && <ServiceMediaGallery gallery={serviceGallery} />}
-
       {showServiceBoundary && (
         <section className="service-boundary" data-reveal="up">
           <div>
@@ -2893,6 +2977,8 @@ function ServiceDetailPage({ service, onQuoteOpen }: { service: Feature; onQuote
           ))}
         </div>
       </section>
+
+      {serviceGallery && <ServiceMediaGallery gallery={serviceGallery} />}
 
       <section className="service-contact" aria-labelledby="service-contact-heading" data-reveal="up">
         <div className="service-contact-primary">
