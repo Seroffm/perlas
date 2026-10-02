@@ -789,7 +789,7 @@ const heroSlides = [
     position: '39% 50%',
   },
   {
-    image: 'kundenbilder/hero/institutionelles-gebaeude-backstein.jpg',
+    image: 'kundenbilder/hero/auto_kennzeichen_verpixelt.png',
     alt: 'Historisches institutionelles Backsteingebäude mit gepflastertem Innenhof',
     label: 'Öffentliche und institutionelle Gebäude',
     position: '50% 50%',
