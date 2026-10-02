@@ -7367,37 +7367,63 @@ p {
   text-transform: uppercase;
 }
 
-.home-digital-software strong {
-  margin-top: 7px;
-  font-size: 30px;
-  line-height: 1;
-  letter-spacing: -0.8px;
-}
-
-.home-digital-software small {
-  margin-top: 13px;
+.home-digital-software-link {
+  max-width: 100%;
+  margin-top: 12px;
+  padding: 13px 17px;
   display: inline-flex;
   align-items: center;
-  gap: 7px;
-  color: #fff;
-  font-size: 13px;
-  font-weight: 750;
+  gap: 18px;
+  border: 1px solid rgb(255 255 255 / 70%);
+  border-radius: 8px;
+  color: #2f323c;
+  background: #fff;
+  text-decoration: none;
 }
 
-.home-digital-software svg {
-  width: 16px;
-  height: 16px;
+.home-digital-software-link:hover,
+.home-digital-software-link:focus-visible {
+  color: #2f323c;
+  background: #f5f8fc;
+}
+
+.home-digital-software-logo {
+  min-width: 0;
+  display: grid;
+  justify-items: end;
+  line-height: 1;
+}
+
+.home-digital-software-logo strong {
+  font-size: 27px;
+  font-weight: 800;
+  letter-spacing: -0.055em;
+  white-space: nowrap;
+}
+
+.home-digital-software-logo small {
+  margin-top: 1px;
+  color: #ff8b00;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: -0.035em;
+}
+
+.home-digital-software-link svg {
+  width: 19px;
+  height: 19px;
+  flex: 0 0 19px;
   transition: transform 160ms ease;
 }
 
-.home-digital-software:hover svg,
-.home-digital-software:focus-visible svg {
+.home-digital-software-link:hover svg,
+.home-digital-software-link:focus-visible svg {
   transform: translate(3px, -3px);
 }
 
-.home-digital-software:focus-visible {
+.home-digital-software-link:focus-visible {
   outline: 3px solid rgb(255 255 255 / 75%);
-  outline-offset: 8px;
+  outline-offset: 4px;
 }
 
 .home-digital-workflow-list {
@@ -8305,8 +8331,17 @@ p {
     margin-top: 28px;
   }
 
-  .home-digital-software strong {
-    font-size: 27px;
+  .home-digital-software-link {
+    padding: 12px 14px;
+    gap: 10px;
+  }
+
+  .home-digital-software-logo strong {
+    font-size: clamp(16px, 5vw, 24px);
+  }
+
+  .home-digital-software-logo small {
+    font-size: 11px;
   }
 
   .home-digital-workflow-list li {

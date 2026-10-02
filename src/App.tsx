@@ -1386,11 +1386,16 @@ function HomeDigitalWorkflow() {
           Klare Planung und nachvollziehbare Dokumentation unterstützen die tägliche Betreuung.
           Aufgaben, Termine und Rückmeldungen bleiben strukturiert einem Objekt zugeordnet.
         </p>
-        <a className="home-digital-software" href="https://hausmeisterapp.com/" target="_blank" rel="noreferrer">
+        <div className="home-digital-software">
           <span>Für Planung und Dokumentation nutzen wir</span>
-          <strong>HausmeisterApp</strong>
-          <small>Offizielle Website ansehen <ArrowUpRight aria-hidden="true" /></small>
-        </a>
+          <a className="home-digital-software-link" href="https://hausmeisterapp.com/" target="_blank" rel="noreferrer" aria-label="HausmeisterApp Website öffnen">
+            <span className="home-digital-software-logo" aria-hidden="true">
+              <strong>HAUSMEISTERAPP</strong>
+              <small>.COM</small>
+            </span>
+            <ArrowUpRight aria-hidden="true" />
+          </a>
+        </div>
       </div>
       <ol className="home-digital-workflow-list" data-reveal="right">
         {workflow.map((item) => (
