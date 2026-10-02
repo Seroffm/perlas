@@ -5,6 +5,16 @@
   "profileUrl": "https://www.google.com/search?q=Perla%27s+Objektbetreuung+GmbH+%26+Co.+KG+Sulzbach+Rezensionen",
   "reviews": [
     {
+      "author": "Fizik1337",
+      "text": "„Mehr als nur ein Hausmeister“ - dieser Slogan trifft hier zu 100% zu! Wir sind begeistert und top zufrieden und werden auch in Zukunft unsere Objekte hier betreuen lassen!",
+      "rating": 5
+    },
+    {
+      "author": "David S.",
+      "text": "Ich kann diesen Service nur weiterempfehlen, herzliche Menschen mit guten Service und für jedes Problem eine Lösung.",
+      "rating": 5
+    },
+    {
       "author": "Amanda L.",
       "text": "Freundlich, hilfsbereit und zuverlässig.",
       "date": "vor 2 Monaten",
@@ -32,16 +42,6 @@
       "author": "Gabriele D.",
       "text": "Sehr professionelle und saubere Arbeit.",
       "date": "vor 7 Monaten",
-      "rating": 5
-    },
-    {
-      "author": "Fizik1337",
-      "text": "„Mehr als nur ein Hausmeister“ - dieser Slogan trifft hier zu 100% zu! Wir sind begeistert und top zufrieden und werden auch in Zukunft unsere Objekte hier betreuen lassen!",
-      "rating": 5
-    },
-    {
-      "author": "David S.",
-      "text": "Ich kann diesen Service nur weiterempfehlen, herzliche Menschen mit guten Service und für jedes Problem eine Lösung.",
       "rating": 5
     }
   ]

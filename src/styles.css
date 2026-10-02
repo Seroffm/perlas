@@ -10567,6 +10567,27 @@ body {
 }
 
 @media (min-width: 901px) {
+  .google-reviews .review-track {
+    align-items: flex-start;
+  }
+
+  .google-reviews .review-card {
+    width: 300px;
+    min-height: 220px;
+    flex-basis: 300px;
+    padding: 22px;
+    border-radius: 24px;
+  }
+
+  .google-reviews .review-card > p {
+    font-size: 17px;
+    line-height: 1.4;
+  }
+
+  .google-reviews .review-author {
+    margin-top: 22px;
+  }
+
   .google-review-summary {
     grid-template-columns: 40px minmax(0, 1fr) 18px;
     gap: 12px;
@@ -10605,7 +10626,7 @@ body {
 
   .google-reviews .review-card .stars {
     gap: 3px;
-    margin-bottom: 26px;
+    margin-bottom: 18px;
   }
 
   .google-reviews .review-card .stars img {
