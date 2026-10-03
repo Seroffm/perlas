@@ -6,14 +6,15 @@ type ConsentPreferences = {
   analytics: boolean
   marketing: boolean
   savedAt: string
-  version: 1
+  version: 2
 }
 
-const STORAGE_KEY = 'perlas-cookie-consent-v1'
+const STORAGE_KEY = 'perlas-cookie-consent-v2'
 const PRIVACY_PATH = `${import.meta.env.BASE_URL}datenschutz/`
 
 function readPreferences(): ConsentPreferences | null {
   try {
+    window.localStorage.removeItem('perlas-cookie-consent-v1')
     const stored = window.localStorage.getItem(STORAGE_KEY)
     return stored ? JSON.parse(stored) as ConsentPreferences : null
   } catch {
@@ -102,7 +103,7 @@ export default function CookieConsent() {
       analytics: nextAnalytics,
       marketing: nextMarketing,
       savedAt: new Date().toISOString(),
-      version: 1,
+      version: 2,
     }
 
     window.localStorage.setItem(STORAGE_KEY, JSON.stringify(next))
@@ -178,7 +179,7 @@ export default function CookieConsent() {
                 <input type="checkbox" checked={analytics} onChange={(event) => setAnalytics(event.target.checked)} />
               </label>
               <label className="cookie-option">
-                <span><strong>Externe Medien</strong><small>Erlaubt das Laden der Google-Maps-Karte auf der Kontaktseite.</small></span>
+                <span><strong>Externe Medien</strong><small>Erlaubt Google Maps auf der Kontaktseite und das eingebettete YouTube-Video.</small></span>
                 <input type="checkbox" checked={marketing} onChange={(event) => setMarketing(event.target.checked)} />
               </label>
             </div>

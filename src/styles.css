@@ -9478,35 +9478,6 @@ body {
   font-weight: 800;
 }
 
-.legal-source-note {
-  margin-bottom: 12px;
-  padding: 22px;
-  display: grid;
-  grid-template-columns: 26px minmax(0, 1fr);
-  gap: 14px;
-  border: 1px solid rgb(7 51 114 / 12%);
-  border-radius: 20px;
-  color: var(--ink);
-  background: rgb(7 51 114 / 5%);
-}
-
-.legal-source-note svg {
-  width: 24px;
-  height: 24px;
-  color: var(--primary);
-}
-
-.legal-source-note strong {
-  color: var(--primary);
-  font-size: 14px;
-}
-
-.legal-source-note p {
-  margin-top: 7px;
-  font-size: 13px;
-  line-height: 1.6;
-}
-
 .legal-contact-address {
   margin-top: 18px;
   display: grid;
@@ -9518,26 +9489,6 @@ body {
 
 .legal-contact-address strong {
   color: var(--ink);
-}
-
-.legal-review-note {
-  margin-top: 22px;
-  padding: 18px 20px;
-  border-left: 4px solid #e7ac17;
-  border-radius: 0 16px 16px 0;
-  color: var(--ink);
-  background: #fff8e5;
-}
-
-.legal-review-note strong {
-  font-size: 13px;
-}
-
-.legal-review-note p {
-  margin-top: 6px;
-  color: rgb(10 11 13 / 72%);
-  font-size: 13px;
-  line-height: 1.65;
 }
 
 .legal-copy--privacy,
@@ -9735,13 +9686,6 @@ body {
     grid-template-columns: 1fr;
   }
 
-  .legal-source-note {
-    padding: 18px;
-  }
-
-  .legal-review-note {
-    padding: 16px;
-  }
 }
 
 /* Eigenständige Zielgruppen-Seiten */
@@ -12809,6 +12753,57 @@ body {
   height: 100%;
   display: block;
   border: 0;
+}
+
+.home-video-frame--consent {
+  min-height: 270px;
+}
+
+.home-video-consent {
+  width: 100%;
+  height: 100%;
+  min-height: 254px;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  text-align: center;
+  color: #fff;
+}
+
+.home-video-consent > svg {
+  width: 38px;
+  height: 38px;
+}
+
+.home-video-consent strong {
+  font-size: 20px;
+}
+
+.home-video-consent p {
+  max-width: 360px;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.home-video-consent button {
+  margin-top: 4px;
+  padding: 10px 16px;
+  border: 1px solid rgb(255 255 255 / 68%);
+  border-radius: 999px;
+  color: #fff;
+  background: transparent;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.home-video-consent button:hover,
+.home-video-consent button:focus-visible {
+  background: rgb(255 255 255 / 16%);
 }
 
 .specialized-services {

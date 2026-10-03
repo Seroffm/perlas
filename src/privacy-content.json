@@ -1,7 +1,6 @@
 {
-  "updated": "07.01.2026",
-  "lead": "Informationen zum Umgang mit personenbezogenen Daten auf dieser Website.",
-  "sourceNote": "Diese Fassung orientiert sich in Inhalt, Gliederung und Rechtsgrundlagen an der bisherigen offiziellen Datenschutzerklärung. Hinweise zum technischen Stand der neuen Website sind gesondert gekennzeichnet und müssen vor einer abschließenden rechtlichen Freigabe geprüft werden.",
+  "updated": "01.10.2026",
+  "lead": "Informationen zur Verarbeitung personenbezogener Daten bei der Nutzung dieser Website und bei der Kontaktaufnahme.",
   "sections": [
     {
       "id": "verantwortlicher",
@@ -9,7 +8,7 @@
       "blocks": [
         {
           "type": "contact",
-          "company": "Perla’s Objektbetreuungs-GmbH & Co. KG",
+          "company": "Perla’s Objektbetreuung GmbH & Co. KG",
           "address": "Hauptstraße 1\n65843 Sulzbach (Taunus)\nDeutschland",
           "phone": "0177 68 67 145",
           "phoneHref": "+491776867145",
@@ -18,279 +17,220 @@
       ]
     },
     {
-      "id": "datenverarbeitung",
-      "title": "2) Allgemeine Hinweise zur Datenverarbeitung",
+      "id": "grundlagen",
+      "title": "2) Grundsätze und Rechtsgrundlagen",
       "blocks": [
         {
           "type": "paragraph",
-          "text": "Wir verarbeiten personenbezogene Daten nur, soweit dies zur Bereitstellung einer funktionsfähigen Website sowie unserer Inhalte und Leistungen erforderlich ist oder Sie eingewilligt haben."
-        },
-        {
-          "type": "subheading",
-          "text": "Rechtsgrundlagen, je nach Fall"
-        },
-        {
-          "type": "list",
-          "items": [
-            "Art. 6 Abs. 1 lit. a DSGVO (Einwilligung)",
-            "Art. 6 Abs. 1 lit. b DSGVO (Vertrag oder vorvertragliche Maßnahmen)",
-            "Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse, zum Beispiel Betrieb und Sicherheit)"
-          ]
+          "text": "Wir verarbeiten personenbezogene Daten nur für die in dieser Erklärung genannten Zwecke. Je nach Verarbeitung stützen wir uns auf Ihre Einwilligung (Art. 6 Abs. 1 lit. a DSGVO), die Durchführung eines Vertrags oder vorvertraglicher Maßnahmen (Art. 6 Abs. 1 lit. b DSGVO), eine rechtliche Pflicht (Art. 6 Abs. 1 lit. c DSGVO) oder unser berechtigtes Interesse an einem sicheren Websitebetrieb und der Bearbeitung allgemeiner Anfragen (Art. 6 Abs. 1 lit. f DSGVO)."
         },
         {
           "type": "paragraph",
-          "text": "Zusätzlich gilt für Cookies und ähnliche Technologien in Deutschland § 25 TDDDG (Einwilligung beziehungsweise technische Erforderlichkeit)."
+          "text": "Für das Speichern von Informationen auf Ihrem Endgerät und den Zugriff darauf gelten zusätzlich die Vorgaben des § 25 TDDDG. Sie können eine erteilte Einwilligung jederzeit mit Wirkung für die Zukunft widerrufen."
         }
       ]
     },
     {
       "id": "hosting",
-      "title": "3) Hosting und Server-Logfiles",
+      "title": "3) Hosting und technische Zugriffsdaten",
       "blocks": [
         {
           "type": "paragraph",
-          "text": "Die bisherige Datenschutzerklärung nennt für den technischen Betrieb und das Hosting: SIMpress Media (Markus Pusch), Dunant Ring 21, 65936 Frankfurt am Main, Deutschland."
+          "text": "Diese Website wird über GitHub Pages von GitHub, Inc. (USA) bereitgestellt. Beim Aufruf werden technisch erforderliche Daten wie IP-Adresse, Zeitpunkt, angeforderte Seite, Browserinformationen und gegebenenfalls die zuvor besuchte Seite übertragen. GitHub protokolliert die IP-Adresse von Besuchern nach eigenen Angaben zu Sicherheitszwecken."
         },
         {
           "type": "paragraph",
-          "text": "Beim Aufruf der Website werden durch den Server automatisch Daten in Server-Logfiles verarbeitet."
+          "text": "Die Verarbeitung dient der Auslieferung, Stabilität und Sicherheit der Website. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO. Dabei kann eine Verarbeitung in den USA stattfinden. Für die Dauer der Speicherung technischer Protokolle gelten die Vorgaben des Hosting-Anbieters."
         },
         {
-          "type": "list",
-          "items": [
-            "IP-Adresse, gegebenenfalls gekürzt, Datum und Uhrzeit sowie aufgerufene Seite oder Datei",
-            "Browsertyp und Browserversion sowie Betriebssystem",
-            "Referrer-URL und Hostname"
-          ]
-        },
-        {
-          "type": "paragraph",
-          "text": "Zweck ist die technische Bereitstellung, Stabilität und Sicherheit, zum Beispiel die Missbrauchserkennung. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO. Logfiles werden nur so lange gespeichert, wie es für Betrieb und Sicherheit erforderlich ist."
+          "type": "link",
+          "text": "Datenschutzhinweise von GitHub",
+          "href": "https://docs.github.com/de/site-policy/privacy-policies/github-general-privacy-statement"
         }
-      ],
-      "review": "Technisch zu prüfen: Die neue Website wird aktuell über GitHub Pages bereitgestellt. Die bisherige Anbieterangabe zu SIMpress Media darf deshalb nicht ohne rechtliche Prüfung als aktueller Hostinghinweis verstanden werden. Konkrete Logdaten, Empfänger und Speicherdauern des aktuellen Hostings sind vor der finalen Freigabe zu bestätigen."
+      ]
     },
     {
-      "id": "cookies",
-      "title": "4) Cookies, Consent-Management und Ihre Auswahl",
+      "id": "einwilligung",
+      "title": "4) Einwilligungen und lokale Speicherung",
       "blocks": [
         {
           "type": "paragraph",
-          "text": "Wir verwenden Cookies und ähnliche Technologien."
-        },
-        {
-          "type": "list",
-          "items": [
-            "Notwendig oder essentiell: für den Betrieb der Website erforderlich und immer aktiv",
-            "Optional, zum Beispiel Statistik oder Marketing: nur nach Ihrer Einwilligung"
-          ]
+          "text": "Ihre Auswahl im Cookie-Banner wird im lokalen Speicher Ihres Browsers abgelegt. Gespeichert werden die gewählten Kategorien und der Zeitpunkt Ihrer Auswahl. Diese Speicherung ist erforderlich, damit Ihre Entscheidung bei weiteren Seitenaufrufen berücksichtigt wird. Grundlage sind § 25 Abs. 2 TDDDG und Art. 6 Abs. 1 lit. f DSGVO."
         },
         {
           "type": "paragraph",
-          "text": "Wir setzen ein Consent-Tool in Form eines Cookie-Banners ein. Dort können Sie Einwilligungen erteilen oder ablehnen und Ihre Auswahl jederzeit ändern oder widerrufen."
-        },
-        {
-          "type": "subheading",
-          "text": "Rechtsgrundlagen"
-        },
-        {
-          "type": "list",
-          "items": [
-            "§ 25 Abs. 1 TDDDG und Art. 6 Abs. 1 lit. a DSGVO für optionale Cookies und Tracking",
-            "§ 25 Abs. 2 TDDDG und Art. 6 Abs. 1 lit. f DSGVO für essentielle Cookies"
-          ]
+          "text": "Optionale externe Medien laden wir erst nach Ihrer Einwilligung gemäß § 25 Abs. 1 TDDDG und Art. 6 Abs. 1 lit. a DSGVO. Ihre Auswahl können Sie über die Cookie-Einstellungen im Footer jederzeit ändern. Google Analytics, Google Tag Manager, Google Consent Mode und reCAPTCHA sind auf dieser Website derzeit nicht eingebunden; die Analyseauswahl im Banner aktiviert gegenwärtig keinen Analysedienst."
         }
-      ],
-      "review": "Aktueller technischer Stand: Die neue Website speichert die Consent-Auswahl lokal im Browser. Google Maps wird erst nach Zustimmung zu externen Medien geladen. Google Analytics ist derzeit nicht eingebunden. Das auf der Startseite eingebettete Video über youtube-nocookie.com war in der bisherigen Erklärung nicht beschrieben und ist vor der finalen rechtlichen Freigabe gesondert zu prüfen."
+      ]
     },
     {
       "id": "kontakt",
-      "title": "5) Kontaktaufnahme per E-Mail oder Telefon",
+      "title": "5) Kontakt per E-Mail, Telefon und WhatsApp",
       "blocks": [
         {
           "type": "paragraph",
-          "text": "Wenn Sie uns kontaktieren, verarbeiten wir Ihre Angaben zur Bearbeitung der Anfrage."
+          "text": "Wenn Sie uns kontaktieren, verarbeiten wir Ihre Kontaktdaten sowie den Inhalt Ihrer Nachricht, um Ihre Anfrage zu beantworten. Bei vertragsbezogenen Anfragen ist Art. 6 Abs. 1 lit. b DSGVO die Rechtsgrundlage; bei anderen Anfragen ist es Art. 6 Abs. 1 lit. f DSGVO (Interesse an der Kommunikation mit Ihnen). Erforderliche Angaben sind die Kontaktdaten und Informationen, die wir für eine Antwort benötigen."
         },
         {
           "type": "paragraph",
-          "text": "Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO bei vorvertraglichen oder vertraglichen Anfragen oder Art. 6 Abs. 1 lit. f DSGVO bei allgemeinen Anfragen."
+          "text": "Der E-Mail-Link öffnet Ihr eigenes E-Mail-Programm. Beim Anklicken des WhatsApp-Links verlassen Sie unsere Website und öffnen einen Dienst von WhatsApp Ireland Limited. Eine Datenübertragung an WhatsApp durch unsere Website erfolgt erst beim Aufruf dieses externen Links. Für die anschließende Kommunikation gelten zusätzlich die Datenschutzhinweise von WhatsApp."
         },
         {
           "type": "paragraph",
-          "text": "Die Daten werden so lange gespeichert, wie es zur Bearbeitung erforderlich ist. Gesetzliche Aufbewahrungspflichten bleiben unberührt."
+          "text": "Anfragen speichern wir so lange, wie dies für Bearbeitung und Anschlussfragen erforderlich ist. Bestehen gesetzliche Aufbewahrungspflichten oder ist eine Aufbewahrung zur Durchsetzung beziehungsweise Abwehr von Ansprüchen erforderlich, kann die Speicherung länger dauern."
+        },
+        {
+          "type": "link",
+          "text": "Datenschutzhinweise von WhatsApp",
+          "href": "https://www.whatsapp.com/legal/privacy-policy-eea"
         }
       ]
     },
     {
-      "id": "kontaktformular",
-      "title": "6) Kontaktformular",
+      "id": "formulare",
+      "title": "6) Anfrage- und Bewerbungsformulare",
       "blocks": [
         {
           "type": "paragraph",
-          "text": "Wenn Sie unser Kontaktformular nutzen, verarbeiten wir die von Ihnen eingegebenen Daten, zum Beispiel Name, E-Mail-Adresse und Nachricht, zur Bearbeitung Ihrer Anfrage."
+          "text": "Im Anfrageformular können insbesondere Objektart, Objektadresse, gewünschte Leistungen, Startzeitpunkt, weitere Angaben sowie Name, Unternehmen, E-Mail-Adresse und Telefonnummer eingegeben werden. Das Bewerbungsformular verarbeitet Name, E-Mail-Adresse, Telefonnummer, gewünschten Einsatzbereich, Nachricht und gegebenenfalls eine ausgewählte Datei."
         },
         {
           "type": "paragraph",
-          "text": "Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO oder Art. 6 Abs. 1 lit. f DSGVO. Die Daten werden so lange gespeichert, wie es zur Bearbeitung erforderlich ist. Gesetzliche Aufbewahrungspflichten bleiben unberührt."
+          "text": "Die Eingaben werden zunächst in Ihrem Browser verarbeitet. Eine Übermittlung an eine Empfangs-API findet nur statt, wenn diese für die Website eingerichtet ist und Sie das Formular absenden. Ohne aktivierte Online-Übermittlung wird keine Anfrage vom Formular an einen Server gesendet; beim Bewerbungsformular kann stattdessen Ihr E-Mail-Programm mit den eingegebenen Daten geöffnet werden. Eine ausgewählte Datei wird in diesem Fall nicht automatisch angehängt."
+        },
+        {
+          "type": "paragraph",
+          "text": "Soweit eine Übermittlung erfolgt, verwenden wir die Angaben ausschließlich zur Bearbeitung der Anfrage beziehungsweise Bewerbung. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO; für allgemeine Anfragen ergänzend Art. 6 Abs. 1 lit. f DSGVO. Die Angaben werden nach Erledigung gelöscht, soweit keine gesetzlichen Pflichten oder berechtigten Gründe für eine weitere Aufbewahrung bestehen."
         }
-      ],
-      "review": "Technisch zu prüfen: Die bisherige Erklärung bezog sich auf WPForms. WPForms ist in der neuen Website nicht eingebunden. Das neue Anfrageformular ist für eine API-Anbindung vorbereitet; auf der veröffentlichten GitHub-Pages-Version ist aktuell keine Übermittlungs-API konfiguriert. Empfänger, Auftragsverarbeiter und Speicherdauer sind vor Aktivierung der API zu bestätigen."
+      ]
     },
     {
-      "id": "recaptcha",
-      "title": "7) Spam-Schutz und Google reCAPTCHA",
+      "id": "resend",
+      "title": "7) E-Mail-Versand über Resend",
       "blocks": [
         {
           "type": "paragraph",
-          "text": "Zum Schutz vor Spam und automatisierten Anfragen kann Google reCAPTCHA eingesetzt werden. Dabei können technische Daten, unter anderem IP-Adresse, Geräte- und Browserdaten sowie Interaktionen, an Google übermittelt werden. Anbieter ist Google Ireland Limited, Dublin, Irland."
+          "text": "Für den Versand unserer E-Mails nutzen wir Resend, einen Dienst der Plus Five Five, Inc., 2261 Market Street #5039, San Francisco, CA 94114, USA. Dabei werden die für den Versand nötigen Daten verarbeitet, insbesondere Absender- und Empfängeradresse, Betreff, Nachrichteninhalt, gegebenenfalls Anhänge sowie technische Zustell- und Protokolldaten. Dies betrifft auch Antworten auf Anfragen und gegebenenfalls Bestätigungs-E-Mails."
         },
         {
           "type": "paragraph",
-          "text": "Rechtsgrundlage ist die Einwilligung nach Art. 6 Abs. 1 lit. a DSGVO in Verbindung mit § 25 Abs. 1 TDDDG. Wenn Sie nicht einwilligen, kann das Kontaktformular gegebenenfalls eingeschränkt sein."
+          "text": "Zweck ist die zuverlässige Zustellung und Dokumentation geschäftlicher Nachrichten. Rechtsgrundlage ist bei vertragsbezogener Kommunikation Art. 6 Abs. 1 lit. b DSGVO, im Übrigen Art. 6 Abs. 1 lit. f DSGVO (Interesse an verlässlicher Kommunikation). Resend verarbeitet und speichert Kundendaten nach eigenen Angaben in den USA. Für die Übermittlung nennt Resend einen Auftragsverarbeitungsvertrag mit EU-Standardvertragsklauseln und seine Teilnahme am EU-US Data Privacy Framework."
+        },
+        {
+          "type": "paragraph",
+          "text": "Wir bewahren E-Mail-Korrespondenz nur so lange auf, wie dies für den jeweiligen Zweck und gesetzliche Aufbewahrungspflichten erforderlich ist. Die Speicherung von Versand- und Zustellprotokollen durch Resend richtet sich nach dessen Vertrags- und Datenschutzbedingungen."
+        },
+        {
+          "type": "link",
+          "text": "Datenschutzhinweise von Resend",
+          "href": "https://resend.com/legal/privacy-policy"
+        },
+        {
+          "type": "link",
+          "text": "Auftragsverarbeitungsvertrag von Resend",
+          "href": "https://resend.com/legal/dpa"
         }
-      ],
-      "review": "Aktueller technischer Stand: Google reCAPTCHA ist in der neuen Website derzeit nicht eingebunden."
-    },
-    {
-      "id": "tag-manager",
-      "title": "8) Google Tag Manager",
-      "blocks": [
-        {
-          "type": "paragraph",
-          "text": "Sofern Google Tag Manager eingesetzt wird, dient er dazu, Website-Tags zentral zu verwalten. Der Tag Manager selbst erstellt in der Regel keine Nutzerprofile, kann aber technische Daten, zum Beispiel die IP-Adresse, an Google übermitteln und dem Ausspielen weiterer Tools wie Google Analytics dienen. Anbieter ist Google Ireland Limited, Dublin, Irland."
-        },
-        {
-          "type": "paragraph",
-          "text": "Rechtsgrundlage ist die Einwilligung nach Art. 6 Abs. 1 lit. a DSGVO in Verbindung mit § 25 Abs. 1 TDDDG. Google Tag Manager wird erst nach Einwilligung geladen."
-        }
-      ],
-      "review": "Aktueller technischer Stand: Google Tag Manager ist in der neuen Website derzeit nicht eingebunden."
-    },
-    {
-      "id": "analytics",
-      "title": "9) Google Analytics 4",
-      "blocks": [
-        {
-          "type": "paragraph",
-          "text": "Sofern Google Analytics 4 eingesetzt wird, dient der Dienst dazu, die Nutzung der Website auszuwerten und das Angebot zu verbessern."
-        },
-        {
-          "type": "list",
-          "items": [
-            "Nutzungs- und Interaktionsdaten, zum Beispiel Seitenaufrufe und Klicks",
-            "Geräte- und Browserinformationen",
-            "ungefährer, abgeleiteter Standort",
-            "technische Kennungen"
-          ]
-        },
-        {
-          "type": "paragraph",
-          "text": "Google verarbeitet nach eigenen Angaben im Kontext von Google Analytics 4 IP-Adressen so, dass sie insbesondere für Nutzer in der Europäischen Union nicht dauerhaft protokolliert oder gespeichert werden. Anbieter ist Google Ireland Limited, Dublin, Irland."
-        },
-        {
-          "type": "paragraph",
-          "text": "Rechtsgrundlage ist die Einwilligung nach Art. 6 Abs. 1 lit. a DSGVO in Verbindung mit § 25 Abs. 1 TDDDG. Sie können Ihre Einwilligung jederzeit über die Cookie-Einstellungen widerrufen."
-        },
-        {
-          "type": "subheading",
-          "text": "Drittlandtransfer"
-        },
-        {
-          "type": "paragraph",
-          "text": "Es kann nicht ausgeschlossen werden, dass Daten an Google-Server außerhalb der Europäischen Union oder des Europäischen Wirtschaftsraums, insbesondere in die USA, übermittelt werden. Google nutzt hierfür geeignete Garantien, zum Beispiel EU-Standardvertragsklauseln, und/oder anerkannte Zertifizierungen."
-        }
-      ],
-      "review": "Aktueller technischer Stand: Google Analytics 4 ist in der neuen Website derzeit nicht eingebunden."
-    },
-    {
-      "id": "consent-mode",
-      "title": "10) Google Consent Mode",
-      "blocks": [
-        {
-          "type": "paragraph",
-          "text": "Sofern aktiviert, wird Google Consent Mode verwendet, um Ihre Cookie-Auswahl technisch an Google-Dienste zu übermitteln, damit sich diese entsprechend Ihrer Einwilligung verhalten. Der Consent Mode ersetzt kein Cookie-Banner, sondern arbeitet mit diesem zusammen."
-        }
-      ],
-      "review": "Aktueller technischer Stand: Google Consent Mode ist in der neuen Website derzeit nicht eingebunden."
+      ]
     },
     {
       "id": "bewerbungen",
-      "title": "11) Bewerbungen und JOIN",
+      "title": "8) Bewerbungen",
       "blocks": [
         {
           "type": "paragraph",
-          "text": "Die bisherige Datenschutzerklärung beschreibt Bewerbungen über JOIN (join.com). Bei einer Weiterleitung zu JOIN oder beim Laden eines JOIN-Elements gelten die Datenschutzhinweise von JOIN."
+          "text": "Bei einer Bewerbung verarbeiten wir die von Ihnen übermittelten Kontaktdaten, Angaben zum gewünschten Einsatzbereich, Ihre Nachricht und gegebenenfalls Bewerbungsunterlagen, um über die Begründung eines Beschäftigungsverhältnisses zu entscheiden. Rechtsgrundlage ist § 26 Abs. 1 BDSG in Verbindung mit Art. 6 Abs. 1 lit. b DSGVO."
         },
         {
           "type": "paragraph",
-          "text": "Rechtsgrundlage für die Verlinkung ist Art. 6 Abs. 1 lit. f DSGVO aufgrund des berechtigten Interesses an einer effizienten Recruiting-Abwicklung. Die Datenverarbeitung im Bewerbungsprozess erfolgt nach den JOIN-Hinweisen sowie den internen Bewerbungsprozessen."
-        }
-      ],
-      "review": "Technisch zu prüfen: Die neue Website verwendet derzeit ein eigenes Bewerbungsformular und bindet JOIN weder als Link noch als externes Element ein. Solange JOIN nicht verwendet wird, darf dieser Abschnitt nicht als Beschreibung eines aktiven Dienstes verstanden werden. Empfänger und Speicherdauer des neuen Bewerbungswegs sind vor einer direkten API-Übermittlung zu bestätigen."
-    },
-    {
-      "id": "empfaenger",
-      "title": "12) Empfänger und Auftragsverarbeiter",
-      "blocks": [
-        {
-          "type": "paragraph",
-          "text": "Wir setzen Dienstleister ein, die Daten in unserem Auftrag verarbeiten, zum Beispiel für Hosting oder Formular-Tools. Diese sind vertraglich auf Datenschutz verpflichtet nach Art. 28 DSGVO, soweit dies erforderlich ist."
+          "text": "Zugriff erhalten nur Personen, die mit dem Bewerbungsverfahren befasst sind. Nach Abschluss des Verfahrens löschen wir die Angaben, sobald sie für das Verfahren und zur Abwehr möglicher Ansprüche nicht mehr erforderlich sind, sofern keine längere gesetzliche Pflicht oder gesonderte Einwilligung besteht. Eine automatische Entscheidungsfindung findet nicht statt."
         }
       ]
     },
     {
-      "id": "speicherdauer",
-      "title": "13) Speicherdauer",
+      "id": "google-maps",
+      "title": "9) Google Maps",
       "blocks": [
         {
           "type": "paragraph",
-          "text": "Wir speichern personenbezogene Daten nur so lange, wie es für die jeweiligen Zwecke erforderlich ist oder gesetzliche Aufbewahrungspflichten bestehen."
+          "text": "Auf der Kontaktseite kann eine Karte von Google Maps eingeblendet werden. Anbieter ist Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland. Die Karte wird erst geladen, wenn Sie in den Cookie-Einstellungen externe Medien erlauben. Dabei können insbesondere IP-Adresse, Browser- und Gerätedaten an Google übertragen und auch in den USA verarbeitet werden."
+        },
+        {
+          "type": "paragraph",
+          "text": "Rechtsgrundlage für das Laden der Karte ist Ihre Einwilligung gemäß Art. 6 Abs. 1 lit. a DSGVO und § 25 Abs. 1 TDDDG. Sie können sie jederzeit in den Cookie-Einstellungen widerrufen. Der separate Routenlink führt erst beim Anklicken zu Google Maps."
+        },
+        {
+          "type": "link",
+          "text": "Datenschutzhinweise von Google",
+          "href": "https://policies.google.com/privacy?hl=de"
+        }
+      ]
+    },
+    {
+      "id": "youtube",
+      "title": "10) YouTube-Video",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Auf der Startseite ist ein Video von YouTube im erweiterten Datenschutzmodus (youtube-nocookie.com) eingebunden. Anbieter ist Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland. Das eingebettete Video wird erst nach Ihrer Einwilligung in externe Medien geladen. Dabei können insbesondere IP-Adresse, Browser- und Gerätedaten an Google übertragen und auch in den USA verarbeitet werden."
+        },
+        {
+          "type": "paragraph",
+          "text": "Rechtsgrundlage ist Ihre Einwilligung gemäß Art. 6 Abs. 1 lit. a DSGVO und § 25 Abs. 1 TDDDG. Sie können sie jederzeit über die Cookie-Einstellungen widerrufen. Wenn Sie stattdessen den externen YouTube-Link anklicken, verlassen Sie unsere Website."
+        },
+        {
+          "type": "link",
+          "text": "Datenschutzhinweise von Google und YouTube",
+          "href": "https://policies.google.com/privacy?hl=de"
+        }
+      ]
+    },
+    {
+      "id": "empfaenger",
+      "title": "11) Empfänger und Speicherdauer",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Personenbezogene Daten erhalten innerhalb unseres Unternehmens nur die zuständigen Personen. Wir geben Daten außerdem an Dienstleister weiter, soweit dies für Hosting, E-Mail-Versand oder die Bearbeitung Ihrer Anfrage erforderlich ist. Soweit diese in unserem Auftrag tätig werden, gelten die Anforderungen des Art. 28 DSGVO. Eine Weitergabe aufgrund gesetzlicher Pflichten bleibt möglich."
+        },
+        {
+          "type": "paragraph",
+          "text": "Soweit in den einzelnen Abschnitten keine genauere Frist genannt ist, speichern wir Daten nur so lange, wie der jeweilige Zweck besteht. Anschließend löschen wir sie, sofern keine gesetzlichen Aufbewahrungspflichten oder berechtigten Gründe für eine weitere Speicherung entgegenstehen."
         }
       ]
     },
     {
       "id": "rechte",
-      "title": "14) Ihre Rechte",
+      "title": "12) Ihre Rechte",
       "blocks": [
         {
           "type": "paragraph",
-          "text": "Sie haben das Recht auf:"
+          "text": "Sie haben nach Maßgabe der DSGVO folgende Rechte:"
         },
         {
           "type": "list",
           "items": [
-            "Auskunft nach Art. 15 DSGVO",
-            "Berichtigung nach Art. 16 DSGVO",
-            "Löschung nach Art. 17 DSGVO",
-            "Einschränkung der Verarbeitung nach Art. 18 DSGVO",
-            "Datenübertragbarkeit nach Art. 20 DSGVO",
-            "Widerspruch gegen eine Verarbeitung auf Basis von Art. 6 Abs. 1 lit. f DSGVO nach Art. 21 DSGVO",
-            "Widerruf einer Einwilligung nach Art. 7 Abs. 3 DSGVO, jederzeit mit Wirkung für die Zukunft"
+            "Auskunft (Art. 15 DSGVO)",
+            "Berichtigung (Art. 16 DSGVO)",
+            "Löschung (Art. 17 DSGVO)",
+            "Einschränkung der Verarbeitung (Art. 18 DSGVO)",
+            "Datenübertragbarkeit (Art. 20 DSGVO)",
+            "Widerspruch gegen eine Verarbeitung auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO (Art. 21 DSGVO)",
+            "Widerruf einer Einwilligung mit Wirkung für die Zukunft (Art. 7 Abs. 3 DSGVO)"
           ]
         },
         {
           "type": "paragraph",
-          "text": "Außerdem haben Sie das Recht, sich nach Art. 77 DSGVO bei einer Datenschutz-Aufsichtsbehörde zu beschweren."
+          "text": "Außerdem haben Sie das Recht, sich bei einer Datenschutz-Aufsichtsbehörde zu beschweren (Art. 77 DSGVO). Für Fragen oder die Ausübung Ihrer Rechte erreichen Sie uns unter mail@perlas.de."
         }
       ]
     },
     {
-      "id": "sicherheit",
-      "title": "15) Sicherheitsmaßnahmen",
+      "id": "sicherheit-aenderungen",
+      "title": "13) Sicherheit und Änderungen",
       "blocks": [
         {
           "type": "paragraph",
-          "text": "Wir setzen technische und organisatorische Maßnahmen ein, um Ihre Daten gegen Verlust, Manipulation oder unberechtigte Zugriffe zu schützen."
-        }
-      ]
-    },
-    {
-      "id": "aenderungen",
-      "title": "16) Änderungen dieser Datenschutzerklärung",
-      "blocks": [
-        {
-          "type": "paragraph",
-          "text": "Wir passen diese Datenschutzerklärung an, wenn sich Rechtslage, Technik oder unsere Verarbeitungsvorgänge ändern."
+          "text": "Wir treffen angemessene technische und organisatorische Maßnahmen zum Schutz Ihrer Daten. Diese Datenschutzerklärung passen wir an, wenn sich die Rechtslage, die Website oder unsere Verarbeitungsvorgänge ändern."
         }
       ]
     }

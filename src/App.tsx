@@ -964,12 +964,6 @@ const serviceGalleries: Record<string, ServiceGallery> = {
         alt: 'Mitarbeiter von Perla’s bei der Gebäudereinigung',
         position: '50% 30%',
       },
-      {
-        image: 'kundenbilder/leistungen/service-update-2026-09-23/reinigung_waschmaschinen_01.png',
-        label: 'Gemeinschaftsbereiche',
-        alt: 'Mitarbeiter von Perla’s beim Transport einer Waschmaschine in einem Gemeinschaftsbereich',
-        position: '50% 48%',
-      },
       projectPhotos.brickCourt,
     ],
   },
@@ -1401,6 +1395,23 @@ function Hero() {
 }
 
 function HomeVideo() {
+  const [videoAllowed, setVideoAllowed] = useState(() => {
+    try {
+      const stored = window.localStorage.getItem('perlas-cookie-consent-v2')
+      return stored ? Boolean((JSON.parse(stored) as { marketing?: boolean }).marketing) : false
+    } catch {
+      return false
+    }
+  })
+
+  useEffect(() => {
+    const updateConsent = (event: Event) => {
+      setVideoAllowed(Boolean((event as CustomEvent<{ marketing?: boolean }>).detail?.marketing))
+    }
+    window.addEventListener('perlas:consent-change', updateConsent)
+    return () => window.removeEventListener('perlas:consent-change', updateConsent)
+  }, [])
+
   return (
     <section className="home-video" aria-labelledby="home-video-heading">
       <div className="home-video-copy" data-reveal="left">
@@ -1414,15 +1425,26 @@ function HomeVideo() {
           <PlayCircle aria-hidden="true" /> Video auf YouTube öffnen
         </a>
       </div>
-      <div className="home-video-frame" data-reveal="right" style={{ '--reveal-delay': '80ms' } as CSSProperties}>
-        <iframe
-          src="https://www.youtube-nocookie.com/embed/u8PsU3hYVYU?rel=0"
-          title="Perla’s Objektbetreuung: Einblick in das Unternehmen"
-          loading="lazy"
-          referrerPolicy="strict-origin-when-cross-origin"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowFullScreen
-        />
+      <div className={`home-video-frame${videoAllowed ? '' : ' home-video-frame--consent'}`} data-reveal="right" style={{ '--reveal-delay': '80ms' } as CSSProperties}>
+        {videoAllowed ? (
+          <iframe
+            src="https://www.youtube-nocookie.com/embed/u8PsU3hYVYU?rel=0"
+            title="Perla’s Objektbetreuung: Einblick in das Unternehmen"
+            loading="lazy"
+            referrerPolicy="strict-origin-when-cross-origin"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+          />
+        ) : (
+          <div className="home-video-consent">
+            <PlayCircle aria-hidden="true" />
+            <strong>Video ansehen</strong>
+            <p>Für das eingebettete Video benötigen wir Ihre Zustimmung zu externen Medien.</p>
+            <button type="button" onClick={() => window.dispatchEvent(new Event('perlas:open-cookie-settings'))}>
+              Externe Medien erlauben
+            </button>
+          </div>
+        )}
       </div>
     </section>
   )
@@ -3104,19 +3126,18 @@ type PrivacyBlock =
   | { type: 'paragraph'; text: string }
   | { type: 'subheading'; text: string }
   | { type: 'list'; items: string[] }
+  | { type: 'link'; text: string; href: string }
   | { type: 'contact'; company: string; address: string; phone: string; phoneHref: string; email: string }
 
 type PrivacySectionContent = {
   id: string
   title: string
   blocks: PrivacyBlock[]
-  review?: string
 }
 
 type PrivacyContent = {
   updated: string
   lead: string
-  sourceNote: string
   sections: PrivacySectionContent[]
 }
 
@@ -3161,6 +3182,10 @@ function PrivacyBlockContent({ block }: { block: PrivacyBlock }) {
 
   if (block.type === 'list') {
     return <ul>{block.items.map((item) => <li key={item}>{item}</li>)}</ul>
+  }
+
+  if (block.type === 'link') {
+    return <p><a href={block.href} target="_blank" rel="noreferrer">{block.text}</a></p>
   }
 
   if (block.type === 'contact') {
@@ -3223,25 +3248,12 @@ function LegalPage({ type }: { type: LegalPageType }) {
               </nav>
             </aside>
             <div className="legal-copy legal-copy--privacy">
-              <div className="legal-source-note">
-                <ShieldCheck aria-hidden="true" />
-                <div>
-                  <strong>Grundlage und Prüfstatus</strong>
-                  <p>{privacy.sourceNote}</p>
-                </div>
-              </div>
               {privacy.sections.map((section) => (
                 <section id={section.id} key={section.id}>
                   <h2>{section.title}</h2>
                   {section.blocks.map((block, index) => (
                     <PrivacyBlockContent block={block} key={`${section.id}-${block.type}-${index}`} />
                   ))}
-                  {section.review && (
-                    <aside className="legal-review-note">
-                      <strong>Hinweis zum aktuellen technischen Stand</strong>
-                      <p>{section.review}</p>
-                    </aside>
-                  )}
                 </section>
               ))}
             </div>
