@@ -4249,21 +4249,21 @@ p {
 }
 
 .service-gallery-grid {
-  width: min(100%, 930px);
-  margin-top: 48px;
+  width: min(100%, 720px);
+  margin-top: 38px;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 22px;
+  gap: 18px;
 }
 
 .service-gallery-grid figure {
   position: relative;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 3 / 2;
   margin: 0;
   overflow: hidden;
-  border-radius: 32px;
+  border-radius: 24px;
   background: var(--primary);
-  box-shadow: 0 18px 42px rgb(7 51 114 / 13%);
+  box-shadow: 0 12px 30px rgb(7 51 114 / 12%);
 }
 
 @media (min-width: 901px) {
@@ -4271,10 +4271,24 @@ p {
   .service-gallery-grid--large {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
+
+  .service-gallery-grid--large figure {
+    aspect-ratio: 4 / 5;
+  }
 }
 
-.service-gallery-grid--large figure {
-  aspect-ratio: 4 / 5;
+@media (max-width: 900px) {
+  .service-gallery-grid--large figure {
+    aspect-ratio: 4 / 3;
+  }
+}
+
+@media (min-width: 600px) and (max-width: 900px) {
+  .service-gallery-grid--three figure:last-child {
+    grid-column: 1 / -1;
+    width: calc((100% - 18px) / 2);
+    justify-self: center;
+  }
 }
 
 .service-gallery-grid img {
@@ -4294,11 +4308,11 @@ p {
 .service-gallery-grid figcaption {
   position: absolute;
   z-index: 1;
-  right: 24px;
-  bottom: 22px;
-  left: 24px;
+  right: 16px;
+  bottom: 16px;
+  left: 16px;
   color: #fff;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 800;
 }
 
@@ -7097,13 +7111,13 @@ p {
   }
 
   .service-gallery-grid {
-    margin-top: 34px;
-    grid-template-columns: 1fr;
+    width: min(100%, 620px);
+    margin-top: 30px;
     gap: 16px;
   }
 
   .service-gallery-grid figure {
-    border-radius: 26px;
+    border-radius: 20px;
   }
 
   .service-process > div {
@@ -14366,5 +14380,14 @@ body {
   .expandable-collection__toggle svg {
     animation: none;
     transition: none;
+  }
+}
+
+@media (max-width: 599px) {
+  .service-gallery-grid {
+    width: min(100%, 280px);
+    margin-right: auto;
+    margin-left: auto;
+    grid-template-columns: minmax(0, 1fr);
   }
 }
