@@ -14,6 +14,7 @@ import {
   Route,
   SlidersHorizontal,
 } from 'lucide-react'
+import ResponsiveImage from './ResponsiveImage'
 
 type ContactPageProps = {
   onQuoteOpen: () => void
@@ -24,7 +25,6 @@ type ConsentSnapshot = {
 }
 
 const BASE_PATH = import.meta.env.BASE_URL
-const ASSETS_PATH = `${BASE_PATH}assets/`
 const CONSENT_STORAGE_KEY = 'perlas-cookie-consent-v2'
 const WHATSAPP_URL = 'https://wa.me/491776867145?text=Hallo%20Perla%E2%80%99s%20Team%2C%20ich%20interessiere%20mich%20f%C3%BCr%20Ihre%20Objektbetreuung.'
 const MAP_EMBED_URL = 'https://www.google.com/maps?q=Hauptstra%C3%9Fe%201%2C%2065843%20Sulzbach%20(Taunus)%2C%20Deutschland&output=embed'
@@ -136,7 +136,13 @@ export default function ContactPage({ onQuoteOpen }: ContactPageProps) {
           </div>
         </div>
         <figure className="contact-page-hero-visual" data-reveal="right" style={{ '--reveal-delay': '80ms' } as CSSProperties}>
-          <img src={`${ASSETS_PATH}kundenbilder/leistungen/transport_umzug_lieferung.png`} alt="Mitarbeiter von Perla’s mit Servicefahrzeug bei einem Kundeneinsatz" />
+          <ResponsiveImage
+            asset="kundenbilder/leistungen/transport_umzug_lieferung.png"
+            alt="Mitarbeiter von Perla’s mit Servicefahrzeug bei einem Kundeneinsatz"
+            loading="eager"
+            fetchPriority="high"
+            sizes="(max-width: 767px) calc(100vw - 40px), 50vw"
+          />
           <figcaption>
             <ClipboardCheck aria-hidden="true" />
             <span><strong>Strukturiert anfragen</strong><small>Objekt, Leistungen und Intervalle gemeinsam klären</small></span>

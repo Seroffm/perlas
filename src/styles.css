@@ -180,6 +180,7 @@ p {
   padding: 15px 22px;
   display: inline-flex;
   border-radius: 999px;
+  color: #fff;
   background: var(--primary);
 }
 
@@ -208,6 +209,82 @@ p {
 .seo-static-links {
   display: grid;
   gap: 12px;
+}
+
+.seo-static-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 24px;
+}
+
+.seo-static-hero > .seo-static-image {
+  width: min(100%, 600px);
+  margin-top: 32px;
+}
+
+.seo-static-footer {
+  padding: 56px 24px 28px;
+  background: #fff;
+  color: #000;
+}
+
+.seo-static-footer__inner {
+  width: min(100%, 1180px);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  gap: 28px 48px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.seo-static-footer__brand img {
+  width: 180px;
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+.seo-static-footer__brand p {
+  max-width: 520px;
+}
+
+.seo-static-footer__contact {
+  display: grid;
+  align-content: start;
+  gap: 8px;
+}
+
+.seo-static-footer__contact h2 {
+  font-size: 20px;
+}
+
+.seo-static-footer address {
+  font-style: normal;
+}
+
+.seo-static-footer__nav,
+.seo-static-footer__legal {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+}
+
+.seo-static-footer__nav,
+.seo-static-footer__legal,
+.seo-static-footer__inner > p {
+  grid-column: 1 / -1;
+}
+
+.seo-static-footer a:focus-visible {
+  outline: 2px solid #073372;
+  outline-offset: 4px;
+}
+
+@media (max-width: 760px) {
+  .seo-static-footer__inner {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }
 
 .seo-static-main details {
@@ -1031,33 +1108,43 @@ p {
 .hero-slider-controls {
   position: absolute;
   z-index: 3;
-  bottom: 25px;
-  left: 22px;
+  bottom: 7px;
+  left: 4px;
   display: flex;
   align-items: center;
-  gap: 7px;
+  gap: 0;
 }
 
 .hero-slider-controls button {
-  width: 8px;
-  height: 8px;
+  width: 44px;
+  height: 44px;
   padding: 0;
+  display: grid;
+  place-items: center;
   border: 0;
   border-radius: 999px;
+  background: transparent;
+  cursor: pointer;
+}
+
+.hero-slider-controls button::before {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  content: '';
   background: rgb(255 255 255 / 70%);
   box-shadow: 0 0 0 1px rgb(7 51 114 / 12%);
-  cursor: pointer;
   transition: width 180ms ease, background-color 180ms ease;
 }
 
-.hero-slider-controls button.is-active {
+.hero-slider-controls button.is-active::before {
   width: 26px;
   background: var(--primary);
 }
 
 .hero-slider-controls button:focus-visible {
   outline: 3px solid #fff;
-  outline-offset: 3px;
+  outline-offset: -4px;
 }
 
 .facility-overview {
@@ -5550,20 +5637,6 @@ p {
   37% { transform: translateY(-3px) rotate(0); }
 }
 
-@keyframes header-drop-in {
-  from { opacity: 0; transform: translateY(-18px); }
-}
-
-@keyframes hero-copy-in {
-  from { opacity: 0; transform: translateY(28px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes hero-art-in {
-  from { opacity: 0; transform: translateX(34px) scale(0.965); }
-  to { opacity: 1; transform: translateX(0) scale(1); }
-}
-
 @keyframes hero-proof-float {
   0%,
   100% { transform: translateY(0); }
@@ -5576,34 +5649,7 @@ p {
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .site-header {
-    animation: header-drop-in 520ms ease both;
-  }
-
-  .hero-copy > .eyebrow,
-  .hero-copy > h1,
-  .hero-copy > .hero-lead,
-  .hero-copy > .button-row {
-    opacity: 0;
-    animation: hero-copy-in 720ms cubic-bezier(0.2, 0.72, 0.22, 1) forwards;
-  }
-
-  .hero-copy > h1 {
-    animation-delay: 80ms;
-  }
-
-  .hero-copy > .hero-lead {
-    animation-delay: 170ms;
-  }
-
-  .hero-copy > .button-row {
-    animation-delay: 260ms;
-  }
-
-  .hero-art {
-    animation: hero-art-in 900ms 140ms cubic-bezier(0.2, 0.72, 0.22, 1) both;
-  }
-
+  /* Keep the initial viewport visible immediately, without an opacity gate. */
   .hero-proof {
     animation: hero-proof-float 5s 1.2s ease-in-out infinite;
   }
@@ -6633,8 +6679,8 @@ p {
   }
 
   .hero-slider-controls {
-    bottom: 174px;
-    left: 28px;
+    bottom: 156px;
+    left: 10px;
   }
 
   .hero-proof {
@@ -7464,7 +7510,7 @@ p {
 
 .home-digital-software-logo small {
   margin-top: 1px;
-  color: #ff8b00;
+  color: #000;
   font-size: 13px;
   font-weight: 800;
   letter-spacing: -0.035em;

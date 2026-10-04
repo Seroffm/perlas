@@ -8,7 +8,10 @@
     "build": "tsc -b && vite build",
     "build:pages": "npm run build && node scripts/prepare-pages.mjs",
     "preview": "vite preview",
-    "lint": "tsc -b --pretty false"
+    "lint": "tsc -b --pretty false",
+    "check:seo": "node scripts/check-seo-build.mjs",
+    "optimize:images": "node scripts/optimize-images.mjs",
+    "check:images": "node scripts/optimize-images.mjs --check"
   },
   "dependencies": {
     "@fontsource/inter": "^5.2.5",
@@ -20,6 +23,7 @@
     "@types/react": "^18.3.18",
     "@types/react-dom": "^18.3.5",
     "@vitejs/plugin-react": "^4.3.4",
+    "sharp": "0.35.4",
     "typescript": "^5.7.3",
     "vite": "^6.1.0"
   }

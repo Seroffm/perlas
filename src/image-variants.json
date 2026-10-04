@@ -1,0 +1,428 @@
+{
+  "kundenbilder/fahrzeuge/perlas_fahrzeug_gewerbe_01.png": {
+    "src": "optimized/fahrzeuge-perlas-fahrzeug-gewerbe-01-a7ab2be880-465.webp",
+    "srcSet": "optimized/fahrzeuge-perlas-fahrzeug-gewerbe-01-a7ab2be880-320.webp 320w, optimized/fahrzeuge-perlas-fahrzeug-gewerbe-01-a7ab2be880-465.webp 465w",
+    "width": 465,
+    "height": 368
+  },
+  "kundenbilder/fahrzeuge/perlas_fahrzeug_wohnobjekt_02.png": {
+    "src": "optimized/fahrzeuge-perlas-fahrzeug-wohnobjekt-02-6e01451d9b-468.webp",
+    "srcSet": "optimized/fahrzeuge-perlas-fahrzeug-wohnobjekt-02-6e01451d9b-320.webp 320w, optimized/fahrzeuge-perlas-fahrzeug-wohnobjekt-02-6e01451d9b-468.webp 468w",
+    "width": 468,
+    "height": 482
+  },
+  "kundenbilder/fahrzeuge/perlas_fuhrpark_ki.png": {
+    "src": "optimized/fahrzeuge-perlas-fuhrpark-ki-610b57585d-1280.webp",
+    "srcSet": "optimized/fahrzeuge-perlas-fuhrpark-ki-610b57585d-320.webp 320w, optimized/fahrzeuge-perlas-fuhrpark-ki-610b57585d-640.webp 640w, optimized/fahrzeuge-perlas-fuhrpark-ki-610b57585d-960.webp 960w, optimized/fahrzeuge-perlas-fuhrpark-ki-610b57585d-1280.webp 1280w",
+    "width": 2172,
+    "height": 724
+  },
+  "kundenbilder/fahrzeuge/perlas_fuhrpark_real.png": {
+    "src": "optimized/fahrzeuge-perlas-fuhrpark-real-91da3522a9-1280.webp",
+    "srcSet": "optimized/fahrzeuge-perlas-fuhrpark-real-91da3522a9-320.webp 320w, optimized/fahrzeuge-perlas-fuhrpark-real-91da3522a9-640.webp 640w, optimized/fahrzeuge-perlas-fuhrpark-real-91da3522a9-960.webp 960w, optimized/fahrzeuge-perlas-fuhrpark-real-91da3522a9-1280.webp 1280w",
+    "width": 1672,
+    "height": 941
+  },
+  "kundenbilder/hero/auto_kennzeichen_verpixelt.png": {
+    "src": "optimized/hero-auto-kennzeichen-verpixelt-6198e5cd5d-1280.webp",
+    "srcSet": "optimized/hero-auto-kennzeichen-verpixelt-6198e5cd5d-320.webp 320w, optimized/hero-auto-kennzeichen-verpixelt-6198e5cd5d-640.webp 640w, optimized/hero-auto-kennzeichen-verpixelt-6198e5cd5d-960.webp 960w, optimized/hero-auto-kennzeichen-verpixelt-6198e5cd5d-1280.webp 1280w",
+    "width": 1536,
+    "height": 1024
+  },
+  "kundenbilder/hero/facility-management-objekt.jpg": {
+    "src": "optimized/hero-facility-management-objekt-6716eb74cf-1280.webp",
+    "srcSet": "optimized/hero-facility-management-objekt-6716eb74cf-320.webp 320w, optimized/hero-facility-management-objekt-6716eb74cf-640.webp 640w, optimized/hero-facility-management-objekt-6716eb74cf-960.webp 960w, optimized/hero-facility-management-objekt-6716eb74cf-1280.webp 1280w",
+    "width": 1536,
+    "height": 1024
+  },
+  "kundenbilder/hero/hausverwaltungen-mehrfamilienhaus.jpg": {
+    "src": "optimized/hero-hausverwaltungen-mehrfamilienhaus-c561bb1cb5-827.webp",
+    "srcSet": "optimized/hero-hausverwaltungen-mehrfamilienhaus-c561bb1cb5-320.webp 320w, optimized/hero-hausverwaltungen-mehrfamilienhaus-c561bb1cb5-640.webp 640w, optimized/hero-hausverwaltungen-mehrfamilienhaus-c561bb1cb5-827.webp 827w",
+    "width": 827,
+    "height": 485
+  },
+  "kundenbilder/hero/mitarbeiter-persoenlicher-service.jpg": {
+    "src": "optimized/hero-mitarbeiter-persoenlicher-service-b648f6ed4d-930.webp",
+    "srcSet": "optimized/hero-mitarbeiter-persoenlicher-service-b648f6ed4d-320.webp 320w, optimized/hero-mitarbeiter-persoenlicher-service-b648f6ed4d-640.webp 640w, optimized/hero-mitarbeiter-persoenlicher-service-b648f6ed4d-930.webp 930w",
+    "width": 930,
+    "height": 625
+  },
+  "kundenbilder/leistungen/aussenanlagen_laubblasen.png": {
+    "src": "optimized/leistungen-aussenanlagen-laubblasen-d4adeadf9b-412.webp",
+    "srcSet": "optimized/leistungen-aussenanlagen-laubblasen-d4adeadf9b-320.webp 320w, optimized/leistungen-aussenanlagen-laubblasen-d4adeadf9b-412.webp 412w",
+    "width": 412,
+    "height": 545
+  },
+  "kundenbilder/leistungen/baumpflege/baumfaellung_baumabtrag_01.png": {
+    "src": "optimized/leistungen-baumpflege-baumfaellung-baumabtrag-01-ba175f5725-498.webp",
+    "srcSet": "optimized/leistungen-baumpflege-baumfaellung-baumabtrag-01-ba175f5725-320.webp 320w, optimized/leistungen-baumpflege-baumfaellung-baumabtrag-01-ba175f5725-498.webp 498w",
+    "width": 498,
+    "height": 618
+  },
+  "kundenbilder/leistungen/baumpflege/baumfaellung_chainsaw_01.png": {
+    "src": "optimized/leistungen-baumpflege-baumfaellung-chainsaw-01-044a525de3-981.webp",
+    "srcSet": "optimized/leistungen-baumpflege-baumfaellung-chainsaw-01-044a525de3-320.webp 320w, optimized/leistungen-baumpflege-baumfaellung-chainsaw-01-044a525de3-640.webp 640w, optimized/leistungen-baumpflege-baumfaellung-chainsaw-01-044a525de3-960.webp 960w, optimized/leistungen-baumpflege-baumfaellung-chainsaw-01-044a525de3-981.webp 981w",
+    "width": 981,
+    "height": 662
+  },
+  "kundenbilder/leistungen/baumpflege/baumfaellung_holztragen_01.png": {
+    "src": "optimized/leistungen-baumpflege-baumfaellung-holztragen-01-cf2e2b218d-492.webp",
+    "srcSet": "optimized/leistungen-baumpflege-baumfaellung-holztragen-01-cf2e2b218d-320.webp 320w, optimized/leistungen-baumpflege-baumfaellung-holztragen-01-cf2e2b218d-492.webp 492w",
+    "width": 492,
+    "height": 560
+  },
+  "kundenbilder/leistungen/baumpflege/baumfaellung_hubsteiger_01.png": {
+    "src": "optimized/leistungen-baumpflege-baumfaellung-hubsteiger-01-70afe3f521-495.webp",
+    "srcSet": "optimized/leistungen-baumpflege-baumfaellung-hubsteiger-01-70afe3f521-320.webp 320w, optimized/leistungen-baumpflege-baumfaellung-hubsteiger-01-70afe3f521-495.webp 495w",
+    "width": 495,
+    "height": 470
+  },
+  "kundenbilder/leistungen/entsorgung_kartonage.png": {
+    "src": "optimized/leistungen-entsorgung-kartonage-804509ba72-457.webp",
+    "srcSet": "optimized/leistungen-entsorgung-kartonage-804509ba72-320.webp 320w, optimized/leistungen-entsorgung-kartonage-804509ba72-457.webp 457w",
+    "width": 457,
+    "height": 621
+  },
+  "kundenbilder/leistungen/gartenpflege_hecke_01.png": {
+    "src": "optimized/leistungen-gartenpflege-hecke-01-a4f83642bc-463.webp",
+    "srcSet": "optimized/leistungen-gartenpflege-hecke-01-a4f83642bc-320.webp 320w, optimized/leistungen-gartenpflege-hecke-01-a4f83642bc-463.webp 463w",
+    "width": 463,
+    "height": 585
+  },
+  "kundenbilder/leistungen/gebaeudereinigung_flur.png": {
+    "src": "optimized/leistungen-gebaeudereinigung-flur-d4094219c0-920.webp",
+    "srcSet": "optimized/leistungen-gebaeudereinigung-flur-d4094219c0-320.webp 320w, optimized/leistungen-gebaeudereinigung-flur-d4094219c0-640.webp 640w, optimized/leistungen-gebaeudereinigung-flur-d4094219c0-920.webp 920w",
+    "width": 920,
+    "height": 607
+  },
+  "kundenbilder/leistungen/kleinreparatur_bohren.png": {
+    "src": "optimized/leistungen-kleinreparatur-bohren-51abd0f2ee-470.webp",
+    "srcSet": "optimized/leistungen-kleinreparatur-bohren-51abd0f2ee-320.webp 320w, optimized/leistungen-kleinreparatur-bohren-51abd0f2ee-470.webp 470w",
+    "width": 470,
+    "height": 578
+  },
+  "kundenbilder/leistungen/muellmanagement/muellmanagement_tonne_bewegen_01.png": {
+    "src": "optimized/leistungen-muellmanagement-muellmanagement-tonne-bewegen-01-597ea6e5eb-450.webp",
+    "srcSet": "optimized/leistungen-muellmanagement-muellmanagement-tonne-bewegen-01-597ea6e5eb-320.webp 320w, optimized/leistungen-muellmanagement-muellmanagement-tonne-bewegen-01-597ea6e5eb-450.webp 450w",
+    "width": 450,
+    "height": 611
+  },
+  "kundenbilder/leistungen/muellmanagement/muelltonnen_blau_01.png": {
+    "src": "optimized/leistungen-muellmanagement-muelltonnen-blau-01-06ef468ddf-495.webp",
+    "srcSet": "optimized/leistungen-muellmanagement-muelltonnen-blau-01-06ef468ddf-320.webp 320w, optimized/leistungen-muellmanagement-muelltonnen-blau-01-06ef468ddf-495.webp 495w",
+    "width": 495,
+    "height": 570
+  },
+  "kundenbilder/leistungen/muellmanagement/muelltonnen_schwarz_01.png": {
+    "src": "optimized/leistungen-muellmanagement-muelltonnen-schwarz-01-58b12e707d-500.webp",
+    "srcSet": "optimized/leistungen-muellmanagement-muelltonnen-schwarz-01-58b12e707d-320.webp 320w, optimized/leistungen-muellmanagement-muelltonnen-schwarz-01-58b12e707d-500.webp 500w",
+    "width": 500,
+    "height": 645
+  },
+  "kundenbilder/leistungen/projektfotos/Aussenanlagen_Gepflasterter_Weg_am_Gebaeude.jpg": {
+    "src": "optimized/leistungen-projektfotos-aussenanlagen-gepflasterter-weg-am-gebaeude-fad4549e99-1200.webp",
+    "srcSet": "optimized/leistungen-projektfotos-aussenanlagen-gepflasterter-weg-am-gebaeude-fad4549e99-320.webp 320w, optimized/leistungen-projektfotos-aussenanlagen-gepflasterter-weg-am-gebaeude-fad4549e99-640.webp 640w, optimized/leistungen-projektfotos-aussenanlagen-gepflasterter-weg-am-gebaeude-fad4549e99-960.webp 960w, optimized/leistungen-projektfotos-aussenanlagen-gepflasterter-weg-am-gebaeude-fad4549e99-1200.webp 1200w",
+    "width": 1200,
+    "height": 1600
+  },
+  "kundenbilder/leistungen/projektfotos/Gartenpflege_Arbeitsgeraet_am_Heckenweg.jpg": {
+    "src": "optimized/leistungen-projektfotos-gartenpflege-arbeitsgeraet-am-heckenweg-fef24b0fb5-1200.webp",
+    "srcSet": "optimized/leistungen-projektfotos-gartenpflege-arbeitsgeraet-am-heckenweg-fef24b0fb5-320.webp 320w, optimized/leistungen-projektfotos-gartenpflege-arbeitsgeraet-am-heckenweg-fef24b0fb5-640.webp 640w, optimized/leistungen-projektfotos-gartenpflege-arbeitsgeraet-am-heckenweg-fef24b0fb5-960.webp 960w, optimized/leistungen-projektfotos-gartenpflege-arbeitsgeraet-am-heckenweg-fef24b0fb5-1200.webp 1200w",
+    "width": 1200,
+    "height": 1600
+  },
+  "kundenbilder/leistungen/projektfotos/Gartenpflege_Gepflegter_Gartenweg_01.jpg": {
+    "src": "optimized/leistungen-projektfotos-gartenpflege-gepflegter-gartenweg-01-1763da2eaf-1200.webp",
+    "srcSet": "optimized/leistungen-projektfotos-gartenpflege-gepflegter-gartenweg-01-1763da2eaf-320.webp 320w, optimized/leistungen-projektfotos-gartenpflege-gepflegter-gartenweg-01-1763da2eaf-640.webp 640w, optimized/leistungen-projektfotos-gartenpflege-gepflegter-gartenweg-01-1763da2eaf-960.webp 960w, optimized/leistungen-projektfotos-gartenpflege-gepflegter-gartenweg-01-1763da2eaf-1200.webp 1200w",
+    "width": 1200,
+    "height": 1600
+  },
+  "kundenbilder/leistungen/projektfotos/Gartenpflege_Gepflegter_Gartenweg_02.jpg": {
+    "src": "optimized/leistungen-projektfotos-gartenpflege-gepflegter-gartenweg-02-44867fc703-1200.webp",
+    "srcSet": "optimized/leistungen-projektfotos-gartenpflege-gepflegter-gartenweg-02-44867fc703-320.webp 320w, optimized/leistungen-projektfotos-gartenpflege-gepflegter-gartenweg-02-44867fc703-640.webp 640w, optimized/leistungen-projektfotos-gartenpflege-gepflegter-gartenweg-02-44867fc703-960.webp 960w, optimized/leistungen-projektfotos-gartenpflege-gepflegter-gartenweg-02-44867fc703-1200.webp 1200w",
+    "width": 1200,
+    "height": 1600
+  },
+  "kundenbilder/leistungen/projektfotos/Objektbetreuung_Gepflegter_Eingangsbereich.jpg": {
+    "src": "optimized/leistungen-projektfotos-objektbetreuung-gepflegter-eingangsbereich-a74d71ffea-1280.webp",
+    "srcSet": "optimized/leistungen-projektfotos-objektbetreuung-gepflegter-eingangsbereich-a74d71ffea-320.webp 320w, optimized/leistungen-projektfotos-objektbetreuung-gepflegter-eingangsbereich-a74d71ffea-640.webp 640w, optimized/leistungen-projektfotos-objektbetreuung-gepflegter-eingangsbereich-a74d71ffea-960.webp 960w, optimized/leistungen-projektfotos-objektbetreuung-gepflegter-eingangsbereich-a74d71ffea-1280.webp 1280w",
+    "width": 1600,
+    "height": 1200
+  },
+  "kundenbilder/leistungen/projektfotos/Objektbetreuung_Gepflegter_Hof_Backsteingebaeude.jpg": {
+    "src": "optimized/leistungen-projektfotos-objektbetreuung-gepflegter-hof-backsteingebaeude-aae0f30fa7-1280.webp",
+    "srcSet": "optimized/leistungen-projektfotos-objektbetreuung-gepflegter-hof-backsteingebaeude-aae0f30fa7-320.webp 320w, optimized/leistungen-projektfotos-objektbetreuung-gepflegter-hof-backsteingebaeude-aae0f30fa7-640.webp 640w, optimized/leistungen-projektfotos-objektbetreuung-gepflegter-hof-backsteingebaeude-aae0f30fa7-960.webp 960w, optimized/leistungen-projektfotos-objektbetreuung-gepflegter-hof-backsteingebaeude-aae0f30fa7-1280.webp 1280w",
+    "width": 1600,
+    "height": 1200
+  },
+  "kundenbilder/leistungen/projektfotos/Objektbetreuung_Gepflegter_Hof_Wohngebaeude.jpg": {
+    "src": "optimized/leistungen-projektfotos-objektbetreuung-gepflegter-hof-wohngebaeude-cd79583f80-1200.webp",
+    "srcSet": "optimized/leistungen-projektfotos-objektbetreuung-gepflegter-hof-wohngebaeude-cd79583f80-320.webp 320w, optimized/leistungen-projektfotos-objektbetreuung-gepflegter-hof-wohngebaeude-cd79583f80-640.webp 640w, optimized/leistungen-projektfotos-objektbetreuung-gepflegter-hof-wohngebaeude-cd79583f80-960.webp 960w, optimized/leistungen-projektfotos-objektbetreuung-gepflegter-hof-wohngebaeude-cd79583f80-1200.webp 1200w",
+    "width": 1200,
+    "height": 1600
+  },
+  "kundenbilder/leistungen/projektfotos/Objektbetreuung_Innenhof_Arbeitseinsatz.jpg": {
+    "src": "optimized/leistungen-projektfotos-objektbetreuung-innenhof-arbeitseinsatz-ec2fa960a4-1280.webp",
+    "srcSet": "optimized/leistungen-projektfotos-objektbetreuung-innenhof-arbeitseinsatz-ec2fa960a4-320.webp 320w, optimized/leistungen-projektfotos-objektbetreuung-innenhof-arbeitseinsatz-ec2fa960a4-640.webp 640w, optimized/leistungen-projektfotos-objektbetreuung-innenhof-arbeitseinsatz-ec2fa960a4-960.webp 960w, optimized/leistungen-projektfotos-objektbetreuung-innenhof-arbeitseinsatz-ec2fa960a4-1280.webp 1280w",
+    "width": 1600,
+    "height": 1200
+  },
+  "kundenbilder/leistungen/projektfotos/Objektbetreuung_Wohnanlage_Aussenansicht.jpg": {
+    "src": "optimized/leistungen-projektfotos-objektbetreuung-wohnanlage-aussenansicht-7339e12e79-1280.webp",
+    "srcSet": "optimized/leistungen-projektfotos-objektbetreuung-wohnanlage-aussenansicht-7339e12e79-320.webp 320w, optimized/leistungen-projektfotos-objektbetreuung-wohnanlage-aussenansicht-7339e12e79-640.webp 640w, optimized/leistungen-projektfotos-objektbetreuung-wohnanlage-aussenansicht-7339e12e79-960.webp 960w, optimized/leistungen-projektfotos-objektbetreuung-wohnanlage-aussenansicht-7339e12e79-1280.webp 1280w",
+    "width": 1600,
+    "height": 1200
+  },
+  "kundenbilder/leistungen/service-update-2026-09-23/buero_einrichtungsservice_01.png": {
+    "src": "optimized/leistungen-service-update-2026-09-23-buero-einrichtungsservice-01-50db90110c-492.webp",
+    "srcSet": "optimized/leistungen-service-update-2026-09-23-buero-einrichtungsservice-01-50db90110c-320.webp 320w, optimized/leistungen-service-update-2026-09-23-buero-einrichtungsservice-01-50db90110c-492.webp 492w",
+    "width": 492,
+    "height": 661
+  },
+  "kundenbilder/leistungen/service-update-2026-09-23/reinigung_waschmaschinen_01.png": {
+    "src": "optimized/leistungen-service-update-2026-09-23-reinigung-waschmaschinen-01-46d291ad26-500.webp",
+    "srcSet": "optimized/leistungen-service-update-2026-09-23-reinigung-waschmaschinen-01-46d291ad26-320.webp 320w, optimized/leistungen-service-update-2026-09-23-reinigung-waschmaschinen-01-46d291ad26-500.webp 500w",
+    "width": 500,
+    "height": 657
+  },
+  "kundenbilder/leistungen/service-update-2026-09-23/wartung_bohren_portrait_01.png": {
+    "src": "optimized/leistungen-service-update-2026-09-23-wartung-bohren-portrait-01-acb988e31d-550.webp",
+    "srcSet": "optimized/leistungen-service-update-2026-09-23-wartung-bohren-portrait-01-acb988e31d-320.webp 320w, optimized/leistungen-service-update-2026-09-23-wartung-bohren-portrait-01-acb988e31d-550.webp 550w",
+    "width": 550,
+    "height": 653
+  },
+  "kundenbilder/leistungen/service-update-2026-09-23/wartung_bohren_portrait_02.png": {
+    "src": "optimized/leistungen-service-update-2026-09-23-wartung-bohren-portrait-02-fab2adcb85-705.webp",
+    "srcSet": "optimized/leistungen-service-update-2026-09-23-wartung-bohren-portrait-02-fab2adcb85-320.webp 320w, optimized/leistungen-service-update-2026-09-23-wartung-bohren-portrait-02-fab2adcb85-640.webp 640w, optimized/leistungen-service-update-2026-09-23-wartung-bohren-portrait-02-fab2adcb85-705.webp 705w",
+    "width": 705,
+    "height": 658
+  },
+  "kundenbilder/leistungen/service-update-2026-09-23/wartung_fassade_01.png": {
+    "src": "optimized/leistungen-service-update-2026-09-23-wartung-fassade-01-728f272ed5-497.webp",
+    "srcSet": "optimized/leistungen-service-update-2026-09-23-wartung-fassade-01-728f272ed5-320.webp 320w, optimized/leistungen-service-update-2026-09-23-wartung-fassade-01-728f272ed5-497.webp 497w",
+    "width": 497,
+    "height": 666
+  },
+  "kundenbilder/leistungen/tiefgarage_saubere_flaeche_01.png": {
+    "src": "optimized/leistungen-tiefgarage-saubere-flaeche-01-a047686612-531.webp",
+    "srcSet": "optimized/leistungen-tiefgarage-saubere-flaeche-01-a047686612-320.webp 320w, optimized/leistungen-tiefgarage-saubere-flaeche-01-a047686612-531.webp 531w",
+    "width": 531,
+    "height": 702
+  },
+  "kundenbilder/leistungen/transport_umzug_lieferung.png": {
+    "src": "optimized/leistungen-transport-umzug-lieferung-caa0790f6c-930.webp",
+    "srcSet": "optimized/leistungen-transport-umzug-lieferung-caa0790f6c-320.webp 320w, optimized/leistungen-transport-umzug-lieferung-caa0790f6c-640.webp 640w, optimized/leistungen-transport-umzug-lieferung-caa0790f6c-930.webp 930w",
+    "width": 930,
+    "height": 625
+  },
+  "kundenbilder/leistungen/winterdienst_fahrzeug_nacht_02.png": {
+    "src": "optimized/leistungen-winterdienst-fahrzeug-nacht-02-6fd68395a2-461.webp",
+    "srcSet": "optimized/leistungen-winterdienst-fahrzeug-nacht-02-6fd68395a2-320.webp 320w, optimized/leistungen-winterdienst-fahrzeug-nacht-02-6fd68395a2-461.webp 461w",
+    "width": 461,
+    "height": 536
+  },
+  "kundenbilder/leistungen/winterdienst_team.png": {
+    "src": "optimized/leistungen-winterdienst-team-4d7edc92fa-927.webp",
+    "srcSet": "optimized/leistungen-winterdienst-team-4d7edc92fa-320.webp 320w, optimized/leistungen-winterdienst-team-4d7edc92fa-640.webp 640w, optimized/leistungen-winterdienst-team-4d7edc92fa-927.webp 927w",
+    "width": 927,
+    "height": 617
+  },
+  "kundenbilder/objekte/gewerbeobjekt_dach_02.png": {
+    "src": "optimized/objekte-gewerbeobjekt-dach-02-83e5484080-466.webp",
+    "srcSet": "optimized/objekte-gewerbeobjekt-dach-02-83e5484080-320.webp 320w, optimized/objekte-gewerbeobjekt-dach-02-83e5484080-466.webp 466w",
+    "width": 466,
+    "height": 317
+  },
+  "kundenbilder/objekte/hausverwaltungen-besprechung.jpg": {
+    "src": "optimized/objekte-hausverwaltungen-besprechung-223dc6a6d1-1280.webp",
+    "srcSet": "optimized/objekte-hausverwaltungen-besprechung-223dc6a6d1-320.webp 320w, optimized/objekte-hausverwaltungen-besprechung-223dc6a6d1-640.webp 640w, optimized/objekte-hausverwaltungen-besprechung-223dc6a6d1-960.webp 960w, optimized/objekte-hausverwaltungen-besprechung-223dc6a6d1-1280.webp 1280w",
+    "width": 1536,
+    "height": 1024
+  },
+  "kundenbilder/objekte/wohnanlage_01.png": {
+    "src": "optimized/objekte-wohnanlage-01-d48113c485-465.webp",
+    "srcSet": "optimized/objekte-wohnanlage-01-d48113c485-320.webp 320w, optimized/objekte-wohnanlage-01-d48113c485-465.webp 465w",
+    "width": 465,
+    "height": 487
+  },
+  "kundenbilder/objekte/wohnanlage_eingang_02.png": {
+    "src": "optimized/objekte-wohnanlage-eingang-02-914bbe9df7-462.webp",
+    "srcSet": "optimized/objekte-wohnanlage-eingang-02-914bbe9df7-320.webp 320w, optimized/objekte-wohnanlage-eingang-02-914bbe9df7-462.webp 462w",
+    "width": 462,
+    "height": 527
+  },
+  "kundenbilder/objekte/wohnanlage_modern_02.png": {
+    "src": "optimized/objekte-wohnanlage-modern-02-c636ac2382-827.webp",
+    "srcSet": "optimized/objekte-wohnanlage-modern-02-c636ac2382-320.webp 320w, optimized/objekte-wohnanlage-modern-02-c636ac2382-640.webp 640w, optimized/objekte-wohnanlage-modern-02-c636ac2382-827.webp 827w",
+    "width": 827,
+    "height": 485
+  },
+  "kundenbilder/objekte/wohnobjekt_modern_02.png": {
+    "src": "optimized/objekte-wohnobjekt-modern-02-c33739724b-837.webp",
+    "srcSet": "optimized/objekte-wohnobjekt-modern-02-c33739724b-320.webp 320w, optimized/objekte-wohnobjekt-modern-02-c33739724b-640.webp 640w, optimized/objekte-wohnobjekt-modern-02-c33739724b-837.webp 837w",
+    "width": 837,
+    "height": 571
+  },
+  "kundenbilder/objekte/wohnobjekt_modern_eingang_01.png": {
+    "src": "optimized/objekte-wohnobjekt-modern-eingang-01-a8dd0bb12e-527.webp",
+    "srcSet": "optimized/objekte-wohnobjekt-modern-eingang-01-a8dd0bb12e-320.webp 320w, optimized/objekte-wohnobjekt-modern-eingang-01-a8dd0bb12e-527.webp 527w",
+    "width": 527,
+    "height": 608
+  },
+  "kundenbilder/spielplatz/spielbereich_innen_01.png": {
+    "src": "optimized/spielplatz-spielbereich-innen-01-2201504c76-926.webp",
+    "srcSet": "optimized/spielplatz-spielbereich-innen-01-2201504c76-320.webp 320w, optimized/spielplatz-spielbereich-innen-01-2201504c76-640.webp 640w, optimized/spielplatz-spielbereich-innen-01-2201504c76-926.webp 926w",
+    "width": 926,
+    "height": 662
+  },
+  "kundenbilder/spielplatz/spielplatz_aussen_01.png": {
+    "src": "optimized/spielplatz-spielplatz-aussen-01-a340f85155-975.webp",
+    "srcSet": "optimized/spielplatz-spielplatz-aussen-01-a340f85155-320.webp 320w, optimized/spielplatz-spielplatz-aussen-01-a340f85155-640.webp 640w, optimized/spielplatz-spielplatz-aussen-01-a340f85155-960.webp 960w, optimized/spielplatz-spielplatz-aussen-01-a340f85155-975.webp 975w",
+    "width": 975,
+    "height": 585
+  },
+  "kundenbilder/spielplatz/spielplatz_schaukel_nah_01.png": {
+    "src": "optimized/spielplatz-spielplatz-schaukel-nah-01-03da179ae3-551.webp",
+    "srcSet": "optimized/spielplatz-spielplatz-schaukel-nah-01-03da179ae3-320.webp 320w, optimized/spielplatz-spielplatz-schaukel-nah-01-03da179ae3-551.webp 551w",
+    "width": 551,
+    "height": 581
+  },
+  "kundenbilder/spielplatz/spielplatz_wohnanlage_01.png": {
+    "src": "optimized/spielplatz-spielplatz-wohnanlage-01-84be3272cc-548.webp",
+    "srcSet": "optimized/spielplatz-spielplatz-wohnanlage-01-84be3272cc-320.webp 320w, optimized/spielplatz-spielplatz-wohnanlage-01-84be3272cc-548.webp 548w",
+    "width": 548,
+    "height": 636
+  },
+  "kundenbilder/team/team_aussenbereich_01.png": {
+    "src": "optimized/team-team-aussenbereich-01-7f6cc687f8-440.webp",
+    "srcSet": "optimized/team-team-aussenbereich-01-7f6cc687f8-320.webp 320w, optimized/team-team-aussenbereich-01-7f6cc687f8-440.webp 440w",
+    "width": 440,
+    "height": 595
+  },
+  "kundenbilder/team/update-2026-09-23/gruender_perlas_01.png": {
+    "src": "optimized/team-update-2026-09-23-gruender-perlas-01-49b429c87e-1011.webp",
+    "srcSet": "optimized/team-update-2026-09-23-gruender-perlas-01-49b429c87e-320.webp 320w, optimized/team-update-2026-09-23-gruender-perlas-01-49b429c87e-640.webp 640w, optimized/team-update-2026-09-23-gruender-perlas-01-49b429c87e-960.webp 960w, optimized/team-update-2026-09-23-gruender-perlas-01-49b429c87e-1011.webp 1011w",
+    "width": 1011,
+    "height": 660
+  },
+  "kundenbilder/team/update-2026-09-23/mitarbeiter_aelterer_hauswart_01.png": {
+    "src": "optimized/team-update-2026-09-23-mitarbeiter-aelterer-hauswart-01-2704627822-527.webp",
+    "srcSet": "optimized/team-update-2026-09-23-mitarbeiter-aelterer-hauswart-01-2704627822-320.webp 320w, optimized/team-update-2026-09-23-mitarbeiter-aelterer-hauswart-01-2704627822-527.webp 527w",
+    "width": 527,
+    "height": 666
+  },
+  "kundenbilder/team/update-2026-09-23/mitarbeiter_bohren_portrait_01.png": {
+    "src": "optimized/team-update-2026-09-23-mitarbeiter-bohren-portrait-01-f719258137-550.webp",
+    "srcSet": "optimized/team-update-2026-09-23-mitarbeiter-bohren-portrait-01-f719258137-320.webp 320w, optimized/team-update-2026-09-23-mitarbeiter-bohren-portrait-01-f719258137-550.webp 550w",
+    "width": 550,
+    "height": 653
+  },
+  "kundenbilder/team/update-2026-09-23/mitarbeiter_bueroeinrichtung_01.png": {
+    "src": "optimized/team-update-2026-09-23-mitarbeiter-bueroeinrichtung-01-47d48e96b3-492.webp",
+    "srcSet": "optimized/team-update-2026-09-23-mitarbeiter-bueroeinrichtung-01-47d48e96b3-320.webp 320w, optimized/team-update-2026-09-23-mitarbeiter-bueroeinrichtung-01-47d48e96b3-492.webp 492w",
+    "width": 492,
+    "height": 661
+  },
+  "kundenbilder/team/update-2026-09-23/mitarbeiter_leiter_fassade_01.png": {
+    "src": "optimized/team-update-2026-09-23-mitarbeiter-leiter-fassade-01-87e9fbe2d7-497.webp",
+    "srcSet": "optimized/team-update-2026-09-23-mitarbeiter-leiter-fassade-01-87e9fbe2d7-320.webp 320w, optimized/team-update-2026-09-23-mitarbeiter-leiter-fassade-01-87e9fbe2d7-497.webp 497w",
+    "width": 497,
+    "height": 666
+  },
+  "kundenbilder/team/update-2026-09-23/mitarbeiter_rechts_unten_ersetzen.png": {
+    "src": "optimized/team-update-2026-09-23-mitarbeiter-rechts-unten-ersetzen-12d61d0f9d-613.webp",
+    "srcSet": "optimized/team-update-2026-09-23-mitarbeiter-rechts-unten-ersetzen-12d61d0f9d-320.webp 320w, optimized/team-update-2026-09-23-mitarbeiter-rechts-unten-ersetzen-12d61d0f9d-613.webp 613w",
+    "width": 613,
+    "height": 636
+  },
+  "kundenbilder/team/update-2026-09-23/mitarbeiter_reinigung_maennlich_01.png": {
+    "src": "optimized/team-update-2026-09-23-mitarbeiter-reinigung-maennlich-01-d749ad444b-703.webp",
+    "srcSet": "optimized/team-update-2026-09-23-mitarbeiter-reinigung-maennlich-01-d749ad444b-320.webp 320w, optimized/team-update-2026-09-23-mitarbeiter-reinigung-maennlich-01-d749ad444b-640.webp 640w, optimized/team-update-2026-09-23-mitarbeiter-reinigung-maennlich-01-d749ad444b-703.webp 703w",
+    "width": 703,
+    "height": 656
+  },
+  "kundenbilder/team/update-2026-09-23/mitarbeiter_reinigung_weiblich_01.png": {
+    "src": "optimized/team-update-2026-09-23-mitarbeiter-reinigung-weiblich-01-93ddce9601-615.webp",
+    "srcSet": "optimized/team-update-2026-09-23-mitarbeiter-reinigung-weiblich-01-93ddce9601-320.webp 320w, optimized/team-update-2026-09-23-mitarbeiter-reinigung-weiblich-01-93ddce9601-615.webp 615w",
+    "width": 615,
+    "height": 662
+  },
+  "kundenbilder/team/update-2026-09-23/mitarbeiter_rote_kappe_bohren_01.png": {
+    "src": "optimized/team-update-2026-09-23-mitarbeiter-rote-kappe-bohren-01-36d3f1eec9-705.webp",
+    "srcSet": "optimized/team-update-2026-09-23-mitarbeiter-rote-kappe-bohren-01-36d3f1eec9-320.webp 320w, optimized/team-update-2026-09-23-mitarbeiter-rote-kappe-bohren-01-36d3f1eec9-640.webp 640w, optimized/team-update-2026-09-23-mitarbeiter-rote-kappe-bohren-01-36d3f1eec9-705.webp 705w",
+    "width": 705,
+    "height": 658
+  },
+  "kundenbilder/team/update-2026-09-23/mitarbeiter_teamlogo_daumen_01.png": {
+    "src": "optimized/team-update-2026-09-23-mitarbeiter-teamlogo-daumen-01-8d59611ad4-500.webp",
+    "srcSet": "optimized/team-update-2026-09-23-mitarbeiter-teamlogo-daumen-01-8d59611ad4-320.webp 320w, optimized/team-update-2026-09-23-mitarbeiter-teamlogo-daumen-01-8d59611ad4-500.webp 500w",
+    "width": 500,
+    "height": 657
+  },
+  "kundenbilder/team/update-2026-09-23/team_van_daumen_01.png": {
+    "src": "optimized/team-update-2026-09-23-team-van-daumen-01-7d95baa77f-930.webp",
+    "srcSet": "optimized/team-update-2026-09-23-team-van-daumen-01-7d95baa77f-320.webp 320w, optimized/team-update-2026-09-23-team-van-daumen-01-7d95baa77f-640.webp 640w, optimized/team-update-2026-09-23-team-van-daumen-01-7d95baa77f-930.webp 930w",
+    "width": 930,
+    "height": 625
+  },
+  "kundenbilder/vorher_nachher/aussenbereich_nachher.png": {
+    "src": "optimized/vorher-nachher-aussenbereich-nachher-0b608fc0e3-835.webp",
+    "srcSet": "optimized/vorher-nachher-aussenbereich-nachher-0b608fc0e3-320.webp 320w, optimized/vorher-nachher-aussenbereich-nachher-0b608fc0e3-640.webp 640w, optimized/vorher-nachher-aussenbereich-nachher-0b608fc0e3-835.webp 835w",
+    "width": 835,
+    "height": 622
+  },
+  "kundenbilder/vorher_nachher/aussenbereich_vorher.png": {
+    "src": "optimized/vorher-nachher-aussenbereich-vorher-6b583796a3-835.webp",
+    "srcSet": "optimized/vorher-nachher-aussenbereich-vorher-6b583796a3-320.webp 320w, optimized/vorher-nachher-aussenbereich-vorher-6b583796a3-640.webp 640w, optimized/vorher-nachher-aussenbereich-vorher-6b583796a3-835.webp 835w",
+    "width": 835,
+    "height": 626
+  },
+  "kundenbilder/vorher_nachher/parkhaus_gereinigt.png": {
+    "src": "optimized/vorher-nachher-parkhaus-gereinigt-143d3cb6f4-467.webp",
+    "srcSet": "optimized/vorher-nachher-parkhaus-gereinigt-143d3cb6f4-320.webp 320w, optimized/vorher-nachher-parkhaus-gereinigt-143d3cb6f4-467.webp 467w",
+    "width": 467,
+    "height": 613
+  },
+  "kundenbilder/vorher_nachher/parkhaus_reinigung_geraet.png": {
+    "src": "optimized/vorher-nachher-parkhaus-reinigung-geraet-9ce916194b-455.webp",
+    "srcSet": "optimized/vorher-nachher-parkhaus-reinigung-geraet-9ce916194b-320.webp 320w, optimized/vorher-nachher-parkhaus-reinigung-geraet-9ce916194b-455.webp 455w",
+    "width": 455,
+    "height": 477
+  },
+  "partners/bundesanstalt.webp": {
+    "src": "optimized/partners-bundesanstalt-f6d7526187-480.webp",
+    "srcSet": "optimized/partners-bundesanstalt-f6d7526187-160.webp 160w, optimized/partners-bundesanstalt-f6d7526187-320.webp 320w, optimized/partners-bundesanstalt-f6d7526187-480.webp 480w",
+    "width": 1280,
+    "height": 333
+  },
+  "partners/david-lloyd-clubs.png": {
+    "src": "optimized/partners-david-lloyd-clubs-3e1819495f-480.webp",
+    "srcSet": "optimized/partners-david-lloyd-clubs-3e1819495f-160.webp 160w, optimized/partners-david-lloyd-clubs-3e1819495f-320.webp 320w, optimized/partners-david-lloyd-clubs-3e1819495f-480.webp 480w",
+    "width": 1643,
+    "height": 642
+  },
+  "partners/immtelli.png": {
+    "src": "optimized/partners-immtelli-1c55ced23e-480.webp",
+    "srcSet": "optimized/partners-immtelli-1c55ced23e-160.webp 160w, optimized/partners-immtelli-1c55ced23e-320.webp 320w, optimized/partners-immtelli-1c55ced23e-480.webp 480w",
+    "width": 2000,
+    "height": 785
+  },
+  "partners/uniresta.jpeg": {
+    "src": "optimized/partners-uniresta-a32c819245-480.webp",
+    "srcSet": "optimized/partners-uniresta-a32c819245-160.webp 160w, optimized/partners-uniresta-a32c819245-320.webp 320w, optimized/partners-uniresta-a32c819245-480.webp 480w",
+    "width": 840,
+    "height": 167
+  },
+  "partners/valo.png": {
+    "src": "optimized/partners-valo-fd2f9482aa-480.webp",
+    "srcSet": "optimized/partners-valo-fd2f9482aa-160.webp 160w, optimized/partners-valo-fd2f9482aa-320.webp 320w, optimized/partners-valo-fd2f9482aa-480.webp 480w",
+    "width": 687,
+    "height": 291
+  },
+  "partners/zeidler.webp": {
+    "src": "optimized/partners-zeidler-859b491423-480.webp",
+    "srcSet": "optimized/partners-zeidler-859b491423-160.webp 160w, optimized/partners-zeidler-859b491423-320.webp 320w, optimized/partners-zeidler-859b491423-480.webp 480w",
+    "width": 1319,
+    "height": 387
+  }
+}

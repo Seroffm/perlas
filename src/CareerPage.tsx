@@ -11,9 +11,9 @@ import {
 } from 'lucide-react'
 import { careerApplicationMailto, FORM_API_CONFIGURED, FORM_LIMITS, MAX_APPLICATION_FILE_SIZE, submitCareerApplication } from './backend'
 import type { JobOpeningContent } from './content-types'
+import ResponsiveImage from './ResponsiveImage'
 
 const BASE_PATH = import.meta.env.BASE_URL
-const ASSETS_PATH = `${BASE_PATH}assets/`
 const PRIVACY_PATH = `${BASE_PATH}datenschutz/`
 
 type CareerPageProps = {
@@ -112,7 +112,13 @@ export default function CareerPage({ jobs }: CareerPageProps) {
           </div>
         </div>
         <figure className="career-hero-image" data-reveal="right">
-          <img src={`${ASSETS_PATH}kundenbilder/team/team_aussenbereich_01.png`} alt="Mitarbeiterin von Perla’s bei einem Außeneinsatz" />
+          <ResponsiveImage
+            asset="kundenbilder/team/team_aussenbereich_01.png"
+            alt="Mitarbeiterin von Perla’s bei einem Außeneinsatz"
+            loading="eager"
+            fetchPriority="high"
+            sizes="(max-width: 767px) calc(100vw - 40px), 50vw"
+          />
           <figcaption><Users aria-hidden="true" /><span><strong>Gemeinsam anpacken</strong><small>Direkt, verlässlich und nah am Objekt</small></span></figcaption>
         </figure>
       </section>
@@ -250,7 +256,11 @@ export function HomeCareerTeaser() {
   return (
     <section className="home-career-teaser" aria-labelledby="home-career-heading">
       <figure data-reveal="left">
-        <img src={`${ASSETS_PATH}kundenbilder/team/team_aussenbereich_01.png`} alt="Mitarbeiterin von Perla’s bei einem Außeneinsatz" loading="lazy" />
+        <ResponsiveImage
+          asset="kundenbilder/team/team_aussenbereich_01.png"
+          alt="Mitarbeiterin von Perla’s bei einem Außeneinsatz"
+          sizes="(max-width: 767px) calc(100vw - 40px), 50vw"
+        />
       </figure>
       <div data-reveal="right">
         <span className="eyebrow">Komm ins Team</span>

@@ -1,4 +1,4 @@
-import { Fragment, useCallback, useEffect, useId, useLayoutEffect, useRef, useState, type CSSProperties, type FormEvent, type ReactNode } from 'react'
+import { Fragment, lazy, Suspense, useCallback, useEffect, useId, useLayoutEffect, useRef, useState, type CSSProperties, type FormEvent, type ReactNode } from 'react'
 import {
   ArrowUpRight,
   BriefcaseBusiness,
@@ -29,10 +29,7 @@ import {
   type LucideIcon,
 } from 'lucide-react'
 import CookieConsent from './CookieConsent'
-import ContactPage from './ContactPage'
-import QuoteModal from './QuoteModal'
-import BlogPage, { BlogArticlePage } from './BlogPage'
-import CareerPage from './CareerPage'
+import ResponsiveImage from './ResponsiveImage'
 import { FORM_LIMITS, submitContactRequest } from './backend'
 import audienceContent from './audience-data.json'
 import blogContent from './blog-data.json'
@@ -42,6 +39,12 @@ import privacyContent from './privacy-content.json'
 import serviceContent from './service-data.json'
 import googleReviewData from './google-reviews-data.json'
 import type { BlogPostContent, JobOpeningContent } from './content-types'
+
+const ContactPage = lazy(() => import('./ContactPage'))
+const CareerPage = lazy(() => import('./CareerPage'))
+const BlogPage = lazy(() => import('./BlogPage'))
+const BlogArticlePage = lazy(() => import('./BlogPage').then((module) => ({ default: module.BlogArticlePage })))
+const QuoteModal = lazy(() => import('./QuoteModal'))
 
 const BASE_PATH = import.meta.env.BASE_URL
 const A = `${BASE_PATH}assets/`
@@ -122,7 +125,8 @@ function usePageSeo(service?: Feature, pageKind: PageKind = 'home', audience?: A
       return
     }
 
-    const siteUrl = new URL(BASE_PATH, window.location.origin)
+    const siteUrl = new URL(import.meta.env.VITE_PERLAS_SITE_URL)
+    if (!siteUrl.pathname.endsWith('/')) siteUrl.pathname += '/'
     const servicesUrl = new URL('leistungen/', siteUrl)
     const facilityUrl = new URL('facility-management/', siteUrl)
     const pageDefinitions: Record<Exclude<PageKind, 'home' | 'notFound'>, { path: string; title: string; description: string; schemaType: string }> = {
@@ -195,11 +199,11 @@ function usePageSeo(service?: Feature, pageKind: PageKind = 'home', audience?: A
       ?? service?.seoDescription
       ?? pageDefinition?.description
       ?? 'Perla’s bündelt Facility Management und professionelle Objektbetreuung für Hausverwaltungen, Wohnanlagen und Gewerbeimmobilien im Rhein-Main-Gebiet.'
-    const imageUrl = new URL(`${BASE_PATH}assets/${article?.image ?? audience?.detailImage?.src ?? audience?.image.src ?? service?.image ?? 'kundenbilder/objekte/wohnanlage_modern_02.png'}`, window.location.origin)
+    const imageUrl = new URL(`assets/${article?.image ?? audience?.detailImage?.src ?? audience?.image.src ?? service?.image ?? 'kundenbilder/objekte/wohnanlage_modern_02.png'}`, siteUrl)
     const indexingOverride = import.meta.env.VITE_PERLAS_INDEX_SITE
-    const indexingEnabled = indexingOverride
+    const indexingEnabled = import.meta.env.DEV ? false : indexingOverride
       ? indexingOverride === 'true'
-      : !window.location.hostname.endsWith('github.io')
+      : !siteUrl.hostname.endsWith('github.io')
     const robots = indexingEnabled ? 'index,follow,max-image-preview:large' : 'noindex,nofollow'
 
     document.title = title
@@ -207,7 +211,7 @@ function usePageSeo(service?: Feature, pageKind: PageKind = 'home', audience?: A
     ensureMeta('meta[name="robots"]', { name: 'robots', content: robots })
     ensureMeta('meta[property="og:title"]', { property: 'og:title', content: title })
     ensureMeta('meta[property="og:description"]', { property: 'og:description', content: description })
-    ensureMeta('meta[property="og:type"]', { property: 'og:type', content: 'website' })
+    ensureMeta('meta[property="og:type"]', { property: 'og:type', content: article ? 'article' : 'website' })
     ensureMeta('meta[property="og:url"]', { property: 'og:url', content: pageUrl.href })
     ensureMeta('meta[property="og:image"]', { property: 'og:image', content: imageUrl.href })
     ensureMeta('meta[name="twitter:card"]', { name: 'twitter:card', content: 'summary_large_image' })
@@ -399,6 +403,30 @@ function useRevealAnimations(routeKey?: string) {
 
     return () => observer.disconnect()
   }, [routeKey])
+}
+
+// Mount alongside resolved route content, not while its lazy chunk is pending.
+function PageReadyEffects({ routeKey }: { routeKey: string }) {
+  useRevealAnimations(routeKey)
+
+  useEffect(() => {
+    const scrollToCurrentSection = () => {
+      const sectionId = decodeURIComponent(window.location.hash.slice(1))
+      if (!sectionId) return
+
+      window.requestAnimationFrame(() => {
+        window.requestAnimationFrame(() => {
+          document.getElementById(sectionId)?.scrollIntoView({ block: 'start' })
+        })
+      })
+    }
+
+    scrollToCurrentSection()
+    window.addEventListener('hashchange', scrollToCurrentSection)
+    return () => window.removeEventListener('hashchange', scrollToCurrentSection)
+  }, [routeKey])
+
+  return null
 }
 
 function ButtonLink({
@@ -1077,7 +1105,7 @@ function Header({ activePage }: { activePage: PageKind }) {
     <header className={menuOpen ? 'site-header menu-is-open' : 'site-header'}>
       <div className="nav-wrap">
         <a className="wordmark" href={homeHref()} aria-label="Perla’s Objektbetreuung Startseite">
-          <img src={`${A}perlas-logo.svg`} alt="Perla’s Objektbetreuung GmbH & Co. KG" />
+          <img src={`${A}perlas-logo.svg`} width={1683} height={368} alt="Perla’s Objektbetreuung GmbH & Co. KG" />
         </a>
         <button
           className="menu-toggle"
@@ -1317,22 +1345,40 @@ function MobileIsland({ onQuoteOpen }: { onQuoteOpen: () => void }) {
 
 function Hero() {
   const [activeSlide, setActiveSlide] = useState(0)
+  const [requestedSlide, setRequestedSlide] = useState(0)
+  const [availableSlides, setAvailableSlides] = useState([0])
+  const [readySlides, setReadySlides] = useState<number[]>([])
   const [sliderResetKey, setSliderResetKey] = useState(0)
+
+  const selectSlide = useCallback((index: number) => {
+    setAvailableSlides((current) => current.includes(index) ? current : [...current, index])
+    setRequestedSlide(index)
+    setSliderResetKey((current) => current + 1)
+  }, [])
+
+  useEffect(() => {
+    if (readySlides.includes(requestedSlide)) setActiveSlide(requestedSlide)
+  }, [readySlides, requestedSlide])
+
+  // Warm only the next photo after the visible one loads. Never replace it with a blank slide.
+  useEffect(() => {
+    if (!readySlides.includes(activeSlide)) return
+    const timeout = window.setTimeout(() => {
+      const next = (activeSlide + 1) % heroSlides.length
+      setAvailableSlides((current) => current.includes(next) ? current : [...current, next])
+    }, 1500)
+    return () => window.clearTimeout(timeout)
+  }, [activeSlide, readySlides])
 
   useEffect(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
 
     const timeout = window.setTimeout(() => {
-      setActiveSlide((current) => (current + 1) % heroSlides.length)
+      selectSlide((activeSlide + 1) % heroSlides.length)
     }, 5200)
 
     return () => window.clearTimeout(timeout)
-  }, [activeSlide, sliderResetKey])
-
-  const selectSlide = (index: number) => {
-    setActiveSlide(index)
-    setSliderResetKey((current) => current + 1)
-  }
+  }, [activeSlide, sliderResetKey, selectSlide])
 
   return (
     <section className="hero" id="top">
@@ -1349,20 +1395,23 @@ function Hero() {
           <ButtonLink href={CONTACT_PATH} arrow>Betreuung anfragen</ButtonLink>
         </div>
       </div>
-      <div className="hero-art" aria-roledescription="Karussell" aria-label="Einblicke in die Arbeit von Perla’s">
+      <div className="hero-art" role="group" aria-roledescription="Karussell" aria-label="Einblicke in die Arbeit von Perla’s">
         <div className="hero-slides" aria-live="off">
           {heroSlides.map((slide, index) => (
             <figure className={index === activeSlide ? 'hero-slide is-active' : 'hero-slide'} aria-hidden={index !== activeSlide} key={slide.image}>
-              <img
-                src={`${A}${slide.image}`}
+              {availableSlides.includes(index) && <ResponsiveImage
+                asset={slide.image}
                 alt={index === activeSlide ? slide.alt : ''}
+                sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 1280px) 45vw, 600px"
                 style={{ objectPosition: slide.position }}
-                decoding="async"
-              />
+                loading="eager"
+                fetchPriority={index === 0 ? 'high' : 'low'}
+                onLoad={() => setReadySlides((current) => current.includes(index) ? current : [...current, index])}
+              />}
             </figure>
           ))}
         </div>
-        <div className="hero-proof" aria-label="25 Jahre Erfahrung">
+        <div className="hero-proof">
           <strong>25+</strong>
           <span>Jahre Erfahrung</span>
           <div>
@@ -1378,7 +1427,7 @@ function Hero() {
             <p>Lokal im Rhein-Main-Gebiet</p>
           </div>
         </div>
-        <div className="hero-slider-controls" aria-label="Bild auswählen">
+        <div className="hero-slider-controls" role="group" aria-label="Bild auswählen">
           {heroSlides.map((slide, index) => (
             <button
               className={index === activeSlide ? 'is-active' : ''}
@@ -1497,8 +1546,8 @@ function HomeDigitalWorkflow() {
         </p>
         <div className="home-digital-software">
           <span>Für Planung und Dokumentation nutzen wir</span>
-          <a className="home-digital-software-link" href="https://hausmeisterapp.com/" target="_blank" rel="noreferrer" aria-label="HausmeisterApp Website öffnen">
-            <span className="home-digital-software-logo" aria-hidden="true">
+          <a className="home-digital-software-link" href="https://hausmeisterapp.com/" target="_blank" rel="noreferrer">
+            <span className="home-digital-software-logo">
               <strong>HAUSMEISTERAPP</strong>
               <small>.COM</small>
             </span>
@@ -1585,7 +1634,7 @@ function HomeCoreServices() {
               style={{ '--reveal-delay': `${index * 60}ms`, '--expandable-delay': `${Math.max(0, index - 3) * 55}ms` } as CSSProperties}
             >
               <div className={`home-service-card-image home-service-card-image--${serviceImageDisplays[service.slug] ?? 'landscape'}`}>
-                <img src={`${A}${service.image}`} alt={`${service.title} im Einsatz bei Perla’s`} loading="lazy" decoding="async" style={{ objectPosition: imagePosition }} />
+                <ResponsiveImage asset={service.image} alt={`${service.title} im Einsatz bei Perla’s`} sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 1100px) 50vw, 380px" style={{ objectPosition: imagePosition }} />
                 <span><Icon aria-hidden="true" /></span>
               </div>
               <div className="home-service-card-copy">
@@ -1645,9 +1694,10 @@ function SpecializedServices({ certifiedOnly = false }: { certifiedOnly?: boolea
               <div className={service.image ? 'specialized-service-media' : 'specialized-service-media specialized-service-media--icon'}>
                 {service.image ? (
                   <>
-                    <img
-                      src={`${A}${service.image}`}
-                      alt={service.imageAlt}
+                    <ResponsiveImage
+                      asset={service.image}
+                      sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 1100px) 50vw, 380px"
+                      alt={service.imageAlt ?? service.title}
                       loading="lazy"
                       decoding="async"
                       style={{ objectPosition: service.imagePosition }}
@@ -1714,8 +1764,8 @@ function HomeFleet() {
         </p>
       </div>
       <figure className="home-fleet-visual" data-reveal="right" style={{ '--reveal-delay': '80ms' } as CSSProperties}>
-        <img
-          src={`${A}kundenbilder/fahrzeuge/perlas_fuhrpark_real.png`}
+        <ResponsiveImage
+          asset="kundenbilder/fahrzeuge/perlas_fuhrpark_real.png"
           alt="Perla’s weiße und dunkelblaue Servicefahrzeuge sowie Lkw vor einer Wohnanlage"
           loading="lazy"
           decoding="async"
@@ -1767,7 +1817,7 @@ function HomeAudienceCards() {
               style={{ '--reveal-delay': `${index * 60}ms` } as CSSProperties}
             >
               <div className={`home-audience-card-image home-audience-card-image--${imageDisplay}`}>
-                <img src={`${A}${image.src}`} alt={image.alt} loading="lazy" decoding="async" style={{ objectPosition: image.position }} />
+                <ResponsiveImage asset={image.src} alt={image.alt} style={{ objectPosition: image.position }} />
                 <span><Icon aria-hidden="true" /></span>
               </div>
               <div className="home-audience-card-copy">
@@ -1820,7 +1870,7 @@ function ServicesOverviewPage() {
           </div>
         </div>
         <figure className="architecture-hero-image" data-reveal="right" style={{ '--reveal-delay': '80ms' } as CSSProperties}>
-          <img src={`${A}kundenbilder/leistungen/transport_umzug_lieferung.png`} alt="Mitarbeiter von Perla’s mit Material am Einsatzfahrzeug" />
+          <ResponsiveImage asset="kundenbilder/leistungen/transport_umzug_lieferung.png" alt="Mitarbeiter von Perla’s mit Material am Einsatzfahrzeug" loading="eager" fetchPriority="high" />
           <figcaption>Echte Einsätze · objektbezogen geplant · verlässlich ausgeführt</figcaption>
         </figure>
       </section>
@@ -1869,7 +1919,7 @@ function ServicesOverviewPage() {
             return (
               <a className={`services-catalog-card${isAdditional ? isCollapsing ? ' expandable-collection__leaving-item' : ' expandable-collection__new-item' : ''}`} href={`${SERVICES_PATH}${feature.slug}/`} data-reveal="up" style={{ '--reveal-delay': `${(index % 3) * 55}ms`, '--expandable-delay': `${Math.max(0, index - 6) * 55}ms` } as CSSProperties} key={feature.slug}>
                 <figure className={`services-catalog-image services-catalog-image--${serviceImageDisplays[feature.slug] ?? 'landscape'}`}>
-                  <img src={`${A}${feature.image}`} alt={`${feature.title} im Einsatz bei Perla’s`} loading="lazy" decoding="async" style={{ objectPosition: imagePosition }} />
+                  <ResponsiveImage asset={feature.image} alt={`${feature.title} im Einsatz bei Perla’s`} sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 1100px) 50vw, 380px" style={{ objectPosition: imagePosition }} />
                 </figure>
                 <span className="services-catalog-icon"><Icon aria-hidden="true" strokeWidth={1.8} /></span>
                 <div><h3>{feature.title}</h3><p>{feature.text}</p></div>
@@ -1981,8 +2031,9 @@ function AboutPage({ onQuoteOpen }: { onQuoteOpen: () => void }) {
       key={member.id}
     >
       <div className="about-team-image">
-        <img
-          src={`${A}${member.image}`}
+        <ResponsiveImage
+          asset={member.image}
+          sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 1100px) 50vw, 380px"
           alt={member.alt}
           loading="lazy"
           decoding="async"
@@ -2011,7 +2062,7 @@ function AboutPage({ onQuoteOpen }: { onQuoteOpen: () => void }) {
           </div>
         </div>
         <figure className="architecture-hero-image" data-reveal="right" style={{ '--reveal-delay': '80ms' } as CSSProperties}>
-          <img src={`${A}kundenbilder/team/update-2026-09-23/team_van_daumen_01.png`} alt="Mitarbeiter von Perla’s am beladenen Einsatzfahrzeug" />
+          <ResponsiveImage asset="kundenbilder/team/update-2026-09-23/team_van_daumen_01.png" alt="Mitarbeiter von Perla’s am beladenen Einsatzfahrzeug" loading="eager" fetchPriority="high" />
           <figcaption>Echtes Team · einsatzbereit im Rhein-Main-Gebiet</figcaption>
         </figure>
       </section>
@@ -2021,7 +2072,7 @@ function AboutPage({ onQuoteOpen }: { onQuoteOpen: () => void }) {
           <span className="eyebrow">Unsere Geschichte</span>
           <h2 id="about-story-heading">Aus Nähe zum Objekt ist verlässliche Betreuung gewachsen.</h2>
           <figure className="about-founder-portrait">
-            <img src={`${A}kundenbilder/team/update-2026-09-23/gruender_perlas_01.png`} alt="Gründer von Perla’s im Einsatzfahrzeug" loading="lazy" decoding="async" />
+            <ResponsiveImage asset="kundenbilder/team/update-2026-09-23/gruender_perlas_01.png" alt="Gründer von Perla’s im Einsatzfahrzeug" />
             <figcaption>Gründung und Aufbau von Perla’s</figcaption>
           </figure>
         </div>
@@ -2104,7 +2155,7 @@ function FacilityOverview() {
         </nav>
       </div>
       <div className="facility-visual" data-reveal="right" style={{ '--reveal-delay': '80ms' } as CSSProperties}>
-        <img src={`${A}kundenbilder/fahrzeuge/perlas_fahrzeug_wohnobjekt_02.png`} alt="Perla’s Servicefahrzeug vor einer betreuten Wohnimmobilie" />
+        <ResponsiveImage asset="kundenbilder/fahrzeuge/perlas_fahrzeug_wohnobjekt_02.png" alt="Perla’s Servicefahrzeug vor einer betreuten Wohnimmobilie" />
         <span>Objektkontrolle · Koordination · Dokumentation</span>
       </div>
       <div className="facility-pillars" data-reveal="up" style={{ '--reveal-delay': '130ms' } as CSSProperties}>
@@ -2136,22 +2187,11 @@ function PartnerMarquee() {
           role={duplicate ? undefined : 'listitem'}
           key={partner.name}
         >
-          {partner.fallback ? (
-            <picture>
-              <source srcSet={`${A}${partner.logo}`} type="image/webp" />
-              <img
-                src={`${A}${partner.fallback}`}
-                alt={duplicate ? '' : partner.name}
-                decoding="async"
-              />
-            </picture>
-          ) : (
-            <img
-              src={`${A}${partner.logo}`}
-              alt={duplicate ? '' : partner.name}
-              decoding="async"
-            />
-          )}
+          <ResponsiveImage
+            asset={partner.logo}
+            alt={duplicate ? '' : partner.name}
+            sizes="(max-width: 767px) 164px, 214px"
+          />
         </div>
       ))}
     </div>
@@ -2229,7 +2269,7 @@ function FacilityManagementPage() {
           </dl>
         </div>
         <figure className="fm-hero-visual" data-reveal="right" style={{ '--reveal-delay': '90ms' } as CSSProperties}>
-          <img src={`${A}kundenbilder/objekte/wohnanlage_modern_02.png`} alt="Große moderne Wohnanlage im Rhein-Main-Gebiet" />
+          <ResponsiveImage asset="kundenbilder/objekte/wohnanlage_modern_02.png" alt="Große moderne Wohnanlage im Rhein-Main-Gebiet" loading="eager" fetchPriority="high" />
           <figcaption>
             <Building2 aria-hidden="true" />
             <span><strong>Objektbetreuung klar koordiniert</strong><small>Leistungen · Intervalle · Rückmeldungen</small></span>
@@ -2327,7 +2367,7 @@ function FacilityManagementPage() {
                   </nav>
                 </div>
                 <figure className="fm-target-image" data-reveal={index % 2 === 0 ? 'right' : 'left'}>
-                  <img src={`${A}${image.src}`} alt={image.alt} style={{ objectPosition: image.position }} />
+                  <ResponsiveImage asset={image.src} alt={image.alt} style={{ objectPosition: image.position }} />
                   <figcaption>{audience.navLabel}</figcaption>
                 </figure>
               </article>
@@ -2389,7 +2429,7 @@ function AudienceDetailPage({ audience, onQuoteOpen }: { audience: AudienceSolut
           </div>
         </div>
         <figure className="audience-detail-hero-image" data-reveal="right" style={{ '--reveal-delay': '80ms' } as CSSProperties}>
-          <img src={`${A}${heroImage.src}`} alt={heroImage.alt} style={{ objectPosition: heroImage.position }} />
+          <ResponsiveImage asset={heroImage.src} alt={heroImage.alt} style={{ objectPosition: heroImage.position }} loading="eager" fetchPriority="high" />
           <figcaption><Icon aria-hidden="true" /><span>{audience.navLabel}</span></figcaption>
         </figure>
       </section>
@@ -2575,14 +2615,13 @@ function Reviews() {
           href={GOOGLE_REVIEWS_URL}
           target="_blank"
           rel="noreferrer"
-          aria-label="Alle Google-Rezensionen von Perla’s Objektbetreuung öffnen"
         >
           <span className="google-review-mark" aria-hidden="true">
             <img src={`${A}google-g.svg`} alt="" />
           </span>
           <span className="google-review-score">
             <strong>{googleReviewData.rating}</strong>
-            <span className="stars" aria-label={`${googleReviewData.rating} von 5 Sternen`}>
+            <span className="stars" role="img" aria-label={`${googleReviewData.rating} von 5 Sternen`}>
               {Array.from({ length: Math.round(Number(googleReviewData.rating.replace(',', '.'))) }, (_, index) => (
                 <img src={`${A}star.svg`} alt="" key={index} />
               ))}
@@ -2618,7 +2657,7 @@ function Reviews() {
         <div className="review-track">
           {reviews.map((review) => (
             <article className="review-card" key={review.author}>
-              <div className="stars" aria-label={`${review.rating} von 5 Sternen`}>
+              <div className="stars" role="img" aria-label={`${review.rating} von 5 Sternen`}>
                 {Array.from({ length: review.rating }, (_, index) => (
                   <img src={`${A}star.svg`} alt="" key={index} />
                 ))}
@@ -2659,7 +2698,7 @@ function About() {
         </div>
       </div>
       <div className="about-image" data-reveal="right" style={{ '--reveal-delay': '80ms' } as CSSProperties}>
-        <img src={`${A}kundenbilder/team/team_aussenbereich_01.png`} alt="Mitarbeiterin von Perla’s bei einem Außeneinsatz" />
+        <ResponsiveImage asset="kundenbilder/team/team_aussenbereich_01.png" alt="Mitarbeiterin von Perla’s bei einem Außeneinsatz" />
       </div>
     </section>
   )
@@ -2820,8 +2859,8 @@ function ServiceMediaGallery({ gallery }: { gallery: ServiceGallery }) {
       <div className={`service-gallery-grid${gallery.large ? ' service-gallery-grid--large' : gallery.items.length === 3 ? ' service-gallery-grid--three' : ''}`}>
         {gallery.items.map((item, index) => (
           <figure data-reveal="up" style={{ '--reveal-delay': `${index * 70}ms` } as CSSProperties} key={item.image}>
-            <img
-              src={`${A}${item.image}`}
+            <ResponsiveImage
+              asset={item.image}
               alt={item.alt}
               loading="lazy"
               decoding="async"
@@ -2884,8 +2923,10 @@ function ServiceDetailPage({ service, onQuoteOpen }: { service: Feature; onQuote
         </div>
         <div className={`service-detail-image service-detail-image--${serviceImageDisplay}`} data-reveal="right" style={{ '--reveal-delay': '80ms' } as CSSProperties}>
           {service.image ? (
-            <img
-              src={`${A}${service.image}`}
+            <ResponsiveImage
+              asset={service.image}
+              loading="eager"
+              fetchPriority="high"
               alt={service.imageAlt || `${service.title} von Perla’s Objektbetreuung`}
               style={{ objectPosition: serviceImagePosition }}
               decoding="async"
@@ -3114,7 +3155,7 @@ function Insights() {
         {insights.map((insight) => (
           <a className="insight-card" href="https://perlas.de/unser-blog/" key={insight.title}>
             <div className="insight-image">
-              <img src={`${A}${insight.image}`} alt="" />
+              <ResponsiveImage asset={insight.image} alt="" sizes="(max-width: 767px) calc(100vw - 40px), 380px" />
               <span>{insight.tag}</span>
             </div>
             <div className="insight-copy">
@@ -3310,7 +3351,7 @@ function Footer() {
 
         <nav className="footer-nav" aria-label="Footer-Navigation">
           <a className="footer-logo" href={homeHref()} aria-label="Perla’s Objektbetreuung Startseite">
-            <img src={`${A}perlas-logo.svg`} alt="Perla’s Objektbetreuung GmbH & Co. KG" />
+            <img src={`${A}perlas-logo.svg`} width={1683} height={368} alt="Perla’s Objektbetreuung GmbH & Co. KG" />
           </a>
           {[
             ['Facility Management', 'facility-management/'],
@@ -3391,24 +3432,6 @@ export default function App() {
               : 'home'
 
   usePageSeo(activeService, pageKind, activeAudience, activeBlogPost)
-  useRevealAnimations(activeService?.slug ?? activeAudience?.id ?? activeBlogPost?.slug ?? pageKind)
-
-  useEffect(() => {
-    const scrollToCurrentSection = () => {
-      const sectionId = decodeURIComponent(window.location.hash.slice(1))
-      if (!sectionId) return
-
-      window.requestAnimationFrame(() => {
-        window.requestAnimationFrame(() => {
-          document.getElementById(sectionId)?.scrollIntoView({ block: 'start' })
-        })
-      })
-    }
-
-    scrollToCurrentSection()
-    window.addEventListener('hashchange', scrollToCurrentSection)
-    return () => window.removeEventListener('hashchange', scrollToCurrentSection)
-  }, [pageKind])
 
   const openQuote = useCallback((service?: string) => {
     setQuoteService(service)
@@ -3420,6 +3443,7 @@ export default function App() {
   return (
     <>
       <Header activePage={pageKind} />
+      <Suspense fallback={<main className="container section"><p role="status">Seite wird geladen …</p></main>}>
       {activeService ? (
         <ServiceDetailPage service={activeService} onQuoteOpen={openQuote} />
       ) : activeAudience ? (
@@ -3463,15 +3487,21 @@ export default function App() {
           <HomeTrust />
         </main>
       )}
+      <PageReadyEffects routeKey={activeService?.slug ?? activeAudience?.id ?? activeBlogPost?.slug ?? pageKind} />
+      </Suspense>
       <Footer />
       <ContactDock />
       <MobileIsland onQuoteOpen={() => openQuote()} />
-      <QuoteModal
-        isOpen={quoteOpen}
-        initialService={quoteService}
-        serviceNames={features.map((service) => service.title)}
-        onClose={closeQuote}
-      />
+      {quoteOpen && (
+        <Suspense fallback={null}>
+          <QuoteModal
+            isOpen={quoteOpen}
+            initialService={quoteService}
+            serviceNames={features.map((service) => service.title)}
+            onClose={closeQuote}
+          />
+        </Suspense>
+      )}
       <CookieConsent />
     </>
   )

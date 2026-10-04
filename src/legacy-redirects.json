@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "state": "prepared-only",
+  "origin": "https://perlas.de",
+  "preparedAt": "2026-10-04T16:18:40Z",
+  "note": "Fachlich passende Altpfade. Diese Datei aktiviert keine Weiterleitungen. GitHub Pages bietet keine frei konfigurierbaren serverseitigen Pfad-301. Umsetzung und Hostingvariante müssen separat freigegeben werden.",
+  "redirects": [
+    {
+      "oldPath": "/regelmaessige-objektpflege-in-sulzbach-frankfurt/",
+      "newPath": "/leistungen/objektpflege/",
+      "status": "prepared",
+      "preferredHttpStatus": 301,
+      "reason": "Kontinuierliche Objektpflege und Objektkontrollen werden auf der bestehenden Objektbetreuungsseite fortgeführt."
+    },
+    {
+      "oldPath": "/gewerbliche-gebaeudewartung-rhein-main/",
+      "newPath": "/facility-management/gewerbeimmobilien/",
+      "status": "prepared",
+      "preferredHttpStatus": 301,
+      "reason": "Der alte Inhalt bündelt Betreuung, Reinigung, Außenpflege, Winterdienst und Fachfirmenkoordination für Gewerbeobjekte. Die Gewerbe-Zielgruppenseite entspricht diesem Gesamtangebot besser als die engere Wartungsseite."
+    },
+    {
+      "oldPath": "/wartung-instandhaltung/",
+      "newPath": "/leistungen/wartung-instandhaltung/",
+      "status": "prepared",
+      "preferredHttpStatus": 301,
+      "reason": "Identisches Leistungsthema unter der neuen Leistungsstruktur."
+    },
+    {
+      "oldPath": "/gebaudereinigung-in-sulzbach-frankfurt/",
+      "newPath": "/leistungen/gebaeudereinigung/",
+      "status": "prepared",
+      "preferredHttpStatus": 301,
+      "reason": "Das Reinigungsangebot für Wohn- und Gewerbeobjekte in Sulzbach, Frankfurt und Rhein-Main wird auf der aktuellen Gebäudereinigungsseite fortgeführt. Die alte Schreibweise ohne ae ist absichtlich unverändert."
+    },
+    {
+      "oldPath": "/gartenpflege-in-sulzbach-frankfurt/",
+      "newPath": "/leistungen/gartenpflege/",
+      "status": "prepared",
+      "preferredHttpStatus": 301,
+      "reason": "Das bestehende Angebot der Garten- und Außenanlagenpflege übernimmt das gleiche Hauptthema."
+    },
+    {
+      "oldPath": "/uber-uns/",
+      "newPath": "/ueber-uns/",
+      "status": "prepared",
+      "preferredHttpStatus": 301,
+      "reason": "Die Unternehmensseite hat nur eine neue Schreibweise im Pfad."
+    },
+    {
+      "oldPath": "/unser-blog/",
+      "newPath": "/blog/",
+      "status": "prepared",
+      "preferredHttpStatus": 301,
+      "reason": "Die alte Blogübersicht entspricht der aktuellen Blogübersicht; einzelne alte Artikel sind nicht Teil dieser Zuordnung."
+    },
+    {
+      "oldPath": "/offene-stellen/",
+      "newPath": "/karriere/",
+      "status": "prepared",
+      "preferredHttpStatus": 301,
+      "reason": "Die Stellenübersicht wird in der aktuellen Karriereseite fortgeführt; dies bestätigt keine unverändert offenen Einzelstellen."
+    }
+  ]
+}

@@ -1,9 +1,9 @@
 import { useMemo, useState, type CSSProperties } from 'react'
 import { ArrowLeft, ArrowUpRight, BookOpen, CalendarDays, Clock3 } from 'lucide-react'
 import type { BlogPostContent } from './content-types'
+import ResponsiveImage from './ResponsiveImage'
 
 const BASE_PATH = import.meta.env.BASE_URL
-const ASSETS_PATH = `${BASE_PATH}assets/`
 const BLOG_PATH = `${BASE_PATH}blog/`
 const CONTACT_PATH = `${BASE_PATH}kontakt/`
 const FEATURED_POST_SLUG = 'objektkontrollen-richtig-dokumentieren'
@@ -41,7 +41,13 @@ export default function BlogPage({ posts }: BlogPageProps) {
         </div>
         <a className="blog-featured" href={`${BLOG_PATH}${featuredPost.slug}/`} data-reveal="up">
           <span className="blog-featured-media">
-            <img src={`${ASSETS_PATH}${featuredPost.image}`} alt={featuredPost.alt} />
+            <ResponsiveImage
+              asset={featuredPost.image}
+              alt={featuredPost.alt}
+              loading="eager"
+              fetchPriority="high"
+              sizes="(max-width: 767px) calc(100vw - 40px), 900px"
+            />
           </span>
           <div className="blog-featured-copy">
             <span className="blog-featured-category">{featuredPost.category}</span>
@@ -81,7 +87,11 @@ export default function BlogPage({ posts }: BlogPageProps) {
           {visiblePosts.map((post, index) => (
             <article className="blog-card" data-reveal="up" style={{ '--reveal-delay': `${index * 70}ms` } as CSSProperties} key={post.slug}>
               <a className="blog-card-image" href={`${BLOG_PATH}${post.slug}/`}>
-                <img src={`${ASSETS_PATH}${post.image}`} alt={post.alt} loading="lazy" decoding="async" />
+                <ResponsiveImage
+                  asset={post.image}
+                  alt={post.alt}
+                  sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 1100px) 50vw, 380px"
+                />
                 <span>{post.category}</span>
               </a>
               <div className="blog-card-copy">
@@ -145,7 +155,13 @@ export function BlogArticlePage({
             </div>
           </div>
           <figure data-reveal="right">
-            <img src={`${ASSETS_PATH}${post.image}`} alt={post.alt} />
+            <ResponsiveImage
+              asset={post.image}
+              alt={post.alt}
+              loading="eager"
+              fetchPriority="high"
+              sizes="(max-width: 767px) calc(100vw - 40px), 900px"
+            />
           </figure>
         </header>
 
@@ -184,7 +200,11 @@ export function BlogArticlePage({
         <div className="blog-related-grid">
           {relatedPosts.slice(0, 2).map((related) => (
             <a href={`${BLOG_PATH}${related.slug}/`} key={related.slug}>
-              <img src={`${ASSETS_PATH}${related.image}`} alt="" loading="lazy" />
+              <ResponsiveImage
+                asset={related.image}
+                alt=""
+                sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 1100px) 50vw, 380px"
+              />
               <span>{related.category}</span>
               <h3>{related.title}</h3>
               <strong>Beitrag lesen <ArrowUpRight aria-hidden="true" /></strong>
