@@ -10,11 +10,8 @@ export type CareerApplicationPayload = {
   website?: string
 }
 
-export type CareerSubmissionResult = {
-  mode: 'api' | 'email'
-  confirmationEmailSent?: boolean
-  requestId?: string
-}
+export type CareerSubmissionResult = { mode: 'email' }
+  | (Omit<ApiSubmissionResult, 'ok'> & { mode: 'api' })
 
 export type QuoteRequestPayload = {
   propertyType: string
@@ -45,6 +42,7 @@ export type ContactRequestPayload = {
 type ApiSubmissionResult = {
   ok: true
   requestId: string
+  reference: string
   confirmationEmailSent: boolean
 }
 
@@ -52,6 +50,7 @@ export type QuoteSubmissionResult = {
   confirmationEmailSent: boolean
   mode: 'demo' | 'api'
   requestId?: string
+  reference: string
 }
 
 const apiBaseUrl = import.meta.env.VITE_PERLAS_API_URL?.trim().replace(/\/$/, '')
@@ -118,7 +117,7 @@ async function submitForm(endpoint: string, formData: FormData): Promise<ApiSubm
   const requestId = await requestIdFor(endpoint, formData)
   formData.set('requestId', requestId)
   const controller = new AbortController()
-  const timeout = window.setTimeout(() => controller.abort(), 25_000)
+  const timeout = window.setTimeout(() => controller.abort(), 60_000)
 
   try {
     const response = await fetch(`${apiBaseUrl}/${endpoint}`, {
@@ -149,6 +148,7 @@ async function submitForm(endpoint: string, formData: FormData): Promise<ApiSubm
     if (!result || typeof result !== 'object'
       || !('ok' in result) || result.ok !== true
       || !('requestId' in result) || result.requestId !== requestId
+      || !('reference' in result) || typeof result.reference !== 'string' || !/^P-[A-F0-9]{10}$/.test(result.reference)
       || !('confirmationEmailSent' in result) || typeof result.confirmationEmailSent !== 'boolean') {
       throw new Error('Der Eingang konnte nicht bestätigt werden. Ihre Eingaben bleiben erhalten. Bitte versuchen Sie es erneut.')
     }
@@ -197,7 +197,7 @@ export async function submitCareerApplication(
   })
   if (payload.file) formData.set('attachment', payload.file)
   const result = await submitForm('career-applications', formData)
-  return { mode: 'api', requestId: result.requestId, confirmationEmailSent: result.confirmationEmailSent }
+  return { mode: 'api', requestId: result.requestId, reference: result.reference, confirmationEmailSent: result.confirmationEmailSent }
 }
 
 export async function submitQuoteRequest(
@@ -208,6 +208,7 @@ export async function submitQuoteRequest(
     return {
       confirmationEmailSent: true,
       mode: 'demo',
+      reference: 'P-0000000000',
     }
   }
 
@@ -229,6 +230,7 @@ export async function submitQuoteRequest(
     confirmationEmailSent: result.confirmationEmailSent,
     mode: 'api',
     requestId: result.requestId,
+    reference: result.reference,
   }
 }
 

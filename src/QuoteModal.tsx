@@ -260,24 +260,24 @@ export default function QuoteModal({ isOpen, initialService, serviceNames, onClo
           {submissionStatus === 'success' ? (
             <div className="quote-success" aria-live="polite">
               <div className="quote-success-icon"><Check aria-hidden="true" /></div>
-              <span>Anfrage erfolgreich</span>
+              <span>Vorgang {submissionResult?.reference}</span>
               <h3>Vielen Dank, {name.trim().split(/\s+/)[0]}.</h3>
               <p>Ihre Anfrage ist bei uns eingegangen. Wir prüfen Ihre Angaben und melden uns persönlich bei Ihnen.</p>
               <div className="quote-success-details">
                 <article>
                   <CheckCircle2 aria-hidden="true" />
                   <div>
-                    <strong>{submissionResult?.confirmationEmailSent ? 'Bestätigungsmail' : 'Anfrage erfasst'}</strong>
+                    <strong>{submissionResult?.confirmationEmailSent ? 'Eingangsbestätigung gesendet' : 'Anfrage angenommen'}</strong>
                     <p>{submissionResult?.confirmationEmailSent
-                      ? 'Eine Bestätigung Ihrer Anfrage erhalten Sie in Kürze per E-Mail.'
-                      : 'Ihre Angaben wurden erfolgreich an Perla’s übermittelt.'}</p>
+                      ? `Die Eingangsbestätigung wurde an ${email.trim()} gesendet.`
+                      : <>Die Bestätigung konnte nicht versendet werden. Bitte prüfen Sie Ihre E-Mail-Adresse. Bei Fragen: <a href="mailto:mail@perlas.de">mail@perlas.de</a>.</>}</p>
                   </div>
                 </article>
                 <article>
                   <ArrowRight aria-hidden="true" />
                   <div>
                     <strong>Wie geht es weiter?</strong>
-                    <p>Wir prüfen Ihre Angaben und melden uns persönlich, um die nächsten Schritte und den passenden Leistungsumfang abzustimmen.</p>
+                    <p>Wir prüfen Ihre Angaben und besprechen die nächsten Schritte persönlich mit Ihnen.</p>
                   </div>
                 </article>
               </div>

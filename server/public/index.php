@@ -8,6 +8,7 @@ const PERLAS_BODY_LIMIT = 6 * 1024 * 1024;
 const PERLAS_FILE_LIMIT = 5 * 1024 * 1024;
 const PERLAS_FROM = "Perla's <formulare@perlas.de>";
 const PERLAS_TO = 'mail@perlas.de';
+require_once __DIR__ . '/mail-templates.php';
 
 final class PerlasHttpError extends RuntimeException
 {
@@ -247,45 +248,6 @@ function perlasFingerprint(string $route, array $data, ?array $attachment): stri
     return hash('sha256', json_encode([$route, $data, $attachment ? [$attachment['filename'], $attachment['sha256']] : null], JSON_THROW_ON_ERROR));
 }
 
-function perlasMail(string $route, array $data, ?array $attachment): array
-{
-    // UUID casing must not change the provider payload for the same idempotency key.
-    $data['requestId'] = strtolower($data['requestId']);
-    $topic = match ($route) {
-        '/quote-requests' => 'Angebotsanfrage',
-        '/contact-requests' => 'Kontaktanfrage',
-        '/career-applications' => 'Bewerbung',
-    };
-    $labels = [
-        'name' => 'Name', 'company' => 'Unternehmen', 'email' => 'E-Mail', 'phone' => 'Telefon',
-        'subject' => 'Betreff', 'propertyType' => 'Objektart', 'street' => 'Straße', 'location' => 'Ort',
-        'services' => 'Leistungen', 'preferredStart' => 'Gewünschter Beginn', 'details' => 'Angaben zum Objekt',
-        'role' => 'Bereich / Stelle', 'message' => 'Nachricht', 'source' => 'Formularseite', 'requestId' => 'Anfragekennung',
-    ];
-    $lines = ["Neue {$topic} über die Perla's Website", ''];
-    foreach ($labels as $key => $label) {
-        if (isset($data[$key]) && $data[$key] !== '') {
-            $lines[] = $label . ': ' . (is_array($data[$key]) ? implode(', ', $data[$key]) : $data[$key]);
-        }
-    }
-    $lines[] = '';
-    $lines[] = 'Datenschutzhinweise wurden im Formular bestätigt.';
-    if ($attachment) {
-        $lines[] = 'Anhang: ' . $attachment['filename'] . ' (Dateien von Bewerbern bitte vor dem Öffnen prüfen).';
-    }
-    $mail = [
-        'from' => PERLAS_FROM,
-        'to' => [PERLAS_TO],
-        'reply_to' => $data['email'],
-        'subject' => "Perla's Website: {$topic}",
-        'text' => implode("\n", $lines),
-    ];
-    if ($attachment) {
-        $mail['attachments'] = [['filename' => $attachment['filename'], 'content' => $attachment['content']]];
-    }
-    return $mail;
-}
-
 function perlasConfig(): array
 {
     $path = dirname(__DIR__) . '/private/perlas-forms-config.php';
@@ -357,7 +319,7 @@ function perlasPruneState(array $state, int $now): array
     return $state;
 }
 
-function perlasConsumeRate(array &$state, string $ipHash, int $now): void
+function perlasConsumeRate(array &$state, string $ipHash, int $now, ?string $recipientHash = null): void
 {
     $hour = intdiv($now, 3600);
     $day = intdiv($now, 86400);
@@ -366,6 +328,26 @@ function perlasConsumeRate(array &$state, string $ipHash, int $now): void
         'global-hour:' . $hour => [30, ($hour + 1) * 3600],
         'global-day:' . $day => [100, ($day + 1) * 86400],
     ];
+    if ($recipientHash !== null) {
+        $limits['recipient-form-hour:' . $recipientHash . ':' . $hour] = [3, ($hour + 1) * 3600];
+        $limits['recipient-form-day:' . $recipientHash . ':' . $day] = [10, ($day + 1) * 86400];
+    }
+    perlasApplyLimits($state, $limits);
+}
+
+function perlasConsumeConfirmationRate(array &$state, string $recipientHash, int $now): void
+{
+    $hour = intdiv($now, 3600);
+    $day = intdiv($now, 86400);
+    // Bound actual confirmation attempts as well as initial submissions. Changing IPs does not help.
+    perlasApplyLimits($state, [
+        'recipient-mail-hour:' . $recipientHash . ':' . $hour => [3, ($hour + 1) * 3600],
+        'recipient-mail-day:' . $recipientHash . ':' . $day => [10, ($day + 1) * 86400],
+    ]);
+}
+
+function perlasApplyLimits(array &$state, array $limits): void
+{
     foreach ($limits as $key => [$limit]) {
         if (($state['rates'][$key]['count'] ?? 0) >= $limit) {
             perlasError(429, 'Es wurden zu viele Anfragen gesendet. Bitte versuchen Sie es später oder rufen Sie uns an.');
@@ -376,12 +358,57 @@ function perlasConsumeRate(array &$state, string $ipHash, int $now): void
     }
 }
 
+/** Opaque short reference, independent of UUID prefixes; checked for collisions under the state lock. */
+function perlasReference(array $state, string $key, string $secret): string
+{
+    for ($counter = 0; $counter < 256; $counter++) {
+        $reference = 'P-' . strtoupper(substr(hash_hmac('sha256', 'reference/' . $key . '/' . $counter, $secret), 0, 10));
+        $duplicate = false;
+        foreach ($state['requests'] as $recordKey => $record) {
+            if ($recordKey !== $key && ($record['reference'] ?? null) === $reference) {
+                $duplicate = true;
+                break;
+            }
+        }
+        if (!$duplicate) {
+            return $reference;
+        }
+    }
+    throw new RuntimeException('Reference is unavailable.');
+}
+
+function perlasSuccess(array $data, array $record): array
+{
+    return [
+        'ok' => true,
+        'requestId' => $data['requestId'],
+        'reference' => $record['reference'],
+        'confirmationEmailSent' => ($record['confirmation_status'] ?? '') === 'sent',
+    ];
+}
+
 function perlasWriteState($handle, array $state): void
 {
     $json = json_encode($state, JSON_THROW_ON_ERROR);
     if (!rewind($handle) || !ftruncate($handle, 0) || fwrite($handle, $json) !== strlen($json) || !fflush($handle)) {
         throw new RuntimeException('State could not be saved.');
     }
+}
+
+/** Do not queue slow submissions behind two network calls for longer than the UI timeout. */
+function perlasAcquireLock($handle, int $waitMicroseconds = 2_000_000): void
+{
+    $deadline = hrtime(true) + max(0, $waitMicroseconds) * 1000;
+    do {
+        if (flock($handle, LOCK_EX | LOCK_NB)) {
+            return;
+        }
+        $remaining = $deadline - hrtime(true);
+        if ($remaining <= 0) {
+            perlasError(503, 'Die Formularübermittlung ist gerade ausgelastet. Ihre Angaben wurden noch nicht übertragen. Bitte versuchen Sie es gleich erneut.');
+        }
+        usleep((int) min(100_000, max(1, intdiv($remaining, 1000))));
+    } while (true);
 }
 
 /** One lock protects limits and send/retry records across PHP workers; state contains no form data. */
@@ -398,9 +425,7 @@ function perlasDispatch(string $route, array $data, ?array $attachment, string $
     }
     @chmod($directory . '/state.json', 0600);
     try {
-        if (!flock($handle, LOCK_EX)) {
-            throw new RuntimeException('State is unavailable.');
-        }
+        perlasAcquireLock($handle);
         $raw = stream_get_contents($handle);
         $state = $raw === '' ? [] : json_decode($raw, true, 64, JSON_THROW_ON_ERROR);
         if (!is_array($state)) {
@@ -414,27 +439,90 @@ function perlasDispatch(string $route, array $data, ?array $attachment, string $
             if (!hash_equals($record['fingerprint'], $fingerprint)) {
                 perlasError(409, 'Diese Anfragekennung gehört zu anderen Angaben. Bitte starten Sie eine neue Anfrage.');
             }
-            if ($record['status'] === 'sent') {
-                return ['ok' => true, 'requestId' => $data['requestId'], 'confirmationEmailSent' => false];
+            if (!isset($record['mail_version'])) {
+                // Legacy successful requests must never receive a new unsolicited confirmation.
+                // Legacy pending payloads cannot be replayed with changed templates/idempotency keys.
+                if ($record['status'] !== 'sent') {
+                    perlasError(409, 'Die ursprüngliche Übertragung konnte nicht bestätigt werden. Bitte kontaktieren Sie uns direkt.');
+                }
+                $record['reference'] = perlasReference($state, $key, $config['state_secret']);
+                $record['mail_version'] = 1;
+                $record['confirmation_status'] = 'disabled';
+                $record['confirmation_attempts'] = 0;
+                $state['requests'][$key] = $record;
+                perlasWriteState($handle, $state);
+                return perlasSuccess($data, $record);
+            }
+            if (!preg_match('/^P-[A-F0-9]{10}$/D', $record['reference'] ?? '')) {
+                throw new RuntimeException('State is unavailable.');
+            }
+            if ($record['status'] === 'sent' && in_array($record['confirmation_status'], ['sent', 'disabled', 'expired'], true)) {
+                return perlasSuccess($data, $record);
             }
             // Resend forgets idempotency keys after 24h. Never risk duplicating an uncertain old send.
-            if ($record['created'] < $now - 23 * 3600) {
+            if ($record['status'] !== 'sent' && $record['created'] < $now - 23 * 3600) {
                 perlasError(409, 'Die ursprüngliche Übertragung konnte nicht bestätigt werden. Bitte kontaktieren Sie uns direkt.');
             }
         }
         $ipHash = hash_hmac('sha256', $remoteAddress, $config['state_secret']);
-        perlasConsumeRate($state, $ipHash, $now);
-        $state['requests'][$key] = [
-            'fingerprint' => $fingerprint,
-            'created' => $record['created'] ?? $now,
-            'status' => 'pending',
-        ];
-        // Persist before sending, so a worker interruption can be retried with the same Resend key.
+        $recipientHash = hash_hmac('sha256', strtolower($data['email']), $config['state_secret']);
+        $send = $transport ?? 'perlasResend';
+        $internalSentThisTurn = false;
+        if (!$record || $record['status'] !== 'sent') {
+            perlasConsumeRate($state, $ipHash, $now, $recipientHash);
+            $record ??= [
+                'fingerprint' => $fingerprint,
+                'created' => $now,
+                'status' => 'pending',
+                'reference' => perlasReference($state, $key, $config['state_secret']),
+                'mail_version' => 2,
+                'confirmation_status' => 'pending',
+                'confirmation_attempts' => 0,
+            ];
+            $state['requests'][$key] = $record;
+            // Persist before either send; interrupted workers retry the same stage-specific provider key.
+            perlasWriteState($handle, $state);
+            $mailData = [...$data, 'requestId' => $key];
+            $send(perlasMail($route, $mailData, $attachment, $record['reference']), 'perlas-form/' . $key . '/internal-v2', $config);
+            $record['status'] = 'sent';
+            $state['requests'][$key] = $record;
+            perlasWriteState($handle, $state);
+            $internalSentThisTurn = true;
+        }
+        if ($record['created'] < $now - 23 * 3600) {
+            $record['confirmation_status'] = 'expired';
+            $state['requests'][$key] = $record;
+            perlasWriteState($handle, $state);
+            return perlasSuccess($data, $record);
+        }
+        // No immediate loops, and at most three attempts for this request, even on network timeouts.
+        if ($record['confirmation_attempts'] >= 3 || ($record['confirmation_last_attempt'] ?? 0) + 60 > $now) {
+            return perlasSuccess($data, $record);
+        }
+        try {
+            $limitedState = $state;
+            if (!$internalSentThisTurn) {
+                perlasConsumeRate($limitedState, $ipHash, $now);
+            }
+            perlasConsumeConfirmationRate($limitedState, $recipientHash, $now);
+            $state = $limitedState;
+            $record['confirmation_attempts']++;
+            $record['confirmation_last_attempt'] = $now;
+            $record['confirmation_status'] = 'pending';
+            $state['requests'][$key] = $record;
+            perlasWriteState($handle, $state);
+            $send(perlasConfirmationMail($route, $data, $record['reference']), 'perlas-form/' . $key . '/confirmation-v2', $config);
+            $record['confirmation_status'] = 'sent';
+        } catch (Throwable) {
+            // The original request is already accepted; a confirmation failure must not undo it.
+            // Pending keeps the same Resend key for bounded retries, including uncertain timeouts.
+            if ($transport === null) {
+                error_log('perlas_forms_confirmation_unavailable');
+            }
+        }
+        $state['requests'][$key] = $record;
         perlasWriteState($handle, $state);
-        ($transport ?? 'perlasResend')(perlasMail($route, $data, $attachment), 'perlas-form/' . $key, $config);
-        $state['requests'][$key]['status'] = 'sent';
-        perlasWriteState($handle, $state);
-        return ['ok' => true, 'requestId' => $data['requestId'], 'confirmationEmailSent' => false];
+        return perlasSuccess($data, $record);
     } finally {
         flock($handle, LOCK_UN);
         fclose($handle);

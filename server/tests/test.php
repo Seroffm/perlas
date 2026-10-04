@@ -98,45 +98,76 @@ try {
         fails(fn() => perlasInspectAttachment($docxPath, 'Bewerbung.docx'), 422, 'DOCX macro disallowed');
     }
 
-    $mail = perlasMail('/contact-requests', $data, null);
+    $reference = 'P-123456789A';
+    $mail = perlasMail('/contact-requests', $data, null, $reference);
     check($mail['to'] === ['mail@perlas.de'] && $mail['from'] === PERLAS_FROM && $mail['reply_to'] === 'test@example.com', 'fixed mail envelope');
-    check(isset($mail['text']) && !array_intersect_key($mail, array_flip(['html', 'cc', 'bcc'])), 'plain text only');
-    $caseData = [...$data, 'requestId' => 'aabbccdd-aabb-4aab-8aab-aabbccddaabb'];
-    check(perlasMail('/contact-requests', $caseData, null) === perlasMail('/contact-requests', [...$caseData, 'requestId' => strtoupper($caseData['requestId'])], null), 'provider payload stable across UUID case');
+    check(isset($mail['text'], $mail['html']) && !array_intersect_key($mail, array_flip(['cc', 'bcc'])), 'HTML and text, no cc/bcc');
+    $confirmation = perlasConfirmationMail('/contact-requests', $data, $reference);
+    check($confirmation['to'] === [$data['email']] && $confirmation['from'] === PERLAS_FROM && $confirmation['reply_to'] === PERLAS_TO, 'single validated confirmation recipient');
+    $untrusted = [...$data, 'name' => 'USER-INJECTED-NAME', 'subject' => 'USER-INJECTED-SUBJECT', 'message' => '<script>USER-INJECTED-MESSAGE</script>', 'company' => 'USER-INJECTED-COMPANY'];
+    $safeConfirmation = perlasConfirmationMail('/contact-requests', $untrusted, $reference);
+    check($safeConfirmation === $confirmation, 'confirmation cannot mirror user-provided content');
+    check(!str_contains($safeConfirmation['html'], '<script>') && !str_contains($safeConfirmation['text'], 'USER-INJECTED'), 'confirmation injection safety');
+    $escapedInternal = perlasMail('/contact-requests', $untrusted, null, $reference);
+    check(!str_contains($escapedInternal['html'], '<script>') && str_contains($escapedInternal['html'], '&lt;script&gt;'), 'internal HTML escapes submitted markup');
+    $careerData = perlasValidate('/career-applications', $career, $origin);
+    $careerMail = perlasMail('/career-applications', $careerData, $pdf, $reference);
+    $careerConfirmation = perlasConfirmationMail('/career-applications', $careerData, $reference);
+    check(count($careerMail['attachments']) === 2 && $careerMail['attachments'][1]['filename'] === $pdf['filename'], 'career attachment only in internal message');
+    check(count($careerConfirmation['attachments']) === 1 && $careerConfirmation['attachments'][0]['content_id'] === 'perlas-logo', 'confirmation carries logo only');
+    try {
+        perlasConfirmationMail('/contact-requests', [...$data, 'email' => "test@example.com\r\nBcc:evil@example.com"], $reference);
+        throw new RuntimeException('FAIL: confirmation address injection must be rejected');
+    } catch (RuntimeException $error) {
+        check($error->getMessage() === 'Mail recipient is unavailable.', 'template revalidates confirmation address');
+    }
+    check(str_contains($mail['subject'], $reference) && str_contains($confirmation['subject'], $reference), 'reference in both subjects');
     $sent = 0;
     $lastKey = '';
-    $transport = function (array $payload, string $key) use (&$sent, &$lastKey): void {
+    $stages = [];
+    $transport = function (array $payload, string $key) use (&$sent, &$lastKey, &$stages): void {
         $sent++;
         $lastKey = $key;
-        check($payload['to'] === ['mail@perlas.de'], 'mock transport recipient');
+        $internal = str_ends_with($key, '/internal-v2');
+        $stages[] = $internal ? 'internal' : 'confirmation';
+        check($internal ? $payload['to'] === ['mail@perlas.de'] : count($payload['to']) === 1, 'mock transport recipient');
     };
     $config = ['state_dir' => $temp . '/state', 'state_secret' => str_repeat('x', 64), 'resend_api_key' => 'not-used'];
     $clock = 1800000000;
     $result = perlasDispatch('/contact-requests', $data, null, '192.0.2.1', $config, $transport, $clock);
-    check($result === ['ok' => true, 'requestId' => uuid(1), 'confirmationEmailSent' => false], 'truthful success');
-    perlasDispatch('/contact-requests', $data, null, '192.0.2.1', $config, $transport, $clock);
-    check($sent === 1 && $lastKey === 'perlas-form/' . uuid(1), 'idempotent resend');
+    check($result['ok'] === true && $result['requestId'] === uuid(1) && $result['confirmationEmailSent'] === true && preg_match('/^P-[A-F0-9]{10}$/D', $result['reference']) === 1, 'truthful two-stage success and short reference');
+    check($stages === ['internal', 'confirmation'], 'internal is accepted before confirmation');
+    $replay = perlasDispatch('/contact-requests', $data, null, '192.0.2.1', $config, $transport, $clock);
+    check($sent === 2 && $lastKey === 'perlas-form/' . uuid(1) . '/confirmation-v2' && $replay === $result, 'idempotent resend and stable reference');
     fails(fn() => perlasDispatch('/contact-requests', [...$data, 'message' => 'different'], null, '192.0.2.1', $config, $transport, $clock), 409, 'idempotency conflict');
     for ($number = 2; $number <= 5; $number++) {
-        perlasDispatch('/contact-requests', perlasValidate('/contact-requests', contact($number), $origin), null, '192.0.2.1', $config, $transport, $clock);
+        $loadData = perlasValidate('/contact-requests', [...contact($number), 'email' => 'load' . $number . '@example.com'], $origin);
+        $loaded = perlasDispatch('/contact-requests', $loadData, null, '192.0.2.1', $config, $transport, $clock);
+        check($loaded['reference'] !== $result['reference'], 'distinct reference');
     }
     fails(fn() => perlasDispatch('/contact-requests', perlasValidate('/contact-requests', contact(6), $origin), null, '192.0.2.1', $config, $transport, $clock), 429, 'IP limit');
     for ($number = 6; $number <= 30; $number++) {
-        perlasDispatch('/contact-requests', perlasValidate('/contact-requests', contact($number), $origin), null, '192.0.2.' . $number, $config, $transport, $clock);
+        perlasDispatch('/contact-requests', perlasValidate('/contact-requests', [...contact($number), 'email' => 'load' . $number . '@example.com'], $origin), null, '192.0.2.' . $number, $config, $transport, $clock);
     }
     fails(fn() => perlasDispatch('/contact-requests', perlasValidate('/contact-requests', contact(31), $origin), null, '192.0.2.31', $config, $transport, $clock), 429, 'global limit');
     $rawState = file_get_contents($config['state_dir'] . '/state.json');
     check(!str_contains($rawState, 'test@example.com') && !str_contains($rawState, '192.0.2.') && !str_contains($rawState, 'Test Kontakt'), 'state has no raw PII');
 
     $retryConfig = [...$config, 'state_dir' => $temp . '/retry'];
+    $failureStages = [];
+    $failInternal = function (array $payload, string $key) use (&$failureStages): void {
+        $failureStages[] = $key;
+        throw new RuntimeException('timeout');
+    };
     try {
-        perlasDispatch('/contact-requests', $data, null, '192.0.2.1', $retryConfig, fn() => throw new RuntimeException('timeout'), $clock);
+        perlasDispatch('/contact-requests', $data, null, '192.0.2.1', $retryConfig, $failInternal, $clock);
         throw new RuntimeException('FAIL: mock transport failure must not succeed');
     } catch (RuntimeException $error) {
         check($error->getMessage() === 'timeout', 'transport failure preserved for adapter');
     }
+    check($failureStages === ['perlas-form/' . uuid(1) . '/internal-v2'], 'no customer confirmation before accepted internal mail');
     perlasDispatch('/contact-requests', $data, null, '192.0.2.1', $retryConfig, $transport, $clock + 30);
-    check($lastKey === 'perlas-form/' . uuid(1), 'retry same provider key');
+    check($lastKey === 'perlas-form/' . uuid(1) . '/confirmation-v2', 'retry uses distinct stable provider keys');
     $oldConfig = [...$config, 'state_dir' => $temp . '/old'];
     try {
         perlasDispatch('/contact-requests', $data, null, '192.0.2.1', $oldConfig, fn() => throw new RuntimeException('timeout'), $clock);
@@ -147,6 +178,98 @@ try {
     check($pruned === ['requests' => [], 'rates' => []], 'state retention');
     $dayState = ['rates' => ['global-day:' . intdiv($clock, 86400) => ['count' => 100, 'expires' => $clock + 1000]]];
     fails(function () use (&$dayState, $clock): void { perlasConsumeRate($dayState, 'ip', $clock); }, 429, 'daily global limit');
+
+    $partialConfig = [...$config, 'state_dir' => $temp . '/partial'];
+    $internalCalls = 0;
+    $confirmationCalls = 0;
+    $confirmationKeys = [];
+    $partialTransport = function (array $payload, string $key) use (&$internalCalls, &$confirmationCalls, &$confirmationKeys): void {
+        if (str_ends_with($key, '/internal-v2')) {
+            $internalCalls++;
+            return;
+        }
+        $confirmationKeys[] = $key;
+        $confirmationCalls++;
+        if ($confirmationCalls === 1) {
+            throw new RuntimeException('confirmation-timeout');
+        }
+    };
+    $partial = perlasDispatch('/contact-requests', $data, null, '192.0.2.1', $partialConfig, $partialTransport, $clock);
+    check($partial['ok'] && !$partial['confirmationEmailSent'] && $internalCalls === 1 && $confirmationCalls === 1, 'partial failure retains accepted internal request');
+    $immediate = perlasDispatch('/contact-requests', $data, null, '192.0.2.1', $partialConfig, $partialTransport, $clock + 30);
+    check($immediate === $partial && $confirmationCalls === 1, 'confirmation backoff');
+    $retried = perlasDispatch('/contact-requests', $data, null, '192.0.2.1', $partialConfig, $partialTransport, $clock + 61);
+    check($retried['confirmationEmailSent'] && $retried['reference'] === $partial['reference'] && $internalCalls === 1 && $confirmationCalls === 2, 'confirmation-only retry');
+    check(count(array_unique($confirmationKeys)) === 1, 'confirmation retry stable key');
+    perlasDispatch('/contact-requests', $data, null, '192.0.2.1', $partialConfig, $partialTransport, $clock + 122);
+    check($internalCalls === 1 && $confirmationCalls === 2, 'both successful stages deduplicated');
+
+    $boundedConfig = [...$config, 'state_dir' => $temp . '/bounded'];
+    $boundedInternal = 0;
+    $boundedConfirm = 0;
+    $failConfirmation = function (array $payload, string $key) use (&$boundedInternal, &$boundedConfirm): void {
+        if (str_ends_with($key, '/internal-v2')) { $boundedInternal++; return; }
+        $boundedConfirm++;
+        throw new RuntimeException('confirmation-timeout');
+    };
+    foreach ([0, 61, 122, 183, 3600] as $delay) {
+        $boundedResult = perlasDispatch('/contact-requests', $data, null, '192.0.2.1', $boundedConfig, $failConfirmation, $clock + $delay);
+        check($boundedResult['ok'] && !$boundedResult['confirmationEmailSent'], 'bounded retry preserves truthful accepted status');
+    }
+    check($boundedInternal === 1 && $boundedConfirm === 3, 'confirmation max three attempts');
+    $expiredResult = perlasDispatch('/contact-requests', $data, null, '192.0.2.1', $boundedConfig, $failConfirmation, $clock + 23 * 3600 + 1);
+    check($expiredResult['ok'] && !$expiredResult['confirmationEmailSent'] && $boundedConfirm === 3, 'expired confirmation never resent');
+
+    $recipientConfig = [...$config, 'state_dir' => $temp . '/recipient'];
+    for ($number = 101; $number <= 103; $number++) {
+        perlasDispatch('/contact-requests', perlasValidate('/contact-requests', contact($number), $origin), null, '192.0.2.' . ($number - 100), $recipientConfig, $transport, $clock);
+    }
+    fails(fn() => perlasDispatch('/contact-requests', perlasValidate('/contact-requests', contact(104), $origin), null, '198.51.100.20', $recipientConfig, $transport, $clock), 429, 'recipient limit survives IP changes');
+    $recipientHash = hash_hmac('sha256', $data['email'], $config['state_secret']);
+    $recipientDay = ['rates' => ['recipient-form-day:' . $recipientHash . ':' . intdiv($clock, 86400) => ['count' => 10, 'expires' => $clock + 3600]]];
+    fails(function () use (&$recipientDay, $clock, $recipientHash): void { perlasConsumeRate($recipientDay, 'another-ip', $clock, $recipientHash); }, 429, 'recipient daily submission limit');
+    $confirmationDay = ['rates' => ['recipient-mail-day:' . $recipientHash . ':' . intdiv($clock, 86400) => ['count' => 10, 'expires' => $clock + 3600]]];
+    fails(function () use (&$confirmationDay, $clock, $recipientHash): void { perlasConsumeConfirmationRate($confirmationDay, $recipientHash, $clock); }, 429, 'recipient daily confirmation limit');
+
+    $legacyConfig = [...$config, 'state_dir' => $temp . '/legacy'];
+    mkdir($legacyConfig['state_dir']);
+    $legacyState = ['requests' => [uuid(1) => ['fingerprint' => perlasFingerprint('/contact-requests', $data, null), 'created' => $clock, 'status' => 'sent']], 'rates' => []];
+    file_put_contents($legacyConfig['state_dir'] . '/state.json', json_encode($legacyState));
+    $legacyCalls = 0;
+    $legacyTransport = function () use (&$legacyCalls): void { $legacyCalls++; };
+    $legacy = perlasDispatch('/contact-requests', $data, null, '192.0.2.1', $legacyConfig, $legacyTransport, $clock);
+    $legacyReplay = perlasDispatch('/contact-requests', $data, null, '192.0.2.1', $legacyConfig, $legacyTransport, $clock + 61);
+    check($legacy['ok'] && !$legacy['confirmationEmailSent'] && preg_match('/^P-[A-F0-9]{10}$/D', $legacy['reference']) === 1 && $legacyReplay === $legacy && $legacyCalls === 0, 'legacy successful requests migrate with no new mail');
+    $legacyState['requests'][uuid(1)]['status'] = 'pending';
+    file_put_contents($legacyConfig['state_dir'] . '/state.json', json_encode($legacyState));
+    fails(fn() => perlasDispatch('/contact-requests', $data, null, '192.0.2.1', $legacyConfig, $legacyTransport, $clock), 409, 'legacy uncertain payload not replayed with new templates');
+    check($legacyCalls === 0, 'legacy pending never sends');
+    $candidate = perlasReference(['requests' => []], uuid(1), $config['state_secret']);
+    $collisionResolved = perlasReference(['requests' => [uuid(2) => ['reference' => $candidate]]], uuid(1), $config['state_secret']);
+    check($candidate !== $collisionResolved, 'short reference collision checked and resolved');
+    $busyConfig = [...$config, 'state_dir' => $temp . '/busy'];
+    mkdir($busyConfig['state_dir']);
+    $busyPath = $busyConfig['state_dir'] . '/state.json';
+    $busyState = '{"requests":[],"rates":[]}';
+    file_put_contents($busyPath, $busyState);
+    $busyHandle = fopen($busyPath, 'c+');
+    $secondHandle = fopen($busyPath, 'c+');
+    check(flock($busyHandle, LOCK_EX | LOCK_NB), 'fixture owns exclusive state lock');
+    try {
+        $start = hrtime(true);
+        fails(fn() => perlasAcquireLock($secondHandle, 100_000), 503, 'bounded nonblocking lock rejects busy state');
+        $elapsed = (hrtime(true) - $start) / 1_000_000_000;
+        check($elapsed >= 0.08 && $elapsed < 1, 'lock wait remains bounded');
+        $busyCalls = 0;
+        $busyTransport = function () use (&$busyCalls): void { $busyCalls++; };
+        fails(fn() => perlasDispatch('/contact-requests', $data, null, '192.0.2.1', $busyConfig, $busyTransport, $clock), 503, 'dispatch aborts before send if state lock is busy');
+        rewind($busyHandle);
+        check($busyCalls === 0 && stream_get_contents($busyHandle) === $busyState, 'busy dispatch changes no state and sends no mail');
+    } finally {
+        fclose($secondHandle);
+        flock($busyHandle, LOCK_UN);
+        fclose($busyHandle);
+    }
     echo "PASS: {$checks} checks; no external email sent.\n";
 } finally {
     // Only remove the explicitly created isolated fixture directory.

@@ -6,7 +6,7 @@ Die Website wird statisch ausgeliefert. Alle Onlineformulare senden an ein separ
 
 ```dotenv
 VITE_PERLAS_API_URL=https://api.perlas.de
-PERLAS_SITE_URL=https://www.perlas.de/
+PERLAS_SITE_URL=https://perlas.de/
 PERLAS_INDEX_SITE=true
 ```
 
@@ -34,7 +34,7 @@ Die gemeinsame Frontend-Anbindung liegt in `src/backend.ts`. Alle Anfragen verwe
 Der Client erwartet eine JSON-Antwort mit derselben `requestId`:
 
 ```json
-{"ok":true,"requestId":"<gesendete UUID>","confirmationEmailSent":false}
+{"ok":true,"requestId":"<gesendete UUID>","reference":"P-12ABCDEF34","confirmationEmailSent":true}
 ```
 
 Ein HTTP-2xx-Status allein genügt nicht. Fehler liefern beispielsweise mit Status 422, 429 oder 5xx:
@@ -43,13 +43,17 @@ Ein HTTP-2xx-Status allein genügt nicht. Fehler liefern beispielsweise mit Stat
 {"ok":false,"message":"Verständliche Fehlermeldung"}
 ```
 
-Der Client bricht nach 25 Sekunden ab. Während des Versands verhindert er doppelte Klicks und zeigt einen Versandstatus. Bei Fehlern bleiben die Eingaben erhalten. Der Server bestätigt Erfolg erst, wenn Resend die interne E-Mail angenommen hat; dies ist noch keine Garantie für den Eingang im Postfach.
+`reference` ist eine kurze, vom Server erzeugte Vorgangsnummer im Format `P-` plus zehn große Hexadezimalzeichen (`^P-[A-F0-9]{10}$`). Der Client prüft dieses Format und zeigt die Vorgangsnummer in der Erfolgsmeldung. Die UUID bleibt ausschließlich die technische Kennung für Wiederholungen.
+
+Der Client bricht nach 60 Sekunden ab, damit die interne E-Mail und die Eingangsbestätigung abgeschlossen werden können. Während des Versands verhindert er doppelte Klicks und zeigt einen Versandstatus. Bei Fehlern bleiben die Eingaben erhalten. Der Server bestätigt Erfolg erst, wenn Resend die interne E-Mail angenommen hat; dies ist noch keine Garantie für den Eingang im Postfach.
 
 ## Empfänger und Bestätigungen
 
-Das Backend verschickt eine Text-E-Mail an den festen Empfänger `mail@perlas.de` mit dem festen Absender `Perla's <formulare@perlas.de>`. Die validierte Nutzermail wird ausschließlich als `reply_to` gesetzt. Versandempfänger, Absender und Attachment-URLs lassen sich nicht durch Formularfelder bestimmen.
+Das Backend verschickt eine gestaltete HTML-E-Mail mit Textalternative an den festen internen Empfänger `mail@perlas.de` mit dem festen Absender `Perla's <formulare@perlas.de>`. Die validierte Nutzermail wird dabei als `reply_to` gesetzt. Der interne Versandempfänger, der Absender und Attachment-URLs lassen sich nicht durch zusätzliche Formularfelder bestimmen.
 
-Der aktuelle Server verschickt keine automatischen Bestätigungen an Nutzermails. Daher ist `confirmationEmailSent` derzeit immer `false`, und die Oberfläche behauptet keine versandte Bestätigung.
+Nach Annahme der internen E-Mail sendet das Backend zusätzlich eine Eingangsbestätigung an die validierte Nutzermail. Diese Bestätigung enthält ausschließlich die Art der Anfrage, die kurze Vorgangsnummer und die Kontaktinformationen von Perla’s. Freie Formulartexte und Bewerbungsanhänge werden nicht an die eingegebene Adresse zurückgespiegelt.
+
+`confirmationEmailSent` ist nur dann `true`, wenn Resend auch die Bestätigung angenommen hat. Scheitert nur diese zweite E-Mail, bleibt die Anfrage angenommen und die Antwort enthält `false`. Die Oberfläche zeigt dann die Vorgangsnummer, erklärt die fehlgeschlagene Bestätigung und verweist auf die Prüfung der E-Mail-Adresse sowie die direkte Kontaktalternative. Sie fordert keinen erneuten Versand der bereits angenommenen Anfrage und enthält kein verbindliches Reaktionszeitversprechen.
 
 ## Validierung und Dateien
 

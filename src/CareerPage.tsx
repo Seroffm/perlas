@@ -82,8 +82,8 @@ export default function CareerPage({ jobs }: CareerPageProps) {
 
       setStatus('success')
       setFeedback(result.confirmationEmailSent
-        ? 'Vielen Dank. Deine Bewerbung wurde übermittelt. Eine Bestätigung erhältst du per E-Mail.'
-        : 'Vielen Dank. Deine Bewerbung wurde erfolgreich übermittelt.')
+        ? `Vielen Dank. Deine Bewerbung wurde angenommen. Vorgang ${result.reference}. Die Eingangsbestätigung wurde per E-Mail gesendet.`
+        : `Deine Bewerbung wurde angenommen. Vorgang ${result.reference}. Die Bestätigung konnte nicht versendet werden. Bitte prüfe deine E-Mail-Adresse. Bei Fragen: mail@perlas.de.`)
       form.reset()
       setSelectedRole('Initiativbewerbung')
     } catch (error) {

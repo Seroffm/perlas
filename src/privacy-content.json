@@ -114,7 +114,7 @@
       "blocks": [
         {
           "type": "paragraph",
-          "text": "Für die Weiterleitung von Anfragen und Bewerbungen aus den Websiteformularen an unser Postfach nutzen wir Resend, einen Dienst der Plus Five Five, Inc., 2261 Market Street #5039, San Francisco, CA 94114, USA. Dabei werden die für den Versand nötigen Daten verarbeitet, insbesondere Absender- und Empfängeradresse, Betreff, Nachrichteninhalt, gegebenenfalls Bewerbungsanhänge sowie technische Zustell- und Protokolldaten. Die angegebene E-Mail-Adresse wird als Antwortadresse verwendet, damit wir Ihre Anfrage persönlich beantworten können. Der Formularversand verschickt derzeit keine automatischen Bestätigungs-E-Mails an die eingegebene Adresse."
+          "text": "Für die Weiterleitung von Anfragen und Bewerbungen aus den Websiteformularen an unser Postfach nutzen wir Resend, einen Dienst der Plus Five Five, Inc., 2261 Market Street #5039, San Francisco, CA 94114, USA. Dabei werden die für den Versand nötigen Daten verarbeitet, insbesondere Absender- und Empfängeradresse, Betreff, Nachrichteninhalt, gegebenenfalls Bewerbungsanhänge sowie technische Zustell- und Protokolldaten. Die angegebene E-Mail-Adresse wird als Antwortadresse verwendet, damit wir Ihre Anfrage persönlich beantworten können. Zusätzlich versenden wir eine Eingangsbestätigung an diese Adresse. Sie enthält die Art der Anfrage, eine kurze Vorgangsnummer und unsere Kontaktinformationen, jedoch keine Kopie Ihrer eingegebenen Nachricht oder Bewerbungsanhänge."
         },
         {
           "type": "paragraph",

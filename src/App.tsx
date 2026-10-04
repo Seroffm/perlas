@@ -2742,8 +2742,8 @@ function ServiceContactForm({ subject }: { subject: string }) {
       })
       setStatus('success')
       setFeedback(result.confirmationEmailSent
-        ? 'Vielen Dank. Ihre Anfrage wurde übermittelt. Eine Bestätigung erhalten Sie per E-Mail.'
-        : 'Vielen Dank. Ihre Anfrage wurde übermittelt. Wir melden uns persönlich bei Ihnen.')
+        ? `Vielen Dank. Ihre Anfrage wurde angenommen. Vorgang ${result.reference}. Die Eingangsbestätigung wurde per E-Mail gesendet.`
+        : `Ihre Anfrage wurde angenommen. Vorgang ${result.reference}. Die Bestätigung konnte nicht versendet werden. Bitte prüfen Sie Ihre E-Mail-Adresse. Bei Fragen: mail@perlas.de.`)
       form.reset()
     } catch (error) {
       setStatus('error')
