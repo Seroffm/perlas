@@ -12366,7 +12366,7 @@ body {
 
 @media (max-width: 1100px) {
   .home-service-card-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .footer-grid {
@@ -12387,8 +12387,8 @@ body {
 
   .home-service-card-grid {
     margin-top: 36px;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 12px;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 18px;
   }
 
   .home-service-card {
@@ -12397,22 +12397,24 @@ body {
   }
 
   .home-service-card-copy {
-    min-height: 220px;
-    padding: 22px 18px 18px;
+    min-width: 0;
+    min-height: 0;
+    padding: 24px;
   }
 
   .home-service-card-copy h3 {
     margin-top: 8px;
-    font-size: 19px;
+    font-size: 23px;
+    overflow-wrap: anywhere;
   }
 
   .home-service-card-link {
     padding-top: 16px;
-    font-size: 10px;
+    font-size: 13px;
   }
 
   .home-service-card-link svg {
-    display: none;
+    display: block;
   }
 
   .home-trust {
@@ -12450,10 +12452,6 @@ body {
 }
 
 @media (max-width: 420px) {
-  .home-service-card-grid {
-    grid-template-columns: 1fr;
-  }
-
   .home-service-card {
     min-height: 0;
   }
