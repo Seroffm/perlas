@@ -33,6 +33,7 @@ import ContactPage from './ContactPage'
 import QuoteModal from './QuoteModal'
 import BlogPage, { BlogArticlePage } from './BlogPage'
 import CareerPage from './CareerPage'
+import { FORM_LIMITS, submitContactRequest } from './backend'
 import audienceContent from './audience-data.json'
 import blogContent from './blog-data.json'
 import imprintContent from './imprint-content.json'
@@ -2713,34 +2714,51 @@ function FeatureSection({ onQuoteOpen }: { onQuoteOpen: (service?: string) => vo
 }
 
 function ServiceContactForm({ subject }: { subject: string }) {
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
-    const formData = new FormData(event.currentTarget)
-    const name = String(formData.get('name') ?? '').trim()
-    const company = String(formData.get('company') ?? '').trim()
-    const email = String(formData.get('email') ?? '').trim()
-    const phone = String(formData.get('phone') ?? '').trim()
-    const street = String(formData.get('street') ?? '').trim()
-    const location = String(formData.get('location') ?? '').trim()
-    const message = String(formData.get('message') ?? '').trim()
-    const body = [
-      `Guten Tag, ich interessiere mich für ${subject}.`,
-      '',
-      `Name: ${name}`,
-      `Unternehmen / Verwaltung: ${company || 'Nicht angegeben'}`,
-      `E-Mail: ${email}`,
-      `Telefon: ${phone || 'Nicht angegeben'}`,
-      `Objektadresse: ${street}, ${location}`,
-      '',
-      'Angaben zum Objekt:',
-      message,
-    ].join('\n')
+  const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle')
+  const [feedback, setFeedback] = useState('')
+  const submittingRef = useRef(false)
 
-    window.location.href = `mailto:mail@perlas.de?subject=${encodeURIComponent(`Anfrage zu ${subject}`)}&body=${encodeURIComponent(body)}`
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    if (submittingRef.current) return
+    const form = event.currentTarget
+    if (!form.reportValidity()) return
+    const formData = new FormData(form)
+    submittingRef.current = true
+    setStatus('submitting')
+    setFeedback('')
+
+    try {
+      const result = await submitContactRequest({
+        subject,
+        name: String(formData.get('name') ?? '').trim(),
+        company: String(formData.get('company') ?? '').trim(),
+        email: String(formData.get('email') ?? '').trim(),
+        phone: String(formData.get('phone') ?? '').trim(),
+        street: String(formData.get('street') ?? '').trim(),
+        location: String(formData.get('location') ?? '').trim(),
+        message: String(formData.get('message') ?? '').trim(),
+        website: String(formData.get('website') ?? ''),
+      })
+      setStatus('success')
+      setFeedback(result.confirmationEmailSent
+        ? 'Vielen Dank. Ihre Anfrage wurde übermittelt. Eine Bestätigung erhalten Sie per E-Mail.'
+        : 'Vielen Dank. Ihre Anfrage wurde übermittelt. Wir melden uns persönlich bei Ihnen.')
+      form.reset()
+    } catch (error) {
+      setStatus('error')
+      setFeedback(error instanceof Error ? error.message : 'Die Übermittlung war nicht möglich. Ihre Eingaben bleiben erhalten. Bitte versuchen Sie es erneut.')
+    } finally {
+      submittingRef.current = false
+    }
   }
 
   return (
-    <form className="service-contact-form" onSubmit={handleSubmit}>
+    <form className="service-contact-form" onSubmit={handleSubmit} aria-busy={status === 'submitting'}>
+      <label className="form-honeypot" aria-hidden="true">
+        Website
+        <input type="text" name="website" autoComplete="off" tabIndex={-1} maxLength={200} />
+      </label>
       <div className="service-contact-form-heading">
         <span>Direktanfrage</span>
         <strong>{subject}</strong>
@@ -2748,42 +2766,43 @@ function ServiceContactForm({ subject }: { subject: string }) {
       <div className="service-form-grid">
         <label>
           <span>Name *</span>
-          <input type="text" name="name" autoComplete="name" required />
+          <input type="text" name="name" autoComplete="name" maxLength={FORM_LIMITS.name} disabled={status === 'submitting'} required />
         </label>
         <label>
           <span>Unternehmen / Verwaltung</span>
-          <input type="text" name="company" autoComplete="organization" />
+          <input type="text" name="company" autoComplete="organization" maxLength={FORM_LIMITS.company} disabled={status === 'submitting'} />
         </label>
         <label>
           <span>E-Mail *</span>
-          <input type="email" name="email" autoComplete="email" required />
+          <input type="email" name="email" autoComplete="email" maxLength={FORM_LIMITS.email} disabled={status === 'submitting'} required />
         </label>
         <label>
           <span>Telefon</span>
-          <input type="tel" name="phone" autoComplete="tel" />
+          <input type="tel" name="phone" autoComplete="tel" maxLength={FORM_LIMITS.phone} disabled={status === 'submitting'} />
         </label>
         <label>
           <span>Straße und Hausnummer des Objekts *</span>
-          <input type="text" name="street" autoComplete="street-address" required />
+          <input type="text" name="street" autoComplete="street-address" maxLength={FORM_LIMITS.street} disabled={status === 'submitting'} required />
         </label>
         <label>
           <span>PLZ und Ort *</span>
-          <input type="text" name="location" autoComplete="address-level2" required />
+          <input type="text" name="location" autoComplete="address-level2" maxLength={FORM_LIMITS.location} disabled={status === 'submitting'} required />
         </label>
         <label className="service-form-wide">
           <span>Was dürfen wir für Sie übernehmen? *</span>
-          <textarea name="message" rows={4} placeholder="Objektart und gewünschter Leistungsumfang" required />
+          <textarea name="message" rows={4} placeholder="Objektart und gewünschter Leistungsumfang" maxLength={FORM_LIMITS.message} disabled={status === 'submitting'} required />
         </label>
       </div>
       <label className="service-form-consent">
-        <input type="checkbox" name="privacy" required />
+        <input type="checkbox" name="privacy" disabled={status === 'submitting'} required />
         <span>Ich habe die <a href={PRIVACY_PATH}>Datenschutzhinweise</a> gelesen und stimme der Verarbeitung meiner Angaben zur Bearbeitung der Anfrage zu.</span>
       </label>
-      <button className="button button--purple" type="submit">
-        <span>Anfrage per E-Mail vorbereiten</span>
+      <button className="button button--purple" type="submit" disabled={status === 'submitting'}>
+        <span>{status === 'submitting' ? 'Anfrage wird gesendet …' : 'Anfrage senden'}</span>
         <img src={`${A}arrow-white.svg`} alt="" />
       </button>
-      <small>Beim Absenden öffnet sich Ihr E-Mail-Programm mit den eingetragenen Angaben.</small>
+      {feedback && <p className={`form-feedback is-${status}`} role={status === 'error' ? 'alert' : 'status'}>{feedback}</p>}
+      <small>Ihre Angaben werden ausschließlich zur Bearbeitung Ihrer Anfrage verwendet.</small>
     </form>
   )
 }

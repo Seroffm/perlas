@@ -1,5 +1,5 @@
 {
-  "updated": "01.10.2026",
+  "updated": "04.10.2026",
   "lead": "Informationen zur Verarbeitung personenbezogener Daten bei der Nutzung dieser Website und bei der Kontaktaufnahme.",
   "sections": [
     {
@@ -92,11 +92,15 @@
       "blocks": [
         {
           "type": "paragraph",
-          "text": "Im Anfrageformular können insbesondere Objektart, Objektadresse, gewünschte Leistungen, Startzeitpunkt, weitere Angaben sowie Name, Unternehmen, E-Mail-Adresse und Telefonnummer eingegeben werden. Das Bewerbungsformular verarbeitet Name, E-Mail-Adresse, Telefonnummer, gewünschten Einsatzbereich, Nachricht und gegebenenfalls eine ausgewählte Datei."
+          "text": "Im Angebotsformular können insbesondere Objektart, Objektadresse, gewünschte Leistungen, Startzeitpunkt, weitere Angaben sowie Name, Unternehmen, E-Mail-Adresse und Telefonnummer eingegeben werden. Die Direktanfrage auf Leistungs- und Zielgruppenseiten ergänzt diese Kontaktdaten um das Thema und Ihre Nachricht. Das Bewerbungsformular verarbeitet Name, E-Mail-Adresse, Telefonnummer, gewünschten Einsatzbereich, Nachricht und gegebenenfalls eine ausgewählte Bewerbungsdatei mit bis zu 5 MB."
         },
         {
           "type": "paragraph",
-          "text": "Die Eingaben werden zunächst in Ihrem Browser verarbeitet. Eine Übermittlung an eine Empfangs-API findet nur statt, wenn diese für die Website eingerichtet ist und Sie das Formular absenden. Ohne aktivierte Online-Übermittlung wird keine Anfrage vom Formular an einen Server gesendet; beim Bewerbungsformular kann stattdessen Ihr E-Mail-Programm mit den eingegebenen Daten geöffnet werden. Eine ausgewählte Datei wird in diesem Fall nicht automatisch angehängt."
+          "text": "Wenn Sie ein Formular absenden, werden Ihre Angaben über eine verschlüsselte HTTPS-Verbindung an unser Formularbackend unter api.perlas.de übertragen. Dort werden die Angaben und gegebenenfalls die Bewerbungsdatei geprüft und über Resend an unser Postfach mail@perlas.de weitergeleitet. Die Bewerbungsdatei wird als E-Mail-Anhang übermittelt und nicht öffentlich auf der Website bereitgestellt. Die Formulare öffnen beim regulären Online-Versand kein E-Mail-Programm; separat angebotene E-Mail-Links bleiben eine direkte Kontaktalternative."
+        },
+        {
+          "type": "paragraph",
+          "text": "Zusätzlich werden die aufgerufene Formularseite ohne Suchparameter oder Sprungmarke, eine zufällige Anfragekennung und die Bestätigung des Datenschutzhinweises übermittelt. Zur Begrenzung missbräuchlicher Anfragen verarbeitet das Backend die IP-Adresse und speichert daraus abgeleitete pseudonymisierte Kennungen sowie technische Zähler. Für die Vermeidung von Doppelversand werden Anfragekennungen und Inhaltsprüfwerte vorübergehend gespeichert, keine Formularinhalte. Abgelaufene technische Einträge werden bei weiteren API-Aufrufen bereinigt. Die Anwendungsfehlerprotokolle enthalten keine eingegebenen Nachrichten oder Bewerbungsunterlagen."
         },
         {
           "type": "paragraph",
@@ -110,7 +114,7 @@
       "blocks": [
         {
           "type": "paragraph",
-          "text": "Für den Versand unserer E-Mails nutzen wir Resend, einen Dienst der Plus Five Five, Inc., 2261 Market Street #5039, San Francisco, CA 94114, USA. Dabei werden die für den Versand nötigen Daten verarbeitet, insbesondere Absender- und Empfängeradresse, Betreff, Nachrichteninhalt, gegebenenfalls Anhänge sowie technische Zustell- und Protokolldaten. Dies betrifft auch Antworten auf Anfragen und gegebenenfalls Bestätigungs-E-Mails."
+          "text": "Für die Weiterleitung von Anfragen und Bewerbungen aus den Websiteformularen an unser Postfach nutzen wir Resend, einen Dienst der Plus Five Five, Inc., 2261 Market Street #5039, San Francisco, CA 94114, USA. Dabei werden die für den Versand nötigen Daten verarbeitet, insbesondere Absender- und Empfängeradresse, Betreff, Nachrichteninhalt, gegebenenfalls Bewerbungsanhänge sowie technische Zustell- und Protokolldaten. Die angegebene E-Mail-Adresse wird als Antwortadresse verwendet, damit wir Ihre Anfrage persönlich beantworten können. Der Formularversand verschickt derzeit keine automatischen Bestätigungs-E-Mails an die eingegebene Adresse."
         },
         {
           "type": "paragraph",

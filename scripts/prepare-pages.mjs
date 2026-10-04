@@ -1,5 +1,6 @@
 import { mkdir, readFile, stat, writeFile } from 'node:fs/promises'
 import { fileURLToPath } from 'node:url'
+import { loadEnv } from 'vite'
 
 const distPath = fileURLToPath(new URL('../dist/', import.meta.url))
 const indexPath = fileURLToPath(new URL('../dist/index.html', import.meta.url))
@@ -15,9 +16,10 @@ const contactPagePath = fileURLToPath(new URL('../src/ContactPage.tsx', import.m
 const blogPagePath = fileURLToPath(new URL('../src/BlogPage.tsx', import.meta.url))
 const careerPagePath = fileURLToPath(new URL('../src/CareerPage.tsx', import.meta.url))
 const sourceIndexPath = fileURLToPath(new URL('../index.html', import.meta.url))
-const siteUrl = new URL(process.env.PERLAS_SITE_URL ?? 'https://seroffm.github.io/perlas/')
+const buildEnv = loadEnv('production', fileURLToPath(new URL('../', import.meta.url)), '')
+const siteUrl = new URL(buildEnv.PERLAS_SITE_URL ?? 'https://seroffm.github.io/perlas/')
 const basePath = siteUrl.pathname.endsWith('/') ? siteUrl.pathname : `${siteUrl.pathname}/`
-const indexingOverride = process.env.PERLAS_INDEX_SITE
+const indexingOverride = buildEnv.PERLAS_INDEX_SITE
 const indexingEnabled = indexingOverride == null
   ? !siteUrl.hostname.endsWith('github.io')
   : indexingOverride === 'true'
@@ -491,7 +493,7 @@ function blogArticleMarkup(post) {
 function careerMarkup() {
   const jobCards = jobs.map((job) => `<article><p>${escapeHtml(job.department)} · ${escapeHtml(job.location)} · ${escapeHtml(job.type)}</p><h2>${escapeHtml(job.title)}</h2><p>${escapeHtml(job.intro)}</p><h3>Typische Aufgaben</h3><ul>${job.tasks.map((task) => `<li>${escapeHtml(task)}</li>`).join('')}</ul><h3>Das bringst du mit</h3><ul>${job.requirements.map((requirement) => `<li>${escapeHtml(requirement)}</li>`).join('')}</ul></article>`).join('')
 
-  return `${staticHeader()}<main class="seo-static-main"><nav aria-label="Brotkrümeln"><a href="${basePath}">Startseite</a> / Karriere</nav><section class="seo-static-hero"><p>Komm ins Team</p><h1>Du hast Lust, anzupacken und Verantwortung zu übernehmen?</h1><p>Bei Perla’s arbeitest du an echten Wohn- und Gewerbeobjekten im Rhein-Main-Gebiet. Dich erwarten praktische, abwechslungsreiche Aufgaben, klare Absprachen und ein Team, das sich im Alltag gegenseitig unterstützt.</p><a href="#stellen">Offene Bereiche ansehen</a><a href="#bewerbung">Initiativ bewerben</a></section><section><p>Dein Arbeitsalltag bei Perla’s</p><h2>Praktische Aufgaben. Klare Absprachen. Ein Team, das anpackt.</h2><p>Du siehst, was du geschafft hast, übernimmst Verantwortung für deinen Bereich und kannst dich mit deiner Erfahrung Schritt für Schritt weiterentwickeln.</p><ul><li>Abwechslungsreiche Einsätze</li><li>Ein Team, kurze Wege</li><li>Verantwortung und Entwicklung</li></ul></section><section id="stellen"><h2>Hier suchen wir Verstärkung</h2><p>Gemeinsam klären wir, welcher Bereich zu dir passt und in welchem Umfang du einsteigen möchtest.</p><div class="seo-static-grid">${jobCards}</div></section><section id="bewerbung"><h2>Kurzbewerbung</h2><p>Schick uns deine wichtigsten Kontaktdaten und den gewünschten Einsatzbereich. Ein Lebenslauf ist für den ersten Kontakt nicht zwingend erforderlich.</p><form action="mailto:mail@perlas.de" method="post"><label>Name <input name="name" required></label><label>E-Mail <input type="email" name="email" required></label><label>Gewünschter Bereich <select name="role">${jobs.map((job) => `<option>${escapeHtml(job.title)}</option>`).join('')}<option>Initiativbewerbung</option></select></label><label>Nachricht <textarea name="message" required></textarea></label><button type="submit">Bewerbung vorbereiten</button></form><p><a href="mailto:mail@perlas.de?subject=Bewerbung%20bei%20Perla%27s">Direkt an mail@perlas.de schreiben</a></p></section></main>`
+  return `${staticHeader()}<main class="seo-static-main"><nav aria-label="Brotkrümeln"><a href="${basePath}">Startseite</a> / Karriere</nav><section class="seo-static-hero"><p>Komm ins Team</p><h1>Du hast Lust, anzupacken und Verantwortung zu übernehmen?</h1><p>Bei Perla’s arbeitest du an echten Wohn- und Gewerbeobjekten im Rhein-Main-Gebiet. Dich erwarten praktische, abwechslungsreiche Aufgaben, klare Absprachen und ein Team, das sich im Alltag gegenseitig unterstützt.</p><a href="#stellen">Offene Bereiche ansehen</a><a href="#bewerbung">Initiativ bewerben</a></section><section><p>Dein Arbeitsalltag bei Perla’s</p><h2>Praktische Aufgaben. Klare Absprachen. Ein Team, das anpackt.</h2><p>Du siehst, was du geschafft hast, übernimmst Verantwortung für deinen Bereich und kannst dich mit deiner Erfahrung Schritt für Schritt weiterentwickeln.</p><ul><li>Abwechslungsreiche Einsätze</li><li>Ein Team, kurze Wege</li><li>Verantwortung und Entwicklung</li></ul></section><section id="stellen"><h2>Hier suchen wir Verstärkung</h2><p>Gemeinsam klären wir, welcher Bereich zu dir passt und in welchem Umfang du einsteigen möchtest.</p><div class="seo-static-grid">${jobCards}</div></section><section id="bewerbung"><h2>Kurzbewerbung</h2><p>Schick uns deine wichtigsten Kontaktdaten und den gewünschten Einsatzbereich. Ein Lebenslauf ist für den ersten Kontakt nicht zwingend erforderlich.</p><p>Das Online-Bewerbungsformular benötigt JavaScript. Du kannst uns deine Bewerbung und Unterlagen auch direkt per E-Mail schicken.</p><p><a href="mailto:mail@perlas.de?subject=Bewerbung%20bei%20Perla%27s">Direkt an mail@perlas.de schreiben</a></p></section></main>`
 }
 
 function contactMarkup() {
@@ -609,7 +611,7 @@ function audienceMarkup(audience) {
   const faqs = audience.faqs
     .map((item) => `<details open><summary>${escapeHtml(item.question)}</summary><p>${escapeHtml(item.answer)}</p></details>`)
     .join('')
-  const contactForm = `<form action="mailto:mail@perlas.de" method="post" enctype="text/plain"><input type="hidden" name="Thema" value="Facility Management für ${escapeHtml(audience.navLabel)}"><label>Name *<input type="text" name="Name" autocomplete="name" required></label><label>Unternehmen / Verwaltung<input type="text" name="Unternehmen" autocomplete="organization"></label><label>E-Mail *<input type="email" name="E-Mail" autocomplete="email" required></label><label>Telefon<input type="tel" name="Telefon" autocomplete="tel"></label><label>Straße und Hausnummer des Objekts *<input type="text" name="Objektadresse" autocomplete="street-address" required></label><label>PLZ und Ort *<input type="text" name="Ort" autocomplete="address-level2" required></label><label>Angaben zum Objekt *<textarea name="Objekt" rows="4" required></textarea></label><label><input type="checkbox" required> Ich habe die <a href="${basePath}datenschutz/">Datenschutzhinweise</a> gelesen.</label><button type="submit">Anfrage per E-Mail vorbereiten</button></form>`
+  const contactForm = '<p>Das Online-Anfrageformular benötigt JavaScript. Sie können uns Ihre Angaben zum Objekt und zur gewünschten Betreuung auch direkt per E-Mail senden oder persönlich anrufen.</p>'
 
   return `${staticHeader()}<main class="seo-static-main"><nav aria-label="Brotkrümeln"><a href="${basePath}">Startseite</a> / <a href="${basePath}facility-management/">Facility Management</a> / ${escapeHtml(audience.navLabel)}</nav><section class="seo-static-hero"><p>Facility Management für</p><h1>${escapeHtml(audience.heroTitle)}</h1><p>${escapeHtml(audience.heroText)}</p><a href="${basePath}kontakt/">Betreuung anfragen</a><a href="tel:+491776867145">Direkt anrufen</a><img src="${basePath}assets/${escapeHtml(heroImage.src)}" alt="${escapeHtml(heroImage.alt)}"></section><section><h2>${escapeHtml(audience.introTitle)}</h2><p>${escapeHtml(audience.introText)}</p><div class="seo-static-grid">${scopes}</div></section><section><h2>Im Alltag zählen klare Zuständigkeiten</h2><ul>${requirements}</ul><h2>Ein Betreuungskonzept, das zum Objekt passt</h2><p>${escapeHtml(audience.approach)}</p></section><section><h2>Passende Leistungen für ${escapeHtml(audience.navLabel)}</h2><ul class="seo-static-links">${selectedServiceLinks(audience.services)}</ul></section><section><h2>Vom Objekt zum klaren Ablauf</h2><div class="seo-static-grid">${process}</div></section><section><h2>Häufige Fragen zu ${escapeHtml(audience.navLabel)}</h2>${faqs}</section><section><h2>Passt diese Betreuung zu Ihrem Objekt?</h2><p>Beschreiben Sie kurz Ihre Immobilie, den Standort und die Aufgaben, die Sie abgeben möchten.</p>${contactForm}<ul><li><a href="tel:+491776867145">Direkt anrufen: 0177 68 67 145</a></li><li><a href="mailto:mail@perlas.de">E-Mail an mail@perlas.de schreiben</a></li><li><a href="${basePath}kontakt/">Allgemeine Kontaktseite öffnen</a></li></ul></section></main>`
 }
@@ -803,3 +805,7 @@ Disallow: ${basePath}
 
 await writeFile(`${distPath}sitemap.xml`, sitemap)
 await writeFile(`${distPath}robots.txt`, robots)
+
+if (!siteUrl.hostname.endsWith('github.io')) {
+  await writeFile(`${distPath}CNAME`, `${siteUrl.hostname}\n`)
+}

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState, type FormEvent } from 'react'
 import { ArrowLeft, ArrowRight, Check, CheckCircle2, X } from 'lucide-react'
-import { submitQuoteRequest, type QuoteSubmissionResult } from './backend'
+import { FORM_LIMITS, submitQuoteRequest, type QuoteSubmissionResult } from './backend'
 
 type QuoteModalProps = {
   isOpen: boolean
@@ -19,6 +19,7 @@ export default function QuoteModal({ isOpen, initialService, serviceNames, onClo
   const closeButtonRef = useRef<HTMLButtonElement>(null)
   const dialogRef = useRef<HTMLElement>(null)
   const openerRef = useRef<HTMLElement | null>(null)
+  const submittingRef = useRef(false)
   const [step, setStep] = useState(0)
   const [submissionStatus, setSubmissionStatus] = useState<SubmissionStatus>('idle')
   const [submissionResult, setSubmissionResult] = useState<QuoteSubmissionResult | null>(null)
@@ -155,7 +156,7 @@ export default function QuoteModal({ isOpen, initialService, serviceNames, onClo
       return false
     }
 
-    if (step === 2 && (!name.trim() || !email.includes('@') || !consent)) {
+    if (step === 2 && (!name.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim()) || !consent)) {
       setError('Bitte ergänzen Sie Name, eine gültige E-Mail-Adresse und die Datenschutzzustimmung.')
       return false
     }
@@ -178,8 +179,10 @@ export default function QuoteModal({ isOpen, initialService, serviceNames, onClo
       return
     }
 
-    if (!validateStep() || submissionStatus === 'submitting') return
+    if (!validateStep() || submittingRef.current) return
 
+    const website = String(new FormData(event.currentTarget).get('website') ?? '')
+    submittingRef.current = true
     setSubmissionStatus('submitting')
     setSubmissionResult(null)
     setError('')
@@ -196,6 +199,7 @@ export default function QuoteModal({ isOpen, initialService, serviceNames, onClo
         company: company.trim(),
         email: email.trim(),
         phone: phone.trim(),
+        website,
       })
 
       setSubmissionResult(result)
@@ -205,6 +209,8 @@ export default function QuoteModal({ isOpen, initialService, serviceNames, onClo
       setError(submissionError instanceof Error
         ? submissionError.message
         : 'Die Anfrage konnte nicht übermittelt werden. Ihre Eingaben bleiben erhalten. Bitte versuchen Sie es erneut.')
+    } finally {
+      submittingRef.current = false
     }
   }
 
@@ -245,7 +251,7 @@ export default function QuoteModal({ isOpen, initialService, serviceNames, onClo
           <p>Kein Standardpaket. Wir stellen die Leistungen passend zu Ihrem Objekt zusammen.</p>
           <div className="quote-benefits">
             <span><CheckCircle2 aria-hidden="true" /> Unverbindlich</span>
-            <span><CheckCircle2 aria-hidden="true" /> Angaben strukturiert vorbereiten</span>
+            <span><CheckCircle2 aria-hidden="true" /> Direkt an Perla’s senden</span>
             <span><CheckCircle2 aria-hidden="true" /> Persönlicher Ansprechpartner</span>
           </div>
         </div>
@@ -256,7 +262,7 @@ export default function QuoteModal({ isOpen, initialService, serviceNames, onClo
               <div className="quote-success-icon"><Check aria-hidden="true" /></div>
               <span>Anfrage erfolgreich</span>
               <h3>Vielen Dank, {name.trim().split(/\s+/)[0]}.</h3>
-              <p>Ihre Anfrage ist bei uns eingegangen. Wir prüfen Ihre Angaben und melden uns innerhalb von 24 Stunden persönlich bei Ihnen.</p>
+              <p>Ihre Anfrage ist bei uns eingegangen. Wir prüfen Ihre Angaben und melden uns persönlich bei Ihnen.</p>
               <div className="quote-success-details">
                 <article>
                   <CheckCircle2 aria-hidden="true" />
@@ -282,6 +288,10 @@ export default function QuoteModal({ isOpen, initialService, serviceNames, onClo
             </div>
           ) : (
             <form onSubmit={handleSubmit} noValidate aria-busy={submissionStatus === 'submitting'}>
+              <label className="form-honeypot" aria-hidden="true">
+                Website
+                <input type="text" name="website" autoComplete="off" tabIndex={-1} maxLength={200} />
+              </label>
               <div className="quote-progress" aria-label={`Schritt ${step + 1} von 3`}>
                 {['Objekt', 'Leistungen', 'Kontakt'].map((label, index) => (
                   <div className={index <= step ? 'is-active' : ''} key={label}>
@@ -321,6 +331,7 @@ export default function QuoteModal({ isOpen, initialService, serviceNames, onClo
                           onChange={(event) => setStreet(event.target.value)}
                           placeholder="z. B. Hauptstraße 1"
                           autoComplete="street-address"
+                          maxLength={FORM_LIMITS.street}
                           required
                         />
                       </label>
@@ -332,6 +343,7 @@ export default function QuoteModal({ isOpen, initialService, serviceNames, onClo
                           onChange={(event) => setLocation(event.target.value)}
                           placeholder="z. B. 65843 Sulzbach"
                           autoComplete="address-level2"
+                          maxLength={FORM_LIMITS.location}
                           required
                         />
                       </label>
@@ -371,7 +383,7 @@ export default function QuoteModal({ isOpen, initialService, serviceNames, onClo
                       <span className="field-label-copy">
                         Was sollten wir noch wissen? <small>(optional)</small>
                       </span>
-                      <textarea value={details} onChange={(event) => setDetails(event.target.value)} placeholder="Besonderheiten, Flächen, aktueller Bedarf …" rows={3} />
+                      <textarea value={details} onChange={(event) => setDetails(event.target.value)} placeholder="Besonderheiten, Flächen, aktueller Bedarf …" rows={3} maxLength={FORM_LIMITS.details} />
                     </label>
                   </>
                 )}
@@ -380,27 +392,27 @@ export default function QuoteModal({ isOpen, initialService, serviceNames, onClo
                   <>
                     <span className="quote-step-label">Schritt 3 von 3</span>
                     <h3>Wie erreichen wir Sie?</h3>
-                    <p>Ihre Angaben werden für eine direkte Kontaktaufnahme vorbereitet.</p>
+                    <p>Wir verwenden Ihre Angaben, um Ihre Anfrage zu bearbeiten und Sie persönlich zu erreichen.</p>
                     <div className="field-grid">
                       <label className="field-label">
                         <span className="field-label-copy">Vor- und Nachname</span>
-                        <input type="text" value={name} onChange={(event) => setName(event.target.value)} autoComplete="name" />
+                        <input type="text" value={name} onChange={(event) => setName(event.target.value)} autoComplete="name" maxLength={FORM_LIMITS.name} disabled={submissionStatus === 'submitting'} required />
                       </label>
                       <label className="field-label">
                         <span className="field-label-copy">Unternehmen <small>(optional)</small></span>
-                        <input type="text" value={company} onChange={(event) => setCompany(event.target.value)} autoComplete="organization" />
+                        <input type="text" value={company} onChange={(event) => setCompany(event.target.value)} autoComplete="organization" maxLength={FORM_LIMITS.company} disabled={submissionStatus === 'submitting'} />
                       </label>
                       <label className="field-label">
                         <span className="field-label-copy">E-Mail-Adresse</span>
-                        <input type="email" value={email} onChange={(event) => setEmail(event.target.value)} autoComplete="email" />
+                        <input type="email" value={email} onChange={(event) => setEmail(event.target.value)} autoComplete="email" maxLength={FORM_LIMITS.email} disabled={submissionStatus === 'submitting'} required />
                       </label>
                       <label className="field-label">
                         <span className="field-label-copy">Telefonnummer <small>(optional)</small></span>
-                        <input type="tel" value={phone} onChange={(event) => setPhone(event.target.value)} autoComplete="tel" />
+                        <input type="tel" value={phone} onChange={(event) => setPhone(event.target.value)} autoComplete="tel" maxLength={FORM_LIMITS.phone} disabled={submissionStatus === 'submitting'} />
                       </label>
                     </div>
                     <label className="consent-check">
-                      <input type="checkbox" checked={consent} onChange={(event) => setConsent(event.target.checked)} />
+                      <input type="checkbox" checked={consent} onChange={(event) => setConsent(event.target.checked)} disabled={submissionStatus === 'submitting'} required />
                       <span>
                         Ich stimme zu, dass meine Angaben zur Bearbeitung der Anfrage verwendet
                         werden. Weitere Informationen stehen im{' '}

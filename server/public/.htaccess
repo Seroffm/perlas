@@ -1,0 +1,18 @@
+Options -Indexes
+DirectoryIndex index.php
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteRule ^(?:health|quote-requests|contact-requests|career-applications)/?$ index.php [END]
+</IfModule>
+
+<FilesMatch "^(?!index\.php$).*\.(?:php|phar|ini|json|log|env|bak|sql)$">
+    Require all denied
+</FilesMatch>
+
+# Enforce the request limit before PHP receives uploads. Set matching PHP limits in Plesk.
+LimitRequestBody 6291456
+
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options "nosniff"
+</IfModule>

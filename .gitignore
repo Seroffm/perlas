@@ -2,5 +2,14 @@ node_modules/
 dist/
 *.tsbuildinfo
 .tmp-*/
+.tmp-*.zip
 .deploy-gh-pages/
 PERLAS_WEBSITE_AUDIT.md
+.env*
+!.env.example
+!.env.production
+server/private/*
+!server/private/*.example.php
+!server/private/.gitkeep
+!server/private/.htaccess
+.deployment-private/

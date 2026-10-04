@@ -9,7 +9,7 @@ import {
   ShieldCheck,
   Users,
 } from 'lucide-react'
-import { careerApplicationMailto, submitCareerApplication } from './backend'
+import { careerApplicationMailto, FORM_API_CONFIGURED, FORM_LIMITS, MAX_APPLICATION_FILE_SIZE, submitCareerApplication } from './backend'
 import type { JobOpeningContent } from './content-types'
 
 const BASE_PATH = import.meta.env.BASE_URL
@@ -27,22 +27,32 @@ export default function CareerPage({ jobs }: CareerPageProps) {
   const [status, setStatus] = useState<FormStatus>('idle')
   const [feedback, setFeedback] = useState('')
   const formRef = useRef<HTMLFormElement>(null)
+  const submittingRef = useRef(false)
 
   const chooseRole = (role: string) => {
+    if (submittingRef.current) return
     setSelectedRole(role)
     window.requestAnimationFrame(() => formRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }))
   }
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
+    if (submittingRef.current) return
     const form = event.currentTarget
+    if (!form.reportValidity()) return
     const formData = new FormData(form)
     const file = formData.get('attachment')
     const attachment = file instanceof File && file.size > 0 ? file : undefined
 
-    if (attachment && attachment.size > 5 * 1024 * 1024) {
+    if (attachment && attachment.size > MAX_APPLICATION_FILE_SIZE) {
       setStatus('error')
       setFeedback('Die ausgewählte Datei ist größer als 5 MB. Bitte wähle eine kleinere Datei.')
+      return
+    }
+
+    if (attachment && !/\.(pdf|doc|docx|jpe?g|png)$/i.test(attachment.name)) {
+      setStatus('error')
+      setFeedback('Bitte lade eine PDF-, Word- oder Bilddatei im Format JPG oder PNG hoch.')
       return
     }
 
@@ -53,8 +63,10 @@ export default function CareerPage({ jobs }: CareerPageProps) {
       role: String(formData.get('role') ?? '').trim(),
       message: String(formData.get('message') ?? '').trim(),
       file: attachment,
+      website: String(formData.get('website') ?? ''),
     }
 
+    submittingRef.current = true
     setStatus('submitting')
     setFeedback('')
 
@@ -69,12 +81,16 @@ export default function CareerPage({ jobs }: CareerPageProps) {
       }
 
       setStatus('success')
-      setFeedback('Vielen Dank. Deine Bewerbung wurde erfolgreich übermittelt.')
+      setFeedback(result.confirmationEmailSent
+        ? 'Vielen Dank. Deine Bewerbung wurde übermittelt. Eine Bestätigung erhältst du per E-Mail.'
+        : 'Vielen Dank. Deine Bewerbung wurde erfolgreich übermittelt.')
       form.reset()
       setSelectedRole('Initiativbewerbung')
-    } catch {
+    } catch (error) {
       setStatus('error')
-      setFeedback('Die Übermittlung war nicht möglich. Bitte sende deine Bewerbung direkt an mail@perlas.de.')
+      setFeedback(error instanceof Error ? error.message : 'Die Übermittlung war nicht möglich. Deine Eingaben bleiben erhalten. Bitte versuche es erneut.')
+    } finally {
+      submittingRef.current = false
     }
   }
 
@@ -153,7 +169,7 @@ export default function CareerPage({ jobs }: CareerPageProps) {
                   <ul>{job.requirements.map((requirement) => <li key={requirement}>{requirement}</li>)}</ul>
                 </div>
               </details>
-              <button type="button" onClick={() => chooseRole(job.title)}>Für diesen Bereich bewerben <ArrowUpRight aria-hidden="true" /></button>
+              <button type="button" disabled={status === 'submitting'} onClick={() => chooseRole(job.title)}>Für diesen Bereich bewerben <ArrowUpRight aria-hidden="true" /></button>
             </article>
           ))}
         </div>
@@ -175,7 +191,11 @@ export default function CareerPage({ jobs }: CareerPageProps) {
           <a href="mailto:mail@perlas.de?subject=Bewerbung%20bei%20Perla%27s">Oder direkt an mail@perlas.de schreiben <ArrowUpRight aria-hidden="true" /></a>
         </div>
 
-        <form className="career-form" ref={formRef} onSubmit={handleSubmit} data-reveal="right">
+        <form className="career-form" ref={formRef} onSubmit={handleSubmit} data-reveal="right" aria-busy={status === 'submitting'}>
+          <label className="form-honeypot" aria-hidden="true">
+            Website
+            <input type="text" name="website" autoComplete="off" tabIndex={-1} maxLength={200} />
+          </label>
           <div className="career-form-heading">
             <FileText aria-hidden="true" />
             <div><span>Bewerbung vorbereiten</span><strong>Wenige Angaben genügen für deinen ersten Kontakt.</strong></div>
@@ -183,41 +203,43 @@ export default function CareerPage({ jobs }: CareerPageProps) {
           <div className="career-form-grid">
             <label>
               <span>Name *</span>
-              <input type="text" name="name" autoComplete="name" required />
+              <input type="text" name="name" autoComplete="name" maxLength={FORM_LIMITS.name} disabled={status === 'submitting'} required />
             </label>
             <label>
               <span>E-Mail *</span>
-              <input type="email" name="email" autoComplete="email" required />
+              <input type="email" name="email" autoComplete="email" maxLength={FORM_LIMITS.email} disabled={status === 'submitting'} required />
             </label>
             <label>
               <span>Telefon</span>
-              <input type="tel" name="phone" autoComplete="tel" />
+              <input type="tel" name="phone" autoComplete="tel" maxLength={FORM_LIMITS.phone} disabled={status === 'submitting'} />
             </label>
             <label>
               <span>Gewünschter Bereich *</span>
-              <select name="role" value={selectedRole} onChange={(event) => setSelectedRole(event.target.value)} required>
+              <select name="role" value={selectedRole} onChange={(event) => setSelectedRole(event.target.value)} disabled={status === 'submitting'} required>
                 <option>Initiativbewerbung</option>
                 {jobs.map((job) => <option key={job.id}>{job.title}</option>)}
               </select>
             </label>
             <label className="career-form-wide">
               <span>Kurze Nachricht *</span>
-              <textarea name="message" rows={5} placeholder="Erzähl uns kurz etwas über deine Erfahrung und deinen gewünschten Einsatzbereich." required />
+              <textarea name="message" rows={5} placeholder="Erzähl uns kurz etwas über deine Erfahrung und deinen gewünschten Einsatzbereich." maxLength={FORM_LIMITS.message} disabled={status === 'submitting'} required />
             </label>
             <label className="career-form-wide career-file-field">
               <span>Lebenslauf oder Unterlagen (optional, max. 5 MB)</span>
-              <input type="file" name="attachment" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png" />
+              <input type="file" name="attachment" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png" disabled={status === 'submitting'} />
             </label>
           </div>
           <label className="career-form-consent">
-            <input type="checkbox" name="privacy" required />
+            <input type="checkbox" name="privacy" disabled={status === 'submitting'} required />
             <span>Ich habe die <a href={PRIVACY_PATH}>Datenschutzhinweise</a> gelesen und stimme der Verarbeitung meiner Angaben zur Bearbeitung der Bewerbung zu.</span>
           </label>
           <button className="button button--purple" type="submit" disabled={status === 'submitting'}>
             {status === 'submitting' ? 'Wird übermittelt …' : 'Bewerbung absenden'} <ArrowUpRight aria-hidden="true" />
           </button>
-          {feedback && <p className={`career-form-feedback is-${status}`} role="status">{feedback}</p>}
-          <small>Bis zur Backend-Anbindung öffnet sich beim Absenden dein E-Mail-Programm. Danach erfolgt die Übermittlung direkt und verschlüsselt an die konfigurierte API.</small>
+          {feedback && <p className={`career-form-feedback is-${status}`} role={status === 'error' ? 'alert' : 'status'}>{feedback}</p>}
+          <small>{FORM_API_CONFIGURED
+            ? 'Deine Angaben und Unterlagen werden ausschließlich zur Bearbeitung deiner Bewerbung verwendet.'
+            : 'Beim Absenden öffnet sich dein E-Mail-Programm. Bitte füge ausgewählte Unterlagen dort als Anhang hinzu.'}</small>
         </form>
       </section>
     </main>
