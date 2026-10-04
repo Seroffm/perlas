@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.perlas.de/sitemap.xml
+Sitemap: https://perlas.de/sitemap.xml
