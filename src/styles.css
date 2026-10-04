@@ -12290,14 +12290,14 @@ body {
   padding: 18px;
   display: grid;
   gap: 8px;
-  border: 1px solid rgb(255 255 255 / 18%);
+  border: 0;
   border-radius: 18px;
   color: #fff;
   background: rgb(255 255 255 / 7%);
 }
 
 .footer-trust-eyebrow {
-  color: #ffc445;
+  color: #fff;
   font-size: 10px;
   font-weight: 900;
   letter-spacing: 0.1em;
@@ -12329,10 +12329,13 @@ body {
 
 .footer-trust a:hover,
 .footer-trust a:focus-visible {
-  background: #ffc445;
+  background: #fff;
+  transform: translateY(-2px);
+}
+
+.footer-trust a:focus-visible {
   outline: 2px solid #fff;
   outline-offset: 3px;
-  transform: translateY(-2px);
 }
 
 .footer-trust a > span,
