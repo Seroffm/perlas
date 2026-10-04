@@ -11236,6 +11236,22 @@ body {
 }
 
 /* Careers and recruitment. */
+.career-hero > *,
+.career-value-grid > *,
+.career-job-list > article > *,
+.career-application > *,
+.career-form-grid > *,
+.career-form-heading > div {
+  min-width: 0;
+}
+
+.career-page h1,
+.career-page h2,
+.career-page h3,
+.career-application-copy > a {
+  overflow-wrap: anywhere;
+}
+
 .career-hero-copy .eyebrow {
   width: fit-content;
   margin-top: 34px;
@@ -11246,10 +11262,21 @@ body {
 
 .career-hero-copy .button-row {
   margin-top: 34px;
+  flex-wrap: wrap;
+}
+
+.career-hero-copy .button,
+.career-form > .button {
+  min-width: 0;
+  max-width: 100%;
+  gap: 12px;
+  font-size: 16px;
+  white-space: normal;
 }
 
 .career-hero-image {
   position: relative;
+  margin: 0;
   width: min(100%, 440px);
   height: auto;
   aspect-ratio: 440 / 595;
@@ -11282,6 +11309,7 @@ body {
 .career-hero-image figcaption > svg {
   width: 28px;
   height: 28px;
+  flex-shrink: 0;
   color: #fff;
 }
 
@@ -11354,7 +11382,7 @@ body {
 .career-job-list > article {
   padding: 30px;
   display: grid;
-  grid-template-columns: 60px minmax(260px, 1fr) minmax(250px, 0.75fr) auto;
+  grid-template-columns: 60px minmax(0, 1fr) minmax(0, 0.75fr) minmax(0, 0.65fr);
   align-items: center;
   gap: 28px;
   border-radius: 30px;
@@ -11417,6 +11445,7 @@ body {
 .career-job-meta svg {
   width: 14px;
   height: 14px;
+  flex-shrink: 0;
   color: #000;
 }
 
@@ -11455,7 +11484,7 @@ body {
 
 .career-job-list > article > button {
   min-height: 48px;
-  padding: 0 18px;
+  padding: 12px 18px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -11473,6 +11502,7 @@ body {
 .career-job-list > article > button svg {
   width: 16px;
   height: 16px;
+  flex-shrink: 0;
   color: #fff;
 }
 
@@ -11520,6 +11550,7 @@ body {
 .career-application-copy li svg {
   width: 18px;
   height: 18px;
+  flex-shrink: 0;
   color: #fff;
 }
 
@@ -11537,6 +11568,7 @@ body {
 .career-application-copy > a svg {
   width: 16px;
   height: 16px;
+  flex-shrink: 0;
   color: #fff;
 }
 
@@ -11556,6 +11588,7 @@ body {
 .career-form-heading > svg {
   width: 34px;
   height: 34px;
+  flex-shrink: 0;
   color: #000;
 }
 
@@ -11594,6 +11627,8 @@ body {
 .career-form input,
 .career-form select,
 .career-form textarea {
+  min-width: 0;
+  max-width: 100%;
   width: 100%;
   margin-top: 8px;
   border: 1px solid rgb(7 51 114 / 34%);
@@ -11738,6 +11773,23 @@ body {
   margin-top: 30px;
 }
 
+@media (max-width: 1280px) {
+  .career-job-list > article {
+    grid-template-columns: 54px minmax(0, 1fr);
+    align-items: start;
+  }
+
+  .career-job-list details,
+  .career-job-list > article > button {
+    grid-column: 2 / -1;
+  }
+
+  .career-job-list > article > button {
+    width: fit-content;
+    max-width: 100%;
+  }
+}
+
 @media (max-width: 1100px) {
   .blog-hero,
   .career-hero,
@@ -11766,12 +11818,12 @@ body {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .career-job-list > article {
-    grid-template-columns: 54px minmax(0, 1fr) auto;
+  .career-value-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .career-job-list details {
-    grid-column: 2 / -1;
+  .career-value-grid > article:last-child {
+    grid-column: 1 / -1;
   }
 
   .career-application {
@@ -11814,6 +11866,22 @@ body {
 
   .career-hero-image {
     height: auto;
+  }
+
+  .career-hero-copy h1 {
+    font-size: clamp(32px, 8.5vw, 38px);
+  }
+
+  .career-hero-image figcaption {
+    right: 16px;
+    bottom: 16px;
+    left: 16px;
+    padding: 16px;
+    gap: 10px;
+  }
+
+  .career-hero-image figcaption strong {
+    font-size: 15px;
   }
 
   .blog-featured > div {
@@ -11955,6 +12023,18 @@ body {
   .home-career-teaser .button {
     width: 100%;
     justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .career-job-main {
+    grid-column: 1 / -1;
+  }
+
+  .career-hero-copy .button,
+  .career-form > .button {
+    padding-inline: 18px;
+    font-size: 15px;
   }
 }
 
@@ -12130,8 +12210,10 @@ body {
   background: #fff;
 }
 
-.career-hero {
-  grid-template-columns: minmax(0, 1fr) minmax(360px, 440px);
+@media (min-width: 1101px) {
+  .career-hero {
+    grid-template-columns: minmax(0, 1fr) minmax(360px, 440px);
+  }
 }
 
 .fm-complex-grid h3 {
