@@ -4395,20 +4395,6 @@ p {
   justify-self: center;
 }
 
-@media (min-width: 600px) {
-  .service-gallery-grid--comparison figure:last-child {
-    grid-column: 1 / -1;
-    width: calc((100% - 18px) / 2);
-    justify-self: center;
-  }
-}
-
-@media (min-width: 600px) and (max-width: 760px) {
-  .service-gallery-grid--comparison figure:last-child {
-    width: calc((100% - 16px) / 2);
-  }
-}
-
 @media (min-width: 901px) {
   .service-gallery-grid--three,
   .service-gallery-grid--large {

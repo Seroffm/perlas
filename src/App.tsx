@@ -1034,7 +1034,7 @@ const serviceGalleries: Record<string, ServiceGallery> = {
   'spielplatzkontrolle-spielgeraetewartung': {
     eyebrow: 'Spielbereiche in der Praxis',
     title: 'Außen- und Innenbereiche passend betreuen.',
-    intro: 'Objektaufnahmen zeigen Spielbereiche innen und außen sowie eine gepflegte Wohnanlage als Standortumfeld. Sichtkontrollen und Pflege werden für jeden Standort abgestimmt. Zwei weitere Aufnahmen zeigen die Treppe eines Spielgeräts vor und nach der Erneuerung.',
+    intro: 'Objektaufnahmen zeigen Spielbereiche innen und außen. Sichtkontrollen und Pflege werden für jeden Standort abgestimmt. Zwei weitere Aufnahmen zeigen die Treppe eines Spielgeräts vor und nach der Erneuerung.',
     comparison: true,
     items: [
       {
@@ -1059,7 +1059,6 @@ const serviceGalleries: Record<string, ServiceGallery> = {
         alt: 'Gepflegter Indoor-Spielbereich mit Kletter- und Spielelementen',
         position: '50% 54%',
       },
-      projectPhotos.residentialBuilding,
     ],
   },
 }
