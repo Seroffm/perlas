@@ -836,6 +836,7 @@ type ServiceGallery = {
   title: string
   intro: string
   large?: boolean
+  comparison?: boolean
   items: Array<{ image: string; label: string; alt: string; position?: string; scale?: number; transformOrigin?: string }>
 }
 
@@ -1033,8 +1034,19 @@ const serviceGalleries: Record<string, ServiceGallery> = {
   'spielplatzkontrolle-spielgeraetewartung': {
     eyebrow: 'Spielbereiche in der Praxis',
     title: 'Außen- und Innenbereiche passend betreuen.',
-    intro: 'Objektaufnahmen zeigen Spielbereiche innen und außen sowie eine gepflegte Wohnanlage als Standortumfeld. Sichtkontrollen und Pflege werden für jeden Standort abgestimmt.',
+    intro: 'Objektaufnahmen zeigen Spielbereiche innen und außen sowie eine gepflegte Wohnanlage als Standortumfeld. Sichtkontrollen und Pflege werden für jeden Standort abgestimmt. Zwei weitere Aufnahmen zeigen die Treppe eines Spielgeräts vor und nach der Erneuerung.',
+    comparison: true,
     items: [
+      {
+        image: 'kundenbilder/spielplatz/spielplatzVorher.png',
+        label: 'Vorher: Treppe am Spielgerät',
+        alt: 'Spielgerät mit rotem Metallrahmen vor der Erneuerung der Zugangstreppe',
+      },
+      {
+        image: 'kundenbilder/spielplatz/spielplatzNachher.png',
+        label: 'Nachher: erneuerte Treppe',
+        alt: 'Dasselbe Spielgerät nach der Erneuerung mit schwarzer Zugangstreppe',
+      },
       {
         image: 'kundenbilder/spielplatz/spielplatz_schaukel_nah_01.png',
         label: 'Schaukelbereich im Außenbereich',
@@ -2856,12 +2868,13 @@ function ServiceMediaGallery({ gallery }: { gallery: ServiceGallery }) {
         <h2 id={headingId}>{gallery.title}</h2>
         <p>{gallery.intro}</p>
       </div>
-      <div className={`service-gallery-grid${gallery.large ? ' service-gallery-grid--large' : gallery.items.length === 3 ? ' service-gallery-grid--three' : ''}`}>
+      <div className={`service-gallery-grid${gallery.large ? ' service-gallery-grid--large' : gallery.items.length === 3 ? ' service-gallery-grid--three' : ''}${gallery.comparison ? ' service-gallery-grid--comparison' : ''}`}>
         {gallery.items.map((item, index) => (
           <figure data-reveal="up" style={{ '--reveal-delay': `${index * 70}ms` } as CSSProperties} key={item.image}>
             <ResponsiveImage
               asset={item.image}
               alt={item.alt}
+              sizes={gallery.comparison && index < 2 ? '260px' : undefined}
               loading="lazy"
               decoding="async"
               style={{
