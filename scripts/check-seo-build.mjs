@@ -12,6 +12,9 @@ const site = new URL(env.PERLAS_SITE_URL ?? 'https://seroffm.github.io/perlas/')
 if (!site.pathname.endsWith('/')) site.pathname += '/'
 const sitemap = await readFile(path.join(dist, 'sitemap.xml'), 'utf8')
 const urls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => new URL(match[1]))
+const sitemapIndex = await readFile(path.join(dist, 'sitemap_index.xml'), 'utf8')
+assert(sitemapIndex.includes('<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'), 'Valid compatibility sitemap index required')
+assert.deepEqual([...sitemapIndex.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]), [new URL('sitemap.xml', site).href], 'Sitemap index must point only to the current canonical sitemap')
 // This change improves existing pages only. Keep this independent of the source
 // collections so accidentally adding a service or city page fails the check.
 const existingPaths = [
@@ -135,6 +138,7 @@ for (const url of urls) {
   const main = html.match(/<main\b[^>]*>([\s\S]*?)<\/main>/)?.[1] ?? ''
   const mainText = visibleText(main)
   assert(mainText.length > 300, `Empty initial page: ${url}`)
+  assert(!/Zertifiziert|Zertifizierte Fachleistung|Zertifizierte Zusatzleistungen/.test(mainText), `Unverified certification claim: ${url}`)
   const relativePath = url.pathname.slice(site.pathname.length)
   if (regionalPaths.has(relativePath)) {
     assert(mainText.includes('Sulzbach'), `Local content absent from the initial main HTML: ${url}`)

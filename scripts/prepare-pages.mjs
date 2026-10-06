@@ -414,7 +414,7 @@ function homeMarkup() {
   const certifiedServices = [
     { slug: 'baumpflege-baumfaellung', title: 'Baumpflege & Baumfällung', text: 'Eigenständige Fachleistung für Pflege und Rückschnitt. Notwendige Fällungen erfolgen nach objektbezogener Prüfung.', certified: true },
     { slug: 'spielplatzkontrolle-spielgeraetewartung', title: 'Spielplatzkontrolle & Spielgerätewartung', text: 'Sichtkontrollen, dokumentierte Auffälligkeiten sowie abgestimmte Reinigung, Pflege und Wartung.', certified: true },
-  ].map((service) => `<li>${service.certified ? '<span>Zertifiziert</span>' : ''}<strong><a href="${basePath}leistungen/${service.slug}/">${escapeHtml(service.title)}</a></strong><p>${escapeHtml(service.text)}</p></li>`).join('')
+  ].map((service) => `<li>${service.certified ? '<span>Spezialisierte Fachleistung</span>' : ''}<strong><a href="${basePath}leistungen/${service.slug}/">${escapeHtml(service.title)}</a></strong><p>${escapeHtml(service.text)}</p></li>`).join('')
 
   const partnerNames = [
     'David Lloyd Clubs',
@@ -441,7 +441,7 @@ function homeMarkup() {
     `<section><p>So arbeitet Perla’s</p><h2>Objektbetreuung digital organisiert.</h2><p>Wiederkehrende Einsätze, Zuständigkeiten und Termine werden digital geplant. Durchgeführte Arbeiten und relevante Informationen bleiben dem Objekt zugeordnet dokumentiert.</p><ol><li><strong>Digitale Einsatzplanung</strong></li><li><strong>Digitale Dokumentation</strong></li><li><strong>Transparenz</strong></li><li><strong>Digitale Objektmappe</strong></li></ol><p>Für die digitale Einsatzplanung und Dokumentation nutzen wir <a href="https://hausmeisterapp.com/" target="_blank" rel="noreferrer">HausmeisterApp</a>.</p></section>`,
     `<section><p>Perla’s im Überblick</p><h2>Der passende Weg für Ihr Objekt.</h2><ul class="seo-static-links"><li><a href="${basePath}facility-management/">Facility Management ansehen</a><p>Mehrere Leistungen abgestimmt betreuen.</p></li><li><a href="${basePath}leistungen/">Alle Leistungen</a><p>Einzelleistungen gezielt auswählen.</p></li><li><a href="${basePath}ueber-uns/">Über uns</a><p>Perla’s persönlich kennenlernen.</p></li><li><a href="${basePath}kontakt/">Kontakt aufnehmen</a><p>Ihr Objekt persönlich besprechen.</p></li></ul></section>`,
     `<section><p>Facility Management nach Objektart</p><h2>Facility Management für professionell verwaltete Immobilien.</h2><p>Perla’s koordiniert wiederkehrende Aufgaben, Zuständigkeiten und Rückmeldungen für Hausverwaltungen, Wohnanlagen, Gewerbeimmobilien und institutionelle Gebäude.</p><ul class="seo-static-links">${audienceLinks}</ul><a href="${basePath}facility-management/">Alle Objektbereiche ansehen</a></section>`,
-    `<section><p>Nachgewiesene Fachkompetenz</p><h2>Zertifizierte Leistungen.</h2><p>Die konkreten Qualifikationen und der vereinbarte Prüfumfang werden vor der Beauftragung transparent festgehalten.</p><ul class="seo-static-links">${certifiedServices}</ul><a href="${basePath}kontakt/">Spezialleistung anfragen</a></section>`,
+    `<section><p>Spezialisierte Zusatzleistungen</p><h2>Baumpflege und Spielplatzbetreuung.</h2><p>Die erforderliche Fachkunde und der vereinbarte Prüfumfang werden vor der Beauftragung transparent festgehalten.</p><ul class="seo-static-links">${certifiedServices}</ul><a href="${basePath}kontakt/">Spezialleistung anfragen</a></section>`,
     `<section><p>Kernleistungen</p><h2>Unsere Kernleistungen.</h2><p>Die wichtigsten Leistungen stehen am Anfang; weitere Bereiche lassen sich im Frontend bei Bedarf einblenden.</p><ul class="seo-static-links">${coreServices}</ul><a href="${basePath}leistungen/">Alle Leistungen ansehen</a></section>`,
     `<section><h2>Einsatzbereit im Rhein-Main-Gebiet</h2><p>10+ Mitarbeitende, abgestimmte Touren und ein wachsender Fuhrpark unterstützen die verlässliche Betreuung größerer Immobilien.</p>${imageMarkup('kundenbilder/fahrzeuge/perlas_fuhrpark_real.png', 'Perla’s Servicefahrzeuge und Lkw vor einer Wohnanlage')}</section>`,
     `<section><h2>Erfahrung und klare Abläufe</h2><p>Perla’s schafft Übersicht über wiederkehrende Aufgaben und hält Rückmeldungen zu Zustand, Leistung und Handlungsbedarf an einer Stelle zusammen.</p></section></main>`,
@@ -459,7 +459,7 @@ function facilityMarkup() {
     ['baumpflege-baumfaellung', 'Baumpflege & Baumfällung', true],
     ['spielplatzkontrolle-spielgeraetewartung', 'Spielplatzkontrolle & Spielgerätewartung', true],
     ['buero-einrichtungsservice', 'Büro- & Einrichtungsservice', false],
-  ].map(([slug, title, certified]) => `<li>${certified ? '<span>Zertifiziert</span>' : '<span>Spezialisierte Leistung</span>'}<a href="${basePath}leistungen/${slug}/">${escapeHtml(title)}</a></li>`).join('')
+  ].map(([slug, title]) => `<li><span>Spezialisierte Leistung</span><a href="${basePath}leistungen/${slug}/">${escapeHtml(title)}</a></li>`).join('')
 
   return `${staticHeader()}<main class="seo-static-main"><nav aria-label="Brotkrümeln"><a href="${basePath}">Startseite</a> / Facility Management</nav><section class="seo-static-hero"><p>Facility Management im Rhein-Main-Gebiet</p><h1>Gebäude ganzheitlich betreuen. Aufgaben klar koordinieren.</h1><p>Perla’s bündelt die laufenden Aufgaben größerer und professionell verwalteter Immobilien in einem objektbezogenen Betreuungskonzept.</p><a href="#zielgruppen">Passenden Bereich wählen</a></section><section><h2>Erst das Objekt verstehen. Dann Leistungen sinnvoll verbinden.</h2><p>Aufgaben, Intervalle, Zuständigkeiten und Rückmeldungen werden objektbezogen abgestimmt. Sichtkontrollen und organisatorische Koordination gehören zur Betreuung. Fachliche Prüfungen und Arbeiten werden mit geeigneten Fachbetrieben koordiniert und nicht als eigene Fachleistung dargestellt.</p></section><div id="zielgruppen">${targets}</div><section><p>Spezialisierte Zusatzleistungen</p><h2>Ergänzende Fachleistungen für professionell betreute Immobilien</h2><ul class="seo-static-links">${specialists}</ul></section><section><h2>Größere und komplexere Objekte</h2><p>Gebäude- und Gemeinschaftsflächen, Außenanlagen, Winterdienst, Parkflächen, Tiefgaragen und technische Themen werden nach Zuständigkeit gegliedert. Technische Facharbeiten bleiben bei geeigneten Fachbetrieben.</p><a href="${basePath}kontakt/">Kontakt aufnehmen</a></section></main>`
 }
@@ -478,7 +478,7 @@ function servicesMarkup() {
     { slug: 'baumpflege-baumfaellung', title: 'Baumpflege & Baumfällung', text: 'Pflege und Rückschnitt. Notwendige Fällungen erfolgen nach objektbezogener Prüfung.', certified: true },
     { slug: 'spielplatzkontrolle-spielgeraetewartung', title: 'Spielplatzkontrolle & Spielgerätewartung', text: 'Regelmäßige Sichtkontrollen, dokumentierte Auffälligkeiten sowie abgestimmte Reinigung, Pflege und Wartung.', certified: true },
     { slug: 'buero-einrichtungsservice', title: 'Büro- & Einrichtungsservice', text: 'Möbel und Arbeitsplätze umstellen, interne Umzüge unterstützen und Räume für eine neue Nutzung vorbereiten.' },
-  ].map((service) => `<li>${service.certified ? '<span>Zertifiziert</span>' : ''}<strong><a href="${basePath}leistungen/${service.slug}/">${escapeHtml(service.title)}</a></strong><p>${escapeHtml(service.text)}</p></li>`).join('')
+  ].map((service) => `<li>${service.certified ? '<span>Spezialisierte Fachleistung</span>' : ''}<strong><a href="${basePath}leistungen/${service.slug}/">${escapeHtml(service.title)}</a></strong><p>${escapeHtml(service.text)}</p></li>`).join('')
 
   return `${staticHeader()}<main class="seo-static-main"><nav aria-label="Brotkrümeln"><a href="${basePath}">Startseite</a> / Leistungen</nav><section class="seo-static-hero"><p>Facility Services im Rhein-Main-Gebiet</p><h1>Leistungen für den laufenden Betrieb Ihrer Immobilie.</h1><p>Wählen Sie eine einzelne Leistung oder kombinieren Sie mehrere Aufgaben zu einem objektbezogenen Betreuungskonzept.</p><a href="${basePath}kontakt/">Leistung anfragen</a><a href="${basePath}facility-management/">Facility Management</a></section><section><h2>Für diese Immobilien arbeiten wir</h2><ul class="seo-static-links">${targets}</ul></section><section><h2>Ergänzende Fachleistungen für professionell betreute Immobilien.</h2><p>Umfang, Zuständigkeit und erforderliche Fachkunde werden je Leistung vor der Beauftragung geklärt.</p><ul>${specialized}</ul><a href="${basePath}kontakt/">Spezialleistung anfragen</a></section><section><h2>Bestehende Leistungen im Detail</h2><div class="seo-static-grid">${catalog}</div></section><section><h2>Wenn aus Einzelleistungen Facility Management wird</h2><p>Bei größeren oder professionell verwalteten Immobilien lassen sich Leistungen, Intervalle, Zuständigkeiten und Rückmeldungen in einem Betreuungskonzept bündeln.</p><a href="${basePath}facility-management/">Facility Management ansehen</a></section></main>`
 }
@@ -850,6 +850,13 @@ Disallow: ${basePath}
 `
 
 await writeFile(`${distPath}sitemap.xml`, sitemap)
+// Preserve the former WordPress sitemap entry without restoring obsolete URLs.
+const sitemapIndex = `<?xml version="1.0" encoding="UTF-8"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <sitemap><loc>${new URL(`${basePath}sitemap.xml`, siteUrl.origin).href}</loc></sitemap>
+</sitemapindex>
+`
+await writeFile(`${distPath}sitemap_index.xml`, sitemapIndex)
 await writeFile(`${distPath}robots.txt`, robots)
 
 if (!siteUrl.hostname.endsWith('github.io')) {

@@ -14,4 +14,6 @@ Die Seite verwendet React/Vite und statisch erzeugtes HTML, nicht WordPress. `np
 
 Analytics erfasst bestätigte Kontakt-/Angebotsanfragen als `generate_lead` mit fester Formularart und Klicks auf den Telefonlink als `phone_click`. Nur bei gültiger Analyse-Einwilligung und geladenem Analytics; keine Formularfelder, Vorgangsnummern oder Bewerbungen, kein nachträgliches Erfassen. Ein Telefonklick ist kein bestätigtes Telefonat.
 
-OpenSEO-Keyword-Recherche am 06.10.2026 erneut im lokalen Tool geprüft: sowohl eine wiederholte als auch eine neue Abfrage für Deutschland endeten mit einem Serverfehler. Die Keyword-Zuordnung ist daher eine intentbasierte Arbeitshypothese, keine durch Suchvolumen/KD bestätigte Liste. Keine Zugangsdaten verändert.
+OpenSEO-Recherche am 06.10.2026: 653 lokale Keyword-Kandidaten über alle Leistungsgruppen, darunter 158 auftragsspezifische Longtails. Das Tool lieferte 74 Keywords mit positivem geschätztem Monatsvolumen; fehlende Werte sind unbekannt, nicht null Nachfrage. Varianten desselben Begriffs dürfen nicht addiert werden. Weitere Discovery-Abfragen scheiterten separat mit HTTP 402 beim Datenanbieter. Keine Zugangsdaten verändert und keine Credits gekauft. Die private Recherche-Arbeitsmappe gehört nicht zum öffentlichen Website-Build.
+
+Die aktuelle Sitemap liegt unter `/sitemap.xml`; `/sitemap_index.xml` bleibt als gültiger Index auf diese Sitemap für ältere Search-Console-Einträge erreichbar. Indexierbarkeit und Sitemap-Einreichung garantieren weder sofortige Aufnahme noch Rankings.

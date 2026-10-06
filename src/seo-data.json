@@ -1,8 +1,8 @@
 {
   "home": {
-    "title": "Facility Management Sulzbach & Rhein-Main | Perla’s",
+    "title": "Facility Management Sulzbach (Taunus) | Perla’s",
     "description": "Perla’s aus Sulzbach (Taunus): Facility Management und Objektbetreuung für Unternehmen, Privatkunden und WEG im Rhein-Main-Gebiet. Jetzt anfragen.",
-    "heading": "Facility Management in Sulzbach und Rhein-Main.",
+    "heading": "Facility Management aus Sulzbach (Taunus).",
     "intro": "Perla’s aus Sulzbach (Taunus) verbindet Objektbetreuung, Gebäudereinigung, Außenanlagenpflege und Winterdienst. Hausverwaltungen, WEG und Unternehmen erhalten einen festen Ansprechpartner für wiederkehrende Aufgaben. Auch einzelne Leistungen für private Immobilien stimmen wir passend zum Bedarf ab."
   },
   "pages": {
@@ -20,7 +20,7 @@
     },
     "services": {
       "path": "leistungen/",
-      "title": "Reinigung & Objektbetreuung Rhein-Main | Perla’s",
+      "title": "Reinigung & Objektbetreuung Sulzbach | Perla’s",
       "description": "Reinigung, Objektbetreuung, Außenanlagen und Spezialservices aus Sulzbach (Taunus) für Immobilien im Rhein-Main-Gebiet. Jetzt Leistungen anfragen.",
       "schemaType": "CollectionPage"
     },
@@ -56,8 +56,8 @@
     }
   },
   "region": {
-    "heading": "In Sulzbach zu Hause. In Rhein-Main für Sie da.",
-    "intro": "Unser Standort ist Sulzbach (Taunus). Von hier aus betreuen wir Immobilien im Main-Taunus-Kreis und im umliegenden Rhein-Main-Gebiet – unter anderem in Schwalbach, Bad Soden, Eschborn, Frankfurt und Wiesbaden.",
+    "heading": "Sulzbach und der Main-Taunus-Kreis.",
+    "intro": "Unser Standort ist Sulzbach (Taunus). Von hier aus betreuen wir Immobilien im Main-Taunus-Kreis – etwa in Schwalbach, Bad Soden, Eschborn, Kelkheim und Hofheim – sowie im angrenzenden Frankfurt und Wiesbaden. Nennen Sie bei Ihrer Anfrage auch den Stadtteil: Einsatz und Leistungsumfang prüfen wir für Ihr konkretes Objekt.",
     "note": "Ob einzelne Aufgabe oder regelmäßige Betreuung: Nennen Sie uns den Standort, die Objektart und den gewünschten Umfang. Einsatzgebiet, Zugänglichkeit und Termine stimmen wir vor der Beauftragung ab.",
     "areaServed": ["Sulzbach (Taunus)", "Main-Taunus-Kreis", "Rhein-Main-Gebiet"]
   },

@@ -152,7 +152,8 @@ for (const filename of inputFiles) {
 }
 const json = JSON.stringify(manifest, null, 2) + '\n';
 if (checkOnly) {
-  if (await fs.readFile(manifestPath, 'utf8') !== json) throw new Error('Image manifest is outdated or altered.');
+  const existingManifest = (await fs.readFile(manifestPath, 'utf8')).replaceAll('\r\n', '\n');
+  if (existingManifest !== json) throw new Error('Image manifest is outdated or altered.');
 } else {
   // This file is wholly derived from source images and regenerated mechanically.
   await fs.writeFile(manifestPath, json);

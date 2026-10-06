@@ -657,7 +657,7 @@ const specializedServices: SpecializedService[] = [
   {
     slug: 'baumpflege-baumfaellung',
     icon: TreePine,
-    label: 'Zertifizierte Zusatzleistung',
+    label: 'Spezialisierte Zusatzleistung',
     title: 'Baumpflege & Baumfällung',
     text: 'Eigenständige Fachleistung für Pflege und Rückschnitt. Notwendige Fällungen erfolgen nach objektbezogener Prüfung.',
     bullets: ['Bestand und Zugänglichkeit aufnehmen', 'Pflege- und Rückschnittbedarf einordnen', 'Sicherungsbereich und Ausführung abstimmen'],
@@ -665,13 +665,12 @@ const specializedServices: SpecializedService[] = [
     imageAlt: 'Fachkraft bei einer Baumfällarbeit mit Schutzkleidung und Motorsäge',
     imagePosition: '43% 50%',
     qualificationNote: 'Fachkunde, Sicherungsmaßnahmen und der konkrete Prüfumfang werden vor der Ausführung verbindlich abgestimmt.',
-    certification: 'Zertifiziert',
-    certificationPlaceholder: 'Konkreter Zertifikatsname wird nach Kundenfreigabe ergänzt.',
+    certification: 'Fachleistung',
   },
   {
     slug: 'spielplatzkontrolle-spielgeraetewartung',
     icon: ClipboardCheck,
-    label: 'Zertifizierte Zusatzleistung',
+    label: 'Spezialisierte Zusatzleistung',
     title: 'Spielplatzkontrolle & Spielgerätewartung',
     text: 'Planbare Kontrolle, Pflege und Wartung von Spielbereichen für Hausverwaltungen, größere Wohnanlagen und institutionelle Auftraggeber.',
     bullets: ['Regelmäßige Sichtkontrollen', 'Auffälligkeiten nachvollziehbar dokumentieren', 'Spielbereiche vereinbarungsgemäß sauber halten', 'Wartungsbedarf erkennen und abstimmen'],
@@ -679,8 +678,7 @@ const specializedServices: SpecializedService[] = [
     imageAlt: 'Heller und gepflegter Außenspielplatz mit modernen Spielgeräten',
     imagePosition: '50% 62%',
     qualificationNote: 'Prüfumfang, Dokumentation und erforderliche Fachkunde werden vor der Beauftragung verbindlich festgelegt.',
-    certification: 'Zertifiziert',
-    certificationPlaceholder: 'Konkreter Zertifikatsname für Prüfung und Wartung wird nach Kundenfreigabe ergänzt.',
+    certification: 'Fachleistung',
   },
   {
     slug: 'buero-einrichtungsservice',
@@ -1626,7 +1624,7 @@ function SpecializedServices({ certifiedOnly = false }: { certifiedOnly?: boolea
     <section className={`specialized-services${certifiedOnly ? ' specialized-services--certified' : ''}`} aria-labelledby="specialized-services-heading" lang="de">
       <div className="home-section-heading" data-reveal="up">
         <span className="eyebrow">{certifiedOnly ? 'Leistungen mit besonderem Prüf- und Sicherheitsanspruch' : 'Spezialisierte Zusatzleistungen'}</span>
-        <h2 id="specialized-services-heading">{certifiedOnly ? 'Zertifizierte Zusatzleistungen.' : 'Ergänzende Fachleistungen für professionell betreute Immobilien.'}</h2>
+        <h2 id="specialized-services-heading">{certifiedOnly ? 'Spezialisierte Zusatzleistungen.' : 'Ergänzende Fachleistungen für professionell betreute Immobilien.'}</h2>
         <p>
           {certifiedOnly
             ? 'Diese Leistungen heben sich bewusst von den klassischen Kernleistungen ab: Sie werden mit klar definiertem Prüfumfang, fachlicher Qualifikation und abgestimmten Sicherheitsabläufen geplant.'
@@ -1653,7 +1651,7 @@ function SpecializedServices({ certifiedOnly = false }: { certifiedOnly?: boolea
           const cardContent = (
             <>
               {service.certification && (
-                <span className="specialized-service-certificate" aria-label="Zertifizierte Leistung">{service.certification}</span>
+                <span className="specialized-service-certificate">{service.certification}</span>
               )}
               <div className={service.image ? 'specialized-service-media' : 'specialized-service-media specialized-service-media--icon'}>
                 {service.image ? (
@@ -2919,7 +2917,7 @@ function ServiceDetailPage({ service, onQuoteOpen }: { service: Feature; onQuote
           </nav>
           <div className="service-detail-icon"><Icon aria-hidden="true" strokeWidth={1.8} /></div>
           {service.certified ? (
-            <span className="service-certification-label"><ShieldCheck aria-hidden="true" />{service.certificationLabel ?? 'Zertifizierte Fachleistung'}</span>
+            <span className="service-certification-label"><ShieldCheck aria-hidden="true" />{service.certificationLabel ?? 'Spezialisierte Fachleistung'}</span>
           ) : (
             <span className="eyebrow">{service.eyebrow ?? 'Perla’s Objektbetreuung'}</span>
           )}
