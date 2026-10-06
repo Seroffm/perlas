@@ -1,5 +1,5 @@
 {
-  "updated": "04.10.2026",
+  "updated": "06.10.2026",
   "lead": "Informationen zur Verarbeitung personenbezogener Daten bei der Nutzung dieser Website und bei der Kontaktaufnahme.",
   "sections": [
     {
@@ -59,7 +59,7 @@
         },
         {
           "type": "paragraph",
-          "text": "Optionale externe Medien laden wir erst nach Ihrer Einwilligung gemäß § 25 Abs. 1 TDDDG und Art. 6 Abs. 1 lit. a DSGVO. Ihre Auswahl können Sie über die Cookie-Einstellungen im Footer jederzeit ändern. Google Analytics, Google Tag Manager, Google Consent Mode und reCAPTCHA sind auf dieser Website derzeit nicht eingebunden; die Analyseauswahl im Banner aktiviert gegenwärtig keinen Analysedienst."
+          "text": "Google Analytics und optionale externe Medien laden wir erst nach Ihrer Einwilligung gemäß § 25 Abs. 1 TDDDG und Art. 6 Abs. 1 lit. a DSGVO. Ihre Auswahl können Sie über die Cookie-Einstellungen im Footer jederzeit ändern. Ohne Zustimmung zur Analyse werden weder das Analytics-Skript noch Analytics-Messanfragen geladen. Google Tag Manager als Tag-Management-System und reCAPTCHA sind nicht eingebunden."
         }
       ]
     },
@@ -229,8 +229,50 @@
       ]
     },
     {
+      "id": "google-analytics",
+      "title": "13) Google Analytics",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Nach Ihrer Zustimmung zur Kategorie Analyse verwenden wir Google Analytics 4 zur statistischen Auswertung der Website. Anbieter ist Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland. Erfasst werden insbesondere Seitenaufrufe, pseudonyme Besucher- und Sitzungskennungen sowie technische Browser- und Geräteinformationen. Bei der Verbindung wird Ihre IP-Adresse an Google übertragen; nach Angaben von Google werden IP-Adressen von EU-Nutzern vor weiteren Verarbeitungsschritten verworfen und nicht gespeichert. Eine Verarbeitung weiterer Analytics-Daten in den USA kann stattfinden."
+        },
+        {
+          "type": "paragraph",
+          "text": "Wir übermitteln nur bekannte öffentliche Seitenadressen ohne Suchparameter oder Sprungmarken. Als Herkunft werden ausschließlich fest hinterlegte Suchmaschinen wie Google, Bing oder DuckDuckGo ohne Pfade und Suchbegriffe berücksichtigt. Andere Verweisadressen werden nicht übermittelt. Formularinhalte, Namen, E-Mail-Adressen, Telefonnummern und Bewerbungsunterlagen werden nicht für die Analyse übertragen. Erweiterte automatische Messungen, Google-Signale, detaillierte Standortdaten und Werbepersonalisierung sind deaktiviert. Es bestehen keine Verknüpfungen mit Werbekonten."
+        },
+        {
+          "type": "paragraph",
+          "text": "Die eigenen Cookies _ga und _ga_<Mess-ID> unterscheiden Besucher und Sitzungen. Ihre Gültigkeit ist auf 90 Tage ohne Verlängerung bei weiteren Besuchen eingestellt; Ihr Browser kann sie früher löschen. Die Aufbewahrung von Nutzer- und Ereignisdaten in Analytics ist auf zwei Monate eingestellt. Diese Frist gilt nicht für aggregierte Standardberichte. Rechtsgrundlage sind Ihre Einwilligung nach Art. 6 Abs. 1 lit. a DSGVO und § 25 Abs. 1 TDDDG."
+        },
+        {
+          "type": "paragraph",
+          "text": "Sie können die Einwilligung jederzeit über Cookie-Einstellungen im Footer widerrufen. Anschließend wird die weitere Messung deaktiviert und die von unserer Analytics-Einbindung gesetzten Cookies werden gelöscht. Die Website und ihre Formulare bleiben ohne Analytics nutzbar. Für Googles Verarbeitung gelten die vereinbarten Datenverarbeitungsbedingungen; weitere Informationen finden Sie in den nachfolgenden Hinweisen."
+        },
+        {
+          "type": "link",
+          "text": "Datenschutzhinweise von Google",
+          "href": "https://policies.google.com/privacy?hl=de"
+        },
+        {
+          "type": "link",
+          "text": "Datenschutz und Datenverarbeitung in Google Analytics",
+          "href": "https://support.google.com/analytics/answer/12017362?hl=de"
+        },
+        {
+          "type": "link",
+          "text": "Wie Google Daten von Websites mit Google-Diensten verwendet",
+          "href": "https://policies.google.com/technologies/partner-sites?hl=de"
+        },
+        {
+          "type": "link",
+          "text": "Datenverarbeitungsbedingungen von Google",
+          "href": "https://business.safety.google/adsprocessorterms/"
+        }
+      ]
+    },
+    {
       "id": "sicherheit-aenderungen",
-      "title": "13) Sicherheit und Änderungen",
+      "title": "14) Sicherheit und Änderungen",
       "blocks": [
         {
           "type": "paragraph",

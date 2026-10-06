@@ -6,17 +6,22 @@ type ConsentPreferences = {
   analytics: boolean
   marketing: boolean
   savedAt: string
-  version: 2
+  version: 3
 }
 
-const STORAGE_KEY = 'perlas-cookie-consent-v2'
+const STORAGE_KEY = 'perlas-cookie-consent-v3'
 const PRIVACY_PATH = `${import.meta.env.BASE_URL}datenschutz/`
 
 function readPreferences(): ConsentPreferences | null {
   try {
     window.localStorage.removeItem('perlas-cookie-consent-v1')
+    window.localStorage.removeItem('perlas-cookie-consent-v2')
     const stored = window.localStorage.getItem(STORAGE_KEY)
-    return stored ? JSON.parse(stored) as ConsentPreferences : null
+    const preferences = stored ? JSON.parse(stored) as ConsentPreferences : null
+    return preferences?.version === 3 && preferences.necessary === true
+      && typeof preferences.analytics === 'boolean' && typeof preferences.marketing === 'boolean'
+      && typeof preferences.savedAt === 'string' && Number.isFinite(Date.parse(preferences.savedAt))
+      ? preferences : null
   } catch {
     return null
   }
@@ -27,19 +32,34 @@ export default function CookieConsent() {
   const [settingsOpen, setSettingsOpen] = useState(false)
   const [analytics, setAnalytics] = useState(false)
   const [marketing, setMarketing] = useState(false)
+  const [storageError, setStorageError] = useState(false)
+  const storageWriteFailed = useRef(false)
   const dialogRef = useRef<HTMLDivElement>(null)
   const settingsButtonRef = useRef<HTMLButtonElement>(null)
 
   useEffect(() => {
     const openSettings = () => {
-      setAnalytics(preferences?.analytics ?? false)
-      setMarketing(preferences?.marketing ?? false)
+      const current = storageWriteFailed.current ? null : readPreferences()
+      setPreferences(current)
+      setAnalytics(current?.analytics ?? false)
+      setMarketing(current?.marketing ?? false)
       setSettingsOpen(true)
+    }
+    const syncPreferences = (event: StorageEvent) => {
+      if (event.key !== STORAGE_KEY && event.key !== null) return
+      const current = storageWriteFailed.current ? null : readPreferences()
+      setPreferences(current)
+      setAnalytics(current?.analytics ?? false)
+      setMarketing(current?.marketing ?? false)
     }
 
     window.addEventListener('perlas:open-cookie-settings', openSettings)
-    return () => window.removeEventListener('perlas:open-cookie-settings', openSettings)
-  }, [preferences])
+    window.addEventListener('storage', syncPreferences)
+    return () => {
+      window.removeEventListener('perlas:open-cookie-settings', openSettings)
+      window.removeEventListener('storage', syncPreferences)
+    }
+  }, [])
 
   useEffect(() => {
     if (!settingsOpen) return
@@ -103,23 +123,43 @@ export default function CookieConsent() {
       analytics: nextAnalytics,
       marketing: nextMarketing,
       savedAt: new Date().toISOString(),
-      version: 2,
+      version: 3,
     }
 
-    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(next))
-    window.dispatchEvent(new CustomEvent('perlas:consent-change', { detail: next }))
-    setPreferences(next)
+    let effective = next
+    try {
+      window.localStorage.setItem(STORAGE_KEY, JSON.stringify(next))
+      storageWriteFailed.current = false
+      setStorageError(false)
+    } catch {
+      // A storage failure must never prevent a withdrawal or imply consent.
+      effective = { ...next, analytics: false, marketing: false }
+      storageWriteFailed.current = true
+      setStorageError(true)
+      try { window.localStorage.removeItem(STORAGE_KEY) } catch { /* Browser blocked storage. */ }
+    }
+    window.dispatchEvent(new CustomEvent('perlas:consent-change', { detail: effective }))
+    setPreferences(effective)
     setSettingsOpen(false)
   }
 
   const openSettings = () => {
-    setAnalytics(preferences?.analytics ?? false)
-    setMarketing(preferences?.marketing ?? false)
+    const current = storageWriteFailed.current ? null : readPreferences()
+    setPreferences(current)
+    setAnalytics(current?.analytics ?? false)
+    setMarketing(current?.marketing ?? false)
     setSettingsOpen(true)
   }
 
   return (
     <div className="cookie-consent-root">
+      {storageError && (
+        <p className="cookie-storage-error" role="status">
+          Ihre Auswahl konnte im Browser nicht gespeichert werden. Optionale Dienste sind für
+          diese Seite deaktiviert. Bitte erlauben Sie die lokale Speicherung oder löschen Sie
+          die Website-Daten in Ihrem Browser, damit auch frühere Zustimmungen entfernt werden.
+        </p>
+      )}
       {!preferences && !settingsOpen && (
         <section className="cookie-banner" role="region" aria-labelledby="cookie-banner-title">
           <div className="cookie-banner-icon" aria-hidden="true"><ShieldCheck /></div>
@@ -127,8 +167,8 @@ export default function CookieConsent() {
             <span>Ihre Entscheidung</span>
             <h2 id="cookie-banner-title">Cookies nach Ihrer Wahl.</h2>
             <p>
-              Notwendige Speicherungen sorgen dafür, dass die Website funktioniert. Google Maps
-              und andere optionale externe Dienste werden nur mit Ihrer Zustimmung aktiviert.
+              Notwendige Speicherungen sorgen dafür, dass die Website funktioniert. Google Analytics
+              für die Besuchsstatistik sowie Google Maps und YouTube werden nur mit Ihrer Zustimmung aktiviert.
             </p>
             <a href={PRIVACY_PATH}>Mehr zum Datenschutz</a>
           </div>
@@ -175,7 +215,7 @@ export default function CookieConsent() {
                 <input type="checkbox" checked disabled aria-label="Technisch notwendige Cookies sind immer aktiv" />
               </label>
               <label className="cookie-option">
-                <span><strong>Analyse</strong><small>Hilft dabei zu verstehen, wie die Website genutzt wird. Aktuell nicht eingebunden.</small></span>
+                <span><strong>Analyse</strong><small>Erlaubt Google Analytics für die Besuchsstatistik. Keine Werbefunktionen und keine Übermittlung Ihrer Formularangaben. Dabei werden Daten an Google übertragen.</small></span>
                 <input type="checkbox" checked={analytics} onChange={(event) => setAnalytics(event.target.checked)} />
               </label>
               <label className="cookie-option">

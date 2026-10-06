@@ -25,7 +25,7 @@ type ConsentSnapshot = {
 }
 
 const BASE_PATH = import.meta.env.BASE_URL
-const CONSENT_STORAGE_KEY = 'perlas-cookie-consent-v2'
+const CONSENT_STORAGE_KEY = 'perlas-cookie-consent-v3'
 const WHATSAPP_URL = 'https://wa.me/491776867145?text=Hallo%20Perla%E2%80%99s%20Team%2C%20ich%20interessiere%20mich%20f%C3%BCr%20Ihre%20Objektbetreuung.'
 const MAP_EMBED_URL = 'https://www.google.com/maps?q=Hauptstra%C3%9Fe%201%2C%2065843%20Sulzbach%20(Taunus)%2C%20Deutschland&output=embed'
 const ROUTE_URL = 'https://www.google.com/maps/dir/?api=1&destination=Hauptstra%C3%9Fe%201%2C%2065843%20Sulzbach%20(Taunus)%2C%20Deutschland'

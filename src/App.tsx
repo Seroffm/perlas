@@ -1458,7 +1458,7 @@ function Hero() {
 function HomeVideo() {
   const [videoAllowed, setVideoAllowed] = useState(() => {
     try {
-      const stored = window.localStorage.getItem('perlas-cookie-consent-v2')
+      const stored = window.localStorage.getItem('perlas-cookie-consent-v3')
       return stored ? Boolean((JSON.parse(stored) as { marketing?: boolean }).marketing) : false
     } catch {
       return false
