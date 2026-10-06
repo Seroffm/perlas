@@ -14562,3 +14562,139 @@ body {
     grid-template-columns: minmax(0, 1fr);
   }
 }
+
+/* Regional context and task-based navigation use the existing brand palette. */
+.regional-service-area,
+.service-task-groups {
+  width: min(1180px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 64px 0;
+  color: var(--ink);
+  background: #fff;
+}
+
+.regional-service-area {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 48px;
+}
+
+.regional-service-area h2 {
+  max-width: 680px;
+  margin: 12px 0 20px;
+  font-size: clamp(24px, 2.5vw, 32px);
+  line-height: 1.25;
+  letter-spacing: -0.8px;
+}
+
+.regional-service-area p {
+  max-width: 740px;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.regional-service-area p + p {
+  margin-top: 14px;
+}
+
+.regional-service-area-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+
+.regional-service-area-actions > a:last-child {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.regional-service-area-actions svg {
+  width: 19px;
+  height: 19px;
+}
+
+.service-task-group-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 40px 56px;
+  margin-top: 36px;
+}
+
+.service-task-group-grid article {
+  min-width: 0;
+  scroll-margin-top: 110px;
+}
+
+.service-task-group-grid h3 {
+  font-size: 21px;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+
+.service-task-group-grid p {
+  margin: 12px 0 16px;
+  max-width: 460px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.service-task-group-grid ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.service-task-group-grid a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  min-height: 48px;
+  padding: 8px 0;
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1.5;
+}
+
+.service-task-group-grid a:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.service-task-group-grid svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+@media (max-width: 767px) {
+  .regional-service-area {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 26px;
+  }
+
+  .regional-service-area,
+  .service-task-groups {
+    padding: 42px 0;
+  }
+
+  .regional-service-area-actions {
+    align-items: flex-start;
+  }
+
+  .regional-service-area-actions .button {
+    max-width: 100%;
+    white-space: normal;
+  }
+
+  .service-task-group-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 28px;
+  }
+}

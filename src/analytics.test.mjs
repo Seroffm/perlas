@@ -5,6 +5,7 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import test from 'node:test'
 import vm from 'node:vm'
+import { webcrypto } from 'node:crypto'
 import ts from 'typescript'
 
 const directory = path.dirname(fileURLToPath(import.meta.url))
@@ -77,7 +78,9 @@ function fixture({
       this.dispatch('perlas:consent-change', { detail: next })
     },
     commands() { return Array.from(fakeWindow.perlasAnalyticsDataLayer ?? [], command => Array.from(command)) },
-    pageViews() { return this.commands().filter(command => command[0] === 'event') },
+    pageViews() { return this.commands().filter(command => command[0] === 'event' && command[1] === 'page_view') },
+    leads() { return this.commands().filter(command => command[0] === 'event' && command[1] === 'generate_lead') },
+    phoneClicks() { return this.commands().filter(command => command[0] === 'event' && command[1] === 'phone_click') },
   }
 }
 
@@ -355,4 +358,214 @@ test('duplicate installation and cleanup cannot create extra handlers or measure
   assert.equal(instance.scripts.length, 1)
   assert.equal(instance.window[`ga-disable-${measurementId}`], true)
   assert.equal([...instance.listeners.values()].every(handlers => handlers.size === 0), true)
+})
+
+test('lead events are not queued before initialization, consent or completed Google loading', () => {
+  const instance = fixture()
+  instance.recordLead('contact')
+  instance.initializeAnalytics(measurementId)
+  instance.recordLead('quote')
+  assert.equal(instance.commands().length, 0)
+  instance.save(true)
+  instance.recordLead('contact')
+  assert.equal(instance.leads().length, 0)
+  instance.scripts[0].onload()
+  assert.equal(instance.leads().length, 0)
+  instance.recordLead('quote')
+  assert.equal(instance.leads().length, 1)
+  instance.dispatch('focus')
+  assert.equal(instance.leads().length, 1)
+})
+
+test('only fixed contact and quote categories and sanitized page values reach lead parameters', () => {
+  const instance = fixture({ consent: validConsent(), url: 'https://perlas.de/private@example.test/?requestId=private#secret' })
+  instance.initializeAnalytics(measurementId)
+  instance.scripts[0].onload()
+  for (const value of [undefined, null, '', 'career', 'contact-requests', 'private@example.test', {}, ['quote'], new String('contact')]) {
+    instance.recordLead(value)
+  }
+  assert.equal(instance.leads().length, 0)
+  // Extra caller arguments, even in JavaScript, are never forwarded.
+  instance.recordLead('contact', { email: 'private@example.test', requestId: 'private' })
+  instance.recordLead('quote', 'private@example.test')
+  assert.equal(instance.leads().length, 2)
+  for (const [index, command] of instance.leads().entries()) {
+    assert.equal(command[2].form_type, index === 0 ? 'contact' : 'quote')
+    assert.equal(command[2].send_to, measurementId)
+    assert.equal(command[2].page_location, 'https://perlas.de/404/')
+    assert.deepEqual(Object.keys(command[2]).sort(), [
+      'campaign_medium', 'campaign_source', 'form_type', 'page_location', 'page_referrer', 'page_title', 'send_to',
+    ])
+  }
+  assert.equal(JSON.stringify(instance.commands()).includes('private'), false)
+})
+
+test('lead events require fresh stored consent and stop immediately on explicit withdrawal or cleanup', () => {
+  const instance = fixture({ consent: validConsent() })
+  const cleanup = instance.initializeAnalytics(measurementId)
+  instance.scripts[0].onload()
+  instance.recordLead('contact')
+  assert.equal(instance.leads().length, 1)
+  // A storage update must be honored even before the change event arrives.
+  instance.storage.set(consentKey, JSON.stringify(validConsent(false)))
+  instance.recordLead('quote')
+  assert.equal(instance.leads().length, 1)
+  instance.save(true)
+  instance.dispatch('perlas:consent-change', { detail: validConsent(false) })
+  // The readable old grant cannot undo an explicit denial if persistence fails.
+  instance.recordLead('contact')
+  assert.equal(instance.leads().length, 1)
+  instance.save(true)
+  assert.equal(instance.leads().length, 1)
+  instance.recordLead('quote')
+  assert.equal(instance.leads().length, 2)
+  cleanup()
+  instance.recordLead('contact')
+  assert.equal(instance.leads().length, 2)
+})
+
+test('failed Google loading and revoked pending loaders never replay lead conversions', () => {
+  const instance = fixture({ consent: validConsent() })
+  instance.initializeAnalytics(measurementId)
+  instance.recordLead('quote')
+  instance.scripts[0].onerror()
+  instance.recordLead('contact')
+  instance.dispatch('focus')
+  instance.save(false)
+  instance.recordLead('quote')
+  instance.save(true)
+  instance.scripts.at(-1).onload()
+  assert.equal(instance.leads().length, 0)
+  instance.recordLead('contact')
+  assert.equal(instance.leads().length, 1)
+})
+
+test('optional lead measurement cannot throw into the successful form flow', () => {
+  const instance = fixture({ consent: validConsent() })
+  instance.initializeAnalytics(measurementId)
+  instance.scripts[0].onload()
+  instance.window.perlasAnalyticsDataLayer.push = () => { throw new Error('Optional measurement failed') }
+  assert.doesNotThrow(() => instance.recordLead('contact'))
+  assert.doesNotThrow(() => instance.recordPhoneClick())
+})
+
+test('phone clicks are suppressed before consent and loading without later replay', () => {
+  const instance = fixture()
+  instance.recordPhoneClick()
+  instance.initializeAnalytics(measurementId)
+  instance.recordPhoneClick()
+  assert.equal(instance.commands().length, 0)
+  instance.save(true)
+  instance.recordPhoneClick()
+  assert.equal(instance.phoneClicks().length, 0)
+  instance.scripts[0].onload()
+  assert.equal(instance.phoneClicks().length, 0)
+  instance.recordPhoneClick()
+  assert.equal(instance.phoneClicks().length, 1)
+})
+
+test('phone clicks have only safe page context and require fresh consent until cleanup', () => {
+  const instance = fixture({ consent: validConsent() })
+  const cleanup = instance.initializeAnalytics(measurementId)
+  instance.scripts[0].onload()
+  // No caller-supplied link, number or arbitrary object is accepted or forwarded.
+  instance.recordPhoneClick('tel:private@example.test', { phone: 'private', email: 'private@example.test' })
+  assert.equal(instance.phoneClicks().length, 1)
+  const payload = instance.phoneClicks()[0][2]
+  assert.equal(payload.send_to, measurementId)
+  assert.equal(payload.page_location, 'https://www.perlas.de/kontakt/')
+  assert.deepEqual(Object.keys(payload).sort(), [
+    'campaign_medium', 'campaign_source', 'page_location', 'page_referrer', 'page_title', 'send_to',
+  ])
+  assert.equal(JSON.stringify(instance.phoneClicks()).includes('private'), false)
+  instance.storage.set(consentKey, JSON.stringify(validConsent(false)))
+  instance.recordPhoneClick()
+  assert.equal(instance.phoneClicks().length, 1)
+  instance.save(true)
+  instance.dispatch('perlas:consent-change', { detail: validConsent(false) })
+  instance.recordPhoneClick()
+  assert.equal(instance.phoneClicks().length, 1)
+  instance.save(true)
+  assert.equal(instance.phoneClicks().length, 1)
+  instance.recordPhoneClick()
+  assert.equal(instance.phoneClicks().length, 2)
+  cleanup()
+  instance.recordPhoneClick()
+  assert.equal(instance.phoneClicks().length, 2)
+})
+
+// The backend is executed with an isolated, stubbed fetch. No API or test email is sent.
+const backendSource = fs.readFileSync(path.join(directory, 'backend.ts'), 'utf8')
+const compiledBackend = ts.transpileModule(backendSource.replaceAll('import.meta.env', '__backendEnvironment'), {
+  compilerOptions: { target: ts.ScriptTarget.ES2020, module: ts.ModuleKind.CommonJS },
+}).outputText
+
+function backendFixture({ apiConfigured = true, demo = false, responseKind = 'success' } = {}) {
+  const leads = []
+  const requests = []
+  const exports = {}
+  vm.runInNewContext(compiledBackend, {
+    exports, FormData, AbortController, TextEncoder, crypto: webcrypto,
+    window: { location: new URL('https://perlas.de/kontakt/'), setTimeout, clearTimeout },
+    __backendEnvironment: { VITE_PERLAS_API_URL: apiConfigured ? 'https://api.example.test' : undefined },
+    require: filename => {
+      if (filename === './config') return { DEMO_FORM_SUBMIT_DELAY_MS: 0, DEMO_FORM_SUCCESS: demo }
+      if (filename === './analytics') return { recordLead: (...args) => leads.push(args) }
+      throw new Error(`Unexpected backend dependency: ${filename}`)
+    },
+    fetch: async (url, options) => {
+      requests.push(url)
+      if (responseKind === 'network-error') throw new TypeError('Stubbed network failure')
+      return {
+        ok: responseKind !== 'http-error', status: responseKind === 'http-error' ? 500 : 200,
+        headers: { get: () => 'application/json' },
+        json: async () => ({
+          ok: responseKind !== 'unconfirmed',
+          requestId: responseKind === 'mismatched-id' ? 'not-the-request' : options.body.get('requestId'),
+          reference: 'P-ABCDEF1234', confirmationEmailSent: false,
+        }),
+      }
+    },
+  }, { filename: 'backend.ts' })
+  return { ...exports, leads, requests }
+}
+
+const contactPayload = {
+  subject: 'Private subject', name: 'Private name', company: 'Private company',
+  email: 'private@example.test', phone: '0123456789', street: 'Private street',
+  location: 'Private location', message: 'Private message',
+}
+const quotePayload = {
+  ...contactPayload, propertyType: 'Private property', services: ['Private service'],
+  preferredStart: 'Private date', details: 'Private details',
+}
+
+test('the backend records only server-confirmed contact and quote submissions without form values', async () => {
+  const instance = backendFixture()
+  const contact = await instance.submitContactRequest(contactPayload)
+  assert.equal(contact.ok, true)
+  const quote = await instance.submitQuoteRequest(quotePayload)
+  assert.equal(quote.mode, 'api')
+  assert.deepEqual(instance.leads, [['contact'], ['quote']])
+  assert.equal(JSON.stringify(instance.leads).includes('Private'), false)
+  assert.equal(JSON.stringify(instance.leads).includes('private@example.test'), false)
+  await instance.submitCareerApplication({ ...contactPayload, role: 'Private role' })
+  assert.deepEqual(instance.leads, [['contact'], ['quote']])
+})
+
+test('demo, missing API, network errors and unconfirmed server responses never record leads', async () => {
+  const demo = backendFixture({ demo: true })
+  assert.equal((await demo.submitQuoteRequest(quotePayload)).mode, 'demo')
+  assert.equal(demo.requests.length, 0)
+  assert.equal(demo.leads.length, 0)
+  const missing = backendFixture({ apiConfigured: false })
+  await assert.rejects(missing.submitContactRequest(contactPayload))
+  await assert.rejects(missing.submitQuoteRequest(quotePayload))
+  assert.equal(missing.leads.length, 0)
+  for (const responseKind of ['network-error', 'http-error', 'unconfirmed', 'mismatched-id']) {
+    const instance = backendFixture({ responseKind })
+    await assert.rejects(instance.submitContactRequest(contactPayload))
+    await assert.rejects(instance.submitQuoteRequest(quotePayload))
+    assert.equal(instance.leads.length, 0, responseKind)
+  }
 })

@@ -1,4 +1,5 @@
 import { DEMO_FORM_SUBMIT_DELAY_MS, DEMO_FORM_SUCCESS } from './config'
+import { recordLead } from './analytics'
 
 export type CareerApplicationPayload = {
   name: string
@@ -169,7 +170,7 @@ async function submitForm(endpoint: string, formData: FormData): Promise<ApiSubm
 }
 
 export async function submitContactRequest(payload: ContactRequestPayload): Promise<ApiSubmissionResult> {
-  return submitForm('contact-requests', requestForm({
+  const result = await submitForm('contact-requests', requestForm({
     subject: payload.subject,
     name: payload.name,
     company: payload.company,
@@ -180,6 +181,8 @@ export async function submitContactRequest(payload: ContactRequestPayload): Prom
     message: payload.message,
     website: payload.website ?? '',
   }))
+  recordLead('contact')
+  return result
 }
 
 export async function submitCareerApplication(
@@ -225,6 +228,7 @@ export async function submitQuoteRequest(
     phone: payload.phone,
     website: payload.website ?? '',
   }))
+  recordLead('quote')
 
   return {
     confirmationEmailSent: result.confirmationEmailSent,

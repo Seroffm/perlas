@@ -1,0 +1,90 @@
+{
+  "home": {
+    "title": "Facility Management Sulzbach & Rhein-Main | Perla’s",
+    "description": "Perla’s aus Sulzbach (Taunus): Facility Management und Objektbetreuung für Unternehmen, Privatkunden und WEG im Rhein-Main-Gebiet. Jetzt anfragen.",
+    "heading": "Facility Management in Sulzbach und Rhein-Main.",
+    "intro": "Perla’s aus Sulzbach (Taunus) verbindet Objektbetreuung, Gebäudereinigung, Außenanlagenpflege und Winterdienst. Hausverwaltungen, WEG und Unternehmen erhalten einen festen Ansprechpartner für wiederkehrende Aufgaben. Auch einzelne Leistungen für private Immobilien stimmen wir passend zum Bedarf ab."
+  },
+  "pages": {
+    "contact": {
+      "path": "kontakt/",
+      "title": "Kontakt & Angebot in Sulzbach | Perla’s Rhein-Main",
+      "description": "Objektbetreuung oder Reinigung anfragen: Perla’s aus Sulzbach (Taunus) betreut Immobilien im Rhein-Main-Gebiet. Jetzt Ihr Objekt mit uns besprechen.",
+      "schemaType": "ContactPage"
+    },
+    "facility": {
+      "path": "facility-management/",
+      "title": "Facility Management Sulzbach & Rhein-Main | Perla’s Service",
+      "description": "Facility Management aus Sulzbach für Hausverwaltungen, WEG, Wohnanlagen und Gewerbe im Rhein-Main-Gebiet. Jetzt Betreuung und Leistungen anfragen.",
+      "schemaType": "WebPage"
+    },
+    "services": {
+      "path": "leistungen/",
+      "title": "Reinigung & Objektbetreuung Rhein-Main | Perla’s",
+      "description": "Reinigung, Objektbetreuung, Außenanlagen und Spezialservices aus Sulzbach (Taunus) für Immobilien im Rhein-Main-Gebiet. Jetzt Leistungen anfragen.",
+      "schemaType": "CollectionPage"
+    },
+    "about": {
+      "path": "ueber-uns/",
+      "title": "Perla’s aus Sulzbach | Objektbetreuung seit 1999",
+      "description": "Perla’s aus Sulzbach (Taunus): Lernen Sie das Team und die Arbeitsweise hinter der Objektbetreuung im Rhein-Main-Gebiet kennen. Jetzt Kontakt aufnehmen.",
+      "schemaType": "AboutPage"
+    },
+    "blog": {
+      "path": "blog/",
+      "title": "Blog: Wissen zur Objektbetreuung | Perla’s",
+      "description": "Praxiswissen zu Facility Management, Objektbetreuung, Gebäudereinigung, Außenanlagen und saisonaler Planung im Rhein-Main-Gebiet.",
+      "schemaType": "CollectionPage"
+    },
+    "career": {
+      "path": "karriere/",
+      "title": "Karriere & Jobs | Perla’s Objektbetreuung",
+      "description": "Arbeiten bei Perla’s: Einsatzbereiche in Objektbetreuung, Gebäudereinigung und Außenanlagenpflege im Rhein-Main-Gebiet kennenlernen.",
+      "schemaType": "CollectionPage"
+    },
+    "imprint": {
+      "path": "impressum/",
+      "title": "Impressum | Perla’s Objektbetreuung",
+      "description": "Impressum und Anbieterkennzeichnung von Perla’s Objektbetreuung im Rhein-Main-Gebiet.",
+      "schemaType": "WebPage"
+    },
+    "privacy": {
+      "path": "datenschutz/",
+      "title": "Datenschutz | Perla’s Objektbetreuung",
+      "description": "Datenschutzerklärung von Perla’s Objektbetreuung mit Informationen zu Datenverarbeitung, Cookies, Kontaktwegen und Betroffenenrechten.",
+      "schemaType": "WebPage"
+    }
+  },
+  "region": {
+    "heading": "In Sulzbach zu Hause. In Rhein-Main für Sie da.",
+    "intro": "Unser Standort ist Sulzbach (Taunus). Von hier aus betreuen wir Immobilien im Main-Taunus-Kreis und im umliegenden Rhein-Main-Gebiet – unter anderem in Schwalbach, Bad Soden, Eschborn, Frankfurt und Wiesbaden.",
+    "note": "Ob einzelne Aufgabe oder regelmäßige Betreuung: Nennen Sie uns den Standort, die Objektart und den gewünschten Umfang. Einsatzgebiet, Zugänglichkeit und Termine stimmen wir vor der Beauftragung ab.",
+    "areaServed": ["Sulzbach (Taunus)", "Main-Taunus-Kreis", "Rhein-Main-Gebiet"]
+  },
+  "serviceGroups": [
+    {
+      "id": "reinigung-objektbetreuung",
+      "title": "Reinigung & Objektbetreuung",
+      "intro": "Gepflegte Innenbereiche und verlässliche Abläufe im täglichen Betrieb.",
+      "slugs": ["objektpflege", "gebaeudereinigung", "tiefgaragenreinigung"]
+    },
+    {
+      "id": "aussenanlagen-baumpflege",
+      "title": "Außenanlagen & Baumpflege",
+      "intro": "Grünflächen, Bäume und Spielbereiche passend zu Nutzung und Jahreszeit betreuen.",
+      "slugs": ["gartenpflege", "baumpflege-baumfaellung", "spielplatzkontrolle-spielgeraetewartung"]
+    },
+    {
+      "id": "laufende-objektservices",
+      "title": "Laufende Objektservices",
+      "intro": "Wiederkehrende Aufgaben mit abgestimmten Intervallen und Zuständigkeiten verbinden.",
+      "slugs": ["wartung-instandhaltung", "muellmanagement", "winterdienst"]
+    },
+    {
+      "id": "einrichtung-einzelauftraege",
+      "title": "Einrichtung & Einzelaufträge",
+      "intro": "Unterstützung bei Raumwechseln, internen Möbelumzügen und konkreten Aufgaben am Objekt.",
+      "slugs": ["buero-einrichtungsservice", "einzelauftrag"]
+    }
+  ]
+}

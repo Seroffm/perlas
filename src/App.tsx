@@ -30,6 +30,7 @@ import {
 } from 'lucide-react'
 import CookieConsent from './CookieConsent'
 import ResponsiveImage from './ResponsiveImage'
+import { recordPhoneClick } from './analytics'
 import { FORM_LIMITS, submitContactRequest } from './backend'
 import audienceContent from './audience-data.json'
 import blogContent from './blog-data.json'
@@ -37,6 +38,7 @@ import imprintContent from './imprint-content.json'
 import jobContent from './job-data.json'
 import privacyContent from './privacy-content.json'
 import serviceContent from './service-data.json'
+import seoContent from './seo-data.json'
 import googleReviewData from './google-reviews-data.json'
 import type { BlogPostContent, JobOpeningContent } from './content-types'
 
@@ -129,56 +131,7 @@ function usePageSeo(service?: Feature, pageKind: PageKind = 'home', audience?: A
     if (!siteUrl.pathname.endsWith('/')) siteUrl.pathname += '/'
     const servicesUrl = new URL('leistungen/', siteUrl)
     const facilityUrl = new URL('facility-management/', siteUrl)
-    const pageDefinitions: Record<Exclude<PageKind, 'home' | 'notFound'>, { path: string; title: string; description: string; schemaType: string }> = {
-      contact: {
-        path: 'kontakt/',
-        title: 'Kontakt & Anfrage | Perla’s Facility Management',
-        description: 'Kontaktieren Sie Perla’s per Telefon, E-Mail, WhatsApp oder Anfrageformular und besprechen Sie die Betreuung Ihrer Immobilie im Rhein-Main-Gebiet.',
-        schemaType: 'ContactPage',
-      },
-      facility: {
-        path: 'facility-management/',
-        title: 'Facility Management Rhein-Main | Perla’s Objektbetreuung',
-        description: 'Facility Management für Hausverwaltungen, größere Wohnanlagen, Gewerbeimmobilien sowie institutionelle und öffentliche Gebäude im Rhein-Main-Gebiet.',
-        schemaType: 'WebPage',
-      },
-      services: {
-        path: 'leistungen/',
-        title: 'Leistungen für Immobilien | Perla’s Rhein-Main',
-        description: 'Objektpflege, Wartung, Gebäudereinigung, Tiefgaragenreinigung, Gartenpflege, Winterdienst, Müllmanagement und Einzelaufträge von Perla’s im Rhein-Main-Gebiet.',
-        schemaType: 'CollectionPage',
-      },
-      about: {
-        path: 'ueber-uns/',
-        title: 'Über Perla’s | Objektbetreuung seit 1999',
-        description: 'Lernen Sie Perla’s Objektbetreuung, die Arbeitsweise und die Werte hinter dem Facility Management im Rhein-Main-Gebiet kennen.',
-        schemaType: 'AboutPage',
-      },
-      blog: {
-        path: 'blog/',
-        title: 'Blog: Wissen zur Objektbetreuung | Perla’s',
-        description: 'Praxiswissen zu Facility Management, Objektbetreuung, Gebäudereinigung, Außenanlagen und saisonaler Planung im Rhein-Main-Gebiet.',
-        schemaType: 'CollectionPage',
-      },
-      career: {
-        path: 'karriere/',
-        title: 'Karriere & Jobs | Perla’s Objektbetreuung',
-        description: 'Arbeiten bei Perla’s: Einsatzbereiche in Objektbetreuung, Gebäudereinigung und Außenanlagenpflege im Rhein-Main-Gebiet kennenlernen.',
-        schemaType: 'CollectionPage',
-      },
-      imprint: {
-        path: 'impressum/',
-        title: 'Impressum | Perla’s Objektbetreuung',
-        description: 'Impressum und Anbieterkennzeichnung von Perla’s Objektbetreuung im Rhein-Main-Gebiet.',
-        schemaType: 'WebPage',
-      },
-      privacy: {
-        path: 'datenschutz/',
-        title: 'Datenschutz | Perla’s Objektbetreuung',
-        description: 'Datenschutzerklärung von Perla’s Objektbetreuung mit Informationen zu Datenverarbeitung, Cookies, Kontaktwegen und Betroffenenrechten.',
-        schemaType: 'WebPage',
-      },
-    }
+    const pageDefinitions = seoContent.pages
     const pageDefinition = pageKind === 'home' ? undefined : pageDefinitions[pageKind]
     const pageUrl = article
       ? new URL(`blog/${article.slug}/`, siteUrl)
@@ -193,12 +146,12 @@ function usePageSeo(service?: Feature, pageKind: PageKind = 'home', audience?: A
       ?? audience?.seoTitle
       ?? service?.seoTitle
       ?? pageDefinition?.title
-      ?? 'Perla’s Facility Management | Objektbetreuung Rhein-Main'
+      ?? seoContent.home.title
     const description = article?.seoDescription
       ?? audience?.seoDescription
       ?? service?.seoDescription
       ?? pageDefinition?.description
-      ?? 'Perla’s bündelt Facility Management und professionelle Objektbetreuung für Hausverwaltungen, Wohnanlagen und Gewerbeimmobilien im Rhein-Main-Gebiet.'
+      ?? seoContent.home.description
     const imageUrl = new URL(`assets/${article?.image ?? audience?.detailImage?.src ?? audience?.image.src ?? service?.image ?? 'kundenbilder/objekte/wohnanlage_modern_02.png'}`, siteUrl)
     const indexingOverride = import.meta.env.VITE_PERLAS_INDEX_SITE
     const indexingEnabled = import.meta.env.DEV ? false : indexingOverride
@@ -226,14 +179,15 @@ function usePageSeo(service?: Feature, pageKind: PageKind = 'home', audience?: A
 
     const businessId = `${siteUrl.href}#business`
     const business = {
-      '@type': 'HomeAndConstructionBusiness',
+      '@type': 'LocalBusiness',
       '@id': businessId,
       name: 'Perla’s Objektbetreuung',
       url: siteUrl.href,
       telephone: '+49 177 6867145',
       email: 'mail@perlas.de',
       foundingDate: '1999',
-      image: imageUrl.href,
+      image: new URL('assets/kundenbilder/objekte/wohnanlage_modern_02.png', siteUrl).href,
+      logo: new URL('assets/perlas-logo.svg', siteUrl).href,
       address: {
         '@type': 'PostalAddress',
         streetAddress: 'Hauptstraße 1',
@@ -241,7 +195,7 @@ function usePageSeo(service?: Feature, pageKind: PageKind = 'home', audience?: A
         addressLocality: 'Sulzbach (Taunus)',
         addressCountry: 'DE',
       },
-      areaServed: ['Main-Taunus-Kreis', 'Rhein-Main-Gebiet'],
+      areaServed: seoContent.region.areaServed,
     }
     const structuredData = article
       ? {
@@ -283,7 +237,7 @@ function usePageSeo(service?: Feature, pageKind: PageKind = 'home', audience?: A
               description: service.detail,
               url: pageUrl.href,
               provider: { '@id': businessId },
-              areaServed: ['Main-Taunus-Kreis', 'Rhein-Main-Gebiet'],
+              areaServed: seoContent.region.areaServed,
             },
             {
               '@type': 'BreadcrumbList',
@@ -307,7 +261,7 @@ function usePageSeo(service?: Feature, pageKind: PageKind = 'home', audience?: A
                 description: audience.seoDescription,
                 url: pageUrl.href,
                 provider: { '@id': businessId },
-                areaServed: ['Main-Taunus-Kreis', 'Rhein-Main-Gebiet'],
+                areaServed: seoContent.region.areaServed,
                 audience: {
                   '@type': 'Audience',
                   audienceType: audience.navLabel,
@@ -1395,15 +1349,14 @@ function Hero() {
     <section className="hero" id="top">
       <img className="hero-circle" src={`${A}bg-circle.svg`} alt="" />
       <div className="hero-copy">
-        <p className="eyebrow">Facility Management im Rhein-Main-Gebiet</p>
-        <h1>Facility Management für professionell verwaltete Immobilien.</h1>
+        <p className="eyebrow">Perla’s · Sulzbach (Taunus)</p>
+        <h1>{seoContent.home.heading}</h1>
         <p className="hero-lead">
-          Perla’s verbindet Objektbetreuung, technische Koordination, Gebäudereinigung,
-          Außenanlagenpflege und Winterdienst. Hausverwaltungen und gewerbliche Auftraggeber
-          erhalten einen festen Ansprechpartner für die laufenden Aufgaben ihrer Immobilien.
+          {seoContent.home.intro}
         </p>
         <div className="button-row">
-          <ButtonLink href={CONTACT_PATH} arrow>Betreuung anfragen</ButtonLink>
+          <ButtonLink href={CONTACT_PATH} arrow>Unverbindlich anfragen</ButtonLink>
+          <ButtonLink href="tel:+491776867145" kind="outline">Direkt anrufen</ButtonLink>
         </div>
       </div>
       <div className="hero-art" role="group" aria-roledescription="Karussell" aria-label="Einblicke in die Arbeit von Perla’s">
@@ -1866,6 +1819,51 @@ function HomeTrust() {
   )
 }
 
+function RegionalServiceArea({ compact = false }: { compact?: boolean }) {
+  return (
+    <section className={`regional-service-area${compact ? ' regional-service-area--compact' : ''}`} id="einsatzgebiet" aria-labelledby="region-heading">
+      <div>
+        <span className="eyebrow">Unser Einsatzgebiet</span>
+        <h2 id="region-heading">{compact ? 'Regional für Ihr Objekt da.' : seoContent.region.heading}</h2>
+        <p>{compact
+          ? 'Von Sulzbach (Taunus) aus betreuen wir Immobilien im Main-Taunus-Kreis und im Rhein-Main-Gebiet. Den Einsatz an Ihrem Standort stimmen wir persönlich mit Ihnen ab.'
+          : seoContent.region.intro}</p>
+        <p>{seoContent.region.note}</p>
+      </div>
+      <div className="regional-service-area-actions">
+        <ButtonLink href={CONTACT_PATH} arrow>Objekt unverbindlich anfragen</ButtonLink>
+        <a href="tel:+491776867145"><Phone aria-hidden="true" /> 0177 68 67 145</a>
+      </div>
+    </section>
+  )
+}
+
+function ServiceGroupNavigation() {
+  return (
+    <section className="service-task-groups" aria-labelledby="service-groups-heading">
+      <div className="architecture-section-heading">
+        <span className="eyebrow">Passende Leistung finden</span>
+        <h2 id="service-groups-heading">Was braucht Ihre Immobilie?</h2>
+        <p>Von laufender Betreuung bis zum Einzelauftrag: Diese Bereiche führen direkt zu unseren vorhandenen Leistungen.</p>
+      </div>
+      <div className="service-task-group-grid">
+        {seoContent.serviceGroups.map((group) => (
+          <article id={group.id} key={group.id}>
+            <h3>{group.title}</h3>
+            <p>{group.intro}</p>
+            <ul>
+              {group.slugs.map((slug) => {
+                const service = features.find((entry) => entry.slug === slug)
+                return service ? <li key={slug}><a href={`${SERVICES_PATH}${slug}/`}>{service.title}<ArrowUpRight aria-hidden="true" /></a></li> : null
+              })}
+            </ul>
+          </article>
+        ))}
+      </div>
+    </section>
+  )
+}
+
 function ServicesOverviewPage() {
   return (
     <main className="architecture-page services-overview-page">
@@ -1873,8 +1871,8 @@ function ServicesOverviewPage() {
         <div className="architecture-hero-copy" data-reveal="left">
           <PageBreadcrumb current="Leistungen" />
           <span className="eyebrow">Facility Services im Rhein-Main-Gebiet</span>
-          <h1>Leistungen für den laufenden Betrieb Ihrer Immobilie.</h1>
-          <p>Wählen Sie eine einzelne Leistung oder kombinieren Sie mehrere Aufgaben zu einem objektbezogenen Betreuungskonzept.</p>
+          <h1>Reinigung und Betreuung für Ihre Immobilie.</h1>
+          <p>Perla’s aus Sulzbach (Taunus) übernimmt einzelne Aufgaben oder verbindet sie zu einem Betreuungskonzept im Rhein-Main-Gebiet. Wählen Sie den Bereich, der zu Ihrer Immobilie passt.</p>
           <div className="button-row">
             <ButtonLink href={CONTACT_PATH} arrow>Leistung anfragen</ButtonLink>
             <ButtonLink href={FACILITY_PATH} kind="outline">Facility Management</ButtonLink>
@@ -1885,6 +1883,8 @@ function ServicesOverviewPage() {
           <figcaption>Echte Einsätze · objektbezogen geplant · verlässlich ausgeführt</figcaption>
         </figure>
       </section>
+
+      <ServiceGroupNavigation />
 
       <section className="services-audience-nav" aria-labelledby="services-audience-heading">
         <div className="architecture-section-heading" data-reveal="up">
@@ -1917,7 +1917,7 @@ function ServicesOverviewPage() {
         <div className="architecture-section-heading" data-reveal="up">
           <span className="eyebrow">Leistungsübersicht</span>
           <h2 id="services-catalog-heading">Unsere Leistungen im Überblick.</h2>
-          <p>Jede Leistung führt zu einer eigenen Seite mit Leistungsumfang, Ablauf, Einsatzbereichen und klarer fachlicher Einordnung.</p>
+          <p>Erfahren Sie, welche Aufgaben wir übernehmen, wie ein Einsatz abläuft und was wir vor der Beauftragung gemeinsam klären.</p>
         </div>
         <ExpandableCollection
           items={standardFeatures}
@@ -1949,6 +1949,7 @@ function ServicesOverviewPage() {
         </div>
         <ButtonLink href={FACILITY_PATH} kind="outline" arrow>Facility Management ansehen</ButtonLink>
       </section>
+      <RegionalServiceArea />
     </main>
   )
 }
@@ -2412,6 +2413,7 @@ function FacilityManagementPage() {
         </div>
       </section>
 
+      <RegionalServiceArea />
     </main>
   )
 }
@@ -2534,6 +2536,8 @@ function AudienceDetailPage({ audience, onQuoteOpen }: { audience: AudienceSolut
           ))}
         </div>
       </section>
+
+      <RegionalServiceArea compact />
 
       <section className="service-contact audience-detail-contact" aria-labelledby="audience-contact-heading" data-reveal="up">
         <div className="service-contact-primary">
@@ -2840,7 +2844,7 @@ function ServiceContactForm({ subject }: { subject: string }) {
         </label>
         <label className="service-form-wide">
           <span>Was dürfen wir für Sie übernehmen? *</span>
-          <textarea name="message" rows={4} placeholder="Objektart und gewünschter Leistungsumfang" maxLength={FORM_LIMITS.message} disabled={status === 'submitting'} required />
+          <textarea name="message" rows={4} placeholder="Objektart, gewünschte Aufgaben und Häufigkeit – falls bekannt auch die Fläche oder Anzahl der Einheiten" maxLength={FORM_LIMITS.message} disabled={status === 'submitting'} required />
         </label>
       </div>
       <label className="service-form-consent">
@@ -3073,6 +3077,8 @@ function ServiceDetailPage({ service, onQuoteOpen }: { service: Feature; onQuote
       </section>
 
       {serviceGallery && <ServiceMediaGallery gallery={serviceGallery} />}
+
+      <RegionalServiceArea compact />
 
       <section className="service-contact" aria-labelledby="service-contact-heading" data-reveal="up">
         <div className="service-contact-primary">
@@ -3445,6 +3451,16 @@ export default function App() {
 
   usePageSeo(activeService, pageKind, activeAudience, activeBlogPost)
 
+  useEffect(() => {
+    const onPhoneClick = (event: MouseEvent) => {
+      const target = event.target instanceof Element ? event.target.closest('a') : null
+      // Only the site's fixed public contact link; never pass link data to Analytics.
+      if (target?.getAttribute('href') === 'tel:+491776867145') recordPhoneClick()
+    }
+    document.addEventListener('click', onPhoneClick)
+    return () => document.removeEventListener('click', onPhoneClick)
+  }, [])
+
   const openQuote = useCallback((service?: string) => {
     setQuoteService(service)
     setQuoteOpen(true)
@@ -3497,6 +3513,7 @@ export default function App() {
           <SpecializedServices certifiedOnly />
           <HomeCoreServices />
           <HomeTrust />
+          <RegionalServiceArea />
         </main>
       )}
       <PageReadyEffects routeKey={activeService?.slug ?? activeAudience?.id ?? activeBlogPost?.slug ?? pageKind} />

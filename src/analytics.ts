@@ -38,6 +38,21 @@ type ConsentPreferences = {
 }
 
 let activeCleanup: (() => void) | undefined
+type LeadFormType = 'contact' | 'quote'
+let activeLeadRecorder: ((formType: LeadFormType) => void) | undefined
+let activePhoneRecorder: (() => void) | undefined
+
+/** Only the fixed form category is accepted, never form fields or request IDs. */
+export function recordLead(formType: LeadFormType) {
+  if (formType !== 'contact' && formType !== 'quote') return
+  // Measurement must never turn a successfully delivered inquiry into a form error.
+  try { activeLeadRecorder?.(formType) } catch { /* Analytics remains optional. */ }
+}
+
+/** Records a click, not a completed phone call; accepts no link data or parameters. */
+export function recordPhoneClick() {
+  try { activePhoneRecorder?.() } catch { /* Analytics remains optional. */ }
+}
 
 export function isValidMeasurementId(value: unknown): value is string {
   return typeof value === 'string' && MEASUREMENT_ID_PATTERN.test(value)
@@ -108,7 +123,8 @@ function clearOwnCookies(measurementId: string) {
 
 /**
  * Basic consent mode: no Google script, request or ping before analytics consent.
- * Only a manual page_view is added; never expose a general-purpose event/form API.
+ * Only manual page views, fixed successful-inquiry categories and phone-link clicks are added;
+ * never expose a general-purpose event/form API or queue pre-consent conversions.
  * Before activation, disable Enhanced Measurement (including history tracking),
  * user-provided data, Google Signals and advertising destinations in the GA4 UI.
  * https://developers.google.com/tag-platform/security/guides/consent
@@ -175,6 +191,24 @@ export function initializeAnalytics(measurementId?: string, basePath = '/') {
       gtag('event', 'page_view', { ...safePageValues(basePath), send_to: measurementId })
       pageViewSent = true
     }
+  }
+
+  function canRecordEvent() {
+    return !disposed && !explicitDenial && consentGranted && scriptLoaded && configured
+      && !analyticsWindow[disableKey] && readConsent()?.analytics === true
+  }
+
+  activeLeadRecorder = (formType) => {
+    if (!canRecordEvent()) return
+    // Callers cannot supply values, subjects, contact details or identifiers.
+    // https://developers.google.com/analytics/devguides/collection/ga4/reference/events#generate_lead
+    gtag('event', 'generate_lead', {
+      ...safePageValues(basePath), form_type: formType, send_to: measurementId,
+    })
+  }
+  activePhoneRecorder = () => {
+    if (!canRecordEvent()) return
+    gtag('event', 'phone_click', { ...safePageValues(basePath), send_to: measurementId })
   }
 
   function stopMeasurement() {
@@ -277,6 +311,8 @@ export function initializeAnalytics(measurementId?: string, basePath = '/') {
     window.removeEventListener('perlas:consent-change', onConsentChange)
     window.removeEventListener('storage', onStorage)
     window.removeEventListener('focus', reconcileConsent)
+    activeLeadRecorder = undefined
+    activePhoneRecorder = undefined
     activeCleanup = undefined
   }
   activeCleanup = cleanup

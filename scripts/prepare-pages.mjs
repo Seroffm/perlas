@@ -28,6 +28,7 @@ const imprintContent = JSON.parse(await readFile(imprintDataPath, 'utf8'))
 const privacyContent = JSON.parse(await readFile(privacyDataPath, 'utf8'))
 const googleReviewData = JSON.parse(await readFile(googleReviewsDataPath, 'utf8'))
 const imageVariants = JSON.parse(await readFile(imageVariantsPath, 'utf8'))
+const seoContent = JSON.parse(await readFile(new URL('../src/seo-data.json', import.meta.url), 'utf8'))
 const featuredBlogPostSlug = 'objektkontrollen-richtig-dokumentieren'
 const coreServiceSlugs = new Set([
   'objektpflege',
@@ -53,36 +54,31 @@ const fontPreloads = fontFiles
   .join('\n    ')
 
 const homeSeo = {
-  title: 'Perla’s Facility Management | Objektbetreuung Rhein-Main',
-  description: 'Perla’s bündelt Facility Management und professionelle Objektbetreuung für Hausverwaltungen, Wohnanlagen und Gewerbeimmobilien im Rhein-Main-Gebiet.',
+  ...seoContent.home,
   url: siteUrl.href,
 }
 
 const contactUrl = new URL(`${basePath}kontakt/`, siteUrl.origin)
 const contactSeo = {
-  title: 'Kontakt & Anfrage | Perla’s Facility Management',
-  description: 'Kontaktieren Sie Perla’s per Telefon, E-Mail, WhatsApp oder Anfrageformular und besprechen Sie die Betreuung Ihrer Immobilie im Rhein-Main-Gebiet.',
+  ...seoContent.pages.contact,
   url: contactUrl.href,
 }
 
 const facilityUrl = new URL(`${basePath}facility-management/`, siteUrl.origin)
 const facilitySeo = {
-  title: 'Facility Management Rhein-Main | Perla’s Objektbetreuung',
-  description: 'Facility Management für Hausverwaltungen, größere Wohnanlagen, Gewerbeimmobilien sowie institutionelle und öffentliche Gebäude im Rhein-Main-Gebiet.',
+  ...seoContent.pages.facility,
   url: facilityUrl.href,
 }
 
 const servicesUrl = new URL(`${basePath}leistungen/`, siteUrl.origin)
 const servicesSeo = {
-  title: 'Leistungen für Immobilien | Perla’s Rhein-Main',
-  description: 'Objektpflege, Wartung, Gebäudereinigung, Gartenpflege, Winterdienst, Müllmanagement und Einzelaufträge von Perla’s im Rhein-Main-Gebiet.',
+  ...seoContent.pages.services,
   url: servicesUrl.href,
 }
 
 const aboutUrl = new URL(`${basePath}ueber-uns/`, siteUrl.origin)
 const aboutSeo = {
-  title: 'Über Perla’s | Objektbetreuung seit 1999',
-  description: 'Lernen Sie Perla’s Objektbetreuung, die Arbeitsweise und die Werte hinter dem Facility Management im Rhein-Main-Gebiet kennen.',
+  ...seoContent.pages.about,
   url: aboutUrl.href,
 }
 
@@ -145,7 +141,7 @@ function imageMarkup(src, alt, { sizes, loading = 'lazy', fetchPriority } = {}) 
 
 const businessId = `${siteUrl.href}#business`
 const businessData = {
-  '@type': 'HomeAndConstructionBusiness',
+  '@type': 'LocalBusiness',
   '@id': businessId,
   name: 'Perla’s Objektbetreuung',
   url: siteUrl.href,
@@ -153,6 +149,7 @@ const businessData = {
   email: 'mail@perlas.de',
   foundingDate: '1999',
   image: new URL(`${basePath}assets/kundenbilder/objekte/wohnanlage_modern_02.png`, siteUrl.origin).href,
+  logo: new URL(`${basePath}assets/perlas-logo.svg`, siteUrl.origin).href,
   address: {
     '@type': 'PostalAddress',
     streetAddress: 'Hauptstraße 1',
@@ -160,7 +157,7 @@ const businessData = {
     addressLocality: 'Sulzbach (Taunus)',
     addressCountry: 'DE',
   },
-  areaServed: ['Main-Taunus-Kreis', 'Rhein-Main-Gebiet'],
+  areaServed: seoContent.region.areaServed,
 }
 
 function serviceUrl(service) {
@@ -193,7 +190,7 @@ function audienceStructuredData(audience) {
         description: audience.seoDescription,
         url,
         provider: { '@id': businessId },
-        areaServed: ['Main-Taunus-Kreis', 'Rhein-Main-Gebiet'],
+        areaServed: seoContent.region.areaServed,
         audience: {
           '@type': 'Audience',
           audienceType: audience.navLabel,
@@ -241,7 +238,7 @@ function structuredData(service) {
         description: service.detail,
         url,
         provider: { '@id': businessId },
-        areaServed: ['Main-Taunus-Kreis', 'Rhein-Main-Gebiet'],
+        areaServed: seoContent.region.areaServed,
       },
       {
         '@type': 'BreadcrumbList',
@@ -262,9 +259,9 @@ function contactStructuredData() {
       businessData,
       {
         '@type': 'ContactPage',
-        '@id': `${contactUrl.href}#contact-page`,
+        '@id': `${contactUrl.href}#page`,
         url: contactUrl.href,
-        name: 'Kontakt zu Perla’s Objektbetreuung',
+        name: contactSeo.title,
         description: contactSeo.description,
         inLanguage: 'de-DE',
         mainEntity: { '@id': businessId },
@@ -280,9 +277,9 @@ function facilityStructuredData() {
       businessData,
       {
         '@type': 'WebPage',
-        '@id': `${facilityUrl.href}#facility-management`,
+        '@id': `${facilityUrl.href}#page`,
         url: facilityUrl.href,
-        name: 'Facility Management von Perla’s Objektbetreuung',
+        name: facilitySeo.title,
         description: facilitySeo.description,
         inLanguage: 'de-DE',
         mainEntity: { '@id': businessId },
@@ -394,6 +391,18 @@ function selectedServiceLinks(slugs) {
     .join('')
 }
 
+function regionMarkup(compact = false) {
+  const intro = compact
+    ? 'Von Sulzbach (Taunus) aus betreuen wir Immobilien im Main-Taunus-Kreis und im Rhein-Main-Gebiet. Den Einsatz an Ihrem Standort stimmen wir persönlich mit Ihnen ab.'
+    : seoContent.region.intro
+  return `<section id="einsatzgebiet"><p>Unser Einsatzgebiet</p><h2>${escapeHtml(compact ? 'Regional für Ihr Objekt da.' : seoContent.region.heading)}</h2><p>${escapeHtml(intro)}</p><p>${escapeHtml(seoContent.region.note)}</p><a href="${basePath}kontakt/">Objekt unverbindlich anfragen</a><a href="tel:+491776867145">0177 68 67 145</a></section>`
+}
+
+function serviceGroupsMarkup() {
+  const groups = seoContent.serviceGroups.map((group) => `<article id="${escapeHtml(group.id)}"><h3>${escapeHtml(group.title)}</h3><p>${escapeHtml(group.intro)}</p><ul>${selectedServiceLinks(group.slugs)}</ul></article>`).join('')
+  return `<section><p>Passende Leistung finden</p><h2>Was braucht Ihre Immobilie?</h2><p>Von laufender Betreuung bis zum Einzelauftrag: Diese Bereiche führen direkt zu unseren vorhandenen Leistungen.</p><div class="seo-static-grid">${groups}</div></section>`
+}
+
 function homeMarkup() {
   const homeCoreServiceSlugs = ['objektpflege', 'muellmanagement', 'gebaeudereinigung', 'wartung-instandhaltung', 'gartenpflege', 'winterdienst']
   const coreServices = homeCoreServiceSlugs
@@ -425,7 +434,7 @@ function homeMarkup() {
     .join('')
 
   return [
-    `${staticHeader()}<main class="seo-static-main"><section class="seo-static-hero"><p>Facility Management im Rhein-Main-Gebiet</p><h1>Facility Management für professionell verwaltete Immobilien.</h1><p>Perla’s bündelt Objektbetreuung, technische Koordination, Reinigung, Außenanlagenpflege und Winterdienst. Hausverwaltungen und gewerbliche Auftraggeber erhalten einen festen Ansprechpartner für die laufenden Aufgaben ihrer Immobilien.</p><a href="${basePath}kontakt/">Betreuung anfragen</a>${imageMarkup('kundenbilder/hero/facility-management-objekt.jpg', 'Modernes, professionell betreutes Verwaltungsgebäude mit gepflegten Außenanlagen', { sizes: homeHeroImageSizes, loading: 'eager', fetchPriority: 'high' })}</section>`,
+    `${staticHeader()}<main class="seo-static-main"><section class="seo-static-hero"><p>Perla’s · Sulzbach (Taunus)</p><h1>${escapeHtml(seoContent.home.heading)}</h1><p>${escapeHtml(seoContent.home.intro)}</p><a href="${basePath}kontakt/">Unverbindlich anfragen</a><a href="tel:+491776867145">Direkt anrufen</a>${imageMarkup('kundenbilder/hero/facility-management-objekt.jpg', 'Modernes, professionell betreutes Verwaltungsgebäude mit gepflegten Außenanlagen', { sizes: homeHeroImageSizes, loading: 'eager', fetchPriority: 'high' })}</section>`,
     `<section><p>Perla’s persönlich</p><h2>Lernen Sie uns in 54 Sekunden kennen.</h2><p>Erhalten Sie einen kurzen Einblick in Perla’s, unsere Arbeitsweise und die Menschen hinter der laufenden Betreuung von Immobilien.</p><p>Das Video wird erst nach Ihrer Auswahl auf YouTube geöffnet. Dabei gelten die Datenschutzbedingungen von YouTube.</p><a href="https://www.youtube.com/watch?v=u8PsU3hYVYU" target="_blank" rel="noopener noreferrer">Video auf YouTube ansehen</a><p><a href="${basePath}datenschutz/#youtube">Hinweise zum Datenschutz bei YouTube</a></p></section>`,
     `<section><h2>Unternehmen und Verwaltungen, die auf Perla’s setzen.</h2><ul>${partnerNames}</ul></section>`,
     `<section><h2>${escapeHtml(googleReviewData.rating)} Sterne aus ${googleReviewData.reviewCount} Google-Rezensionen</h2><p>Kurze Auszüge aus öffentlich abgegebenen Bewertungen für Perla’s Objektbetreuung.</p><ul class="seo-static-links">${googleReviews}</ul><a href="${escapeHtml(googleReviewData.profileUrl)}" target="_blank" rel="noreferrer">Alle Rezensionen bei Google ansehen</a></section>`,
@@ -642,6 +651,17 @@ function audienceMarkup(audience) {
 }
 
 function buildPage({ title, description, url, markup, data, robots = pageRobots, ogType = 'website' }) {
+  // Keep local content visible in the initial HTML as well as in the interactive site.
+  const relativePath = url ? new URL(url).pathname.slice(basePath.length) : null
+  if (relativePath === '' || relativePath === 'facility-management/' || relativePath === 'leistungen/'
+    || relativePath?.startsWith('leistungen/') || relativePath?.startsWith('facility-management/')) {
+    const compact = relativePath !== '' && relativePath !== 'leistungen/' && relativePath !== 'facility-management/'
+    markup = markup.replace('</main>', `${regionMarkup(compact)}</main>`)
+  }
+  if (relativePath === 'leistungen/') {
+    markup = markup.replace('<section><h2>Für diese Immobilien arbeiten wir</h2>', `${serviceGroupsMarkup()}<section><h2>Für diese Immobilien arbeiten wir</h2>`)
+    markup = markup.replace('<h1>Leistungen für den laufenden Betrieb Ihrer Immobilie.</h1><p>Wählen Sie eine einzelne Leistung oder kombinieren Sie mehrere Aufgaben zu einem objektbezogenen Betreuungskonzept.</p>', '<h1>Reinigung und Betreuung für Ihre Immobilie.</h1><p>Perla’s aus Sulzbach (Taunus) übernimmt einzelne Aufgaben oder verbindet sie zu einem Betreuungskonzept im Rhein-Main-Gebiet. Wählen Sie den Bereich, der zu Ihrer Immobilie passt.</p>')
+  }
   const socialImage = new URL(`${basePath}assets/kundenbilder/objekte/wohnanlage_modern_02.png`, siteUrl.origin).href
   const extraHead = `
     ${fontPreloads}

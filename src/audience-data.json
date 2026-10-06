@@ -4,12 +4,12 @@
     "title": "Hausverwaltungen",
     "navLabel": "Hausverwaltungen",
     "text": "Klare Zuständigkeiten und gebündelte Rückmeldungen für professionell verwaltete Immobilienbestände.",
-    "seoTitle": "Facility Management für Hausverwaltungen | Perla’s Rhein-Main",
-    "seoDescription": "Facility Management für Hausverwaltungen im Rhein-Main-Gebiet: Objektkontrollen, Reinigung, Wartungskoordination, Außenanlagen und Winterdienst mit einem Ansprechpartner.",
-    "heroTitle": "Facility Management für Hausverwaltungen im Rhein-Main-Gebiet.",
-    "heroText": "Perla’s bündelt wiederkehrende Aufgaben, Objektkontrollen und Rückmeldungen für professionell verwaltete Immobilien. So behalten Verwaltungen Zustand, Leistungen und offene Punkte über mehrere Objekte hinweg im Blick.",
-    "introTitle": "Laufende Aufgaben zuverlässig an einer Stelle bündeln.",
-    "introText": "Im Verwaltungsalltag müssen viele kleine und wiederkehrende Aufgaben zusammenlaufen. Wir stimmen Leistungen und Intervalle je Objekt ab, übernehmen die Koordination vor Ort und melden verständlich zurück, was erledigt wurde und wo Handlungsbedarf besteht.",
+    "seoTitle": "Objektbetreuung für Hausverwaltungen & WEG | Perla’s",
+    "seoDescription": "Objektbetreuung für Hausverwaltungen und WEG im Rhein-Main-Gebiet: Perla’s aus Sulzbach (Taunus) unterstützt Sie. Jetzt Betreuung anfragen.",
+    "heroTitle": "Objektbetreuung für Hausverwaltungen & WEG.",
+    "heroText": "Von Sulzbach (Taunus) aus unterstützt Perla’s Hausverwaltungen und Wohnungseigentümergemeinschaften im Rhein-Main-Gebiet. Wir bündeln Objektkontrollen, Reinigung und wiederkehrende Aufgaben vor Ort – mit einem Ansprechpartner und verständlichen Rückmeldungen.",
+    "introTitle": "Ein Ansprechpartner für den Bestand.",
+    "introText": "Im Verwaltungsalltag müssen viele kleine Aufgaben zusammenlaufen. Für jede Immobilie stimmen wir Leistungen, Intervalle und Freigaben ab. Die Verwaltung entscheidet über notwendige Maßnahmen; wir übernehmen die vereinbarte Betreuung vor Ort und melden erledigte Aufgaben sowie offenen Handlungsbedarf zurück.",
     "requirements": [
       "Ein Ansprechpartner für laufende Aufgaben",
       "Abgestimmte Leistungsintervalle",
@@ -48,7 +48,7 @@
       },
       {
         "title": "Leistungen je Objekt festlegen",
-        "text": "Aufgaben, Intervalle und Rückmeldewege werden für jede Immobilie verständlich definiert."
+        "text": "Aufgaben, Intervalle, Freigaben und Rückmeldewege werden für jede Immobilie festgelegt und bilden die Grundlage des Angebots."
       },
       {
         "title": "Laufend betreuen und rückmelden",
@@ -67,6 +67,14 @@
       {
         "question": "Übernimmt Perla’s auch technische Facharbeiten?",
         "answer": "Kleine vereinbarte Hausmeisterarbeiten und Sichtkontrollen können Teil der Betreuung sein. Fachprüfungen und qualifikationsgebundene Arbeiten werden an geeignete Fachbetriebe weitergegeben und bei Bedarf organisatorisch begleitet."
+      },
+      {
+        "question": "Ersetzt Perla’s die Haus- oder WEG-Verwaltung?",
+        "answer": "Nein. Perla’s übernimmt die vereinbarte Objektbetreuung vor Ort. Rechtliche und kaufmännische Verwaltungsaufgaben, etwa WEG-Abrechnungen oder die Organisation von Eigentümerversammlungen, bleiben bei der zuständigen Verwaltung. Wir unterstützen sie durch Kontrollen, praktische Aufgaben und gebündelte Rückmeldungen."
+      },
+      {
+        "question": "Was wird für ein Angebot zur Objektbetreuung benötigt?",
+        "answer": "Nennen Sie uns Standort, Anzahl der Objekte, die zu betreuenden Flächen und gewünschten Aufgaben. Häufigkeit der Einsätze, Zugänglichkeit und Dokumentationsbedarf beeinflussen den Umfang. Nach der Abstimmung erhalten Sie ein objektbezogenes Angebot mit klar beschriebenen Leistungen."
       }
     ]
   },
@@ -75,11 +83,11 @@
     "title": "Größere Wohnanlagen & Immobilienbestände",
     "navLabel": "Wohnanlagen",
     "text": "Laufende Betreuung gemeinschaftlich genutzter Gebäude- und Außenbereiche mit planbaren Abläufen.",
-    "seoTitle": "Facility Management für Wohnanlagen | Perla’s Rhein-Main",
-    "seoDescription": "Facility Management für größere Wohnanlagen im Rhein-Main-Gebiet. Perla’s betreut Gemeinschaftsflächen, Außenanlagen, Zugänge und wiederkehrende Aufgaben.",
-    "heroTitle": "Facility Management für größere Wohnanlagen.",
-    "heroText": "Gemeinschaftsflächen, Zugänge und Außenanlagen werden täglich genutzt und müssen dauerhaft funktionieren. Perla’s verbindet regelmäßige Kontrollen, Pflege und klare Rückmeldungen zu einer planbaren Betreuung.",
-    "introTitle": "Gebäude und Außenbereiche gemeinsam betrachten.",
+    "seoTitle": "Objektbetreuung für Wohnanlagen | Perla’s Rhein-Main",
+    "seoDescription": "Wohnanlagen im Rhein-Main-Gebiet betreuen: Perla’s aus Sulzbach (Taunus) bündelt Reinigung, Objektkontrollen und Grünpflege. Jetzt anfragen.",
+    "heroTitle": "Betreuung für größere Wohnanlagen.",
+    "heroText": "Perla’s aus Sulzbach (Taunus) betreut gemeinschaftlich genutzte Gebäude- und Außenbereiche im Rhein-Main-Gebiet. Regelmäßige Kontrollen, Reinigung und Grünpflege werden auf Ihre Wohnanlage abgestimmt und an Verwaltung oder Eigentümer zurückgemeldet.",
+    "introTitle": "Ein Plan für Gebäude und Außenflächen.",
     "introText": "Bei größeren Wohnanlagen greifen viele Aufgaben ineinander. Wir ordnen die Betreuung nach Flächen, Nutzung und Jahreszeit und sorgen dafür, dass wiederkehrende Leistungen nicht nebeneinanderher laufen.",
     "requirements": [
       "Regelmäßige Objekt- und Sichtkontrollen",
@@ -133,6 +141,10 @@
       {
         "question": "Wie werden Mängel oder Schäden gemeldet?",
         "answer": "Auffälligkeiten werden aufgenommen und über den vereinbarten Kontaktweg weitergegeben. Je nach Bedarf ergänzen wir die Meldung mit Fotos und einer kurzen Einordnung der Situation."
+      },
+      {
+        "question": "Wovon hängt der Preis für die Betreuung einer Wohnanlage ab?",
+        "answer": "Entscheidend sind die Anzahl der Gebäude und Zugänge, die Größe der Gemeinschafts- und Außenflächen sowie Aufgaben und Einsatzintervalle. Saisonale Leistungen wie Winterdienst werden gesondert abgestimmt. Mit Standort, Flächenübersicht und gewünschtem Umfang können wir Ihr Angebot gezielt vorbereiten."
       }
     ]
   },
@@ -141,11 +153,11 @@
     "title": "Gewerbeimmobilien & Unternehmensstandorte",
     "navLabel": "Gewerbeimmobilien",
     "text": "Objektbetreuung, Reinigung und technische Aufgaben werden so kombiniert, dass der laufende Betrieb möglichst wenig beeinträchtigt wird.",
-    "seoTitle": "Facility Management für Gewerbeimmobilien | Perla’s Rhein-Main",
-    "seoDescription": "Facility Management für Gewerbeimmobilien und Unternehmensstandorte im Rhein-Main-Gebiet. Planbare Objektbetreuung, Reinigung und technische Koordination.",
-    "heroTitle": "Facility Management für Gewerbeimmobilien und Standorte.",
-    "heroText": "Gewerblich genutzte Immobilien brauchen gepflegte Flächen und verlässliche Abläufe, ohne den Betrieb unnötig zu stören. Perla’s stimmt Einsätze auf Nutzung, Zugänglichkeit und Ansprechpartner vor Ort ab.",
-    "introTitle": "Betreuung, die sich in den laufenden Betrieb einfügt.",
+    "seoTitle": "Facility Management für Gewerbe | Perla’s Rhein-Main",
+    "seoDescription": "Facility Management für Gewerbeimmobilien im Rhein-Main-Gebiet: Perla’s aus Sulzbach plant Reinigung und Objektbetreuung. Jetzt Bedarf anfragen.",
+    "heroTitle": "Facility Management für Gewerbeimmobilien.",
+    "heroText": "Für Unternehmen im Rhein-Main-Gebiet verbindet Perla’s aus Sulzbach (Taunus) Objektbetreuung, Reinigung und die Pflege von Außenflächen. Einsätze werden auf Betriebszeiten, Zugänglichkeit und Ansprechpartner vor Ort abgestimmt, um Arbeitsabläufe möglichst wenig zu beeinträchtigen.",
+    "introTitle": "Passend zum laufenden Betrieb.",
     "introText": "Ob Bürogebäude, gemischt genutzter Standort oder Gewerbeobjekt: Wir verbinden wiederkehrende Leistungen mit Kontrollgängen und einer klaren Weitergabe technischer Auffälligkeiten.",
     "requirements": [
       "Planbare Einsätze im laufenden Betrieb",
@@ -199,6 +211,10 @@
       {
         "question": "Wie werden technische Themen behandelt?",
         "answer": "Im Rahmen der Betreuung übernehmen wir vereinbarte Sichtkontrollen und Zustandsmeldungen. Fachprüfungen und qualifikationsgebundene Arbeiten bleiben bei geeigneten Fachbetrieben."
+      },
+      {
+        "question": "Welche Angaben helfen bei einem Angebot für einen Gewerbestandort?",
+        "answer": "Teilen Sie uns Standort, Nutzung, Flächengrößen und die gewünschten Leistungen mit. Betriebszeiten, Zugangsregelungen und sensible Bereiche sind für die Einsatzplanung wichtig. Aus diesen Angaben und den vereinbarten Intervallen ergibt sich der objektbezogene Leistungsumfang."
       }
     ]
   },
@@ -207,11 +223,11 @@
     "title": "Büro-, Praxis-, institutionelle & öffentliche Gebäude",
     "navLabel": "Öffentliche & institutionelle Gebäude",
     "text": "Für regelmäßig genutzte institutionelle und öffentliche Gebäude verbinden wir feste Zuständigkeiten mit planbaren Leistungen für Innen- und Außenbereiche.",
-    "seoTitle": "Facility Management für öffentliche Gebäude | Perla’s Rhein-Main",
-    "seoDescription": "Facility Management für Büro-, Praxis-, institutionelle und öffentliche Gebäude im Rhein-Main-Gebiet mit festen Abläufen, Kontrollen und dokumentierten Rückmeldungen.",
-    "heroTitle": "Facility Management für institutionelle und öffentliche Gebäude.",
-    "heroText": "Regelmäßig genutzte Gebäude benötigen verlässliche Abläufe, gepflegte Gemeinschaftsflächen und klar dokumentierte Rückmeldungen. Perla’s stimmt die Betreuung auf Nutzung, Besucheraufkommen und Zuständigkeiten ab.",
-    "introTitle": "Verlässliche Abläufe für regelmäßig genutzte Gebäude.",
+    "seoTitle": "Betreuung öffentlicher Gebäude | Perla’s Rhein-Main",
+    "seoDescription": "Objektbetreuung für öffentliche und institutionelle Gebäude im Rhein-Main-Gebiet. Perla’s aus Sulzbach plant Aufgaben und Abläufe. Jetzt anfragen.",
+    "heroTitle": "Betreuung öffentlicher & institutioneller Gebäude.",
+    "heroText": "Perla’s aus Sulzbach (Taunus) unterstützt die Betreuung regelmäßig genutzter institutioneller und öffentlicher Gebäude im Rhein-Main-Gebiet. Reinigung, Objektkontrollen und Außenpflege richten sich nach Nutzung, Besucheraufkommen und den vereinbarten Zuständigkeiten.",
+    "introTitle": "Klare Abläufe für gemeinsam genutzte Gebäude.",
     "introText": "Wo viele Menschen ein- und ausgehen, müssen Reinigung, Objektpflege und organisatorische Kontrollen ineinandergreifen. Wir legen Aufgaben und Intervalle gemeinsam fest und schaffen einen klaren Rückmeldeweg.",
     "requirements": [
       "Verlässliche Abläufe bei regelmäßiger Nutzung",
@@ -237,7 +253,7 @@
       },
       {
         "title": "Zugänge und Außenflächen berücksichtigen",
-        "text": "Wege, Eingangsbereiche und saisonale Aufgaben werden in die laufende Betreuung einbezogen, damit das Gebäude sicher und gepflegt erreichbar bleibt."
+        "text": "Wege, Eingangsbereiche und saisonale Aufgaben werden in die laufende Betreuung einbezogen. Auffälligkeiten an den vereinbarten Zugängen nehmen wir auf und melden sie an die zuständige Stelle."
       },
       {
         "title": "Kontrollen nachvollziehbar dokumentieren",
@@ -270,6 +286,10 @@
       {
         "question": "Wer erhält die Rückmeldungen zu Kontrollen und Leistungen?",
         "answer": "Vor dem Start wird ein zuständiger Ansprechpartner festgelegt. An ihn gehen die vereinbarten Rückmeldungen zu Leistungen, Auffälligkeiten und offenen Maßnahmen."
+      },
+      {
+        "question": "Wie wird der Leistungsumfang für ein öffentliches Gebäude festgelegt?",
+        "answer": "Wir klären Flächen, Nutzungszeiten, Besucheraufkommen und Anforderungen an Zugang und Rückmeldungen. Auf dieser Grundlage werden Aufgaben, Intervalle und Zuständigkeiten beschrieben. Besondere Reinigungs- oder Fachanforderungen werden vor einer Beauftragung ausdrücklich abgestimmt."
       }
     ]
   }
