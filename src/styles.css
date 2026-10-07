@@ -13647,7 +13647,7 @@ body {
   height: auto;
   overflow: hidden;
   display: grid;
-  grid-template-columns: minmax(0, 1.35fr) minmax(360px, 0.65fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   align-items: stretch;
   border-radius: 46px;
   color: #fff;
@@ -13656,6 +13656,7 @@ body {
 
 .blog-featured-media {
   min-width: 0;
+  width: 100%;
   aspect-ratio: 827 / 485;
   overflow: hidden;
   display: block;
@@ -13711,6 +13712,7 @@ body {
 
 .blog-page .blog-featured h2 {
   margin-top: 22px;
+  font-size: clamp(30px, 2.5vw, 36px);
   word-break: normal;
   overflow-wrap: break-word;
   hyphens: auto;
