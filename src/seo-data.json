@@ -6,6 +6,14 @@
     "intro": "Perla’s aus Sulzbach (Taunus) verbindet Objektbetreuung, Gebäudereinigung, Außenanlagenpflege und Winterdienst. Hausverwaltungen, WEG und Unternehmen erhalten einen festen Ansprechpartner für wiederkehrende Aufgaben. Auch einzelne Leistungen für private Immobilien stimmen wir passend zum Bedarf ab."
   },
   "pages": {
+    "regions": {
+      "path": "einsatzgebiete/",
+      "title": "Lokale Reinigung & Objektbetreuung | Perla’s",
+      "description": "Objektbetreuung und Reinigung für Eschborn, Frankfurt und Umgebung: passende Leistungen und Ansprechpartner aus Sulzbach finden. Jetzt anfragen.",
+      "schemaType": "CollectionPage",
+      "heading": "Leistungen für Ihren Standort.",
+      "intro": "Sie suchen Unterstützung an einem bestimmten Standort? Hier finden Sie ausgewählte Kombinationen aus Leistung und Ort – von Objektbetreuung in Eschborn bis zu Reinigung und Winterdienst in Frankfurt. Perla’s hat seinen Unternehmensstandort in Sulzbach (Taunus). Einsatz, Leistungsumfang und Termine stimmen wir für Ihr konkretes Objekt ab."
+    },
     "contact": {
       "path": "kontakt/",
       "title": "Kontakt & Angebot in Sulzbach | Perla’s Rhein-Main",

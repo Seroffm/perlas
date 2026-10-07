@@ -4,12 +4,12 @@ Live: https://perlas.de/
 
 ## SEO auf bestehenden Seiten
 
-Die Seite verwendet React/Vite und statisch erzeugtes HTML, nicht WordPress. `npm run build:pages` erzeugt 33 kanonische Seiten (einschließlich neun Blogartikeln) mit sichtbaren Inhalten, Metadaten und strukturierten Daten. Es wurden keine zusätzlichen Leistungs- oder Stadtseiten angelegt.
+Die Seite verwendet React/Vite und statisch erzeugtes HTML, nicht WordPress. `npm run build:pages` erzeugt 40 kanonische Seiten (einschließlich neun Blogartikeln, einem Einsatzgebiete-Hub und sechs kuratierten Orts-Leistungsseiten) mit sichtbaren Inhalten, Metadaten und strukturierten Daten. Der Ortsausbau wurde am 07.10.2026 ausdrücklich beauftragt; es gibt keine automatisch erzeugte Leistung×Stadt-Matrix.
 
 - `src/seo-data.json`: gemeinsame Metadaten, lokale Einordnung und Leistungsgruppen für Start-/Übersichtsseiten. Änderungen gelten für Browser und initiales HTML.
 - `src/service-data.json` und `src/audience-data.json`: Metadaten, Leistungsumfang und Angebots-FAQs der bestehenden Detailseiten.
 - Unternehmensschema: `LocalBusiness`, feste Identität/Adresse/Logo; Leistungen: `Service` mit Provider und Breadcrumbs. Keine selbstbezogenen Bewertungssterne im Markup.
-- `npm run check:seo`: prüft das gebaute HTML einschließlich der 33 erlaubten kanonischen URLs, internen Ratgeberlinks, 60-/155-Zeichenlimits, Canonicals, Schema, realen Änderungsdaten und neun Altpfad-Weiterleitungen.
+- `npm run check:seo`: prüft das gebaute HTML einschließlich der 40 erlaubten kanonischen URLs, internen Ratgeber-/Ortslinks, 60-/155-Zeichenlimits, Canonicals, Schema, realen Änderungsdaten und neun Altpfad-Weiterleitungen.
 - `node --test src/analytics.test.mjs`: prüft die Einwilligungslogik offline ohne externe Anfragen.
 
 Analytics erfasst bestätigte Kontakt-/Angebots-/Kurzanfragen als `generate_lead` mit fester Formularart (`contact`, `quote`, `quick_contact`). Telefon-, E-Mail- und WhatsApp-Linkklicks werden getrennt als `phone_click`, `email_click` und `whatsapp_click` erfasst. Nur bei gültiger Analyse-Einwilligung und geladenem Analytics; keine Formularfelder, Vorgangsnummern oder Bewerbungen, kein nachträgliches Erfassen. Kontaktklicks sind keine zugestellten Anfragen oder bestätigten Gespräche.
@@ -18,6 +18,8 @@ Für künftige freigegebene Suchanzeigen erkennt die Messung ausschließlich die
 
 ## Anfragewege und lokale Inhalte
 
+- `src/local-landing-data.json`: sechs einzeln ausgewählte Orts-/Leistungsseiten. Der Hub `/einsatzgebiete/` und passende bestehende Leistungsseiten verlinken die neuen Seiten. Eigenständiger Umfang, Ablauf, Angebotsfaktoren und FAQ; großer responsiver Bildhero, Telefonlink und vorhandenes Kurzformular. Alle Seiten behalten die echte Anbieteranschrift Sulzbach; Einsatz und Kapazität werden objektbezogen abgestimmt. Fotos werden nicht als unbelegte Ortsreferenzen dargestellt.
+- `docs/local-landing-research-2026-10-07.json`: nachvollziehbare Keyword-Zuordnung und Datengrenzen. Frische OpenSEO-Metriken sind wegen DataForSEO HTTP 402 ausstehend. Bestehende Toolwerte sind Schätzungen; breite Frankfurt-Werte dürfen nicht einzelnen Stadtteilen zugeschrieben werden. Ortskombinationen ohne Messwert sind bewusst begrenzte Piloten, keine belegten Volumen-/Leadversprechen.
 - Die Kurzanfrage funktioniert über den vorhandenen Kontakt-Endpunkt und verlangt keine vollständige Objektadresse. Die ausführliche Angebotsanfrage bleibt verfügbar. Bestätigungen/Vorgangsnummern werden nur nach tatsächlich erfolgreicher Serverantwort angezeigt.
 - Sieben bestehende Leistungsseiten verweisen kontextuell auf passende Ratgeber. Die aktualisierten Leistungsseiten haben feste, inhaltlich begründete `updatedOn`-Werte; kein tägliches künstliches Hochsetzen von `lastmod`.
 - `src/legacy-redirects.json` aktiviert neun sofortige HTML-Weiterleitungen zu fachlich passenden bestehenden Seiten. GitHub Pages liefert diese Dateien mit HTTP 200 + `meta refresh 0`; es sind keine serverseitigen HTTP-301. Die Altpfade stehen nicht in der Sitemap und enthalten keine kopierten Serviceinhalte, App-Skripte oder Analytics. `node --test scripts/legacy-redirects.test.mjs` prüft das sichere Mapping.

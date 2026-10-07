@@ -2,6 +2,7 @@ import { Fragment, useMemo, useState, type CSSProperties, type MouseEvent } from
 import { ArrowLeft, ArrowUpRight, BookOpen, CalendarDays, Clock3 } from 'lucide-react'
 import type { BlogPostContent } from './content-types'
 import ResponsiveImage from './ResponsiveImage'
+import localLandingContent from './local-landing-data.json'
 
 const BASE_PATH = import.meta.env.BASE_URL
 const BLOG_PATH = `${BASE_PATH}blog/`
@@ -153,6 +154,7 @@ export function BlogArticlePage({
     const score = (entry: BlogPostContent) => entry.relatedServices.filter((slug) => post.relatedServices.includes(slug)).length + Number(entry.category === post.category)
     return score(b) - score(a)
   }).slice(0, 2)
+  const localOffers = localLandingContent.filter((landing) => landing.guideSlugs.includes(post.slug))
 
   return (
     <main className="blog-article-page">
@@ -307,6 +309,25 @@ export function BlogArticlePage({
           ))}
         </div>
       </section>
+      {localOffers.length > 0 && (
+        <section className="blog-article-services" aria-labelledby="blog-local-offers-heading">
+          <div>
+            <span className="eyebrow">Vom Wissen zur Anfrage</span>
+            <h2 id="blog-local-offers-heading">Passend vor Ort.</h2>
+            <p>Hier finden Sie den konkreten Leistungsumfang und einen direkten Anfrageweg für Ihren Standort.</p>
+          </div>
+          <div className="blog-article-services-grid">
+            {localOffers.map((landing) => (
+              <a href={`${BASE_PATH}einsatzgebiete/${landing.slug}/`} key={landing.slug}>
+                <span>{landing.locality}</span>
+                <h3>{landing.heading}</h3>
+                <p>{landing.ctaText}</p>
+                <strong>Leistung vor Ort ansehen <ArrowUpRight aria-hidden="true" /></strong>
+              </a>
+            ))}
+          </div>
+        </section>
+      )}
     </main>
   )
 }

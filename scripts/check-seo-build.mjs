@@ -16,8 +16,8 @@ const urls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => new UR
 const sitemapIndex = await readFile(path.join(dist, 'sitemap_index.xml'), 'utf8')
 assert(sitemapIndex.includes('<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'), 'Valid compatibility sitemap index required')
 assert.deepEqual([...sitemapIndex.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]), [new URL('sitemap.xml', site).href], 'Sitemap index must point only to the current canonical sitemap')
-// Keep the route allowlist independent of content collections: only the six
-// commissioned blog articles may be added, never accidental service/city pages.
+// Keep the route allowlist independent of content collections. Only the six
+// explicitly commissioned local service pages and their hub may be added.
 const existingPaths = [
   '',
   'facility-management/',
@@ -26,6 +26,13 @@ const existingPaths = [
   'facility-management/gewerbeimmobilien/',
   'facility-management/institutionelle-gebaeude/',
   'leistungen/',
+  'einsatzgebiete/',
+  'einsatzgebiete/objektbetreuung-eschborn/',
+  'einsatzgebiete/gebaeudereinigung-frankfurt-hoechst/',
+  'einsatzgebiete/bueroreinigung-frankfurt-westend/',
+  'einsatzgebiete/treppenhausreinigung-frankfurt-bockenheim/',
+  'einsatzgebiete/winterdienst-frankfurt-riedberg/',
+  'einsatzgebiete/baumpflege-baumfaellung-neu-isenburg/',
   'ueber-uns/',
   'blog/',
   'blog/winterdienst-richtig-planen/',
@@ -54,11 +61,27 @@ const existingPaths = [
   'leistungen/buero-einrichtungsservice/',
 ]
 const expectedUrls = existingPaths.map((relative) => new URL(relative, site).href).sort()
-assert.deepEqual(urls.map((url) => url.href).sort(), expectedUrls, 'Only the existing routes plus six commissioned articles are allowed (33 canonicals)')
+assert.deepEqual(urls.map((url) => url.href).sort(), expectedUrls, 'Only the 33 existing routes plus the local hub and six commissioned landing pages are allowed (40 canonicals)')
 const blogContent = JSON.parse(await readFile(path.join(workspace, 'src/blog-data.json'), 'utf8'))
 const blogByUrl = new Map(blogContent.map((post) => [new URL(`blog/${post.slug}/`, site).href, post]))
 const serviceContent = JSON.parse(await readFile(path.join(workspace, 'src/service-data.json'), 'utf8'))
 const serviceByUrl = new Map(serviceContent.map((service) => [new URL(`leistungen/${service.slug}/`, site).href, service]))
+const localContent = JSON.parse(await readFile(path.join(workspace, 'src/local-landing-data.json'), 'utf8'))
+const localByUrl = new Map(localContent.map((landing) => [new URL(`einsatzgebiete/${landing.slug}/`, site).href, landing]))
+const seoContent = JSON.parse(await readFile(path.join(workspace, 'src/seo-data.json'), 'utf8'))
+const regionsUrl = new URL('einsatzgebiete/', site).href
+assert.equal(localByUrl.size, 6, 'Exactly six unique commissioned local service pages required')
+assert.deepEqual([...localByUrl.keys()].sort(), expectedUrls.filter((url) => url.startsWith(regionsUrl) && url !== regionsUrl), 'Local data and independently allowed routes must agree')
+for (const landing of localContent) {
+  assert(/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(landing.slug), `Safe local slug required: ${landing.slug}`)
+  assert(serviceContent.some((service) => service.slug === landing.serviceSlug), `Unknown local parent service: ${landing.slug}`)
+  assert(typeof landing.audience === 'string' && landing.audience.length > 30, `Specific local audience required: ${landing.slug}`)
+  assert(typeof landing.locality === 'string' && landing.locality.length > 3, `Local service area absent: ${landing.slug}`)
+  assert(landing.scopeCards.length >= 3 && landing.scopeCards.every((card) => card.title && card.text && card.items.length >= 2), `Substantive local scope required: ${landing.slug}`)
+  assert(landing.processSteps.length >= 3 && landing.faqs.length >= 3, `Local workflow and FAQ required: ${landing.slug}`)
+  assert(new Set(landing.guideSlugs).size === landing.guideSlugs.length && landing.guideSlugs.length <= 2, `Local guides must be a curated unique shortlist: ${landing.slug}`)
+  assert.equal(landing.updatedOn, '2026-10-07', `Keep the actual local publication date, never a rolling date: ${landing.slug}`)
+}
 assert.equal(blogByUrl.size, 9, 'Exactly nine unique blog articles required')
 assert.deepEqual([...blogByUrl.keys()].sort(), expectedUrls.filter((url) => url.startsWith(new URL('blog/', site).href) && url !== new URL('blog/', site).href), 'Blog data and allowed article routes must agree')
 const sitemapLastmods = new Map([...sitemap.matchAll(/<url>([\s\S]*?)<\/url>/g)].map((match) => [
@@ -97,6 +120,16 @@ const schemaTypes = (entry) => Array.isArray(entry['@type']) ? entry['@type'] : 
 const businessId = `${site.href}#business`
 const regionalPaths = new Set(existingPaths.filter((relative) =>
   !relative || relative === 'kontakt/' || relative.startsWith('leistungen/') || relative.startsWith('facility-management/')))
+const localCopyFingerprints = new Set()
+for (const landing of localContent) {
+  let copy = [landing.intro, landing.scopeIntro, landing.audience, landing.costText, ...landing.scopeCards.map((card) => `${card.title} ${card.text} ${card.items.join(' ')}`)].join(' ').toLowerCase()
+  for (const location of localContent.flatMap((item) => [item.locality, item.region])) {
+    copy = copy.replaceAll(location.toLowerCase(), '[ort]')
+  }
+  copy = copy.replace(/\s+/g, ' ').trim()
+  assert(!localCopyFingerprints.has(copy), `Do not publish city-name-swapped landing copies: ${landing.slug}`)
+  localCopyFingerprints.add(copy)
+}
 let sharedBusiness
 
 function checkStructuredData(html, url) {
@@ -109,6 +142,19 @@ function checkStructuredData(html, url) {
   })
   if (blogByUrl.has(url.href)) {
     assert.equal(entries.filter((entry) => schemaTypes(entry).includes('BlogPosting')).length, 1, `Exactly one Article schema required: ${url}`)
+  }
+  const local = localByUrl.get(url.href)
+  if (local) {
+    const localService = entries.filter((entry) => schemaTypes(entry).includes('Service'))
+    assert.equal(localService.length, 1, `Exactly one local Service schema required: ${url}`)
+    assert.equal(localService[0].name, local.heading, `Local Service name differs from H1: ${url}`)
+    assert.equal(localService[0].description, local.seoDescription, `Local Service description: ${url}`)
+    assert.deepEqual(localService[0].areaServed, { '@type': 'Place', name: local.locality }, `Local service area must not invent a branch office: ${url}`)
+    const breadcrumb = entries.find((entry) => schemaTypes(entry).includes('BreadcrumbList'))
+    assert.deepEqual(breadcrumb?.itemListElement?.map((item) => item.item), [site.href, regionsUrl, url.href], `Local breadcrumb hierarchy: ${url}`)
+  }
+  if (url.href === regionsUrl) {
+    assert.equal(entries.filter((entry) => schemaTypes(entry).includes('CollectionPage')).length, 1, 'Regional hub must be a CollectionPage')
   }
   const businesses = entries.filter((entry) => entry['@id'] === businessId)
   assert.equal(businesses.length, 1, `One stable business identity required: ${url}`)
@@ -210,8 +256,16 @@ for (const url of urls) {
       assert(mainText.includes(faq.question) && mainText.includes(faq.answer), `Article FAQ absent: ${url}`)
     }
     for (const source of post.sources ?? []) assert(articleLinks.includes(new URL(source.url).href), `Article source link absent: ${url}`)
+    for (const landing of localContent.filter((entry) => entry.guideSlugs.includes(post.slug))) {
+      assert(articleLinks.includes(`${site.pathname}einsatzgebiete/${landing.slug}/`), `Guide must lead to its relevant local service page: ${url} -> ${landing.slug}`)
+      assert(articleLinks.includes(`${site.pathname}einsatzgebiete/${landing.slug}/#anfrage`), `Guide must offer a direct local inquiry CTA: ${url} -> ${landing.slug}`)
+    }
     assert.equal(sitemapLastmods.get(url.href), updated, `Article sitemap lastmod differs from actual update: ${url}`)
     await access(path.join(dist, 'assets', post.image))
+  } else if (localByUrl.has(url.href) || url.href === regionsUrl) {
+    const updated = localByUrl.get(url.href)?.updatedOn ?? '2026-10-07'
+    assert(updated <= today, `Future local publication date: ${url}`)
+    assert.equal(sitemapLastmods.get(url.href), updated, `Local sitemap lastmod must match actual publication: ${url}`)
   } else if (serviceByUrl.get(url.href)?.updatedOn) {
     const updated = serviceByUrl.get(url.href).updatedOn
     assert(/^\d{4}-\d{2}-\d{2}$/.test(updated) && updated <= today && new Date(`${updated}T00:00:00Z`).toISOString().slice(0, 10) === updated, `Invalid actual service update date: ${url}`)
@@ -229,7 +283,39 @@ for (const url of urls) {
   const links = markup(html, 'a').map((link) => link.href).filter(Boolean)
   assert(links.includes(`${site.pathname}impressum/`), `Impressum link absent: ${url}`)
   assert(links.includes(`${site.pathname}datenschutz/`), `Privacy link absent: ${url}`)
+  assert(links.includes(`${site.pathname}einsatzgebiete/`), `Crawlable regional hub link absent: ${url}`)
   pages.set(url.href, { html, ids, links })
+  const local = localByUrl.get(url.href)
+  if (local) {
+    const headline = visibleText(main.match(/<h1\b[^>]*>([\s\S]*?)<\/h1>/)?.[1] ?? '')
+    assert.equal(headline, local.heading, `Local initial H1 differs from visible content: ${url}`)
+    assert.equal(title, local.seoTitle)
+    assert.equal(description, local.seoDescription)
+    assert(mainText.length >= 2300, `Local landing needs useful individual initial copy, not an empty doorway: ${url}`)
+    for (const text of [local.intro, local.audience, local.scopeIntro, local.costTitle, local.costText, ...local.scopeCards.flatMap((card) => [card.title, card.text, ...card.items]), ...local.processSteps.flatMap((step) => [step.title, step.text]), ...local.faqs.flatMap((faq) => [faq.question, faq.answer])]) {
+      assert(mainText.includes(text), `Local section absent from initial HTML: ${url} -> ${text.slice(0, 50)}`)
+    }
+    assert(mainText.includes('Sulzbach (Taunus)'), `Disclose the real company location on local landing: ${url}`)
+    const mainLinks = markup(main, 'a').map((link) => decodeEntities(link.href ?? ''))
+    assert(mainLinks.includes('#anfrage') && ids.has('anfrage'), `Local on-page inquiry CTA absent: ${url}`)
+    assert(mainLinks.includes('tel:+491776867145') && mainLinks.includes('mailto:mail@perlas.de'), `Local no-JavaScript contact alternatives absent: ${url}`)
+    assert(mainLinks.includes(`${site.pathname}leistungen/${local.serviceSlug}/`), `Local parent service link absent: ${url}`)
+    assert(mainLinks.includes(`${site.pathname}einsatzgebiete/`), `Local hub link absent from the main content: ${url}`)
+    for (const slug of local.guideSlugs) {
+      const post = blogContent.find((entry) => entry.slug === slug)
+      assert(post?.relatedServices.includes(local.serviceSlug), `Local guide must cover the parent service: ${url} -> ${slug}`)
+      assert(mainLinks.includes(`${site.pathname}blog/${slug}/`), `Local guide link absent: ${url}`)
+    }
+    const hero = markup(main, 'img').find((image) => decodeEntities(image.alt ?? '') === local.heroImage.alt)
+    assert(hero?.src?.includes('/optimized/') && hero.width && hero.height && hero.srcset && hero.sizes, `Responsive local hero with reserved dimensions required: ${url}`)
+    assert.equal(hero.loading, 'eager', `Do not lazily load the local hero: ${url}`)
+    assert.equal(hero.fetchpriority, 'high', `Local hero must be prioritized: ${url}`)
+    await access(path.join(dist, 'assets', local.heroImage.src))
+  }
+  if (url.href === regionsUrl) {
+    assert.equal(visibleText(main.match(/<h1\b[^>]*>([\s\S]*?)<\/h1>/)?.[1] ?? ''), seoContent.pages.regions.heading ?? 'Leistungen für Ihren Standort.', 'Regional hub H1 differs from content')
+    for (const landing of localContent) assert(markup(main, 'a').some((link) => link.href === `${site.pathname}einsatzgebiete/${landing.slug}/`), `Local page orphaned from its hub: ${landing.slug}`)
+  }
   const service = serviceByUrl.get(url.href)
   if (service) {
     assert.equal(visibleText(main.match(/<h1\b[^>]*>([\s\S]*?)<\/h1>/)?.[1] ?? ''), service.heading ?? service.title, `Service initial H1 differs from content: ${url}`)
@@ -242,6 +328,9 @@ for (const url of urls) {
         assert(markup(main, 'a').some((link) => link.href === guideLink), `Contextual service guide link absent from initial main: ${url}`)
         assert(mainText.includes(guide.title), `Descriptive guide title absent: ${url}`)
       }
+    }
+    for (const local of localContent.filter((landing) => landing.serviceSlug === service.slug)) {
+      assert(markup(main, 'a').some((link) => link.href === `${site.pathname}einsatzgebiete/${local.slug}/`), `Local page needs a relevant parent-service incoming link: ${local.slug}`)
     }
   }
   for (const image of markup(html, 'img')) {
@@ -297,4 +386,4 @@ for (const redirect of redirects) {
   assert(!html.includes('assets/'), 'Legacy redirect must not load application/analytics assets')
   await access(fileForUrl(redirect.target))
 }
-console.log(`SEO build checks passed: ${urls.length} allowed canonical pages including ${blogByUrl.size} articles, ${redirects.length} exact instant redirects, metadata/schema, substantive dates/lastmod, local initial HTML, contextual service/article links, responsive assets and 404.`)
+console.log(`SEO build checks passed: ${urls.length} allowed canonical pages including ${localByUrl.size} local service landings and ${blogByUrl.size} articles, ${redirects.length} exact instant redirects, metadata/schema, substantive dates/lastmod, individual initial HTML, contextual service/article/local links, responsive assets and 404.`)

@@ -198,6 +198,42 @@ test('known public detail pages work with a deployment base; unknown paths canno
   }
 })
 
+test('local hub and exactly the commissioned landing routes are measured without query or form data', () => {
+  const slugs = [
+    '', 'objektbetreuung-eschborn', 'gebaeudereinigung-frankfurt-hoechst',
+    'bueroreinigung-frankfurt-westend', 'treppenhausreinigung-frankfurt-bockenheim',
+    'winterdienst-frankfurt-riedberg', 'baumpflege-baumfaellung-neu-isenburg',
+  ]
+  for (const slug of slugs) {
+    const expected = `https://perlas.de/einsatzgebiete/${slug ? `${slug}/` : ''}`
+    const instance = fixture({ consent: validConsent(), url: `${expected}?email=private%40example.test#anfrage` })
+    instance.initializeAnalytics(measurementId)
+    instance.scripts[0].onload()
+    assert.equal(instance.pageViews()[0][2].page_location, expected)
+    instance.recordLead('quick_contact')
+    assert.equal(instance.leads()[0][2].page_location, expected)
+    assert.equal(instance.leads()[0][2].form_type, 'quick_contact')
+    assert.equal(JSON.stringify(instance.commands()).includes('private'), false)
+    assert.equal(JSON.stringify(instance.commands()).includes('#anfrage'), false)
+  }
+  for (const path of ['einsatzgebiete/private@example.test/', 'einsatzgebiete/unapproved-city/', 'einsatzgebiete/objektbetreuung-eschborn/private@example.test/']) {
+    const instance = fixture({ consent: validConsent(), url: `https://perlas.de/${path}` })
+    instance.initializeAnalytics(measurementId)
+    instance.scripts[0].onload()
+    assert.equal(instance.pageViews()[0][2].page_location, 'https://perlas.de/404/')
+    assert.equal(JSON.stringify(instance.commands()).includes('private'), false)
+  }
+})
+
+test('local landing conversion clicks and leads remain silent until analytics consent', () => {
+  const instance = fixture({ url: 'https://perlas.de/einsatzgebiete/objektbetreuung-eschborn/' })
+  instance.initializeAnalytics(measurementId)
+  instance.recordLead('quick_contact')
+  instance.recordPhoneClick()
+  assert.equal(instance.scripts.length, 0)
+  assert.equal(instance.commands().length, 0)
+})
+
 test('only fixed Google, Bing and DuckDuckGo origins preserve organic attribution', () => {
   for (const [origin, expectedOrigin, expectedSource] of [
     ['https://google.com', 'https://www.google.com', 'google'],

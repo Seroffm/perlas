@@ -1,0 +1,458 @@
+[
+  {
+    "slug": "objektbetreuung-eschborn",
+    "serviceSlug": "objektpflege",
+    "locality": "Eschborn",
+    "region": "Main-Taunus-Kreis",
+    "seoTitle": "Objektbetreuung & Hausmeisterservice Eschborn | Perla’s",
+    "seoDescription": "Objektbetreuung in Eschborn für WEG und Gewerbe: Kontrollgänge, Hausmeisteraufgaben und klare Rückmeldungen. Jetzt Ihr Objekt unverbindlich anfragen.",
+    "heading": "Objektbetreuung in Eschborn.",
+    "intro": "Wenn Meldungen aus mehreren Gebäuden bei der Verwaltung zusammenlaufen, braucht es vor Ort jemanden, der hinsieht und den nächsten Schritt klärt. Perla’s aus Sulzbach (Taunus) plant die Objektbetreuung in Eschborn für WEG, Hausverwaltungen und Gewerbeobjekte. Wir stimmen Kontrollgänge, kleine Hausmeisteraufgaben und Rückmeldungen auf Ihren Bestand ab. Die Einsatzmöglichkeit bestätigen wir für das konkrete Objekt.",
+    "heroImage": {
+      "src": "kundenbilder/fahrzeuge/perlas_fahrzeug_wohnobjekt_02.png",
+      "alt": "Perla’s Fahrzeug vor einem Wohngebäude als Beispiel für die Objektbetreuung",
+      "position": "50% 48%"
+    },
+    "audience": "Für WEG, Hausverwaltungen und betreute Gewerbeobjekte in Eschborn",
+    "scopeIntro": "Eine laufende Betreuung soll Ihre Verwaltung entlasten, nicht eine weitere Meldekette schaffen. Deshalb legen wir gemeinsam fest, welche Bereiche kontrolliert werden, was wir nach Freigabe erledigen dürfen und welche Meldungen bei Ihnen ankommen. Ein einzelnes Mehrfamilienhaus braucht dabei einen anderen Plan als mehrere Gebäude mit gemeinsamen Außenflächen.",
+    "scopeCards": [
+      {
+        "title": "Kontrollgänge mit festen Prüfpunkten",
+        "text": "Wir sehen uns die vereinbarten Eingänge, Gemeinschaftsbereiche und Außenflächen regelmäßig an. Auffälligkeiten werden einem konkreten Bereich zugeordnet, damit Ihre Verwaltung nicht erst nach dem Fundort suchen muss. Technische Fachprüfungen sind davon getrennte Leistungen.",
+        "items": ["Eingänge, Treppenhäuser und Nebenräume", "Zufahrten, Höfe und Müllplätze", "Beleuchtung und erkennbare Beschädigungen"]
+      },
+      {
+        "title": "Meldungen geordnet weitergeben",
+        "text": "Hinweise von Bewohnern oder Nutzern nehmen wir im vereinbarten Rahmen auf und prüfen die Situation vor Ort. Die Rückmeldung beschreibt den Zustand und den offenen nächsten Schritt. Fotos können ergänzen, wenn sie für die Einordnung erforderlich sind.",
+        "items": ["Ort und beobachteter Zustand", "Erledigte Aufgabe oder weiterer Bedarf", "Rückmeldung an den festgelegten Kontakt"]
+      },
+      {
+        "title": "Kleine Hausmeisteraufgaben erledigen",
+        "text": "Nicht jede Kleinigkeit benötigt einen eigenen Vor-Ort-Termin einer Fachfirma. Einfache Handgriffe und zuvor vereinbarte Verbrauchsteile können wir in die Betreuung aufnehmen. Umfang und Freigabegrenzen stehen im Leistungsplan; zulassungspflichtige Arbeiten bleiben beim geeigneten Fachbetrieb.",
+        "items": ["Leuchtmittel in vereinbarten Bereichen", "Einfache Handgriffe an Ausstattung", "Material und Zusatzaufwand vorher abstimmen"]
+      },
+      {
+        "title": "Zugang und Folgetermine koordinieren",
+        "text": "Wird ein Fachbetrieb benötigt, können wir Zugang und Einweisung am Objekt begleiten. Sie behalten den Überblick, welcher Termin stattgefunden hat und welche Fragen noch offen sind. Reinigung, Grünpflege oder Winterdienst lassen sich gesondert in denselben Objektplan einordnen.",
+        "items": ["Schlüssel- und Zugangsregelung", "Terminbegleitung nach Vereinbarung", "Kurze Rückmeldung zu offenen Punkten"]
+      }
+    ],
+    "processSteps": [
+      {
+        "title": "Bestand und Bedarf nennen",
+        "text": "Senden Sie Standort, Gebäudezahl und gewünschte Aufgaben. Ein vorhandener Leistungsplan und typische Rückfragen aus dem Alltag helfen bei der Vorbereitung."
+      },
+      {
+        "title": "Betreuung am Objekt abgrenzen",
+        "text": "Wir klären bei Bedarf vor Ort Prüfpunkte, Kontrollrhythmus, Zugänge und Freigabegrenzen. Daraus entsteht ein verständlich beschriebener Leistungsumfang."
+      },
+      {
+        "title": "Mit festen Meldewegen starten",
+        "text": "Vor dem ersten Einsatz stehen Ansprechpartner und Rückmeldungen fest. Veränderungen am Gebäude können anschließend in den Betreuungsplan aufgenommen werden."
+      }
+    ],
+    "costTitle": "Was kostet die Objektbetreuung in Eschborn?",
+    "costText": "Gebäudezahl, betreute Flächen, Kontrollintervalle und die enthaltenen Aufgaben bestimmen den Aufwand. Entscheidend ist auch, ob nur Zustände gemeldet oder freigegebene Kleinigkeiten direkt erledigt werden sollen. Nennen Sie Ihren bisherigen Umfang und die Aufgaben, die künftig besser gelöst werden müssen. Wir erstellen ein objektbezogenes Angebot; eine pauschale Monatssumme ohne diese Angaben wäre nicht vergleichbar.",
+    "faqs": [
+      {
+        "question": "Kann unsere WEG einen Hausmeisterservice in Eschborn anfragen?",
+        "answer": "Ja. Anfragen von WEG und Hausverwaltungen gehören zum vorgesehenen Betreuungsbereich. Nennen Sie Gebäudezahl, Standort und gewünschte Aufgaben. Die konkrete Einsatzmöglichkeit und den passenden Umfang bestätigen wir nach der Abstimmung."
+      },
+      {
+        "question": "Was braucht Perla’s für ein vergleichbares Angebot?",
+        "answer": "Hilfreich sind die Objektadresse, betreute Innen- und Außenbereiche, der gewünschte Rhythmus und ein bestehendes Leistungsverzeichnis. Teilen Sie auch mit, welche Hausmeisteraufgaben enthalten sein sollen und wer zusätzliche Maßnahmen freigibt."
+      },
+      {
+        "question": "Werden offene Mängel bis zur Klärung nachgehalten?",
+        "answer": "Der gewünschte Umgang mit offenen Punkten wird im Betreuungsplan festgelegt. Wir unterscheiden zwischen beobachteten Auffälligkeiten, erledigten Aufgaben und weiteren Maßnahmen. Die Entscheidung über Facharbeiten bleibt beim zuständigen Auftraggeber."
+      },
+      {
+        "question": "Sind Reinigung und Winterdienst automatisch enthalten?",
+        "answer": "Nein. Diese Leistungen können zusätzlich angefragt und gemeinsam geplant werden. Im Angebot steht ausdrücklich, welche Bereiche, Tätigkeiten und Intervalle zum Auftrag gehören. So bleibt der Hausmeisterservice klar von Zusatzleistungen abgegrenzt."
+      }
+    ],
+    "guideSlugs": ["hausmeisterservice-sulzbach-weg-leistungen", "objektkontrollen-richtig-dokumentieren"],
+    "updatedOn": "2026-10-07",
+    "ctaText": "Objektbetreuung in Eschborn anfragen"
+  },
+  {
+    "slug": "gebaeudereinigung-frankfurt-hoechst",
+    "serviceSlug": "gebaeudereinigung",
+    "locality": "Frankfurt-Höchst",
+    "region": "Frankfurt am Main",
+    "seoTitle": "Gebäudereinigung Frankfurt-Höchst | Perla’s",
+    "seoDescription": "Gebäudereinigung in Frankfurt-Höchst für verwaltete Gebäude und Gewerbe. Flächen, Zeiten und Aufgaben klar vereinbaren. Unverbindliches Angebot anfragen.",
+    "heading": "Gebäudereinigung in Frankfurt-Höchst.",
+    "intro": "Ein Gebäude mit Wohnungen, Büroflächen und gemeinsamem Eingang lässt sich nicht sinnvoll nach einem einzigen Standardplan reinigen. Perla’s aus Sulzbach (Taunus) nimmt Ihre Anfrage zur Gebäudereinigung in Frankfurt-Höchst objektbezogen auf. Wir klären, welche Flächen zu welchem Auftrag gehören, wann sie zugänglich sind und wie die Reinigung mit Bewohnern und Betrieb abgestimmt wird.",
+    "heroImage": {
+      "src": "kundenbilder/leistungen/gebaeudereinigung_flur.png",
+      "alt": "Reinigung eines Flurs als Beispiel für Gebäudereinigung in gemeinsam genutzten Bereichen",
+      "position": "50% 50%"
+    },
+    "audience": "Für Hausverwaltungen, Eigentümer und Gewerbekunden in Frankfurt-Höchst",
+    "scopeIntro": "Bei gemischter Nutzung sind die Auftragsgrenzen besonders wichtig: Gehört ein Zugang zur Wohngemeinschaft oder zur Gewerbeeinheit? Wer ermöglicht den Zugang? Welche Bereiche brauchen häufigere Reinigung? Wir machen diese Unterschiede im Leistungsverzeichnis sichtbar. So erhalten Auftraggeber, Nutzer und Reinigungsteam denselben verständlichen Rahmen statt unklarer Sammelpositionen.",
+    "scopeCards": [
+      {
+        "title": "Gemeinschaftsflächen sauber halten",
+        "text": "Eingänge, Treppen, Podeste und erreichbare Kontaktflächen erhalten die vereinbarte regelmäßige Reinigung. Laufwege und Schmutzeintrag werden bei der Planung berücksichtigt. Selten genutzte Nebenräume können einen anderen Rhythmus erhalten als der täglich genutzte Haupteingang.",
+        "items": ["Böden, Stufen und Podeste", "Handläufe und Eingangselemente", "Nebenräume nach eigenem Intervall"]
+      },
+      {
+        "title": "Büro- und Gewerberäume einordnen",
+        "text": "Für gewerblich genutzte Einheiten klären wir zugängliche Böden, vereinbarte Oberflächen und Nebenräume gesondert. Lieferungen, Publikumsverkehr und Arbeitszeiten beeinflussen das mögliche Zeitfenster. Besondere Anforderungen werden vor der Ausführung aufgenommen, nicht erst während der Reinigung.",
+        "items": ["Boden- und Oberflächenreinigung", "Teeküchen und Aufenthaltsbereiche", "Abfallbehälter nach Vereinbarung"]
+      },
+      {
+        "title": "Sanitärbereiche konkret beschreiben",
+        "text": "Waschräume und Sanitärbereiche werden mit einzelnen Aufgaben und passender Häufigkeit aufgenommen. Auch Nachfüllmaterial und seine Bereitstellung werden geklärt. Eine solche Unterhaltsreinigung ersetzt keine gesondert erforderlichen Spezialleistungen oder fachlichen Hygienevorgaben des jeweiligen Betriebs.",
+        "items": ["Sanitärkeramik und Waschbecken", "Spiegel und erreichbare Oberflächen", "Verbrauchsmaterial gesondert abstimmen"]
+      },
+      {
+        "title": "Zusatzarbeiten getrennt anbieten",
+        "text": "Glasreinigung, intensivere Grundreinigung oder ein Termin nach einem Nutzerwechsel brauchen eine eigene Abgrenzung. Wir prüfen Material, Zugang und Zustand. Erkennbare Schäden werden von Verschmutzung unterschieden; ihre Reparatur ist nicht Teil eines gewöhnlichen Reinigungsauftrags.",
+        "items": ["Erreichbare Glas- und Rahmenflächen", "Grundreinigung geeigneter Böden", "Übergabereinigung nach Besichtigung"]
+      }
+    ],
+    "processSteps": [
+      {
+        "title": "Nutzung und Flächen erfassen",
+        "text": "Nennen Sie die Gebäudeart, ungefähre Flächen und Nutzergruppen. Ein Grundriss oder ein bisheriges Leistungsverzeichnis erleichtert die Aufteilung."
+      },
+      {
+        "title": "Zugänge und Zeiten abstimmen",
+        "text": "Wir besprechen Schlüssel, Ansprechpartner und geeignete Reinigungszeiten. Bei Bedarf wird der Umfang bei einer gemeinsamen Besichtigung konkretisiert."
+      },
+      {
+        "title": "Mit einem klaren Plan arbeiten",
+        "text": "Das Angebot beschreibt Flächen, Arbeiten und Intervalle. Rückfragen und veränderte Anforderungen laufen über den festgelegten Kontakt."
+      }
+    ],
+    "costTitle": "Reinigungskosten anhand des tatsächlichen Umfangs vergleichen",
+    "costText": "Nicht allein die Quadratmeterzahl entscheidet über den Preis. Bodenmaterial, Möblierung, Zugangsbedingungen, Sanitärbereiche und Einsatzhäufigkeit verändern den Aufwand. Bei mehreren Nutzern sollte außerdem klar sein, welche Einheit welchen Umfang beauftragt. Senden Sie uns Flächen und gewünschte Intervalle für Ihr Objekt in Höchst. Im Angebot werden regelmäßig enthaltene Aufgaben und zusätzliche Arbeiten voneinander getrennt.",
+    "faqs": [
+      {
+        "question": "Kann ein gemischt genutztes Gebäude gemeinsam betreut werden?",
+        "answer": "Ja, sofern Aufgaben und Zuständigkeiten klar festgelegt werden. Gemeinschaftsflächen und einzelne Gewerbeeinheiten werden getrennt beschrieben. Welche Bereiche gemeinsam beauftragt werden können, klären wir mit dem zuständigen Auftraggeber."
+      },
+      {
+        "question": "Wie erhalten wir ein Angebot für Frankfurt-Höchst?",
+        "answer": "Senden Sie Objektadresse, Nutzung, ungefähre Flächen und die gewünschten Aufgaben. Vorhandene Pläne oder ein Leistungsverzeichnis helfen. Wir prüfen die Einsatzmöglichkeit und stimmen erforderliche weitere Angaben oder eine Besichtigung mit Ihnen ab."
+      },
+      {
+        "question": "Sind Reinigungszeiten außerhalb des Betriebs möglich?",
+        "answer": "Das gewünschte Zeitfenster können Sie in der Anfrage nennen. Zugang, Schließablauf und verfügbare Kapazität werden anschließend abgestimmt. Ein bestimmter Abend- oder Wochenendtermin gilt erst nach unserer Bestätigung als vereinbart."
+      },
+      {
+        "question": "Ist Fensterreinigung im laufenden Vertrag enthalten?",
+        "answer": "Nur wenn sie ausdrücklich beschrieben ist. Glasflächen, Rahmen, Zugang und Intervalle werden gesondert aufgenommen. Dadurch lässt sich das Angebot nachvollziehbar mit einem reinen Unterhaltsreinigungsauftrag vergleichen."
+      }
+    ],
+    "guideSlugs": ["gebaeudereinigung-im-laufenden-betrieb", "gebaeudereinigung-wiesbaden-erbenheim-leistungsverzeichnis"],
+    "updatedOn": "2026-10-07",
+    "ctaText": "Gebäudereinigung in Höchst anfragen"
+  },
+  {
+    "slug": "bueroreinigung-frankfurt-westend",
+    "serviceSlug": "gebaeudereinigung",
+    "locality": "Frankfurt-Westend",
+    "region": "Frankfurt am Main",
+    "seoTitle": "Büroreinigung Frankfurt-Westend | Perla’s",
+    "seoDescription": "Büroreinigung in Frankfurt-Westend: Arbeitsplätze, Teeküchen und Sanitärbereiche mit abgestimmten Zeiten. Jetzt unverbindliches Angebot anfragen.",
+    "heading": "Büroreinigung in Frankfurt-Westend.",
+    "intro": "Sie suchen eine Büroreinigung, die zu Ihrem Arbeitsalltag passt und nicht erst während einer Besprechung geklärt werden muss? Perla’s aus Sulzbach (Taunus) plant Büroreinigung in Frankfurt-Westend mit klaren Flächen, abgestimmten Zugängen und einem passenden Zeitfenster. Ob Verwaltung, Kanzlei oder anderes Büro: Wir prüfen Ihren konkreten Bedarf und bestätigen die örtliche Einsatzmöglichkeit vor einer Beauftragung.",
+    "heroImage": {
+      "src": "kundenbilder/team/update-2026-09-23/mitarbeiter_reinigung_weiblich_01.png",
+      "alt": "Mitarbeiterin bei der Reinigung eines Innenbereichs als Beispiel für den Reinigungsservice",
+      "position": "50% 35%"
+    },
+    "audience": "Für Unternehmen, Kanzleien und verwaltete Büroflächen in Frankfurt-Westend",
+    "scopeIntro": "Im Büro zählen nicht nur saubere Böden. Besprechungsräume müssen wieder nutzbar sein, Teeküchen brauchen klare Routinen und vertrauliche Unterlagen dürfen nicht Teil einer unspezifischen Oberflächenreinigung werden. Deshalb legen wir vorab fest, was freigeräumt sein muss, welche Flächen ausgeschlossen bleiben und wer bei geänderten Anforderungen entscheidet.",
+    "scopeCards": [
+      {
+        "title": "Arbeitsplätze mit klaren Grenzen",
+        "text": "Zugängliche, freigegebene Oberflächen und Böden werden nach Plan gereinigt. Akten, Unterlagen und persönliche Gegenstände werden nicht eigenständig sortiert oder gelesen. Gemeinsam vereinbaren wir, wie Arbeitsplätze vorbereitet werden und welche Bereiche ohne ausdrückliche Freigabe unberührt bleiben.",
+        "items": ["Freigegebene Oberflächen", "Böden und zugängliche Verkehrsflächen", "Ausgeschlossene Ablagen klar kennzeichnen"]
+      },
+      {
+        "title": "Besprechung und Empfang vorbereiten",
+        "text": "Empfang und Besprechungsräume werden passend zu ihrer tatsächlichen Nutzung eingeplant. Häufig genutzte Räume können einen anderen Rhythmus benötigen als ein selten belegtes Büro. Änderungen im Raumplan oder besondere Termine werden über einen festen Ansprechpartner abgestimmt.",
+        "items": ["Tische und erreichbare Kontaktflächen", "Böden in Empfang und Besprechung", "Raumnutzung bei der Planung beachten"]
+      },
+      {
+        "title": "Teeküche und Sanitärbereiche reinigen",
+        "text": "Regelmäßige Aufgaben in den gemeinsam genutzten Nebenräumen werden einzeln beschrieben. Wir klären erreichbare Flächen, Behälter und die Bereitstellung von Verbrauchsmaterial. Geräteinnenräume oder besondere Zusatzarbeiten gelten nur dann als enthalten, wenn sie ausdrücklich vereinbart sind.",
+        "items": ["Arbeitsflächen in der Teeküche", "Waschbecken und Sanitärkeramik", "Abfallbehälter nach vereinbartem Umfang"]
+      },
+      {
+        "title": "Zugang und Abschluss regeln",
+        "text": "Vor der Reinigung außerhalb Ihrer Kernarbeitszeit müssen Schlüsselübergabe, Alarmhinweise und Schließablauf verständlich feststehen. Nicht zugängliche Räume werden zurückgemeldet. Die vereinbarte Dokumentation hilft Ihrem Kontakt im Büro, Rückfragen ohne eigene Nachsuche zu klären.",
+        "items": ["Schlüssel und freigegebene Räume", "Schließablauf vor dem ersten Termin", "Rückmeldung bei fehlendem Zugang"]
+      }
+    ],
+    "processSteps": [
+      {
+        "title": "Ihr Büro beschreiben",
+        "text": "Nennen Sie Fläche, Raumaufteilung, Zahl der Sanitärbereiche und gewünschte Einsatztage. Teilen Sie auch mit, welche Zeiten den Betrieb nicht stören."
+      },
+      {
+        "title": "Räume und Arbeitsabläufe ansehen",
+        "text": "Bei Bedarf erfassen wir vor Ort Beläge, Möblierung und Zugänge. Vertrauliche Ablagen und ausgeschlossene Flächen werden vor Beginn geklärt."
+      },
+      {
+        "title": "Aufgaben und Zeitfenster bestätigen",
+        "text": "Im Angebot stehen die regelmäßigen Arbeiten und gesonderten Zusatzleistungen. Der vereinbarte Kontakt bündelt Rückfragen und spätere Anpassungen."
+      }
+    ],
+    "costTitle": "Was beeinflusst den Preis einer Büroreinigung?",
+    "costText": "Die reine Bürofläche reicht für eine belastbare Kalkulation nicht aus. Sanitärbereiche, Teeküchen, Anzahl der Räume, Möblierung und Reinigungsrhythmus bestimmen den Aufwand. Auch die mögliche Zugangszeit muss bekannt sein. Für ein Angebot zur Büroreinigung im Westend nennen Sie bitte diese Eckdaten. Grundreinigung, Fenster oder Verbrauchsmaterial weisen wir getrennt aus, wenn sie zusätzlich gewünscht sind.",
+    "faqs": [
+      {
+        "question": "Kann die Büroreinigung am Abend stattfinden?",
+        "answer": "Ein Abendtermin kann angefragt werden. Wir prüfen das gewünschte Zeitfenster sowie Zugang und verfügbare Kapazität. Die konkrete Reinigungszeit wird vor Beginn bestätigt; eine allgemeine Rund-um-die-Uhr-Verfügbarkeit wird nicht zugesagt."
+      },
+      {
+        "question": "Was passiert mit vertraulichen Unterlagen auf Schreibtischen?",
+        "answer": "Unterlagen werden nicht von uns sortiert oder gelesen. Wir reinigen nur die vereinbarten zugänglichen Flächen. Ihr Team legt vorab fest, welche Ablagen freigeräumt werden und welche Bereiche unberührt bleiben sollen."
+      },
+      {
+        "question": "Sind kleine Büroflächen ebenfalls anfragbar?",
+        "answer": "Ja. Teilen Sie uns Fläche, gewünschte Aufgaben und Rhythmus mit. Ob sich ein passender Einsatz für Ihren Standort in Frankfurt-Westend organisieren lässt, bestätigen wir objektbezogen nach der Abstimmung."
+      },
+      {
+        "question": "Welche Angaben braucht ein unverbindliches Angebot?",
+        "answer": "Hilfreich sind Objektadresse, ungefähre Fläche, Raumzahl, Sanitär- und Küchenbereiche sowie gewünschte Tage und Zeiten. Ein Grundriss und Hinweise zu Belägen oder besonderen Zugangsvorgaben erleichtern die Vorbereitung."
+      }
+    ],
+    "guideSlugs": ["bueroreinigung-eschborn-angebot-kosten", "gebaeudereinigung-im-laufenden-betrieb"],
+    "updatedOn": "2026-10-07",
+    "ctaText": "Büroreinigung im Westend anfragen"
+  },
+  {
+    "slug": "treppenhausreinigung-frankfurt-bockenheim",
+    "serviceSlug": "gebaeudereinigung",
+    "locality": "Frankfurt-Bockenheim",
+    "region": "Frankfurt am Main",
+    "seoTitle": "Treppenhausreinigung Frankfurt-Bockenheim | Perla’s",
+    "seoDescription": "Treppenhausreinigung in Frankfurt-Bockenheim für WEG und Mehrfamilienhäuser. Klare Flächen, Intervalle und Ansprechpartner. Unverbindlich anfragen.",
+    "heading": "Treppenhausreinigung in Frankfurt-Bockenheim.",
+    "intro": "Beim Treppenhaus fällt sofort auf, wenn der vereinbarte Umfang nicht zur Nutzung passt. Perla’s aus Sulzbach (Taunus) plant Treppenhausreinigung in Frankfurt-Bockenheim für WEG, Hausverwaltungen und private Eigentümer von Mehrfamilienhäusern. Wir stimmen Stufen, Podeste, Eingang und Nebenbereiche mit Ihnen ab, damit Bewohner und Verwaltung wissen, was regelmäßig gereinigt wird.",
+    "heroImage": {
+      "src": "kundenbilder/leistungen/gebaeudereinigung_flur.png",
+      "alt": "Reinigung einer gemeinsamen Verkehrsfläche als Beispiel für die Treppenhausreinigung",
+      "position": "50% 50%"
+    },
+    "audience": "Für WEG, Hausverwaltungen und Mehrfamilienhäuser in Frankfurt-Bockenheim",
+    "scopeIntro": "Ein Treppenhausauftrag sollte mehr benennen als „wöchentlich reinigen“. Welche Etagen gehören dazu? Ist der Kellerzugang enthalten? Werden Eingangstüren und erreichbare Briefkastenflächen mitgereinigt? Gemeinsam halten wir die Bereiche und Tätigkeiten fest. Dabei berücksichtigen wir unterschiedliche Beläge, die tatsächliche Nutzung und einen geeigneten Zeitpunkt für die Bewohner.",
+    "scopeCards": [
+      {
+        "title": "Stufen und Podeste nach Plan",
+        "text": "Wir nehmen die beauftragten Etagen, Stufen und Podeste einzeln in den Umfang auf. Reinigungsmittel und Verfahren richten sich nach dem vorhandenen Material und den verfügbaren Pflegehinweisen. Persönliche Fußmatten oder abgestellte Gegenstände werden nur im ausdrücklich vereinbarten Rahmen behandelt.",
+        "items": ["Festgelegte Etagen und Laufwege", "Reinigung passend zum Bodenbelag", "Umgang mit Matten und Gegenständen klären"]
+      },
+      {
+        "title": "Eingang und Kontaktflächen",
+        "text": "Eingangsbereiche tragen häufig Schmutz in das Gebäude. Neben dem Boden können erreichbare Handläufe, Türflächen und Briefkastenbereiche aufgenommen werden. Glas, Rahmen und schwer erreichbare Flächen werden gesondert abgegrenzt, damit aus einer unklaren Erwartung kein wiederkehrender Streitpunkt wird.",
+        "items": ["Eingangsbereich und Schmutzfangzone", "Handläufe und freigegebene Türflächen", "Erreichbare Briefkastenbereiche"]
+      },
+      {
+        "title": "Nebenräume mit eigenem Rhythmus",
+        "text": "Kellerflure und gemeinsam genutzte Nebenräume benötigen nicht automatisch dieselbe Häufigkeit wie der Eingang. Wir klären Zugang, Nutzung und gewünschten Turnus. Private Kellerabteile bleiben außerhalb des Auftrags, sofern dafür keine gesonderte Vereinbarung getroffen wurde.",
+        "items": ["Vereinbarte Keller- und Nebenflure", "Eigenes Intervall für selten genutzte Räume", "Private Bereiche klar ausschließen"]
+      },
+      {
+        "title": "Verwaltung und Bewohner abstimmen",
+        "text": "Ein fester Kontakt bündelt Rückmeldungen zum Reinigungsplan. Fehlender Zugang oder nicht nutzbare Bereiche werden nachvollziehbar gemeldet. Welcher Leistungsnachweis benötigt wird und wer Bewohner über Termine informiert, klären wir vor dem ersten Einsatz statt bei jeder Rückfrage neu.",
+        "items": ["Festgelegter Ansprechpartner", "Leistungsnachweis nach Vereinbarung", "Meldung ausgelassener oder blockierter Flächen"]
+      }
+    ],
+    "processSteps": [
+      {
+        "title": "Treppenhausumfang nennen",
+        "text": "Teilen Sie Gebäudezahl, Etagen, vorhandene Aufzüge und gewünschte Nebenbereiche mit. Ein bisheriger Reinigungsplan hilft beim Vergleich."
+      },
+      {
+        "title": "Beläge und Zugang klären",
+        "text": "Wir erfassen bei Bedarf vor Ort Bodenmaterial, Schlüsselregelung und typische Nutzung. Aufgaben und Reinigungstermine werden gemeinsam abgegrenzt."
+      },
+      {
+        "title": "Mit verständlichem Nachweis starten",
+        "text": "Nach Bestätigung der Einsatzmöglichkeit stehen Umfang, Rhythmus und Rückmeldeweg fest. Bei veränderter Nutzung kann der Plan angepasst werden."
+      }
+    ],
+    "costTitle": "Treppenhausreinigung: nicht nur Etagen zählen",
+    "costText": "Für den Preis sind Anzahl und Größe der Treppenhäuser, Etagen, Beläge und enthaltene Kontaktflächen maßgeblich. Keller, Glasflächen und besondere Grundreinigungen verändern den Umfang. Senden Sie für Ihr Objekt in Bockenheim möglichst einen bestehenden Plan oder einige Angaben zu diesen Bereichen. So kann das Angebot zwischen regelmäßiger Reinigung und gesonderten Zusatzaufgaben unterscheiden, statt nur einen schwer vergleichbaren Pauschalpreis zu nennen.",
+    "faqs": [
+      {
+        "question": "Können Hausverwaltung oder WEG die Reinigung beauftragen?",
+        "answer": "Ja. Wir stimmen den Auftrag mit dem zuständigen Ansprechpartner ab. Hilfreich sind ein bestehendes Leistungsverzeichnis und klare Angaben zu den Gemeinschaftsflächen. Die lokale Einsatzmöglichkeit wird vor der Beauftragung bestätigt."
+      },
+      {
+        "question": "Wie oft sollte ein Treppenhaus gereinigt werden?",
+        "answer": "Das hängt von Nutzung, Schmutzeintrag und den gewünschten Aufgaben ab. Ein fester wöchentlicher Rhythmus kann passen, ist aber kein Standard für jedes Gebäude. Wir legen ein Intervall anhand des konkreten Bedarfs fest."
+      },
+      {
+        "question": "Sind Keller und Fenster automatisch enthalten?",
+        "answer": "Nein. Kellerflure, Fenster, Glas- und Rahmenflächen müssen ausdrücklich beschrieben sein. Für selten genutzte Nebenräume können andere Intervalle vereinbart werden als für Eingang und Treppen."
+      },
+      {
+        "question": "Wie wird mit Beschwerden zur Reinigung umgegangen?",
+        "answer": "Rückmeldungen laufen über den vereinbarten Kontakt. Hilfreich sind Bereich, Zeitpunkt und eine konkrete Beschreibung. Wir prüfen den Hinweis im Verhältnis zum beauftragten Umfang und stimmen erforderliche Änderungen mit der Verwaltung ab."
+      }
+    ],
+    "guideSlugs": ["gebaeudereinigung-im-laufenden-betrieb"],
+    "updatedOn": "2026-10-07",
+    "ctaText": "Treppenhausreinigung in Bockenheim anfragen"
+  },
+  {
+    "slug": "winterdienst-frankfurt-riedberg",
+    "serviceSlug": "winterdienst",
+    "locality": "Frankfurt-Riedberg",
+    "region": "Frankfurt am Main",
+    "seoTitle": "Winterdienst Frankfurt-Riedberg | Perla’s",
+    "seoDescription": "Winterdienst in Frankfurt-Riedberg für Wohnanlagen und private Objektwege. Flächen, Zugänge und Zuständigkeiten planen. Jetzt Einsatzmöglichkeit anfragen.",
+    "heading": "Winterdienst in Frankfurt-Riedberg.",
+    "intro": "Für eine Wohnanlage sollte vor dem ersten Frost feststehen, welche Wege betreut werden und wie das Team sie erreicht. Perla’s aus Sulzbach (Taunus) plant Winterdienst in Frankfurt-Riedberg objektbezogen für Verwaltungen und Eigentümer. Im Mittelpunkt stehen die vereinbarten Wege, Eingänge und Außenflächen am Gebäude. Freie Kapazität und den konkreten Umfang bestätigen wir vor der Beauftragung.",
+    "heroImage": {
+      "src": "kundenbilder/leistungen/winterdienst_team.png",
+      "alt": "Perla’s Team bei Räumarbeiten als Beispiel für Winterdienst an einem Objekt",
+      "position": "50% 50%"
+    },
+    "audience": "Für Wohnanlagen, WEG und Eigentümer von Objektflächen in Frankfurt-Riedberg",
+    "scopeIntro": "Mehrere Hauseingänge, Rampen und kurze Verbindungswege können einen Flächenplan wichtiger machen als eine allgemeine Quadratmeterangabe. Wir kennzeichnen gemeinsam die beauftragten Bereiche und ihre Prioritäten. Private Objektwege, angrenzende Gehwege und kommunale Straßen dürfen dabei nicht vermischt werden: Unser Angebot beschreibt nur die konkret übernommenen Flächen und Aufgaben.",
+    "scopeCards": [
+      {
+        "title": "Flächen und Eingänge erfassen",
+        "text": "Ein Lageplan zeigt, welche Wege, Hauseingänge und vereinbarten Nebenflächen zum Auftrag gehören. Engstellen, Stufen und Rampen werden gesondert aufgenommen. So lässt sich der Umfang auch dann nachvollziehen, wenn eine größere Anlage mehrere Gebäude und unterschiedliche Zugänge hat.",
+        "items": ["Beauftragte Wege und Hauseingänge", "Stufen, Rampen und Engstellen", "Nicht enthaltene Flächen kennzeichnen"]
+      },
+      {
+        "title": "Räumen und Streuen abstimmen",
+        "text": "Räumung und Streueinsatz werden für die vereinbarten Bereiche geplant. Bodenbeläge, mögliche Ablageflächen für Schnee und geeignetes Streugut müssen bekannt sein. Die jeweils geltenden Vorgaben für das Grundstück und angrenzende Bereiche werden vorab mit dem Auftraggeber geklärt.",
+        "items": ["Flächenbezogener Räumumfang", "Streugut und Beläge abstimmen", "Ablageflächen für geräumten Schnee"]
+      },
+      {
+        "title": "Zugang in der Saison sichern",
+        "text": "Ein verschlossenes Tor oder ein nicht erreichbarer Materiallagerort kann den geplanten Ablauf verhindern. Schlüssel, Durchfahrten und Lagerung werden deshalb vor der Saison geprüft. Änderungen durch Baustellen oder abgestellte Gegenstände sollten dem zuständigen Kontakt mitgeteilt werden.",
+        "items": ["Schlüssel und gesicherte Zugänge", "Streugutlager nach Vereinbarung", "Baustellen und Hindernisse berücksichtigen"]
+      },
+      {
+        "title": "Einsätze nachvollziehbar rückmelden",
+        "text": "Welche Dokumentation benötigt Ihre Verwaltung? Wir stimmen die Rückmeldung zu Einsätzen und besonderen Situationen vor Beginn ab. Nicht erreichbare Bereiche oder veränderte Bedingungen werden getrennt benannt. Eine Einsatzdokumentation ersetzt dabei keine pauschale Garantie, dass eine Fläche jederzeit frei von Glätte bleibt.",
+        "items": ["Datum und betreute Bereiche", "Hinweise auf besondere Bedingungen", "Meldeweg für offene Fragen"]
+      }
+    ],
+    "processSteps": [
+      {
+        "title": "Standort und Flächenplan senden",
+        "text": "Nennen Sie die Objektadresse und den geplanten Beginn. Ein Lageplan mit Eingängen und beauftragten Wegen hilft bei der ersten Einschätzung."
+      },
+      {
+        "title": "Umfang und Kapazität prüfen",
+        "text": "Wir klären Zugänge, Engstellen, Material und gewünschte Vereinbarungen. Ob Ihr Objekt in die Einsatzplanung passt, wird ausdrücklich bestätigt."
+      },
+      {
+        "title": "Vor der Saison verbindlich abstimmen",
+        "text": "Der Auftrag hält betreute Flächen, Aufgaben und Rückmeldungen fest. Ansprechpartner und Hinweise zu Änderungen werden vor dem Start geklärt."
+      }
+    ],
+    "costTitle": "Winterdienst für Ihre Anlage sinnvoll kalkulieren",
+    "costText": "Weglängen, Flächengröße, Stufen, Rampen und Zugangsbedingungen beeinflussen den Aufwand. Auch Material und die gewünschte Vertragsgestaltung müssen bekannt sein. Deshalb nennen wir keinen einheitlichen Preis pro Hauseingang oder eine pauschale Einsatzgarantie. Mit Objektplan und Saisonbedarf können wir die konkrete Einsatzmöglichkeit in Riedberg prüfen und Ihnen den angebotenen Umfang nachvollziehbar darstellen.",
+    "faqs": [
+      {
+        "question": "Übernimmt Perla’s den kommunalen Straßenwinterdienst in Riedberg?",
+        "answer": "Diese Seite betrifft beauftragte Objektflächen und ausdrücklich vereinbarte angrenzende Bereiche. Kommunale Straßenräumung ist nicht Bestandteil dieses Angebots. Welche Flächen zum Auftrag gehören, wird im Plan klar abgegrenzt."
+      },
+      {
+        "question": "Können wir kurzfristig noch Winterdienst anfragen?",
+        "answer": "Sie können Ihren Bedarf jederzeit mitteilen. Eine kurzfristige Übernahme hängt jedoch von Standort, Umfang und verfügbarer Kapazität ab. Ein bestimmter Saisonstart oder Soforteinsatz gilt erst nach ausdrücklicher Bestätigung als vereinbart."
+      },
+      {
+        "question": "Welche Räumzeiten und Vorgaben gelten für unser Objekt?",
+        "answer": "Das muss für die konkret betroffenen Flächen geprüft werden. Eigentümer oder Verwaltung sollten die aktuellen behördlichen Vorgaben und bestehenden Zuständigkeiten bereitstellen. Der Auftrag wird daran ausgerichtet; diese Seite ersetzt keine rechtliche Prüfung."
+      },
+      {
+        "question": "Was brauchen wir für ein Winterdienstangebot?",
+        "answer": "Objektadresse, markierte Wege und Eingänge, Angaben zu Stufen und Rampen sowie gewünschter Zeitraum sind hilfreich. Teilen Sie mit, welche Zugänge gesichert sind und ob Streugut am Objekt gelagert werden kann."
+      }
+    ],
+    "guideSlugs": ["winterdienst-richtig-planen"],
+    "updatedOn": "2026-10-07",
+    "ctaText": "Winterdienst in Riedberg anfragen"
+  },
+  {
+    "slug": "baumpflege-baumfaellung-neu-isenburg",
+    "serviceSlug": "baumpflege-baumfaellung",
+    "locality": "Neu-Isenburg",
+    "region": "Neu-Isenburg",
+    "seoTitle": "Baumpflege & Baumfällung Neu-Isenburg | Perla’s",
+    "seoDescription": "Baumpflege und Baumfällung in Neu-Isenburg objektbezogen planen: Zugang, Freigaben und Abtransport klären. Jetzt unverbindlich Baumarbeiten anfragen.",
+    "heading": "Baumpflege und Baumfällung in Neu-Isenburg.",
+    "intro": "Sie suchen eine Firma für Baumarbeiten in Neu-Isenburg und möchten wissen, wie aus Fotos ein klar abgegrenzter Auftrag wird? Perla’s aus Sulzbach (Taunus) prüft Anfragen zu Baumpflege und Baumfällung anhand des konkreten Grundstücks. Wir klären gewünschten Umfang, Zugang und notwendige Freigaben, bevor Ausführung oder Termin zugesagt werden. Die Einsatzmöglichkeit wird individuell bestätigt.",
+    "heroImage": {
+      "src": "kundenbilder/leistungen/baumpflege/baumfaellung_hubsteiger_01.png",
+      "alt": "Baumarbeiten mit einer Arbeitsbühne als Beispiel für den Zugang bei Baumarbeiten",
+      "position": "50% 45%"
+    },
+    "audience": "Für Eigentümer, WEG und verwaltete Grundstücke in Neu-Isenburg",
+    "scopeIntro": "Bei Baumarbeiten genügt die Angabe „ein Baum im Garten“ nicht. Höhe, Umgebung, Zufahrt und gewünschte Maßnahme bestimmen, ob und wie der Auftrag durchgeführt werden kann. Auf einem verwalteten Grundstück muss außerdem klar sein, wer die Maßnahme freigibt. Wir nehmen diese Punkte geordnet auf, statt eine Fällung ohne Kenntnis der Situation zu versprechen.",
+    "scopeCards": [
+      {
+        "title": "Gewünschte Baumarbeiten abgrenzen",
+        "text": "Sollen Äste zurückgenommen, Pflegearbeiten geplant oder ein Baum entfernt werden? Wir beginnen mit dem konkreten Anliegen und prüfen die Ausführungsmöglichkeit. Sichtbare Auffälligkeiten, Fotos und vorhandene fachliche Hinweise helfen dabei; eine erste Anfrage ersetzt kein eigenständiges Baumgutachten.",
+        "items": ["Pflegebedarf und gewünschte Maßnahme", "Baumzahl, ungefähre Höhe und Fotos", "Vorhandene Hinweise zum Zustand"]
+      },
+      {
+        "title": "Zugang und Umfeld prüfen",
+        "text": "Gebäude, Nachbargrundstücke, Wege und Leitungen beeinflussen die Vorbereitung. Für eingesetzte Geräte müssen Zufahrt und Aufstellmöglichkeit passend sein. Wir klären den Arbeitsbereich vorab und benennen Hindernisse, die für einen zuverlässigen Ablauf zuerst gelöst werden müssen.",
+        "items": ["Zufahrtsbreite und Aufstellflächen", "Abstand zu Gebäuden und Wegen", "Zugangs- und Nutzungsbeschränkungen"]
+      },
+      {
+        "title": "Freigaben vor Ausführung klären",
+        "text": "Vor einer Beauftragung muss feststehen, ob Genehmigungen, Schutzvorgaben oder weitere Zustimmungen für die konkrete Maßnahme relevant sind. Eigentümer oder Verwaltung stellen vorhandene Unterlagen bereit. Wir sagen keinen Termin zu, der eine noch ungeklärte Freigabe einfach voraussetzt.",
+        "items": ["Zuständigen Auftraggeber festlegen", "Vorhandene Freigaben bereitstellen", "Behördliche Anforderungen vorab prüfen"]
+      },
+      {
+        "title": "Schnittgut und Abtransport vereinbaren",
+        "text": "Nach Baumarbeiten bleibt nicht nur ein gereinigter Arbeitsbereich, sondern gegebenenfalls viel Schnittgut zurück. Wir klären, was am Grundstück bleiben soll und ob Abtransport gewünscht ist. Stammstücke, Häckselgut oder weitere Arbeiten müssen ausdrücklich im angebotenen Umfang beschrieben werden.",
+        "items": ["Schnittgut am Grundstück oder Abtransport", "Gewünschte Aufbereitung abstimmen", "Zusätzliche Arbeiten getrennt anbieten"]
+      }
+    ],
+    "processSteps": [
+      {
+        "title": "Baum und Grundstück beschreiben",
+        "text": "Senden Sie die Adresse, gewünschte Maßnahme und Fotos von Baum und Zugang. Vermeiden Sie dabei unnötig erkennbare Personen oder private Unterlagen."
+      },
+      {
+        "title": "Umfang vor Ort prüfen",
+        "text": "Wir klären bei Bedarf Zugang, Umfeld und technische Ausführung. Vorhandene Freigaben und die Verantwortung für weitere Unterlagen werden besprochen."
+      },
+      {
+        "title": "Angebot und Ausführung abstimmen",
+        "text": "Im Angebot stehen Baumarbeiten, enthaltene Nebenleistungen und Abtransport. Ein Termin wird erst nach Klärung der Voraussetzungen vereinbart."
+      }
+    ],
+    "costTitle": "Was kostet eine Baumfällung in Neu-Isenburg?",
+    "costText": "Baumhöhe und Stammumfang sind nur ein Teil der Kalkulation. Zugänglichkeit, Nähe zu Gebäuden, benötigte Geräte, Freigaben und der Umgang mit Schnittgut verändern den Aufwand. Fotos ermöglichen eine erste Einordnung; für ein belastbares Angebot kann eine Besichtigung erforderlich sein. Fragen Sie deshalb die konkret gewünschte Maßnahme samt Abtransport an, statt nur nach einem pauschalen Preis pro Baum zu vergleichen.",
+    "faqs": [
+      {
+        "question": "Brauchen wir vor einer Baumfällung eine Genehmigung?",
+        "answer": "Das muss für den konkreten Baum und die geplante Maßnahme anhand aktueller behördlicher Vorgaben geprüft werden. Stellen Sie vorhandene Unterlagen bereit und klären Sie offene Fragen mit der zuständigen Stelle. Unser verlinkter Leitfaden hilft bei der Vorbereitung, ersetzt aber keine Einzelfallentscheidung."
+      },
+      {
+        "question": "Können auch WEG und Hausverwaltungen Baumarbeiten anfragen?",
+        "answer": "Ja. Wichtig sind der zuständige Auftraggeber, der gewünschte Umfang und vorhandene Freigaben. Bei Gemeinschaftseigentum sollte die Verwaltung die notwendigen Entscheidungen und Unterlagen vor einer verbindlichen Ausführung klären."
+      },
+      {
+        "question": "Ist der Abtransport nach der Baumfällung enthalten?",
+        "answer": "Nur wenn er im Angebot ausdrücklich vereinbart wurde. Teilen Sie mit, ob Schnittgut am Grundstück verbleiben, aufbereitet oder abtransportiert werden soll. Weitere Arbeiten, etwa an einem verbleibenden Stumpf, werden gesondert abgegrenzt."
+      },
+      {
+        "question": "Können Sie kurzfristig einen gefährlichen Baum entfernen?",
+        "answer": "Ein Soforteinsatz oder eine Notdienstbereitschaft wird hier nicht zugesagt. Bei akuter Gefahr müssen die zuständigen Stellen eingeschaltet werden. Für planbare Baumarbeiten prüfen wir Standort, Voraussetzungen und verfügbare Kapazität individuell."
+      }
+    ],
+    "guideSlugs": ["baumfaellung-neu-isenburg-genehmigung-firma"],
+    "updatedOn": "2026-10-07",
+    "ctaText": "Baumarbeiten in Neu-Isenburg anfragen"
+  }
+]

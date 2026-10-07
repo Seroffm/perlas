@@ -37,3 +37,25 @@ export type JobOpeningContent = {
   requirements: string[]
 }
 
+export type LocalLandingContent = {
+  slug: string
+  serviceSlug: string
+  locality: string
+  region: string
+  seoTitle: string
+  seoDescription: string
+  heading: string
+  intro: string
+  heroImage: { src: string; alt: string; position?: string }
+  audience: string
+  scopeIntro: string
+  scopeCards: Array<{ title: string; text: string; items: string[] }>
+  processSteps: Array<{ title: string; text: string }>
+  costTitle: string
+  costText: string
+  faqs: Array<{ question: string; answer: string }>
+  guideSlugs: string[]
+  updatedOn: string
+  ctaText: string
+}
+

@@ -1,0 +1,89 @@
+{
+  "reviewedOn": "2026-10-07",
+  "scope": "Six curated, independently useful service/locality landing pages; no automatic service-by-city multiplication.",
+  "evidenceClasses": {
+    "A": "Observed own website/Search Console signal or official rule; historical observations are not current forecasts.",
+    "D": "Commercial keyword-tool estimate or observed business search result; not independently confirmed search demand or profitability."
+  },
+  "openSeo": {
+    "tool": "Installed local OpenSEO server",
+    "checkedAt": "2026-10-07T09:31:18Z",
+    "connectivity": "tools/list and list_saved_keywords succeeded; saved keyword list empty",
+    "freshMetrics": "get_keyword_metrics returned DataForSEO HTTP 402 on keyword_overview/live",
+    "billingAction": "No credits purchased, no credentials changed, no further blocked provider calls repeated.",
+    "availableEvidence": "Previous research retrieved 06.10.2026: 653 candidates, 84 returned rows, 74 positive estimated volumes. Underlying metric freshness unconfirmed.",
+    "market": "Germany locationCode 2276, language de. A location name inside the query is not a measurement of all searches originating in that locality.",
+    "limits": "Missing values are unknown, not zero. Broad Frankfurt volumes cannot be assigned to individual districts. Spelling variants must not be summed."
+  },
+  "pages": [
+    {
+      "path": "/einsatzgebiete/objektbetreuung-eschborn/",
+      "primary": "Objektbetreuung Eschborn",
+      "supportingKeywords": ["Hausmeisterservice Eschborn", "Hausmeistervertrag WEG Eschborn", "Objektkontrollen Eschborn", "Hausmeisterservice Eschborn Kosten"],
+      "intent": "Recurring object-care contract for WEG, property managers and commercial buildings",
+      "knownToolEstimate": {"keyword": "hausmeisterservice eschborn", "monthlySearches": 10, "retrievedOn": "2026-10-06", "evidenceClass": "D"},
+      "utility": "Separate ownership of routine checks, defect reports, small tasks and specialist handovers; object-based plan and inquiry."
+    },
+    {
+      "path": "/einsatzgebiete/gebaeudereinigung-frankfurt-hoechst/",
+      "primary": "Gebäudereinigung Frankfurt Höchst",
+      "supportingKeywords": ["Reinigungsfirma Frankfurt Höchst", "Unterhaltsreinigung Frankfurt Höchst", "Gebäudereinigung Höchst Hausverwaltung", "Gebäudereinigung Frankfurt Höchst Angebot"],
+      "intent": "Cleaning-provider selection for common areas and mixed-use buildings",
+      "knownToolEstimate": {"keyword": "gebäudereinigung frankfurt höchst", "monthlySearches": 10, "retrievedOn": "2026-10-06", "evidenceClass": "D"},
+      "observedBusinessResult": "https://www.krueger-services.de/dienstleistungen/bueroreinigung/frankfurt/hoechst",
+      "utility": "Room-group scope, access responsibility, occupancy windows and acceptance criteria; distinct from office-only and stairwell-only offerings."
+    },
+    {
+      "path": "/einsatzgebiete/bueroreinigung-frankfurt-westend/",
+      "primary": "Büroreinigung Frankfurt Westend",
+      "supportingKeywords": ["Unterhaltsreinigung Büro Westend", "Reinigungsfirma Frankfurt Westend Büro", "Büroreinigung Westend Angebot", "Büroreinigung Frankfurt Westend Kosten"],
+      "intent": "Recurring office-cleaning inquiry from businesses",
+      "districtSearchVolume": null,
+      "broadQueryOnly": {"keyword": "büroreinigung frankfurt", "monthlySearches": 480, "retrievedOn": "2026-10-06", "evidenceClass": "D", "notADistrictEstimate": true},
+      "observedBusinessResult": "https://www.dymservice.de/hessen/frankfurt/westend",
+      "utility": "Office cleaning windows, desk/record exclusions, key handling, sanitary and kitchen scope. District demand remains a pilot hypothesis."
+    },
+    {
+      "path": "/einsatzgebiete/treppenhausreinigung-frankfurt-bockenheim/",
+      "primary": "Treppenhausreinigung Frankfurt Bockenheim",
+      "supportingKeywords": ["Treppenhausreinigung Bockenheim WEG", "Reinigungsfirma Bockenheim Hausverwaltung", "Treppenhaus reinigen lassen Bockenheim", "Treppenhausreinigung Bockenheim Kosten"],
+      "intent": "Recurring communal-space cleaning contract for WEG and landlords",
+      "districtSearchVolume": null,
+      "broadQueryOnly": {"keyword": "treppenhausreinigung frankfurt", "monthlySearches": 110, "retrievedOn": "2026-10-06", "evidenceClass": "D", "notADistrictEstimate": true},
+      "observedBusinessResult": "https://apis-dienstleistungen.de/leistungen/treppenhausreinigung/bockenheim",
+      "utility": "Stairwell-specific checklist, material-sensitive methods, resident coordination and clear inclusion/exclusion of basement, windows and lifts."
+    },
+    {
+      "path": "/einsatzgebiete/winterdienst-frankfurt-riedberg/",
+      "primary": "Winterdienst Frankfurt Riedberg",
+      "supportingKeywords": ["Räum und Streudienst Riedberg", "Winterdienst Riedberg WEG", "Winterdienst Riedberg Wohnanlage", "Winterdienst Frankfurt Riedberg Angebot"],
+      "intent": "Seasonal object-based snow/ice service contract",
+      "districtSearchVolume": null,
+      "broadQueryOnly": {"keyword": "winterdienst frankfurt", "monthlySearches": 210, "retrievedOn": "2026-10-06", "evidenceClass": "D", "notADistrictEstimate": true},
+      "observedBusinessResult": "https://www.oberurseler-winterdienst.de/",
+      "utility": "Site-specific surface plan, private access paths, obstructions, agreed trigger conditions and reporting; no municipal road work or blanket liability promise."
+    },
+    {
+      "path": "/einsatzgebiete/baumpflege-baumfaellung-neu-isenburg/",
+      "primary": "Baumpflege Neu-Isenburg",
+      "supportingKeywords": ["Baumfällung Neu Isenburg Firma", "Baumfällung Neu-Isenburg Angebot", "Baumpflege Neu-Isenburg Hausverwaltung", "Baumfällung Neu-Isenburg Kosten"],
+      "intent": "Tree work inquiry, inspected and scoped before acceptance",
+      "knownToolEstimate": {"keyword": "baumpflege neu-isenburg", "monthlySearches": 10, "retrievedOn": "2026-10-06", "evidenceClass": "D"},
+      "treeFellingVolume": null,
+      "observedBusinessResult": "https://www.baumundwurzel.de/baumpflege-neu-isenburg",
+      "utility": "Access and tree-condition review, required permissions, safety area and optional separate waste removal; no unsupported climbing qualifications or emergency service."
+    }
+  ],
+  "primaryReferences": [
+    "https://developers.google.com/search/docs/essentials/spam-policies#doorway-abuse",
+    "https://developers.google.com/search/docs/crawling-indexing/links-crawlable",
+    "https://www.neu-isenburg.de/medien/downloads/buergerservice/verwaltung-im-rathaus/stadtrecht/6-9_satzung_schutz_gruenbestaende.pdf",
+    "https://frankfurt.de/-/media/frankfurtde/frankfurt-themen/umwelt-und-gruen/umwelt-und-gruen-a-z/pdf/strassenreinigung/winterdienst---schneeraeum--und-streupflicht-auf-gehwegen.pdf"
+  ],
+  "measurement": {
+    "search": "Compare each exact landing URL's Search Console impressions, non-brand locality queries, clicks and CTR after Google has crawled it; no assumed indexing date.",
+    "conversion": "Consent-gated generate_lead records only server-confirmed form acceptance. Phone clicks are separately measured, not completed calls. Qualify actual inquiries internally by service, location and contract fit.",
+    "expansionGate": "Expand when locality can genuinely be served, the page has independent visitor utility and observed queries/inquiries support it. Do not infer success from page count or keyword density.",
+    "claims": "No guarantees of ranking, indexing, inquiry count, turnaround time or legal compliance. One real business address in Sulzbach, no invented district offices or customer cases."
+  }
+}

@@ -23,6 +23,7 @@ const indexingEnabled = indexingOverride == null
 const pageRobots = indexingEnabled ? 'index,follow,max-image-preview:large' : 'noindex,nofollow'
 const services = JSON.parse(await readFile(serviceDataPath, 'utf8'))
 const audiences = JSON.parse(await readFile(audienceDataPath, 'utf8'))
+const localLandings = JSON.parse(await readFile(new URL('../src/local-landing-data.json', import.meta.url), 'utf8'))
 const blogPosts = JSON.parse(await readFile(blogDataPath, 'utf8'))
 const jobs = JSON.parse(await readFile(jobDataPath, 'utf8'))
 const imprintContent = JSON.parse(await readFile(imprintDataPath, 'utf8'))
@@ -77,6 +78,12 @@ const servicesSeo = {
   url: servicesUrl.href,
 }
 
+const regionsUrl = new URL(`${basePath}einsatzgebiete/`, siteUrl.origin)
+const regionsSeo = {
+  ...seoContent.pages.regions,
+  url: regionsUrl.href,
+}
+
 const aboutUrl = new URL(`${basePath}ueber-uns/`, siteUrl.origin)
 const aboutSeo = {
   ...seoContent.pages.about,
@@ -125,7 +132,7 @@ const detailHeroImageSizes = '(max-width: 767px) calc(100vw - 40px), 600px'
 const blogHeroImageSizes = '(max-width: 767px) calc(100vw - 40px), 900px'
 const careerHeroImageSizes = '(max-width: 767px) calc(100vw - 40px), 50vw'
 
-function imageMarkup(src, alt, { sizes, loading = 'lazy', fetchPriority } = {}) {
+function imageMarkup(src, alt, { sizes, loading = 'lazy', fetchPriority, className = 'seo-static-image', objectPosition } = {}) {
   const imageSizes = sizes ?? (loading === 'eager' ? detailHeroImageSizes : fullImageSizes)
   const variants = imageVariants[src]
   const imageSrc = `${basePath}assets/${variants?.src ?? src}`
@@ -136,8 +143,10 @@ function imageMarkup(src, alt, { sizes, loading = 'lazy', fetchPriority } = {}) 
   const dimensions = variants ? ` width="${variants.width}" height="${variants.height}"` : ''
   const responsiveAttributes = srcSet ? ` srcset="${escapeHtml(srcSet)}" sizes="${escapeHtml(imageSizes)}"` : ''
   const priorityAttribute = fetchPriority ? ` fetchpriority="${escapeHtml(fetchPriority)}"` : ''
+  const classAttribute = className ? ` class="${escapeHtml(className)}"` : ''
+  const positionAttribute = objectPosition ? ` style="object-position: ${escapeHtml(objectPosition)}"` : ''
 
-  return `<img class="seo-static-image" src="${escapeHtml(imageSrc)}" alt="${escapeHtml(alt)}"${responsiveAttributes}${dimensions} loading="${escapeHtml(loading)}" decoding="async"${priorityAttribute}>`
+  return `<img${classAttribute} src="${escapeHtml(imageSrc)}" alt="${escapeHtml(alt)}"${responsiveAttributes}${dimensions} loading="${escapeHtml(loading)}" decoding="async"${priorityAttribute}${positionAttribute}>`
 }
 
 const businessId = `${siteUrl.href}#business`
@@ -167,6 +176,37 @@ function serviceUrl(service) {
 
 function audienceUrl(audience) {
   return new URL(`${basePath}facility-management/${audience.id}/`, siteUrl.origin)
+}
+
+function localLandingUrl(landing) {
+  return new URL(`${basePath}einsatzgebiete/${landing.slug}/`, siteUrl.origin)
+}
+
+function localLandingStructuredData(landing) {
+  const url = localLandingUrl(landing).href
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
+      businessData,
+      {
+        '@type': 'Service',
+        '@id': `${url}#service`,
+        name: landing.heading,
+        description: landing.seoDescription,
+        url,
+        provider: { '@id': businessId },
+        areaServed: { '@type': 'Place', name: landing.locality },
+      },
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Startseite', item: siteUrl.href },
+          { '@type': 'ListItem', position: 2, name: 'Einsatzgebiete', item: regionsUrl.href },
+          { '@type': 'ListItem', position: 3, name: landing.heading, item: url },
+        ],
+      },
+    ],
+  }
 }
 
 function blogPostUrl(post) {
@@ -360,6 +400,7 @@ function staticFooter() {
     ['Startseite', ''],
     ['Facility Management', 'facility-management/'],
     ['Leistungen', 'leistungen/'],
+    ['Einsatzgebiete', 'einsatzgebiete/'],
     ['Über uns', 'ueber-uns/'],
     ['Blog', 'blog/'],
     ['Karriere', 'karriere/'],
@@ -416,7 +457,44 @@ function regionMarkup(compact = false) {
   const intro = compact
     ? 'Von Sulzbach (Taunus) aus betreuen wir Immobilien im Main-Taunus-Kreis und im Rhein-Main-Gebiet. Den Einsatz an Ihrem Standort stimmen wir persönlich mit Ihnen ab.'
     : seoContent.region.intro
-  return `<section id="einsatzgebiet"><p>Unser Einsatzgebiet</p><h2>${escapeHtml(compact ? 'Regional für Ihr Objekt da.' : seoContent.region.heading)}</h2><p>${escapeHtml(intro)}</p><p>${escapeHtml(seoContent.region.note)}</p><a href="${basePath}kontakt/">Objekt unverbindlich anfragen</a><a href="tel:+491776867145">0177 68 67 145</a></section>`
+  return `<section id="einsatzgebiet"><p>Unser Einsatzgebiet</p><h2>${escapeHtml(compact ? 'Regional für Ihr Objekt da.' : seoContent.region.heading)}</h2><p>${escapeHtml(intro)}</p><p>${escapeHtml(seoContent.region.note)}</p><a href="${basePath}einsatzgebiete/">Leistungen für Ihren Standort ansehen</a><a href="${basePath}kontakt/">Objekt unverbindlich anfragen</a><a href="tel:+491776867145">0177 68 67 145</a></section>`
+}
+
+function localLandingLinks(serviceSlug) {
+  const matching = localLandings.filter((landing) => landing.serviceSlug === serviceSlug)
+  if (!matching.length) return ''
+  const links = matching.map((landing) => `<li><a href="${basePath}einsatzgebiete/${landing.slug}/">${escapeHtml(landing.heading)}</a><p>${escapeHtml(landing.intro)}</p></li>`).join('')
+  return `<section aria-labelledby="local-services-heading"><p>Leistung an Ihrem Standort</p><h2 id="local-services-heading">Vor Ort konkret planen.</h2><ul>${links}</ul><a href="${basePath}einsatzgebiete/">Alle lokalen Einsatzbereiche ansehen</a></section>`
+}
+
+function regionsMarkup() {
+  const cards = localLandings.map((landing) => `<article>${imageMarkup(landing.heroImage.src, landing.heroImage.alt, { sizes: gridImageSizes })}<p>${escapeHtml(landing.region)}</p><h2><a href="${basePath}einsatzgebiete/${landing.slug}/">${escapeHtml(landing.heading)}</a></h2><p>${escapeHtml(landing.intro)}</p><a href="${basePath}einsatzgebiete/${landing.slug}/">Leistung am Standort ansehen</a></article>`).join('')
+  return `${staticHeader()}<main class="seo-static-main"><nav aria-label="Brotkrümeln"><a href="${basePath}">Startseite</a> / Einsatzgebiete</nav><section class="seo-static-hero"><p>Leistungen und Standorte</p><h1>${escapeHtml(regionsSeo.heading ?? 'Leistungen für Ihren Standort.')}</h1><p>${escapeHtml(regionsSeo.intro ?? 'Von unserem Unternehmenssitz in Sulzbach (Taunus) aus stimmen wir Einsätze in Frankfurt und dem angrenzenden Rhein-Main-Gebiet objektbezogen ab. Wählen Sie eine konkrete Leistung und Ihren Standort für die erste Anfrage.')}</p><a href="${basePath}kontakt/">Standort und Bedarf anfragen</a><a href="tel:+491776867145">Direkt anrufen: 0177 68 67 145</a></section><section><h2>Konkrete Leistung, klarer Standort.</h2><p>Diese Seiten erläutern unterschiedliche Aufgaben und die Angaben, die wir für Ihr Objekt benötigen. Es handelt sich um Einsatzgebiete, nicht um zusätzliche Niederlassungen.</p><div class="seo-static-grid">${cards}</div></section><section><h2>Ihr Ort ist noch nicht dabei?</h2><p>Auch andere Standorte im Main-Taunus-Kreis und im angrenzenden Rhein-Main-Gebiet können Sie anfragen. Umfang, Anfahrt und Verfügbarkeit klären wir vor der Beauftragung persönlich.</p><a href="${basePath}leistungen/">Gesamtes Leistungsportfolio ansehen</a><a href="${basePath}kontakt/">Objekt unverbindlich anfragen</a></section></main>`
+}
+
+function localLandingMarkup(landing) {
+  const service = services.find((entry) => entry.slug === landing.serviceSlug)
+  if (!service) throw new Error(`Unknown service on local landing: ${landing.slug}`)
+  const scopes = landing.scopeCards.map((item) => `<article><h3>${escapeHtml(item.title)}</h3><p>${escapeHtml(item.text)}</p><ul>${item.items.map((detail) => `<li><span>${escapeHtml(detail)}</span></li>`).join('')}</ul></article>`).join('')
+  const process = landing.processSteps.map((item, index) => `<li><span class="local-step-number" aria-hidden="true">${String(index + 1).padStart(2, '0')}</span><div><h3>${escapeHtml(item.title)}</h3><p>${escapeHtml(item.text)}</p></div></li>`).join('')
+  const audience = Array.isArray(landing.audience)
+    ? `<ul>${landing.audience.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul>`
+    : `<p>${escapeHtml(landing.audience)}</p>`
+  const faqs = landing.faqs.map((item) => `<details><summary>${escapeHtml(item.question)}<span aria-hidden="true">+</span></summary><p>${escapeHtml(item.answer)}</p></details>`).join('')
+  const guides = landing.guideSlugs.map((slug) => {
+    const post = blogPosts.find((entry) => entry.slug === slug)
+    if (!post || !post.relatedServices.includes(landing.serviceSlug)) throw new Error(`Invalid local guide: ${landing.slug} -> ${slug}`)
+    return `<li><a href="${basePath}blog/${post.slug}/">${escapeHtml(post.title)}</a><p>${escapeHtml(post.excerpt)}</p></li>`
+  }).join('')
+  const guideSection = guides ? `<section class="local-section"><div class="local-section-heading"><span class="local-eyebrow">Passende Vertiefung</span><h2>Ihre Anfrage gut vorbereiten.</h2></div><ul>${guides}</ul></section>` : ''
+  const hero = imageMarkup(landing.heroImage.src, landing.heroImage.alt, {
+    sizes: '(max-width: 767px) calc(100vw - 40px), (max-width: 1320px) 54vw, 700px',
+    loading: 'eager', fetchPriority: 'high', className: '',
+    objectPosition: landing.heroImage.position ?? '50% 50%',
+  })
+  const phoneIcon = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.96.35 1.9.69 2.79a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.89.34 1.83.57 2.79.69A2 2 0 0 1 22 16.92z"></path></svg>'
+  const arrowIcon = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"></path></svg>'
+  return `${staticHeader()}<main class="local-landing-page"><nav class="local-breadcrumb" aria-label="Brotkrümeln"><a href="${basePath}">Startseite</a><span aria-hidden="true">/</span><a href="${basePath}einsatzgebiete/">Einsatzgebiete</a><span aria-hidden="true">/</span><span aria-current="page">${escapeHtml(landing.heading)}</span></nav><section class="local-hero" aria-labelledby="local-page-heading"><div class="local-hero-copy"><span class="local-eyebrow">Perla’s für ${escapeHtml(landing.locality)}</span><h1 id="local-page-heading">${escapeHtml(landing.heading)}</h1><p>${escapeHtml(landing.intro)}</p><div class="local-actions"><a class="local-action local-action--light" href="#anfrage">${escapeHtml(landing.ctaText)}${arrowIcon}</a><a class="local-action local-action--light" href="tel:+491776867145">${phoneIcon} 0177 68 67 145</a></div><p class="local-hero-note">Persönlich abstimmen · Standort Sulzbach (Taunus)</p></div><figure class="local-hero-media">${hero}<figcaption>Bildbeispiel aus unserem Leistungsangebot.</figcaption></figure></section><section class="local-section"><div class="local-section-heading"><span class="local-eyebrow">Aufgaben statt pauschaler Versprechen</span><h2>Was wir für Ihr Objekt abstimmen.</h2><p>${escapeHtml(landing.scopeIntro)}</p></div><div class="local-scope-grid">${scopes}</div></section><section class="local-section local-fit"><div><span class="local-eyebrow">Objekt und Nutzung</span><h2>Für wen passt diese Leistung?</h2>${audience}</div><div class="local-provider"><h3>Ein Ansprechpartner aus Sulzbach.</h3><p>Perla’s Objektbetreuung hat seinen Unternehmensstandort in Sulzbach (Taunus). Diese Seite beschreibt ein Einsatzgebiet, keine zusätzliche Niederlassung.</p><address>Hauptstraße 1 · 65843 Sulzbach (Taunus)</address><a href="${basePath}ueber-uns/">Team und Arbeitsweise kennenlernen ${arrowIcon}</a></div></section><section class="local-section"><div class="local-section-heading"><span class="local-eyebrow">Vom Bedarf zum Auftrag</span><h2>So stimmen wir den Einsatz ab.</h2></div><ol class="local-process-list">${process}</ol></section><section class="local-section local-cost"><div><span class="local-eyebrow">Ein Angebot für Ihre Immobilie</span><h2>${escapeHtml(landing.costTitle)}</h2><p>${escapeHtml(landing.costText)}</p></div><a class="local-action" href="#anfrage">Bedarf unverbindlich besprechen ${arrowIcon}</a></section><section class="local-section local-faq"><div class="local-section-heading"><span class="local-eyebrow">Vor Ihrer Anfrage</span><h2>Häufige Fragen.</h2></div><div class="local-faq-list">${faqs}</div></section>${guideSection}<section class="local-section local-inquiry" id="anfrage"><div class="local-inquiry-copy"><span class="local-eyebrow">Ihr nächster Schritt</span><h2>${escapeHtml(landing.ctaText)}</h2><p>Nennen Sie uns den Standort, die Objektart und den gewünschten Umfang. Wir klären persönlich, ob und wie wir Ihr Objekt betreuen können.</p><a class="local-action local-action--light" href="tel:+491776867145">${phoneIcon} 0177 68 67 145</a><a class="local-contact-email" href="mailto:mail@perlas.de">mail@perlas.de</a><p>Für den ersten Kontakt ist keine vollständige Objektadresse erforderlich.</p></div><div class="local-inquiry-form"><h3>Ohne Online-Formular anfragen</h3><p>Das Online-Anfrageformular benötigt JavaScript. Sie können uns Ihre Angaben zum Objekt und zur gewünschten Leistung auch direkt per E-Mail senden oder persönlich anrufen.</p><a class="local-action" href="${basePath}kontakt/">Allgemeine Kontaktseite öffnen ${arrowIcon}</a></div></section><nav class="local-section" aria-label="Leistung und Einsatzgebiete"><h2>Weitere Informationen.</h2><a href="${basePath}leistungen/${service.slug}/">${escapeHtml(service.title)}: gesamter Leistungsumfang</a><a href="${basePath}einsatzgebiete/">Weitere lokale Leistungen ansehen</a></nav><div class="local-section local-page-end"><p>Inhaltlich aktualisiert: <time datetime="${escapeHtml(landing.updatedOn)}">${escapeHtml(landing.updatedOn)}</time></p></div></main>`
 }
 
 function serviceGroupsMarkup() {
@@ -571,8 +649,11 @@ function blogArticleMarkup(post) {
     .filter(Boolean)
     .map((service) => `<li><a href="${basePath}leistungen/${service.slug}/">${escapeHtml(service.title)}</a><p>${escapeHtml(service.text)}</p></li>`)
     .join('')
+  const localServices = localLandings.filter((landing) => landing.guideSlugs.includes(post.slug))
+    .map((landing) => `<article><h3><a href="${basePath}einsatzgebiete/${landing.slug}/">${escapeHtml(landing.heading)}</a></h3><p>${escapeHtml(landing.intro)}</p><a href="${basePath}einsatzgebiete/${landing.slug}/#anfrage">${escapeHtml(landing.ctaText)}</a></article>`).join('')
+  const localSection = localServices ? `<section><p>Vom Ratgeber zur Anfrage</p><h2>Passend vor Ort.</h2><div class="seo-static-grid">${localServices}</div></section>` : ''
 
-  return `${staticHeader()}<main class="seo-static-main"><nav aria-label="Brotkrümeln"><a href="${basePath}">Startseite</a> / <a href="${basePath}blog/">Blog</a> / ${escapeHtml(post.category)}</nav><article><header class="seo-static-hero"><p>${escapeHtml(post.category)} · ${escapeHtml(post.readTime)}</p><h1>${escapeHtml(post.title)}</h1><p>${escapeHtml(post.intro)}</p><p>Veröffentlicht am <time datetime="${publishedIso}">${escapeHtml(published)}</time> · Aktualisiert am <time datetime="${updatedIso}">${escapeHtml(post.updated)}</time></p><p>Von <a href="${basePath}ueber-uns/">Perla’s Objektbetreuung</a></p>${imageMarkup(post.image, post.alt, { sizes: blogHeroImageSizes, loading: 'eager', fetchPriority: 'high' })}</header>${takeaways}${contents}${sections}${faqs}${sources}</article>${contact}<nav aria-label="Passende Leistungen"><h2>Passende Leistungen zum Thema</h2><ul class="seo-static-links">${matchingServices}</ul></nav><nav aria-label="Weitere Blogbeiträge"><h2>Weitere Beiträge</h2><ul>${related}</ul></nav></main>`
+  return `${staticHeader()}<main class="seo-static-main"><nav aria-label="Brotkrümeln"><a href="${basePath}">Startseite</a> / <a href="${basePath}blog/">Blog</a> / ${escapeHtml(post.category)}</nav><article><header class="seo-static-hero"><p>${escapeHtml(post.category)} · ${escapeHtml(post.readTime)}</p><h1>${escapeHtml(post.title)}</h1><p>${escapeHtml(post.intro)}</p><p>Veröffentlicht am <time datetime="${publishedIso}">${escapeHtml(published)}</time> · Aktualisiert am <time datetime="${updatedIso}">${escapeHtml(post.updated)}</time></p><p>Von <a href="${basePath}ueber-uns/">Perla’s Objektbetreuung</a></p>${imageMarkup(post.image, post.alt, { sizes: blogHeroImageSizes, loading: 'eager', fetchPriority: 'high' })}</header>${takeaways}${contents}${sections}${faqs}${sources}</article>${localSection}${contact}<nav aria-label="Passende Leistungen"><h2>Passende Leistungen zum Thema</h2><ul class="seo-static-links">${matchingServices}</ul></nav><nav aria-label="Weitere Blogbeiträge"><h2>Weitere Beiträge</h2><ul>${related}</ul></nav></main>`
 }
 
 function careerMarkup() {
@@ -711,9 +792,12 @@ function audienceMarkup(audience) {
   return `${staticHeader()}<main class="seo-static-main"><nav aria-label="Brotkrümeln"><a href="${basePath}">Startseite</a> / <a href="${basePath}facility-management/">Facility Management</a> / ${escapeHtml(audience.navLabel)}</nav><section class="seo-static-hero"><p>Facility Management für</p><h1>${escapeHtml(audience.heroTitle)}</h1><p>${escapeHtml(audience.heroText)}</p><a href="${basePath}kontakt/">Betreuung anfragen</a><a href="tel:+491776867145">Direkt anrufen</a>${imageMarkup(heroImage.src, heroImage.alt, { loading: 'eager', fetchPriority: 'high' })}</section><section><h2>${escapeHtml(audience.introTitle)}</h2><p>${escapeHtml(audience.introText)}</p><div class="seo-static-grid">${scopes}</div></section><section><h2>Im Alltag zählen klare Zuständigkeiten</h2><ul>${requirements}</ul><h2>Ein Betreuungskonzept, das zum Objekt passt</h2><p>${escapeHtml(audience.approach)}</p></section><section><h2>Passende Leistungen für ${escapeHtml(audience.navLabel)}</h2><ul class="seo-static-links">${selectedServiceLinks(audience.services)}</ul></section><section><h2>Vom Objekt zum klaren Ablauf</h2><div class="seo-static-grid">${process}</div></section><section><h2>Häufige Fragen zu ${escapeHtml(audience.navLabel)}</h2>${faqs}</section><section><h2>Passt diese Betreuung zu Ihrem Objekt?</h2><p>Beschreiben Sie kurz Ihre Immobilie, den Standort und die Aufgaben, die Sie abgeben möchten.</p>${contactForm}<ul><li><a href="tel:+491776867145">Direkt anrufen: 0177 68 67 145</a></li><li><a href="mailto:mail@perlas.de">E-Mail an mail@perlas.de schreiben</a></li><li><a href="${basePath}kontakt/">Allgemeine Kontaktseite öffnen</a></li></ul></section></main>`
 }
 
-function buildPage({ title, description, url, markup, data, robots = pageRobots, ogType = 'website' }) {
+function buildPage({ title, description, url, markup, data, robots = pageRobots, ogType = 'website', ogImage }) {
   // Keep local content visible in the initial HTML as well as in the interactive site.
   const relativePath = url ? new URL(url).pathname.slice(basePath.length) : null
+  if (relativePath?.startsWith('leistungen/') && relativePath !== 'leistungen/') {
+    markup = markup.replace('</main>', `${localLandingLinks(relativePath.split('/')[1])}</main>`)
+  }
   if (relativePath === '' || relativePath === 'facility-management/' || relativePath === 'leistungen/'
     || relativePath?.startsWith('leistungen/') || relativePath?.startsWith('facility-management/')) {
     const compact = relativePath !== '' && relativePath !== 'leistungen/' && relativePath !== 'facility-management/'
@@ -724,7 +808,7 @@ function buildPage({ title, description, url, markup, data, robots = pageRobots,
     markup = markup.replace('<h1>Leistungen für den laufenden Betrieb Ihrer Immobilie.</h1><p>Wählen Sie eine einzelne Leistung oder kombinieren Sie mehrere Aufgaben zu einem objektbezogenen Betreuungskonzept.</p>', '<h1>Reinigung und Betreuung für Ihre Immobilie.</h1><p>Perla’s aus Sulzbach (Taunus) übernimmt einzelne Aufgaben oder verbindet sie zu einem Betreuungskonzept im Rhein-Main-Gebiet. Wählen Sie den Bereich, der zu Ihrer Immobilie passt.</p>')
   }
   const articleImage = ogType === 'article' ? data?.['@graph']?.find((entry) => entry['@type'] === 'BlogPosting')?.image : undefined
-  const socialImage = articleImage ?? new URL(`${basePath}assets/kundenbilder/objekte/wohnanlage_modern_02.png`, siteUrl.origin).href
+  const socialImage = ogImage ?? articleImage ?? new URL(`${basePath}assets/kundenbilder/objekte/wohnanlage_modern_02.png`, siteUrl.origin).href
   const extraHead = `
     ${fontPreloads}
     <meta name="robots" content="${robots}" />
@@ -793,6 +877,32 @@ await writeFile(`${distPath}leistungen/index.html`, buildPage({
     name: 'Leistungen',
     description: servicesSeo.description,
   }),
+}))
+
+await mkdir(`${distPath}einsatzgebiete/`, { recursive: true })
+await writeFile(`${distPath}einsatzgebiete/index.html`, buildPage({
+  ...regionsSeo,
+  markup: regionsMarkup(),
+  data: pageStructuredData({
+    type: 'CollectionPage',
+    url: regionsUrl.href,
+    name: 'Einsatzgebiete',
+    description: regionsSeo.description,
+  }),
+}))
+
+await Promise.all(localLandings.map(async (landing) => {
+  const targetPath = `${distPath}einsatzgebiete/${landing.slug}/`
+  const url = localLandingUrl(landing).href
+  await mkdir(targetPath, { recursive: true })
+  await writeFile(`${targetPath}index.html`, buildPage({
+    title: landing.seoTitle,
+    description: landing.seoDescription,
+    url,
+    markup: localLandingMarkup(landing),
+    data: localLandingStructuredData(landing),
+    ogImage: new URL(`${basePath}assets/${imageVariants[landing.heroImage.src]?.src ?? landing.heroImage.src}`, siteUrl.origin).href,
+  }))
 }))
 
 await mkdir(`${distPath}ueber-uns/`, { recursive: true })
@@ -887,6 +997,8 @@ const sitemapUrls = [
   facilityUrl.href,
   ...audiences.map((audience) => audienceUrl(audience).href),
   servicesUrl.href,
+  regionsUrl.href,
+  ...localLandings.map((landing) => localLandingUrl(landing).href),
   aboutUrl.href,
   blogUrl.href,
   ...blogPosts.map((post) => blogPostUrl(post).href),
@@ -897,6 +1009,8 @@ const sitemapUrls = [
   ...services.map((service) => serviceUrl(service).href),
 ]
 const pageLastModified = new Map([
+  [regionsUrl.href, '2026-10-07'],
+  ...localLandings.map((landing) => [localLandingUrl(landing).href, landing.updatedOn]),
   ...blogPosts.map((post) => [blogPostUrl(post).href, blogDateToIso(post.updated)]),
   ...services.filter((service) => service.updatedOn).map((service) => [serviceUrl(service).href, service.updatedOn]),
 ])

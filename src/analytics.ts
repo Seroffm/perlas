@@ -17,11 +17,19 @@ const searchReferrers: Record<string, { origin: string; source: string }> = {
   'https://www.duckduckgo.com': { origin: 'https://duckduckgo.com', source: 'duckduckgo' },
 }
 const publicRoutes = new Set([
-  '', 'facility-management/', 'leistungen/', 'ueber-uns/', 'blog/',
+  '', 'facility-management/', 'leistungen/', 'einsatzgebiete/', 'ueber-uns/', 'blog/',
   'karriere/', 'kontakt/', 'impressum/', 'datenschutz/',
   ...audiences.map(({ id }) => `facility-management/${id}/`),
   ...posts.map(({ slug }) => `blog/${slug}/`),
   ...services.map(({ slug }) => `leistungen/${slug}/`),
+  // Keep local routes explicit: adding arbitrary region data must not expose
+  // unapproved paths or accidentally treat customer identifiers as public URLs.
+  'einsatzgebiete/objektbetreuung-eschborn/',
+  'einsatzgebiete/gebaeudereinigung-frankfurt-hoechst/',
+  'einsatzgebiete/bueroreinigung-frankfurt-westend/',
+  'einsatzgebiete/treppenhausreinigung-frankfurt-bockenheim/',
+  'einsatzgebiete/winterdienst-frankfurt-riedberg/',
+  'einsatzgebiete/baumpflege-baumfaellung-neu-isenburg/',
 ])
 
 type AnalyticsWindow = Window & {
