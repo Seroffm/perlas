@@ -2,6 +2,7 @@ export type BlogSection = {
   title: string
   paragraphs: string[]
   points?: string[]
+  table?: { headers: string[]; rows: string[][] }
 }
 
 export type BlogPostContent = {
@@ -16,6 +17,11 @@ export type BlogPostContent = {
   alt: string
   readTime: string
   updated: string
+  published?: string
+  takeaways?: string[]
+  faqs?: { question: string; answer: string }[]
+  sources?: { title: string; url: string }[]
+  cta?: { title: string; text: string; label: string }
   intro: string
   sections: BlogSection[]
 }

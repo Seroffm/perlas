@@ -208,10 +208,10 @@ function usePageSeo(service?: Feature, pageKind: PageKind = 'home', audience?: A
               headline: article.title,
               description: article.seoDescription,
               image: imageUrl.href,
-              datePublished: '2026-08-31',
+              datePublished: (article.published ?? '31.08.2026').split('.').reverse().join('-'),
               dateModified: article.updated.split('.').reverse().join('-'),
               inLanguage: 'de-DE',
-              author: { '@id': businessId },
+              author: { '@type': 'Organization', name: 'Perla’s Objektbetreuung GmbH & Co. KG', url: siteUrl.href },
               publisher: { '@id': businessId },
               mainEntityOfPage: pageUrl.href,
             },
@@ -3479,6 +3479,7 @@ export default function App() {
           post={activeBlogPost}
           relatedPosts={blogPosts.filter((post) => post.slug !== activeBlogPost.slug)}
           services={features.map(({ slug, title, text }) => ({ slug, title, text }))}
+          onQuoteOpen={() => openQuote(features.find((service) => service.slug === activeBlogPost.relatedServices[0])?.title)}
         />
       ) : isContactPage ? (
         <ContactPage onQuoteOpen={() => openQuote()} />

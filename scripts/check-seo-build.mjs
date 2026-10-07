@@ -15,8 +15,8 @@ const urls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => new UR
 const sitemapIndex = await readFile(path.join(dist, 'sitemap_index.xml'), 'utf8')
 assert(sitemapIndex.includes('<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'), 'Valid compatibility sitemap index required')
 assert.deepEqual([...sitemapIndex.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]), [new URL('sitemap.xml', site).href], 'Sitemap index must point only to the current canonical sitemap')
-// This change improves existing pages only. Keep this independent of the source
-// collections so accidentally adding a service or city page fails the check.
+// Keep the route allowlist independent of content collections: only the six
+// commissioned blog articles may be added, never accidental service/city pages.
 const existingPaths = [
   '',
   'facility-management/',
@@ -30,6 +30,12 @@ const existingPaths = [
   'blog/winterdienst-richtig-planen/',
   'blog/objektkontrollen-richtig-dokumentieren/',
   'blog/gebaeudereinigung-im-laufenden-betrieb/',
+  'blog/bueroreinigung-eschborn-angebot-kosten/',
+  'blog/gebaeudereinigung-wiesbaden-erbenheim-leistungsverzeichnis/',
+  'blog/tiefgaragenreinigung-frankfurt-weg/',
+  'blog/baumfaellung-neu-isenburg-genehmigung-firma/',
+  'blog/hausmeisterservice-sulzbach-weg-leistungen/',
+  'blog/spielplatzkontrolle-main-taunus-hausverwaltungen/',
   'karriere/',
   'kontakt/',
   'impressum/',
@@ -47,7 +53,25 @@ const existingPaths = [
   'leistungen/buero-einrichtungsservice/',
 ]
 const expectedUrls = existingPaths.map((relative) => new URL(relative, site).href).sort()
-assert.deepEqual(urls.map((url) => url.href).sort(), expectedUrls, 'The existing 27 canonical routes must remain unchanged')
+assert.deepEqual(urls.map((url) => url.href).sort(), expectedUrls, 'Only the existing routes plus six commissioned articles are allowed (33 canonicals)')
+const blogContent = JSON.parse(await readFile(path.join(workspace, 'src/blog-data.json'), 'utf8'))
+const blogByUrl = new Map(blogContent.map((post) => [new URL(`blog/${post.slug}/`, site).href, post]))
+assert.equal(blogByUrl.size, 9, 'Exactly nine unique blog articles required')
+assert.deepEqual([...blogByUrl.keys()].sort(), expectedUrls.filter((url) => url.startsWith(new URL('blog/', site).href) && url !== new URL('blog/', site).href), 'Blog data and allowed article routes must agree')
+const sitemapLastmods = new Map([...sitemap.matchAll(/<url>([\s\S]*?)<\/url>/g)].map((match) => [
+  match[1].match(/<loc>([^<]+)<\/loc>/)?.[1],
+  match[1].match(/<lastmod>([^<]+)<\/lastmod>/)?.[1],
+]))
+const today = new Intl.DateTimeFormat('sv-SE', { timeZone: 'Europe/Berlin' }).format(new Date())
+const blogDateToIso = (value) => {
+  const match = /^(\d{2})\.(\d{2})\.(\d{4})$/.exec(value)
+  assert(match, `Invalid blog date format: ${value}`)
+  const iso = `${match[3]}-${match[2]}-${match[1]}`
+  const date = new Date(`${iso}T00:00:00Z`)
+  assert(Number.isFinite(date.getTime()) && date.toISOString().slice(0, 10) === iso, `Invalid calendar date: ${value}`)
+  assert(iso <= today, `Future blog publication/update date: ${value}`)
+  return iso
+}
 const pages = new Map()
 const titles = new Set()
 const descriptions = new Set()
@@ -80,6 +104,9 @@ function checkStructuredData(html, url) {
     assert.equal(data['@context'], 'https://schema.org', `Schema context: ${url}`)
     return data['@graph'] ?? [data]
   })
+  if (blogByUrl.has(url.href)) {
+    assert.equal(entries.filter((entry) => schemaTypes(entry).includes('BlogPosting')).length, 1, `Exactly one Article schema required: ${url}`)
+  }
   const businesses = entries.filter((entry) => entry['@id'] === businessId)
   assert.equal(businesses.length, 1, `One stable business identity required: ${url}`)
   const business = businesses[0]
@@ -102,6 +129,21 @@ function checkStructuredData(html, url) {
       assert.equal(entry['@id'], `${url.href}#service`, `Stable Service identity: ${url}`)
       assert.equal(entry.url, url.href, `Service canonical URL: ${url}`)
       assert.equal(entry.provider?.['@id'], businessId, `Service provider: ${url}`)
+    }
+    if (schemaTypes(entry).includes('BlogPosting')) {
+      const post = blogByUrl.get(url.href)
+      assert(post, `Article schema on a non-article page: ${url}`)
+      const published = blogDateToIso(post.published ?? '31.08.2026')
+      const updated = blogDateToIso(post.updated)
+      assert(published <= updated, `Article modified before publication: ${url}`)
+      assert.equal(entry['@id'], `${url.href}#article`, `Stable Article identity: ${url}`)
+      assert.equal(entry.headline, post.title, `Article headline: ${url}`)
+      assert.equal(entry.datePublished, published, `Article publication date: ${url}`)
+      assert.equal(entry.dateModified, updated, `Article update date: ${url}`)
+      assert.equal(entry.mainEntityOfPage, url.href, `Article canonical identity: ${url}`)
+      assert.deepEqual(entry.author, { '@type': 'Organization', name: 'Perla’s Objektbetreuung GmbH & Co. KG', url: site.href }, `Article author: ${url}`)
+      assert.equal(entry.publisher?.['@id'], businessId, `Article publisher: ${url}`)
+      assert.equal(entry.image, new URL(`assets/${post.image}`, site).href, `Relevant Article image: ${url}`)
     }
     if (schemaTypes(entry).includes('BreadcrumbList')) {
       assert(entry.itemListElement?.length > 1, `Breadcrumb items absent: ${url}`)
@@ -139,6 +181,37 @@ for (const url of urls) {
   const mainText = visibleText(main)
   assert(mainText.length > 300, `Empty initial page: ${url}`)
   assert(!/Zertifiziert|Zertifizierte Fachleistung|Zertifizierte Zusatzleistungen/.test(mainText), `Unverified certification claim: ${url}`)
+  const post = blogByUrl.get(url.href)
+  if (post) {
+    const headline = visibleText(main.match(/<h1\b[^>]*>([\s\S]*?)<\/h1>/)?.[1] ?? '')
+    assert.equal(headline, post.title, `Visible Article headline: ${url}`)
+    const published = blogDateToIso(post.published ?? '31.08.2026')
+    const updated = blogDateToIso(post.updated)
+    assert(markup(main, 'time').some((time) => time.datetime === published), `Visible publication date absent: ${url}`)
+    assert(markup(main, 'time').some((time) => time.datetime === updated), `Visible update date absent: ${url}`)
+    assert(mainText.includes('Perla’s Objektbetreuung'), `Visible Article author absent: ${url}`)
+    const articleLinks = markup(main, 'a').map((link) => decodeEntities(link.href ?? ''))
+    assert(articleLinks.includes(`${site.pathname}ueber-uns/`), `Article author profile link absent: ${url}`)
+    assert(articleLinks.includes(`${site.pathname}kontakt/`), `Article contact CTA absent: ${url}`)
+    assert(articleLinks.includes('tel:+491776867145'), `Article phone CTA absent: ${url}`)
+    for (const [index, section] of post.sections.entries()) {
+      assert(mainText.includes(section.title), `Article section absent: ${url}`)
+      assert(articleLinks.includes(`#abschnitt-${index + 1}`) && main.includes(`id="abschnitt-${index + 1}"`), `Article table-of-contents target absent: ${url}`)
+      if (section.table) {
+        assert(section.table.headers.length > 0 && section.table.rows.every((row) => row.length === section.table.headers.length), `Non-rectangular Article table: ${url}`)
+        for (const cell of [...section.table.headers, ...section.table.rows.flat()]) assert(mainText.includes(cell), `Article table cell absent: ${url}`)
+      }
+    }
+    for (const item of post.takeaways ?? []) assert(mainText.includes(item), `Article takeaway absent: ${url}`)
+    for (const faq of post.faqs ?? []) {
+      assert(mainText.includes(faq.question) && mainText.includes(faq.answer), `Article FAQ absent: ${url}`)
+    }
+    for (const source of post.sources ?? []) assert(articleLinks.includes(new URL(source.url).href), `Article source link absent: ${url}`)
+    assert.equal(sitemapLastmods.get(url.href), updated, `Article sitemap lastmod differs from actual update: ${url}`)
+    await access(path.join(dist, 'assets', post.image))
+  } else {
+    assert.equal(sitemapLastmods.get(url.href), undefined, `Do not invent lastmod on unchanged non-blog pages: ${url}`)
+  }
   const relativePath = url.pathname.slice(site.pathname.length)
   if (regionalPaths.has(relativePath)) {
     assert(mainText.includes('Sulzbach'), `Local content absent from the initial main HTML: ${url}`)
@@ -188,4 +261,4 @@ assert(!/<img\b[^>]*src=["'][^"']*kundenbilder\//.test(home), 'Home photos must 
 const notFound = await readFile(path.join(dist, '404.html'), 'utf8')
 assert(markup(notFound, 'meta').some((meta) => meta.name === 'robots' && meta.content.includes('noindex')))
 assert(!markup(notFound, 'link').some((link) => link.rel === 'canonical'))
-console.log(`SEO build checks passed: the existing ${urls.length} canonical pages, decoded metadata limits, consistent business/service schema, local initial HTML, incoming/internal links, responsive assets and 404.`)
+console.log(`SEO build checks passed: ${urls.length} allowed canonical pages including ${blogByUrl.size} articles, decoded metadata limits, business/service/article schema, true article dates/lastmod, local initial HTML, article content/CTAs/sources, incoming/internal links, responsive assets and 404.`)

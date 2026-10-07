@@ -29,7 +29,7 @@ const privacyContent = JSON.parse(await readFile(privacyDataPath, 'utf8'))
 const googleReviewData = JSON.parse(await readFile(googleReviewsDataPath, 'utf8'))
 const imageVariants = JSON.parse(await readFile(imageVariantsPath, 'utf8'))
 const seoContent = JSON.parse(await readFile(new URL('../src/seo-data.json', import.meta.url), 'utf8'))
-const featuredBlogPostSlug = 'objektkontrollen-richtig-dokumentieren'
+const featuredBlogPostSlug = 'hausmeisterservice-sulzbach-weg-leistungen'
 const coreServiceSlugs = new Set([
   'objektpflege',
   'wartung-instandhaltung',
@@ -174,7 +174,27 @@ function blogPostUrl(post) {
 
 function blogDateToIso(value) {
   const match = /^(\d{2})\.(\d{2})\.(\d{4})$/.exec(value)
-  return match ? `${match[3]}-${match[2]}-${match[1]}` : undefined
+  if (!match) throw new Error(`Invalid blog date: ${value}`)
+  const iso = `${match[3]}-${match[2]}-${match[1]}`
+  const date = new Date(`${iso}T00:00:00Z`)
+  if (!Number.isFinite(date.getTime()) || date.toISOString().slice(0, 10) !== iso) {
+    throw new Error(`Invalid calendar date in blog content: ${value}`)
+  }
+  return iso
+}
+
+function relatedBlogPosts(post) {
+  const services = new Set(post.relatedServices)
+  return blogPosts
+    .filter((candidate) => candidate.slug !== post.slug)
+    .map((candidate) => ({
+      candidate,
+      score: candidate.relatedServices.filter((slug) => services.has(slug)).length
+        + Number(candidate.category === post.category),
+    }))
+    .sort((left, right) => right.score - left.score)
+    .slice(0, 2)
+    .map(({ candidate }) => candidate)
 }
 
 function audienceStructuredData(audience) {
@@ -364,10 +384,10 @@ function blogPostStructuredData(post) {
         headline: post.title,
         description: post.seoDescription,
         image: new URL(`${basePath}assets/${post.image}`, siteUrl.origin).href,
-        datePublished: '2026-08-31',
+        datePublished: blogDateToIso(post.published ?? '31.08.2026'),
         dateModified: blogDateToIso(post.updated),
         inLanguage: 'de-DE',
-        author: { '@id': businessId },
+        author: { '@type': 'Organization', name: 'Perla’s Objektbetreuung GmbH & Co. KG', url: siteUrl.href },
         publisher: { '@id': businessId },
         mainEntityOfPage: url,
       },
@@ -513,15 +533,45 @@ function blogMarkup() {
 }
 
 function blogArticleMarkup(post) {
-  const sections = post.sections.map((section) => `<section><h2>${escapeHtml(section.title)}</h2>${section.paragraphs.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join('')}${section.points ? `<ul>${section.points.map((point) => `<li>${escapeHtml(point)}</li>`).join('')}</ul>` : ''}</section>`).join('')
-  const related = blogPosts.filter((entry) => entry.slug !== post.slug).slice(0, 2).map((entry) => `<li><a href="${basePath}blog/${entry.slug}/">${escapeHtml(entry.title)}</a></li>`).join('')
+  const published = post.published ?? '31.08.2026'
+  const publishedIso = blogDateToIso(published)
+  const updatedIso = blogDateToIso(post.updated)
+  const takeaways = post.takeaways?.length
+    ? `<section aria-label="Das Wichtigste auf einen Blick"><h2>Das Wichtigste auf einen Blick</h2><ul>${post.takeaways.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul></section>`
+    : ''
+  const contents = `<nav aria-label="Inhaltsverzeichnis"><h2>In diesem Beitrag</h2><ol>${post.sections.map((section, index) => `<li><a href="#abschnitt-${index + 1}">${escapeHtml(section.title)}</a></li>`).join('')}</ol></nav>`
+  const sections = post.sections.map((section, index) => {
+    const table = section.table
+      ? `<div class="blog-table-wrap" tabindex="0" role="region" aria-label="Tabelle: ${escapeHtml(section.title)}"><table><caption>${escapeHtml(section.title)} – Übersicht</caption><thead><tr>${section.table.headers.map((header) => `<th scope="col">${escapeHtml(header)}</th>`).join('')}</tr></thead><tbody>${section.table.rows.map((row) => `<tr>${row.map((cell, cellIndex) => cellIndex === 0 ? `<th scope="row">${escapeHtml(cell)}</th>` : `<td>${escapeHtml(cell)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`
+      : ''
+    return `<section id="abschnitt-${index + 1}"><h2>${escapeHtml(section.title)}</h2>${section.paragraphs.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join('')}${section.points ? `<ul>${section.points.map((point) => `<li>${escapeHtml(point)}</li>`).join('')}</ul>` : ''}${table}</section>`
+  }).join('')
+  const faqs = post.faqs?.length
+    ? `<section><h2>Häufige Fragen</h2>${post.faqs.map((faq) => `<details open><summary>${escapeHtml(faq.question)}</summary><p>${escapeHtml(faq.answer)}</p></details>`).join('')}</section>`
+    : ''
+  const sources = post.sources?.length
+    ? `<section><h2>Quellen und weiterführende Informationen</h2><ul>${post.sources.map((source) => {
+      const sourceUrl = new URL(source.url)
+      if (sourceUrl.protocol !== 'https:' || sourceUrl.username || sourceUrl.password) {
+        throw new Error(`Blog sources must use public HTTPS URLs: ${post.slug}`)
+      }
+      return `<li><a href="${escapeHtml(sourceUrl.href)}" target="_blank" rel="noreferrer">${escapeHtml(source.title)}</a></li>`
+    }).join('')}</ul></section>`
+    : ''
+  const cta = post.cta ?? {
+    title: 'Den Bedarf Ihrer Immobilie persönlich klären.',
+    text: 'Nennen Sie uns Standort, Objektart und gewünschten Umfang. Gemeinsam klären wir die passende Leistung.',
+    label: 'Unverbindlich anfragen',
+  }
+  const contact = `<section class="blog-article-contact"><h2>${escapeHtml(cta.title)}</h2><p>${escapeHtml(cta.text)}</p><a href="${basePath}kontakt/">${escapeHtml(cta.label)}</a><a href="tel:+491776867145">Direkt anrufen: 0177 68 67 145</a></section>`
+  const related = relatedBlogPosts(post).map((entry) => `<li><a href="${basePath}blog/${entry.slug}/">${escapeHtml(entry.title)}</a></li>`).join('')
   const matchingServices = post.relatedServices
     .map((slug) => services.find((service) => service.slug === slug))
     .filter(Boolean)
     .map((service) => `<li><a href="${basePath}leistungen/${service.slug}/">${escapeHtml(service.title)}</a><p>${escapeHtml(service.text)}</p></li>`)
     .join('')
 
-  return `${staticHeader()}<main class="seo-static-main"><nav aria-label="Brotkrümeln"><a href="${basePath}">Startseite</a> / <a href="${basePath}blog/">Blog</a> / ${escapeHtml(post.category)}</nav><article><header class="seo-static-hero"><p>${escapeHtml(post.category)} · ${escapeHtml(post.readTime)} · Aktualisiert am ${escapeHtml(post.updated)}</p><h1>${escapeHtml(post.title)}</h1><p>${escapeHtml(post.intro)}</p>${imageMarkup(post.image, post.alt, { sizes: blogHeroImageSizes, loading: 'eager', fetchPriority: 'high' })}</header>${sections}</article><nav aria-label="Passende Leistungen"><h2>Passende Leistungen zum Thema</h2><ul class="seo-static-links">${matchingServices}</ul></nav><nav aria-label="Weitere Blogbeiträge"><h2>Weitere Beiträge</h2><ul>${related}</ul></nav></main>`
+  return `${staticHeader()}<main class="seo-static-main"><nav aria-label="Brotkrümeln"><a href="${basePath}">Startseite</a> / <a href="${basePath}blog/">Blog</a> / ${escapeHtml(post.category)}</nav><article><header class="seo-static-hero"><p>${escapeHtml(post.category)} · ${escapeHtml(post.readTime)}</p><h1>${escapeHtml(post.title)}</h1><p>${escapeHtml(post.intro)}</p><p>Veröffentlicht am <time datetime="${publishedIso}">${escapeHtml(published)}</time> · Aktualisiert am <time datetime="${updatedIso}">${escapeHtml(post.updated)}</time></p><p>Von <a href="${basePath}ueber-uns/">Perla’s Objektbetreuung</a></p>${imageMarkup(post.image, post.alt, { sizes: blogHeroImageSizes, loading: 'eager', fetchPriority: 'high' })}</header>${takeaways}${contents}${sections}${faqs}${sources}</article>${contact}<nav aria-label="Passende Leistungen"><h2>Passende Leistungen zum Thema</h2><ul class="seo-static-links">${matchingServices}</ul></nav><nav aria-label="Weitere Blogbeiträge"><h2>Weitere Beiträge</h2><ul>${related}</ul></nav></main>`
 }
 
 function careerMarkup() {
@@ -662,7 +712,8 @@ function buildPage({ title, description, url, markup, data, robots = pageRobots,
     markup = markup.replace('<section><h2>Für diese Immobilien arbeiten wir</h2>', `${serviceGroupsMarkup()}<section><h2>Für diese Immobilien arbeiten wir</h2>`)
     markup = markup.replace('<h1>Leistungen für den laufenden Betrieb Ihrer Immobilie.</h1><p>Wählen Sie eine einzelne Leistung oder kombinieren Sie mehrere Aufgaben zu einem objektbezogenen Betreuungskonzept.</p>', '<h1>Reinigung und Betreuung für Ihre Immobilie.</h1><p>Perla’s aus Sulzbach (Taunus) übernimmt einzelne Aufgaben oder verbindet sie zu einem Betreuungskonzept im Rhein-Main-Gebiet. Wählen Sie den Bereich, der zu Ihrer Immobilie passt.</p>')
   }
-  const socialImage = new URL(`${basePath}assets/kundenbilder/objekte/wohnanlage_modern_02.png`, siteUrl.origin).href
+  const articleImage = ogType === 'article' ? data?.['@graph']?.find((entry) => entry['@type'] === 'BlogPosting')?.image : undefined
+  const socialImage = articleImage ?? new URL(`${basePath}assets/kundenbilder/objekte/wohnanlage_modern_02.png`, siteUrl.origin).href
   const extraHead = `
     ${fontPreloads}
     <meta name="robots" content="${robots}" />
@@ -834,9 +885,10 @@ const sitemapUrls = [
   privacyUrl.href,
   ...services.map((service) => serviceUrl(service).href),
 ]
+const blogLastModified = new Map(blogPosts.map((post) => [blogPostUrl(post).href, blogDateToIso(post.updated)]))
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${sitemapUrls.map((url) => `  <url><loc>${url}</loc></url>`).join('\n')}
+${sitemapUrls.map((url) => `  <url><loc>${url}</loc>${blogLastModified.has(url) ? `<lastmod>${blogLastModified.get(url)}</lastmod>` : ''}</url>`).join('\n')}
 </urlset>
 `
 const robots = indexingEnabled
