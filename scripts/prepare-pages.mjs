@@ -1,6 +1,7 @@
 import { mkdir, readFile, readdir, writeFile } from 'node:fs/promises'
 import { fileURLToPath } from 'node:url'
 import { loadEnv } from 'vite'
+import { prepareLegacyRedirects } from './prepare-legacy-redirects.mjs'
 
 const distPath = fileURLToPath(new URL('../dist/', import.meta.url))
 const indexPath = fileURLToPath(new URL('../dist/index.html', import.meta.url))
@@ -664,6 +665,16 @@ function serviceMarkup(service) {
   const audiences = service.audiences.map((item) => `<li>${escapeHtml(item)}</li>`).join('')
   const faqs = service.faqs.map((item) => `<details open><summary>${escapeHtml(item.question)}</summary><p>${escapeHtml(item.answer)}</p></details>`).join('')
   const related = relatedServiceLinks(service)
+  const serviceGuides = (service.guideSlugs ?? []).map((slug) => {
+    const post = blogPosts.find((candidate) => candidate.slug === slug)
+    if (!post || !post.relatedServices.includes(service.slug)) {
+      throw new Error(`Invalid contextual guide ${slug} for ${service.slug}`)
+    }
+    return `<article><h3><a href="${basePath}blog/${post.slug}/">${escapeHtml(post.title)}</a></h3><p>${escapeHtml(post.excerpt)}</p></article>`
+  }).join('')
+  const guideSection = serviceGuides
+    ? `<section aria-labelledby="service-guides-heading"><p>Passendes Praxiswissen</p><h2 id="service-guides-heading">Angebot gut vorbereiten.</h2><p>Diese Ratgeber helfen Ihnen, Aufgaben einzugrenzen und die passenden Angaben für Ihre Anfrage zusammenzustellen.</p><div class="seo-static-grid">${serviceGuides}</div></section>`
+    : ''
   const boundary = service.slug === 'baumpflege-baumfaellung'
     ? ''
     : `<h2>${escapeHtml(service.boundaryTitle)}</h2><p>${escapeHtml(service.boundaryText)}</p>`
@@ -678,7 +689,7 @@ function serviceMarkup(service) {
         ? `<section><p>Spielbereiche in der Praxis</p><h2>Außen- und Innenbereiche passend betreuen.</h2><p>Echte Objektaufnahmen zeigen unterschiedliche Spielgeräte und Flächen.</p><div class="seo-static-grid"><figure>${imageMarkup('kundenbilder/spielplatz/spielplatz_aussen_01.png', 'Heller Außenspielplatz mit modernen Spielgeräten', { sizes: gridImageSizes })}<figcaption>Außenspielplatz</figcaption></figure><figure>${imageMarkup('kundenbilder/spielplatz/spielplatz_schaukel_nah_01.png', 'Großer Nestschaukelbereich auf einer gepflegten Außenspielfläche', { sizes: gridImageSizes })}<figcaption>Schaukelbereich im Außenbereich</figcaption></figure><figure>${imageMarkup('kundenbilder/spielplatz/spielbereich_innen_01.png', 'Gepflegter Indoor-Spielbereich', { sizes: gridImageSizes })}<figcaption>Indoor-Spielbereich</figcaption></figure></div></section>`
         : ''
 
-  return `${staticHeader()}<main class="seo-static-main"><nav aria-label="Brotkrümeln"><a href="${basePath}">Startseite</a> / <a href="${basePath}leistungen/">Leistungen</a> / ${escapeHtml(service.title)}</nav><section class="seo-static-hero"><p>${service.eyebrow ? escapeHtml(service.eyebrow) : service.certified ? 'Zertifizierte Fachleistung' : 'Facility Services im Rhein-Main-Gebiet'}</p><h1>${escapeHtml(service.title)}</h1><p>${escapeHtml(service.detail)}</p><a href="${basePath}kontakt/">Individuelles Angebot anfragen</a><a href="tel:+491776867145">Direkt anrufen</a><a href="mailto:mail@perlas.de">E-Mail schreiben</a>${imageMarkup(service.image, service.imageAlt || `${service.title} von Perla’s Objektbetreuung`, { loading: 'eager', fetchPriority: 'high' })}</section><section><h2>Was wir bei ${escapeHtml(service.title)} konkret übernehmen</h2><p>${escapeHtml(service.scopeIntro)}</p><div class="seo-static-grid">${scopes}</div></section><section><h2>So läuft die Zusammenarbeit ab</h2><div class="seo-static-grid">${process}</div></section>${workflow}<section><h2>Für diese Objekte geeignet</h2><ul>${audiences}</ul>${boundary}</section>${gallery}<section><h2>Häufige Fragen zu ${escapeHtml(service.title)}</h2>${faqs}</section><section><h2>Wie möchten Sie Kontakt aufnehmen?</h2><p>Nutzen Sie das Angebotsformular oder sprechen Sie direkt mit Perla’s.</p><ul><li><a href="${basePath}kontakt/">Angebot für ${escapeHtml(service.title)} anfragen</a></li><li><a href="tel:+491776867145">Direkt anrufen: 0177 68 67 145</a></li><li><a href="mailto:mail@perlas.de">E-Mail an mail@perlas.de schreiben</a></li></ul></section><nav aria-label="Passende Leistungen"><h2>Diese Leistungen könnten ebenfalls relevant sein</h2><ul class="seo-static-links">${related}</ul></nav></main>`
+  return `${staticHeader()}<main class="seo-static-main"><nav aria-label="Brotkrümeln"><a href="${basePath}">Startseite</a> / <a href="${basePath}leistungen/">Leistungen</a> / ${escapeHtml(service.title)}</nav><section class="seo-static-hero"><p>${service.eyebrow ? escapeHtml(service.eyebrow) : service.certified ? 'Zertifizierte Fachleistung' : 'Facility Services im Rhein-Main-Gebiet'}</p><h1>${escapeHtml(service.heading ?? service.title)}</h1><p>${escapeHtml(service.detail)}</p><a href="${basePath}kontakt/">Individuelles Angebot anfragen</a><a href="tel:+491776867145">Direkt anrufen</a><a href="mailto:mail@perlas.de">E-Mail schreiben</a>${imageMarkup(service.image, service.imageAlt || `${service.title} von Perla’s Objektbetreuung`, { loading: 'eager', fetchPriority: 'high' })}</section><section><h2>Was wir bei ${escapeHtml(service.title)} konkret übernehmen</h2><p>${escapeHtml(service.scopeIntro)}</p><div class="seo-static-grid">${scopes}</div></section><section><h2>So läuft die Zusammenarbeit ab</h2><div class="seo-static-grid">${process}</div></section>${workflow}<section><h2>Für diese Objekte geeignet</h2><ul>${audiences}</ul>${boundary}</section>${gallery}<section><h2>Häufige Fragen zu ${escapeHtml(service.title)}</h2>${faqs}</section>${guideSection}<section><h2>Wie möchten Sie Kontakt aufnehmen?</h2><p>Nutzen Sie das Angebotsformular oder sprechen Sie direkt mit Perla’s.</p><ul><li><a href="${basePath}kontakt/">Angebot für ${escapeHtml(service.title)} anfragen</a></li><li><a href="tel:+491776867145">Direkt anrufen: 0177 68 67 145</a></li><li><a href="mailto:mail@perlas.de">E-Mail an mail@perlas.de schreiben</a></li></ul></section><nav aria-label="Passende Leistungen"><h2>Diese Leistungen könnten ebenfalls relevant sein</h2><ul class="seo-static-links">${related}</ul></nav></main>`
 }
 
 function audienceMarkup(audience) {
@@ -885,10 +896,13 @@ const sitemapUrls = [
   privacyUrl.href,
   ...services.map((service) => serviceUrl(service).href),
 ]
-const blogLastModified = new Map(blogPosts.map((post) => [blogPostUrl(post).href, blogDateToIso(post.updated)]))
+const pageLastModified = new Map([
+  ...blogPosts.map((post) => [blogPostUrl(post).href, blogDateToIso(post.updated)]),
+  ...services.filter((service) => service.updatedOn).map((service) => [serviceUrl(service).href, service.updatedOn]),
+])
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${sitemapUrls.map((url) => `  <url><loc>${url}</loc>${blogLastModified.has(url) ? `<lastmod>${blogLastModified.get(url)}</lastmod>` : ''}</url>`).join('\n')}
+${sitemapUrls.map((url) => `  <url><loc>${url}</loc>${pageLastModified.has(url) ? `<lastmod>${pageLastModified.get(url)}</lastmod>` : ''}</url>`).join('\n')}
 </urlset>
 `
 const robots = indexingEnabled
@@ -910,6 +924,9 @@ const sitemapIndex = `<?xml version="1.0" encoding="UTF-8"?>
 `
 await writeFile(`${distPath}sitemap_index.xml`, sitemapIndex)
 await writeFile(`${distPath}robots.txt`, robots)
+
+const legacyManifest = JSON.parse(await readFile(new URL('../src/legacy-redirects.json', import.meta.url), 'utf8'))
+await prepareLegacyRedirects({ manifest: legacyManifest, site: siteUrl, canonicalUrls: sitemapUrls, dist: distPath })
 
 if (!siteUrl.hostname.endsWith('github.io')) {
   await writeFile(`${distPath}CNAME`, `${siteUrl.hostname}\n`)

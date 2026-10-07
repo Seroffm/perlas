@@ -1,10 +1,13 @@
-import { useEffect, useRef, useState, type FormEvent } from 'react'
+import { useEffect, useId, useRef, useState, type FormEvent } from 'react'
 import { ArrowLeft, ArrowRight, Check, CheckCircle2, X } from 'lucide-react'
 import { FORM_LIMITS, submitQuoteRequest, type QuoteSubmissionResult } from './backend'
+import QuickContactForm from './QuickContactForm'
 
 type QuoteModalProps = {
   isOpen: boolean
   initialService?: string
+  initialTopic?: string
+  initialMode?: 'quick' | 'detailed'
   serviceNames: string[]
   onClose: () => void
 }
@@ -15,12 +18,15 @@ const BASE_PATH = import.meta.env.BASE_URL
 
 type SubmissionStatus = 'idle' | 'submitting' | 'success' | 'error'
 
-export default function QuoteModal({ isOpen, initialService, serviceNames, onClose }: QuoteModalProps) {
+export default function QuoteModal({ isOpen, initialService, initialTopic, initialMode = 'quick', serviceNames, onClose }: QuoteModalProps) {
+  const panelId = useId()
   const closeButtonRef = useRef<HTMLButtonElement>(null)
   const dialogRef = useRef<HTMLElement>(null)
   const openerRef = useRef<HTMLElement | null>(null)
   const submittingRef = useRef(false)
   const [step, setStep] = useState(0)
+  const [mode, setMode] = useState<'quick' | 'detailed'>(initialMode)
+  const [quickBusy, setQuickBusy] = useState(false)
   const [submissionStatus, setSubmissionStatus] = useState<SubmissionStatus>('idle')
   const [submissionResult, setSubmissionResult] = useState<QuoteSubmissionResult | null>(null)
   const [error, setError] = useState('')
@@ -41,13 +47,15 @@ export default function QuoteModal({ isOpen, initialService, serviceNames, onClo
 
     openerRef.current = document.activeElement instanceof HTMLElement ? document.activeElement : null
     setStep(0)
+    setMode(initialMode)
+    setQuickBusy(false)
     setSubmissionStatus('idle')
     setSubmissionResult(null)
     setError('')
     setPropertyType('')
     setStreet('')
     setLocation('')
-    setSelectedServices(initialService ? [initialService] : [])
+    setSelectedServices(initialService && serviceNames.includes(initialService) ? [initialService] : [])
     setStart('')
     setDetails('')
     setName('')
@@ -94,8 +102,13 @@ export default function QuoteModal({ isOpen, initialService, serviceNames, onClo
       if (event.key !== 'Tab' || !dialogRef.current) return
 
       const focusableElements = Array.from(dialogRef.current.querySelectorAll<HTMLElement>(
-        'button:not([disabled]), a[href], input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])',
-      )).filter((element) => !element.inert && element.offsetParent !== null)
+        'button, a[href], input, textarea, select, summary, [tabindex]:not([tabindex="-1"])',
+      )).filter((element) => {
+        const closedDetails = element.closest('details:not([open])')
+        return element.tabIndex >= 0 && !element.matches(':disabled')
+          && !element.closest('[inert], [hidden]') && element.getClientRects().length > 0
+          && (!closedDetails || Boolean(closedDetails.querySelector('summary')?.contains(element)))
+      })
 
       const firstElement = focusableElements[0]
       const lastElement = focusableElements[focusableElements.length - 1]
@@ -133,7 +146,7 @@ export default function QuoteModal({ isOpen, initialService, serviceNames, onClo
       openerRef.current?.focus({ preventScroll: true })
       window.removeEventListener('keydown', handleKeyDown)
     }
-  }, [initialService, isOpen, onClose])
+  }, [initialMode, initialService, isOpen, onClose])
 
   if (!isOpen) return null
 
@@ -222,7 +235,7 @@ export default function QuoteModal({ isOpen, initialService, serviceNames, onClo
     setPropertyType('')
     setStreet('')
     setLocation('')
-    setSelectedServices(initialService ? [initialService] : [])
+    setSelectedServices(initialService && serviceNames.includes(initialService) ? [initialService] : [])
     setStart('')
     setDetails('')
     setName('')
@@ -238,7 +251,7 @@ export default function QuoteModal({ isOpen, initialService, serviceNames, onClo
         <button
           className="quote-close"
           type="button"
-          aria-label="Angebotsformular schließen"
+          aria-label="Anfrageformular schließen"
           onClick={onClose}
           ref={closeButtonRef}
         >
@@ -246,9 +259,9 @@ export default function QuoteModal({ isOpen, initialService, serviceNames, onClo
         </button>
 
         <div className="quote-visual">
-          <span className="quote-kicker">Ihr individuelles Angebot</span>
-          <h2 id="quote-title">In drei kurzen Schritten zur passenden Objektbetreuung.</h2>
-          <p>Kein Standardpaket. Wir stellen die Leistungen passend zu Ihrem Objekt zusammen.</p>
+          <span className="quote-kicker">Ihre Anfrage an Perla’s</span>
+          <h2 id="quote-title">{mode === 'quick' ? 'Erster Kontakt. Ohne lange Vorbereitung.' : 'In drei Schritten zur passenden Objektbetreuung.'}</h2>
+          <p>{mode === 'quick' ? 'Stellen Sie eine kurze Anfrage oder beschreiben Sie Ihr Objekt direkt für ein individuelles Angebot.' : 'Kein Standardpaket. Wir stellen die Leistungen passend zu Ihrem Objekt zusammen.'}</p>
           <div className="quote-benefits">
             <span><CheckCircle2 aria-hidden="true" /> Unverbindlich</span>
             <span><CheckCircle2 aria-hidden="true" /> Direkt an Perla’s senden</span>
@@ -257,6 +270,14 @@ export default function QuoteModal({ isOpen, initialService, serviceNames, onClo
         </div>
 
         <div className="quote-form-wrap">
+          <div className="quote-request-modes" role="group" aria-label="Umfang Ihrer Anfrage">
+            <button type="button" aria-pressed={mode === 'quick'} aria-controls={`${panelId}-quick`} disabled={quickBusy || submissionStatus === 'submitting'} onClick={() => setMode('quick')}>Kurze Anfrage</button>
+            <button type="button" aria-pressed={mode === 'detailed'} aria-controls={`${panelId}-detailed`} disabled={quickBusy || submissionStatus === 'submitting'} onClick={() => setMode('detailed')}>Ausführliches Angebot</button>
+          </div>
+          <div className="quote-form-panel" id={`${panelId}-quick`} hidden={mode !== 'quick'}>
+            <QuickContactForm topic={initialTopic ?? initialService} onBusyChange={setQuickBusy} />
+          </div>
+          <div className="quote-form-panel" id={`${panelId}-detailed`} hidden={mode !== 'detailed'}>
           {submissionStatus === 'success' ? (
             <div className="quote-success" aria-live="polite">
               <div className="quote-success-icon"><Check aria-hidden="true" /></div>
@@ -437,6 +458,7 @@ export default function QuoteModal({ isOpen, initialService, serviceNames, onClo
               </div>
             </form>
           )}
+          </div>
         </div>
       </section>
     </div>

@@ -15,6 +15,7 @@ import {
   SlidersHorizontal,
 } from 'lucide-react'
 import ResponsiveImage from './ResponsiveImage'
+import QuickContactForm from './QuickContactForm'
 
 type ContactPageProps = {
   onQuoteOpen: () => void
@@ -178,6 +179,15 @@ export default function ContactPage({ onQuoteOpen }: ContactPageProps) {
             <ArrowUpRight aria-hidden="true" />
           </button>
         </div>
+      </section>
+
+      <section className="contact-channels contact-quick-inquiry" id="kurzanfrage" aria-labelledby="contact-quick-heading">
+        <div className="contact-section-heading">
+          <span className="eyebrow">Unverbindlich starten</span>
+          <h2 id="contact-quick-heading">Betreuung anfragen.</h2>
+          <p>Die genaue Adresse und den Leistungsumfang können wir anschließend gemeinsam klären.</p>
+        </div>
+        <div className="inquiry-options"><QuickContactForm /></div>
       </section>
 
       <section className="contact-process" aria-labelledby="contact-process-heading">

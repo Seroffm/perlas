@@ -169,7 +169,10 @@ async function submitForm(endpoint: string, formData: FormData): Promise<ApiSubm
   }
 }
 
-export async function submitContactRequest(payload: ContactRequestPayload): Promise<ApiSubmissionResult> {
+export async function submitContactRequest(
+  payload: ContactRequestPayload,
+  formType: 'contact' | 'quick_contact' = 'contact',
+): Promise<ApiSubmissionResult> {
   const result = await submitForm('contact-requests', requestForm({
     subject: payload.subject,
     name: payload.name,
@@ -181,7 +184,7 @@ export async function submitContactRequest(payload: ContactRequestPayload): Prom
     message: payload.message,
     website: payload.website ?? '',
   }))
-  recordLead('contact')
+  recordLead(formType)
   return result
 }
 

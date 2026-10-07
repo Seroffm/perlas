@@ -1,5 +1,5 @@
 {
-  "updated": "06.10.2026",
+  "updated": "07.10.2026",
   "lead": "Informationen zur Verarbeitung personenbezogener Daten bei der Nutzung dieser Website und bei der Kontaktaufnahme.",
   "sections": [
     {
@@ -92,7 +92,7 @@
       "blocks": [
         {
           "type": "paragraph",
-          "text": "Im Angebotsformular können insbesondere Objektart, Objektadresse, gewünschte Leistungen, Startzeitpunkt, weitere Angaben sowie Name, Unternehmen, E-Mail-Adresse und Telefonnummer eingegeben werden. Die Direktanfrage auf Leistungs- und Zielgruppenseiten ergänzt diese Kontaktdaten um das Thema und Ihre Nachricht. Das Bewerbungsformular verarbeitet Name, E-Mail-Adresse, Telefonnummer, gewünschten Einsatzbereich, Nachricht und gegebenenfalls eine ausgewählte Bewerbungsdatei mit bis zu 5 MB."
+          "text": "Die Kurzanfrage benötigt Ihren Namen und Ihre E-Mail-Adresse. Telefonnummer, Ort, Ihre Rolle als Anfragender und eine kurze Nachricht sind dort freiwillige Angaben; eine genaue Objektadresse ist nicht erforderlich. Im ausführlichen Angebotsformular können insbesondere Objektart, Objektadresse, gewünschte Leistungen, Startzeitpunkt, weitere Angaben sowie Name, Unternehmen, E-Mail-Adresse und Telefonnummer eingegeben werden. Die Direktanfrage auf Leistungs- und Zielgruppenseiten ergänzt diese Kontaktdaten um das Thema und Ihre Nachricht; die genaue Straße ist dort optional. Das Bewerbungsformular verarbeitet Name, E-Mail-Adresse, Telefonnummer, gewünschten Einsatzbereich, Nachricht und gegebenenfalls eine ausgewählte Bewerbungsdatei mit bis zu 5 MB."
         },
         {
           "type": "paragraph",
@@ -238,7 +238,7 @@
         },
         {
           "type": "paragraph",
-          "text": "Wir übermitteln nur bekannte öffentliche Seitenadressen ohne Suchparameter oder Sprungmarken. Als Herkunft werden ausschließlich fest hinterlegte Suchmaschinen wie Google, Bing oder DuckDuckGo ohne Pfade und Suchbegriffe berücksichtigt. Andere Verweisadressen werden nicht übermittelt. Nach gültiger Analyse-Einwilligung zählen wir außerdem erfolgreich vom Server bestätigte Kontakt- und Angebotsanfragen; dabei wird nur die feste Formularart übermittelt, nicht die eingegebenen Inhalte oder Vorgangsnummern. Außerdem zählen wir Klicks auf unseren Telefonlink, ohne Telefonnummer oder Linkinhalt zu übertragen. Ein solcher Klick bestätigt kein tatsächlich geführtes Telefonat. Vor Einwilligung oder vor dem Laden der Analyse werden diese Ereignisse nicht erfasst und nicht nachträglich gezählt. Formularinhalte, Namen, E-Mail-Adressen, Telefonnummern und Bewerbungsunterlagen werden nicht für die Analyse übertragen. Erweiterte automatische Messungen, Google-Signale, detaillierte Standortdaten und Werbepersonalisierung sind deaktiviert. Es bestehen keine Verknüpfungen mit Werbekonten."
+          "text": "Wir übermitteln nur bekannte öffentliche Seitenadressen ohne Suchparameter oder Sprungmarken. Als Herkunft werden fest hinterlegte Suchmaschinen wie Google, Bing oder DuckDuckGo ohne Pfade und Suchbegriffe berücksichtigt. Für ausdrücklich mit den festen Angaben utm_source=google beziehungsweise bing und utm_medium=cpc gekennzeichnete Links berücksichtigen wir ausschließlich diese Quelle und den Kanal cpc. Andere Parameter, Kampagnennamen, Anzeigenklick-IDs und sonstige Verweisadressen werden nicht übermittelt. Nach gültiger Analyse-Einwilligung zählen wir außerdem erfolgreich vom Server bestätigte Kontakt-, Angebots- und Kurzanfragen; dabei wird nur die feste Formularart übermittelt, nicht die eingegebenen Inhalte oder Vorgangsnummern. Außerdem zählen wir Klicks auf unsere Telefon-, E-Mail- und WhatsApp-Links, ohne Telefonnummer, Linkinhalt oder Nachrichtentext zu übertragen. Solche Klicks bestätigen weder ein geführtes Gespräch noch eine versendete Nachricht. Vor Einwilligung oder vor dem Laden der Analyse werden diese Ereignisse nicht erfasst und nicht nachträglich gezählt. Formularinhalte, Namen, E-Mail-Adressen, Telefonnummern und Bewerbungsunterlagen werden nicht für die Analyse übertragen. Erweiterte automatische Messungen, Google-Signale, detaillierte Standortdaten und Werbepersonalisierung sind deaktiviert. Es bestehen keine Verknüpfungen mit Werbekonten."
         },
         {
           "type": "paragraph",

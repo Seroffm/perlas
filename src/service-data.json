@@ -1,12 +1,14 @@
 [
   {
     "slug": "objektpflege",
+    "updatedOn": "2026-10-07",
     "title": "Objektbetreuung",
+    "heading": "Hausmeisterservice in Sulzbach.",
     "text": "Laufende Objektkontrollen, koordinierte Aufgaben und ein fester Ansprechpartner für professionell verwaltete Immobilien.",
-    "detail": "Von Sulzbach (Taunus) aus betreuen wir Wohnanlagen, Immobilienbestände und Gewerbeobjekte im Rhein-Main-Gebiet. Regelmäßige Kontrollen, festgelegte Aufgaben und verständliche Rückmeldungen geben Verwaltung und Eigentümern einen verlässlichen Überblick.",
+    "detail": "Unser Hausmeisterservice aus Sulzbach (Taunus) übernimmt die laufende Objektbetreuung für Hausverwaltungen, WEG und Gewerbe. Für Immobilien in Sulzbach und den Nachbarorten Schwalbach, Bad Soden und Eschborn stimmen wir Kontrollgänge, kleine Hausmeisteraufgaben und Rückmeldungen auf den Bedarf ab. Sie erhalten einen Leistungsplan mit klaren Aufgaben, Intervallen und einem festen Ansprechpartner.",
     "image": "kundenbilder/fahrzeuge/perlas_fahrzeug_wohnobjekt_02.png",
-    "seoTitle": "Objektbetreuung Sulzbach & Rhein-Main | Perla’s",
-    "seoDescription": "Objektbetreuung für Wohnanlagen und Gewerbe in Sulzbach und Rhein-Main: Kontrollgänge, Hausmeisteraufgaben und feste Ansprechpartner. Jetzt anfragen.",
+    "seoTitle": "Hausmeisterservice & Objektbetreuung Sulzbach | Perla’s",
+    "seoDescription": "Hausmeisterservice für WEG und Gewerbe in Sulzbach und Umgebung: klare Aufgaben, Objektkontrollen und Rückmeldungen. Jetzt Betreuung anfragen.",
     "scopeIntro": "Vor dem Start sehen wir uns die Flächen, ihre Nutzung und die bisherigen Abläufe an. Danach legen wir gemeinsam fest, was regelmäßig kontrolliert wird, welche Aufgaben wir direkt erledigen und wann Sie eine Rückmeldung erhalten.",
     "scopeCards": [
       {
@@ -54,8 +56,10 @@
     "boundaryTitle": "Leistungsumfang klar festgelegt",
     "boundaryText": "Im Leistungsplan stehen die betreuten Bereiche und Aufgaben. Arbeiten, für die eine besondere Zulassung oder ein Fachbetrieb erforderlich ist, führen wir nicht selbst aus. Auf Wunsch organisieren wir den Zugang und begleiten den Termin am Objekt.",
     "relatedServices": ["wartung-instandhaltung", "gebaeudereinigung", "gartenpflege"],
+    "guideSlugs": ["hausmeisterservice-sulzbach-weg-leistungen", "objektkontrollen-richtig-dokumentieren"],
     "faqs": [
       { "question": "Was gehört zu einer laufenden Objektbetreuung?", "answer": "Der genaue Umfang richtet sich nach dem Objekt. Häufig gehören Kontrollgänge, Zustandsmeldungen, Ordnung in vereinbarten Bereichen, kleine Hausmeisteraufgaben und die Koordination weiterer Maßnahmen dazu." },
+      { "question": "Wie frage ich einen Hausmeisterservice für unsere WEG an?", "answer": "Nennen Sie die Objektadresse in Sulzbach oder Umgebung, die Anzahl der Gebäude und die gewünschten Aufgaben. Ein vorhandener Leistungsplan oder Hinweise zu bisherigen Abläufen helfen beim Vergleich. Gemeinsam klären wir Kontrollintervalle, Zuständigkeiten, Rückmeldungen und den konkreten Umfang des Angebots." },
       { "question": "Wie häufig kommt Perla’s zum Objekt?", "answer": "Das hängt von Größe, Nutzung und gewünschtem Betreuungsumfang ab. Möglich sind feste wöchentliche oder vierzehntägige Termine ebenso wie ein individuell vereinbarter Rhythmus." },
       { "question": "Kann Perla’s auch Ansprechpartner für Bewohner sein?", "answer": "Ja, wenn das Teil der Vereinbarung ist. Wir nehmen Hinweise auf, prüfen die Situation und geben die relevanten Informationen an Verwaltung oder Eigentümer weiter." },
       { "question": "Was kostet die laufende Objektbetreuung?", "answer": "Die Kosten richten sich nach Objektgröße, betreuten Bereichen, Aufgaben und Einsatzintervallen. Nennen Sie uns Standort, Nutzung und gewünschten Umfang. Nach dem Gespräch und bei Bedarf einer Begehung erhalten Sie ein Angebot mit klar beschriebenen Leistungen." }
@@ -63,6 +67,7 @@
   },
   {
     "slug": "wartung-instandhaltung",
+    "updatedOn": "2026-10-07",
     "title": "Wartung & Instandhaltung",
     "text": "Kleine Mängel zügig erledigen, technische Bereiche im Blick behalten und Fachfirmen verlässlich koordinieren.",
     "detail": "In Sulzbach und im Rhein-Main-Gebiet kümmern wir uns um kleine Reparaturen und Sichtkontrollen, die im Immobilienalltag anfallen. Wenn ein Fachbetrieb gebraucht wird, bereiten wir den Termin vor, begleiten die Arbeiten am Objekt und halten Sie über den Stand auf dem Laufenden.",
@@ -116,6 +121,7 @@
     "boundaryTitle": "Was wir selbst erledigen",
     "boundaryText": "Perla’s übernimmt kleine Reparaturen und Sichtkontrollen aus dem Hausmeisterbereich. Elektroarbeiten, Arbeiten an Heizungsanlagen, Brandschutzprüfungen und andere zulassungspflichtige Tätigkeiten bleiben qualifizierten Fachbetrieben vorbehalten. Wir können deren Einsatz vorbereiten und am Objekt begleiten.",
     "relatedServices": ["objektpflege", "gebaeudereinigung", "einzelauftrag"],
+    "guideSlugs": ["objektkontrollen-richtig-dokumentieren"],
     "faqs": [
       { "question": "Welche Kleinreparaturen übernimmt Perla’s?", "answer": "Typische Beispiele sind Arbeiten an Griffen, Beschlägen, Beleuchtung und losem Inventar. Ob wir eine Reparatur direkt ausführen können, hängt vom konkreten Schaden und den fachlichen Anforderungen ab." },
       { "question": "Was passiert, wenn ein Fachbetrieb benötigt wird?", "answer": "Wir dokumentieren das Schadensbild und stimmen das weitere Vorgehen mit Ihnen ab. Auf Wunsch koordinieren wir den Termin, ermöglichen den Zugang und begleiten den Einsatz vor Ort." },
@@ -126,21 +132,23 @@
   },
   {
     "slug": "gebaeudereinigung",
+    "updatedOn": "2026-10-07",
     "title": "Gebäudereinigung",
+    "heading": "Gebäude- & Büroreinigung in Sulzbach.",
     "text": "Reinigung für Treppenhäuser, Büros, Gemeinschaftsflächen und Parkbereiche nach einem festen Plan.",
-    "detail": "Wir reinigen Wohnanlagen, Büros, Praxen und Gewerbeflächen in Sulzbach und im Rhein-Main-Gebiet nach ihrem tatsächlichen Bedarf. Vor dem Start legen wir Räume, Aufgaben, Zeiten und Intervalle fest. Bei Fragen oder Änderungen steht ein fester Ansprechpartner zur Verfügung.",
+    "detail": "Perla’s aus Sulzbach (Taunus) übernimmt Gebäudereinigung, Büroreinigung und Treppenhausreinigung für Unternehmen, Hausverwaltungen und WEG. Für Standorte in Sulzbach, Eschborn und den angrenzenden Orten klären wir Flächen, Materialien, Zugänge und Reinigungszeiten. Ihr Angebot beschreibt die vereinbarten Aufgaben und Intervalle im Leistungsverzeichnis; bei Rückfragen steht ein fester Ansprechpartner zur Verfügung.",
     "image": "kundenbilder/team/update-2026-09-23/mitarbeiter_reinigung_weiblich_01.png",
-    "seoTitle": "Gebäudereinigung Sulzbach & Rhein-Main | Perla’s",
-    "seoDescription": "Gebäudereinigung in Sulzbach und Rhein-Main: Treppenhäuser, Büros und Gemeinschaftsflächen mit abgestimmtem Reinigungsplan. Jetzt Angebot anfragen.",
+    "seoTitle": "Gebäude- & Büroreinigung Sulzbach & Eschborn | Perla’s",
+    "seoDescription": "Gebäude-, Büro- und Treppenhausreinigung in Sulzbach und Eschborn: klare Aufgaben und abgestimmte Intervalle. Jetzt Ihr Objekt anfragen.",
     "scopeIntro": "Ein kleines Büro braucht einen anderen Reinigungsablauf als ein stark genutztes Treppenhaus oder eine große Wohnanlage. Bei der Besichtigung erfassen wir Räume, Materialien und Nutzung. Daraus entstehen konkrete Aufgaben, Reinigungszeiten und Intervalle.",
     "scopeCards": [
       {
-        "title": "Treppenhäuser und Eingänge",
+        "title": "Treppenhausreinigung",
         "text": "Eingangsbereiche und Treppenhäuser werden täglich unterschiedlich stark genutzt. Wir reinigen Böden, Handläufe und die festgelegten Kontaktflächen in den vorgesehenen Intervallen.",
         "items": ["Böden, Stufen und Podeste", "Handläufe und gut erreichbare Flächen", "Eingangstüren und Briefkastenbereiche"]
       },
       {
-        "title": "Büros und Arbeitsbereiche",
+        "title": "Büroreinigung",
         "text": "Die Reinigung planen wir so, dass der Arbeitsalltag möglichst wenig gestört wird. Im Leistungsverzeichnis steht, welche Böden, Oberflächen, Küchen und Nebenräume dazugehören.",
         "items": ["Boden- und Oberflächenreinigung", "Teeküchen und Aufenthaltsbereiche", "Abfallbehälter nach Vereinbarung"]
       },
@@ -179,9 +187,11 @@
     "boundaryTitle": "Reinigungsumfang vorab klären",
     "boundaryText": "Vor Beginn erfassen wir Materialien, Zugänge, Reinigungszeiten und den gewünschten Umfang. Diese Angaben stehen im Leistungsverzeichnis. Bei einer Rückmeldung sehen wir uns den betroffenen Bereich an und besprechen, ob eine Nacharbeit oder eine Änderung des Ablaufs nötig ist. Spezialverfahren, große Höhen und besondere Verschmutzungen prüfen wir separat.",
     "relatedServices": ["objektpflege", "wartung-instandhaltung", "muellmanagement"],
+    "guideSlugs": ["bueroreinigung-eschborn-angebot-kosten", "gebaeudereinigung-wiesbaden-erbenheim-leistungsverzeichnis"],
     "faqs": [
       { "question": "Welche Flächen können gereinigt werden?", "answer": "Je nach Vereinbarung reinigen wir Treppenhäuser, Eingänge, Büros, Praxisräume, Sanitärbereiche, Glasflächen, Gemeinschaftsräume sowie ausgewählte Tiefgaragen und Parkbereiche." },
       { "question": "Wie wird der Reinigungsumfang festgelegt?", "answer": "Wir erfassen Räume, Materialien und Nutzung vor Ort. Das Leistungsverzeichnis hält anschließend fest, welche Bereiche betreut werden, welche Aufgaben dazugehören und in welchen Intervallen gereinigt wird." },
+      { "question": "Welche Angaben braucht ein Büroreinigungsangebot in Eschborn?", "answer": "Hilfreich sind die Adresse, die ungefähre Fläche, Raumarten und der gewünschte Reinigungsrhythmus. Nennen Sie auch Bürozeiten, Zugangsmöglichkeiten sowie Sanitär- und Küchenbereiche. Damit können wir den Umfang für Ihren Standort in Eschborn oder Umgebung abstimmen und ein nachvollziehbares Angebot vorbereiten." },
       { "question": "Sind auch einmalige Grundreinigungen möglich?", "answer": "Ja. Vor einer Grund- oder Übergabereinigung sehen wir uns die Fläche an und stimmen ab, welches Ergebnis erreicht werden soll. So lassen sich Aufwand und geeignete Verfahren realistisch planen." },
       { "question": "Was passiert, wenn eine Reinigung nicht wie erwartet ausgeführt wurde?", "answer": "Der Ansprechpartner nimmt die Rückmeldung auf und prüft den betroffenen Bereich. Danach wird besprochen, ob eine Nacharbeit erforderlich ist oder der Reinigungsablauf angepasst werden sollte." },
       { "question": "Wovon hängen die Kosten der Gebäudereinigung ab?", "answer": "Flächengröße, Materialien, Nutzung, Verschmutzung und Reinigungsintervall bestimmen den Aufwand. Für ein passendes Angebot benötigen wir Standort, Art der Räume und den gewünschten Rhythmus. Besondere Verfahren und Zusatzaufgaben werden getrennt abgestimmt." }
@@ -252,6 +262,7 @@
   },
   {
     "slug": "winterdienst",
+    "updatedOn": "2026-10-07",
     "title": "Winterdienst",
     "text": "Wir räumen und streuen die zuvor festgelegten Wege und Eingänge. Zeitpunkt und bearbeitete Flächen werden festgehalten.",
     "detail": "Für den Winterdienst in Sulzbach und im Rhein-Main-Gebiet nehmen wir Wege, Eingänge und Zufahrten vor Saisonbeginn am Objekt auf. Gemeinsam bestimmen wir, welche Flächen zuerst bearbeitet werden und unter welchen Wetterbedingungen ein Einsatz notwendig ist.",
@@ -305,6 +316,7 @@
     "boundaryTitle": "Flächen im Auftrag festlegen",
     "boundaryText": "Vor Saisonbeginn erfassen wir gemeinsam alle zu betreuenden Flächen. Im Auftrag stehen Wege, Eingänge, Zufahrten, Prioritäten und Einsatzbedingungen. Flächen, die bei der Aufnahme nicht berücksichtigt wurden, gehören nicht automatisch dazu.",
     "relatedServices": ["objektpflege", "gartenpflege", "gebaeudereinigung"],
+    "guideSlugs": ["winterdienst-richtig-planen"],
     "faqs": [
       { "question": "Welche Flächen übernimmt der Winterdienst?", "answer": "Betreut werden die Wege, Eingänge, Zufahrten oder Außenbereiche, die vorab aufgenommen und im Auftrag eindeutig festgehalten wurden." },
       { "question": "Wie wird der Einsatz vorbereitet?", "answer": "Vor Saisonbeginn besichtigen wir das Objekt. Dabei erfassen wir Flächen, Zugänge, Prioritäten, mögliche Lagerorte und besondere Stellen. Gemeinsam besprechen wir auch, unter welchen Wetterbedingungen ein Einsatz notwendig ist." },
@@ -315,6 +327,7 @@
   },
   {
     "slug": "tiefgaragenreinigung",
+    "updatedOn": "2026-10-07",
     "title": "Tiefgaragenreinigung",
     "eyebrow": "Professionelle Flächenreinigung",
     "text": "Fahrflächen, Stellplätze und Randbereiche mit abgestimmtem Maschinen- und Handeinsatz reinigen.",
@@ -372,6 +385,7 @@
     "boundaryTitle": "Flächen, Zugänglichkeit und Verfahren vorab klären",
     "boundaryText": "Welche Flächen gereinigt werden, welche Bereiche maschinell erreichbar sind und welche manuellen Nacharbeiten zum Auftrag gehören, wird vor Beginn festgehalten. Weitergehende Arbeiten oder besondere Verfahren sind nur Bestandteil des Auftrags, wenn sie ausdrücklich geprüft und vereinbart wurden.",
     "relatedServices": ["gebaeudereinigung", "objektpflege", "wartung-instandhaltung"],
+    "guideSlugs": ["tiefgaragenreinigung-frankfurt-weg"],
     "faqs": [
       { "question": "Welche Bereiche können gereinigt werden?", "answer": "Je nach Vereinbarung können Fahrflächen, Stellplätze, Randbereiche sowie Ein- und Ausfahrten in den Leistungsumfang aufgenommen werden." },
       { "question": "Wird ausschließlich maschinell gereinigt?", "answer": "Nein. Der geeignete Maschineneinsatz wird mit manuellen Nacharbeiten für vereinbarte, schwer erreichbare Stellen kombiniert." },
@@ -508,6 +522,7 @@
   },
   {
     "slug": "baumpflege-baumfaellung",
+    "updatedOn": "2026-10-07",
     "title": "Baumpflege & Baumfällung",
     "text": "Pflege-, Rückschnitt- und Fällarbeiten nach objektbezogener Prüfung und klarer Abstimmung des Arbeitsbereichs.",
     "detail": "Für betreute Außenanlagen im Main-Taunus-Kreis und im Rhein-Main-Gebiet übernimmt Perla’s abgestimmte Pflege-, Rückschnitt- und Fällarbeiten an Bäumen und größeren Gehölzen. Vor jedem Einsatz klären wir Bestand, Zugänglichkeit, Umfeld und den konkreten Auftrag. Erforderliche Sicherungen, Freigaben und die passende Ausführung werden objektbezogen festgelegt.",
@@ -566,6 +581,7 @@
     "boundaryTitle": "Pflege, Fällung und Zusatzarbeiten klar abgrenzen",
     "boundaryText": "Vor der Ausführung klären wir Eigentümerfreigabe, gegebenenfalls erforderliche Genehmigungen und Schutzvorgaben sowie Zugang und Sicherungsbedarf. Wurzelstockentfernung, Spezialgerät, verkehrsrechtliche Sicherung und weitere Zusatzarbeiten gehören nur dann zum Auftrag, wenn sie ausdrücklich vereinbart wurden. Die erforderliche Fachkunde wird passend zum vereinbarten Auftrag geklärt.",
     "relatedServices": ["gartenpflege", "objektpflege", "winterdienst"],
+    "guideSlugs": ["baumfaellung-neu-isenburg-genehmigung-firma"],
     "faqs": [
       { "question": "Welche Arbeiten gehören zur Baumpflege?", "answer": "Der mögliche Umfang reicht von abgestimmten Pflege- und Rückschnittarbeiten bis zur objektbezogen geplanten Fällung. Welche Maßnahme sinnvoll und ausführbar ist, wird vor Ort geprüft." },
       { "question": "Ist vor dem Angebot eine Besichtigung erforderlich?", "answer": "In der Regel ja. Bestand, Zugang, Arbeitsraum und Umfeld bestimmen Aufwand und Ausführung und lassen sich anhand einer reinen Beschreibung häufig nicht zuverlässig beurteilen." },
@@ -576,6 +592,7 @@
   },
   {
     "slug": "spielplatzkontrolle-spielgeraetewartung",
+    "updatedOn": "2026-10-07",
     "title": "Spielplatzkontrolle & Spielgerätewartung",
     "text": "Planbare Betreuung, vereinbarte Sichtkontrollen, nachvollziehbare Dokumentation sowie Reinigung und Pflege für Spielbereiche.",
     "detail": "Perla’s betreut Spielbereiche in Sulzbach und im Rhein-Main-Gebiet mit vereinbarten Sichtkontrollen, nachvollziehbarer Dokumentation sowie Reinigung und Pflege. Auffälligkeiten und notwendiger Handlungsbedarf werden eindeutig festgehalten. Sind weiterführende Arbeiten oder besondere Fachkenntnisse erforderlich, koordinieren wir die weitere Bearbeitung mit dem Auftraggeber und geeigneten Partnerbetrieben.",
@@ -640,6 +657,7 @@
     "boundaryTitle": "Betreuungsumfang und Zuständigkeiten vorab festlegen",
     "boundaryText": "Welche vereinbarten Sichtkontrollen Perla’s durchführt, in welchem Intervall sie erfolgen und welche Reinigungs- und Pflegeaufgaben enthalten sind, wird vor Auftragsbeginn dokumentiert. Weitergehende Prüfungen, Reparaturen und Arbeiten mit besonderen fachlichen Anforderungen werden nicht als eigene Leistung zugesagt. Perla’s kann die weitere Bearbeitung mit geeigneten Partnerbetrieben koordinieren.",
     "relatedServices": ["objektpflege", "gartenpflege", "wartung-instandhaltung"],
+    "guideSlugs": ["spielplatzkontrolle-main-taunus-hausverwaltungen"],
     "faqs": [
       { "question": "Was wird bei einer Spielplatzkontrolle betrachtet?", "answer": "Der Umfang der vereinbarten Sichtkontrolle wird vorab festgelegt. Typisch sind sichtbare Veränderungen an Geräten, zugänglichen Bauteilen, Fallschutzflächen und dem direkten Spielplatzumfeld. Weitergehende fachliche Prüfungen werden bei Bedarf mit einem geeigneten Partnerbetrieb abgestimmt." },
       { "question": "Wie häufig finden Kontrollen statt?", "answer": "Das Intervall richtet sich nach Nutzung, Anlage und vereinbartem Leistungsumfang. Termine und Häufigkeit werden vor Beginn eindeutig dokumentiert." },

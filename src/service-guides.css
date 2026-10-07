@@ -1,0 +1,51 @@
+.service-page .service-guides > div {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: 28px;
+}
+
+.service-page .service-guides a {
+  min-width: 0;
+  min-height: 168px;
+  box-shadow: none;
+}
+
+.service-page .service-guides a:only-child {
+  grid-column: 1 / -1;
+}
+
+.service-page .service-guides a:hover,
+.service-page .service-guides a:focus-visible {
+  transform: none;
+  box-shadow: none;
+}
+
+.service-page .service-guides a:hover strong,
+.service-page .service-guides a:focus-visible strong {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.service-page .service-guides a strong {
+  overflow-wrap: anywhere;
+}
+
+.service-page .service-guides a small {
+  font-size: 14px;
+}
+
+@media (max-width: 767px) {
+  .service-page .service-guides > div {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .service-page .service-guides a {
+    min-height: 0;
+    padding: 24px 20px;
+    grid-template-columns: 24px minmax(0, 1fr) 20px;
+    gap: 12px;
+  }
+
+  .service-page .service-guides a > svg {
+    max-width: 100%;
+  }
+}

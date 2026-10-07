@@ -38,13 +38,14 @@ type ConsentPreferences = {
 }
 
 let activeCleanup: (() => void) | undefined
-type LeadFormType = 'contact' | 'quote'
+type LeadFormType = 'contact' | 'quote' | 'quick_contact'
 let activeLeadRecorder: ((formType: LeadFormType) => void) | undefined
 let activePhoneRecorder: (() => void) | undefined
+let activeContactRecorder: ((kind: 'email' | 'whatsapp') => void) | undefined
 
 /** Only the fixed form category is accepted, never form fields or request IDs. */
 export function recordLead(formType: LeadFormType) {
-  if (formType !== 'contact' && formType !== 'quote') return
+  if (formType !== 'contact' && formType !== 'quote' && formType !== 'quick_contact') return
   // Measurement must never turn a successfully delivered inquiry into a form error.
   try { activeLeadRecorder?.(formType) } catch { /* Analytics remains optional. */ }
 }
@@ -52,6 +53,12 @@ export function recordLead(formType: LeadFormType) {
 /** Records a click, not a completed phone call; accepts no link data or parameters. */
 export function recordPhoneClick() {
   try { activePhoneRecorder?.() } catch { /* Analytics remains optional. */ }
+}
+
+/** A contact-link click is not a delivered inquiry; never accept URLs or message text. */
+export function recordContactClick(kind: 'email' | 'whatsapp') {
+  if (kind !== 'email' && kind !== 'whatsapp') return
+  try { activeContactRecorder?.(kind) } catch { /* Analytics remains optional. */ }
 }
 
 export function isValidMeasurementId(value: unknown): value is string {
@@ -77,6 +84,17 @@ function readConsent(): ConsentPreferences | null {
 }
 
 function safeAttribution() {
+  // Recognize only these exact, public campaign labels. Never forward arbitrary
+  // query values, ad click IDs, campaign names, search terms or customer data.
+  try {
+    const parameters = new URL(window.location.href).searchParams
+    const sources = parameters.getAll('utm_source')
+    const media = parameters.getAll('utm_medium')
+    if (sources.length === 1 && media.length === 1
+      && (sources[0] === 'google' || sources[0] === 'bing') && media[0] === 'cpc') {
+      return { page_referrer: '', campaign_source: sources[0] === 'google' ? 'google' : 'bing', campaign_medium: 'cpc' }
+    }
+  } catch { /* Unrecognized campaign values are deliberately ignored. */ }
   try {
     const referrer = new URL(document.referrer)
     const known = referrer.origin !== window.location.origin ? searchReferrers[referrer.origin] : undefined
@@ -123,7 +141,7 @@ function clearOwnCookies(measurementId: string) {
 
 /**
  * Basic consent mode: no Google script, request or ping before analytics consent.
- * Only manual page views, fixed successful-inquiry categories and phone-link clicks are added;
+ * Only manual page views, fixed successful-inquiry categories and contact-link clicks are added;
  * never expose a general-purpose event/form API or queue pre-consent conversions.
  * Before activation, disable Enhanced Measurement (including history tracking),
  * user-provided data, Google Signals and advertising destinations in the GA4 UI.
@@ -168,7 +186,7 @@ export function initializeAnalytics(measurementId?: string, basePath = '/') {
       allow_ad_personalization_signals: false,
       ads_data_redaction: true,
       url_passthrough: false,
-      // Keep only fixed search origins above; never read user-controlled UTM values.
+      // Only fixed search origins / exact public source-medium pairs are accepted above.
       campaign_id: '(not set)',
       campaign_name: '(not set)', campaign_term: '(not set)', campaign_content: '(not set)',
       cookie_domain: 'none',
@@ -209,6 +227,12 @@ export function initializeAnalytics(measurementId?: string, basePath = '/') {
   activePhoneRecorder = () => {
     if (!canRecordEvent()) return
     gtag('event', 'phone_click', { ...safePageValues(basePath), send_to: measurementId })
+  }
+  activeContactRecorder = (kind) => {
+    if (!canRecordEvent()) return
+    gtag('event', kind === 'email' ? 'email_click' : 'whatsapp_click', {
+      ...safePageValues(basePath), send_to: measurementId,
+    })
   }
 
   function stopMeasurement() {
@@ -313,6 +337,7 @@ export function initializeAnalytics(measurementId?: string, basePath = '/') {
     window.removeEventListener('focus', reconcileConsent)
     activeLeadRecorder = undefined
     activePhoneRecorder = undefined
+    activeContactRecorder = undefined
     activeCleanup = undefined
   }
   activeCleanup = cleanup

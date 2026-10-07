@@ -30,7 +30,8 @@ import {
 } from 'lucide-react'
 import CookieConsent from './CookieConsent'
 import ResponsiveImage from './ResponsiveImage'
-import { recordPhoneClick } from './analytics'
+import QuickContactForm from './QuickContactForm'
+import { recordContactClick, recordPhoneClick } from './analytics'
 import { FORM_LIMITS, submitContactRequest } from './backend'
 import audienceContent from './audience-data.json'
 import blogContent from './blog-data.json'
@@ -40,6 +41,8 @@ import privacyContent from './privacy-content.json'
 import serviceContent from './service-data.json'
 import seoContent from './seo-data.json'
 import googleReviewData from './google-reviews-data.json'
+import './service-guides.css'
+import './inquiry-options.css'
 import type { BlogPostContent, JobOpeningContent } from './content-types'
 
 const ContactPage = lazy(() => import('./ContactPage'))
@@ -2543,7 +2546,7 @@ function AudienceDetailPage({ audience, onQuoteOpen }: { audience: AudienceSolut
           <h2 id="audience-contact-heading">Passt diese Betreuung zu Ihrem Objekt?</h2>
           <p>Beschreiben Sie kurz Ihre Immobilie, den Standort und die Aufgaben, die Sie abgeben möchten. Wir prüfen die Angaben und besprechen den passenden Leistungsumfang persönlich mit Ihnen.</p>
           <button className="button button--yellow" type="button" onClick={onQuoteOpen}>
-            <span>Geführtes Angebotsformular öffnen</span><img src={`${A}arrow-white.svg`} alt="" />
+            <span>Anfrage oder Angebot starten</span><img src={`${A}arrow-white.svg`} alt="" />
           </button>
           <div className="service-contact-options" aria-label="Alternative Kontaktwege">
             <a href="tel:+491776867145">
@@ -2766,6 +2769,9 @@ function FeatureSection({ onQuoteOpen }: { onQuoteOpen: (service?: string) => vo
 }
 
 function ServiceContactForm({ subject }: { subject: string }) {
+  const [mode, setMode] = useState<'quick' | 'detailed'>('quick')
+  const [quickBusy, setQuickBusy] = useState(false)
+  const panelId = `inquiry-${useId().replace(/:/g, '')}`
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle')
   const [feedback, setFeedback] = useState('')
   const submittingRef = useRef(false)
@@ -2806,6 +2812,15 @@ function ServiceContactForm({ subject }: { subject: string }) {
   }
 
   return (
+    <div className="inquiry-options">
+      <div className="quote-request-modes" role="group" aria-label="Art der Anfrage">
+        <button type="button" aria-pressed={mode === 'quick'} aria-controls={`${panelId}-quick`} disabled={quickBusy || status === 'submitting'} onClick={() => setMode('quick')}>Kurze Anfrage</button>
+        <button type="button" aria-pressed={mode === 'detailed'} aria-controls={`${panelId}-detailed`} disabled={quickBusy || status === 'submitting'} onClick={() => setMode('detailed')}>Details ergänzen</button>
+      </div>
+      <div className="quote-form-panel" id={`${panelId}-quick`} hidden={mode !== 'quick'}>
+        <QuickContactForm topic={subject} onBusyChange={setQuickBusy} />
+      </div>
+      <div className="quote-form-panel" id={`${panelId}-detailed`} hidden={mode !== 'detailed'}>
     <form className="service-contact-form" onSubmit={handleSubmit} aria-busy={status === 'submitting'}>
       <label className="form-honeypot" aria-hidden="true">
         Website
@@ -2833,8 +2848,8 @@ function ServiceContactForm({ subject }: { subject: string }) {
           <input type="tel" name="phone" autoComplete="tel" maxLength={FORM_LIMITS.phone} disabled={status === 'submitting'} />
         </label>
         <label>
-          <span>Straße und Hausnummer des Objekts *</span>
-          <input type="text" name="street" autoComplete="street-address" maxLength={FORM_LIMITS.street} disabled={status === 'submitting'} required />
+          <span>Straße und Hausnummer des Objekts (optional)</span>
+          <input type="text" name="street" autoComplete="street-address" maxLength={FORM_LIMITS.street} disabled={status === 'submitting'} />
         </label>
         <label>
           <span>PLZ und Ort *</span>
@@ -2856,6 +2871,8 @@ function ServiceContactForm({ subject }: { subject: string }) {
       {feedback && <p className={`form-feedback is-${status}`} role={status === 'error' ? 'alert' : 'status'}>{feedback}</p>}
       <small>Ihre Angaben werden ausschließlich zur Bearbeitung Ihrer Anfrage verwendet.</small>
     </form>
+      </div>
+    </div>
   )
 }
 
@@ -2904,6 +2921,9 @@ function ServiceDetailPage({ service, onQuoteOpen }: { service: Feature; onQuote
   const relatedServices = service.relatedServices
     .map((slug) => features.find((item) => item.slug === slug))
     .filter((item): item is Feature => Boolean(item))
+  const serviceGuides = (service.guideSlugs ?? [])
+    .map((slug) => blogPosts.find((post) => post.slug === slug))
+    .filter((post): post is BlogPostContent => Boolean(post))
   const showServiceBoundary = service.slug !== 'baumpflege-baumfaellung'
 
   return (
@@ -2921,7 +2941,7 @@ function ServiceDetailPage({ service, onQuoteOpen }: { service: Feature; onQuote
           ) : (
             <span className="eyebrow">{service.eyebrow ?? 'Perla’s Objektbetreuung'}</span>
           )}
-          <h1>{service.title}</h1>
+          <h1>{service.heading ?? service.title}</h1>
           <p>{service.detail}</p>
           <div className="button-row">
             <button className="button button--yellow" type="button" onClick={() => onQuoteOpen(service.title)}>
@@ -3074,6 +3094,26 @@ function ServiceDetailPage({ service, onQuoteOpen }: { service: Feature; onQuote
         </div>
       </section>
 
+      {serviceGuides.length > 0 && (
+        <section className="service-more service-guides" aria-labelledby="service-guides-heading" data-reveal="up">
+          <span className="eyebrow">Passendes Praxiswissen</span>
+          <h2 id="service-guides-heading">Angebot gut vorbereiten.</h2>
+          <p>Diese Ratgeber helfen Ihnen, Aufgaben einzugrenzen und die passenden Angaben für Ihre Anfrage zusammenzustellen.</p>
+          <div>
+            {serviceGuides.map((post) => (
+              <a href={`${BLOG_PATH}${post.slug}/`} key={post.slug}>
+                <ClipboardCheck aria-hidden="true" />
+                <span>
+                  <strong>{post.title}</strong>
+                  <small>{post.excerpt}</small>
+                </span>
+                <ArrowUpRight aria-hidden="true" />
+              </a>
+            ))}
+          </div>
+        </section>
+      )}
+
       {serviceGallery && <ServiceMediaGallery gallery={serviceGallery} />}
 
       <RegionalServiceArea compact />
@@ -3084,7 +3124,7 @@ function ServiceDetailPage({ service, onQuoteOpen }: { service: Feature; onQuote
           <h2 id="service-contact-heading">Sprechen wir über Ihr Objekt.</h2>
           <p>Schildern Sie uns kurz das Objekt und den gewünschten Umfang. Wir melden uns persönlich und klären gemeinsam, welche Ausführung und welche Intervalle sinnvoll sind.</p>
           <button className="button button--yellow" type="button" onClick={() => onQuoteOpen(service.title)}>
-            <span>Geführtes Angebotsformular öffnen</span>
+            <span>Anfrage oder Angebot starten</span>
             <img src={`${A}arrow-white.svg`} alt="" />
           </button>
           <div className="service-contact-options" aria-label="Alternative Kontaktwege">
@@ -3450,19 +3490,22 @@ export default function App() {
   usePageSeo(activeService, pageKind, activeAudience, activeBlogPost)
 
   useEffect(() => {
-    const onPhoneClick = (event: MouseEvent) => {
+    const onContactClick = (event: MouseEvent) => {
       const target = event.target instanceof Element ? event.target.closest('a') : null
       // Only the site's fixed public contact link; never pass link data to Analytics.
-      if (target?.getAttribute('href') === 'tel:+491776867145') recordPhoneClick()
+      const href = target?.getAttribute('href')
+      if (href === 'tel:+491776867145') recordPhoneClick()
+      else if (href === 'mailto:mail@perlas.de' || href?.startsWith('mailto:mail@perlas.de?')) recordContactClick('email')
+      else if (href === WHATSAPP_URL) recordContactClick('whatsapp')
     }
-    document.addEventListener('click', onPhoneClick)
-    return () => document.removeEventListener('click', onPhoneClick)
+    document.addEventListener('click', onContactClick)
+    return () => document.removeEventListener('click', onContactClick)
   }, [])
 
   const openQuote = useCallback((service?: string) => {
-    setQuoteService(service)
+    setQuoteService(service ?? activeService?.title ?? activeAudience?.navLabel)
     setQuoteOpen(true)
-  }, [])
+  }, [activeService?.title, activeAudience?.navLabel])
 
   const closeQuote = useCallback(() => setQuoteOpen(false), [])
 
@@ -3512,6 +3555,15 @@ export default function App() {
           <SpecializedServices certifiedOnly />
           <HomeCoreServices />
           <HomeTrust />
+          <section className="home-inquiry" aria-labelledby="home-inquiry-heading">
+            <div>
+              <span className="eyebrow">Persönlich abstimmen</span>
+              <h2 id="home-inquiry-heading">Betreuung unverbindlich anfragen.</h2>
+              <p>Ob Hausverwaltung, WEG, Gewerbe oder privates Objekt: Starten Sie mit einer kurzen Anfrage. Leistungen, Standort und die nächsten Schritte besprechen wir persönlich.</p>
+              <a className="button button--purple" href="tel:+491776867145">Direkt anrufen</a>
+            </div>
+            <div className="inquiry-options"><QuickContactForm topic="Betreuung Ihrer Immobilie" /></div>
+          </section>
           <RegionalServiceArea />
         </main>
       )}

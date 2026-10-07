@@ -494,6 +494,57 @@ test('phone clicks have only safe page context and require fresh consent until c
   assert.equal(instance.phoneClicks().length, 2)
 })
 
+test('short-contact leads use a fixed category with no form values', () => {
+  const instance = fixture({ consent: validConsent() })
+  instance.initializeAnalytics(measurementId)
+  instance.scripts[0].onload()
+  instance.recordLead('quick_contact', { name: 'private@example.test' })
+  assert.equal(instance.leads().length, 1)
+  assert.equal(instance.leads()[0][2].form_type, 'quick_contact')
+  assert.equal(JSON.stringify(instance.leads()).includes('private'), false)
+})
+
+test('email and WhatsApp link clicks are not inquiries and respect consent and cleanup', () => {
+  const instance = fixture()
+  const cleanup = instance.initializeAnalytics(measurementId)
+  instance.recordContactClick('email')
+  instance.save(true)
+  instance.recordContactClick('whatsapp')
+  instance.scripts[0].onload()
+  assert.equal(instance.commands().filter(command => command[0] === 'event' && /^(email|whatsapp)_click$/.test(command[1])).length, 0)
+  for (const value of ['private@example.test', 'career', {}, undefined]) instance.recordContactClick(value)
+  instance.recordContactClick('email', 'private@example.test')
+  instance.recordContactClick('whatsapp', { message: 'private' })
+  const clicks = instance.commands().filter(command => command[0] === 'event' && /^(email|whatsapp)_click$/.test(command[1]))
+  assert.equal(clicks.length, 2)
+  assert.equal(instance.leads().length, 0)
+  assert.equal(JSON.stringify(clicks).includes('private'), false)
+  instance.save(false)
+  instance.recordContactClick('email')
+  cleanup()
+  instance.recordContactClick('whatsapp')
+  assert.equal(instance.commands().filter(command => command[0] === 'event' && /^(email|whatsapp)_click$/.test(command[1])).length, 2)
+})
+
+test('only exact public paid-source labels are recognized; other URL fields stay private', () => {
+  for (const source of ['google', 'bing']) {
+    const instance = fixture({ consent: validConsent(), url: `https://perlas.de/?utm_source=${source}&utm_medium=cpc&utm_campaign=private%40example.test&gclid=private#secret` })
+    instance.initializeAnalytics(measurementId)
+    instance.scripts[0].onload()
+    assert.equal(instance.pageViews()[0][2].campaign_source, source)
+    assert.equal(instance.pageViews()[0][2].campaign_medium, 'cpc')
+    assert.equal(instance.pageViews()[0][2].page_location, 'https://perlas.de/')
+    assert.equal(JSON.stringify(instance.commands()).includes('private'), false)
+  }
+  for (const query of ['utm_source=private%40example.test&utm_medium=cpc', 'utm_source=google&utm_medium=private', 'utm_source=google&utm_source=private&utm_medium=cpc', 'utm_source=google&utm_medium=cpc&utm_medium=email']) {
+    const instance = fixture({ consent: validConsent(), url: `https://perlas.de/?${query}` })
+    instance.initializeAnalytics(measurementId)
+    instance.scripts[0].onload()
+    assert.equal(instance.pageViews()[0][2].campaign_source, '(direct)')
+    assert.equal(JSON.stringify(instance.commands()).includes('private'), false)
+  }
+})
+
 // The backend is executed with an isolated, stubbed fetch. No API or test email is sent.
 const backendSource = fs.readFileSync(path.join(directory, 'backend.ts'), 'utf8')
 const compiledBackend = ts.transpileModule(backendSource.replaceAll('import.meta.env', '__backendEnvironment'), {

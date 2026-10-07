@@ -4,6 +4,7 @@ import { fileURLToPath } from 'node:url'
 import path from 'node:path'
 import assert from 'node:assert/strict'
 import { loadEnv } from 'vite'
+import { validateLegacyRedirects } from './prepare-legacy-redirects.mjs'
 
 const workspace = fileURLToPath(new URL('../', import.meta.url))
 const dist = path.join(workspace, 'dist')
@@ -56,6 +57,8 @@ const expectedUrls = existingPaths.map((relative) => new URL(relative, site).hre
 assert.deepEqual(urls.map((url) => url.href).sort(), expectedUrls, 'Only the existing routes plus six commissioned articles are allowed (33 canonicals)')
 const blogContent = JSON.parse(await readFile(path.join(workspace, 'src/blog-data.json'), 'utf8'))
 const blogByUrl = new Map(blogContent.map((post) => [new URL(`blog/${post.slug}/`, site).href, post]))
+const serviceContent = JSON.parse(await readFile(path.join(workspace, 'src/service-data.json'), 'utf8'))
+const serviceByUrl = new Map(serviceContent.map((service) => [new URL(`leistungen/${service.slug}/`, site).href, service]))
 assert.equal(blogByUrl.size, 9, 'Exactly nine unique blog articles required')
 assert.deepEqual([...blogByUrl.keys()].sort(), expectedUrls.filter((url) => url.startsWith(new URL('blog/', site).href) && url !== new URL('blog/', site).href), 'Blog data and allowed article routes must agree')
 const sitemapLastmods = new Map([...sitemap.matchAll(/<url>([\s\S]*?)<\/url>/g)].map((match) => [
@@ -209,6 +212,10 @@ for (const url of urls) {
     for (const source of post.sources ?? []) assert(articleLinks.includes(new URL(source.url).href), `Article source link absent: ${url}`)
     assert.equal(sitemapLastmods.get(url.href), updated, `Article sitemap lastmod differs from actual update: ${url}`)
     await access(path.join(dist, 'assets', post.image))
+  } else if (serviceByUrl.get(url.href)?.updatedOn) {
+    const updated = serviceByUrl.get(url.href).updatedOn
+    assert(/^\d{4}-\d{2}-\d{2}$/.test(updated) && updated <= today && new Date(`${updated}T00:00:00Z`).toISOString().slice(0, 10) === updated, `Invalid actual service update date: ${url}`)
+    assert.equal(sitemapLastmods.get(url.href), updated, `Service lastmod must match the stored substantive update: ${url}`)
   } else {
     assert.equal(sitemapLastmods.get(url.href), undefined, `Do not invent lastmod on unchanged non-blog pages: ${url}`)
   }
@@ -223,6 +230,20 @@ for (const url of urls) {
   assert(links.includes(`${site.pathname}impressum/`), `Impressum link absent: ${url}`)
   assert(links.includes(`${site.pathname}datenschutz/`), `Privacy link absent: ${url}`)
   pages.set(url.href, { html, ids, links })
+  const service = serviceByUrl.get(url.href)
+  if (service) {
+    assert.equal(visibleText(main.match(/<h1\b[^>]*>([\s\S]*?)<\/h1>/)?.[1] ?? ''), service.heading ?? service.title, `Service initial H1 differs from content: ${url}`)
+    if (service.guideSlugs) {
+      assert(service.guideSlugs.length >= 1 && service.guideSlugs.length <= 2 && new Set(service.guideSlugs).size === service.guideSlugs.length, `Service guides must be a curated unique shortlist: ${url}`)
+      for (const slug of service.guideSlugs) {
+        const guide = blogContent.find((post) => post.slug === slug)
+        assert(guide?.relatedServices.includes(service.slug), `Guide must exist and cover this service: ${url} -> ${slug}`)
+        const guideLink = `${site.pathname}blog/${slug}/`
+        assert(markup(main, 'a').some((link) => link.href === guideLink), `Contextual service guide link absent from initial main: ${url}`)
+        assert(mainText.includes(guide.title), `Descriptive guide title absent: ${url}`)
+      }
+    }
+  }
   for (const image of markup(html, 'img')) {
     if (image.src?.includes('/optimized/')) {
       assert(image.width && image.height && image.srcset && image.sizes, `Responsive attributes absent: ${url}`)
@@ -261,4 +282,19 @@ assert(!/<img\b[^>]*src=["'][^"']*kundenbilder\//.test(home), 'Home photos must 
 const notFound = await readFile(path.join(dist, '404.html'), 'utf8')
 assert(markup(notFound, 'meta').some((meta) => meta.name === 'robots' && meta.content.includes('noindex')))
 assert(!markup(notFound, 'link').some((link) => link.rel === 'canonical'))
-console.log(`SEO build checks passed: ${urls.length} allowed canonical pages including ${blogByUrl.size} articles, decoded metadata limits, business/service/article schema, true article dates/lastmod, local initial HTML, article content/CTAs/sources, incoming/internal links, responsive assets and 404.`)
+const commissionedBlogs = blogContent.filter((post) => post.published === '07.10.2026')
+for (const post of commissionedBlogs) assert(serviceContent.some((service) => service.guideSlugs?.includes(post.slug)), `New article requires a contextual service incoming link: ${post.slug}`)
+const legacyManifest = JSON.parse(await readFile(path.join(workspace, 'src/legacy-redirects.json'), 'utf8'))
+const redirects = validateLegacyRedirects(legacyManifest, site, expectedUrls)
+assert.equal(redirects.length, 9, 'Only the nine approved legacy redirects are allowed')
+for (const redirect of redirects) {
+  const html = await readFile(fileForUrl(redirect.from), 'utf8')
+  assert(!expectedUrls.includes(redirect.from.href), 'Redirects must not be in the sitemap')
+  assert.equal(markup(html, 'meta').find((meta) => meta['http-equiv'] === 'refresh')?.content, `0; url=${redirect.target.href}`)
+  assert.equal(markup(html, 'link').find((link) => link.rel === 'canonical')?.href, redirect.target.href)
+  assert.deepEqual(markup(html, 'a').map((link) => link.href), [redirect.target.href])
+  assert(!/<script\b|noindex|nofollow/i.test(html), 'Instant redirect must not depend on JavaScript or block discovery')
+  assert(!html.includes('assets/'), 'Legacy redirect must not load application/analytics assets')
+  await access(fileForUrl(redirect.target))
+}
+console.log(`SEO build checks passed: ${urls.length} allowed canonical pages including ${blogByUrl.size} articles, ${redirects.length} exact instant redirects, metadata/schema, substantive dates/lastmod, local initial HTML, contextual service/article links, responsive assets and 404.`)
