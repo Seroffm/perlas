@@ -37,6 +37,8 @@ const sources = path.join(assets, 'kundenbilder');
 const destination = path.join(assets, 'optimized');
 const manifestPath = path.join(workspace, 'src', 'image-variants.json');
 const widths = [320, 640, 960, 1280];
+// The wide homepage fleet photo also needs its original resolution on dense displays.
+const fullWidthPhotos = new Set(['kundenbilder/fahrzeuge/perlas_fuhrpark_real.png']);
 const partnerWidths = [160, 320, 480];
 // Only the displayed logo sources are generated, not unused alternatives or fallbacks.
 const partnerSources = [
@@ -101,7 +103,7 @@ for (const filename of inputFiles) {
   const swapsAxes = [5, 6, 7, 8].includes(metadata.orientation);
   const originalWidth = swapsAxes ? metadata.height : metadata.width;
   const originalHeight = swapsAxes ? metadata.width : metadata.height;
-  const targetWidths = isPartner ? partnerWidths : widths;
+  const targetWidths = isPartner ? partnerWidths : fullWidthPhotos.has(assetPath) ? [...widths, originalWidth] : widths;
   const sizes = [...new Set(targetWidths.map(width => Math.min(width, originalWidth)))].sort((left, right) => left - right);
   const slug = assetPath.replace(/^kundenbilder\//, '').replace(/\.[^.]+$/, '')
     .normalize('NFKD').replace(/[\u0300-\u036f]/g, '').toLowerCase()

@@ -1769,6 +1769,7 @@ function HomeFleet() {
         <ResponsiveImage
           asset="kundenbilder/fahrzeuge/perlas_fuhrpark_real.png"
           alt="Perla’s weiße und dunkelblaue Servicefahrzeuge sowie Lkw vor einer Wohnanlage"
+          sizes="(max-width: 760px) calc(100vw - 48px), (max-width: 1216px) calc(100vw - 96px), 1120px"
           loading="lazy"
           decoding="async"
         />
