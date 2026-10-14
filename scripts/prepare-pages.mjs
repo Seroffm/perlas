@@ -1,6 +1,9 @@
 import { mkdir, readFile, readdir, writeFile } from 'node:fs/promises'
 import { fileURLToPath } from 'node:url'
-import { loadEnv } from 'vite'
+import { createServer, loadEnv } from 'vite'
+import react from '@vitejs/plugin-react'
+import { createElement } from 'react'
+import { renderToStaticMarkup } from 'react-dom/server'
 import { prepareLegacyRedirects } from './prepare-legacy-redirects.mjs'
 
 const distPath = fileURLToPath(new URL('../dist/', import.meta.url))
@@ -31,7 +34,7 @@ const privacyContent = JSON.parse(await readFile(privacyDataPath, 'utf8'))
 const googleReviewData = JSON.parse(await readFile(googleReviewsDataPath, 'utf8'))
 const imageVariants = JSON.parse(await readFile(imageVariantsPath, 'utf8'))
 const seoContent = JSON.parse(await readFile(new URL('../src/seo-data.json', import.meta.url), 'utf8'))
-const featuredBlogPostSlug = 'hausmeisterservice-sulzbach-weg-leistungen'
+const featuredBlogPostSlug = 'hausmeisterservice-objektbetreuung-frankfurt-umgebung'
 const coreServiceSlugs = new Set([
   'objektpflege',
   'wartung-instandhaltung',
@@ -457,7 +460,7 @@ function regionMarkup(compact = false) {
   const intro = compact
     ? 'Von Sulzbach (Taunus) aus betreuen wir Immobilien im Main-Taunus-Kreis und im Rhein-Main-Gebiet. Den Einsatz an Ihrem Standort stimmen wir persönlich mit Ihnen ab.'
     : seoContent.region.intro
-  return `<section id="einsatzgebiet"><p>Unser Einsatzgebiet</p><h2>${escapeHtml(compact ? 'Regional für Ihr Objekt da.' : seoContent.region.heading)}</h2><p>${escapeHtml(intro)}</p><p>${escapeHtml(seoContent.region.note)}</p><a href="${basePath}einsatzgebiete/">Leistungen für Ihren Standort ansehen</a><a href="${basePath}kontakt/">Objekt unverbindlich anfragen</a><a href="tel:+491776867145">0177 68 67 145</a></section>`
+  return `<section id="einsatzgebiet"><p>Unser Einsatzgebiet</p><h2>${escapeHtml(compact ? 'Regional für Ihr Objekt da.' : seoContent.region.heading)}</h2><p>${escapeHtml(intro)}</p><p>${escapeHtml(seoContent.region.note)}</p><a href="${basePath}einsatzgebiete/">Leistungen für Ihren Standort ansehen</a><a href="${basePath}einsatzgebiete/hausmeisterservice-frankfurt/">Hausmeisterservice in Frankfurt</a><a href="${basePath}kontakt/">Objekt unverbindlich anfragen</a><a href="tel:+491776867145">0177 68 67 145</a></section>`
 }
 
 function localLandingLinks(serviceSlug) {
@@ -473,6 +476,7 @@ function regionsMarkup() {
 }
 
 function localLandingMarkup(landing) {
+  if (landing.slug === 'hausmeisterservice-frankfurt') return `${staticHeader()}${frankfurtInitialMarkup}`
   const service = services.find((entry) => entry.slug === landing.serviceSlug)
   if (!service) throw new Error(`Unknown service on local landing: ${landing.slug}`)
   const scopes = landing.scopeCards.map((item) => `<article><h3>${escapeHtml(item.title)}</h3><p>${escapeHtml(item.text)}</p><ul>${item.items.map((detail) => `<li><span>${escapeHtml(detail)}</span></li>`).join('')}</ul></article>`).join('')
@@ -891,6 +895,28 @@ await writeFile(`${distPath}einsatzgebiete/index.html`, buildPage({
   }),
 }))
 
+// Render the designed Frankfurt page from the same component visitors use.
+// Middleware mode loads modules during the build without opening a network port.
+const frankfurtLanding = localLandings.find((landing) => landing.slug === 'hausmeisterservice-frankfurt')
+let frankfurtInitialMarkup = ''
+if (frankfurtLanding) {
+  const renderer = await createServer({
+    configFile: false,
+    root: fileURLToPath(new URL('../', import.meta.url)),
+    mode: 'production',
+    base: basePath,
+    plugins: [react()],
+    server: { middlewareMode: true, watch: null, hmr: false },
+    appType: 'custom',
+  })
+  try {
+    const { default: FrankfurtLandingPage } = await renderer.ssrLoadModule('/src/FrankfurtLandingPage.tsx')
+    frankfurtInitialMarkup = renderToStaticMarkup(createElement(FrankfurtLandingPage, { page: frankfurtLanding, staticMode: true }))
+  } finally {
+    await renderer.close()
+  }
+}
+
 await Promise.all(localLandings.map(async (landing) => {
   const targetPath = `${distPath}einsatzgebiete/${landing.slug}/`
   const url = localLandingUrl(landing).href
@@ -1009,7 +1035,7 @@ const sitemapUrls = [
   ...services.map((service) => serviceUrl(service).href),
 ]
 const pageLastModified = new Map([
-  [regionsUrl.href, '2026-10-07'],
+  [regionsUrl.href, '2026-10-14'],
   ...localLandings.map((landing) => [localLandingUrl(landing).href, landing.updatedOn]),
   ...blogPosts.map((post) => [blogPostUrl(post).href, blogDateToIso(post.updated)]),
   ...services.filter((service) => service.updatedOn).map((service) => [serviceUrl(service).href, service.updatedOn]),

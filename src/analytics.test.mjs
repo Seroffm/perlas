@@ -186,6 +186,7 @@ test('known public detail pages work with a deployment base; unknown paths canno
     ['https://www.perlas.de/perlas/leistungen/winterdienst/?utm_source=private#secret', 'https://www.perlas.de/perlas/leistungen/winterdienst/'],
     ['https://www.perlas.de/perlas/facility-management/hausverwaltungen/', 'https://www.perlas.de/perlas/facility-management/hausverwaltungen/'],
     ['https://www.perlas.de/perlas/blog/winterdienst-richtig-planen/', 'https://www.perlas.de/perlas/blog/winterdienst-richtig-planen/'],
+    ['https://www.perlas.de/perlas/blog/hausmeisterservice-objektbetreuung-frankfurt-umgebung/?email=private%40example.test#anfrage', 'https://www.perlas.de/perlas/blog/hausmeisterservice-objektbetreuung-frankfurt-umgebung/'],
     ['https://www.perlas.de/perlas/', 'https://www.perlas.de/perlas/'],
     ['https://www.perlas.de/perlas/private@example.test/', 'https://www.perlas.de/perlas/404/'],
     ['https://www.perlas.de/private@example.test/', 'https://www.perlas.de/perlas/404/'],
@@ -203,6 +204,7 @@ test('local hub and exactly the commissioned landing routes are measured without
     '', 'objektbetreuung-eschborn', 'gebaeudereinigung-frankfurt-hoechst',
     'bueroreinigung-frankfurt-westend', 'treppenhausreinigung-frankfurt-bockenheim',
     'winterdienst-frankfurt-riedberg', 'baumpflege-baumfaellung-neu-isenburg',
+    'hausmeisterservice-frankfurt',
   ]
   for (const slug of slugs) {
     const expected = `https://perlas.de/einsatzgebiete/${slug ? `${slug}/` : ''}`

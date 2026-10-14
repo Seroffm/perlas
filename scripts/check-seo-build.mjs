@@ -16,8 +16,8 @@ const urls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => new UR
 const sitemapIndex = await readFile(path.join(dist, 'sitemap_index.xml'), 'utf8')
 assert(sitemapIndex.includes('<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'), 'Valid compatibility sitemap index required')
 assert.deepEqual([...sitemapIndex.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]), [new URL('sitemap.xml', site).href], 'Sitemap index must point only to the current canonical sitemap')
-// Keep the route allowlist independent of content collections. Only the six
-// explicitly commissioned local service pages and their hub may be added.
+// Keep the route allowlist independent of content collections. The seven local
+// service pages and ten articles have each been explicitly commissioned.
 const existingPaths = [
   '',
   'facility-management/',
@@ -33,6 +33,7 @@ const existingPaths = [
   'einsatzgebiete/treppenhausreinigung-frankfurt-bockenheim/',
   'einsatzgebiete/winterdienst-frankfurt-riedberg/',
   'einsatzgebiete/baumpflege-baumfaellung-neu-isenburg/',
+  'einsatzgebiete/hausmeisterservice-frankfurt/',
   'ueber-uns/',
   'blog/',
   'blog/winterdienst-richtig-planen/',
@@ -44,6 +45,7 @@ const existingPaths = [
   'blog/baumfaellung-neu-isenburg-genehmigung-firma/',
   'blog/hausmeisterservice-sulzbach-weg-leistungen/',
   'blog/spielplatzkontrolle-main-taunus-hausverwaltungen/',
+  'blog/hausmeisterservice-objektbetreuung-frankfurt-umgebung/',
   'karriere/',
   'kontakt/',
   'impressum/',
@@ -61,7 +63,8 @@ const existingPaths = [
   'leistungen/buero-einrichtungsservice/',
 ]
 const expectedUrls = existingPaths.map((relative) => new URL(relative, site).href).sort()
-assert.deepEqual(urls.map((url) => url.href).sort(), expectedUrls, 'Only the 33 existing routes plus the local hub and six commissioned landing pages are allowed (40 canonicals)')
+assert.equal(expectedUrls.length, 42, 'Exactly 42 commissioned canonical pages required')
+assert.deepEqual(urls.map((url) => url.href).sort(), expectedUrls, 'Only the 42 explicitly commissioned canonical routes are allowed')
 const blogContent = JSON.parse(await readFile(path.join(workspace, 'src/blog-data.json'), 'utf8'))
 const blogByUrl = new Map(blogContent.map((post) => [new URL(`blog/${post.slug}/`, site).href, post]))
 const serviceContent = JSON.parse(await readFile(path.join(workspace, 'src/service-data.json'), 'utf8'))
@@ -69,8 +72,14 @@ const serviceByUrl = new Map(serviceContent.map((service) => [new URL(`leistunge
 const localContent = JSON.parse(await readFile(path.join(workspace, 'src/local-landing-data.json'), 'utf8'))
 const localByUrl = new Map(localContent.map((landing) => [new URL(`einsatzgebiete/${landing.slug}/`, site).href, landing]))
 const seoContent = JSON.parse(await readFile(path.join(workspace, 'src/seo-data.json'), 'utf8'))
+const googleReviews = JSON.parse(await readFile(path.join(workspace, 'src/google-reviews-data.json'), 'utf8'))
+const imageVariants = JSON.parse(await readFile(path.join(workspace, 'src/image-variants.json'), 'utf8'))
 const regionsUrl = new URL('einsatzgebiete/', site).href
-assert.equal(localByUrl.size, 6, 'Exactly six unique commissioned local service pages required')
+const frankfurtLandingSlug = 'hausmeisterservice-frankfurt'
+const frankfurtArticleSlug = 'hausmeisterservice-objektbetreuung-frankfurt-umgebung'
+const frankfurtLandingUrl = new URL(`einsatzgebiete/${frankfurtLandingSlug}/`, site).href
+const frankfurtArticleUrl = new URL(`blog/${frankfurtArticleSlug}/`, site).href
+assert.equal(localByUrl.size, 7, 'Exactly seven unique commissioned local service pages required')
 assert.deepEqual([...localByUrl.keys()].sort(), expectedUrls.filter((url) => url.startsWith(regionsUrl) && url !== regionsUrl), 'Local data and independently allowed routes must agree')
 for (const landing of localContent) {
   assert(/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(landing.slug), `Safe local slug required: ${landing.slug}`)
@@ -80,10 +89,14 @@ for (const landing of localContent) {
   assert(landing.scopeCards.length >= 3 && landing.scopeCards.every((card) => card.title && card.text && card.items.length >= 2), `Substantive local scope required: ${landing.slug}`)
   assert(landing.processSteps.length >= 3 && landing.faqs.length >= 3, `Local workflow and FAQ required: ${landing.slug}`)
   assert(new Set(landing.guideSlugs).size === landing.guideSlugs.length && landing.guideSlugs.length <= 2, `Local guides must be a curated unique shortlist: ${landing.slug}`)
-  assert.equal(landing.updatedOn, '2026-10-07', `Keep the actual local publication date, never a rolling date: ${landing.slug}`)
+  assert.equal(landing.updatedOn, landing.slug === frankfurtLandingSlug ? '2026-10-14' : '2026-10-07', `Keep the actual local publication date, never a rolling date: ${landing.slug}`)
 }
-assert.equal(blogByUrl.size, 9, 'Exactly nine unique blog articles required')
+assert.equal(blogByUrl.size, 10, 'Exactly ten unique blog articles required')
 assert.deepEqual([...blogByUrl.keys()].sort(), expectedUrls.filter((url) => url.startsWith(new URL('blog/', site).href) && url !== new URL('blog/', site).href), 'Blog data and allowed article routes must agree')
+assert.equal(blogByUrl.get(frankfurtArticleUrl)?.published, '14.10.2026', 'Keep the Frankfurt article’s actual publication date')
+assert.equal(blogByUrl.get(frankfurtArticleUrl)?.updated, '14.10.2026', 'Keep the Frankfurt article’s substantive update date')
+assert.equal(localByUrl.get(frankfurtLandingUrl)?.serviceSlug, 'objektpflege', 'Frankfurt landing must belong to the actual housekeeper service')
+assert(localByUrl.get(frankfurtLandingUrl)?.guideSlugs.includes(frankfurtArticleSlug), 'Frankfurt landing and its commissioned article must be contextually linked')
 const sitemapLastmods = new Map([...sitemap.matchAll(/<url>([\s\S]*?)<\/url>/g)].map((match) => [
   match[1].match(/<loc>([^<]+)<\/loc>/)?.[1],
   match[1].match(/<lastmod>([^<]+)<\/lastmod>/)?.[1],
@@ -110,7 +123,9 @@ const decodeEntities = (value) => value.replace(/&(#(?:x[\da-f]+|\d+)|amp|lt|gt|
   return { amp: '&', lt: '<', gt: '>', quot: '"', apos: "'" }[code.toLowerCase()]
 })
 const visibleText = (html) => decodeEntities(html.replace(/<[^>]*>/g, ' ')).replace(/\s+/g, ' ').trim()
-const attributes = (tag) => Object.fromEntries([...tag.matchAll(/([\w:-]+)=["']([^"']*)["']/g)].map((match) => [match[1], match[2]]))
+// HTML attribute names are case-insensitive; React's server renderer emits
+// camel-case srcSet/fetchPriority while the handcrafted pages use lowercase.
+const attributes = (tag) => Object.fromEntries([...tag.matchAll(/([\w:-]+)=["']([^"']*)["']/g)].map((match) => [match[1].toLowerCase(), match[2]]))
 const markup = (html, tag) => [...html.matchAll(new RegExp(`<${tag}\\b[^>]*>`, 'g'))].map((match) => attributes(match[0]))
 const fileForUrl = (url) => {
   const relative = decodeURIComponent(url.pathname.slice(site.pathname.length))
@@ -152,6 +167,9 @@ function checkStructuredData(html, url) {
     assert.deepEqual(localService[0].areaServed, { '@type': 'Place', name: local.locality }, `Local service area must not invent a branch office: ${url}`)
     const breadcrumb = entries.find((entry) => schemaTypes(entry).includes('BreadcrumbList'))
     assert.deepEqual(breadcrumb?.itemListElement?.map((item) => item.item), [site.href, regionsUrl, url.href], `Local breadcrumb hierarchy: ${url}`)
+    if (url.href === frankfurtLandingUrl) {
+      assert(entries.every((entry) => !Object.hasOwn(entry, 'aggregateRating') && !schemaTypes(entry).includes('AggregateRating')), 'Frankfurt landing must not turn its own business reviews into review-star markup')
+    }
   }
   if (url.href === regionsUrl) {
     assert.equal(entries.filter((entry) => schemaTypes(entry).includes('CollectionPage')).length, 1, 'Regional hub must be a CollectionPage')
@@ -263,7 +281,7 @@ for (const url of urls) {
     assert.equal(sitemapLastmods.get(url.href), updated, `Article sitemap lastmod differs from actual update: ${url}`)
     await access(path.join(dist, 'assets', post.image))
   } else if (localByUrl.has(url.href) || url.href === regionsUrl) {
-    const updated = localByUrl.get(url.href)?.updatedOn ?? '2026-10-07'
+    const updated = localByUrl.get(url.href)?.updatedOn ?? '2026-10-14'
     assert(updated <= today, `Future local publication date: ${url}`)
     assert.equal(sitemapLastmods.get(url.href), updated, `Local sitemap lastmod must match actual publication: ${url}`)
   } else if (serviceByUrl.get(url.href)?.updatedOn) {
@@ -311,6 +329,26 @@ for (const url of urls) {
     assert.equal(hero.loading, 'eager', `Do not lazily load the local hero: ${url}`)
     assert.equal(hero.fetchpriority, 'high', `Local hero must be prioritized: ${url}`)
     await access(path.join(dist, 'assets', local.heroImage.src))
+    if (url.href === frankfurtLandingUrl) {
+      // Test the requested proof and contact elements, rather than prescribing
+      // an SEO word count or an implementation-specific section layout.
+      assert(mainText.includes('1999'), 'Frankfurt landing must display the established company history')
+      assert(mainText.includes('Hauptstraße 1'), 'Frankfurt landing must disclose its actual Sulzbach address')
+      assert(mainLinks.includes(`${site.pathname}ueber-uns/`), 'Frankfurt landing needs a verifiable company/team link')
+      assert(mainLinks.includes(`${site.pathname}blog/${frankfurtArticleSlug}/`), 'Frankfurt landing needs its supporting article link')
+      assert(mainLinks.includes(googleReviews.profileUrl), 'Frankfurt review summary must link to its Google source')
+      const quotedReviews = googleReviews.reviews.filter((review) => mainText.includes(review.author) && mainText.includes(review.text))
+      assert(quotedReviews.length >= 3, 'Frankfurt customer quotes must match the shared maintained review data')
+      const realPhotoSources = new Set(Object.entries(imageVariants)
+        .filter(([original]) => original.startsWith('kundenbilder/') && !/\bvisualisierungen\b|_ki\./i.test(original))
+        .map(([, variant]) => new URL(`assets/${variant.src}`, site).href))
+      const photos = markup(main, 'img').filter((image) => image.src && realPhotoSources.has(new URL(decodeEntities(image.src), url).href))
+      assert(new Set(photos.map((image) => image.src)).size >= 3, 'Frankfurt landing needs multiple distinct existing customer photographs')
+      for (const image of photos) {
+        assert(image.alt?.trim(), 'Frankfurt customer photographs need descriptive alternative text')
+        assert(image.width && image.height && image.srcset && image.sizes, 'Frankfurt customer photographs need responsive sources and reserved dimensions')
+      }
+    }
   }
   if (url.href === regionsUrl) {
     assert.equal(visibleText(main.match(/<h1\b[^>]*>([\s\S]*?)<\/h1>/)?.[1] ?? ''), seoContent.pages.regions.heading ?? 'Leistungen für Ihren Standort.', 'Regional hub H1 differs from content')
@@ -371,7 +409,10 @@ assert(!/<img\b[^>]*src=["'][^"']*kundenbilder\//.test(home), 'Home photos must 
 const notFound = await readFile(path.join(dist, '404.html'), 'utf8')
 assert(markup(notFound, 'meta').some((meta) => meta.name === 'robots' && meta.content.includes('noindex')))
 assert(!markup(notFound, 'link').some((link) => link.rel === 'canonical'))
-const commissionedBlogs = blogContent.filter((post) => post.published === '07.10.2026')
+const blogIndex = pages.get(new URL('blog/', site).href).html
+const firstBlogArticle = blogIndex.match(/<article\b[^>]*>([\s\S]*?)<\/article>/)?.[1] ?? ''
+assert(markup(firstBlogArticle, 'a').some((link) => link.href === `${site.pathname}blog/${frankfurtArticleSlug}/`), 'Frankfurt article must be the featured article on the blog index')
+const commissionedBlogs = blogContent.filter((post) => ['07.10.2026', '14.10.2026'].includes(post.published))
 for (const post of commissionedBlogs) assert(serviceContent.some((service) => service.guideSlugs?.includes(post.slug)), `New article requires a contextual service incoming link: ${post.slug}`)
 const legacyManifest = JSON.parse(await readFile(path.join(workspace, 'src/legacy-redirects.json'), 'utf8'))
 const redirects = validateLegacyRedirects(legacyManifest, site, expectedUrls)

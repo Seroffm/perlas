@@ -7,7 +7,7 @@ import localLandingContent from './local-landing-data.json'
 const BASE_PATH = import.meta.env.BASE_URL
 const BLOG_PATH = `${BASE_PATH}blog/`
 const CONTACT_PATH = `${BASE_PATH}kontakt/`
-const FEATURED_POST_SLUG = 'hausmeisterservice-sulzbach-weg-leistungen'
+const FEATURED_POST_SLUG = 'hausmeisterservice-objektbetreuung-frankfurt-umgebung'
 
 type BlogPageProps = {
   posts: BlogPostContent[]

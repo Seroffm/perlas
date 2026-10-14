@@ -46,6 +46,7 @@ import imageVariantsContent from './image-variants.json'
 import './service-guides.css'
 import './inquiry-options.css'
 import './local-landings.css'
+import './frankfurt-landing.css'
 import type { BlogPostContent, JobOpeningContent, LocalLandingContent } from './content-types'
 
 const ContactPage = lazy(() => import('./ContactPage'))
@@ -54,6 +55,7 @@ const BlogPage = lazy(() => import('./BlogPage'))
 const BlogArticlePage = lazy(() => import('./BlogPage').then((module) => ({ default: module.BlogArticlePage })))
 const QuoteModal = lazy(() => import('./QuoteModal'))
 const LocalLandingPage = lazy(() => import('./LocalLandingPage'))
+const FrankfurtLandingPage = lazy(() => import('./FrankfurtLandingPage'))
 const RegionalLandingHub = lazy(() => import('./LocalLandingPage').then((module) => ({ default: module.RegionalLandingHub })))
 
 const BASE_PATH = import.meta.env.BASE_URL
@@ -1873,6 +1875,7 @@ function RegionalServiceArea({ compact = false }: { compact?: boolean }) {
         <ButtonLink href={CONTACT_PATH} arrow>Objekt unverbindlich anfragen</ButtonLink>
         <a href="tel:+491776867145"><Phone aria-hidden="true" /> 0177 68 67 145</a>
         <a className="regional-landing-hub-link" href={REGIONS_PATH}>Leistungen für Ihren Standort ansehen <ArrowUpRight aria-hidden="true" /></a>
+        <a className="regional-landing-hub-link" href={`${REGIONS_PATH}hausmeisterservice-frankfurt/`}>Hausmeisterservice in Frankfurt <ArrowUpRight aria-hidden="true" /></a>
       </div>
     </section>
   )
@@ -3579,7 +3582,9 @@ export default function App() {
     <>
       <Header activePage={pageKind} />
       <Suspense fallback={<main className="container section"><p role="status">Seite wird geladen …</p></main>}>
-      {activeLocalLanding ? (
+      {activeLocalLanding?.slug === 'hausmeisterservice-frankfurt' ? (
+        <FrankfurtLandingPage page={activeLocalLanding} />
+      ) : activeLocalLanding ? (
         <LocalLandingPage
           page={activeLocalLanding}
           services={features.map(({ slug, title, text }) => ({ slug, title, text }))}

@@ -1,5 +1,91 @@
 [
   {
+    "slug": "hausmeisterservice-frankfurt",
+    "serviceSlug": "objektpflege",
+    "locality": "Frankfurt am Main",
+    "region": "Frankfurt & Umgebung",
+    "seoTitle": "Hausmeisterservice Frankfurt | Objektbetreuung | Perla’s",
+    "seoDescription": "Hausmeisterservice in Frankfurt für WEG, Hausverwaltungen und Gewerbe: Objektkontrollen, Reinigung und Grünpflege. Jetzt unverbindlich Angebot anfragen.",
+    "heading": "Hausmeisterservice in Frankfurt.",
+    "intro": "Perla’s betreut Wohn- und Gewerbeimmobilien in Frankfurt am Main. Für Hausverwaltungen und WEG verbinden wir Kontrollgänge, Hausmeisteraufgaben und klare Rückmeldungen – mit festem Ansprechpartner aus Sulzbach.",
+    "heroImage": {
+      "src": "kundenbilder/leistungen/projektfotos/Objektbetreuung_Innenhof_Arbeitseinsatz.jpg",
+      "alt": "Perla’s Servicefahrzeug und Arbeitsgeräte bei der Objektbetreuung in einem Innenhof",
+      "position": "15% 50%"
+    },
+    "audience": "Für Hausverwaltungen, Wohnungseigentümergemeinschaften, private Eigentümer und Gewerbe: Wir betreuen Gemeinschaftsflächen, Wohnanlagen und gewerblich genutzte Immobilien mit einem zum Objekt passenden Leistungsplan.",
+    "scopeIntro": "Von der Eingangstür bis zur Außenanlage: Sie wählen die Aufgaben, wir stimmen Umfang und Turnus ab. Einzelne Leistungen lassen sich zur laufenden Objektbetreuung verbinden.",
+    "scopeCards": [
+      {
+        "title": "Objektkontrollen",
+        "text": "Regelmäßige Rundgänge, erkennbare Mängel und klare Rückmeldungen an Verwaltung oder Eigentümer.",
+        "items": ["Gemeinschaftsflächen im Blick", "Auffälligkeiten dokumentieren"]
+      },
+      {
+        "title": "Treppenhausreinigung",
+        "text": "Gepflegte Eingänge, Treppen und Gemeinschaftsbereiche nach einem vereinbarten Reinigungsplan.",
+        "items": ["Turnus passend zur Nutzung", "Klar abgegrenzte Flächen"]
+      },
+      {
+        "title": "Grünpflege",
+        "text": "Rasen, Beete und Hecken pflegen wir passend zur Jahreszeit und zum Grundstück.",
+        "items": ["Gepflegte Außenanlagen", "Saisonale Arbeiten abstimmen"]
+      },
+      {
+        "title": "Mülltonnenservice",
+        "text": "Bereitstellung und Rückstellung vereinbarter Tonnen sowie Ordnung am Müllplatz.",
+        "items": ["Bereitstellung nach Abfuhrplan", "Zugänge und Stellplätze klären"]
+      },
+      {
+        "title": "Winterdienst",
+        "text": "Räumen und Streuen auf vereinbarten Flächen mit vorab geklärten Zuständigkeiten.",
+        "items": ["Wege und Eingänge festlegen", "Einsatzumfang gesondert vereinbaren"]
+      },
+      {
+        "title": "Kleinreparaturen",
+        "text": "Einfache Hausmeisterarbeiten nach Absprache; weitergehende Aufgaben stimmen wir mit zuständigen Fachfirmen ab.",
+        "items": ["Kleine Handgriffe am Objekt", "Facharbeiten klar abgrenzen"]
+      }
+    ],
+    "processSteps": [
+      {
+        "title": "Objekt kurz beschreiben",
+        "text": "Nennen Sie Stadtteil, Objektart und gewünschte Aufgaben. Ein vorhandener Leistungsplan hilft beim Einstieg."
+      },
+      {
+        "title": "Gemeinsam abstimmen",
+        "text": "Wir klären Flächen, Zugänge und Intervalle – bei Bedarf bei einer Begehung Ihrer Immobilie."
+      },
+      {
+        "title": "Mit klarem Angebot starten",
+        "text": "Sie erhalten einen abgegrenzten Leistungsumfang. Ansprechpartner, Rückmeldungen und Starttermin werden persönlich vereinbart."
+      }
+    ],
+    "costTitle": "Was kostet Hausmeisterservice in Frankfurt?",
+    "costText": "Der Preis richtet sich nach Objektgröße, Aufgaben, Einsatzintervallen und Zugänglichkeit. Wir kalkulieren Ihre Immobilie statt einer pauschalen Monatszahl. Im Angebot sehen Sie, welche Leistungen enthalten sind und welche Zusatzarbeiten gesondert beauftragt werden.",
+    "faqs": [
+      {
+        "question": "Welche Aufgaben übernimmt Ihr Hausmeisterservice in Frankfurt?",
+        "answer": "Wir übernehmen vereinbarte Objektkontrollen, kleine Hausmeisterarbeiten und Rückmeldungen. Treppenhausreinigung, Grünpflege, Mülltonnenservice und Winterdienst können Sie ergänzen. Aufgaben, Flächen und Intervalle halten wir im Leistungsplan fest."
+      },
+      {
+        "question": "Betreuen Sie auch WEG und Hausverwaltungen?",
+        "answer": "Ja. Wir stimmen die Betreuung von Wohnanlagen und Gemeinschaftsflächen mit der zuständigen Verwaltung oder Eigentümervertretung ab. Ein fester Ansprechpartner bündelt Rückmeldungen zu erledigten Aufgaben und offenen Punkten."
+      },
+      {
+        "question": "In welchen Gebieten sind Sie tätig?",
+        "answer": "Wir bieten Hausmeisterservice in Frankfurt am Main und im angrenzenden Rhein-Main-Gebiet an, etwa in Sulzbach, Eschborn, Schwalbach und Bad Soden. Nennen Sie Ort und Stadtteil; Einsatz, Umfang und Verfügbarkeit klären wir für Ihre Immobilie. Unser Unternehmenssitz ist Sulzbach (Taunus)."
+      },
+      {
+        "question": "Sind Reparaturen und Notdienste automatisch enthalten?",
+        "answer": "Einfache Hausmeisterarbeiten übernehmen wir im vereinbarten Umfang. Fachpflichtige Elektro-, Heizungs- oder Sanitärarbeiten gehören in die Hände der zuständigen Fachbetriebe. Ein 24-Stunden-Notdienst oder feste Sofortfristen sind kein automatisch enthaltener Vertragsbestandteil."
+      }
+    ],
+    "guideSlugs": ["hausmeisterservice-objektbetreuung-frankfurt-umgebung"],
+    "updatedOn": "2026-10-14",
+    "ctaText": "Hausmeisterservice in Frankfurt anfragen"
+  },
+  {
     "slug": "objektbetreuung-eschborn",
     "serviceSlug": "objektpflege",
     "locality": "Eschborn",

@@ -30,6 +30,7 @@ const publicRoutes = new Set([
   'einsatzgebiete/treppenhausreinigung-frankfurt-bockenheim/',
   'einsatzgebiete/winterdienst-frankfurt-riedberg/',
   'einsatzgebiete/baumpflege-baumfaellung-neu-isenburg/',
+  'einsatzgebiete/hausmeisterservice-frankfurt/',
 ])
 
 type AnalyticsWindow = Window & {
