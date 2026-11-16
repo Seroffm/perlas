@@ -15,6 +15,8 @@ export type CommercialLandingContent = {
   seoTitle: string
   seoDescription: string
   heading: string
+  heroPromise?: string
+  heroHighlights?: string[]
   intro: string
   ctaText: string
   updatedOn: string

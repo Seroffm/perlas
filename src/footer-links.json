@@ -1,0 +1,100 @@
+{
+  "groups": [
+    {
+      "id": "services",
+      "title": "Leistungen",
+      "links": [
+        {
+          "label": "Hausmeisterservice",
+          "path": "leistungen/objektpflege/"
+        },
+        {
+          "label": "Gebäude- & Büroreinigung",
+          "path": "leistungen/gebaeudereinigung/"
+        },
+        {
+          "label": "Grundreinigung Frankfurt",
+          "path": "einsatzgebiete/grundreinigung-frankfurt/"
+        },
+        {
+          "label": "Tiefgaragenreinigung",
+          "path": "leistungen/tiefgaragenreinigung/"
+        },
+        {
+          "label": "Garten- & Außenanlagenpflege",
+          "path": "leistungen/gartenpflege/"
+        },
+        {
+          "label": "Winterdienst",
+          "path": "leistungen/winterdienst/"
+        },
+        {
+          "label": "Alle Leistungen",
+          "path": "leistungen/",
+          "emphasis": true
+        }
+      ]
+    },
+    {
+      "id": "regions",
+      "title": "Einsatzgebiete",
+      "links": [
+        {
+          "label": "Frankfurt am Main",
+          "path": "einsatzgebiete/hausmeisterservice-frankfurt/"
+        },
+        {
+          "label": "Eschborn",
+          "path": "einsatzgebiete/objektbetreuung-eschborn/"
+        },
+        {
+          "label": "Kelkheim",
+          "path": "einsatzgebiete/hausmeisterservice-kelkheim/"
+        },
+        {
+          "label": "Wiesbaden",
+          "path": "einsatzgebiete/hausmeisterservice-wiesbaden/"
+        },
+        {
+          "label": "Rüsselsheim am Main",
+          "path": "einsatzgebiete/hausmeisterservice-ruesselsheim/"
+        },
+        {
+          "label": "Taunusstein",
+          "path": "einsatzgebiete/hausmeisterservice-taunusstein/"
+        },
+        {
+          "label": "Hanau",
+          "path": "einsatzgebiete/hausmeisterservice-hanau/"
+        },
+        {
+          "label": "Alle Einsatzgebiete",
+          "path": "einsatzgebiete/",
+          "emphasis": true
+        }
+      ]
+    },
+    {
+      "id": "company",
+      "title": "Perla’s kennenlernen",
+      "links": [
+        {
+          "label": "Über uns & unser Team",
+          "path": "ueber-uns/"
+        },
+        {
+          "label": "Facility Management",
+          "path": "facility-management/"
+        },
+        {
+          "label": "Wissen & Ratgeber",
+          "path": "blog/"
+        },
+        {
+          "label": "Karriere bei Perla’s",
+          "path": "karriere/"
+        }
+      ]
+    }
+  ]
+}

@@ -209,6 +209,15 @@ test('local hub and exactly the commissioned landing routes are measured without
     'gebaeudereinigung-eschborn',
     'hausmeisterservice-kelkheim',
     'tiefgaragenreinigung-frankfurt',
+    'hausmeisterservice-wiesbaden',
+    'gebaeudereinigung-wiesbaden',
+    'hausmeisterservice-hanau',
+    'gebaeudereinigung-hanau',
+    'hausmeisterservice-taunusstein',
+    'gebaeudereinigung-taunusstein',
+    'hausmeisterservice-ruesselsheim',
+    'gebaeudereinigung-ruesselsheim',
+    'grundreinigung-frankfurt',
   ]
   for (const slug of slugs) {
     const expected = `https://perlas.de/einsatzgebiete/${slug ? `${slug}/` : ''}`

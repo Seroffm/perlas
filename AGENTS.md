@@ -20,7 +20,7 @@
 
 ## Änderungen und Prüfung
 
-- Die meisten Seiten haben React-Inhalte und gesondert erzeugtes initiales HTML in `scripts/prepare-pages.mjs`. Beide Darstellungen berücksichtigen; Frankfurt und die vier Commercial-Landingpages verwenden gemeinsame React-Komponenten für Browser und statischen Build.
+- Die meisten Seiten haben React-Inhalte und gesondert erzeugtes initiales HTML in `scripts/prepare-pages.mjs`. Beide Darstellungen berücksichtigen; Frankfurt, die 13 Commercial-Landingpages und der gemeinsame Footer verwenden gemeinsame React-Komponenten für Browser und statischen Build.
 - GitHub Pages veröffentlicht aus `gh-pages` im Rootverzeichnis mit `CNAME=perlas.de`; ein Quellcode-Push nach `main` aktualisiert diese Branch-Ausgabe nicht automatisch. Veröffentlichungen anhand der tatsächlichen Berechtigungen und des freigegebenen Arbeitsumfangs durchführen.
 - `dist/`, `node_modules/`, `.tmp-*/` und private Konfigurationen sind lokale bzw. generierte Dateien.
 - Für UI-Änderungen die betroffenen Seiten im Browser auf Desktop und Mobilgerät prüfen. Relevante bestehende Tests ausführen; vollständigen Build bei Inhalts-/Routingänderungen prüfen.

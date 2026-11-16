@@ -1,6 +1,7 @@
-import { ArrowRight, ArrowUpRight, Check, Mail, MapPin, Phone, Plus } from 'lucide-react'
+import { ArrowRight, ArrowUpRight, Building2, Check, ClipboardCheck, Mail, MapPin, Phone, Plus, Star, UsersRound } from 'lucide-react'
 import QuickContactForm from './QuickContactForm'
 import ResponsiveImage from './ResponsiveImage'
+import googleReviewData from './google-reviews-data.json'
 import type { CommercialLandingContent } from './commercial-landing-types'
 import './commercial-landings.css'
 
@@ -9,6 +10,14 @@ export type { CommercialLandingContent } from './commercial-landing-types'
 const BASE_PATH = import.meta.env.BASE_URL
 const PHONE_HREF = 'tel:+491776867145'
 const PHONE_LABEL = '0177 68 67 145'
+const partners = [
+  { name: 'David Lloyd Clubs', asset: 'partners/david-lloyd-clubs.png' },
+  { name: 'UNIRESTA', asset: 'partners/uniresta.jpeg' },
+  { name: 'VALO Immobilienmanagement', asset: 'partners/valo.png' },
+  { name: 'Zeidler', asset: 'partners/zeidler.webp' },
+]
+const customerVoice = googleReviewData.reviews.find(review => review.author === 'David S.')
+const scopeIcons = [Building2, ClipboardCheck, UsersRound]
 
 function localPath(path: string) {
   return `${BASE_PATH}${path.replace(/^\/+/, '')}`
@@ -45,58 +54,75 @@ export default function CommercialLandingPage({ page, staticMode = false }: {
         <ol>
           <li><a href={BASE_PATH}>Startseite</a></li>
           <li><a href={localPath('/einsatzgebiete/')}>Einsatzgebiete</a></li>
-          <li><span aria-current="page">{page.heading.replace(/\.$/, '')}</span></li>
+          <li><span aria-current="page">{page.inquiry.topic ?? page.heading.replace(/\.$/, '')}</span></li>
         </ol>
       </nav>
 
       <section className="cl-container cl-hero" aria-labelledby={`${id}-heading`}>
         <div className="cl-hero-copy">
-          <p className="cl-eyebrow"><MapPin aria-hidden="true" />Perla’s für {page.locality}</p>
+          <p className="cl-eyebrow cl-hero-eyebrow"><span aria-hidden="true" />Ihr Objektservice für {page.locality}</p>
           <h1 id={`${id}-heading`}>{page.heading}</h1>
+          {page.heroPromise && <p className="cl-hero-promise">{page.heroPromise}</p>}
           <p className="cl-hero-intro">{page.intro}</p>
+          {page.heroHighlights && <CheckList items={page.heroHighlights} className="cl-hero-highlights" />}
           <div className="cl-actions">
             <a className="cl-button" href="#anfrage">{page.ctaText}<ArrowUpRight aria-hidden="true" /></a>
             <DirectPhone />
           </div>
-          <p className="cl-hero-note"><Check aria-hidden="true" /> Unverbindlich anfragen. Den Umfang persönlich klären.</p>
+          <p className="cl-hero-note">Unverbindlich. Persönlich. Passend zu Ihrem Objekt.</p>
         </div>
-        <figure className="cl-hero-photo">
+        <div className="cl-hero-visual">
+          <figure className="cl-hero-photo">
           <ResponsiveImage
             asset={page.heroImage.src}
             alt={page.heroImage.alt}
             loading="eager"
             fetchPriority="high"
-            sizes="(max-width: 799px) calc(100vw - 40px), (max-width: 1240px) 44vw, 530px"
+            sizes="(max-width: 759px) calc(100vw - 48px), (max-width: 1240px) 45vw, 530px"
             style={{ objectPosition: page.heroImage.position ?? '50% 50%' }}
           />
-          <figcaption>{page.heroImage.caption ?? 'Einblick in unser Leistungsangebot.'}</figcaption>
-        </figure>
+            <figcaption>{page.heroImage.caption ?? 'Einblick in unser Leistungsangebot.'}</figcaption>
+          </figure>
+          <a className="cl-team-card" href={localPath('/ueber-uns/')}>
+            <span className="cl-team-card-icon"><UsersRound aria-hidden="true" /></span>
+            <span><small>Menschen statt Umwege</small><strong>Ihr Perla’s Team.</strong><span>Persönlich kennenlernen <ArrowUpRight aria-hidden="true" /></span></span>
+          </a>
+          <span className="cl-experience"><strong>Seit 1999</strong><span>für Immobilien da</span></span>
+        </div>
       </section>
 
-      <div className="cl-container cl-location-note">
-        <MapPin aria-hidden="true" />
-        <div><p>{page.serviceAreaText}</p><address>Unser Unternehmensstandort: Hauptstraße 1 · 65843 Sulzbach (Taunus)</address></div>
-      </div>
+      <section className="cl-container cl-partners" aria-labelledby={`${id}-partners-heading`}>
+        <div><p className="cl-eyebrow">Vertrauen wächst im Alltag</p><h2 id={`${id}-partners-heading`}>Unternehmen, die auf Perla’s setzen.</h2></div>
+        <div className="cl-partner-logos">{partners.map(partner => <ResponsiveImage key={partner.name} asset={partner.asset} alt={partner.name} sizes="(max-width: 759px) 125px, 150px" />)}</div>
+      </section>
 
-      <section className="cl-container cl-section" aria-labelledby={`${id}-scope-heading`}>
-        <div className="cl-section-heading">
-          <p className="cl-eyebrow">Passend zu Ihrem Objekt</p>
-          <h2 id={`${id}-scope-heading`}>{page.scopeTitle}</h2>
-          <p>{page.scopeIntro}</p>
-        </div>
+      <nav className="cl-container cl-jump-nav" aria-label="Auf dieser Seite">
+        <a href={`#${id}-leistungen`}>Leistungen</a><a href={`#${id}-planung`}>Vorbereitung</a><a href={`#${id}-ablauf`}>Ablauf & Kosten</a><a href={`#${id}-fragen`}>Häufige Fragen</a><a href="#anfrage">Angebot anfragen <ArrowUpRight aria-hidden="true" /></a>
+      </nav>
+
+      <section className="cl-scope-band" id={`${id}-leistungen`} aria-labelledby={`${id}-scope-heading`}>
+        <div className="cl-container cl-section">
+          <div className="cl-section-heading cl-section-heading--split">
+            <div><p className="cl-eyebrow">So viel Service, wie Ihr Objekt braucht</p><h2 id={`${id}-scope-heading`}>{page.scopeTitle}</h2></div>
+            <p>{page.scopeIntro}</p>
+          </div>
         <div className="cl-scope-grid">
-          {page.scopeCards.map((card, index) => (
+          {page.scopeCards.map((card, index) => {
+            const Icon = scopeIcons[index % scopeIcons.length]
+            return (
             <article className="cl-scope-card" key={card.title}>
-              <span className="cl-card-number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+              <span className="cl-scope-icon"><Icon aria-hidden="true" /></span>
               <h3>{card.title}</h3>
               <p>{card.text}</p>
               <CheckList items={card.items} />
             </article>
-          ))}
+          )})}
+        </div>
+        <a className="cl-scope-link" href="#anfrage">Gemeinsam den passenden Umfang festlegen <ArrowRight aria-hidden="true" /></a>
         </div>
       </section>
 
-      <section className="cl-planning-band" aria-labelledby={`${id}-planning-heading`}>
+      <section className="cl-planning-band" id={`${id}-planung`} aria-labelledby={`${id}-planning-heading`}>
         <div className="cl-container cl-planning-grid">
           <div className="cl-planning-copy">
             <p className="cl-eyebrow">Gut vorbereitet anfragen</p>
@@ -137,7 +163,7 @@ export default function CommercialLandingPage({ page, staticMode = false }: {
         </div>
       </section>
 
-      <section className="cl-container cl-section cl-process-cost" aria-labelledby={`${id}-process-heading`}>
+      <section className="cl-container cl-section cl-process-cost" id={`${id}-ablauf`} aria-labelledby={`${id}-process-heading`}>
         <div className="cl-process">
           <p className="cl-eyebrow">Von der Anfrage zum Leistungsplan</p>
           <h2 id={`${id}-process-heading`}>So starten wir gemeinsam.</h2>
@@ -159,7 +185,12 @@ export default function CommercialLandingPage({ page, staticMode = false }: {
         </aside>
       </section>
 
-      <section className="cl-container cl-section cl-faq" aria-labelledby={`${id}-faq-heading`}>
+      <section className="cl-container cl-local-proof" aria-labelledby={`${id}-local-heading`}>
+        <div className="cl-local-copy"><p className="cl-eyebrow"><MapPin aria-hidden="true" />{page.locality} & Rhein-Main</p><h2 id={`${id}-local-heading`}>Nah am Objekt.<br />Direkt im Gespräch.</h2><p>{page.serviceAreaText}</p><address>Perla’s Objektbetreuung · Hauptstraße 1 · 65843 Sulzbach (Taunus)</address><a className="cl-text-link" href={localPath('/ueber-uns/')}>Team und Arbeitsweise kennenlernen <ArrowRight aria-hidden="true" /></a></div>
+        {customerVoice && <figure className="cl-customer-voice"><span className="cl-voice-label">Eine Stimme über Perla’s</span><div className="cl-review-stars" role="img" aria-label={`${customerVoice.rating} von 5 Sternen`}>{Array.from({length:customerVoice.rating},(_,i)=><Star key={i} aria-hidden="true" />)}</div><blockquote>„{customerVoice.text}“</blockquote><figcaption><strong>{customerVoice.author}</strong><span>Google-Rezension über Perla’s insgesamt</span></figcaption><a href={googleReviewData.profileUrl} target="_blank" rel="noreferrer">Kundenstimmen bei Google <ArrowUpRight aria-hidden="true" /></a></figure>}
+      </section>
+
+      <section className="cl-container cl-section cl-faq" id={`${id}-fragen`} aria-labelledby={`${id}-faq-heading`}>
         <div className="cl-section-heading">
           <p className="cl-eyebrow">Vor der Beauftragung</p>
           <h2 id={`${id}-faq-heading`}>Die wichtigsten Fragen.</h2>

@@ -1,6 +1,8 @@
-# SEO und Landingpages: Umsetzung vom 16.11.2026
+# SEO und Landingpages: erste Umsetzung vom 16.11.2026
 
 Status: am 16.11.2026 veröffentlicht und live geprüft. Der lokale GitHub-CLI-Zugang hatte Schreibrecht; veröffentlichter Quellenstand `6c963e1`, Pages-Release `8115f7d`. Alle 46 kanonischen URLs antworteten mit HTTP 200 und identischem Inhalt zum geprüften Build. Die Google-Indexierung ist ein gesonderter Befund.
+
+Aktueller Folgestand: [regionale Erweiterung mit 55 Seiten und neuem Design](REGIONAL_EXPANSION.md). Die folgenden Angaben dokumentieren den ersten veröffentlichten 46-Seiten-Stand.
 
 ## Recherchierte Angebote
 

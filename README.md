@@ -21,12 +21,12 @@ Benötigt werden Node (siehe `.nvmrc`) sowie PHP ≥8.2 mit den dokumentierten E
 
 ## SEO auf bestehenden Seiten
 
-Die Seite verwendet React/Vite und statisch erzeugtes HTML, nicht WordPress. `npm run build:pages` erzeugt 46 kanonische Seiten (einschließlich zehn Blogartikeln, einem Einsatzgebiete-Hub und elf kuratierten Orts-Leistungsseiten) mit sichtbaren Inhalten, Metadaten und strukturierten Daten. Die sechs ersten Ortsseiten wurden am 07.10.2026 beauftragt; am 14.10.2026 kamen die eigenständige Frankfurt-Landingpage und ihr begleitender Blogartikel hinzu. Am 16.11.2026 wurden vier weitere Angebotsseiten anhand einer neuen DataForSEO-Recherche umgesetzt. Es gibt keine automatisch erzeugte Leistung×Stadt-Matrix.
+Die Seite verwendet React/Vite und statisch erzeugtes HTML, nicht WordPress. `npm run build:pages` erzeugt 55 kanonische Seiten (einschließlich zehn Blogartikeln, einem Einsatzgebiete-Hub und 20 kuratierten Orts-Leistungsseiten) mit sichtbaren Inhalten, Metadaten und strukturierten Daten. Die sechs ersten Ortsseiten wurden am 07.10.2026 beauftragt; am 14.10.2026 kamen die eigenständige Frankfurt-Landingpage und ihr begleitender Blogartikel hinzu. Am 16.11.2026 wurden zunächst vier Angebote und anschließend acht Städteservice-Seiten sowie Grundreinigung Frankfurt anhand neuer DataForSEO-Daten umgesetzt. Es gibt keine automatisch erzeugte Leistung×Stadt-Matrix.
 
 - `src/seo-data.json`: gemeinsame Metadaten, lokale Einordnung und Leistungsgruppen für Start-/Übersichtsseiten. Änderungen gelten für Browser und initiales HTML.
 - `src/service-data.json` und `src/audience-data.json`: Metadaten, Leistungsumfang und Angebots-FAQs der bestehenden Detailseiten.
 - Unternehmensschema: `LocalBusiness`, feste Identität/Adresse/Logo; Leistungen: `Service` mit Provider und Breadcrumbs. Keine selbstbezogenen Bewertungssterne im Markup.
-- `npm run check:seo`: prüft das gebaute HTML einschließlich der 46 erlaubten kanonischen URLs, internen Ratgeber-/Ortslinks, redaktionellen 60-/155-Zeichenlimits, Canonicals, Schema, Robots-Datei, realen Änderungsdaten und zwölf Altpfad-Weiterleitungen.
+- `npm run check:seo`: prüft das gebaute HTML einschließlich der 55 erlaubten kanonischen URLs, internen Ratgeber-/Ortslinks, redaktionellen 60-/155-Zeichenlimits, Canonicals, Schema, Robots-Datei, realen Änderungsdaten und 13 Altpfad-Weiterleitungen.
 - `node --test src/analytics.test.mjs`: prüft die Einwilligungslogik offline ohne externe Anfragen.
 
 Analytics erfasst bestätigte Kontakt-/Angebots-/Kurzanfragen als `generate_lead` mit fester Formularart (`contact`, `quote`, `quick_contact`). Telefon-, E-Mail- und WhatsApp-Linkklicks werden getrennt als `phone_click`, `email_click` und `whatsapp_click` erfasst. Nur bei gültiger Analyse-Einwilligung und geladenem Analytics; keine Formularfelder, Vorgangsnummern oder Bewerbungen, kein nachträgliches Erfassen. Kontaktklicks sind keine zugestellten Anfragen oder bestätigten Gespräche.
@@ -36,25 +36,26 @@ Für künftige freigegebene Suchanzeigen erkennt die Messung ausschließlich die
 ## Anfragewege und lokale Inhalte
 
 - `src/local-landing-data.json`: sieben einzeln ausgewählte Orts-/Leistungsseiten. Der Hub `/einsatzgebiete/` und passende bestehende Leistungsseiten verlinken die neuen Seiten. Eigenständiger Umfang, Ablauf, Angebotsfaktoren und FAQ; großer responsiver Bildhero, Telefonlink und vorhandenes Kurzformular. Alle Seiten behalten die echte Anbieteranschrift Sulzbach; Einsatz und Kapazität werden objektbezogen abgestimmt. Fotos werden nicht als unbelegte Ortsreferenzen dargestellt.
-- `src/commercial-landing-data.json`: vier weitere Angebotsseiten für Büro-/Unterhaltsreinigung Frankfurt, Gebäudereinigung Eschborn, Hausmeisterservice Kelkheim und Tiefgaragenreinigung Frankfurt. Jeweils eigene Planungshilfe, passender Bildbestand und thematisch vorbelegtes Kurzformular. `CommercialLandingPage.tsx` rendert auch das initiale HTML; ohne JavaScript bleiben direkte Kontaktwege verfügbar.
+- `src/commercial-landing-data.json`: 13 individuell ausgearbeitete Angebotsseiten: Büro-/Unterhaltsreinigung Frankfurt, Gebäudereinigung Eschborn, Hausmeisterservice Kelkheim, Tiefgaragenreinigung und Grundreinigung Frankfurt sowie jeweils Hausmeisterservice und Gebäudereinigung für Wiesbaden, Hanau, Taunusstein und Rüsselsheim. Jeweils eigene Planungshilfe, passender Bildbestand und thematisch vorbelegtes Kurzformular. `CommercialLandingPage.tsx` rendert auch das initiale HTML; ohne JavaScript bleiben direkte Kontaktwege verfügbar.
 - `/einsatzgebiete/hausmeisterservice-frankfurt/`: eigene bildbetonte Landingpage mit bestehenden Kundenlogos, originalen hinterlegten Google-Auszügen und Anfrageformular. `prepare-pages.mjs` rendert dafür dieselbe React-Komponente ohne Netzwerkport ins initiale HTML; ohne JavaScript werden direkte Kontaktwege anstelle eines funktionslosen Formulars angezeigt. Der neue Artikel `/blog/hausmeisterservice-objektbetreuung-frankfurt-umgebung/` vertieft Leistungsumfang und Anfragevorbereitung. Keine Ranking- oder KI-Zitationsgarantie.
 - `docs/local-landing-research-2026-10-07.json`: historische Keyword-Zuordnung und Datengrenzen einschließlich damals gescheiterter Anbieterabfragen. Die aktuelle Recherche vom 16.11.2026 liegt in `docs/keyword-research-2026-11-16.json`. Suchvolumen bleibt eine Schätzung; breite Frankfurt-Werte dürfen nicht einzelnen Stadtteilen zugeschrieben werden. Unbekannte Werte sind keine Null-Nachfrage.
 - Die Kurzanfrage funktioniert über den vorhandenen Kontakt-Endpunkt und verlangt keine vollständige Objektadresse. Die ausführliche Angebotsanfrage bleibt verfügbar. Bestätigungen/Vorgangsnummern werden nur nach tatsächlich erfolgreicher Serverantwort angezeigt.
 - Sieben bestehende Leistungsseiten verweisen kontextuell auf passende Ratgeber. Die aktualisierten Leistungsseiten haben feste, inhaltlich begründete `updatedOn`-Werte; kein tägliches künstliches Hochsetzen von `lastmod`.
-- `src/legacy-redirects.json` aktiviert zwölf sofortige HTML-Weiterleitungen zu fachlich passenden Seiten, einschließlich der alten Frankfurt-, Eschborn- und Kelkheim-Adressen. GitHub Pages liefert diese Dateien mit HTTP 200 + `meta refresh 0`; es sind keine serverseitigen HTTP-301. Die Altpfade stehen nicht in der Sitemap und enthalten keine kopierten Serviceinhalte, App-Skripte oder Analytics. `node --test scripts/legacy-redirects.test.mjs` prüft das sichere Mapping.
+- `src/legacy-redirects.json` aktiviert 13 sofortige HTML-Weiterleitungen zu fachlich passenden Seiten, einschließlich der alten Frankfurt-, Eschborn-, Kelkheim- und Wiesbaden-Adressen. GitHub Pages liefert diese Dateien mit HTTP 200 + `meta refresh 0`; es sind keine serverseitigen HTTP-301. Die Altpfade stehen nicht in der Sitemap und enthalten keine kopierten Serviceinhalte, App-Skripte oder Analytics. `node --test scripts/legacy-redirects.test.mjs` prüft das sichere Mapping.
 
 ## Keyword-Recherche und Übersicht
 
 [docs/KEYWORD_OVERVIEW.md](docs/KEYWORD_OVERVIEW.md) und die zugehörige CSV führen
-197 kuratierte Kandidaten mit Suchvolumen, Suchabsicht, Zielseite und Umsetzungsstand.
-Alle 197 Begriffe wurden am 16.11.2026 mit DataForSEO-Suchvolumenabfragen geprüft:
-55 positive Schätzwerte und 142 unbekannte Anbieterwerte.
+393 kuratierte Kandidaten mit Suchvolumen, Suchabsicht, Zielseite und Umsetzungsstand.
+Alle 393 Begriffe wurden am 16.11.2026 mit DataForSEO-Suchvolumenabfragen geprüft:
+141 positive Schätzwerte, 251 unbekannte Anbieterwerte und ein gemeldeter Nullwert.
 Wörtliche Verwendung, thematische Abdeckung, Veröffentlichung und Google-Indexierung
 sind unterschiedliche Statusfelder. Ähnliche Suchbegriffe nicht summieren.
 
 Nach einem vollständigen Seitenbuild `npm run report:keywords` ausführen, um den
 Nachweis in Title, H1 und Hauptinhalt zu aktualisieren. Details zu den neuen Seiten
-und ihrer Prüfung: [docs/SEO_GROWTH_IMPLEMENTATION.md](docs/SEO_GROWTH_IMPLEMENTATION.md).
+und ihrer Prüfung: [erste Umsetzung](docs/SEO_GROWTH_IMPLEMENTATION.md) und
+[regionale Erweiterung mit neuem Design](docs/REGIONAL_EXPANSION.md).
 
 ## Geschäftserfolg nachhalten
 

@@ -116,3 +116,7 @@ kein konkretes Performanceproblem.
 
 Neue Seiten, Keyword-Pflege und Veröffentlichungsstand:
 [SEO_GROWTH_IMPLEMENTATION.md](SEO_GROWTH_IMPLEMENTATION.md).
+
+## Zweite Erweiterung vom 16.11.2026
+
+Der neue Build umfasst 55 Seiten, 20 lokale Angebote, 13 Commercial-Landingpages und 13 genaue Weiterleitungen. `SiteFooter.tsx` wird im Browser und im initialen HTML gemeinsam gerendert; `footer-links.json` hält die direkten Leistungen und Orte. Die Keyword-Registry enthält 393 Begriffe, darunter 96 noch nicht bestätigte Spezialangebote ohne Ziel-URL. Sie werden nicht als vorhandene Leistung ausgegeben. Weitere Angaben: [REGIONAL_EXPANSION.md](REGIONAL_EXPANSION.md).

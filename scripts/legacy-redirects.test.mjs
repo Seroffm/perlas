@@ -11,12 +11,13 @@ const canonicals = [
   'einsatzgebiete/hausmeisterservice-frankfurt/',
   'einsatzgebiete/objektbetreuung-eschborn/',
   'einsatzgebiete/hausmeisterservice-kelkheim/',
+  'einsatzgebiete/hausmeisterservice-wiesbaden/',
   ...services.map(({ slug }) => `leistungen/${slug}/`),
 ].map((relative) => new URL(relative, site).href)
 
-test('twelve exact old paths resolve to commissioned canonical content with no chains', () => {
+test('thirteen exact old paths resolve to commissioned canonical content with no chains', () => {
   const redirects = validateLegacyRedirects(manifest, site, canonicals)
-  assert.equal(redirects.length, 12)
+  assert.equal(redirects.length, 13)
   const targets = new Map(redirects.map(({ from, target }) => [from.pathname, target.pathname]))
   assert.deepEqual(Object.fromEntries(targets), {
     '/regelmaessige-objektpflege-in-sulzbach-frankfurt/': '/leistungen/objektpflege/',
@@ -31,6 +32,7 @@ test('twelve exact old paths resolve to commissioned canonical content with no c
     '/hausmeisterservice-frankfurt-am-main/': '/einsatzgebiete/hausmeisterservice-frankfurt/',
     '/hausmeisterservice-eschborn/': '/einsatzgebiete/objektbetreuung-eschborn/',
     '/hausmeisterservice-kelkheim-am-taunus/': '/einsatzgebiete/hausmeisterservice-kelkheim/',
+    '/hausmeisterservice-wiesbaden/': '/einsatzgebiete/hausmeisterservice-wiesbaden/',
   })
 })
 

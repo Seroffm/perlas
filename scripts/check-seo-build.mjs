@@ -20,7 +20,7 @@ const urls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => new UR
 const sitemapIndex = await readFile(path.join(dist, 'sitemap_index.xml'), 'utf8')
 assert(sitemapIndex.includes('<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'), 'Valid compatibility sitemap index required')
 assert.deepEqual([...sitemapIndex.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]), [new URL('sitemap.xml', site).href], 'Sitemap index must point only to the current canonical sitemap')
-// Keep the route allowlist independent of content collections. The eleven local
+// Keep the route allowlist independent of content collections. The twenty local
 // service pages and ten articles have each been explicitly commissioned.
 const existingPaths = [
   '',
@@ -42,6 +42,15 @@ const existingPaths = [
   'einsatzgebiete/bueroreinigung-frankfurt/',
   'einsatzgebiete/gebaeudereinigung-eschborn/',
   'einsatzgebiete/tiefgaragenreinigung-frankfurt/',
+  'einsatzgebiete/hausmeisterservice-wiesbaden/',
+  'einsatzgebiete/gebaeudereinigung-wiesbaden/',
+  'einsatzgebiete/hausmeisterservice-hanau/',
+  'einsatzgebiete/gebaeudereinigung-hanau/',
+  'einsatzgebiete/hausmeisterservice-taunusstein/',
+  'einsatzgebiete/gebaeudereinigung-taunusstein/',
+  'einsatzgebiete/hausmeisterservice-ruesselsheim/',
+  'einsatzgebiete/gebaeudereinigung-ruesselsheim/',
+  'einsatzgebiete/grundreinigung-frankfurt/',
   'ueber-uns/',
   'blog/',
   'blog/winterdienst-richtig-planen/',
@@ -71,8 +80,8 @@ const existingPaths = [
   'leistungen/buero-einrichtungsservice/',
 ]
 const expectedUrls = existingPaths.map((relative) => new URL(relative, site).href).sort()
-assert.equal(expectedUrls.length, 46, 'Exactly 46 commissioned canonical pages required')
-assert.deepEqual(urls.map((url) => url.href).sort(), expectedUrls, 'Only the 46 explicitly commissioned canonical routes are allowed')
+assert.equal(expectedUrls.length, 55, 'Exactly 55 commissioned canonical pages required')
+assert.deepEqual(urls.map((url) => url.href).sort(), expectedUrls, 'Only the 55 explicitly commissioned canonical routes are allowed')
 const robotsFile = await readFile(path.join(dist, 'robots.txt'), 'utf8')
 const robotsGroups = []
 let robotsGroup
@@ -116,19 +125,29 @@ const commercialByUrl = new Map(commercialContent.map((landing) => [new URL(`ein
 const seoContent = JSON.parse(await readFile(path.join(workspace, 'src/seo-data.json'), 'utf8'))
 const googleReviews = JSON.parse(await readFile(path.join(workspace, 'src/google-reviews-data.json'), 'utf8'))
 const imageVariants = JSON.parse(await readFile(path.join(workspace, 'src/image-variants.json'), 'utf8'))
+const footerGroups = JSON.parse(await readFile(path.join(workspace, 'src/footer-links.json'), 'utf8')).groups
 const regionsUrl = new URL('einsatzgebiete/', site).href
 const frankfurtLandingSlug = 'hausmeisterservice-frankfurt'
 const frankfurtArticleSlug = 'hausmeisterservice-objektbetreuung-frankfurt-umgebung'
 const frankfurtLandingUrl = new URL(`einsatzgebiete/${frankfurtLandingSlug}/`, site).href
 const frankfurtArticleUrl = new URL(`blog/${frankfurtArticleSlug}/`, site).href
 assert.equal(localContent.length, 7, 'Keep the seven established local service pages')
-assert.equal(commercialByUrl.size, 4, 'Exactly four unique newly commissioned commercial landing pages required')
+assert.equal(commercialByUrl.size, 13, 'Exactly thirteen unique commissioned commercial landing pages required')
 assert.deepEqual([...commercialByUrl.keys()].sort(), [
   'hausmeisterservice-kelkheim', 'bueroreinigung-frankfurt',
   'gebaeudereinigung-eschborn', 'tiefgaragenreinigung-frankfurt',
-].map((slug) => new URL(`einsatzgebiete/${slug}/`, site).href).sort(), 'Only the four explicitly commissioned commercial landing routes are allowed')
-assert.equal(allLocalContent.length, 11, 'Exactly eleven local content entries required, without slug collisions')
-assert.equal(localByUrl.size, 11, 'Exactly eleven unique commissioned local service pages required')
+  'hausmeisterservice-wiesbaden',
+  'gebaeudereinigung-wiesbaden',
+  'hausmeisterservice-hanau',
+  'gebaeudereinigung-hanau',
+  'hausmeisterservice-taunusstein',
+  'gebaeudereinigung-taunusstein',
+  'hausmeisterservice-ruesselsheim',
+  'gebaeudereinigung-ruesselsheim',
+  'grundreinigung-frankfurt',
+].map((slug) => new URL(`einsatzgebiete/${slug}/`, site).href).sort(), 'Only the thirteen explicitly commissioned commercial landing routes are allowed')
+assert.equal(allLocalContent.length, 20, 'Exactly twenty local content entries required, without slug collisions')
+assert.equal(localByUrl.size, 20, 'Exactly twenty unique commissioned local service pages required')
 assert.deepEqual([...localByUrl.keys()].sort(), expectedUrls.filter((url) => url.startsWith(regionsUrl) && url !== regionsUrl), 'Local data and independently allowed routes must agree')
 for (const landing of allLocalContent) {
   assert(/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(landing.slug), `Safe local slug required: ${landing.slug}`)
@@ -313,7 +332,17 @@ for (const url of urls) {
   if (indexingEnabled) assert(!markup(html, 'meta').some((meta) => meta.name?.toLowerCase() === 'googlebot' && /noindex|nofollow/i.test(meta.content ?? '')), `Googlebot-specific metadata must not block a public page: ${url}`)
   assert.equal(markup(html, 'meta').find((meta) => meta.name === 'twitter:card')?.content, 'summary_large_image', `Twitter card absent: ${url}`)
   assert.equal((html.match(/<h1\b/g) ?? []).length, 1, `One H1 required: ${url}`)
-  assert(html.includes('class="seo-static-footer"'), `Static footer absent: ${url}`)
+  assert(html.includes('class="sf-footer"'), `Shared static footer absent: ${url}`)
+  const footer = html.match(/<footer\b[^>]*class="sf-footer"[^>]*>([\s\S]*?)<\/footer>/)?.[1] ?? ''
+  const footerHrefs = markup(footer, 'a').map(link => decodeEntities(link.href ?? ''))
+  for (const group of footerGroups) {
+    assert(visibleText(footer).includes(group.title), `Footer group absent: ${group.id} at ${url}`)
+    for (const link of group.links) {
+      const target = new URL(link.path, site)
+      assert(expectedUrls.includes(target.href), `Uncommissioned footer destination: ${target}`)
+      assert(footerHrefs.includes(target.pathname), `Shared footer link absent: ${target} at ${url}`)
+    }
+  }
   const main = html.match(/<main\b[^>]*>([\s\S]*?)<\/main>/)?.[1] ?? ''
   const mainText = visibleText(main)
   assert(mainText.length > 300, `Empty initial page: ${url}`)
@@ -513,7 +542,7 @@ const commissionedBlogs = blogContent.filter((post) => ['07.10.2026', '14.10.202
 for (const post of commissionedBlogs) assert(serviceContent.some((service) => service.guideSlugs?.includes(post.slug)), `New article requires a contextual service incoming link: ${post.slug}`)
 const legacyManifest = JSON.parse(await readFile(path.join(workspace, 'src/legacy-redirects.json'), 'utf8'))
 const redirects = validateLegacyRedirects(legacyManifest, site, expectedUrls)
-assert.equal(redirects.length, 12, 'Only the twelve approved legacy redirects are allowed')
+assert.equal(redirects.length, 13, 'Only the thirteen approved legacy redirects are allowed')
 for (const redirect of redirects) {
   const html = await readFile(fileForUrl(redirect.from), 'utf8')
   assert(!expectedUrls.includes(redirect.from.href), 'Redirects must not be in the sitemap')

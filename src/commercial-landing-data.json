@@ -6,8 +6,8 @@
     "region": "Frankfurt am Main",
     "seoTitle": "Büroreinigung Frankfurt & Unterhaltsreinigung | Perla’s",
     "seoDescription": "Büroreinigung in Frankfurt für Unternehmen: Räume, Aufgaben und Reinigungszeiten klar vereinbaren. Mit praktischem Plan und persönlichem Angebot.",
-    "heading": "Büroreinigung in Frankfurt. Passend zu Ihrem Arbeitsalltag.",
-    "intro": "Saubere Arbeitsplätze, gepflegte Sanitärbereiche und ein Reinigungsplan, den Ihr Team versteht. Perla’s organisiert Büro- und Unterhaltsreinigung in Frankfurt für Unternehmen und verwaltete Büroflächen. Wir klären, was regelmäßig gereinigt wird, wann Ihr Büro zugänglich ist und wer Rückmeldungen aufnimmt.",
+    "heading": "Büroreinigung Frankfurt.",
+    "intro": "Konzentrieren Sie sich auf Ihr Geschäft. Perla’s übernimmt die regelmäßige Büro- und Unterhaltsreinigung für Unternehmen und verwaltete Büroflächen in Frankfurt. Sie erhalten einen abgestimmten Reinigungsplan und einen persönlichen Kontakt für Ihre Rückfragen.",
     "heroImage": {
       "src": "kundenbilder/team/update-2026-09-23/mitarbeiter_reinigung_weiblich_01.png",
       "alt": "Perla’s Mitarbeiterin mit Reinigungsgerät in einem Innenbereich",
@@ -162,7 +162,13 @@
       "gebaeudereinigung-im-laufenden-betrieb"
     ],
     "updatedOn": "2026-11-16",
-    "ctaText": "Büroreinigung anfragen"
+    "ctaText": "Büroreinigung anfragen",
+    "heroPromise": "Saubere Büros. Ein klarer Plan.",
+    "heroHighlights": [
+      "Reinigungsumfang passend zu Ihren Räumen",
+      "Zugangszeiten persönlich abstimmen",
+      "Ein Kontakt für Ihre Rückfragen"
+    ]
   },
   {
     "slug": "gebaeudereinigung-eschborn",
@@ -171,8 +177,8 @@
     "region": "Main-Taunus-Kreis",
     "seoTitle": "Gebäudereinigung Eschborn: Büro & Treppenhaus | Perla’s",
     "seoDescription": "Gebäudereinigung in Eschborn für Büros, WEG und Gewerbe. Reinigungsumfang, Intervalle und Zugang übersichtlich planen. Jetzt Ihr Objekt anfragen.",
-    "heading": "Gebäudereinigung in Eschborn. Klar geplant, gut abgestimmt.",
-    "intro": "Sie suchen eine Reinigungsfirma in Eschborn für Ihr Büro, ein Treppenhaus oder gemeinsame Gebäudeflächen? Perla’s aus dem benachbarten Sulzbach stimmt Aufgaben, Intervalle und Zugänge mit Ihnen ab. Sie erhalten einen nachvollziehbaren Umfang für die regelmäßige Reinigung und einen festen Kontakt für Rückfragen.",
+    "heading": "Gebäudereinigung Eschborn.",
+    "intro": "Büro, Treppenhaus oder gemeinsame Gebäudeflächen: Perla’s aus dem benachbarten Sulzbach plant Ihre Reinigung in Eschborn. Aufgaben, Intervalle und Zugänge halten wir nachvollziehbar fest. So wissen Unternehmen und Hausverwaltungen, welche Leistung zum Auftrag gehört.",
     "heroImage": {
       "src": "kundenbilder/leistungen/gebaeudereinigung_flur.png",
       "alt": "Perla’s Mitarbeiter mit Reinigungsgerät in einem gemeinschaftlich genutzten Flur",
@@ -327,7 +333,13 @@
       "bueroreinigung-eschborn-angebot-kosten"
     ],
     "updatedOn": "2026-11-16",
-    "ctaText": "Reinigung in Eschborn anfragen"
+    "ctaText": "Reinigung in Eschborn anfragen",
+    "heroPromise": "Gepflegte Räume. Gut abgestimmt.",
+    "heroHighlights": [
+      "Büro, Treppenhaus und Gemeinschaftsflächen",
+      "Klar vereinbarte Aufgaben und Intervalle",
+      "Persönlicher Ansprechpartner aus Sulzbach"
+    ]
   },
   {
     "slug": "hausmeisterservice-kelkheim",
@@ -336,8 +348,8 @@
     "region": "Main-Taunus-Kreis",
     "seoTitle": "Hausmeisterservice Kelkheim für WEG & Gewerbe | Perla’s",
     "seoDescription": "Hausmeisterservice in Kelkheim für WEG, Hausverwaltungen und Gewerbe. Mit Kontrollplan, klaren Aufgaben und festem Kontakt. Jetzt Betreuung anfragen.",
-    "heading": "Hausmeisterservice in Kelkheim. Das ganze Objekt im Blick.",
-    "intro": "Kontrollgänge, kleine Hausmeisteraufgaben und verständliche Rückmeldungen: Perla’s plant die laufende Objektbetreuung in Kelkheim für WEG, Hausverwaltungen und Gewerbe. Wir ordnen Aufgaben und Zuständigkeiten, damit aus vielen einzelnen Meldungen ein übersichtlicher Betreuungsplan wird.",
+    "heading": "Hausmeisterservice Kelkheim.",
+    "intro": "Kontrollgänge, kleine Hausmeisteraufgaben und verständliche Rückmeldungen: Perla’s betreut Wohn- und Gewerbeimmobilien in Kelkheim. Wir stimmen die Aufgaben mit Ihrer Verwaltung ab und bündeln offene Punkte. Damit Sie wissen, was am Objekt zu tun ist.",
     "heroImage": {
       "src": "kundenbilder/hero/hausverwaltungen-mehrfamilienhaus.jpg",
       "alt": "Mehrfamilienhaus mit gemeinschaftlich genutzten Außenbereichen als Beispiel für die Objektbetreuung",
@@ -497,7 +509,13 @@
       "hausmeisterservice-sulzbach-weg-leistungen"
     ],
     "updatedOn": "2026-11-16",
-    "ctaText": "Hausmeisterservice anfragen"
+    "ctaText": "Hausmeisterservice anfragen",
+    "heroPromise": "Ihr Objekt im Blick. Ihr Alltag entlastet.",
+    "heroHighlights": [
+      "Betreuungsplan für WEG und Gewerbe",
+      "Kleine Aufgaben mit klaren Freigaben",
+      "Rückmeldungen an Ihren festen Kontakt"
+    ]
   },
   {
     "slug": "tiefgaragenreinigung-frankfurt",
@@ -506,8 +524,8 @@
     "region": "Frankfurt am Main",
     "seoTitle": "Tiefgaragenreinigung Frankfurt für WEG & Gewerbe | Perla’s",
     "seoDescription": "Tiefgaragenreinigung in Frankfurt: Fahrflächen, Stellplätze und Randbereiche abgestimmt reinigen. Mit Ablaufplan für WEG und Gewerbe. Angebot anfragen.",
-    "heading": "Tiefgaragenreinigung in Frankfurt. Fläche für Fläche geplant.",
-    "intro": "Für eine saubere Tiefgarage müssen Maschinen, Stellplätze und Fahrzeugverkehr zusammenpassen. Perla’s stimmt Tiefgaragen- und Parkhausreinigung in Frankfurt mit Hausverwaltungen, WEG und Gewerbe ab. Vor dem Einsatz klären wir Flächen, Zugänglichkeit und Arbeitsabschnitte.",
+    "heading": "Tiefgaragenreinigung Frankfurt.",
+    "intro": "Perla’s reinigt Tiefgaragen und vereinbarte Parkflächen in Frankfurt für WEG, Hausverwaltungen und Gewerbe. Wir besprechen Verschmutzung, Zugang und Stellplatzfreigabe vorab. Der Auftrag bekommt einen Ablauf, den auch Ihre Nutzer nachvollziehen können.",
     "heroImage": {
       "src": "kundenbilder/leistungen/tiefgarage_saubere_flaeche_01.png",
       "alt": "Helle und gereinigte Fahrfläche einer Tiefgarage aus dem Perla’s Bildbestand",
@@ -662,6 +680,1568 @@
       "tiefgaragenreinigung-frankfurt-weg"
     ],
     "updatedOn": "2026-11-16",
-    "ctaText": "Garagenreinigung anfragen"
+    "ctaText": "Garagenreinigung anfragen",
+    "heroPromise": "Freie Flächen. Ein geplanter Ablauf.",
+    "heroHighlights": [
+      "Flächen und Verschmutzung vorab klären",
+      "Stellplätze und Arbeitsabschnitte planen",
+      "Aufwand und Zusatzarbeiten klar abgrenzen"
+    ]
+  },
+  {
+    "slug": "hausmeisterservice-wiesbaden",
+    "serviceSlug": "objektpflege",
+    "locality": "Wiesbaden",
+    "region": "Wiesbaden",
+    "primaryKeyword": "hausmeisterservice wiesbaden",
+    "seoTitle": "Hausmeisterservice Wiesbaden für WEG & Gewerbe | Perla’s",
+    "seoDescription": "Hausmeisterservice in Wiesbaden für WEG und Verwaltungen: Aufgaben, Freigaben und Rückmeldungen klar vereinbaren. Jetzt Objektbetreuung anfragen.",
+    "heading": "Hausmeisterservice Wiesbaden.",
+    "updatedOn": "2026-11-16",
+    "ctaText": "Betreuung unverbindlich anfragen",
+    "heroImage": {
+      "src": "kundenbilder/leistungen/projektfotos/Objektbetreuung_Wohnanlage_Aussenansicht.jpg",
+      "alt": "Gepflegte Wohnanlage aus dem Perla’s Bildbestand",
+      "caption": "Einblick in die betreuten Objektarten.",
+      "position": "50% 55%"
+    },
+    "heroPromise": "Ihr Objekt im Blick. Ihre Verwaltung entlastet.",
+    "heroHighlights": [
+      "Klare Zuständigkeiten",
+      "Freigaben vor Zusatzarbeiten",
+      "Nachvollziehbare Rückmeldungen"
+    ],
+    "intro": "Weniger Einzelmeldungen, mehr Überblick: Perla’s übernimmt vereinbarte Kontrollgänge und Hausmeisteraufgaben für WEG und Hausverwaltungen in Wiesbaden. Ein gemeinsamer Aufgabenplan hält fest, was erledigt wird und wer über zusätzliche Arbeiten entscheidet. Sie behalten einen persönlichen Kontakt für Ihr Objekt.",
+    "scopeTitle": "Aufgaben und Entscheidungen getrennt festhalten.",
+    "scopeIntro": "Nutzen Sie die Begehung, um Leistungen zu benennen und die jeweils zuständige Person festzulegen. So bleiben Erwartungen prüfbar.",
+    "scopeCards": [
+      {
+        "title": "Kontrollen mit festem Umfang",
+        "text": "Eingänge, Flure, Nebenräume und vereinbarte Außenbereiche erhalten einen Kontrollrhythmus. Auffälligkeiten werden einem Bereich zugeordnet; eine Sichtkontrolle ersetzt keine technische Prüfung.",
+        "items": [
+          "Kontrollbereiche erfassen",
+          "Auffälligkeiten verständlich melden"
+        ]
+      },
+      {
+        "title": "Kleine Aufgaben mit Freigabe",
+        "text": "Einfache Hausmeisterarbeiten werden konkret vereinbart. Bei weitergehendem Reparaturbedarf erhält die Verwaltung eine Rückmeldung und entscheidet über den nächsten Auftrag.",
+        "items": [
+          "Direktaufgaben benennen",
+          "Zusatzauftrag gesondert freigeben"
+        ]
+      },
+      {
+        "title": "Abstimmung für die Verwaltung",
+        "text": "Ein vereinbarter Kontakt bündelt Rückfragen aus dem Objekt. Für Fachfirmen lassen sich Zugänge und Termine abstimmen; deren fachliche Leistungen bleiben gesonderte Aufträge.",
+        "items": [
+          "Ansprechpartner festhalten",
+          "Fachfirmenzugänge abstimmen"
+        ]
+      }
+    ],
+    "planning": {
+      "title": "Ihre Aufgaben- und Freigabematrix.",
+      "intro": "Diese Vorlage macht sichtbar, was zum laufenden Auftrag gehört und welche Entscheidung bei Ihnen bleibt.",
+      "headers": [
+        "Aufgabe",
+        "Im Betreuungsplan festhalten",
+        "Entscheidung vereinbaren"
+      ],
+      "rows": [
+        [
+          "Kontrollgang",
+          "Bereiche, Rhythmus und Rückmeldeweg",
+          "Wer erhält Auffälligkeiten?"
+        ],
+        [
+          "Kleine Handgriffe",
+          "Einzeln beschriebene, geeignete Tätigkeiten",
+          "Was ist bereits freigegeben?"
+        ],
+        [
+          "Zusatzbedarf",
+          "Beschreibung und betroffener Bereich",
+          "Wer beauftragt die Zusatzarbeit?"
+        ],
+        [
+          "Fachfirma",
+          "Zugang, Termin und Kontaktperson",
+          "Wer erteilt den Fachauftrag?"
+        ]
+      ],
+      "note": "Die Matrix wird an Ihre Zuständigkeiten angepasst."
+    },
+    "detail": {
+      "title": "Rückmeldungen sollen eine Entscheidung ermöglichen.",
+      "text": "Eine hilfreiche Meldung nennt Ort, Beobachtung und offenen nächsten Schritt. Statt unklarer Sammelnachrichten kann die Verwaltung erkennen, ob eine kleine Aufgabe erledigt wurde oder eine Entscheidung benötigt wird.",
+      "points": [
+        "Bereich und Beobachtung unterscheiden",
+        "Erledigung oder offenen Punkt nennen",
+        "Freigabe an zuständige Person richten"
+      ],
+      "image": {
+        "src": "kundenbilder/fahrzeuge/perlas_fahrzeug_wohnobjekt_02.png",
+        "alt": "Perla’s Servicefahrzeug an einem Wohngebäude",
+        "caption": "Einblick in den Perla’s Objektservice.",
+        "position": "50% 50%"
+      }
+    },
+    "processSteps": [
+      {
+        "title": "Bestand aufnehmen",
+        "text": "Sie zeigen uns die Bereiche und vorhandenen Vereinbarungen. Bereits beauftragte Dienstleister werden berücksichtigt."
+      },
+      {
+        "title": "Plan vereinbaren",
+        "text": "Wir beschreiben Kontrollgänge, Handgriffe, Zuständigkeiten und Rückmeldewege. Zusatzleistungen werden gesondert eingeordnet."
+      },
+      {
+        "title": "Betreuung abstimmen",
+        "text": "Nach Angebotsfreigabe klären wir Zugang und Beginn. Wiederkehrende Rückfragen fließen in die Abstimmung ein."
+      }
+    ],
+    "cost": {
+      "title": "Was bestimmt den Betreuungsaufwand?",
+      "text": "Mehrere Hauseingänge, getrennte Nebenräume und häufige Kontrollgänge erzeugen unterschiedliche Aufwände. Für Ihr Angebot zählen der beschriebene Umfang und die vereinbarten Intervalle. Unbestimmte Reparaturpauschalen helfen beim Vergleich wenig.",
+      "factors": [
+        "Anzahl und Zugänglichkeit der Bereiche",
+        "Kontrollrhythmus und Dokumentationsumfang",
+        "Abgegrenzte Handgriffe und Zusatzaufträge"
+      ]
+    },
+    "faqs": [
+      {
+        "question": "Übernimmt der Hausmeisterservice Entscheidungen der WEG?",
+        "answer": "Beauftragungs- und Freigaberechte werden ausdrücklich festgelegt. Wir melden Auffälligkeiten und erledigen vereinbarte Aufgaben; Entscheidungen über zusätzliche Maßnahmen bleiben beim zuständigen Auftraggeber."
+      },
+      {
+        "question": "Ist eine technische Anlagenprüfung eingeschlossen?",
+        "answer": "Kontrollgänge sind keine Fachprüfung. Arbeiten an Elektro-, Heizungs- oder anderen technischen Anlagen gehören bei entsprechendem Bedarf in die Hände eines geeigneten Fachbetriebs."
+      },
+      {
+        "question": "Können bestehende Reinigungsfirmen eingebunden bleiben?",
+        "answer": "Ja. Zeigen Sie uns die vorhandenen Aufträge. Der Betreuungsplan grenzt Zuständigkeiten ab, damit dieselbe Aufgabe nicht doppelt angesetzt wird oder ungewollt offen bleibt."
+      },
+      {
+        "question": "Welche Unterlagen helfen bei der ersten Anfrage?",
+        "answer": "Eine Bereichsübersicht, gewünschte Aufgaben und vorhandene Leistungsverzeichnisse reichen als Einstieg. Für das Angebot stimmen wir die tatsächlichen Bedingungen Ihres Objekts in Wiesbaden ab."
+      }
+    ],
+    "inquiry": {
+      "title": "Ihre WEG-Betreuung konkret anfragen.",
+      "text": "Nennen Sie die Objektart, die zu betreuenden Bereiche und Ihren Abstimmungsbedarf. Eine vorhandene Aufgabenliste erleichtert den Vergleich.",
+      "checklist": [
+        "Objektart und Anzahl der Eingänge",
+        "Gewünschte Aufgaben und Kontrollrhythmus",
+        "Zuständiger Kontakt für Freigaben"
+      ],
+      "topic": "Hausmeisterservice Wiesbaden"
+    },
+    "guideSlugs": [
+      "hausmeisterservice-sulzbach-weg-leistungen"
+    ],
+    "relatedLinks": [
+      {
+        "label": "Gesamter Umfang der Objektbetreuung",
+        "path": "/leistungen/objektpflege/"
+      },
+      {
+        "label": "Auch Reinigung in Wiesbaden anfragen",
+        "path": "/einsatzgebiete/gebaeudereinigung-wiesbaden/"
+      },
+      {
+        "label": "Aufgaben für WEG richtig vereinbaren",
+        "path": "/blog/hausmeisterservice-sulzbach-weg-leistungen/"
+      },
+      {
+        "label": "Weitere Leistungen und Einsatzgebiete",
+        "path": "/einsatzgebiete/"
+      }
+    ],
+    "serviceAreaText": "Perla’s hat seinen Unternehmenssitz in der Hauptstraße 1, 65843 Sulzbach (Taunus). Für Ihr Objekt in Wiesbaden stimmen wir Leistungsumfang, Zugänge und mögliche Einsätze persönlich ab."
+  },
+  {
+    "slug": "hausmeisterservice-hanau",
+    "serviceSlug": "objektpflege",
+    "locality": "Hanau",
+    "region": "Hanau",
+    "primaryKeyword": "hausmeisterservice hanau",
+    "seoTitle": "Hausmeisterservice Hanau für WEG & Gewerbe | Perla’s",
+    "seoDescription": "Hausmeisterservice in Hanau für Gewerbe und verwaltete Gebäude: Nutzerbereiche, Zugänge und Meldungen abstimmen. Persönliches Angebot anfragen.",
+    "heading": "Hausmeisterservice Hanau.",
+    "updatedOn": "2026-11-16",
+    "ctaText": "Betreuung unverbindlich anfragen",
+    "heroImage": {
+      "src": "kundenbilder/leistungen/projektfotos/Objektbetreuung_Innenhof_Arbeitseinsatz.jpg",
+      "alt": "Perla’s Servicefahrzeug und Arbeitsgeräte in einem Innenhof",
+      "caption": "Einblick in einen Perla’s Arbeitseinsatz.",
+      "position": "35% 55%"
+    },
+    "heroPromise": "Ein Kontakt. Klare Zuständigkeiten.",
+    "heroHighlights": [
+      "Bereiche sauber abgrenzen",
+      "Zugänge abgestimmt organisieren",
+      "Meldungen gezielt zuordnen"
+    ],
+    "intro": "Von Kontrollgängen bis zu kleinen Hausmeisterarbeiten: Perla’s kümmert sich um die vereinbarten Gemeinschaftsbereiche Ihres Gebäudes in Hanau. Wir stimmen Zugänge und Aufgaben mit Eigentümer, Verwaltung und Nutzern ab. Rückfragen und offene Punkte laufen an einer Stelle zusammen.",
+    "scopeTitle": "Gemeinsame Flächen gezielt betreuen.",
+    "scopeIntro": "Ein geeigneter Betreuungsplan berücksichtigt Nutzung und Zugang. Private Nutzerflächen werden nur mit klarer Beauftragung Teil des Umfangs.",
+    "scopeCards": [
+      {
+        "title": "Gemeinschaftsbereiche kontrollieren",
+        "text": "Vereinbarte Eingänge, Verkehrsflächen und Nebenräume werden regelmäßig angesehen. Beobachtungen werden dem konkreten Bereich zugeordnet, damit Verwaltung und Nutzer dieselbe Ausgangslage kennen.",
+        "items": [
+          "Bereiche eindeutig benennen",
+          "Nutzungsgrenzen aufnehmen"
+        ]
+      },
+      {
+        "title": "Zutritt und Termine abstimmen",
+        "text": "Für Kontrollgänge und begleitete Fachfirmentermine müssen Schlüssel, Zutrittsrechte und erreichbare Kontakte zusammenpassen. Besondere Zugangsregeln Ihres Betriebs werden vorab besprochen.",
+        "items": [
+          "Zutrittsberechtigte festlegen",
+          "Begleitung separat vereinbaren"
+        ]
+      },
+      {
+        "title": "Rückfragen sinnvoll bündeln",
+        "text": "Nutzermeldungen werden geprüft und an den zuständigen Kontakt zurückgegeben. Ein Defekt, ein Reinigungswunsch und ein zusätzlicher Auftrag werden dabei nicht gleich behandelt.",
+        "items": [
+          "Meldungsarten unterscheiden",
+          "Nächsten Schritt dokumentieren"
+        ]
+      }
+    ],
+    "planning": {
+      "title": "Vier Schnittstellen vor Auftragsbeginn klären.",
+      "intro": "Diese Übersicht hilft bei Gewerbeobjekten mit mehreren Ansprechpartnern. Sie setzt keine bestimmte Gebäudenutzung voraus.",
+      "headers": [
+        "Schnittstelle",
+        "Vor dem Start festhalten",
+        "Damit der Ablauf passt"
+      ],
+      "rows": [
+        [
+          "Nutzer und Verwaltung",
+          "Gemeinschaftsflächen und Nutzerflächen abgrenzen",
+          "Aufträge richtig zuordnen"
+        ],
+        [
+          "Zutritt",
+          "Berechtigungen und Schlüsselkontakt benennen",
+          "Vereinbarte Bereiche erreichen"
+        ],
+        [
+          "Fachfirma",
+          "Auftraggeber und Terminverantwortung bestimmen",
+          "Begleitung gezielt abstimmen"
+        ],
+        [
+          "Rückmeldung",
+          "Kontakt und gewünschte Angaben vereinbaren",
+          "Offene Entscheidungen erkennen"
+        ]
+      ],
+      "note": "Ihre bestehenden Betriebsregeln bleiben Grundlage der Abstimmung."
+    },
+    "detail": {
+      "title": "Kontrolle, Handgriff oder Fachauftrag?",
+      "text": "Eine beobachtete Störung kann unterschiedliche nächste Schritte benötigen. Wir unterscheiden die Zustandsmeldung von einer freigegebenen kleinen Hausmeisterarbeit und einem gesonderten Fachauftrag. Das erleichtert die Abstimmung im Gebäude.",
+      "points": [
+        "Beobachtung verständlich beschreiben",
+        "Freigegebene Aufgabe kenntlich machen",
+        "Fachbetrieb bei Spezialbedarf einbeziehen"
+      ],
+      "image": {
+        "src": "kundenbilder/leistungen/kleinreparatur_bohren.png",
+        "alt": "Mitarbeiter bei einer handwerklichen Kleinaufgabe",
+        "caption": "Einblick in handwerkliche Aufgaben am Objekt.",
+        "position": "50% 50%"
+      }
+    },
+    "processSteps": [
+      {
+        "title": "Nutzung beschreiben",
+        "text": "Sie nennen Objektart, Nutzergruppen und gemeinsame Bereiche. Vorhandene Zuständigkeitspläne helfen beim Einstieg."
+      },
+      {
+        "title": "Schnittstellen ordnen",
+        "text": "Wir besprechen Zugänge, Kontrollrhythmus und Meldungswege. Kleine Aufgaben und Fremdleistungen werden abgegrenzt."
+      },
+      {
+        "title": "Auftrag starten",
+        "text": "Nach Angebotsabstimmung werden Ansprechpartner und Startbedingungen festgehalten. Änderungen der Nutzung werden anschließend besprochen."
+      }
+    ],
+    "cost": {
+      "title": "Ein Angebot anhand der tatsächlichen Schnittstellen.",
+      "text": "Die Zahl der Bereiche allein beschreibt den Aufwand nicht. Zugangszeiten, getrennte Gebäudeteile und die vereinbarte Begleitung von Terminen fließen ebenfalls ein. Fachfirmenleistungen werden nicht als unbestimmter Bestandteil der Objektbetreuung eingerechnet.",
+      "factors": [
+        "Bereiche und Zahl der Zugänge",
+        "Häufigkeit vereinbarter Kontrollgänge",
+        "Zusätzliche Begleit- und Abstimmungsaufgaben"
+      ]
+    },
+    "faqs": [
+      {
+        "question": "Können wir einzelne Bereiche ausnehmen?",
+        "answer": "Ja. Benennen Sie vermietete, sensible oder bereits anderweitig betreute Flächen. Der Plan beschreibt die beauftragten Bereiche und die Zugänge, die dafür erforderlich sind."
+      },
+      {
+        "question": "Wer beauftragt nötige Reparaturen?",
+        "answer": "Die Zuständigkeit und eventuelle Freigabegrenzen werden vereinbart. Elektro-, Heizungs- und andere Facharbeiten sind gesondert mit geeigneten Betrieben abzustimmen; ein Kontrollgang ersetzt deren Leistung nicht."
+      },
+      {
+        "question": "Lässt sich die Betreuung später erweitern?",
+        "answer": "Wenn weitere Bereiche oder neue Nutzungen hinzukommen, besprechen wir Umfang, Zugang und Aufwand neu. Zusätzliche Aufgaben werden vereinbart, bevor sie regelmäßig übernommen werden."
+      },
+      {
+        "question": "Welche Angaben braucht ein Angebot für Hanau?",
+        "answer": "Hilfreich sind Objektart, gemeinsame Bereiche, Zugangsregeln und die gewünschte Betreuung. Nennen Sie außerdem den Ansprechpartner, der Aufgaben und Termine mit uns abstimmen kann."
+      }
+    ],
+    "inquiry": {
+      "title": "Betreuung Ihres Gewerbeobjekts besprechen.",
+      "text": "Beschreiben Sie Ihr Gebäude und die Schnittstellen im Alltag. Wir prüfen gemeinsam, welche Aufgaben und Abläufe sinnvoll beauftragt werden können.",
+      "checklist": [
+        "Objektart und gemeinschaftliche Bereiche",
+        "Zugangszeiten und vorhandene Zuständigkeitsregeln",
+        "Ansprechpartner für Auftrag und Meldungen"
+      ],
+      "topic": "Hausmeisterservice Hanau"
+    },
+    "guideSlugs": [
+      "objektkontrollen-richtig-dokumentieren"
+    ],
+    "relatedLinks": [
+      {
+        "label": "Objektbetreuung und Hausmeisteraufgaben",
+        "path": "/leistungen/objektpflege/"
+      },
+      {
+        "label": "Auch Reinigung in Hanau anfragen",
+        "path": "/einsatzgebiete/gebaeudereinigung-hanau/"
+      },
+      {
+        "label": "Objektkontrollen verständlich dokumentieren",
+        "path": "/blog/objektkontrollen-richtig-dokumentieren/"
+      },
+      {
+        "label": "Weitere Leistungen vor Ort",
+        "path": "/einsatzgebiete/"
+      }
+    ],
+    "serviceAreaText": "Perla’s hat seinen Unternehmenssitz in der Hauptstraße 1, 65843 Sulzbach (Taunus). Für Ihr Objekt in Hanau stimmen wir Leistungsumfang, Zugänge und mögliche Einsätze persönlich ab."
+  },
+  {
+    "slug": "hausmeisterservice-taunusstein",
+    "serviceSlug": "objektpflege",
+    "locality": "Taunusstein",
+    "region": "Taunusstein",
+    "primaryKeyword": "hausmeisterservice taunusstein",
+    "seoTitle": "Hausmeisterservice Taunusstein für WEG & Gewerbe | Perla’s",
+    "seoDescription": "Hausmeisterservice in Taunusstein: Kontrollbereiche, Meldungen und Freigaben für Ihr Objekt planen. Laufende Betreuung persönlich anfragen.",
+    "heading": "Hausmeisterservice Taunusstein.",
+    "updatedOn": "2026-11-16",
+    "ctaText": "Betreuung unverbindlich anfragen",
+    "heroImage": {
+      "src": "kundenbilder/leistungen/projektfotos/Objektbetreuung_Gepflegter_Eingangsbereich.jpg",
+      "alt": "Gepflegter Eingangsbereich einer Wohnimmobilie aus dem Perla’s Bildbestand",
+      "caption": "Gepflegte Bereiche rund um das Gebäude.",
+      "position": "50% 55%"
+    },
+    "heroPromise": "Klare Kontrollen. Verständliche Rückmeldungen.",
+    "heroHighlights": [
+      "Kontrollplan mit Bereichen",
+      "Meldungen nach Dringlichkeit",
+      "Fachaufträge getrennt abstimmen"
+    ],
+    "intro": "Eingänge, Nebenräume und Außenbereiche brauchen regelmäßige Aufmerksamkeit. Perla’s plant die Objektbetreuung in Taunusstein mit Eigentümern und Verwaltungen. Wir übernehmen vereinbarte Kontrollgänge und kleine Aufgaben und melden verständlich zurück, was erledigt ist und wo eine Entscheidung gebraucht wird.",
+    "scopeTitle": "Kontrollieren, einordnen und weitergeben.",
+    "scopeIntro": "Gehen Sie die vereinbarten Bereiche einzeln durch. Für jede Aufgabe werden Rhythmus, Rückmeldung und Zuständigkeit im Betreuungsplan festgehalten.",
+    "scopeCards": [
+      {
+        "title": "Kontrollbereiche beschreiben",
+        "text": "Ein Plan benennt die tatsächlich zugänglichen Innen- und Außenbereiche. Dabei wird festgelegt, worauf beim Kontrollgang geachtet werden soll und welche Bereiche ausgenommen sind.",
+        "items": [
+          "Bereiche mit Bezeichnung aufnehmen",
+          "Kontrollrhythmus passend abstimmen"
+        ]
+      },
+      {
+        "title": "Auffälligkeiten einordnen",
+        "text": "Ein beschädigter Gegenstand, eine Verschmutzung und ein unzugänglicher Raum brauchen unterschiedliche Rückmeldungen. Vereinbarte Kategorien helfen, die Beobachtung richtig weiterzugeben.",
+        "items": [
+          "Beobachtung von Bewertung trennen",
+          "Zuständigen Kontakt informieren"
+        ]
+      },
+      {
+        "title": "Erledigung nachvollziehbar halten",
+        "text": "Vereinbarte kleine Aufgaben können nach Freigabe ausgeführt werden. Offene Punkte bleiben als solche erkennbar; notwendige Fachprüfungen werden nicht als Hausmeisterkontrolle ausgegeben.",
+        "items": [
+          "Erledigte Tätigkeit kurz festhalten",
+          "Weiteren Auftrag kenntlich machen"
+        ]
+      }
+    ],
+    "planning": {
+      "title": "Ein Kontrollplan mit klarer Weitergabe.",
+      "intro": "Vier typische Meldungen zeigen, welche Angaben helfen und wer den nächsten Schritt übernimmt.",
+      "headers": [
+        "Beobachtung",
+        "Rückmeldung vorbereiten",
+        "Zuständigkeit klären"
+      ],
+      "rows": [
+        [
+          "Verschmutzung",
+          "Bereich und Umfang beschreiben",
+          "Regelauftrag oder Zusatzbedarf?"
+        ],
+        [
+          "Kleiner Defekt",
+          "Betroffenes Bauteil nennen",
+          "Handgriff bereits freigegeben?"
+        ],
+        [
+          "Zutritt nicht möglich",
+          "Raum und Zugangshindernis festhalten",
+          "Wer ermöglicht den Zugang?"
+        ],
+        [
+          "Technische Auffälligkeit",
+          "Beobachtung ohne Ferndiagnose melden",
+          "Geeigneten Fachbetrieb bestimmen"
+        ]
+      ],
+      "note": "Bei akuten Gefahren gelten die vereinbarten Meldewege."
+    },
+    "detail": {
+      "title": "Eine Meldung, die verständlich bleibt.",
+      "text": "Ordnen Sie Berichte nach Bereichen statt nach einzelnen Zurufen. Datum, Beobachtung und Bearbeitungsstand erleichtern den Überblick. Fotos können die Beschreibung ergänzen. So lässt sich gemeinsam entscheiden, welche Aufgabe als Nächstes angegangen wird.",
+      "points": [
+        "Bereich und Kontrolltermin nennen",
+        "Offene Entscheidung ausdrücklich markieren",
+        "Rückmeldung an passenden Kontakt richten"
+      ],
+      "image": {
+        "src": "kundenbilder/team/team_aussenbereich_01.png",
+        "alt": "Perla’s Mitarbeiterin bei einem Außeneinsatz",
+        "caption": "Menschen hinter der laufenden Objektbetreuung.",
+        "position": "50% 50%"
+      }
+    },
+    "processSteps": [
+      {
+        "title": "Objekt begehen",
+        "text": "Wir erfassen die gewünschten Kontrollbereiche und besprechen bekannte Auffälligkeiten sowie bereits bestehende Aufträge."
+      },
+      {
+        "title": "Meldewege festlegen",
+        "text": "Gemeinsam bestimmen wir Rhythmus, Kontakte und Freigaben. Facharbeiten werden als eigene Leistungen eingeordnet."
+      },
+      {
+        "title": "Plan anwenden",
+        "text": "Die vereinbarten Kontrollgänge starten nach Abstimmung. Wiederkehrende Rückfragen helfen, den Plan bei Bedarf anzupassen."
+      }
+    ],
+    "cost": {
+      "title": "Kontrollumfang und Rückmeldebedarf kalkulieren.",
+      "text": "Ein Angebot richtet sich nach Bereichen, Zugänglichkeit und Häufigkeit der Einsätze. Auch die gewünschte Dokumentation beeinflusst den Aufwand. Zusätzliche Reparaturen oder Fachprüfungen werden anhand eines eigenen, klar beschriebenen Bedarfs besprochen.",
+      "factors": [
+        "Umfang der vereinbarten Kontrollbereiche",
+        "Rhythmus und Zugangsmöglichkeiten am Objekt",
+        "Dokumentation und gesonderte Zusatzaufgaben"
+      ]
+    },
+    "faqs": [
+      {
+        "question": "Sind Kontrollgänge eine vollständige Mängelprüfung?",
+        "answer": "Nein. Sie betreffen den vereinbarten Sicht- und Betreuungsumfang. Verdeckte Schäden und vorgeschriebene technische Prüfungen erfordern bei entsprechendem Bedarf geeignete Fachleute und eigene Aufträge."
+      },
+      {
+        "question": "Wie werden dringende Auffälligkeiten gemeldet?",
+        "answer": "Kontaktpersonen und Meldewege werden vor Beginn vereinbart. Nennen Sie uns vorhandene Notfallregeln Ihres Objekts. Die Erreichbarkeitszeiten halten wir für den beauftragten Betreuungsumfang fest."
+      },
+      {
+        "question": "Was geschieht bei verschlossenen Kontrollbereichen?",
+        "answer": "Wir halten fest, welcher vereinbarte Bereich nicht zugänglich war. Mit der zuständigen Person wird geklärt, wie ein Zugang und ein gegebenenfalls erforderlicher neuer Termin abgestimmt werden."
+      },
+      {
+        "question": "Brauchen wir bereits eine fertige Checkliste?",
+        "answer": "Eine vorhandene Liste hilft, ist aber keine Voraussetzung. Für die erste Anfrage in Taunusstein genügen Objektart, gewünschte Bereiche und die bisherige Organisation Ihrer Betreuung."
+      }
+    ],
+    "inquiry": {
+      "title": "Einen passenden Kontrollplan anfragen.",
+      "text": "Nennen Sie die Bereiche und Ihren Bedarf an Rückmeldungen. Gemeinsam grenzen wir laufende Betreuung, kleine Aufgaben und zusätzliche Fachaufträge ab.",
+      "checklist": [
+        "Objektart und gewünschte Kontrollbereiche",
+        "Vorhandene Kontakte und Meldewege",
+        "Gewünschter Rhythmus der Betreuung"
+      ],
+      "topic": "Hausmeisterservice Taunusstein"
+    },
+    "guideSlugs": [
+      "objektkontrollen-richtig-dokumentieren"
+    ],
+    "relatedLinks": [
+      {
+        "label": "Gesamtes Angebot zur Objektbetreuung",
+        "path": "/leistungen/objektpflege/"
+      },
+      {
+        "label": "Auch Reinigung in Taunusstein anfragen",
+        "path": "/einsatzgebiete/gebaeudereinigung-taunusstein/"
+      },
+      {
+        "label": "Kontrollgänge sinnvoll dokumentieren",
+        "path": "/blog/objektkontrollen-richtig-dokumentieren/"
+      },
+      {
+        "label": "Leistungen und weitere Einsatzgebiete",
+        "path": "/einsatzgebiete/"
+      }
+    ],
+    "serviceAreaText": "Perla’s hat seinen Unternehmenssitz in der Hauptstraße 1, 65843 Sulzbach (Taunus). Für Ihr Objekt in Taunusstein stimmen wir Leistungsumfang, Zugänge und mögliche Einsätze persönlich ab."
+  },
+  {
+    "slug": "hausmeisterservice-ruesselsheim",
+    "serviceSlug": "objektpflege",
+    "locality": "Rüsselsheim am Main",
+    "region": "Rüsselsheim am Main",
+    "primaryKeyword": "hausmeisterservice rüsselsheim",
+    "seoTitle": "Hausmeisterservice Rüsselsheim für WEG & Gewerbe | Perla’s",
+    "seoDescription": "Hausmeisterservice in Rüsselsheim am Main: Betreuung mit Objektübersicht, klaren Zugängen und Aufgaben starten. Persönliches Angebot anfragen.",
+    "heading": "Hausmeisterservice Rüsselsheim am Main.",
+    "updatedOn": "2026-11-16",
+    "ctaText": "Betreuung unverbindlich anfragen",
+    "heroImage": {
+      "src": "kundenbilder/objekte/wohnanlage_modern_02.png",
+      "alt": "Wohngebäude mit gepflegten Gemeinschaftsflächen",
+      "caption": "Wohngebäude mit gemeinsam genutzten Bereichen.",
+      "position": "50% 50%"
+    },
+    "heroPromise": "Neue Betreuung. Geordnet von Anfang an.",
+    "heroHighlights": [
+      "Objektübersicht zum Start",
+      "Schlüssel sauber zuordnen",
+      "Bestehende Aufträge berücksichtigen"
+    ],
+    "intro": "Sie möchten die Betreuung Ihrer Immobilie neu organisieren? Perla’s übernimmt vereinbarte Hausmeisteraufgaben und Kontrollgänge in Rüsselsheim am Main. Wir ordnen Bereiche, Schlüssel und bestehende Aufträge vor dem Start. So beginnt Ihre neue Betreuung mit einem übersichtlichen Plan.",
+    "scopeTitle": "Den Betreuungsstart nachvollziehbar vorbereiten.",
+    "scopeIntro": "Eine geordnete Übergabe vermeidet unklare Erwartungen. Halten Sie Bestand, Zuständigkeiten und gewünschte Änderungen in einer gemeinsamen Übersicht fest.",
+    "scopeCards": [
+      {
+        "title": "Objekt und Aufgaben aufnehmen",
+        "text": "Eingänge, Nebenräume und Außenbereiche werden mit den gewünschten Aufgaben erfasst. Vorhandene Leistungsverzeichnisse zeigen, was bereits organisiert ist und welche Leistung neu abgestimmt werden soll.",
+        "items": [
+          "Bereiche und Aufgaben zuordnen",
+          "Vorhandene Aufträge berücksichtigen"
+        ]
+      },
+      {
+        "title": "Schlüssel und Kontakte ordnen",
+        "text": "Für jeden übergebenen Zugang wird ein Zweck festgelegt. Wir besprechen, welche Bereiche erreichbar sein müssen und wer bei Rückfragen oder geänderten Berechtigungen informiert wird.",
+        "items": [
+          "Übergabe nachvollziehbar dokumentieren",
+          "Ansprechpartner je Aufgabe benennen"
+        ]
+      },
+      {
+        "title": "Offene Punkte übergeben",
+        "text": "Bekannte Schäden und noch nicht beauftragte Arbeiten werden getrennt festgehalten. Ein offener Fachauftrag wird dadurch nicht versehentlich als bereits enthaltene Hausmeisterleistung behandelt.",
+        "items": [
+          "Bekannte Auffälligkeiten beschreiben",
+          "Freigaben und Zusatzbedarf klären"
+        ]
+      }
+    ],
+    "planning": {
+      "title": "Ihre Unterlagen für eine geordnete Übernahme.",
+      "intro": "Die Übersicht hilft sowohl bei einem Anbieterwechsel als auch beim erstmaligen Aufbau einer regelmäßigen Betreuung.",
+      "headers": [
+        "Unterlage",
+        "Hilfreicher Inhalt",
+        "Vor Start klären"
+      ],
+      "rows": [
+        [
+          "Objektübersicht",
+          "Bezeichnungen der gewünschten Bereiche",
+          "Welche Flächen gehören dazu?"
+        ],
+        [
+          "Aufgabenplan",
+          "Tätigkeiten und bisheriger Rhythmus",
+          "Was bleibt oder ändert sich?"
+        ],
+        [
+          "Zugangsübersicht",
+          "Schlüssel, Berechtigungen und Kontakte",
+          "Wer übergibt welchen Zugang?"
+        ],
+        [
+          "Liste offener Punkte",
+          "Bekannte Auffälligkeiten und Aufträge",
+          "Wer entscheidet über die Bearbeitung?"
+        ]
+      ],
+      "note": "Für den Erstkontakt ist keine vollständige Dokumentensammlung nötig."
+    },
+    "detail": {
+      "title": "Laufende Aufgaben sauber von Zusatzbedarf trennen.",
+      "text": "Nach der Übernahme helfen kurze Rückmeldungen, den tatsächlichen Bedarf einzuordnen. Vereinbarte Kontrollgänge und kleine Handgriffe bleiben vom gesonderten Reparaturauftrag getrennt. Für Elektro-, Heizungs- und andere Facharbeiten werden geeignete Betriebe benötigt.",
+      "points": [
+        "Regelmäßige Aufgabe im Plan wiederfinden",
+        "Abweichung mit betroffenem Bereich melden",
+        "Zusatzleistungen erst nach Abstimmung übernehmen"
+      ],
+      "image": {
+        "src": "kundenbilder/leistungen/entsorgung_kartonage.png",
+        "alt": "Perla’s Mitarbeiter beim Umgang mit Kartonagen",
+        "caption": "Abgestimmte Aufgaben rund um das Objekt.",
+        "position": "50% 50%"
+      }
+    },
+    "processSteps": [
+      {
+        "title": "Ausgangslage beschreiben",
+        "text": "Sie nennen Objektart, bisherige Betreuung und die wichtigsten Aufgaben. Vorhandene Unterlagen können den Einstieg ergänzen."
+      },
+      {
+        "title": "Übergabe abstimmen",
+        "text": "Gemeinsam ordnen wir Bereiche, Zugänge und offene Punkte. Daraus entsteht ein konkreter Leistungsplan."
+      },
+      {
+        "title": "Betreuung beginnen",
+        "text": "Nach Angebotsfreigabe werden Übergabe und Start vereinbart. Erforderliche Anpassungen besprechen wir anhand der tatsächlichen Abläufe."
+      }
+    ],
+    "cost": {
+      "title": "Den Aufwand der laufenden Betreuung vergleichen.",
+      "text": "Vergleichbare Angebote beziehen sich auf dieselben Bereiche und Intervalle. Besondere Übergabeaufgaben und zusätzliche Handgriffe sollten einzeln beschrieben werden. So ist erkennbar, welcher Aufwand wiederkehrend anfällt und was nur zum Start benötigt wird.",
+      "factors": [
+        "Bereiche und wiederkehrende Tätigkeiten",
+        "Kontrollrhythmus und vereinbarte Rückmeldungen",
+        "Einmalige Übergabe und zusätzliche Aufgaben"
+      ]
+    },
+    "faqs": [
+      {
+        "question": "Können wir ohne vollständige Unterlagen anfragen?",
+        "answer": "Ja. Beginnen Sie mit Objektart, gewünschten Aufgaben und einem Kontakt. Welche Unterlagen für die weitere Abstimmung nötig sind, besprechen wir passend zu Ihrem Gebäude."
+      },
+      {
+        "question": "Müssen bestehende Dienstleister gewechselt werden?",
+        "answer": "Das ist nicht Voraussetzung. Nennen Sie uns laufende Aufträge und Ansprechpartner. Der neue Betreuungsplan soll Zuständigkeiten eindeutig ergänzen und vorhandene Leistungen nicht doppelt vorsehen."
+      },
+      {
+        "question": "Übernehmen Sie automatisch alle offenen Reparaturen?",
+        "answer": "Offene Arbeiten werden zunächst aufgenommen und eingeordnet. Kleinere geeignete Tätigkeiten brauchen eine Vereinbarung; Facharbeiten sind gesondert durch entsprechende Betriebe auszuführen."
+      },
+      {
+        "question": "Wie wird der Beginn der neuen Betreuung abgestimmt?",
+        "answer": "Wir besprechen gewünschten Beginn, Leistungsumfang und Zugänge gemeinsam. Nach Angebotsfreigabe und Klärung der Einsatzmöglichkeit halten wir Schlüsselübergabe, Ansprechpartner und Starttermin fest."
+      }
+    ],
+    "inquiry": {
+      "title": "Die Übernahme Ihrer Betreuung besprechen.",
+      "text": "Beschreiben Sie die Ausgangslage und die Aufgaben, die Sie künftig bündeln möchten. Vorhandene Unterlagen können Sie für das Gespräch bereithalten.",
+      "checklist": [
+        "Objektart und bisherige Organisation",
+        "Gewünschte Aufgaben und offene Punkte",
+        "Kontakt für Schlüssel und Übergabe"
+      ],
+      "topic": "Hausmeisterservice Rüsselsheim am Main"
+    },
+    "guideSlugs": [
+      "hausmeisterservice-sulzbach-weg-leistungen"
+    ],
+    "relatedLinks": [
+      {
+        "label": "Objektbetreuung und Hausmeisterleistungen",
+        "path": "/leistungen/objektpflege/"
+      },
+      {
+        "label": "Auch Reinigung in Rüsselsheim anfragen",
+        "path": "/einsatzgebiete/gebaeudereinigung-ruesselsheim/"
+      },
+      {
+        "label": "Betreuungsaufgaben für WEG festlegen",
+        "path": "/blog/hausmeisterservice-sulzbach-weg-leistungen/"
+      },
+      {
+        "label": "Weitere Leistungen und Einsatzgebiete",
+        "path": "/einsatzgebiete/"
+      }
+    ],
+    "serviceAreaText": "Perla’s hat seinen Unternehmenssitz in der Hauptstraße 1, 65843 Sulzbach (Taunus). Für Ihr Objekt in Rüsselsheim am Main stimmen wir Leistungsumfang, Zugänge und mögliche Einsätze persönlich ab."
+  },
+  {
+    "slug": "gebaeudereinigung-wiesbaden",
+    "serviceSlug": "gebaeudereinigung",
+    "locality": "Wiesbaden",
+    "region": "Wiesbaden",
+    "primaryKeyword": "gebäudereinigung wiesbaden",
+    "seoTitle": "Gebäudereinigung Wiesbaden: Büro & WEG | Perla’s",
+    "seoDescription": "Gebäudereinigung in Wiesbaden für Büros und Gemeinschaftsflächen: ein klares Leistungsverzeichnis und abgestimmte Intervalle. Jetzt Angebot anfragen.",
+    "heading": "Gebäudereinigung Wiesbaden.",
+    "updatedOn": "2026-11-16",
+    "ctaText": "Reinigungsumfang besprechen",
+    "heroImage": {
+      "src": "kundenbilder/leistungen/gebaeudereinigung_flur.png",
+      "alt": "Perla’s Mitarbeiter bei der Reinigung eines Flurbereichs",
+      "caption": "Gebäudereinigung im Einsatz.",
+      "position": "50% 50%"
+    },
+    "heroPromise": "Saubere Räume. Ein nachvollziehbarer Auftrag.",
+    "heroHighlights": [
+      "Flächen einzeln benennen",
+      "Intervalle passend festlegen",
+      "Zusatzarbeiten getrennt vereinbaren"
+    ],
+    "intro": "Saubere Büros und gepflegte Gemeinschaftsflächen: Perla’s plant Ihre regelmäßige Gebäudereinigung in Wiesbaden. Wir erfassen Räume, Aufgaben und den passenden Rhythmus in einem verständlichen Leistungsverzeichnis. So erhalten Sie ein Angebot, das sich am tatsächlichen Bedarf Ihrer Immobilie orientiert.",
+    "scopeTitle": "Den Reinigungsumfang Raum für Raum festlegen.",
+    "scopeIntro": "Stellen Sie zuerst zusammen, welche Flächen dazugehören. Danach werden Tätigkeiten, Materialien und gewünschte Reinigungsintervalle gemeinsam eingeordnet.",
+    "scopeCards": [
+      {
+        "title": "Verkehrs- und Gemeinschaftsflächen",
+        "text": "Treppen, Podeste und Eingänge werden mit den gewünschten Aufgaben erfasst. Auch erreichbare Handläufe und weitere vereinbarte Oberflächen gehören ausdrücklich in die Beschreibung.",
+        "items": [
+          "Bereiche eindeutig bezeichnen",
+          "Aufgaben pro Bereich nennen"
+        ]
+      },
+      {
+        "title": "Büros und Nebenräume",
+        "text": "Boden- und Oberflächenreinigung richten sich nach Nutzung und Freigabe. Sanitärbereiche und Teeküchen werden einzeln aufgeführt, damit unterschiedliche Aufwände sichtbar bleiben.",
+        "items": [
+          "Freigegebene Flächen festhalten",
+          "Raumarten getrennt aufnehmen"
+        ]
+      },
+      {
+        "title": "Ergänzungen gesondert planen",
+        "text": "Glas, Rahmen und einmalige Grundreinigungen können einen eigenen Umfang benötigen. Zugang, Material und gewünschtes Ergebnis werden vor einer entsprechenden Beauftragung geprüft.",
+        "items": [
+          "Zusatzarbeiten konkret beschreiben",
+          "Geeignete Verfahren abstimmen"
+        ]
+      }
+    ],
+    "planning": {
+      "title": "Vier Angaben für ein vergleichbares Leistungsverzeichnis.",
+      "intro": "Mit derselben Ausgangsbeschreibung lassen sich mehrere Angebote nach ihrem tatsächlichen Umfang statt nur nach einer Gesamtsumme betrachten.",
+      "headers": [
+        "Angabe",
+        "Konkret beschreiben",
+        "Im Angebot wiederfinden"
+      ],
+      "rows": [
+        [
+          "Bereich",
+          "Raumart, Fläche und Bodenbelag",
+          "Welche Räume sind enthalten?"
+        ],
+        [
+          "Tätigkeit",
+          "Bodenpflege und vereinbarte Oberflächen",
+          "Welche Arbeit wird ausgeführt?"
+        ],
+        [
+          "Intervall",
+          "Nutzungstage und gewünschter Rhythmus",
+          "Wie oft wird gereinigt?"
+        ],
+        [
+          "Ergänzung",
+          "Glas oder Grundreinigung separat",
+          "Welche Zusatzposition gehört dazu?"
+        ]
+      ],
+      "note": "Eine vorhandene Liste wird beim Objekttermin abgeglichen."
+    },
+    "detail": {
+      "title": "Rückfragen auf eine konkrete Leistung beziehen.",
+      "text": "Eine Rückmeldung lässt sich leichter prüfen, wenn der betroffene Bereich im Leistungsverzeichnis steht. Benennen Sie Ort, Beobachtung und den vereinbarten Reinigungsumfang. Dann klären wir, ob eine Nacharbeit oder eine Anpassung zu besprechen ist.",
+      "points": [
+        "Betroffenen Raum eindeutig nennen",
+        "Vereinbarte Tätigkeit als Bezug nutzen",
+        "Änderungswunsch vom Ausführungsfehler unterscheiden"
+      ],
+      "image": {
+        "src": "kundenbilder/objekte/wohnanlage_eingang_02.png",
+        "alt": "Gemeinschaftlicher Eingangsbereich einer Wohnanlage",
+        "caption": "Gemeinschaftsflächen passend zum Objekt planen.",
+        "position": "50% 50%"
+      }
+    },
+    "processSteps": [
+      {
+        "title": "Flächen beschreiben",
+        "text": "Sie nennen Raumarten und gewünschten Rhythmus. Eine vorhandene Bereichsliste oder ein bisheriger Plan hilft beim Einstieg."
+      },
+      {
+        "title": "Umfang abstimmen",
+        "text": "Wir klären Materialien, Aufgaben und Zugänge. Ergänzende Arbeiten werden als eigene Positionen eingeordnet."
+      },
+      {
+        "title": "Reinigung vereinbaren",
+        "text": "Angebot, Termine und Rückmeldeweg werden abgestimmt. Nach Freigabe richtet sich die Ausführung nach dem vereinbarten Plan."
+      }
+    ],
+    "cost": {
+      "title": "Wovon hängen die Reinigungskosten ab?",
+      "text": "Raumaufteilung, Materialien und Nutzung beeinflussen den Aufwand ebenso wie die Fläche. Ein Angebot benennt Aufgaben und Häufigkeiten. Für zusätzliche Glas- oder Grundreinigungsarbeiten werden geeigneter Umfang und Preis gesondert abgestimmt.",
+      "factors": [
+        "Flächen, Raumarten und Bodenbeläge",
+        "Tätigkeiten und gewünschte Reinigungsintervalle",
+        "Zugang sowie gesonderte Ergänzungsarbeiten"
+      ]
+    },
+    "faqs": [
+      {
+        "question": "Ist ein vorhandenes Leistungsverzeichnis erforderlich?",
+        "answer": "Nein. Eine Liste der Räume und gewünschten Aufgaben reicht für den Einstieg. Wir gleichen sie mit den tatsächlichen Flächen und deren Nutzung ab."
+      },
+      {
+        "question": "Was unterscheidet Unterhalts- und Grundreinigung?",
+        "answer": "Unterhaltsreinigung umfasst wiederkehrend vereinbarte Arbeiten. Eine Grundreinigung behandelt einen gesonderten intensiveren Bedarf. Vorher werden geeignete Materialien, Verfahren und das gewünschte Ergebnis besprochen."
+      },
+      {
+        "question": "Gilt ein Büroplan auch für Treppenhäuser?",
+        "answer": "Die Tätigkeiten und Nutzung unterscheiden sich. Deshalb werden Treppen, Eingänge, Büros und Sanitärbereiche einzeln beschrieben, auch wenn sie später zu einem Auftrag gehören."
+      },
+      {
+        "question": "Wie helfen wir bei einer genauen Kalkulation?",
+        "answer": "Nennen Sie Standort, Flächen, Raumarten und gewünschten Rhythmus. Für Ihr Wiesbadener Objekt sind außerdem Zugang und gesonderte Reinigungswünsche hilfreich; ein Flächenpreis allein bildet den Umfang nicht ab."
+      }
+    ],
+    "inquiry": {
+      "title": "Ihren Reinigungsumfang konkret beschreiben.",
+      "text": "Nennen Sie die Räume und gewünschten Aufgaben. Wir besprechen, welche Angaben noch fehlen und wie ein verständliches Angebot aufgebaut werden kann.",
+      "checklist": [
+        "Raumarten, Fläche und Bodenbeläge",
+        "Gewünschte Tätigkeiten und Reinigungsrhythmus",
+        "Zugang sowie eventuelle Zusatzarbeiten"
+      ],
+      "topic": "Gebäudereinigung Wiesbaden"
+    },
+    "guideSlugs": [
+      "gebaeudereinigung-wiesbaden-erbenheim-leistungsverzeichnis"
+    ],
+    "relatedLinks": [
+      {
+        "label": "Gesamter Umfang der Gebäudereinigung",
+        "path": "/leistungen/gebaeudereinigung/"
+      },
+      {
+        "label": "Hausmeisterservice in Wiesbaden",
+        "path": "/einsatzgebiete/hausmeisterservice-wiesbaden/"
+      },
+      {
+        "label": "Leistungsverzeichnis am Beispiel Erbenheim",
+        "path": "/blog/gebaeudereinigung-wiesbaden-erbenheim-leistungsverzeichnis/"
+      },
+      {
+        "label": "Weitere Angebote und Einsatzgebiete",
+        "path": "/einsatzgebiete/"
+      }
+    ],
+    "serviceAreaText": "Perla’s hat seinen Unternehmenssitz in der Hauptstraße 1, 65843 Sulzbach (Taunus). Für Ihr Objekt in Wiesbaden stimmen wir Leistungsumfang, Zugänge und mögliche Einsätze persönlich ab."
+  },
+  {
+    "slug": "gebaeudereinigung-hanau",
+    "serviceSlug": "gebaeudereinigung",
+    "locality": "Hanau",
+    "region": "Hanau",
+    "primaryKeyword": "gebäudereinigung hanau",
+    "seoTitle": "Gebäudereinigung Hanau: Büro & WEG | Perla’s",
+    "seoDescription": "Gebäudereinigung in Hanau für genutzte Büro- und Gewerbeflächen: Reinigungszonen, Zugang und Zeiten gemeinsam planen. Jetzt Angebot anfragen.",
+    "heading": "Gebäudereinigung Hanau.",
+    "updatedOn": "2026-11-16",
+    "ctaText": "Reinigungsumfang besprechen",
+    "heroImage": {
+      "src": "kundenbilder/leistungen/gebaeudereinigung_flur.png",
+      "alt": "Mitarbeiter von Perla’s bei der Reinigung eines Innenbereichs",
+      "caption": "Reinigung von Innen- und Verkehrsflächen.",
+      "position": "50% 50%"
+    },
+    "heroPromise": "Sauberkeit, die zu Ihrem Betrieb passt.",
+    "heroHighlights": [
+      "Nutzung und Zonen erfassen",
+      "Zugänge vorher klären",
+      "Änderungen gezielt weitergeben"
+    ],
+    "intro": "Saubere Büro- und Gewerbeflächen gehören zu einem guten Arbeitstag. Perla’s stimmt die Gebäudereinigung in Hanau auf Ihre Räume und Nutzungszeiten ab. Wir klären zugängliche Flächen, Aufgaben und Reinigungsintervalle – damit die Reinigung in Ihren Betriebsablauf passt.",
+    "scopeTitle": "Reinigung in den Gebäudealltag einordnen.",
+    "scopeIntro": "Erfassen Sie regelmäßig genutzte, zeitweise belegte und nur nach Freigabe zugängliche Räume getrennt. Daraus entstehen passende Reinigungsabläufe.",
+    "scopeCards": [
+      {
+        "title": "Arbeits- und Besprechungsräume",
+        "text": "Vereinbarte Böden und freigegebene Oberflächen erhalten einen Reinigungsumfang. Unterlagen und persönliche Gegenstände werden nicht als frei zugängliche Arbeitsfläche vorausgesetzt.",
+        "items": [
+          "Freie Oberflächen festlegen",
+          "Raumbelegung bei Planung berücksichtigen"
+        ]
+      },
+      {
+        "title": "Sanitär- und Aufenthaltsbereiche",
+        "text": "Wasch- und Küchenbereiche werden nach Nutzung und gewünschtem Rhythmus aufgenommen. Nachfüllaufgaben und Verbrauchsmaterial stehen nur nach ausdrücklicher Vereinbarung im Plan.",
+        "items": [
+          "Ausstattung und Aufgaben aufnehmen",
+          "Materialnachfüllung gesondert klären"
+        ]
+      },
+      {
+        "title": "Verkehrsflächen und Zugänge",
+        "text": "Flure und Eingänge bleiben im Plan erkennbar. Zugangsbeschränkungen, Türen und abgestimmte Reinigungszeiten werden berücksichtigt, statt einen ungehinderten Ablauf vorauszusetzen.",
+        "items": [
+          "Zugangsregelung vorab besprechen",
+          "Reinigungszeiten gemeinsam abstimmen"
+        ]
+      }
+    ],
+    "planning": {
+      "title": "Eine Zonenplanung für genutzte Räume.",
+      "intro": "Ordnen Sie Ihre Räume nach Zugang und Belegung. Das hilft, den Reinigungsauftrag mit den tatsächlichen Abläufen abzugleichen.",
+      "headers": [
+        "Zone",
+        "Vor der Reinigung klären",
+        "Änderung mitteilen"
+      ],
+      "rows": [
+        [
+          "Arbeitsraum",
+          "Welche Flächen sind freigegeben?",
+          "Belegung oder Flächennutzung ändert sich"
+        ],
+        [
+          "Besprechung",
+          "Welches Zeitfenster ist zugänglich?",
+          "Zusätzlicher Termin benötigt Abstimmung"
+        ],
+        [
+          "Sanitärbereich",
+          "Welche Tätigkeiten und Intervalle gelten?",
+          "Nutzung oder Ausstattung ändert sich"
+        ],
+        [
+          "Verkehrsfläche",
+          "Welche Wege und Türen gehören dazu?",
+          "Ein Zugang ist vorübergehend gesperrt"
+        ]
+      ],
+      "note": "Der vereinbarte Plan folgt Ihren zugänglichen Bereichen."
+    },
+    "detail": {
+      "title": "Änderungen am Ablauf eindeutig melden.",
+      "text": "Ein neu belegter Raum oder eine geänderte Zugangszeit kann den Reinigungsplan beeinflussen. Teilen Sie dem Ansprechpartner den betroffenen Bereich und die gewünschte Änderung mit. Zusätzliche Aufgaben werden vor ihrer regelmäßigen Ausführung abgestimmt.",
+      "points": [
+        "Raumbezeichnung im Plan verwenden",
+        "Änderung mit gewünschtem Termin benennen",
+        "Zusätzlichen Aufwand ausdrücklich vereinbaren"
+      ],
+      "image": {
+        "src": "kundenbilder/objekte/gewerbeobjekt_dach_02.png",
+        "alt": "Gebäude mit Außenbereichen als Beispiel für größere Immobilien",
+        "caption": "Objektbetreuung für gewerblich genutzte Gebäude.",
+        "position": "50% 50%"
+      }
+    },
+    "processSteps": [
+      {
+        "title": "Nutzung erfassen",
+        "text": "Wir besprechen Raumarten, Belegungszeiten und zugängliche Oberflächen. Bestehende Reinigungsregeln können als Ausgangspunkt dienen."
+      },
+      {
+        "title": "Ablauf vereinbaren",
+        "text": "Aufgaben, Intervalle und Zutritt werden festgehalten. Besondere Reinigungswünsche werden separat auf Eignung geprüft."
+      },
+      {
+        "title": "Rückmeldung organisieren",
+        "text": "Der vereinbarte Kontakt nimmt Hinweise auf. Abweichungen und Änderungen werden am beschriebenen Auftrag besprochen."
+      }
+    ],
+    "cost": {
+      "title": "Den tatsächlichen Reinigungsablauf kalkulieren.",
+      "text": "Neben Fläche und Aufgaben beeinflussen Raumaufteilung, Nutzung und Zugang den Aufwand. Besondere Zeitfenster sollten deshalb früh benannt werden. Einen geänderten Umfang besprechen wir gesondert, damit Ihr Angebot nachvollziehbar bleibt.",
+      "factors": [
+        "Raumarten, Materialien und Nutzung",
+        "Aufgaben und Häufigkeit der Reinigung",
+        "Zugangsbedingungen und abgestimmte Zeitfenster"
+      ]
+    },
+    "faqs": [
+      {
+        "question": "Ist Reinigung außerhalb der Betriebszeiten möglich?",
+        "answer": "Nennen Sie ein geeignetes Zeitfenster. Wir prüfen Zugang und Einsatzmöglichkeit für den gewünschten Umfang. Die tatsächlichen Tage und Zeiten werden vor Beginn vereinbart."
+      },
+      {
+        "question": "Was passiert mit belegten oder verschlossenen Räumen?",
+        "answer": "Der Umgang damit gehört in die Zugangsabsprache. Informieren Sie uns über abweichende Belegungen. Erforderliche Änderungen oder weitere Termine werden mit dem zuständigen Kontakt geklärt."
+      },
+      {
+        "question": "Werden empfindliche Flächen automatisch mitgereinigt?",
+        "answer": "Material und Freigabe werden vorab besprochen. Spezielle Oberflächen oder besondere Anforderungen brauchen eine gesonderte Eignungsprüfung und werden hier nicht pauschal als enthalten zugesagt."
+      },
+      {
+        "question": "Können einzelne zusätzliche Reinigungen angefragt werden?",
+        "answer": "Ja. Beschreiben Sie den Anlass und die betroffenen Räume. Grund- oder Übergabereinigung wird als eigener Bedarf besichtigt und nach Umfang sowie Einsatzmöglichkeit abgestimmt."
+      }
+    ],
+    "inquiry": {
+      "title": "Reinigung für Ihren Gebäudebetrieb anfragen.",
+      "text": "Beschreiben Sie die Nutzung Ihrer Räume in Hanau und geeignete Zugangszeiten. Gemeinsam ordnen wir die gewünschten Aufgaben einem klaren Plan zu.",
+      "checklist": [
+        "Raumarten und übliche Nutzungszeiten",
+        "Freigegebene Flächen und Zugangsregeln",
+        "Gewünschter Rhythmus und Zusatzbedarf"
+      ],
+      "topic": "Gebäudereinigung Hanau"
+    },
+    "guideSlugs": [
+      "gebaeudereinigung-im-laufenden-betrieb"
+    ],
+    "relatedLinks": [
+      {
+        "label": "Gebäude- und Büroreinigung im Überblick",
+        "path": "/leistungen/gebaeudereinigung/"
+      },
+      {
+        "label": "Hausmeisterservice in Hanau",
+        "path": "/einsatzgebiete/hausmeisterservice-hanau/"
+      },
+      {
+        "label": "Reinigung im laufenden Betrieb planen",
+        "path": "/blog/gebaeudereinigung-im-laufenden-betrieb/"
+      },
+      {
+        "label": "Weitere Leistungen und Einsatzgebiete",
+        "path": "/einsatzgebiete/"
+      }
+    ],
+    "serviceAreaText": "Perla’s hat seinen Unternehmenssitz in der Hauptstraße 1, 65843 Sulzbach (Taunus). Für Ihr Objekt in Hanau stimmen wir Leistungsumfang, Zugänge und mögliche Einsätze persönlich ab."
+  },
+  {
+    "slug": "gebaeudereinigung-taunusstein",
+    "serviceSlug": "gebaeudereinigung",
+    "locality": "Taunusstein",
+    "region": "Taunusstein",
+    "primaryKeyword": "gebäudereinigung taunusstein",
+    "seoTitle": "Gebäudereinigung Taunusstein: Büro & WEG | Perla’s",
+    "seoDescription": "Gebäudereinigung in Taunusstein für Treppenhäuser und Gemeinschaftsflächen: Aufgaben und Intervalle klar festhalten. Jetzt Reinigung anfragen.",
+    "heading": "Gebäudereinigung Taunusstein.",
+    "updatedOn": "2026-11-16",
+    "ctaText": "Reinigungsumfang besprechen",
+    "heroImage": {
+      "src": "kundenbilder/leistungen/projektfotos/Objektbetreuung_Gepflegter_Eingangsbereich.jpg",
+      "alt": "Gemeinschaftlicher Eingangsbereich einer Wohnimmobilie",
+      "caption": "Einblick in gemeinschaftlich genutzte Objektbereiche.",
+      "position": "50% 60%"
+    },
+    "heroPromise": "Gepflegte Gemeinschaftsflächen. Klare Absprachen.",
+    "heroHighlights": [
+      "Treppenhausbereiche benennen",
+      "Regelaufgaben sichtbar abgrenzen",
+      "Rückfragen konkret besprechen"
+    ],
+    "intro": "Ein gepflegtes Treppenhaus beginnt mit klaren Aufgaben. Perla’s reinigt vereinbarte Eingänge, Treppenhäuser und Gemeinschaftsflächen in Taunusstein. Gemeinsam mit Ihrer Verwaltung legen wir Bereiche und Intervalle fest. Sie wissen, was gereinigt wird und an wen Sie Rückfragen richten können.",
+    "scopeTitle": "Gemeinschaftsflächen übersichtlich im Plan führen.",
+    "scopeIntro": "Listen Sie Treppenhaus, Eingang und zusätzliche Räume einzeln auf. So kann die Verwaltung regelmäßige Aufgaben und Ergänzungswünsche nachvollziehbar erklären.",
+    "scopeCards": [
+      {
+        "title": "Stufen und Podeste",
+        "text": "Böden, Stufen und Podeste werden passend zu Material und Nutzung aufgenommen. Handläufe und weitere erreichbare Oberflächen gehören ausdrücklich in den vereinbarten Umfang.",
+        "items": [
+          "Geschosse und Bereiche benennen",
+          "Aufgaben nach Material abstimmen"
+        ]
+      },
+      {
+        "title": "Eingang und Kontaktflächen",
+        "text": "Eingangstür und vereinbarte Briefkastenbereiche werden getrennt beschrieben. Der Plan hält fest, welche Flächen regelmäßig bearbeitet und welche Ergänzungen gesondert angefragt werden.",
+        "items": [
+          "Erreichbare Flächen konkret festlegen",
+          "Glas und Rahmen getrennt betrachten"
+        ]
+      },
+      {
+        "title": "Nebenbereiche mit Vereinbarung",
+        "text": "Kellergänge oder Gemeinschaftsräume sind nicht allein durch ihre Lage eingeschlossen. Zugang und gewünschte Tätigkeiten werden aufgenommen, damit der Auftrag vollständig und eindeutig bleibt.",
+        "items": [
+          "Zusatzbereiche ausdrücklich aufnehmen",
+          "Zuständigen Zugangskontakt festhalten"
+        ]
+      }
+    ],
+    "planning": {
+      "title": "Ein Bereichsplan für die Hausverwaltung.",
+      "intro": "Mit dieser Vorlage können Aufgaben verständlich zugeordnet werden. Sie ist eine Planungshilfe, keine pauschale Leistungsliste für jedes Gebäude.",
+      "headers": [
+        "Bereich",
+        "Regelaufgabe beschreiben",
+        "Ergänzung abgrenzen"
+      ],
+      "rows": [
+        [
+          "Treppenhaus",
+          "Stufen, Podeste und gewünschte Oberflächen",
+          "Belag und besondere Verschmutzung prüfen"
+        ],
+        [
+          "Eingang",
+          "Vereinbarte Boden- und Kontaktflächen",
+          "Glas und Rahmen ausdrücklich aufnehmen"
+        ],
+        [
+          "Kellerzugang",
+          "Zugängliche Wege und gewünschte Tätigkeiten",
+          "Zusätzliche Räume einzeln benennen"
+        ],
+        [
+          "Gemeinschaftsraum",
+          "Raum, Nutzung und vereinbarter Rhythmus",
+          "Reinigung nach Sondernutzung besprechen"
+        ]
+      ],
+      "note": "Aufgaben und Häufigkeiten werden objektbezogen vereinbart."
+    },
+    "detail": {
+      "title": "Eine konkrete Rückmeldung hilft bei der Klärung.",
+      "text": "Benennen Sie bei einer Rückfrage das Geschoss, den Bereich und die betreffende Tätigkeit. Die Verwaltung kann den Hinweis am Plan einordnen. Wir besprechen, ob die Ausführung zu prüfen oder ein zusätzlicher Wunsch zu vereinbaren ist.",
+      "points": [
+        "Bereich statt allgemeinem Eindruck nennen",
+        "Regelaufgabe im Leistungsverzeichnis nachsehen",
+        "Zusätzlichen Bedarf ausdrücklich kennzeichnen"
+      ],
+      "image": {
+        "src": "kundenbilder/leistungen/gebaeudereinigung_flur.png",
+        "alt": "Perla’s Mitarbeiter bei der Reinigung eines Flurs",
+        "caption": "Einblick in unsere Reinigungsarbeit.",
+        "position": "50% 50%"
+      }
+    },
+    "processSteps": [
+      {
+        "title": "Bereiche erfassen",
+        "text": "Gemeinsam nehmen wir die gewünschten Flächen auf. Vorhandene Haus- und Reinigungspläne können dabei helfen."
+      },
+      {
+        "title": "Rhythmus festlegen",
+        "text": "Materialien, Nutzung und Zugänge werden besprochen. Der Auftrag benennt Regelaufgaben und ausdrücklich beauftragte Ergänzungen."
+      },
+      {
+        "title": "Ausführung abstimmen",
+        "text": "Nach Angebotsfreigabe stehen Termine und Kontakt fest. Rückfragen werden anhand der benannten Bereiche geklärt."
+      }
+    ],
+    "cost": {
+      "title": "Welche Angaben machen den Aufwand vergleichbar?",
+      "text": "Geschosse, Eingänge und Nebenräume wirken sich auf den Reinigungsaufwand aus. Entscheidend sind außerdem Materialien, Aufgaben und Rhythmus. Ein Angebot auf derselben Bereichsliste lässt erkennen, welche Zusatzleistungen getrennt berücksichtigt sind.",
+      "factors": [
+        "Eingänge, Geschosse und Nebenbereiche",
+        "Bodenbeläge und gewünschte Tätigkeiten",
+        "Reinigungsrhythmus und mögliche Zugänge"
+      ]
+    },
+    "faqs": [
+      {
+        "question": "Müssen wir die Fläche exakt ausmessen?",
+        "answer": "Für den Einstieg helfen Anzahl der Eingänge, Geschosse und gewünschte Bereiche. Welche Flächenangaben für ein belastbares Angebot noch nötig sind, klären wir bei der Abstimmung."
+      },
+      {
+        "question": "Sind Kellerräume und Fenster immer enthalten?",
+        "answer": "Nein. Zusätzliche Räume sowie Glas- und Rahmenflächen werden ausdrücklich aufgenommen. Der Auftrag soll zeigen, welche Bereiche und Tätigkeiten in welchem Rhythmus dazugehören."
+      },
+      {
+        "question": "Wie gehen wir mit zusätzlichen Verschmutzungen um?",
+        "answer": "Melden Sie Bereich und Anlass an den vereinbarten Kontakt. Wir prüfen, ob die Aufgabe zum Regelumfang gehört oder eine gesonderte Reinigung abgestimmt werden sollte."
+      },
+      {
+        "question": "Wie werden empfindliche Bodenbeläge berücksichtigt?",
+        "answer": "Wir stimmen die Reinigung auf Bodenbelag und Zustand ab. Nennen Sie bekannte Pflegehinweise und die gewünschten Flächen. Vor einer besonderen Behandlung klären wir die Eignung und den genauen Umfang."
+      }
+    ],
+    "inquiry": {
+      "title": "Einen Plan für Ihre Gemeinschaftsflächen anfragen.",
+      "text": "Beschreiben Sie Ihr Gebäude in Taunusstein und die gewünschten Reinigungsbereiche. Eine vorhandene Aufgabenliste kann die erste Abstimmung erleichtern.",
+      "checklist": [
+        "Zahl der Eingänge und Geschosse",
+        "Gemeinschaftsflächen und mögliche Nebenräume",
+        "Gewünschter Rhythmus und Zugangskontakt"
+      ],
+      "topic": "Gebäudereinigung Taunusstein"
+    },
+    "guideSlugs": [
+      "gebaeudereinigung-im-laufenden-betrieb"
+    ],
+    "relatedLinks": [
+      {
+        "label": "Leistungsumfang der Gebäudereinigung",
+        "path": "/leistungen/gebaeudereinigung/"
+      },
+      {
+        "label": "Hausmeisterservice in Taunusstein",
+        "path": "/einsatzgebiete/hausmeisterservice-taunusstein/"
+      },
+      {
+        "label": "Nutzung und Reinigungsablauf abstimmen",
+        "path": "/blog/gebaeudereinigung-im-laufenden-betrieb/"
+      },
+      {
+        "label": "Weitere Angebote und Einsatzgebiete",
+        "path": "/einsatzgebiete/"
+      }
+    ],
+    "serviceAreaText": "Perla’s hat seinen Unternehmenssitz in der Hauptstraße 1, 65843 Sulzbach (Taunus). Für Ihr Objekt in Taunusstein stimmen wir Leistungsumfang, Zugänge und mögliche Einsätze persönlich ab."
+  },
+  {
+    "slug": "gebaeudereinigung-ruesselsheim",
+    "serviceSlug": "gebaeudereinigung",
+    "locality": "Rüsselsheim am Main",
+    "region": "Rüsselsheim am Main",
+    "primaryKeyword": "gebäudereinigung rüsselsheim",
+    "seoTitle": "Gebäudereinigung Rüsselsheim: Büro & WEG | Perla’s",
+    "seoDescription": "Gebäudereinigung in Rüsselsheim am Main: laufende Reinigung sowie Grund- und Übergabereinigung passend zum Objekt besprechen. Jetzt Angebot anfragen.",
+    "heading": "Gebäudereinigung Rüsselsheim am Main.",
+    "updatedOn": "2026-11-16",
+    "ctaText": "Reinigungsumfang besprechen",
+    "heroImage": {
+      "src": "kundenbilder/leistungen/gebaeudereinigung_flur.png",
+      "alt": "Perla’s Mitarbeiter mit Reinigungsgerät in einem Innenbereich",
+      "caption": "Perla’s bei der Reinigung von Innenbereichen.",
+      "position": "50% 50%"
+    },
+    "heroPromise": "Regelmäßig sauber. Für die Übergabe bereit.",
+    "heroHighlights": [
+      "Anlass und Räume erfassen",
+      "Geeignete Verfahren abstimmen",
+      "Ergebnis und Umfang festhalten"
+    ],
+    "intro": "Regelmäßige Pflege oder einmalige Reinigung nach Renovierung und Nutzerwechsel: Perla’s bespricht Ihren Bedarf in Rüsselsheim am Main persönlich. Wir betrachten Räume, Materialien und Zustand vor dem Angebot. Laufende Unterhaltsreinigung und Grund- oder Übergabereinigung erhalten jeweils einen klaren Umfang.",
+    "scopeTitle": "Den Anlass der Reinigung klar benennen.",
+    "scopeIntro": "Unterscheiden Sie laufende Pflege, intensiveren Reinigungsbedarf und eine bevorstehende Übergabe. Diese Angaben helfen, den passenden Umfang zu bestimmen.",
+    "scopeCards": [
+      {
+        "title": "Laufende Unterhaltsreinigung",
+        "text": "Wiederkehrende Aufgaben für Büros, Treppenhäuser und Gemeinschaftsflächen werden mit Intervallen vereinbart. Flächen, die regelmäßig zugänglich sind, bilden dafür die Ausgangsliste.",
+        "items": [
+          "Wiederkehrende Räume und Tätigkeiten",
+          "Gewünschten Rhythmus klar festhalten"
+        ]
+      },
+      {
+        "title": "Grundreinigung nach Besichtigung",
+        "text": "Bei intensiverem Reinigungsbedarf werden Zustand und Material genauer betrachtet. Geeignete Böden und erreichbare Flächen erhalten einen eigenen Umfang statt einer pauschalen Ergebniszusage.",
+        "items": [
+          "Zustand und Material aufnehmen",
+          "Verfahren vor Ausführung abstimmen"
+        ]
+      },
+      {
+        "title": "Vorbereitung einer Übergabe",
+        "text": "Nach Renovierung oder Nutzerwechsel müssen Bereiche und gewünschter Zustand konkret beschrieben sein. Verbliebene Gegenstände, Zugänge und der Übergabetermin gehören in die Abstimmung.",
+        "items": [
+          "Gewünschte Räume einzeln benennen",
+          "Zugang und Übergabezeitpunkt besprechen"
+        ]
+      }
+    ],
+    "planning": {
+      "title": "Welcher Auftrag passt zu Ihrem Anlass?",
+      "intro": "Diese Entscheidungshilfe trennt laufende Pflege von einmaligem Bedarf. Der tatsächliche Reinigungsumfang wird für Ihr Objekt vereinbart.",
+      "headers": [
+        "Anlass",
+        "Vor der Anfrage beschreiben",
+        "Im Auftrag festhalten"
+      ],
+      "rows": [
+        [
+          "Regelmäßige Nutzung",
+          "Räume, Materialien und Nutzungsrhythmus",
+          "Wiederkehrende Tätigkeiten und Intervalle"
+        ],
+        [
+          "Intensiverer Bedarf",
+          "Zustand und betroffene Flächen",
+          "Geeignetes Verfahren und abgegrenzter Umfang"
+        ],
+        [
+          "Nach Renovierung",
+          "Erreichbare Bereiche und verbliebene Arbeiten",
+          "Zugang sowie abgestimmter Reinigungszeitpunkt"
+        ],
+        [
+          "Nutzerwechsel",
+          "Übergabebereiche und gewünschter Zustand",
+          "Konkrete Aufgaben vor dem Übergabetermin"
+        ]
+      ],
+      "note": "Schäden und nicht geeignete Oberflächen werden gesondert besprochen."
+    },
+    "detail": {
+      "title": "Das gewünschte Ergebnis gemeinsam beschreiben.",
+      "text": "Ein Reinigungsauftrag sollte benennen, welche Tätigkeiten auszuführen sind. Weisen Sie auf bekannte Beschädigungen und besondere Oberflächen hin. So werden bestehender Zustand und gewünschte Reinigung voneinander unterschieden, bevor ein geeignetes Vorgehen vereinbart wird.",
+      "points": [
+        "Bekannten Zustand vor Beginn festhalten",
+        "Material und Zugänglichkeit gemeinsam prüfen",
+        "Aufgaben statt pauschaler Ergebnisversprechen vereinbaren"
+      ],
+      "image": {
+        "src": "kundenbilder/objekte/wohnanlage_01.png",
+        "alt": "Wohnanlage mit gemeinschaftlich genutzten Außenbereichen",
+        "caption": "Gemeinschaftsflächen am Gebäude im Blick.",
+        "position": "50% 50%"
+      }
+    },
+    "processSteps": [
+      {
+        "title": "Anlass nennen",
+        "text": "Sie beschreiben, ob es um laufende Pflege, Renovierung oder Übergabe geht und welche Räume betroffen sind."
+      },
+      {
+        "title": "Fläche besichtigen",
+        "text": "Wir klären Material, Zustand und Zugang. Für Grund- und Übergabereinigung wird der konkrete Bedarf eingegrenzt."
+      },
+      {
+        "title": "Auftrag abstimmen",
+        "text": "Angebot, Tätigkeiten und Termin werden vereinbart. Ein anschließender regelmäßiger Reinigungsplan kann getrennt besprochen werden."
+      }
+    ],
+    "cost": {
+      "title": "Warum der Anlass für die Kalkulation zählt.",
+      "text": "Flächengröße allein macht eine Grundreinigung nicht mit laufender Unterhaltsreinigung vergleichbar. Zustand, Material und der gewünschte Umfang bestimmen den Aufwand. Noch laufende Arbeiten und eingeschränkte Zugänge werden deshalb früh besprochen.",
+      "factors": [
+        "Räume, Materialien und vorhandener Zustand",
+        "Abgegrenzte Aufgaben sowie geeignete Verfahren",
+        "Zugang und abgestimmter Übergabetermin"
+      ]
+    },
+    "faqs": [
+      {
+        "question": "Können wir eine einmalige Reinigung anfragen?",
+        "answer": "Ja. Beschreiben Sie Anlass, Räume und gewünschten Zustand. Für Grund- oder Übergabereinigung klären wir bei der Besichtigung, welche Arbeiten und Verfahren für die Fläche geeignet sind."
+      },
+      {
+        "question": "Ist jede Verschmutzung durch Reinigung entfernbar?",
+        "answer": "Das lässt sich nicht pauschal zusagen. Material, Zustand und Verschmutzung werden betrachtet. Vorhandene Schäden und besondere Anforderungen gehören ausdrücklich in die Abstimmung vor dem Auftrag."
+      },
+      {
+        "question": "Wann sollte nach Renovierungsarbeiten gereinigt werden?",
+        "answer": "Besprechen Sie den Stand der Arbeiten und den geplanten Zugang. Ein geeigneter Reinigungstermin wird mit dem gewünschten Umfang und den noch ausstehenden Tätigkeiten abgestimmt."
+      },
+      {
+        "question": "Kann danach eine laufende Betreuung folgen?",
+        "answer": "Wiederkehrende Reinigung kann separat angefragt werden. Wir nehmen dafür Räume, Aufgaben und Intervalle auf; aus einem einmaligen Übergabeauftrag entsteht kein automatischer Dauerauftrag."
+      }
+    ],
+    "inquiry": {
+      "title": "Ihren Reinigungsanlass persönlich besprechen.",
+      "text": "Nennen Sie Ihr Objekt in Rüsselsheim, den Anlass und die betroffenen Räume. Gemeinsam klären wir die nächsten Angaben für ein nachvollziehbares Angebot.",
+      "checklist": [
+        "Anlass und betroffene Räume",
+        "Bekannter Zustand und Bodenmaterialien",
+        "Zugang und gewünschter Übergabezeitraum"
+      ],
+      "topic": "Gebäudereinigung Rüsselsheim am Main"
+    },
+    "guideSlugs": [
+      "gebaeudereinigung-wiesbaden-erbenheim-leistungsverzeichnis"
+    ],
+    "relatedLinks": [
+      {
+        "label": "Gebäudereinigung und einmalige Ergänzungen",
+        "path": "/leistungen/gebaeudereinigung/"
+      },
+      {
+        "label": "Hausmeisterservice in Rüsselsheim",
+        "path": "/einsatzgebiete/hausmeisterservice-ruesselsheim/"
+      },
+      {
+        "label": "Einen vollständigen Reinigungsumfang beschreiben",
+        "path": "/blog/gebaeudereinigung-wiesbaden-erbenheim-leistungsverzeichnis/"
+      },
+      {
+        "label": "Weitere Leistungen und Einsatzgebiete",
+        "path": "/einsatzgebiete/"
+      }
+    ],
+    "serviceAreaText": "Perla’s hat seinen Unternehmenssitz in der Hauptstraße 1, 65843 Sulzbach (Taunus). Für Ihr Objekt in Rüsselsheim am Main stimmen wir Leistungsumfang, Zugänge und mögliche Einsätze persönlich ab."
+  },
+  {
+    "slug": "grundreinigung-frankfurt",
+    "serviceSlug": "gebaeudereinigung",
+    "locality": "Frankfurt am Main",
+    "region": "Frankfurt & Rhein-Main",
+    "guideSlugs": [
+      "gebaeudereinigung-im-laufenden-betrieb"
+    ],
+    "primaryKeyword": "grundreinigung frankfurt",
+    "seoTitle": "Grundreinigung Frankfurt für Büro & Gewerbe | Perla’s",
+    "seoDescription": "Grundreinigung in Frankfurt: Böden und vereinbarte Innenflächen intensiv reinigen lassen. Beläge, Umfang und Übergabeziel klären. Jetzt anfragen.",
+    "heading": "Grundreinigung Frankfurt.",
+    "heroPromise": "Wenn regelmäßige Reinigung nicht mehr reicht.",
+    "intro": "Manche Flächen brauchen mehr als die laufende Pflege. Perla’s bietet Grund- und Übergabereinigung für geeignete Innenflächen in Frankfurt an. Wir besichtigen Böden, Verschmutzung und Zugänge und legen den konkreten Umfang fest – für einen klar beschriebenen einmaligen Reinigungsauftrag.",
+    "heroHighlights": [
+      "Bodenbeläge und Zustand vor Ort prüfen",
+      "Einmaligen Umfang nachvollziehbar festlegen",
+      "Zugang und Reinigungstermin abstimmen"
+    ],
+    "ctaText": "Grundreinigung anfragen",
+    "updatedOn": "2026-11-16",
+    "heroImage": {
+      "src": "kundenbilder/leistungen/gebaeudereinigung_flur.png",
+      "alt": "Perla’s Mitarbeiter bei der Reinigung eines Innenbereichs",
+      "caption": "Einblick in unsere Reinigungsarbeit.",
+      "position": "50% 44%"
+    },
+    "scopeTitle": "Intensive Reinigung mit einem klaren Ziel.",
+    "scopeIntro": "Ein regelmäßiger Reinigungsplan und eine einmalige Grundreinigung lösen unterschiedliche Aufgaben. Wir beschreiben die benötigte Arbeit anhand Ihrer Fläche, statt nur einen Begriff oder eine Quadratmeterzahl zu übernehmen.",
+    "scopeCards": [
+      {
+        "title": "Bodenflächen intensiv reinigen",
+        "text": "Bodenbelag, Zustand und Art der Verschmutzung bestimmen das geeignete Vorgehen. Wir sehen uns die Fläche an und stimmen die Reinigungsaufgaben ab. Bekannte Pflegehinweise des Herstellers helfen bei der Vorbereitung.",
+        "items": [
+          "Material und vorhandenen Zustand aufnehmen",
+          "Zugängliche Flächen und Aufgaben benennen",
+          "Geeignetes Vorgehen vor Beginn abstimmen"
+        ]
+      },
+      {
+        "title": "Innenflächen nach Anlass planen",
+        "text": "Büro, Gemeinschaftsbereich oder Nebenraum: Nennen Sie uns die Bereiche, die eine intensivere Reinigung benötigen. Erreichbare Oberflächen und zusätzliche Aufgaben werden einzeln beschrieben, damit der einmalige Auftrag übersichtlich bleibt.",
+        "items": [
+          "Räume und gewünschte Arbeiten festhalten",
+          "Sanitär- und Nebenbereiche einzeln aufnehmen",
+          "Glas und weitere Zusatzarbeiten gesondert klären"
+        ]
+      },
+      {
+        "title": "Eine Übergabe vorbereiten",
+        "text": "Nach Renovierung oder Nutzerwechsel kommt es auf einen passenden Zeitpunkt an. Wir besprechen den Arbeitsstand, freie Flächen und das vereinbarte Übergabeziel. Zurückgelassene Gegenstände und laufende Arbeiten gehören in die Planung.",
+        "items": [
+          "Stand der Renovierung mitteilen",
+          "Freie Räume und Zugänge abstimmen",
+          "Übergabezeitraum und Aufgaben zusammen planen"
+        ]
+      }
+    ],
+    "planning": {
+      "title": "Grundreinigung oder Unterhaltsreinigung?",
+      "intro": "Diese Entscheidungshilfe erleichtert Ihre Anfrage. Beschreiben Sie den Anlass und den tatsächlichen Zustand, damit wir den passenden Auftrag mit Ihnen abstimmen können.",
+      "headers": [
+        "Ihr Bedarf",
+        "Hilfreiche Angaben",
+        "So wird der Auftrag klar"
+      ],
+      "rows": [
+        [
+          "Regelmäßige Pflege",
+          "Raumarten, Nutzung und gewünschte Reinigungstage",
+          "Wiederkehrende Aufgaben mit festem Intervall"
+        ],
+        [
+          "Intensiver Reinigungsbedarf",
+          "Belag, Zustand und betroffene Flächen",
+          "Einmaliger Umfang nach Besichtigung"
+        ],
+        [
+          "Nach Renovierung",
+          "Abgeschlossene Arbeiten und freie Bereiche",
+          "Geeigneter Zeitpunkt und konkrete Tätigkeiten"
+        ],
+        [
+          "Vor einer Übergabe",
+          "Räume, Zugang und vereinbarter Übergabezustand",
+          "Abgegrenzte Aufgaben vor dem Termin"
+        ]
+      ],
+      "note": "Grundreinigung ist eine Reinigungsleistung. Schäden oder erforderliche Reparaturen werden bei der Besichtigung gesondert besprochen."
+    },
+    "detail": {
+      "title": "Ein gutes Angebot beginnt an der Fläche.",
+      "text": "Zwei gleich große Räume können einen sehr unterschiedlichen Reinigungsaufwand haben. Fotos helfen bei einer ersten Einordnung, ersetzen bei unklarem Material oder Zustand aber keine Besichtigung. Zeigen Sie uns stark beanspruchte Stellen, vorhandene Pflegehinweise und Bereiche, die zum Termin frei sein werden.",
+      "image": {
+        "src": "kundenbilder/team/update-2026-09-23/mitarbeiter_reinigung_weiblich_01.png",
+        "alt": "Perla’s Mitarbeiterin mit Reinigungsgerät in einem Innenbereich",
+        "caption": "Persönlicher Kontakt für Ihren Reinigungsauftrag.",
+        "position": "50% 38%"
+      },
+      "points": [
+        "Bodenbelag und Herstellerhinweise bereithalten",
+        "Betroffene Stellen und gewünschte Räume benennen",
+        "Zugang und Vorbereitung gemeinsam abstimmen"
+      ]
+    },
+    "processSteps": [
+      {
+        "title": "Anlass und Fläche beschreiben",
+        "text": "Nennen Sie den Standort in Frankfurt, Raumarten, ungefähre Größe und den Anlass der Reinigung. Ein kurzer Überblick genügt für den Erstkontakt."
+      },
+      {
+        "title": "Zustand und Umfang ansehen",
+        "text": "Bei der Besichtigung klären wir Material, Verschmutzung und geeignete Aufgaben. Zugang und notwendige Vorbereitung werden dabei berücksichtigt."
+      },
+      {
+        "title": "Angebot und Termin vereinbaren",
+        "text": "Sie erhalten den abgegrenzten Leistungsumfang. Nach Abstimmung von Angebot und Einsatzmöglichkeit legen wir den Reinigungstermin fest."
+      }
+    ],
+    "cost": {
+      "title": "Was kostet eine Grundreinigung in Frankfurt?",
+      "text": "Entscheidend sind neben der Fläche auch Material, Verschmutzung, Raumaufteilung und Zugänglichkeit. Deshalb wird ein intensiver Reinigungsbedarf gesondert betrachtet. Im Angebot sollen Sie nachvollziehen können, welche Bereiche und Tätigkeiten vereinbart sind.",
+      "factors": [
+        "Flächen, Beläge und vorhandener Zustand",
+        "Erforderliche Tätigkeiten und erreichbare Bereiche",
+        "Vorbereitung, Zugang und gewünschter Zeitraum"
+      ]
+    },
+    "faqs": [
+      {
+        "question": "Was unterscheidet Grundreinigung von der laufenden Reinigung?",
+        "answer": "Unterhaltsreinigung umfasst wiederkehrende Pflegeaufgaben. Eine Grundreinigung betrifft einen abgegrenzten intensiveren Bedarf. Welche Bereiche und Arbeiten dazugehören, stimmen wir anhand von Zustand und Material ab."
+      },
+      {
+        "question": "Können wir eine einmalige Reinigung ohne Dauervertrag anfragen?",
+        "answer": "Ja. Grund- und Übergabereinigung kann als einzelner Bedarf angefragt werden. Nennen Sie Anlass, Räume und gewünschten Zeitraum. Eine spätere regelmäßige Reinigung wird bei Bedarf separat vereinbart."
+      },
+      {
+        "question": "Müssen Räume vor dem Termin leer sein?",
+        "answer": "Freie Flächen erleichtern den Zugang. Welche Möbel oder Gegenstände für den vereinbarten Umfang versetzt werden müssen und wer dies übernimmt, besprechen wir vorher. Benennen Sie auch Bereiche, die genutzt bleiben sollen."
+      },
+      {
+        "question": "Ist jede Bodenbehandlung Bestandteil einer Grundreinigung?",
+        "answer": "Der Auftrag umfasst die ausdrücklich vereinbarten Reinigungsarbeiten. Material und Zustand werden vorher geprüft. Schleifen, Reparieren oder andere besondere Behandlungen sind davon zu unterscheiden und werden hier nicht als enthalten zugesagt."
+      }
+    ],
+    "inquiry": {
+      "title": "Ihre Grundreinigung in Frankfurt besprechen.",
+      "text": "Beschreiben Sie die betroffenen Räume und den Anlass. Wir klären mit Ihnen, welche Angaben und welcher nächste Schritt für ein passendes Angebot benötigt werden.",
+      "checklist": [
+        "Raumarten und ungefähre Fläche",
+        "Bodenbelag und vorhandene Verschmutzung",
+        "Standort, Zugang und gewünschter Zeitraum"
+      ],
+      "topic": "Grundreinigung Frankfurt"
+    },
+    "serviceAreaText": "Perla’s kommt aus Sulzbach (Taunus). Für Ihren Reinigungsauftrag in Frankfurt stimmen wir Fläche, Zugang und Einsatzplanung persönlich mit Ihnen ab.",
+    "relatedLinks": [
+      {
+        "label": "Gebäudereinigung im Überblick",
+        "path": "/leistungen/gebaeudereinigung/"
+      },
+      {
+        "label": "Regelmäßige Büroreinigung Frankfurt",
+        "path": "/einsatzgebiete/bueroreinigung-frankfurt/"
+      },
+      {
+        "label": "Reinigung im laufenden Betrieb planen",
+        "path": "/blog/gebaeudereinigung-im-laufenden-betrieb/"
+      }
+    ]
   }
 ]

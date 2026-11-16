@@ -416,18 +416,7 @@ function staticHeader() {
 }
 
 function staticFooter() {
-  const navigation = [
-    ['Startseite', ''],
-    ['Facility Management', 'facility-management/'],
-    ['Leistungen', 'leistungen/'],
-    ['Einsatzgebiete', 'einsatzgebiete/'],
-    ['Über uns', 'ueber-uns/'],
-    ['Blog', 'blog/'],
-    ['Karriere', 'karriere/'],
-    ['Kontakt', 'kontakt/'],
-  ].map(([label, path]) => `<a href="${basePath}${path}">${label}</a>`).join('')
-
-  return `<footer class="seo-static-footer" id="seitenende"><div class="seo-static-footer__inner"><div class="seo-static-footer__brand"><a href="${basePath}" aria-label="Perla’s Objektbetreuung Startseite">${logoMarkup}</a><p>Facility Management und professionelle Objektbetreuung für Hausverwaltungen, Wohnanlagen, Gewerbeimmobilien und institutionelle Gebäude im Rhein-Main-Gebiet.</p></div><div class="seo-static-footer__contact"><h2>Direkt erreichbar.</h2><address>Hauptstraße 1, 65843 Sulzbach (Taunus)</address><a href="tel:+491776867145">0177 68 67 145</a><a href="mailto:mail@perlas.de">mail@perlas.de</a></div><nav class="seo-static-footer__nav" aria-label="Footer-Navigation">${navigation}</nav><nav class="seo-static-footer__legal" aria-label="Rechtliche Informationen"><a href="${basePath}impressum/">Impressum</a><a href="${basePath}datenschutz/">Datenschutz</a><a href="${basePath}datenschutz/#einwilligung">Informationen zu Cookies und Einwilligung</a></nav><p>© 2026 Perla’s Objektbetreuung GmbH &amp; Co. KG</p></div></footer>`
+  return siteFooterInitialMarkup
 }
 
 function notFoundMarkup() {
@@ -851,6 +840,38 @@ function buildPage({ title, description, url, markup, data, robots = pageRobots,
     .replace('<div id="root"></div>', `<div id="root">${markup}${staticFooter()}</div>`)
 }
 
+// Render the shared footer and designed landingpages from their browser components.
+// Middleware mode loads modules during the build without opening a network port.
+const frankfurtLanding = localLandings.find((landing) => landing.slug === 'hausmeisterservice-frankfurt')
+let siteFooterInitialMarkup = ''
+let frankfurtInitialMarkup = ''
+const commercialInitialMarkup = new Map()
+{
+  const renderer = await createServer({
+    configFile: false,
+    root: fileURLToPath(new URL('../', import.meta.url)),
+    mode: 'production',
+    base: basePath,
+    plugins: [react()],
+    server: { middlewareMode: true, watch: null, hmr: false, ws: false },
+    appType: 'custom',
+  })
+  try {
+    const { default: SiteFooter } = await renderer.ssrLoadModule('/src/SiteFooter.tsx')
+    siteFooterInitialMarkup = renderToStaticMarkup(createElement(SiteFooter, { staticMode: true }))
+    if (frankfurtLanding) {
+      const { default: FrankfurtLandingPage } = await renderer.ssrLoadModule('/src/FrankfurtLandingPage.tsx')
+      frankfurtInitialMarkup = renderToStaticMarkup(createElement(FrankfurtLandingPage, { page: frankfurtLanding, staticMode: true }))
+    }
+    const { default: CommercialLandingPage } = await renderer.ssrLoadModule('/src/CommercialLandingPage.tsx')
+    for (const page of commercialLandings) {
+      commercialInitialMarkup.set(page.slug, renderToStaticMarkup(createElement(CommercialLandingPage, { page, staticMode: true })))
+    }
+  } finally {
+    await renderer.close()
+  }
+}
+
 const homePage = buildPage({ ...homeSeo, markup: homeMarkup(), data: structuredData() })
 await writeFile(indexPath, homePage)
 await writeFile(`${distPath}404.html`, buildPage({
@@ -911,35 +932,6 @@ await writeFile(`${distPath}einsatzgebiete/index.html`, buildPage({
     description: regionsSeo.description,
   }),
 }))
-
-// Render the designed Frankfurt page from the same component visitors use.
-// Middleware mode loads modules during the build without opening a network port.
-const frankfurtLanding = localLandings.find((landing) => landing.slug === 'hausmeisterservice-frankfurt')
-let frankfurtInitialMarkup = ''
-const commercialInitialMarkup = new Map()
-if (frankfurtLanding || commercialLandings.length) {
-  const renderer = await createServer({
-    configFile: false,
-    root: fileURLToPath(new URL('../', import.meta.url)),
-    mode: 'production',
-    base: basePath,
-    plugins: [react()],
-    server: { middlewareMode: true, watch: null, hmr: false, ws: false },
-    appType: 'custom',
-  })
-  try {
-    if (frankfurtLanding) {
-      const { default: FrankfurtLandingPage } = await renderer.ssrLoadModule('/src/FrankfurtLandingPage.tsx')
-      frankfurtInitialMarkup = renderToStaticMarkup(createElement(FrankfurtLandingPage, { page: frankfurtLanding, staticMode: true }))
-    }
-    const { default: CommercialLandingPage } = await renderer.ssrLoadModule('/src/CommercialLandingPage.tsx')
-    for (const page of commercialLandings) {
-      commercialInitialMarkup.set(page.slug, renderToStaticMarkup(createElement(CommercialLandingPage, { page, staticMode: true })))
-    }
-  } finally {
-    await renderer.close()
-  }
-}
 
 await Promise.all(localLandings.map(async (landing) => {
   const targetPath = `${distPath}einsatzgebiete/${landing.slug}/`

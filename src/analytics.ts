@@ -35,6 +35,15 @@ const publicRoutes = new Set([
   'einsatzgebiete/gebaeudereinigung-eschborn/',
   'einsatzgebiete/hausmeisterservice-kelkheim/',
   'einsatzgebiete/tiefgaragenreinigung-frankfurt/',
+  'einsatzgebiete/hausmeisterservice-wiesbaden/',
+  'einsatzgebiete/gebaeudereinigung-wiesbaden/',
+  'einsatzgebiete/hausmeisterservice-hanau/',
+  'einsatzgebiete/gebaeudereinigung-hanau/',
+  'einsatzgebiete/hausmeisterservice-taunusstein/',
+  'einsatzgebiete/gebaeudereinigung-taunusstein/',
+  'einsatzgebiete/hausmeisterservice-ruesselsheim/',
+  'einsatzgebiete/gebaeudereinigung-ruesselsheim/',
+  'einsatzgebiete/grundreinigung-frankfurt/',
 ])
 
 type AnalyticsWindow = Window & {

@@ -25,7 +25,7 @@ function text(html = '') {
     }).replace(/\s+/g, ' ').trim()
 }
 function normalize(value) {
-  return value.normalize('NFKD').replace(/[\u0300-\u036f]/g, '').toLowerCase()
+  return String(value ?? '').normalize('NFKD').replace(/[\u0300-\u036f]/g, '').toLowerCase()
     .replace(/ß/g, 'ss').replace(/[^a-z0-9]+/g, ' ').trim()
 }
 function phraseIn(haystack, needle) {
@@ -44,11 +44,13 @@ function themePresent(row, mainText) {
   else if (/buroreinigung/.test(k)) aliases = ['buroreinigung']
   else if (/unterhaltsreinigung/.test(k)) aliases = ['unterhaltsreinigung']
   else if (/treppenhaus/.test(k)) aliases = ['treppenhausreinigung', 'treppenhaus']
+  else if (/grundreinigung|bodenreinigung|boden grundreinigung/.test(k)) aliases = ['grundreinigung', 'bodenreinigung']
   else aliases = ['gebaudereinigung', 'reinigungsfirma', 'reinigungsunternehmen']
   const locality = normalize(row.queryLocality).replace(/(?: am)? taunus$/, '')
   const localityVariants = locality.includes('main taunus') ? ['main taunus kreis', 'main taunus']
-    : locality.startsWith('frankfurt') ? ['frankfurt', 'frankfurt am main'] : [locality]
-  const hasLocality = localityVariants.some(value => phraseIn(body, value))
+    : locality.startsWith('frankfurt') ? ['frankfurt', 'frankfurt am main']
+    : /russelsheim|ruesselsheim/.test(locality) ? ['russelsheim', 'ruesselsheim', 'russelsheim am main', 'ruesselsheim am main'] : [locality]
+  const hasLocality = !locality || localityVariants.some(value => phraseIn(body, value))
   return aliases.some(alias => phraseIn(body, alias)) && hasLocality
 }
 
@@ -87,6 +89,7 @@ function readState(state, type, keyword) {
   return { status: state.status, checkedOn: date, evidence, label: labels[state.status] + (date ? ` (${date})` : '') }
 }
 async function inspectPage(url) {
+  if (url == null) return { exists: false, valid: false, title: '', h1: '', mainText: '', canonical: null }
   if (pageCache.has(url)) return pageCache.get(url)
   const parsed = new URL(url)
   if (parsed.origin !== 'https://perlas.de' || parsed.search || parsed.hash) throw new Error(`Unsupported target URL: ${url}`)
@@ -111,13 +114,23 @@ async function inspectPage(url) {
 const rows = []
 const stateByTarget = new Map()
 for (const item of registry.keywords) {
+  if (item.targetURL == null && item.scopeApprovalRequired !== true) {
+    throw new Error(`Missing target URL without an explicit scope approval requirement: ${item.keyword}`)
+  }
+  if (item.scopeApprovalRequired === true && item.targetURL != null) {
+    throw new Error(`Unconfirmed service must not have an advertised target URL: ${item.keyword}`)
+  }
   const publication = readState(item.publication, 'publication', item.keyword)
   const googleIndex = readState(item.googleIndex, 'googleIndex', item.keyword)
+  if (item.targetURL == null && (['live_verified', 'local_only_pending_push'].includes(publication.status)
+    || ['indexed', 'not_indexed'].includes(googleIndex.status))) {
+    throw new Error(`Target-specific publication/index evidence requires a target URL: ${item.keyword}`)
+  }
   const targetState = JSON.stringify({ publication, googleIndex })
-  if (stateByTarget.has(item.targetURL) && stateByTarget.get(item.targetURL) !== targetState) {
+  if (item.targetURL != null && stateByTarget.has(item.targetURL) && stateByTarget.get(item.targetURL) !== targetState) {
     throw new Error(`Conflicting publication/index evidence for target URL: ${item.targetURL}`)
   }
-  stateByTarget.set(item.targetURL, targetState)
+  if (item.targetURL != null) stateByTarget.set(item.targetURL, targetState)
   const page = await inspectPage(item.targetURL)
   const evidence = []
   if (phraseIn(page.title, item.keyword)) evidence.push('Title')
@@ -128,23 +141,27 @@ for (const item of registry.keywords) {
   // A useful existing topic can cover a wording variant without the exact phrase.
   // Missing verbatim wording alone is not an SEO gap or a reason for another URL.
   const themeCovered = evidence.includes('Thema')
-  const covered = page.valid && !item.ambiguousScope && !item.optionalUnbuiltPage && (exactPhrasePresent || themeCovered)
+  const covered = page.valid && !item.scopeApprovalRequired && !item.ambiguousScope && !item.optionalUnbuiltPage && (exactPhrasePresent || themeCovered)
   const implementation = !covered ? 'Offen' : item.newLocalPagePlanned ? 'Neu lokal umgesetzt' : 'Bestehende Seite vorhanden'
   rows.push({
     id: item.id, keyword: item.keyword, priority: item.priority,
     estimatedMonthlyVolume: item.estimatedMonthlyVolume, measurementStatus: item.measurementStatus,
     cpcUsd: item.cpcUsd, commercialIntent: item.commercialIntent, queryLocality: item.queryLocality,
     cluster: item.cluster, targetURL: item.targetURL, coverageEvidence: evidence.length ? evidence.join(' + ') : 'Keine',
+    scopeApprovalRequired: item.scopeApprovalRequired === true,
+    serviceApproval: item.scopeApprovalRequired ? 'Leistungsbestätigung ausstehend' : 'Leistungsumfang freigegeben',
+    targetLabel: item.targetURL == null ? 'Kein freigegebenes Angebot' : new URL(item.targetURL).pathname,
     exactPhrasePresent, thematicCoverageOnly: evidence.includes('Thema'), implementation,
     publication: publication.label, publicationStatus: publication.status, publicationCheckedOn: publication.checkedOn,
     googleIndex: googleIndex.label, googleIndexStatus: googleIndex.status, googleIndexCheckedOn: googleIndex.checkedOn, indexEvidence: googleIndex.evidence,
     sourcePeriod: item.sourcePeriod, measuredOn: item.measuredOn,
-    sourceTaskId: item.sourceTaskId, sourceURL: item.sourceId ? registry.sources[0].documentation : null,
+    sourceTaskId: item.sourceTaskId, sourceURL: item.sourceId ? registry.sources.find(source => source.id === item.sourceId)?.documentation ?? null : null,
     targetBuilt: page.exists, canonicalSelfReference: page.valid,
     ambiguity: item.ambiguousScope ? 'Orts-/Leistungsbegriff mehrdeutig' : '',
   })
 }
-rows.sort((a, b) => a.priority.localeCompare(b.priority) || (b.estimatedMonthlyVolume ?? -1) - (a.estimatedMonthlyVolume ?? -1) || a.keyword.localeCompare(b.keyword, 'de'))
+const priorityOrder = { P1: 1, P2: 2, P3: 3, Prüfen: 4 }
+rows.sort((a, b) => (priorityOrder[a.priority] ?? 5) - (priorityOrder[b.priority] ?? 5) || (b.estimatedMonthlyVolume ?? -1) - (a.estimatedMonthlyVolume ?? -1) || a.keyword.localeCompare(b.keyword, 'de'))
 const count = predicate => rows.filter(predicate).length
 const summary = {
   total: rows.length,
@@ -153,6 +170,8 @@ const summary = {
   open: count(row => row.implementation === 'Offen'),
   positiveVolume: count(row => row.measurementStatus === 'positive_estimate'),
   unknownVolume: count(row => row.measurementStatus === 'unknown'),
+  reportedZero: count(row => row.measurementStatus === 'reported_zero'),
+  scopeApprovalRequired: count(row => row.scopeApprovalRequired),
   notMeasured: count(row => row.measurementStatus === 'not_requested'),
   exactPhrase: count(row => row.exactPhrasePresent),
   themeOnly: count(row => row.thematicCoverageOnly),
@@ -162,12 +181,12 @@ const summary = {
   newLiveVerifiedPages: registry.newLocalPagePaths.filter(p => rows.some(row => row.targetURL === `https://perlas.de${p}` && row.publicationStatus === 'live_verified')).length,
   indexEvidenceTargets: new Set(rows.filter(row => ['indexed', 'not_indexed'].includes(row.googleIndexStatus)).map(row => row.targetURL)).size,
 }
-const headers = ['ID', 'Keyword', 'Priorität', 'Suchvolumen geschätzt / Monat', 'Messstatus', 'CPC USD', 'Suchabsicht (abgeleitet)', 'Ort im Suchbegriff', 'Cluster', 'Ziel-URL', 'Abdeckung im Build', 'Exakte Phrase vorhanden', 'Umsetzungsstatus', 'Veröffentlichung', 'Google-Indexierung', 'Datenzeitraum', 'Abfragedatum', 'Quellen-Task-ID', 'Quelle', 'Mehrdeutigkeit', 'Veröffentlichungsstatus Code', 'Veröffentlichung geprüft am', 'Indexstatus Code', 'Indexierung geprüft am', 'Indexierungsnachweis']
-const csvRows = rows.map(row => [row.id, row.keyword, row.priority, row.estimatedMonthlyVolume, row.measurementStatus, row.cpcUsd, row.commercialIntent, row.queryLocality, row.cluster, row.targetURL, row.coverageEvidence, row.exactPhrasePresent, row.implementation, row.publication, row.googleIndex, row.sourcePeriod, row.measuredOn, row.sourceTaskId, row.sourceURL, row.ambiguity, row.publicationStatus, row.publicationCheckedOn, row.googleIndexStatus, row.googleIndexCheckedOn, row.indexEvidence])
+const headers = ['ID', 'Keyword', 'Priorität', 'Suchvolumen geschätzt / Monat', 'Messstatus', 'CPC USD', 'Suchabsicht (abgeleitet)', 'Ort im Suchbegriff', 'Cluster', 'Ziel-URL', 'Abdeckung im Build', 'Exakte Phrase vorhanden', 'Umsetzungsstatus', 'Veröffentlichung', 'Google-Indexierung', 'Datenzeitraum', 'Abfragedatum', 'Quellen-Task-ID', 'Quelle', 'Mehrdeutigkeit', 'Veröffentlichungsstatus Code', 'Veröffentlichung geprüft am', 'Indexstatus Code', 'Indexierung geprüft am', 'Indexierungsnachweis', 'Leistungsfreigabe', 'Zielangebot', 'Leistungsbestätigung erforderlich', 'Nur thematisch abgedeckt']
+const csvRows = rows.map(row => [row.id, row.keyword, row.priority, row.estimatedMonthlyVolume, row.measurementStatus, row.cpcUsd, row.commercialIntent, row.queryLocality, row.cluster, row.targetURL, row.coverageEvidence, row.exactPhrasePresent, row.implementation, row.publication, row.googleIndex, row.sourcePeriod, row.measuredOn, row.sourceTaskId, row.sourceURL, row.ambiguity, row.publicationStatus, row.publicationCheckedOn, row.googleIndexStatus, row.googleIndexCheckedOn, row.indexEvidence, row.serviceApproval, row.targetLabel, row.scopeApprovalRequired, row.thematicCoverageOnly])
 const csv = '\uFEFF' + [headers, ...csvRows].map(row => row.map(value => `"${String(value ?? '').replaceAll('"', '""')}"`).join(',')).join('\n') + '\n'
 await fs.writeFile(path.join(root, 'docs/keyword-overview.csv'), csv)
 const displayVolume = row => row.estimatedMonthlyVolume === null ? row.measurementStatus === 'not_requested' ? 'nicht erhoben' : 'unbekannt' : String(row.estimatedMonthlyVolume)
-const md = `# Keyword-Übersicht\n\nRecherche: ${registry.researchDate}. Markt: Deutschland, Deutsch, Google ohne Suchpartner.\nSuchvolumen: geschätzter Monatsdurchschnitt November 2025 bis Oktober 2026. CPC: USD, Google Ads.\n\n## Stand der Umsetzung\n\n- ${summary.total} eindeutige Keywords; ${summary.positiveVolume} positive Schätzwerte, ${summary.unknownVolume} unbekannte Werte, ${summary.notMeasured} noch nicht erhoben.\n- ${summary.newLocal} Keywords sind einer neu lokal umgesetzten Seite zugeordnet; ${summary.existing} einer bestehenden Seite; ${summary.open} bleiben offen.\n- ${summary.exactPhrase} Begriffe stehen als exakte normalisierte Phrase in Title, H1 oder Hauptinhalt. ${summary.themeOnly} sind nur thematisch abgedeckt.\n- ${summary.newBuiltPages} von ${registry.newLocalPagePaths.length} neuen Zielseiten im lokalen Build vorhanden und mit selbstreferenzierendem Canonical geprüft.\n\nUmsetzung bezieht sich auf die zugeordnete Zielseite. Eine thematische Zuordnung ist keine Aussage, dass jede Keywordvariante wörtlich verwendet wird. Orts-/Leistungsvarianten mit unbekannter Nachfrage bleiben unbekannt; ähnliche Varianten werden nicht summiert. Ein vorhandenes allgemeines Leistungsthema deckt nicht automatisch eine eigenständige Ortsanfrage ab.\n\nVeröffentlichung und Google-Indexierung werden separat geführt. ${summary.liveVerifiedTargets} von ${summary.targetURLs} Ziel-URLs sind laut Registry live geprüft; ${summary.newLiveVerifiedPages} davon sind neue Angebotsseiten. Das Prüfdatum steht bei jeder Zuordnung. Für ${summary.indexEvidenceTargets} Ziel-URLs liegt ein datierter Indexierungsnachweis vor. Die Tabelle enthält keine privaten Search-Console-Leistungsdaten und keine Ranking- oder Abschlussgarantie.\n\n## Pflege\n\nDatenquelle: [Keyword-Registry](keyword-research-2026-11-16.json). Nach einem vollständigen Seitenbuild mit \`node scripts/build-keyword-overview.mjs\` neu erzeugen. CSV: [keyword-overview.csv](keyword-overview.csv). Veröffentlichungs- und Indexzustände werden mit Datum in der Registry gepflegt; zulässige Codes und Nachweise beschreibt [KEYWORD_WORKFLOW.md](KEYWORD_WORKFLOW.md). Die Auswertung prüft sichtbaren Hauptinhalt; Navigation und Footer zählen nicht als Bodyphrase.\n\nPriorität und Suchabsicht sind redaktionell abgeleitet. CPC/Anzeigenwettbewerb sind keine organische Keyword-Schwierigkeit. Die Quellen-Task-ID und Messstatus stehen für alle abgefragten Werte im CSV und in der Registry.\n\n## Alle Keywords\n\n| Keyword | Prio | Ø / Monat | CPC USD | Zielseite | Abdeckung | Umsetzung | Veröffentlichung | Indexierung |\n| --- | --- | ---: | ---: | --- | --- | --- | --- | --- |\n${rows.map(row => `| ${row.keyword} | ${row.priority} | ${displayVolume(row)} | ${row.cpcUsd === null ? 'unbekannt' : row.cpcUsd.toFixed(2)} | [${new URL(row.targetURL).pathname}](${row.targetURL}) | ${row.coverageEvidence} | ${row.implementation} | ${row.publication} | ${row.googleIndex} |`).join('\n')}\n\nQuelle der Suchmetriken: [DataForSEO Google Ads Search Volume](https://docs.dataforseo.com/v3/keywords_data/google_ads/search_volume/live/), Abfragen vom 16.11.2026. Ortsname im Suchbegriff bedeutet nicht, dass die Suchen aus diesem Ort stammen.\n`
+const md = `# Keyword-Übersicht\n\nRecherche: ${registry.researchDate}. Markt: Deutschland, Deutsch, Google ohne Suchpartner.\nSuchvolumen: geschätzter Monatsdurchschnitt November 2025 bis Oktober 2026. CPC: USD, Google Ads.\n\n## Stand der Umsetzung\n\n- ${summary.total} eindeutige Keywords; ${summary.positiveVolume} positive Schätzwerte, ${summary.unknownVolume} unbekannte Werte, ${summary.reportedZero} ausdrücklich gemeldete Nullwerte, ${summary.notMeasured} noch nicht erhoben.\n- ${summary.newLocal} Keywords sind einer neu lokal umgesetzten Seite zugeordnet; ${summary.existing} einer bestehenden Seite; ${summary.open} bleiben offen.\n- ${summary.scopeApprovalRequired} Keywords benötigen eine Leistungsbestätigung und haben bewusst keine Angebots-Zielseite. Sie bleiben offen.\n- ${summary.exactPhrase} Begriffe stehen als exakte normalisierte Phrase in Title, H1 oder Hauptinhalt. ${summary.themeOnly} sind nur thematisch abgedeckt.\n- ${summary.newBuiltPages} von ${registry.newLocalPagePaths.length} neuen Zielseiten im lokalen Build vorhanden und mit selbstreferenzierendem Canonical geprüft.\n\nUmsetzung bezieht sich auf die zugeordnete Zielseite. Eine thematische Zuordnung ist keine Aussage, dass jede Keywordvariante wörtlich verwendet wird. Orts-/Leistungsvarianten mit unbekannter Nachfrage bleiben unbekannt; ähnliche Varianten werden nicht summiert. Ein vorhandenes allgemeines Leistungsthema deckt nicht automatisch eine eigenständige Ortsanfrage ab.\n\nVeröffentlichung und Google-Indexierung werden separat geführt. ${summary.liveVerifiedTargets} von ${summary.targetURLs} Ziel-URLs sind laut Registry live geprüft; ${summary.newLiveVerifiedPages} davon sind neue Angebotsseiten. Das Prüfdatum steht bei jeder Zuordnung. Für ${summary.indexEvidenceTargets} Ziel-URLs liegt ein datierter Indexierungsnachweis vor. Die Tabelle enthält keine privaten Search-Console-Leistungsdaten und keine Ranking- oder Abschlussgarantie.\n\n## Pflege\n\nDatenquelle: [Keyword-Registry](keyword-research-2026-11-16.json). Nach einem vollständigen Seitenbuild mit \`node scripts/build-keyword-overview.mjs\` neu erzeugen. CSV: [keyword-overview.csv](keyword-overview.csv). Veröffentlichungs- und Indexzustände werden mit Datum in der Registry gepflegt; zulässige Codes und Nachweise beschreibt [KEYWORD_WORKFLOW.md](KEYWORD_WORKFLOW.md). Die Auswertung prüft sichtbaren Hauptinhalt; Navigation und Footer zählen nicht als Bodyphrase.\n\nPriorität und Suchabsicht sind redaktionell abgeleitet. CPC/Anzeigenwettbewerb sind keine organische Keyword-Schwierigkeit. Die Quellen-Task-ID und Messstatus stehen für alle abgefragten Werte im CSV und in der Registry.\n\nBegriffe ohne bestätigten Spezialleistungsumfang stehen als „Kein freigegebenes Angebot“ und „Leistungsbestätigung ausstehend“ in der Übersicht. Sie sind Recherchekandidaten. Die dokumentierten Rechercheabschnitte und tatsächlichen Task-Kosten stehen in der Registry.\n\n## Alle Keywords\n\n| Keyword | Prio | Ø / Monat | CPC USD | Zielseite | Abdeckung | Umsetzung | Veröffentlichung | Indexierung | Leistungsfreigabe |\n| --- | --- | ---: | ---: | --- | --- | --- | --- | --- | --- |\n${rows.map(row => `| ${row.keyword} | ${row.priority} | ${displayVolume(row)} | ${row.cpcUsd === null ? 'unbekannt' : row.cpcUsd.toFixed(2)} | ${row.targetURL ? `[${row.targetLabel}](${row.targetURL})` : row.targetLabel} | ${row.coverageEvidence} | ${row.implementation} | ${row.publication} | ${row.googleIndex} | ${row.serviceApproval} |`).join('\n')}\n\nQuelle der Suchmetriken: [DataForSEO Google Ads Search Volume](https://docs.dataforseo.com/v3/keywords_data/google_ads/search_volume/live/), Abfragen vom 16.11.2026. Ortsname im Suchbegriff bedeutet nicht, dass die Suchen aus diesem Ort stammen.\n`
 await fs.writeFile(path.join(root, 'docs/KEYWORD_OVERVIEW.md'), md)
 const temporary = path.join(root, '.tmp-keyword-workbook')
 await fs.mkdir(temporary, { recursive: true })

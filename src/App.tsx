@@ -29,6 +29,7 @@ import {
   type LucideIcon,
 } from 'lucide-react'
 import CookieConsent from './CookieConsent'
+import SiteFooter from './SiteFooter'
 import ResponsiveImage from './ResponsiveImage'
 import QuickContactForm from './QuickContactForm'
 import { recordContactClick, recordPhoneClick } from './analytics'
@@ -3460,67 +3461,7 @@ function LegalPage({ type }: { type: LegalPageType }) {
 }
 
 function Footer() {
-  return (
-    <footer className="footer" id="seitenende">
-      <div className="footer-grid" data-reveal="up">
-        <div className="footer-meta">
-          <h2>Direkt erreichbar.</h2>
-          <div className="contact-list">
-            <a href="tel:+491776867145"><Phone aria-hidden="true" /> 0177 68 67 145</a>
-            <a href="mailto:mail@perlas.de"><Mail aria-hidden="true" /> mail@perlas.de</a>
-            <p><MapPin aria-hidden="true" /> Hauptstraße 1, 65843 Sulzbach</p>
-          </div>
-          <p className="footer-description">
-            Facility Management und professionelle Objektbetreuung für Hausverwaltungen,
-            Wohnanlagen, Gewerbeimmobilien und institutionelle Gebäude im Rhein-Main-Gebiet.
-          </p>
-          <div className="legal-links">
-            <a href={IMPRINT_PATH}>Impressum</a>
-            <a href={PRIVACY_PATH}>Datenschutz</a>
-            <button type="button" onClick={() => window.dispatchEvent(new Event('perlas:open-cookie-settings'))}>
-              Cookie-Einstellungen
-            </button>
-          </div>
-          <p>© 2026 Perla’s Objektbetreuung GmbH &amp; Co. KG</p>
-        </div>
-
-        <nav className="footer-nav" aria-label="Footer-Navigation">
-          <a className="footer-logo" href={homeHref()} aria-label="Perla’s Objektbetreuung Startseite">
-            <img src={`${A}perlas-logo.svg`} width={1683} height={368} alt="Perla’s Objektbetreuung GmbH & Co. KG" />
-          </a>
-          {[
-            ['Facility Management', 'facility-management/'],
-            ['Leistungen', 'leistungen/'],
-            ['Einsatzgebiete', 'einsatzgebiete/'],
-            ['Über uns', 'ueber-uns/'],
-            ['Blog', 'blog/'],
-            ['Karriere', 'karriere/'],
-            ['Kontakt', 'kontakt/'],
-          ].map(([item, href]) => (
-            <a href={homeHref(href)} key={item}>
-              <span aria-hidden="true" /> {item}
-            </a>
-          ))}
-        </nav>
-
-        <div className="footer-side">
-          <div className="service-area">
-            <strong>Im Rhein-Main-Gebiet für Sie da</strong>
-            <span>Sulzbach · Frankfurt · Hofheim · Bad Soden · Eschborn · Umgebung</span>
-          </div>
-          <aside className="footer-trust" aria-label="Weitere Bewertungen und Profile">
-            <span className="footer-trust-eyebrow">Weitere Bewertungen &amp; Profile</span>
-            <p>Perla’s ist auch auf externen Plattformen sichtbar.</p>
-            <a href={TRUSTLOCAL_URL} target="_blank" rel="noreferrer">
-              <span><ShieldCheck aria-hidden="true" /> Trustlocal</span>
-              <strong>Profil ansehen <ArrowUpRight aria-hidden="true" /></strong>
-            </a>
-          </aside>
-        </div>
-
-      </div>
-    </footer>
-  )
+  return <SiteFooter />
 }
 
 export default function App() {

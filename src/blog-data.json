@@ -681,7 +681,7 @@
     "alt": "Reinigung eines Flurs mit maschineller Unterstützung",
     "readTime": "5 Min. Lesezeit",
     "published": "07.10.2026",
-    "updated": "07.10.2026",
+    "updated": "16.11.2026",
     "intro": "Bei einer Anfrage zur Gebäudereinigung in Wiesbaden-Erbenheim ist „alles sauber halten“ keine ausreichende Leistungsbeschreibung. Büros, Treppenhäuser und gemeinsam genutzte Räume brauchen unterschiedliche Aufgaben und Intervalle. Ein gutes Leistungsverzeichnis macht sichtbar, was regelmäßig erledigt wird, was separat beauftragt werden muss und wie Sie die Ausführung später prüfen können. Hier finden Sie eine Vorlage für die Vorbereitung Ihres eigenen Objekts.",
     "takeaways": [
       "Raumgruppen, Tätigkeiten und Intervalle gehören zusammen in den Reinigungsplan.",
@@ -1030,7 +1030,7 @@
     "image": "kundenbilder/objekte/wohnanlage_modern_02.png",
     "alt": "Moderne Wohnanlage als Beispiel für strukturierte Objektkontrollen",
     "readTime": "5 Min. Lesezeit",
-    "updated": "05.09.2026",
+    "updated": "16.11.2026",
     "intro": "Ein Kontrollgang ist nur dann hilfreich, wenn anschließend klar ist, was geprüft wurde und wo Handlungsbedarf besteht. Gute Rückmeldungen unterscheiden deshalb zwischen regelmäßigem Zustand, erledigten Kleinigkeiten und offenen Punkten.",
     "sections": [
       {
@@ -1121,4 +1121,3 @@
     ]
   }
 ]
-

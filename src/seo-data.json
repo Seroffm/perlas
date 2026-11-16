@@ -8,11 +8,11 @@
   "pages": {
     "regions": {
       "path": "einsatzgebiete/",
-      "title": "Lokale Reinigung & Objektbetreuung | Perla’s",
-      "description": "Objektbetreuung und Reinigung für Eschborn, Frankfurt und Umgebung: passende Leistungen und Ansprechpartner aus Sulzbach finden. Jetzt anfragen.",
+      "title": "Reinigung & Hausmeisterservice in Rhein-Main | Perla’s",
+      "description": "Hausmeisterservice und Reinigung in Frankfurt, Wiesbaden, Hanau, Rüsselsheim, Taunusstein und Main-Taunus: Leistungen ansehen und Ihr Objekt anfragen.",
       "schemaType": "CollectionPage",
       "heading": "Leistungen für Ihren Standort.",
-      "intro": "Sie suchen Unterstützung an einem bestimmten Standort? Hier finden Sie ausgewählte Kombinationen aus Leistung und Ort – von Objektbetreuung in Eschborn bis zu Reinigung und Winterdienst in Frankfurt. Perla’s hat seinen Unternehmensstandort in Sulzbach (Taunus). Einsatz, Leistungsumfang und Termine stimmen wir für Ihr konkretes Objekt ab."
+      "intro": "Finden Sie Hausmeisterservice und Reinigung für Ihren Standort: Frankfurt und Main-Taunus sowie Wiesbaden, Rüsselsheim am Main, Taunusstein und Hanau. Die Angebote zeigen konkrete Aufgaben, Planungshilfen und direkte Kontaktwege. Perla’s kommt aus Sulzbach (Taunus); Umfang, Zugang und Einsatztermine stimmen wir für Ihr Objekt persönlich ab."
     },
     "contact": {
       "path": "kontakt/",
@@ -67,32 +67,51 @@
     "heading": "Sulzbach und der Main-Taunus-Kreis.",
     "intro": "Unser Standort ist Sulzbach (Taunus). Von hier aus betreuen wir Immobilien im Main-Taunus-Kreis – etwa in Schwalbach, Bad Soden, Eschborn, Kelkheim und Hofheim – sowie im angrenzenden Frankfurt und Wiesbaden. Nennen Sie bei Ihrer Anfrage auch den Stadtteil: Einsatz und Leistungsumfang prüfen wir für Ihr konkretes Objekt.",
     "note": "Ob einzelne Aufgabe oder regelmäßige Betreuung: Nennen Sie uns den Standort, die Objektart und den gewünschten Umfang. Einsatzgebiet, Zugänglichkeit und Termine stimmen wir vor der Beauftragung ab.",
-    "areaServed": ["Sulzbach (Taunus)", "Main-Taunus-Kreis", "Rhein-Main-Gebiet"]
+    "areaServed": [
+      "Sulzbach (Taunus)",
+      "Main-Taunus-Kreis",
+      "Rhein-Main-Gebiet"
+    ]
   },
   "serviceGroups": [
     {
       "id": "reinigung-objektbetreuung",
       "title": "Reinigung & Objektbetreuung",
       "intro": "Gepflegte Innenbereiche und verlässliche Abläufe im täglichen Betrieb.",
-      "slugs": ["objektpflege", "gebaeudereinigung", "tiefgaragenreinigung"]
+      "slugs": [
+        "objektpflege",
+        "gebaeudereinigung",
+        "tiefgaragenreinigung"
+      ]
     },
     {
       "id": "aussenanlagen-baumpflege",
       "title": "Außenanlagen & Baumpflege",
       "intro": "Grünflächen, Bäume und Spielbereiche passend zu Nutzung und Jahreszeit betreuen.",
-      "slugs": ["gartenpflege", "baumpflege-baumfaellung", "spielplatzkontrolle-spielgeraetewartung"]
+      "slugs": [
+        "gartenpflege",
+        "baumpflege-baumfaellung",
+        "spielplatzkontrolle-spielgeraetewartung"
+      ]
     },
     {
       "id": "laufende-objektservices",
       "title": "Laufende Objektservices",
       "intro": "Wiederkehrende Aufgaben mit abgestimmten Intervallen und Zuständigkeiten verbinden.",
-      "slugs": ["wartung-instandhaltung", "muellmanagement", "winterdienst"]
+      "slugs": [
+        "wartung-instandhaltung",
+        "muellmanagement",
+        "winterdienst"
+      ]
     },
     {
       "id": "einrichtung-einzelauftraege",
       "title": "Einrichtung & Einzelaufträge",
       "intro": "Unterstützung bei Raumwechseln, internen Möbelumzügen und konkreten Aufgaben am Objekt.",
-      "slugs": ["buero-einrichtungsservice", "einzelauftrag"]
+      "slugs": [
+        "buero-einrichtungsservice",
+        "einzelauftrag"
+      ]
     }
   ]
 }

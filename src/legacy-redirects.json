@@ -90,6 +90,13 @@
       "status": "active-static-refresh",
       "preferredHttpStatus": 301,
       "reason": "Die neue eigenständige Kelkheim-Landingpage übernimmt den Hausmeisterservice für diesen Einsatzort und erhält die fachliche Suchintention der historischen Adresse."
+    },
+    {
+      "oldPath": "/hausmeisterservice-wiesbaden/",
+      "newPath": "/einsatzgebiete/hausmeisterservice-wiesbaden/",
+      "reason": "Eigenständiges Hausmeisterangebot für Wiesbaden ersetzt die historische Angebotsadresse.",
+      "status": "active-static-refresh",
+      "preferredHttpStatus": 301
     }
   ]
 }
