@@ -1,6 +1,6 @@
 # SEO und Landingpages: Umsetzung vom 16.11.2026
 
-Status: lokal auf `codex/perlas-growth` vorbereitet und geprüft. Veröffentlichung ist ein eigener Nachweis; die zuletzt geprüften GitHub-Zugänge hatten für `Seroffm/perlas` nur Leserechte.
+Status: am 16.11.2026 veröffentlicht und live geprüft. Der lokale GitHub-CLI-Zugang hatte Schreibrecht; veröffentlichter Quellenstand `6c963e1`, Pages-Release `8115f7d`. Alle 46 kanonischen URLs antworteten mit HTTP 200 und identischem Inhalt zum geprüften Build. Die Google-Indexierung ist ein gesonderter Befund.
 
 ## Recherchierte Angebote
 
@@ -47,8 +47,8 @@ npm run check
 npm run report:keywords
 ```
 
-Die Recherche-Registry ist die pflegbare Quelle; Markdown und CSV werden aus dem tatsächlichen Build erneuert. Wörtlicher Keywordnachweis, Themenabdeckung, Veröffentlichung und Google-Indexierung werden separat geführt. Private Search-Console-Daten und Arbeitsmappen liegen ausschließlich in ignorierten lokalen Dateien.
+Die Recherche-Registry ist die pflegbare Quelle; Markdown und CSV werden aus dem tatsächlichen Build erneuert. Wörtlicher Keywordnachweis, Themenabdeckung, Veröffentlichung und Google-Indexierung werden separat geführt. Statuscodes, Prüfdatum und Nachweise beschreibt [KEYWORD_WORKFLOW.md](KEYWORD_WORKFLOW.md). Private Search-Console-Leistungsdaten und Arbeitsmappen liegen ausschließlich in ignorierten lokalen Dateien.
 
-Die aktuelle Website wird von GitHub Pages aus Branch `gh-pages`, Verzeichnis `/`, mit `CNAME=perlas.de` veröffentlicht. Ein Quellcode-Push auf `main` allein veröffentlicht diese statische Ausgabe nicht. Nach Freigabe des Schreibzugriffs Quellen und geprüfte Branch-Ausgabe synchronisieren und neue URLs, Metadaten, Sitemap, Weiterleitungen und Formularanbindung live erneut prüfen. Erst dann die Veröffentlichungsfelder der Keyword-Registry aktualisieren. Indexierungsanfragen ersetzen weder Veröffentlichung noch Googles Auswahlentscheidung.
+Die Website wird von GitHub Pages aus Branch `gh-pages`, Verzeichnis `/`, mit `CNAME=perlas.de` veröffentlicht. Ein Quellcode-Push auf `main` allein veröffentlicht diese statische Ausgabe nicht. Der Pages-Lauf `43879512144` war erfolgreich. Die Live-Prüfung vom 16.11.2026 bestätigte alle 46 kanonischen Seiten, zwölf Altpfad-Dateien sowie Robots- und Sitemap-Ausgaben gegen den geprüften Build; auch die neuen JavaScript-/CSS-Dateien stimmten überein. Eine unbekannte URL lieferte HTTP 404 und `noindex`. Die Veröffentlichungsfelder der Keyword-Registry sind für die belegten Ziel-URLs mit `live_verified` und Prüfdatum aktualisiert. Indexzustände bleiben ohne gesonderten datierten Nachweis offen. Indexierungsanfragen ersetzen weder Veröffentlichung noch Googles Auswahlentscheidung.
 
 Begründung: [Google zu URL-Migrationen](https://developers.google.com/search/docs/crawling-indexing/site-move-with-url-changes), [Weiterleitungen](https://developers.google.com/search/docs/crawling-indexing/301-redirects), [Seitenindexierung](https://support.google.com/webmasters/answer/7440203?hl=de).

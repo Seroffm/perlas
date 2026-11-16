@@ -92,12 +92,13 @@ Die Einrichtung liegt auf `codex/perlas-setup`. Weitere Änderungen erfolgen auf
 passenden `codex/`-Branches. Vor Beginn `git status --short --branch` prüfen und bei
 sauberem Arbeitsstand `git fetch origin --prune` für neue Remote-Stände verwenden.
 
-Die am 16.11.2026 geprüften GitHub-Verbindungen und der lokale CLI-Zugang haben für
-dieses Repository ausschließlich Leserechte (`READ`). Laden und lokale Entwicklung
-funktionieren. Direkter Push in das Quellrepository benötigt Schreibrecht. Alternativ
-können Änderungen über einen eigenen Fork und Pull Request eingereicht werden;
-dieser Rückweg und ein Hosting-Deployment wurden hier nicht eingerichtet.
-Keine Zugangsdaten in diese Dokumentation aufnehmen.
+Die Einrichtung begann mit Leserechten. Für die Veröffentlichung wurde am
+16.11.2026 der lokale GitHub-CLI-Zugang mit Schreibrecht geprüft. Der veröffentlichte
+Quellenstand ist `6c963e1`; GitHub Pages veröffentlicht den gebauten Stand aus
+`gh-pages` bei `8115f7d`. Alle 46 kanonischen URLs wurden anschließend mit HTTP 200
+und identischem Inhalt gegen den geprüften Build bestätigt. Diese Live-Prüfung
+ist kein Nachweis der Google-Indexierung. Keine Zugangsdaten in diese Dokumentation
+aufnehmen. Die Pflege dieser Zustände beschreibt [KEYWORD_WORKFLOW.md](KEYWORD_WORKFLOW.md).
 
 ## Ausgangsstand für die Optimierung
 
