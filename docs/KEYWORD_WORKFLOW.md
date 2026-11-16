@@ -59,12 +59,17 @@ Diese Prüfung bestätigt keine Aufnahme in den Google-Index.
 
 Die zusätzlichen neun Zielseiten (Hausmeisterservice und Gebäudereinigung in
 Wiesbaden, Hanau, Taunusstein und Rüsselsheim sowie Grundreinigung Frankfurt)
-gehören noch nicht zu diesem belegten Live-Stand. Zusammen mit den vier vorherigen
-Angebotsseiten enthält `newLocalPagePaths` 13 Pfade. Der vollständige 55-Seiten-Build
-wurde lokal geprüft; die neun neuen Ziele führen `local_only_pending_push` mit
-Prüfdatum 16.11.2026. Erst eine eigene Prüfung nach der Veröffentlichung erlaubt
-`live_verified`. Die bereits belegten 17 Ziel-URLs der
-ursprünglichen Keywordzuordnungen behalten ihren datierten Live-Status.
+wurden anschließend ebenfalls am 16.11.2026 live geprüft. Pages-Release `efdfa5d`
+aus Quellenstand `ff36fa2`, erfolgreicher Lauf `43886695024`: alle 55 kanonischen
+URLs lieferten HTTP 200 und bytegleichen Inhalt zum geprüften Build. Die neun
+Zielseiten führen jetzt `live_verified`. Zusammen mit den vier vorherigen
+Angebotsseiten enthält `newLocalPagePaths` 13 belegte Live-Pfade. Die Registry hat
+26 zugeordnete Live-Ziel-URLs. Die bereits belegten 17 Ziel-URLs der ursprünglichen
+Keywordzuordnungen behalten ihren datierten Status; der vorherige Prüfstand bleibt
+unter `previousPublicationVerifications` dokumentiert. Die 96 Kandidaten ohne
+freigegebenes Angebot behalten ihr fehlendes Ziel und die ausstehende
+Leistungsbestätigung. Keine dieser Veröffentlichungsprüfungen bestätigt eine
+Google-Indexierung.
 
 ## Google-Indexierung
 

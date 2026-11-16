@@ -4,7 +4,7 @@ Die zweite Erweiterung ergänzt neun gezielte Angebote: jeweils Hausmeisterservi
 und Gebäudereinigung für Wiesbaden, Hanau, Taunusstein und Rüsselsheim am Main
 sowie Grundreinigung für Frankfurt. Zusammen mit der ersten Erweiterung sind
 heute 13 neue Angebotsseiten entstanden. Der gesamte Build umfasst 55 kanonische
-Seiten, davon 20 Orts-/Leistungsangebote. Status: lokal fertig; Live-Prüfung folgt.
+Seiten, davon 20 Orts-/Leistungsangebote. Status: am 16.11.2026 veröffentlicht und live geprüft.
 
 ## Auswahl anhand der Nachfrage
 
@@ -74,3 +74,7 @@ ein Performance-Prüfpunkt; eine konkrete Feld-CWV-Auswirkung wurde nicht gemess
 
 Veröffentlichung, Google-Indexierung und tatsächliche Anfragen sind gesonderte
 Nachweise. Der [Pflegeworkflow](KEYWORD_WORKFLOW.md) hält die Zustände getrennt.
+
+## Veröffentlichungsnachweis
+
+Die inhaltliche Erweiterung aus `ff36fa2` wurde im Pages-Release `efdfa5d` veröffentlicht. Lauf `43886695024` war erfolgreich. Alle 55 kanonischen Seiten antworteten mit HTTP 200 und identischem Inhalt zum geprüften Build; ebenso 13 Weiterleitungen, Robots, beide Sitemaps und 13 JavaScript-/CSS-Dateien. Eine unbekannte URL lieferte 404/noindex. Alle 13 gestalteten Angebotsseiten wurden lokal bei Desktop- und Mobilbreite geprüft, ohne horizontalen Seitenüberlauf und mit eigenem Formularthema. Die neue Live-Ansicht wurde zusätzlich im Browser kontrolliert. Die Veröffentlichung ist in der Keyword-Registry für alle 26 zugeordneten Ziel-URLs bestätigt; die Google-Indexierung bleibt separat nachzuweisen. Die rechtlichen Footerlinks erhalten Abstand zu den schwebenden Kontaktaktionen.
