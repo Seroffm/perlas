@@ -6,31 +6,37 @@ der Keywords zu Zielseiten. Nach einem vollständigen Seitenbuild erzeugt
 [CSV](keyword-overview.csv). Der Bericht prüft Title, H1 und sichtbaren Hauptinhalt
 im Build. Eine fehlende exakte Phrase verlangt nicht automatisch eine neue Seite.
 
-Die Registry enthält 393 eindeutige Begriffe mit dauerhaften IDs `KW-001` bis
-`KW-393`. Die ursprünglichen 197 Zeilen bleiben erhalten. Der Erweiterungsabschnitt
+Die Registry enthält 433 eindeutige Begriffe mit dauerhaften IDs `KW-001` bis
+`KW-433`. Davon gehören 337 zur aktiven Planung; 96 bleiben als Beispielthemen
+archiviert. Die ursprünglichen 197 Zeilen bleiben erhalten. Der Erweiterungsabschnitt
 vom 16.11.2026 ergänzt 196 neue Begriffe für vier Städte, Grundreinigung und
-ausdrücklich noch unbestätigte Spezialbodenleistungen. Die getrennten
+ursprünglich untersuchte Spezialbodenleistungen. Nach der Klarstellung, dass
+Marmor nur ein Beispiel für präzisere Suchanfragen war, ergänzen 40 weitere
+Auftragsbegriffe die tatsächlich vorhandenen Leistungen. Die getrennten
 Rechercheabschnitte, Mess-Tasks und tatsächlich gemeldeten Kosten stehen unter
 `provenance.researchSections`. Unbekannte Suchdaten bleiben `null`/`unknown`;
 ein ausdrücklicher Anbieterwert 0 hat den Status `reported_zero`. Ähnliche Varianten
 werden nicht summiert. CPC und Anzeigenwettbewerb sind Google-Ads-Metriken.
 
-## Leistungsbestätigung und fehlendes Ziel
+## Aktive Planung, archivierte Beispiele und fehlendes Ziel
 
-96 Spezialmaterial-/Verfahrensbegriffe sind Recherchekandidaten. Sie belegen kein
-angebotenes Verfahren. Allgemeine Grund-/Übergabereinigung bestätigt beispielsweise
-keine Fähigkeit zum Marmorschleifen, Polieren, Kristallisieren oder zur Behandlung
-jedes Bodenmaterials.
+96 Spezialmaterial-/Verfahrensbegriffe gehören nach der Klarstellung vom
+16.11.2026 nicht zum aktiven Umsetzungsplan. `researchDisposition:
+"excluded_example"` und `dispositionNote` dokumentieren den Grund. Die Messdaten
+bleiben nachvollziehbar erhalten. Es besteht dafür kein offener Klärungsbedarf;
+sie zählen nicht zum aktiven offenen Arbeitsvorrat. Allgemeine Grundreinigung
+belegt weiterhin keine speziellen Verfahren zur Steinbearbeitung.
 
 Solche Zeilen führen `scopeApprovalRequired: true`, `targetURL: null` und einen
-erläuternden `scopeApprovalNote`. Der Bericht zeigt „Offen“, „Kein freigegebenes
-Angebot“ und „Leistungsbestätigung ausstehend“. Es gibt keinen Link und keine
-erfundene Route. Zeilen ohne Ziel zählen nicht als Ziel-URL und werden nicht mit
+erläuternden `scopeApprovalNote`. Bei archivierten Beispielen zeigt der Bericht
+„Nicht eingeplant – Beispielthema“ und „Nicht im aktiven Leistungsplan“.
+Es gibt keinen Link und keine erfundene Route. Zeilen ohne Ziel zählen nicht als Ziel-URL und werden nicht mit
 anderen fehlenden Zielen zu einem gemeinsamen Veröffentlichungsbefund vermischt.
 
-Erst nach Bestätigung des tatsächlichen Leistungsumfangs und Prüfung geeigneter
-Seiteninhalte ein Ziel zuordnen, `scopeApprovalRequired` auf `false` setzen und
-den Hinweis aktualisieren. Danach den Bericht erneut erzeugen. Ohne Ziel ist das
+Nur bei einem später ausdrücklich gewünschten, belegten Spezialangebot die
+Planungsentscheidung auf `active` ändern, nach Prüfung geeigneter Seiteninhalte
+ein Ziel zuordnen, `scopeApprovalRequired` auf `false` setzen und den Hinweis
+aktualisieren. Danach den Bericht erneut erzeugen. Ohne Ziel ist das
 Freigabefeld Pflicht; ein nicht bestätigtes Angebot mit Ziel-URL stoppt den Bericht.
 Wörtliche Phrase und rein thematische Abdeckung bleiben von der Freigabe,
 Umsetzung, Veröffentlichung und Indexierung getrennt.
@@ -67,8 +73,8 @@ Angebotsseiten enthält `newLocalPagePaths` 13 belegte Live-Pfade. Die Registry 
 26 zugeordnete Live-Ziel-URLs. Die bereits belegten 17 Ziel-URLs der ursprünglichen
 Keywordzuordnungen behalten ihren datierten Status; der vorherige Prüfstand bleibt
 unter `previousPublicationVerifications` dokumentiert. Die 96 Kandidaten ohne
-freigegebenes Angebot behalten ihr fehlendes Ziel und die ausstehende
-Leistungsbestätigung. Keine dieser Veröffentlichungsprüfungen bestätigt eine
+freigegebenes Angebot behalten ihr fehlendes Ziel; sie sind inzwischen ausdrücklich
+als Beispielthemen aus der aktiven Planung genommen. Keine dieser Veröffentlichungsprüfungen bestätigt eine
 Google-Indexierung.
 
 ## Google-Indexierung

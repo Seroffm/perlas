@@ -21,11 +21,13 @@ liefert 40, Bodenreinigung Frankfurt 10. Diese Werte sind Suchanfragen, keine
 Klick- oder Anfrageprognosen; ähnliche Varianten nicht summieren. Details und
 Quellen-Task-IDs stehen in der [Keyword-Übersicht](KEYWORD_OVERVIEW.md).
 
-Die Recherche umfasst jetzt 393 eindeutige, abgefragte Keywords. 96 Begriffe zu
-Spezialmaterialien und Verfahren bleiben ohne Angebotsziel, bis die tatsächliche
-Leistung bestätigt ist. Darunter sind Marmor-/Natursteinreinigung und einzelne
-Verfahren zur Bodenaufbereitung. Die vorhandenen Unternehmensangaben belegen
-Grund- und Übergabereinigung; sie belegen diese Spezialverfahren nicht.
+Die Recherche umfasst inzwischen 433 eindeutige, abgefragte Keywords. Davon sind
+337 aktiv eingeplant. Die 96 Begriffe zu Spezialmaterialien und Verfahren bleiben
+ohne Angebotsziel als archivierte Beispielthemen erhalten: Marmor war ein Beispiel
+für präzisere Suchanfragen, kein gewünschtes Spezialangebot. Ein offener
+Klärungsbedarf besteht dafür nicht. Die ergänzenden 40 Auftragsbegriffe beziehen
+sich auf bestehende Leistungen. Details und Prioritäten stehen im
+[Plan für konkrete Auftragsbegriffe](PURCHASE_INTENT_PLAN.md).
 
 ## Eigenständiger Nutzen der neun Seiten
 

@@ -119,6 +119,6 @@ Neue Seiten, Keyword-Pflege und Veröffentlichungsstand:
 
 ## Zweite Erweiterung vom 16.11.2026
 
-Der neue Build umfasst 55 Seiten, 20 lokale Angebote, 13 Commercial-Landingpages und 13 genaue Weiterleitungen. `SiteFooter.tsx` wird im Browser und im initialen HTML gemeinsam gerendert; `footer-links.json` hält die direkten Leistungen und Orte. Die Keyword-Registry enthält 393 Begriffe, darunter 96 noch nicht bestätigte Spezialangebote ohne Ziel-URL. Sie werden nicht als vorhandene Leistung ausgegeben. Weitere Angaben: [REGIONAL_EXPANSION.md](REGIONAL_EXPANSION.md).
+Der neue Build umfasst 55 Seiten, 20 lokale Angebote, 13 Commercial-Landingpages und 13 genaue Weiterleitungen. `SiteFooter.tsx` wird im Browser und im initialen HTML gemeinsam gerendert; `footer-links.json` hält die direkten Leistungen und Orte. Die Keyword-Registry enthält 433 Begriffe: 337 aktiv eingeplant und 96 archivierte Beispielthemen ohne Ziel-URL. Die Beispiele sind kein offener Arbeitsauftrag und werden nicht als vorhandene Leistung ausgegeben. Weitere Angaben: [REGIONAL_EXPANSION.md](REGIONAL_EXPANSION.md) und [PURCHASE_INTENT_PLAN.md](PURCHASE_INTENT_PLAN.md).
 
 Die zweite Erweiterung wurde anschließend nach `main` und `gh-pages` veröffentlicht (inhaltlicher Quellenstand `ff36fa2`, Pages `efdfa5d`). Alle 55 URLs und veröffentlichten Assets wurden mit dem Build abgeglichen. Die lokale Git-Konfiguration verwendet den vorhandenen GitHub-CLI-Zugang; für die Pflege ist kein Token in Projektdateien nötig.
