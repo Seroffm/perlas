@@ -122,3 +122,20 @@ Neue Seiten, Keyword-Pflege und Veröffentlichungsstand:
 Der neue Build umfasst 55 Seiten, 20 lokale Angebote, 13 Commercial-Landingpages und 13 genaue Weiterleitungen. `SiteFooter.tsx` wird im Browser und im initialen HTML gemeinsam gerendert; `footer-links.json` hält die direkten Leistungen und Orte. Die Keyword-Registry enthält 433 Begriffe: 337 aktiv eingeplant und 96 archivierte Beispielthemen ohne Ziel-URL. Die Beispiele sind kein offener Arbeitsauftrag und werden nicht als vorhandene Leistung ausgegeben. Weitere Angaben: [REGIONAL_EXPANSION.md](REGIONAL_EXPANSION.md) und [PURCHASE_INTENT_PLAN.md](PURCHASE_INTENT_PLAN.md).
 
 Die zweite Erweiterung wurde anschließend nach `main` und `gh-pages` veröffentlicht (inhaltlicher Quellenstand `ff36fa2`, Pages `efdfa5d`). Alle 55 URLs und veröffentlichten Assets wurden mit dem Build abgeglichen. Die lokale Git-Konfiguration verwendet den vorhandenen GitHub-CLI-Zugang; für die Pflege ist kein Token in Projektdateien nötig.
+
+## Gezielte Leistungsangebote vom 16.11.2026
+
+Der nachfolgende Build enthält 59 kanonische Seiten: vier zusätzliche Angebote
+unter `/leistungen/treppenhausreinigung/`, `/leistungen/heckenschnitt/`,
+`/leistungen/winterdienst-gewerbe/` und `/leistungen/hausmeisterservice-gewerbe/`.
+`FocusedServiceLandingPage.tsx` wird im Browser und im statischen Build aus
+`focused-service-data.json` gerendert. Die vorhandenen Büro- und
+Tiefgaragen-Landingpages enthalten zusätzliche Angebots-/Kostenhilfen.
+
+Für neue gezielte Leistungsseiten müssen ihre expliziten Pfade zusätzlich in
+Analytics und der unabhängigen SEO-Routenprüfung freigegeben werden. Die bestehende
+regionale Sammlung bleibt bei 20 Angeboten; Leistungsübersicht, Elternleistungen
+und passender Footer führen zu den neuen Seiten. `newLocalPagePaths` in der
+Keyword-Registry ist ein historischer Feldname und enthält jetzt alle 17 heute
+erstellten Angebotsseiten, auch die vier neuen Leistungspfade. Veröffentlichung
+und Google-Indexierung bleiben separate Zustände.

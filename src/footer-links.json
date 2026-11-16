@@ -13,6 +13,10 @@
           "path": "leistungen/gebaeudereinigung/"
         },
         {
+          "label": "Treppenhausreinigung",
+          "path": "leistungen/treppenhausreinigung/"
+        },
+        {
           "label": "Grundreinigung Frankfurt",
           "path": "einsatzgebiete/grundreinigung-frankfurt/"
         },
@@ -23,6 +27,10 @@
         {
           "label": "Garten- & Außenanlagenpflege",
           "path": "leistungen/gartenpflege/"
+        },
+        {
+          "label": "Heckenschnitt",
+          "path": "leistungen/heckenschnitt/"
         },
         {
           "label": "Winterdienst",

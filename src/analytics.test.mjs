@@ -199,6 +199,29 @@ test('known public detail pages work with a deployment base; unknown paths canno
   }
 })
 
+test('focused service routes are measured while private or unapproved adjacent paths stay sanitized', () => {
+  const slugs = ['treppenhausreinigung', 'heckenschnitt', 'winterdienst-gewerbe', 'hausmeisterservice-gewerbe']
+  for (const slug of slugs) {
+    const expected = `https://www.perlas.de/perlas/leistungen/${slug}/`
+    const instance = fixture({ consent: validConsent(), url: `${expected}?email=private%40example.test#anfrage` })
+    instance.initializeAnalytics(measurementId, '/perlas/')
+    instance.scripts[0].onload()
+    instance.recordLead('quick_contact')
+    assert.equal(instance.pageViews()[0][2].page_location, expected)
+    assert.equal(instance.leads()[0][2].page_location, expected)
+    assert.equal(instance.leads()[0][2].form_type, 'quick_contact')
+    assert.equal(JSON.stringify(instance.commands()).includes('private'), false)
+    assert.equal(JSON.stringify(instance.commands()).includes('#anfrage'), false)
+  }
+  for (const suffix of ['unapproved-specialty/', 'heckenschnitt/private@example.test/']) {
+    const instance = fixture({ consent: validConsent(), url: `https://www.perlas.de/perlas/leistungen/${suffix}` })
+    instance.initializeAnalytics(measurementId, '/perlas/')
+    instance.scripts[0].onload()
+    assert.equal(instance.pageViews()[0][2].page_location, 'https://www.perlas.de/perlas/404/')
+    assert.equal(JSON.stringify(instance.commands()).includes('private'), false)
+  }
+})
+
 test('local hub and exactly the commissioned landing routes are measured without query or form data', () => {
   const slugs = [
     '', 'objektbetreuung-eschborn', 'gebaeudereinigung-frankfurt-hoechst',

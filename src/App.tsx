@@ -40,6 +40,7 @@ import imprintContent from './imprint-content.json'
 import jobContent from './job-data.json'
 import localLandingContent from './local-landing-data.json'
 import commercialLandingContent from './commercial-landing-data.json'
+import focusedServiceContent from './focused-service-data.json'
 import privacyContent from './privacy-content.json'
 import serviceContent from './service-data.json'
 import seoContent from './seo-data.json'
@@ -50,8 +51,11 @@ import './inquiry-options.css'
 import './local-landings.css'
 import './frankfurt-landing.css'
 import './commercial-landings.css'
+import './focused-services.css'
 import type { BlogPostContent, JobOpeningContent, LocalLandingContent } from './content-types'
 import type { CommercialLandingContent } from './commercial-landing-types'
+import type { FocusedServiceContent } from './focused-service-types'
+import './focused-offer-links.css'
 
 const ContactPage = lazy(() => import('./ContactPage'))
 const CareerPage = lazy(() => import('./CareerPage'))
@@ -61,6 +65,7 @@ const QuoteModal = lazy(() => import('./QuoteModal'))
 const LocalLandingPage = lazy(() => import('./LocalLandingPage'))
 const FrankfurtLandingPage = lazy(() => import('./FrankfurtLandingPage'))
 const CommercialLandingPage = lazy(() => import('./CommercialLandingPage'))
+const FocusedServiceLandingPage = lazy(() => import('./FocusedServiceLandingPage'))
 const RegionalLandingHub = lazy(() => import('./LocalLandingPage').then((module) => ({ default: module.RegionalLandingHub })))
 
 const BASE_PATH = import.meta.env.BASE_URL
@@ -108,6 +113,7 @@ const jobOpenings = jobContent as JobOpeningContent[]
 const localLandings = localLandingContent as LocalLandingContent[]
 const commercialLandings = commercialLandingContent as CommercialLandingContent[]
 const regionalLandings = [...localLandings, ...commercialLandings]
+const focusedServices = focusedServiceContent as FocusedServiceContent[]
 
 type AudienceSolutionContent = {
   id: string
@@ -132,7 +138,7 @@ type AudienceSolutionContent = {
 
 type AudienceSolution = AudienceSolutionContent & { icon: LucideIcon }
 
-function usePageSeo(service?: Feature, pageKind: PageKind = 'home', audience?: AudienceSolution, article?: BlogPostContent, localLanding?: LocalLandingContent | CommercialLandingContent) {
+function usePageSeo(service?: Feature, pageKind: PageKind = 'home', audience?: AudienceSolution, article?: BlogPostContent, localLanding?: LocalLandingContent | CommercialLandingContent | FocusedServiceContent) {
   useEffect(() => {
     if (pageKind === 'notFound') {
       document.title = 'Seite nicht gefunden | Perla’s Objektbetreuung'
@@ -153,7 +159,7 @@ function usePageSeo(service?: Feature, pageKind: PageKind = 'home', audience?: A
     const pageDefinitions = seoContent.pages
     const pageDefinition = pageKind === 'home' ? undefined : pageDefinitions[pageKind]
     const pageUrl = localLanding
-      ? new URL(`einsatzgebiete/${localLanding.slug}/`, siteUrl)
+      ? new URL('path' in localLanding ? localLanding.path.replace(/^\//, '') : `einsatzgebiete/${localLanding.slug}/`, siteUrl)
       : article
       ? new URL(`blog/${article.slug}/`, siteUrl)
       : service
@@ -252,7 +258,7 @@ function usePageSeo(service?: Feature, pageKind: PageKind = 'home', audience?: A
               '@type': 'BreadcrumbList',
               itemListElement: [
                 { '@type': 'ListItem', position: 1, name: 'Startseite', item: siteUrl.href },
-                { '@type': 'ListItem', position: 2, name: 'Einsatzgebiete', item: new URL('einsatzgebiete/', siteUrl).href },
+                { '@type': 'ListItem', position: 2, name: 'path' in localLanding ? 'Leistungen' : 'Einsatzgebiete', item: new URL('path' in localLanding ? 'leistungen/' : 'einsatzgebiete/', siteUrl).href },
                 { '@type': 'ListItem', position: 3, name: localLanding.heading, item: pageUrl.href },
               ],
             },
@@ -1926,6 +1932,27 @@ function ServiceGroupNavigation() {
   )
 }
 
+function FocusedServiceLinks({ serviceSlug }: { serviceSlug?: string }) {
+  const pages = serviceSlug ? focusedServices.filter(page => page.serviceSlug === serviceSlug) : focusedServices
+  if (!pages.length) return null
+  return (
+    <section className="focused-offer-links" aria-labelledby="focused-offer-heading">
+      <p>Gezielt beauftragen</p>
+      <h2 id="focused-offer-heading">Die passende Aufgabe. Ein klares Angebot.</h2>
+      <div className="focused-offer-grid">
+        {pages.map(page => (
+          <a href={`${BASE_PATH}${page.path.slice(1)}`} key={page.slug}>
+            <span>{page.eyebrow}</span>
+            <h3>{page.heading.replace(/\.$/, '')}</h3>
+            <p>{page.heroPromise}</p>
+            <strong>Leistung ansehen <ArrowUpRight aria-hidden="true" /></strong>
+          </a>
+        ))}
+      </div>
+    </section>
+  )
+}
+
 function ServicesOverviewPage() {
   return (
     <main className="architecture-page services-overview-page">
@@ -1947,6 +1974,7 @@ function ServicesOverviewPage() {
       </section>
 
       <ServiceGroupNavigation />
+      <FocusedServiceLinks />
 
       <section className="services-audience-nav" aria-labelledby="services-audience-heading">
         <div className="architecture-section-heading" data-reveal="up">
@@ -3228,6 +3256,8 @@ function ServiceDetailPage({ service, onQuoteOpen }: { service: Feature; onQuote
         <ServiceContactForm subject={service.title} />
       </section>
 
+      <FocusedServiceLinks serviceSlug={service.slug} />
+
       <section className="service-more" data-reveal="up">
         <span className="eyebrow">Passende Leistungen</span>
         <h2>Passende Leistungen für Ihr Objekt.</h2>
@@ -3481,6 +3511,7 @@ export default function App() {
   const normalizedPagePath = pagePath.replace(/\/+$/, '') || '/'
   const serviceSlug = pagePath.match(/^\/leistungen\/([^/]+)\/?$/)?.[1]
   const activeService = features.find((service) => service.slug === serviceSlug)
+  const activeFocusedService = focusedServices.find(page => page.slug === serviceSlug)
   const audienceSlug = pagePath.match(/^\/facility-management\/([^/]+)\/?$/)?.[1]
   const activeAudience = audienceSolutions.find((audience) => audience.id === audienceSlug)
   const blogSlug = pagePath.match(/^\/blog\/([^/]+)\/?$/)?.[1]
@@ -3492,7 +3523,7 @@ export default function App() {
   const isKnownRoute = normalizedPagePath === '/'
     || isContactPage || isFacilityPage || isServicesPage || isAboutPage || isBlogPage
     || isCareerPage || isImprintPage || isPrivacyPage || isRegionsPage
-    || Boolean(activeService || activeAudience || activeBlogPost || activeRegionalLanding)
+    || Boolean(activeService || activeFocusedService || activeAudience || activeBlogPost || activeRegionalLanding)
   const isNotFoundPage = !isKnownRoute
   const pageKind: PageKind = isContactPage
     ? 'contact'
@@ -3500,7 +3531,7 @@ export default function App() {
       ? 'regions'
     : isFacilityPage || activeAudience
       ? 'facility'
-      : isServicesPage || activeService
+      : isServicesPage || activeService || activeFocusedService
         ? 'services'
         : isAboutPage
           ? 'about'
@@ -3516,7 +3547,7 @@ export default function App() {
               ? 'notFound'
               : 'home'
 
-  usePageSeo(activeService, pageKind, activeAudience, activeBlogPost, activeRegionalLanding)
+  usePageSeo(activeService, pageKind, activeAudience, activeBlogPost, activeFocusedService ?? activeRegionalLanding)
 
   useEffect(() => {
     const onContactClick = (event: MouseEvent) => {
@@ -3532,10 +3563,10 @@ export default function App() {
   }, [])
 
   const openQuote = useCallback((service?: string) => {
-    setQuoteService(service ?? activeService?.title ?? features.find((item) => item.slug === activeRegionalLanding?.serviceSlug)?.title ?? activeAudience?.navLabel)
-    setQuoteTopic(activeRegionalLanding?.heading)
+    setQuoteService(service ?? activeService?.title ?? features.find((item) => item.slug === (activeFocusedService ?? activeRegionalLanding)?.serviceSlug)?.title ?? activeAudience?.navLabel)
+    setQuoteTopic((activeFocusedService ?? activeRegionalLanding)?.heading)
     setQuoteOpen(true)
-  }, [activeService?.title, activeAudience?.navLabel, activeRegionalLanding])
+  }, [activeService?.title, activeAudience?.navLabel, activeFocusedService, activeRegionalLanding])
 
   const closeQuote = useCallback(() => setQuoteOpen(false), [])
 
@@ -3543,7 +3574,9 @@ export default function App() {
     <>
       <Header activePage={pageKind} />
       <Suspense fallback={<main className="container section"><p role="status">Seite wird geladen …</p></main>}>
-      {activeCommercialLanding ? (
+      {activeFocusedService ? (
+        <FocusedServiceLandingPage page={activeFocusedService} />
+      ) : activeCommercialLanding ? (
         <CommercialLandingPage page={activeCommercialLanding} />
       ) : activeLocalLanding?.slug === 'hausmeisterservice-frankfurt' ? (
         <FrankfurtLandingPage page={activeLocalLanding} />
@@ -3613,7 +3646,7 @@ export default function App() {
           <RegionalServiceArea />
         </main>
       )}
-      <PageReadyEffects routeKey={activeLocalLanding?.slug ?? activeService?.slug ?? activeAudience?.id ?? activeBlogPost?.slug ?? pageKind} />
+      <PageReadyEffects routeKey={activeFocusedService?.slug ?? activeRegionalLanding?.slug ?? activeService?.slug ?? activeAudience?.id ?? activeBlogPost?.slug ?? pageKind} />
       </Suspense>
       <Footer />
       <ContactDock />

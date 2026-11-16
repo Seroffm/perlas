@@ -14,6 +14,7 @@ und keine Datenbank im Website-Projekt. Einrichtung und Befehle: [DEVELOPMENT.md
 | `src/LocalLandingPage.tsx` | Einsatzgebiete-Hub und allgemeine lokale Leistungsseiten. |
 | `src/FrankfurtLandingPage.tsx` | Eigene Gestaltung für `hausmeisterservice-frankfurt`; dieselbe Komponente wird auch statisch gerendert. |
 | `src/CommercialLandingPage.tsx` | Gemeinsame Angebotsansicht für 13 recherchierte Themen-/Ortsseiten mit individueller Planungstabelle und Kurzformular; dieselbe Komponente rendert das initiale HTML. |
+| `src/FocusedServiceLandingPage.tsx` | Reduzierte Angebotsansicht für vier gezielte Leistungsseiten unter `/leistungen/`; Browser und initiales HTML nutzen dieselbe Komponente. |
 | `src/QuickContactForm.tsx`, `src/QuoteModal.tsx` | Kurzanfrage und ausführliche Angebotsanfrage; weitere Kontaktformulare liegen in `App.tsx` und den Seitenkomponenten. |
 | `src/styles.css` | Globale Gestaltung und viele bestehende Seiten-/Komponentenregeln; spätere Regeln und Medienabfragen bei Änderungen mitprüfen. |
 | Weitere `src/*.css` | Ergänzungen für Kurzanfrage, Anfrageauswahl, Ratgeberverweise sowie lokale und Frankfurter Landingpages. |
@@ -29,7 +30,8 @@ zusammenpassen; die lokale Analytics-Routenliste ist zusätzlich ausdrücklich b
 | `src/seo-data.json` | Gemeinsame Metadaten, Übersichtsseiten, Region und Leistungsgruppen. |
 | `src/service-data.json`, `src/audience-data.json` | Leistungen und Zielgruppen einschließlich Slugs, Seitentexten, Bildern, SEO und FAQs. |
 | `src/local-landing-data.json` | Einzeln ausgewählte lokale Seiten; keine automatisch erzeugte Stadt-Leistungs-Matrix. |
-| `src/commercial-landing-data.json` | Vier weitere Angebotsseiten; Typen in `src/commercial-landing-types.ts`, Gestaltung in `src/commercial-landings.css`. |
+| `src/commercial-landing-data.json` | 13 weitere Angebotsseiten; Typen in `src/commercial-landing-types.ts`, Gestaltung in `src/commercial-landings.css`. |
+| `src/focused-service-data.json` | Vier einzeln ausgewählte Angebote zu Treppenhausreinigung, Heckenschnitt, Gewerbe-Winterdienst und Gewerbe-Hausmeisterservice; eigene Typen und `focused-services.css`. |
 | `src/blog-data.json`, `src/job-data.json` | Artikel und Stellenbereiche; gemeinsame Typen in `src/content-types.ts`. |
 | `src/imprint-content.json`, `src/privacy-content.json` | Impressum und Datenschutztexte. |
 | `src/google-reviews-data.json` | Hinterlegte Bewertungsangaben und Originalauszüge; keine Live-Abfrage. |
@@ -45,7 +47,7 @@ zusammenpassen; die lokale Analytics-Routenliste ist zusätzlich ausdrücklich b
 - `npm run build` prüft TypeScript und erzeugt mit Vite die Browserdateien in `dist/`.
 - `npm run build:pages` führt zusätzlich `scripts/prepare-pages.mjs` aus: sichtbares initiales HTML, Metadaten, Canonicals, Schema, Sitemap, Robots-Datei, Fehlerseite und Hostingdateien.
 - Die meisten statischen Seiten werden durch eigene HTML-Vorlagen im Skript erzeugt. React ersetzt diese Inhalte beim Start; es findet keine allgemeine React-Hydration statt. Inhaltliche Änderungen deshalb in beiden Darstellungen prüfen.
-- Die Frankfurtseite, die 13 Commercial-Landingpages und der Footer verwenden dieselbe React-Komponente im Browser und im Build. Vite lädt sie ohne Netzwerkport; `renderToStaticMarkup` rendert sie mit `staticMode`. Formulare erhalten dann direkte Kontaktalternativen.
+- Die Frankfurtseite, die 13 Commercial-Landingpages, die vier gezielten Leistungsseiten und der Footer verwenden jeweils dieselbe React-Komponente im Browser und im Build. Vite lädt sie ohne Netzwerkport; `renderToStaticMarkup` rendert sie mit `staticMode`. Formulare erhalten dann direkte Kontaktalternativen. Die Styles der gezielten Seiten werden bereits im initialen Stylesheet geladen.
 - `vite.config.ts` und die Buildskripte verwenden `PERLAS_SITE_URL` für Basispfad und öffentliche URLs sowie `PERLAS_INDEX_SITE` für Indexierung. Das Browser-SEO wird zusätzlich in `App.tsx` aktualisiert.
 - `src/legacy-redirects.json` und `scripts/prepare-legacy-redirects.mjs` erzeugen sofortige HTML-Weiterleitungen. Unter GitHub Pages sind das HTTP-200-Seiten mit Meta-Refresh, keine HTTP-301-Antworten.
 - `dist/` ist ein Buildprodukt. Änderungen gehören in Quellen; `public/CNAME` und die konfigurierte Zieldomain müssen zum Hosting passen.
@@ -68,7 +70,7 @@ große Klickziele. Bestehende Styles und Abweichungen am konkreten Bauteil prüf
 mobile Darstellung, Tastaturbedienung und reduzierte Bewegung erhalten.
 
 - `npm run lint`: TypeScript-Prüfung; kein separater ESLint-Lauf.
-- `npm run check:seo`: prüft den zuvor erzeugten Build, einschließlich der ausdrücklich erlaubten 55 kanonischen Seiten, interner Links, Metadaten, Schema, Robots-Datei und 13 Altpfad-Zuordnungen. Bei neuen freigegebenen Seiten die unabhängige Routenliste bewusst aktualisieren.
+- `npm run check:seo`: prüft den zuvor erzeugten Build, einschließlich der ausdrücklich erlaubten 59 kanonischen Seiten, interner Links, Metadaten, Schema, Robots-Datei und 13 Altpfad-Zuordnungen. Bei neuen freigegebenen Seiten die unabhängige Routenliste bewusst aktualisieren.
 - `npm run check:images`: prüft Bildmanifest und generierte Bilddateien.
 - `node --test src/*.test.mjs scripts/*.test.mjs`: vorhandene Offlineprüfungen für Analytics/Einwilligung, Kurzanfrage/Transport und Altpfad-Zuordnung.
 - `php server/tests/test.php`: Backendprüfungen mit Mocktransport ohne echten Versand; PHP ≥8.2 und die dokumentierten Erweiterungen erforderlich.
@@ -81,3 +83,14 @@ nachvollziehbarer Grundlage anpassen. Recherchekontext steht in
 ## Regionale Erweiterung
 
 `SiteFooter.tsx` und `footer-links.json` sind die gemeinsame Quelle für den Browser- und SSR-Footer. Der Vite-Renderer erstellt ihn vor dem ersten Seitenbuild. `commercial-landing-data.json` enthält 13 gestaltete Angebotsseiten einschließlich der neun regionalen/spezifischen Erweiterungen; Details: [REGIONAL_EXPANSION.md](REGIONAL_EXPANSION.md).
+
+## Gezielte Leistungsseiten
+
+Die vier Einträge in `focused-service-data.json` besitzen ausdrücklich gespeicherte
+`path`-Werte unter `/leistungen/`. Sie bleiben von den 20 lokalen Seiten getrennt.
+`App.tsx` und `prepare-pages.mjs` berücksichtigen diese Pfade gemeinsam bei
+Routing, Canonicals und Breadcrumbs. Die Leistungsübersicht und die jeweilige
+Elternleistung verlinken sie über dieselben Inhaltsdaten. Das neue Layout verwendet
+schlichtere Flächen, kurze Überschriften und größere Abstände; die Markenfarben,
+Schrift und bestehenden Formularkomponenten bleiben erhalten. Auswahl und
+Keyword-Zuordnung: [PURCHASE_INTENT_PLAN.md](PURCHASE_INTENT_PLAN.md).

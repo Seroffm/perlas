@@ -108,7 +108,7 @@
     ],
     "cost": {
       "title": "Was kostet Büroreinigung in Frankfurt?",
-      "text": "Entscheidend ist der vereinbarte Aufwand. Ein offenes Büro mit wenigen Nebenräumen unterscheidet sich von derselben Fläche mit vielen Sanitär- und Küchenbereichen. Wir kalkulieren den beschriebenen Umfang und grenzen Zusatzarbeiten ab.",
+      "text": "Für die Kosten Ihrer Büroreinigung zählen Fläche, Raumarten und Reinigungstage gemeinsam. Ein offenes Büro mit wenigen Nebenräumen unterscheidet sich von derselben Fläche mit vielen Sanitär- und Küchenbereichen. Ihr Angebot hält den regelmäßigen Umfang fest; Glas- oder Grundreinigung werden getrennt beschrieben. Vergleichen Sie deshalb Aufgaben und Intervalle zusammen mit dem Preis.",
       "factors": [
         "Fläche, Raumaufteilung und Bodenbeläge",
         "Sanitärbereiche, Teeküchen und Nutzungsintensität",
@@ -131,6 +131,10 @@
       {
         "question": "Können wir den Reinigungsumfang später anpassen?",
         "answer": "Wenn sich Raumnutzung, Mitarbeiterzahl oder gewünschte Aufgaben ändern, besprechen wir den Aufwand neu. Änderungen an Umfang, Intervallen und Preis werden vereinbart, bevor zusätzliche Arbeiten regelmäßig übernommen werden."
+      },
+      {
+        "question": "Welche Angaben braucht eine Reinigungsfirma für ein Büroangebot?",
+        "answer": "Standort, ungefähre Fläche, Raumarten und gewünschte Reinigungstage reichen für die erste Einordnung. Nennen Sie zusätzlich das mögliche Zeitfenster und besondere Zugänge. Einen vorhandenen Reinigungsplan können wir gemeinsam auf den benötigten Umfang abstimmen."
       }
     ],
     "inquiry": {
@@ -626,7 +630,7 @@
     ],
     "cost": {
       "title": "Was bestimmt die Kosten der Tiefgaragenreinigung?",
-      "text": "Die Stellplatzzahl ist ein Anhaltspunkt. Für ein passendes Angebot zählen außerdem Fläche, Belag, Verschmutzung und Zugänglichkeit. Randbereiche und besondere Verfahren werden gesondert beschrieben.",
+      "text": "Die Kosten einer Tiefgaragenreinigung lassen sich über Stellplatzzahl oder Quadratmeter allein nicht sinnvoll vergleichen. Zum Angebot gehören Fläche, Belag, Verschmutzung, Maschinenzugang und erforderliche Handarbeit. Halten Sie auch fest, ob die Garage vollständig freigegeben wird oder abschnittsweise gereinigt werden soll. Randbereiche und ergänzende Arbeiten erhalten einen erkennbaren Umfang.",
       "factors": [
         "Fläche, Bodenbelag und Verschmutzungsgrad",
         "Maschinenzugang, Randzonen und Handarbeit",
@@ -649,6 +653,10 @@
       {
         "question": "Kann die Tiefgarage regelmäßig gereinigt werden?",
         "answer": "Einmalige Einsätze und wiederkehrende Reinigungsintervalle sind anfragbar. Der sinnvolle Rhythmus richtet sich nach Nutzung und Schmutzeintrag. Umfang und Terminplanung werden objektbezogen vereinbart."
+      },
+      {
+        "question": "Welche Angaben helfen, wenn wir die Tiefgarage reinigen lassen möchten?",
+        "answer": "Nennen Sie Standort, Fläche oder Stellplatzzahl und den Bodenbelag. Fotos können Verschmutzung und enge Bereiche verdeutlichen. Wichtig sind außerdem Zufahrt, Höhenbegrenzung und die Möglichkeit, Stellplätze für den Einsatz freizuhalten. Danach stimmen wir Besichtigung, Umfang und ein passendes Angebot ab."
       }
     ],
     "inquiry": {

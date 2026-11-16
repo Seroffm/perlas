@@ -439,6 +439,7 @@ Diese Datei beschreibt die Designsprache als wiederverwendbares System. Die aktu
 - Auf Mobile öffnet ein runder sekundärblauer Menü-Button eine weiße, stark gerundete Navigationsfläche.
 - Leistungskarten sind vollständige Links. Hover und Fokus heben die Karte an, färben das Icon sekundärblau und zeigen die Zielrichtung klar an.
 - Leistungsdetailseiten übernehmen Hero, Akzentflächen, Prozesskarten und CTA-Hierarchie der Hauptseite.
+- Die vier gezielten Leistungsangebote in `FocusedServiceLandingPage.tsx` verwenden auf ausdrücklichen Wunsch eine ruhigere Variante: kleinere Rundungen, dünne Trennlinien und nummerierte Leistungszeilen. Überlagerte Bildkarten und große Logo-/Bewertungsblöcke entfallen; Inter, Markenfarben und eine klare Hauptaktion bleiben bestehen.
 - Das Angebotsformular erscheint als große Lightbox und führt in drei Schritten durch Objekt, Leistungen und Kontaktdaten.
 - Formularfortschritt, Validierung, Zurück-Navigation und Erfolgszustand bleiben jederzeit sichtbar und eindeutig.
 - Editorial-Inhalte werden als ausgeglichenes `2 × 2`-Raster mit vier Karten dargestellt; mobil stapeln sie einspaltig.

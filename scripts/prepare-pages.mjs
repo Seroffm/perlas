@@ -29,6 +29,7 @@ const audiences = JSON.parse(await readFile(audienceDataPath, 'utf8'))
 const localLandings = JSON.parse(await readFile(new URL('../src/local-landing-data.json', import.meta.url), 'utf8'))
 const commercialLandings = JSON.parse(await readFile(new URL('../src/commercial-landing-data.json', import.meta.url), 'utf8'))
 const regionalLandings = [...localLandings, ...commercialLandings]
+const focusedServices = JSON.parse(await readFile(new URL('../src/focused-service-data.json', import.meta.url), 'utf8'))
 const blogPosts = JSON.parse(await readFile(blogDataPath, 'utf8'))
 const jobs = JSON.parse(await readFile(jobDataPath, 'utf8'))
 const imprintContent = JSON.parse(await readFile(imprintDataPath, 'utf8'))
@@ -188,7 +189,7 @@ function audienceUrl(audience) {
 }
 
 function localLandingUrl(landing) {
-  return new URL(`${basePath}einsatzgebiete/${landing.slug}/`, siteUrl.origin)
+  return new URL(`${basePath}${landing.path ? landing.path.slice(1) : `einsatzgebiete/${landing.slug}/`}`, siteUrl.origin)
 }
 
 function localLandingStructuredData(landing) {
@@ -221,7 +222,7 @@ function localLandingStructuredData(landing) {
         '@type': 'BreadcrumbList',
         itemListElement: [
           { '@type': 'ListItem', position: 1, name: 'Startseite', item: siteUrl.href },
-          { '@type': 'ListItem', position: 2, name: 'Einsatzgebiete', item: regionsUrl.href },
+          { '@type': 'ListItem', position: 2, name: landing.path ? 'Leistungen' : 'Einsatzgebiete', item: landing.path ? servicesUrl.href : regionsUrl.href },
           { '@type': 'ListItem', position: 3, name: landing.heading, item: url },
         ],
       },
@@ -573,6 +574,12 @@ function facilityMarkup() {
   return `${staticHeader()}<main class="seo-static-main"><nav aria-label="Brotkrümeln"><a href="${basePath}">Startseite</a> / Facility Management</nav><section class="seo-static-hero"><p>Facility Management im Rhein-Main-Gebiet</p><h1>Gebäude ganzheitlich betreuen. Aufgaben klar koordinieren.</h1><p>Perla’s bündelt die laufenden Aufgaben größerer und professionell verwalteter Immobilien in einem objektbezogenen Betreuungskonzept.</p><a href="#zielgruppen">Passenden Bereich wählen</a></section><section><h2>Erst das Objekt verstehen. Dann Leistungen sinnvoll verbinden.</h2><p>Aufgaben, Intervalle, Zuständigkeiten und Rückmeldungen werden objektbezogen abgestimmt. Sichtkontrollen und organisatorische Koordination gehören zur Betreuung. Fachliche Prüfungen und Arbeiten werden mit geeigneten Fachbetrieben koordiniert und nicht als eigene Fachleistung dargestellt.</p></section><div id="zielgruppen">${targets}</div><section><p>Spezialisierte Zusatzleistungen</p><h2>Ergänzende Fachleistungen für professionell betreute Immobilien</h2><ul class="seo-static-links">${specialists}</ul></section><section><h2>Größere und komplexere Objekte</h2><p>Gebäude- und Gemeinschaftsflächen, Außenanlagen, Winterdienst, Parkflächen, Tiefgaragen und technische Themen werden nach Zuständigkeit gegliedert. Technische Facharbeiten bleiben bei geeigneten Fachbetrieben.</p><a href="${basePath}kontakt/">Kontakt aufnehmen</a></section></main>`
 }
 
+function focusedServiceLinks(serviceSlug) {
+  const pages = serviceSlug ? focusedServices.filter(page => page.serviceSlug === serviceSlug) : focusedServices
+  if (!pages.length) return ''
+  return `<section class="focused-offer-links" aria-labelledby="focused-offer-heading"><p>Gezielt beauftragen</p><h2 id="focused-offer-heading">Die passende Aufgabe. Ein klares Angebot.</h2><div class="focused-offer-grid">${pages.map(page => `<a href="${basePath}${page.path.slice(1)}"><span>${escapeHtml(page.eyebrow)}</span><h3>${escapeHtml(page.heading.replace(/\.$/, ''))}</h3><p>${escapeHtml(page.heroPromise)}</p><strong>Leistung ansehen</strong></a>`).join('')}</div></section>`
+}
+
 function servicesMarkup() {
   const catalog = services
     .filter((service) => !specializedDetailSlugs.has(service.slug))
@@ -589,7 +596,7 @@ function servicesMarkup() {
     { slug: 'buero-einrichtungsservice', title: 'Büro- & Einrichtungsservice', text: 'Möbel und Arbeitsplätze umstellen, interne Umzüge unterstützen und Räume für eine neue Nutzung vorbereiten.' },
   ].map((service) => `<li>${service.certified ? '<span>Spezialisierte Fachleistung</span>' : ''}<strong><a href="${basePath}leistungen/${service.slug}/">${escapeHtml(service.title)}</a></strong><p>${escapeHtml(service.text)}</p></li>`).join('')
 
-  return `${staticHeader()}<main class="seo-static-main"><nav aria-label="Brotkrümeln"><a href="${basePath}">Startseite</a> / Leistungen</nav><section class="seo-static-hero"><p>Facility Services im Rhein-Main-Gebiet</p><h1>Leistungen für den laufenden Betrieb Ihrer Immobilie.</h1><p>Wählen Sie eine einzelne Leistung oder kombinieren Sie mehrere Aufgaben zu einem objektbezogenen Betreuungskonzept.</p><a href="${basePath}kontakt/">Leistung anfragen</a><a href="${basePath}facility-management/">Facility Management</a></section><section><h2>Für diese Immobilien arbeiten wir</h2><ul class="seo-static-links">${targets}</ul></section><section><h2>Ergänzende Fachleistungen für professionell betreute Immobilien.</h2><p>Umfang, Zuständigkeit und erforderliche Fachkunde werden je Leistung vor der Beauftragung geklärt.</p><ul>${specialized}</ul><a href="${basePath}kontakt/">Spezialleistung anfragen</a></section><section><h2>Bestehende Leistungen im Detail</h2><div class="seo-static-grid">${catalog}</div></section><section><h2>Wenn aus Einzelleistungen Facility Management wird</h2><p>Bei größeren oder professionell verwalteten Immobilien lassen sich Leistungen, Intervalle, Zuständigkeiten und Rückmeldungen in einem Betreuungskonzept bündeln.</p><a href="${basePath}facility-management/">Facility Management ansehen</a></section></main>`
+  return `${staticHeader()}<main class="seo-static-main"><nav aria-label="Brotkrümeln"><a href="${basePath}">Startseite</a> / Leistungen</nav><section class="seo-static-hero"><p>Facility Services im Rhein-Main-Gebiet</p><h1>Leistungen für den laufenden Betrieb Ihrer Immobilie.</h1><p>Wählen Sie eine einzelne Leistung oder kombinieren Sie mehrere Aufgaben zu einem objektbezogenen Betreuungskonzept.</p><a href="${basePath}kontakt/">Leistung anfragen</a><a href="${basePath}facility-management/">Facility Management</a></section><section><h2>Für diese Immobilien arbeiten wir</h2><ul class="seo-static-links">${targets}</ul></section><section><h2>Ergänzende Fachleistungen für professionell betreute Immobilien.</h2><p>Umfang, Zuständigkeit und erforderliche Fachkunde werden je Leistung vor der Beauftragung geklärt.</p><ul>${specialized}</ul><a href="${basePath}kontakt/">Spezialleistung anfragen</a></section>${focusedServiceLinks()}<section><h2>Bestehende Leistungen im Detail</h2><div class="seo-static-grid">${catalog}</div></section><section><h2>Wenn aus Einzelleistungen Facility Management wird</h2><p>Bei größeren oder professionell verwalteten Immobilien lassen sich Leistungen, Intervalle, Zuständigkeiten und Rückmeldungen in einem Betreuungskonzept bündeln.</p><a href="${basePath}facility-management/">Facility Management ansehen</a></section></main>`
 }
 
 function aboutMarkup() {
@@ -780,7 +787,7 @@ function serviceMarkup(service) {
         ? `<section><p>Spielbereiche in der Praxis</p><h2>Außen- und Innenbereiche passend betreuen.</h2><p>Echte Objektaufnahmen zeigen unterschiedliche Spielgeräte und Flächen.</p><div class="seo-static-grid"><figure>${imageMarkup('kundenbilder/spielplatz/spielplatz_aussen_01.png', 'Heller Außenspielplatz mit modernen Spielgeräten', { sizes: gridImageSizes })}<figcaption>Außenspielplatz</figcaption></figure><figure>${imageMarkup('kundenbilder/spielplatz/spielplatz_schaukel_nah_01.png', 'Großer Nestschaukelbereich auf einer gepflegten Außenspielfläche', { sizes: gridImageSizes })}<figcaption>Schaukelbereich im Außenbereich</figcaption></figure><figure>${imageMarkup('kundenbilder/spielplatz/spielbereich_innen_01.png', 'Gepflegter Indoor-Spielbereich', { sizes: gridImageSizes })}<figcaption>Indoor-Spielbereich</figcaption></figure></div></section>`
         : ''
 
-  return `${staticHeader()}<main class="seo-static-main"><nav aria-label="Brotkrümeln"><a href="${basePath}">Startseite</a> / <a href="${basePath}leistungen/">Leistungen</a> / ${escapeHtml(service.title)}</nav><section class="seo-static-hero"><p>${service.eyebrow ? escapeHtml(service.eyebrow) : service.certified ? 'Zertifizierte Fachleistung' : 'Facility Services im Rhein-Main-Gebiet'}</p><h1>${escapeHtml(service.heading ?? service.title)}</h1><p>${escapeHtml(service.detail)}</p><a href="${basePath}kontakt/">Individuelles Angebot anfragen</a><a href="tel:+491776867145">Direkt anrufen</a><a href="mailto:mail@perlas.de">E-Mail schreiben</a>${imageMarkup(service.image, service.imageAlt || `${service.title} von Perla’s Objektbetreuung`, { loading: 'eager', fetchPriority: 'high' })}</section><section><h2>Was wir bei ${escapeHtml(service.title)} konkret übernehmen</h2><p>${escapeHtml(service.scopeIntro)}</p><div class="seo-static-grid">${scopes}</div></section><section><h2>So läuft die Zusammenarbeit ab</h2><div class="seo-static-grid">${process}</div></section>${workflow}<section><h2>Für diese Objekte geeignet</h2><ul>${audiences}</ul>${boundary}</section>${gallery}<section><h2>Häufige Fragen zu ${escapeHtml(service.title)}</h2>${faqs}</section>${guideSection}<section><h2>Wie möchten Sie Kontakt aufnehmen?</h2><p>Nutzen Sie das Angebotsformular oder sprechen Sie direkt mit Perla’s.</p><ul><li><a href="${basePath}kontakt/">Angebot für ${escapeHtml(service.title)} anfragen</a></li><li><a href="tel:+491776867145">Direkt anrufen: 0177 68 67 145</a></li><li><a href="mailto:mail@perlas.de">E-Mail an mail@perlas.de schreiben</a></li></ul></section><nav aria-label="Passende Leistungen"><h2>Diese Leistungen könnten ebenfalls relevant sein</h2><ul class="seo-static-links">${related}</ul></nav></main>`
+  return `${staticHeader()}<main class="seo-static-main"><nav aria-label="Brotkrümeln"><a href="${basePath}">Startseite</a> / <a href="${basePath}leistungen/">Leistungen</a> / ${escapeHtml(service.title)}</nav><section class="seo-static-hero"><p>${service.eyebrow ? escapeHtml(service.eyebrow) : service.certified ? 'Zertifizierte Fachleistung' : 'Facility Services im Rhein-Main-Gebiet'}</p><h1>${escapeHtml(service.heading ?? service.title)}</h1><p>${escapeHtml(service.detail)}</p><a href="${basePath}kontakt/">Individuelles Angebot anfragen</a><a href="tel:+491776867145">Direkt anrufen</a><a href="mailto:mail@perlas.de">E-Mail schreiben</a>${imageMarkup(service.image, service.imageAlt || `${service.title} von Perla’s Objektbetreuung`, { loading: 'eager', fetchPriority: 'high' })}</section><section><h2>Was wir bei ${escapeHtml(service.title)} konkret übernehmen</h2><p>${escapeHtml(service.scopeIntro)}</p><div class="seo-static-grid">${scopes}</div></section><section><h2>So läuft die Zusammenarbeit ab</h2><div class="seo-static-grid">${process}</div></section>${workflow}<section><h2>Für diese Objekte geeignet</h2><ul>${audiences}</ul>${boundary}</section>${gallery}<section><h2>Häufige Fragen zu ${escapeHtml(service.title)}</h2>${faqs}</section>${guideSection}<section><h2>Wie möchten Sie Kontakt aufnehmen?</h2><p>Nutzen Sie das Angebotsformular oder sprechen Sie direkt mit Perla’s.</p><ul><li><a href="${basePath}kontakt/">Angebot für ${escapeHtml(service.title)} anfragen</a></li><li><a href="tel:+491776867145">Direkt anrufen: 0177 68 67 145</a></li><li><a href="mailto:mail@perlas.de">E-Mail an mail@perlas.de schreiben</a></li></ul></section>${focusedServiceLinks(service.slug)}<nav aria-label="Passende Leistungen"><h2>Diese Leistungen könnten ebenfalls relevant sein</h2><ul class="seo-static-links">${related}</ul></nav></main>`
 }
 
 function audienceMarkup(audience) {
@@ -805,11 +812,12 @@ function audienceMarkup(audience) {
 function buildPage({ title, description, url, markup, data, robots = pageRobots, ogType = 'website', ogImage }) {
   // Keep local content visible in the initial HTML as well as in the interactive site.
   const relativePath = url ? new URL(url).pathname.slice(basePath.length) : null
-  if (relativePath?.startsWith('leistungen/') && relativePath !== 'leistungen/') {
+  const isFocused = focusedServices.some(page => page.path.slice(1) === relativePath)
+  if (!isFocused && relativePath?.startsWith('leistungen/') && relativePath !== 'leistungen/') {
     markup = markup.replace('</main>', `${localLandingLinks(relativePath.split('/')[1])}</main>`)
   }
   if (relativePath === '' || relativePath === 'facility-management/' || relativePath === 'leistungen/'
-    || relativePath?.startsWith('leistungen/') || relativePath?.startsWith('facility-management/')) {
+    || (!isFocused && relativePath?.startsWith('leistungen/')) || relativePath?.startsWith('facility-management/')) {
     const compact = relativePath !== '' && relativePath !== 'leistungen/' && relativePath !== 'facility-management/'
     markup = markup.replace('</main>', `${regionMarkup(compact)}</main>`)
   }
@@ -846,6 +854,7 @@ const frankfurtLanding = localLandings.find((landing) => landing.slug === 'hausm
 let siteFooterInitialMarkup = ''
 let frankfurtInitialMarkup = ''
 const commercialInitialMarkup = new Map()
+const focusedInitialMarkup = new Map()
 {
   const renderer = await createServer({
     configFile: false,
@@ -862,6 +871,10 @@ const commercialInitialMarkup = new Map()
     if (frankfurtLanding) {
       const { default: FrankfurtLandingPage } = await renderer.ssrLoadModule('/src/FrankfurtLandingPage.tsx')
       frankfurtInitialMarkup = renderToStaticMarkup(createElement(FrankfurtLandingPage, { page: frankfurtLanding, staticMode: true }))
+    }
+    const { default: FocusedServiceLandingPage } = await renderer.ssrLoadModule('/src/FocusedServiceLandingPage.tsx')
+    for (const page of focusedServices) {
+      focusedInitialMarkup.set(page.slug, renderToStaticMarkup(createElement(FocusedServiceLandingPage, { page, staticMode: true })))
     }
     const { default: CommercialLandingPage } = await renderer.ssrLoadModule('/src/CommercialLandingPage.tsx')
     for (const page of commercialLandings) {
@@ -961,6 +974,20 @@ await Promise.all(commercialLandings.map(async (landing) => {
   }))
 }))
 
+await Promise.all(focusedServices.map(async (page) => {
+  const targetPath = `${distPath}${page.path.slice(1)}`
+  const url = localLandingUrl(page).href
+  await mkdir(targetPath, { recursive: true })
+  await writeFile(`${targetPath}index.html`, buildPage({
+    title: page.seoTitle,
+    description: page.seoDescription,
+    url,
+    markup: `${staticHeader()}${focusedInitialMarkup.get(page.slug)}`,
+    data: localLandingStructuredData(page),
+    ogImage: new URL(`${basePath}assets/${imageVariants[page.heroImage.src]?.src ?? page.heroImage.src}`, siteUrl.origin).href,
+  }))
+}))
+
 await mkdir(`${distPath}ueber-uns/`, { recursive: true })
 await writeFile(`${distPath}ueber-uns/index.html`, buildPage({
   ...aboutSeo,
@@ -1055,6 +1082,7 @@ const sitemapUrls = [
   servicesUrl.href,
   regionsUrl.href,
   ...regionalLandings.map((landing) => localLandingUrl(landing).href),
+  ...focusedServices.map(page => localLandingUrl(page).href),
   aboutUrl.href,
   blogUrl.href,
   ...blogPosts.map((post) => blogPostUrl(post).href),
@@ -1067,6 +1095,7 @@ const sitemapUrls = [
 const pageLastModified = new Map([
   [regionsUrl.href, '2026-11-16'],
   ...regionalLandings.map((landing) => [localLandingUrl(landing).href, landing.updatedOn]),
+  ...focusedServices.map(page => [localLandingUrl(page).href, page.updatedOn]),
   ...blogPosts.map((post) => [blogPostUrl(post).href, blogDateToIso(post.updated)]),
   ...services.filter((service) => service.updatedOn).map((service) => [serviceUrl(service).href, service.updatedOn]),
 ])

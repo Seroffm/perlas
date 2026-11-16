@@ -334,7 +334,11 @@
     "/einsatzgebiete/gebaeudereinigung-taunusstein/",
     "/einsatzgebiete/hausmeisterservice-hanau/",
     "/einsatzgebiete/gebaeudereinigung-hanau/",
-    "/einsatzgebiete/grundreinigung-frankfurt/"
+    "/einsatzgebiete/grundreinigung-frankfurt/",
+    "/leistungen/treppenhausreinigung/",
+    "/leistungen/heckenschnitt/",
+    "/leistungen/winterdienst-gewerbe/",
+    "/leistungen/hausmeisterservice-gewerbe/"
   ],
   "keywords": [
     {
@@ -624,22 +628,39 @@
         "index": 43,
         "isOrganicDifficulty": false
       },
-      "cluster": "gebaeudereinigung-existing-or-future-support",
-      "targetURL": "https://perlas.de/leistungen/gebaeudereinigung/",
+      "cluster": "focused-treppenhausreinigung",
+      "targetURL": "https://perlas.de/leistungen/treppenhausreinigung/",
       "originalExistingURL": "https://perlas.de/leistungen/gebaeudereinigung/",
       "originalCoverage": "existing_service_topic_only",
-      "newLocalPagePlanned": false,
+      "newLocalPagePlanned": true,
       "optionalUnbuiltPage": false,
       "candidateSource": "service/locality hypothesis based on actual service area",
       "publication": {
-        "status": "live_verified",
-        "checkedOn": "2026-11-16",
-        "release": "8115f7d"
+        "status": "local_only_pending_push",
+        "checkedOn": null
       },
       "googleIndex": {
         "status": "not_checked_per_keyword",
         "checkedOn": null
-      }
+      },
+      "previousTargetMappings": [
+        {
+          "reassignedOn": "2026-11-16",
+          "targetURL": "https://perlas.de/leistungen/gebaeudereinigung/",
+          "publication": {
+            "status": "live_verified",
+            "checkedOn": "2026-11-16",
+            "release": "8115f7d"
+          },
+          "googleIndex": {
+            "status": "not_checked_per_keyword",
+            "checkedOn": null
+          }
+        }
+      ],
+      "scopeApprovalRequired": false,
+      "targetMappingUpdatedOn": "2026-11-16",
+      "targetMappingRationale": "Eigenständiges Angebot für Treppenhausreinigung mit Flächen-/Turnusplanung und Kostenfaktoren; bestehende gesonderte Eschborn-/Bockenheim-Zuordnungen bleiben erhalten."
     },
     {
       "id": "KW-009",
@@ -3930,22 +3951,39 @@
         "index": null,
         "isOrganicDifficulty": false
       },
-      "cluster": "gebaeudereinigung-existing-or-future-support",
-      "targetURL": "https://perlas.de/leistungen/gebaeudereinigung/",
+      "cluster": "focused-treppenhausreinigung",
+      "targetURL": "https://perlas.de/leistungen/treppenhausreinigung/",
       "originalExistingURL": "https://perlas.de/leistungen/gebaeudereinigung/",
       "originalCoverage": "existing_service_topic_only",
-      "newLocalPagePlanned": false,
+      "newLocalPagePlanned": true,
       "optionalUnbuiltPage": false,
       "candidateSource": "commercial query hypothesis",
       "publication": {
-        "status": "live_verified",
-        "checkedOn": "2026-11-16",
-        "release": "8115f7d"
+        "status": "local_only_pending_push",
+        "checkedOn": null
       },
       "googleIndex": {
         "status": "not_checked_per_keyword",
         "checkedOn": null
-      }
+      },
+      "previousTargetMappings": [
+        {
+          "reassignedOn": "2026-11-16",
+          "targetURL": "https://perlas.de/leistungen/gebaeudereinigung/",
+          "publication": {
+            "status": "live_verified",
+            "checkedOn": "2026-11-16",
+            "release": "8115f7d"
+          },
+          "googleIndex": {
+            "status": "not_checked_per_keyword",
+            "checkedOn": null
+          }
+        }
+      ],
+      "scopeApprovalRequired": false,
+      "targetMappingUpdatedOn": "2026-11-16",
+      "targetMappingRationale": "Eigenständiges Angebot für Treppenhausreinigung mit Flächen-/Turnusplanung und Kostenfaktoren; bestehende gesonderte Eschborn-/Bockenheim-Zuordnungen bleiben erhalten."
     },
     {
       "id": "KW-096",
@@ -7464,22 +7502,39 @@
         "index": null,
         "isOrganicDifficulty": false
       },
-      "cluster": "gebaeudereinigung-existing-or-future-support",
-      "targetURL": "https://perlas.de/leistungen/gebaeudereinigung/",
+      "cluster": "focused-treppenhausreinigung",
+      "targetURL": "https://perlas.de/leistungen/treppenhausreinigung/",
       "originalExistingURL": "https://perlas.de/leistungen/gebaeudereinigung/",
       "originalCoverage": "existing_service_topic_only",
-      "newLocalPagePlanned": false,
+      "newLocalPagePlanned": true,
       "optionalUnbuiltPage": false,
       "candidateSource": "local wording/service synonym hypothesis or existing landing query",
       "publication": {
-        "status": "live_verified",
-        "checkedOn": "2026-11-16",
-        "release": "8115f7d"
+        "status": "local_only_pending_push",
+        "checkedOn": null
       },
       "googleIndex": {
         "status": "not_checked_per_keyword",
         "checkedOn": null
-      }
+      },
+      "previousTargetMappings": [
+        {
+          "reassignedOn": "2026-11-16",
+          "targetURL": "https://perlas.de/leistungen/gebaeudereinigung/",
+          "publication": {
+            "status": "live_verified",
+            "checkedOn": "2026-11-16",
+            "release": "8115f7d"
+          },
+          "googleIndex": {
+            "status": "not_checked_per_keyword",
+            "checkedOn": null
+          }
+        }
+      ],
+      "scopeApprovalRequired": false,
+      "targetMappingUpdatedOn": "2026-11-16",
+      "targetMappingRationale": "Eigenständiges Angebot für Treppenhausreinigung mit Flächen-/Turnusplanung und Kostenfaktoren; bestehende gesonderte Eschborn-/Bockenheim-Zuordnungen bleiben erhalten."
     },
     {
       "id": "KW-189",
@@ -7502,22 +7557,39 @@
         "index": null,
         "isOrganicDifficulty": false
       },
-      "cluster": "gebaeudereinigung-existing-or-future-support",
-      "targetURL": "https://perlas.de/leistungen/gebaeudereinigung/",
+      "cluster": "focused-treppenhausreinigung",
+      "targetURL": "https://perlas.de/leistungen/treppenhausreinigung/",
       "originalExistingURL": "https://perlas.de/leistungen/gebaeudereinigung/",
       "originalCoverage": "existing_service_topic_only",
-      "newLocalPagePlanned": false,
+      "newLocalPagePlanned": true,
       "optionalUnbuiltPage": false,
       "candidateSource": "local wording/service synonym hypothesis or existing landing query",
       "publication": {
-        "status": "live_verified",
-        "checkedOn": "2026-11-16",
-        "release": "8115f7d"
+        "status": "local_only_pending_push",
+        "checkedOn": null
       },
       "googleIndex": {
         "status": "not_checked_per_keyword",
         "checkedOn": null
-      }
+      },
+      "previousTargetMappings": [
+        {
+          "reassignedOn": "2026-11-16",
+          "targetURL": "https://perlas.de/leistungen/gebaeudereinigung/",
+          "publication": {
+            "status": "live_verified",
+            "checkedOn": "2026-11-16",
+            "release": "8115f7d"
+          },
+          "googleIndex": {
+            "status": "not_checked_per_keyword",
+            "checkedOn": null
+          }
+        }
+      ],
+      "scopeApprovalRequired": false,
+      "targetMappingUpdatedOn": "2026-11-16",
+      "targetMappingRationale": "Eigenständiges Angebot für Treppenhausreinigung mit Flächen-/Turnusplanung und Kostenfaktoren; bestehende gesonderte Eschborn-/Bockenheim-Zuordnungen bleiben erhalten."
     },
     {
       "id": "KW-190",
@@ -15856,25 +15928,41 @@
         "index": 56,
         "isOrganicDifficulty": false
       },
-      "cluster": "treppenhausreinigung-auftrag",
-      "targetURL": "https://perlas.de/leistungen/gebaeudereinigung/",
+      "cluster": "focused-treppenhausreinigung",
+      "targetURL": "https://perlas.de/leistungen/treppenhausreinigung/",
       "originalExistingURL": "https://perlas.de/leistungen/gebaeudereinigung/",
       "originalCoverage": "verified_existing_service",
-      "newLocalPagePlanned": false,
+      "newLocalPagePlanned": true,
       "optionalUnbuiltPage": false,
       "scopeApprovalRequired": false,
       "scopeApprovalNote": "Bestehende Leistungsangaben in src/service-data.json belegen den Umfang; keine neue Spezialleistung aus einem Keyword abgeleitet.",
       "candidateSource": "bounded buyer-intent refinement across confirmed services after clarification that marble was an example",
       "researchDisposition": "active",
       "publication": {
-        "status": "live_verified",
-        "checkedOn": "2026-11-16",
-        "release": "8115f7d"
+        "status": "local_only_pending_push",
+        "checkedOn": null
       },
       "googleIndex": {
         "status": "not_checked_per_keyword",
         "checkedOn": null
-      }
+      },
+      "previousTargetMappings": [
+        {
+          "reassignedOn": "2026-11-16",
+          "targetURL": "https://perlas.de/leistungen/gebaeudereinigung/",
+          "publication": {
+            "status": "live_verified",
+            "checkedOn": "2026-11-16",
+            "release": "8115f7d"
+          },
+          "googleIndex": {
+            "status": "not_checked_per_keyword",
+            "checkedOn": null
+          }
+        }
+      ],
+      "targetMappingUpdatedOn": "2026-11-16",
+      "targetMappingRationale": "Eigenständiges Angebot für Treppenhausreinigung mit Flächen-/Turnusplanung und Kostenfaktoren; bestehende gesonderte Eschborn-/Bockenheim-Zuordnungen bleiben erhalten."
     },
     {
       "id": "KW-395",
@@ -15897,25 +15985,41 @@
         "index": null,
         "isOrganicDifficulty": false
       },
-      "cluster": "treppenhausreinigung-auftrag",
-      "targetURL": "https://perlas.de/leistungen/gebaeudereinigung/",
+      "cluster": "focused-treppenhausreinigung",
+      "targetURL": "https://perlas.de/leistungen/treppenhausreinigung/",
       "originalExistingURL": "https://perlas.de/leistungen/gebaeudereinigung/",
       "originalCoverage": "verified_existing_service",
-      "newLocalPagePlanned": false,
+      "newLocalPagePlanned": true,
       "optionalUnbuiltPage": false,
       "scopeApprovalRequired": false,
       "scopeApprovalNote": "Bestehende Leistungsangaben in src/service-data.json belegen den Umfang; keine neue Spezialleistung aus einem Keyword abgeleitet.",
       "candidateSource": "bounded buyer-intent refinement across confirmed services after clarification that marble was an example",
       "researchDisposition": "active",
       "publication": {
-        "status": "live_verified",
-        "checkedOn": "2026-11-16",
-        "release": "8115f7d"
+        "status": "local_only_pending_push",
+        "checkedOn": null
       },
       "googleIndex": {
         "status": "not_checked_per_keyword",
         "checkedOn": null
-      }
+      },
+      "previousTargetMappings": [
+        {
+          "reassignedOn": "2026-11-16",
+          "targetURL": "https://perlas.de/leistungen/gebaeudereinigung/",
+          "publication": {
+            "status": "live_verified",
+            "checkedOn": "2026-11-16",
+            "release": "8115f7d"
+          },
+          "googleIndex": {
+            "status": "not_checked_per_keyword",
+            "checkedOn": null
+          }
+        }
+      ],
+      "targetMappingUpdatedOn": "2026-11-16",
+      "targetMappingRationale": "Eigenständiges Angebot für Treppenhausreinigung mit Flächen-/Turnusplanung und Kostenfaktoren; bestehende gesonderte Eschborn-/Bockenheim-Zuordnungen bleiben erhalten."
     },
     {
       "id": "KW-396",
@@ -15938,25 +16042,41 @@
         "index": 48,
         "isOrganicDifficulty": false
       },
-      "cluster": "treppenhausreinigung-auftrag",
-      "targetURL": "https://perlas.de/leistungen/gebaeudereinigung/",
+      "cluster": "focused-treppenhausreinigung",
+      "targetURL": "https://perlas.de/leistungen/treppenhausreinigung/",
       "originalExistingURL": "https://perlas.de/leistungen/gebaeudereinigung/",
       "originalCoverage": "verified_existing_service",
-      "newLocalPagePlanned": false,
+      "newLocalPagePlanned": true,
       "optionalUnbuiltPage": false,
       "scopeApprovalRequired": false,
       "scopeApprovalNote": "Bestehende Leistungsangaben in src/service-data.json belegen den Umfang; keine neue Spezialleistung aus einem Keyword abgeleitet.",
       "candidateSource": "bounded buyer-intent refinement across confirmed services after clarification that marble was an example",
       "researchDisposition": "active",
       "publication": {
-        "status": "live_verified",
-        "checkedOn": "2026-11-16",
-        "release": "8115f7d"
+        "status": "local_only_pending_push",
+        "checkedOn": null
       },
       "googleIndex": {
         "status": "not_checked_per_keyword",
         "checkedOn": null
-      }
+      },
+      "previousTargetMappings": [
+        {
+          "reassignedOn": "2026-11-16",
+          "targetURL": "https://perlas.de/leistungen/gebaeudereinigung/",
+          "publication": {
+            "status": "live_verified",
+            "checkedOn": "2026-11-16",
+            "release": "8115f7d"
+          },
+          "googleIndex": {
+            "status": "not_checked_per_keyword",
+            "checkedOn": null
+          }
+        }
+      ],
+      "targetMappingUpdatedOn": "2026-11-16",
+      "targetMappingRationale": "Eigenständiges Angebot für Treppenhausreinigung mit Flächen-/Turnusplanung und Kostenfaktoren; bestehende gesonderte Eschborn-/Bockenheim-Zuordnungen bleiben erhalten."
     },
     {
       "id": "KW-397",
@@ -15979,25 +16099,41 @@
         "index": 49,
         "isOrganicDifficulty": false
       },
-      "cluster": "treppenhausreinigung-auftrag",
-      "targetURL": "https://perlas.de/leistungen/gebaeudereinigung/",
+      "cluster": "focused-treppenhausreinigung",
+      "targetURL": "https://perlas.de/leistungen/treppenhausreinigung/",
       "originalExistingURL": "https://perlas.de/leistungen/gebaeudereinigung/",
       "originalCoverage": "verified_existing_service",
-      "newLocalPagePlanned": false,
+      "newLocalPagePlanned": true,
       "optionalUnbuiltPage": false,
       "scopeApprovalRequired": false,
       "scopeApprovalNote": "Bestehende Leistungsangaben in src/service-data.json belegen den Umfang; keine neue Spezialleistung aus einem Keyword abgeleitet.",
       "candidateSource": "bounded buyer-intent refinement across confirmed services after clarification that marble was an example",
       "researchDisposition": "active",
       "publication": {
-        "status": "live_verified",
-        "checkedOn": "2026-11-16",
-        "release": "8115f7d"
+        "status": "local_only_pending_push",
+        "checkedOn": null
       },
       "googleIndex": {
         "status": "not_checked_per_keyword",
         "checkedOn": null
-      }
+      },
+      "previousTargetMappings": [
+        {
+          "reassignedOn": "2026-11-16",
+          "targetURL": "https://perlas.de/leistungen/gebaeudereinigung/",
+          "publication": {
+            "status": "live_verified",
+            "checkedOn": "2026-11-16",
+            "release": "8115f7d"
+          },
+          "googleIndex": {
+            "status": "not_checked_per_keyword",
+            "checkedOn": null
+          }
+        }
+      ],
+      "targetMappingUpdatedOn": "2026-11-16",
+      "targetMappingRationale": "Eigenständiges Angebot für Treppenhausreinigung mit Flächen-/Turnusplanung und Kostenfaktoren; bestehende gesonderte Eschborn-/Bockenheim-Zuordnungen bleiben erhalten."
     },
     {
       "id": "KW-398",
@@ -16020,25 +16156,41 @@
         "index": null,
         "isOrganicDifficulty": false
       },
-      "cluster": "treppenhausreinigung-auftrag",
-      "targetURL": "https://perlas.de/leistungen/gebaeudereinigung/",
+      "cluster": "focused-treppenhausreinigung",
+      "targetURL": "https://perlas.de/leistungen/treppenhausreinigung/",
       "originalExistingURL": "https://perlas.de/leistungen/gebaeudereinigung/",
       "originalCoverage": "verified_existing_service",
-      "newLocalPagePlanned": false,
+      "newLocalPagePlanned": true,
       "optionalUnbuiltPage": false,
       "scopeApprovalRequired": false,
       "scopeApprovalNote": "Bestehende Leistungsangaben in src/service-data.json belegen den Umfang; keine neue Spezialleistung aus einem Keyword abgeleitet.",
       "candidateSource": "bounded buyer-intent refinement across confirmed services after clarification that marble was an example",
       "researchDisposition": "active",
       "publication": {
-        "status": "live_verified",
-        "checkedOn": "2026-11-16",
-        "release": "8115f7d"
+        "status": "local_only_pending_push",
+        "checkedOn": null
       },
       "googleIndex": {
         "status": "not_checked_per_keyword",
         "checkedOn": null
-      }
+      },
+      "previousTargetMappings": [
+        {
+          "reassignedOn": "2026-11-16",
+          "targetURL": "https://perlas.de/leistungen/gebaeudereinigung/",
+          "publication": {
+            "status": "live_verified",
+            "checkedOn": "2026-11-16",
+            "release": "8115f7d"
+          },
+          "googleIndex": {
+            "status": "not_checked_per_keyword",
+            "checkedOn": null
+          }
+        }
+      ],
+      "targetMappingUpdatedOn": "2026-11-16",
+      "targetMappingRationale": "Eigenständiges Angebot für Treppenhausreinigung mit Flächen-/Turnusplanung und Kostenfaktoren; bestehende gesonderte Eschborn-/Bockenheim-Zuordnungen bleiben erhalten."
     },
     {
       "id": "KW-399",
@@ -16061,25 +16213,41 @@
         "index": null,
         "isOrganicDifficulty": false
       },
-      "cluster": "treppenhausreinigung-auftrag",
-      "targetURL": "https://perlas.de/leistungen/gebaeudereinigung/",
+      "cluster": "focused-treppenhausreinigung",
+      "targetURL": "https://perlas.de/leistungen/treppenhausreinigung/",
       "originalExistingURL": "https://perlas.de/leistungen/gebaeudereinigung/",
       "originalCoverage": "verified_existing_service",
-      "newLocalPagePlanned": false,
+      "newLocalPagePlanned": true,
       "optionalUnbuiltPage": false,
       "scopeApprovalRequired": false,
       "scopeApprovalNote": "Bestehende Leistungsangaben in src/service-data.json belegen den Umfang; keine neue Spezialleistung aus einem Keyword abgeleitet.",
       "candidateSource": "bounded buyer-intent refinement across confirmed services after clarification that marble was an example",
       "researchDisposition": "active",
       "publication": {
-        "status": "live_verified",
-        "checkedOn": "2026-11-16",
-        "release": "8115f7d"
+        "status": "local_only_pending_push",
+        "checkedOn": null
       },
       "googleIndex": {
         "status": "not_checked_per_keyword",
         "checkedOn": null
-      }
+      },
+      "previousTargetMappings": [
+        {
+          "reassignedOn": "2026-11-16",
+          "targetURL": "https://perlas.de/leistungen/gebaeudereinigung/",
+          "publication": {
+            "status": "live_verified",
+            "checkedOn": "2026-11-16",
+            "release": "8115f7d"
+          },
+          "googleIndex": {
+            "status": "not_checked_per_keyword",
+            "checkedOn": null
+          }
+        }
+      ],
+      "targetMappingUpdatedOn": "2026-11-16",
+      "targetMappingRationale": "Eigenständiges Angebot für Treppenhausreinigung mit Flächen-/Turnusplanung und Kostenfaktoren; bestehende gesonderte Eschborn-/Bockenheim-Zuordnungen bleiben erhalten."
     },
     {
       "id": "KW-400",
@@ -16102,25 +16270,41 @@
         "index": null,
         "isOrganicDifficulty": false
       },
-      "cluster": "treppenhausreinigung-auftrag",
-      "targetURL": "https://perlas.de/leistungen/gebaeudereinigung/",
+      "cluster": "focused-treppenhausreinigung",
+      "targetURL": "https://perlas.de/leistungen/treppenhausreinigung/",
       "originalExistingURL": "https://perlas.de/leistungen/gebaeudereinigung/",
       "originalCoverage": "verified_existing_service",
-      "newLocalPagePlanned": false,
+      "newLocalPagePlanned": true,
       "optionalUnbuiltPage": false,
       "scopeApprovalRequired": false,
       "scopeApprovalNote": "Bestehende Leistungsangaben in src/service-data.json belegen den Umfang; keine neue Spezialleistung aus einem Keyword abgeleitet.",
       "candidateSource": "bounded buyer-intent refinement across confirmed services after clarification that marble was an example",
       "researchDisposition": "active",
       "publication": {
-        "status": "live_verified",
-        "checkedOn": "2026-11-16",
-        "release": "8115f7d"
+        "status": "local_only_pending_push",
+        "checkedOn": null
       },
       "googleIndex": {
         "status": "not_checked_per_keyword",
         "checkedOn": null
-      }
+      },
+      "previousTargetMappings": [
+        {
+          "reassignedOn": "2026-11-16",
+          "targetURL": "https://perlas.de/leistungen/gebaeudereinigung/",
+          "publication": {
+            "status": "live_verified",
+            "checkedOn": "2026-11-16",
+            "release": "8115f7d"
+          },
+          "googleIndex": {
+            "status": "not_checked_per_keyword",
+            "checkedOn": null
+          }
+        }
+      ],
+      "targetMappingUpdatedOn": "2026-11-16",
+      "targetMappingRationale": "Eigenständiges Angebot für Treppenhausreinigung mit Flächen-/Turnusplanung und Kostenfaktoren; bestehende gesonderte Eschborn-/Bockenheim-Zuordnungen bleiben erhalten."
     },
     {
       "id": "KW-401",
@@ -16143,25 +16327,41 @@
         "index": null,
         "isOrganicDifficulty": false
       },
-      "cluster": "treppenhausreinigung-auftrag",
-      "targetURL": "https://perlas.de/leistungen/gebaeudereinigung/",
+      "cluster": "focused-treppenhausreinigung",
+      "targetURL": "https://perlas.de/leistungen/treppenhausreinigung/",
       "originalExistingURL": "https://perlas.de/leistungen/gebaeudereinigung/",
       "originalCoverage": "verified_existing_service",
-      "newLocalPagePlanned": false,
+      "newLocalPagePlanned": true,
       "optionalUnbuiltPage": false,
       "scopeApprovalRequired": false,
       "scopeApprovalNote": "Bestehende Leistungsangaben in src/service-data.json belegen den Umfang; keine neue Spezialleistung aus einem Keyword abgeleitet.",
       "candidateSource": "bounded buyer-intent refinement across confirmed services after clarification that marble was an example",
       "researchDisposition": "active",
       "publication": {
-        "status": "live_verified",
-        "checkedOn": "2026-11-16",
-        "release": "8115f7d"
+        "status": "local_only_pending_push",
+        "checkedOn": null
       },
       "googleIndex": {
         "status": "not_checked_per_keyword",
         "checkedOn": null
-      }
+      },
+      "previousTargetMappings": [
+        {
+          "reassignedOn": "2026-11-16",
+          "targetURL": "https://perlas.de/leistungen/gebaeudereinigung/",
+          "publication": {
+            "status": "live_verified",
+            "checkedOn": "2026-11-16",
+            "release": "8115f7d"
+          },
+          "googleIndex": {
+            "status": "not_checked_per_keyword",
+            "checkedOn": null
+          }
+        }
+      ],
+      "targetMappingUpdatedOn": "2026-11-16",
+      "targetMappingRationale": "Eigenständiges Angebot für Treppenhausreinigung mit Flächen-/Turnusplanung und Kostenfaktoren; bestehende gesonderte Eschborn-/Bockenheim-Zuordnungen bleiben erhalten."
     },
     {
       "id": "KW-402",
@@ -16717,25 +16917,41 @@
         "index": 37,
         "isOrganicDifficulty": false
       },
-      "cluster": "objektbetreuung-auftrag",
-      "targetURL": "https://perlas.de/leistungen/objektpflege/",
+      "cluster": "focused-hausmeisterservice-gewerbe",
+      "targetURL": "https://perlas.de/leistungen/hausmeisterservice-gewerbe/",
       "originalExistingURL": "https://perlas.de/leistungen/objektpflege/",
       "originalCoverage": "verified_existing_service",
-      "newLocalPagePlanned": false,
+      "newLocalPagePlanned": true,
       "optionalUnbuiltPage": false,
       "scopeApprovalRequired": false,
       "scopeApprovalNote": "Bestehende Leistungsangaben in src/service-data.json belegen den Umfang; keine neue Spezialleistung aus einem Keyword abgeleitet.",
       "candidateSource": "bounded buyer-intent refinement across confirmed services after clarification that marble was an example",
       "researchDisposition": "active",
       "publication": {
-        "status": "live_verified",
-        "checkedOn": "2026-11-16",
-        "release": "8115f7d"
+        "status": "local_only_pending_push",
+        "checkedOn": null
       },
       "googleIndex": {
         "status": "not_checked_per_keyword",
         "checkedOn": null
-      }
+      },
+      "previousTargetMappings": [
+        {
+          "reassignedOn": "2026-11-16",
+          "targetURL": "https://perlas.de/leistungen/objektpflege/",
+          "publication": {
+            "status": "live_verified",
+            "checkedOn": "2026-11-16",
+            "release": "8115f7d"
+          },
+          "googleIndex": {
+            "status": "not_checked_per_keyword",
+            "checkedOn": null
+          }
+        }
+      ],
+      "targetMappingUpdatedOn": "2026-11-16",
+      "targetMappingRationale": "Abgegrenzter laufender Hausmeisterservice für Gewerbe; WEG-/Wohnanlagen-/Hausverwaltungsbegriffe bleiben auf den vorhandenen allgemeinen und örtlichen Angeboten."
     },
     {
       "id": "KW-416",
@@ -17168,25 +17384,41 @@
         "index": 68,
         "isOrganicDifficulty": false
       },
-      "cluster": "aussenanlagenpflege-auftrag",
-      "targetURL": "https://perlas.de/leistungen/gartenpflege/",
+      "cluster": "focused-heckenschnitt",
+      "targetURL": "https://perlas.de/leistungen/heckenschnitt/",
       "originalExistingURL": "https://perlas.de/leistungen/gartenpflege/",
       "originalCoverage": "verified_existing_service",
-      "newLocalPagePlanned": false,
+      "newLocalPagePlanned": true,
       "optionalUnbuiltPage": false,
       "scopeApprovalRequired": false,
       "scopeApprovalNote": "Bestehende Leistungsangaben in src/service-data.json belegen den Umfang; keine neue Spezialleistung aus einem Keyword abgeleitet.",
       "candidateSource": "bounded buyer-intent refinement across confirmed services after clarification that marble was an example",
       "researchDisposition": "active",
       "publication": {
-        "status": "live_verified",
-        "checkedOn": "2026-11-16",
-        "release": "8115f7d"
+        "status": "local_only_pending_push",
+        "checkedOn": null
       },
       "googleIndex": {
         "status": "not_checked_per_keyword",
         "checkedOn": null
-      }
+      },
+      "previousTargetMappings": [
+        {
+          "reassignedOn": "2026-11-16",
+          "targetURL": "https://perlas.de/leistungen/gartenpflege/",
+          "publication": {
+            "status": "live_verified",
+            "checkedOn": "2026-11-16",
+            "release": "8115f7d"
+          },
+          "googleIndex": {
+            "status": "not_checked_per_keyword",
+            "checkedOn": null
+          }
+        }
+      ],
+      "targetMappingUpdatedOn": "2026-11-16",
+      "targetMappingRationale": "Gezieltes Einzelangebot innerhalb belegter Gartenpflege: Schnittumfang, Zugang und Schnittgut; allgemeine Gartenpflege bleibt auf der Elternseite."
     },
     {
       "id": "KW-427",
@@ -17209,25 +17441,41 @@
         "index": 66,
         "isOrganicDifficulty": false
       },
-      "cluster": "aussenanlagenpflege-auftrag",
-      "targetURL": "https://perlas.de/leistungen/gartenpflege/",
+      "cluster": "focused-heckenschnitt",
+      "targetURL": "https://perlas.de/leistungen/heckenschnitt/",
       "originalExistingURL": "https://perlas.de/leistungen/gartenpflege/",
       "originalCoverage": "verified_existing_service",
-      "newLocalPagePlanned": false,
+      "newLocalPagePlanned": true,
       "optionalUnbuiltPage": false,
       "scopeApprovalRequired": false,
       "scopeApprovalNote": "Bestehende Leistungsangaben in src/service-data.json belegen den Umfang; keine neue Spezialleistung aus einem Keyword abgeleitet.",
       "candidateSource": "bounded buyer-intent refinement across confirmed services after clarification that marble was an example",
       "researchDisposition": "active",
       "publication": {
-        "status": "live_verified",
-        "checkedOn": "2026-11-16",
-        "release": "8115f7d"
+        "status": "local_only_pending_push",
+        "checkedOn": null
       },
       "googleIndex": {
         "status": "not_checked_per_keyword",
         "checkedOn": null
-      }
+      },
+      "previousTargetMappings": [
+        {
+          "reassignedOn": "2026-11-16",
+          "targetURL": "https://perlas.de/leistungen/gartenpflege/",
+          "publication": {
+            "status": "live_verified",
+            "checkedOn": "2026-11-16",
+            "release": "8115f7d"
+          },
+          "googleIndex": {
+            "status": "not_checked_per_keyword",
+            "checkedOn": null
+          }
+        }
+      ],
+      "targetMappingUpdatedOn": "2026-11-16",
+      "targetMappingRationale": "Gezieltes Einzelangebot innerhalb belegter Gartenpflege: Schnittumfang, Zugang und Schnittgut; allgemeine Gartenpflege bleibt auf der Elternseite."
     },
     {
       "id": "KW-428",
@@ -17291,25 +17539,41 @@
         "index": null,
         "isOrganicDifficulty": false
       },
-      "cluster": "winterdienst-auftrag",
-      "targetURL": "https://perlas.de/leistungen/winterdienst/",
+      "cluster": "focused-winterdienst-gewerbe",
+      "targetURL": "https://perlas.de/leistungen/winterdienst-gewerbe/",
       "originalExistingURL": "https://perlas.de/leistungen/winterdienst/",
       "originalCoverage": "verified_existing_service",
-      "newLocalPagePlanned": false,
+      "newLocalPagePlanned": true,
       "optionalUnbuiltPage": false,
       "scopeApprovalRequired": false,
       "scopeApprovalNote": "Bestehende Leistungsangaben in src/service-data.json belegen den Umfang; keine neue Spezialleistung aus einem Keyword abgeleitet.",
       "candidateSource": "bounded buyer-intent refinement across confirmed services after clarification that marble was an example",
       "researchDisposition": "active",
       "publication": {
-        "status": "live_verified",
-        "checkedOn": "2026-11-16",
-        "release": "8115f7d"
+        "status": "local_only_pending_push",
+        "checkedOn": null
       },
       "googleIndex": {
         "status": "not_checked_per_keyword",
         "checkedOn": null
-      }
+      },
+      "previousTargetMappings": [
+        {
+          "reassignedOn": "2026-11-16",
+          "targetURL": "https://perlas.de/leistungen/winterdienst/",
+          "publication": {
+            "status": "live_verified",
+            "checkedOn": "2026-11-16",
+            "release": "8115f7d"
+          },
+          "googleIndex": {
+            "status": "not_checked_per_keyword",
+            "checkedOn": null
+          }
+        }
+      ],
+      "targetMappingUpdatedOn": "2026-11-16",
+      "targetMappingRationale": "Gezielter gewerblicher Winterdienst mit Flächen-/Zutrittsplanung; allgemeine Firma-/Angebotssuchen bleiben auf dem Winterdienst-Überblick."
     },
     {
       "id": "KW-430",
@@ -17332,25 +17596,41 @@
         "index": 10,
         "isOrganicDifficulty": false
       },
-      "cluster": "winterdienst-auftrag",
-      "targetURL": "https://perlas.de/leistungen/winterdienst/",
+      "cluster": "focused-winterdienst-gewerbe",
+      "targetURL": "https://perlas.de/leistungen/winterdienst-gewerbe/",
       "originalExistingURL": "https://perlas.de/leistungen/winterdienst/",
       "originalCoverage": "verified_existing_service",
-      "newLocalPagePlanned": false,
+      "newLocalPagePlanned": true,
       "optionalUnbuiltPage": false,
       "scopeApprovalRequired": false,
       "scopeApprovalNote": "Bestehende Leistungsangaben in src/service-data.json belegen den Umfang; keine neue Spezialleistung aus einem Keyword abgeleitet.",
       "candidateSource": "bounded buyer-intent refinement across confirmed services after clarification that marble was an example",
       "researchDisposition": "active",
       "publication": {
-        "status": "live_verified",
-        "checkedOn": "2026-11-16",
-        "release": "8115f7d"
+        "status": "local_only_pending_push",
+        "checkedOn": null
       },
       "googleIndex": {
         "status": "not_checked_per_keyword",
         "checkedOn": null
-      }
+      },
+      "previousTargetMappings": [
+        {
+          "reassignedOn": "2026-11-16",
+          "targetURL": "https://perlas.de/leistungen/winterdienst/",
+          "publication": {
+            "status": "live_verified",
+            "checkedOn": "2026-11-16",
+            "release": "8115f7d"
+          },
+          "googleIndex": {
+            "status": "not_checked_per_keyword",
+            "checkedOn": null
+          }
+        }
+      ],
+      "targetMappingUpdatedOn": "2026-11-16",
+      "targetMappingRationale": "Gezielter gewerblicher Winterdienst mit Flächen-/Zutrittsplanung; allgemeine Firma-/Angebotssuchen bleiben auf dem Winterdienst-Überblick."
     },
     {
       "id": "KW-431",
@@ -17373,25 +17653,41 @@
         "index": null,
         "isOrganicDifficulty": false
       },
-      "cluster": "winterdienst-auftrag",
-      "targetURL": "https://perlas.de/leistungen/winterdienst/",
+      "cluster": "focused-winterdienst-gewerbe",
+      "targetURL": "https://perlas.de/leistungen/winterdienst-gewerbe/",
       "originalExistingURL": "https://perlas.de/leistungen/winterdienst/",
       "originalCoverage": "verified_existing_service",
-      "newLocalPagePlanned": false,
+      "newLocalPagePlanned": true,
       "optionalUnbuiltPage": false,
       "scopeApprovalRequired": false,
       "scopeApprovalNote": "Bestehende Leistungsangaben in src/service-data.json belegen den Umfang; keine neue Spezialleistung aus einem Keyword abgeleitet.",
       "candidateSource": "bounded buyer-intent refinement across confirmed services after clarification that marble was an example",
       "researchDisposition": "active",
       "publication": {
-        "status": "live_verified",
-        "checkedOn": "2026-11-16",
-        "release": "8115f7d"
+        "status": "local_only_pending_push",
+        "checkedOn": null
       },
       "googleIndex": {
         "status": "not_checked_per_keyword",
         "checkedOn": null
-      }
+      },
+      "previousTargetMappings": [
+        {
+          "reassignedOn": "2026-11-16",
+          "targetURL": "https://perlas.de/leistungen/winterdienst/",
+          "publication": {
+            "status": "live_verified",
+            "checkedOn": "2026-11-16",
+            "release": "8115f7d"
+          },
+          "googleIndex": {
+            "status": "not_checked_per_keyword",
+            "checkedOn": null
+          }
+        }
+      ],
+      "targetMappingUpdatedOn": "2026-11-16",
+      "targetMappingRationale": "Gezielter gewerblicher Winterdienst mit Flächen-/Zutrittsplanung; allgemeine Firma-/Angebotssuchen bleiben auf dem Winterdienst-Überblick."
     },
     {
       "id": "KW-432",

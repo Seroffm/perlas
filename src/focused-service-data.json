@@ -1,0 +1,674 @@
+[
+  {
+    "slug": "treppenhausreinigung",
+    "path": "/leistungen/treppenhausreinigung/",
+    "serviceSlug": "gebaeudereinigung",
+    "parentLabel": "Gebäudereinigung",
+    "eyebrow": "Für Hausverwaltungen, WEG und Eigentümer",
+    "locality": "Rhein-Main",
+    "region": "Frankfurt & Rhein-Main",
+    "primaryKeyword": "treppenhausreinigung",
+    "guideSlugs": [
+      "gebaeudereinigung-im-laufenden-betrieb"
+    ],
+    "seoTitle": "Treppenhausreinigung Frankfurt & Rhein-Main | Perla’s",
+    "seoDescription": "Treppenhausreinigung für WEG und Hausverwaltungen in Rhein-Main. Bereiche, Intervalle und Kostenfaktoren klären. Jetzt Angebot anfragen.",
+    "heading": "Treppenhausreinigung.",
+    "heroPromise": "Saubere Gemeinschaftsflächen. Weniger Abstimmung für Sie.",
+    "heroHighlights": [
+      "Aufgaben je Bereich",
+      "Passender Reinigungsturnus",
+      "Ein persönlicher Kontakt"
+    ],
+    "intro": "Ein gepflegter Eingang ist jeden Tag sichtbar. Perla’s übernimmt Treppenhausreinigung für Hausverwaltungen und WEG in Frankfurt und Rhein-Main. Wir vereinbaren Flächen, Aufgaben und Intervalle. So entsteht ein nachvollziehbarer Reinigungsplan für Ihr Gebäude.",
+    "ctaText": "Treppenhausreinigung anfragen",
+    "updatedOn": "2026-11-16",
+    "heroImage": {
+      "src": "kundenbilder/leistungen/gebaeudereinigung_flur.png",
+      "alt": "Perla’s Mitarbeiter bei der Reinigung einer gemeinschaftlich genutzten Innenfläche",
+      "position": "50% 48%",
+      "caption": "Einblick in die Reinigung von Innenflächen."
+    },
+    "scopeTitle": "Ein Reinigungsplan für jeden Bereich.",
+    "scopeIntro": "Ein Leistungsverzeichnis macht die Treppenhausreinigung vergleichbar. Es verbindet Flächen, Tätigkeiten und Intervalle, statt nur einen Gebäudepreis zu nennen.",
+    "scopeCards": [
+      {
+        "title": "Stufen, Podeste und Böden",
+        "text": "Wir erfassen die vereinbarten Treppenläufe und Verkehrsflächen. Bodenmaterial, Nutzung und Zugang bestimmen, wie die Reinigung geplant wird. Kellerzugänge oder zusätzliche Flure werden einzeln benannt.",
+        "items": [
+          "Treppenläufe und Podeste",
+          "Vereinbarte Flure und Zugänge"
+        ]
+      },
+      {
+        "title": "Eingang und Kontaktflächen",
+        "text": "Handläufe, erreichbare Flächen und der Eingangsbereich erhalten konkrete Aufgaben. Glas, Rahmen oder Briefkastenbereiche können ergänzend aufgenommen werden. Im Angebot erkennen Sie, welche Arbeiten dazugehören.",
+        "items": [
+          "Handläufe und Kontaktflächen",
+          "Eingangsbereiche nach Vereinbarung"
+        ]
+      },
+      {
+        "title": "Intervalle und Rückmeldungen",
+        "text": "Den Reinigungsturnus stimmen wir auf Ihr Objekt ab. Wenn Nutzung oder Verschmutzung sich ändern, lässt sich der Plan besprechen. Rückfragen gehen an den vereinbarten Ansprechpartner.",
+        "items": [
+          "Rhythmus je Bereich festlegen",
+          "Änderungen gemeinsam abstimmen"
+        ]
+      }
+    ],
+    "planning": {
+      "title": "Drei Angaben für ein vergleichbares Angebot.",
+      "intro": "Mit diesen Informationen können wir Ihren Bedarf einordnen. Ein bestehender Reinigungsplan hilft, ist für die erste Anfrage aber nicht erforderlich.",
+      "headers": [
+        "Bereich",
+        "Umfang beschreiben",
+        "Rhythmus klären"
+      ],
+      "rows": [
+        [
+          "Treppenhaus",
+          "Eingänge, Etagen, Stufen und Bodenbelag",
+          "Gewünschte Reinigungstage"
+        ],
+        [
+          "Gemeinschaftsflächen",
+          "Flure, Kellerzugänge und erreichbare Flächen",
+          "Gleicher oder eigener Turnus"
+        ],
+        [
+          "Ergänzungen",
+          "Glas, Rahmen oder intensiverer Reinigungsbedarf",
+          "Regelmäßig oder gesonderter Termin"
+        ]
+      ],
+      "note": "Die Übersicht ist eine Anfragehilfe. Der tatsächliche Umfang wird objektbezogen vereinbart."
+    },
+    "detail": {
+      "title": "Rückmeldungen, mit denen Sie arbeiten können.",
+      "text": "Bei einer Rückfrage hilft eine konkrete Ortsangabe mehr als eine allgemeine Beanstandung. Nennen Sie Eingang, Etage oder betroffene Fläche. Wir gleichen den Hinweis mit dem vereinbarten Umfang ab und besprechen, ob eine Aufgabe, ein Zugang oder der Rhythmus angepasst werden soll.",
+      "image": {
+        "src": "kundenbilder/team/update-2026-09-23/mitarbeiter_reinigung_weiblich_01.png",
+        "alt": "Perla’s Mitarbeiterin mit Reinigungsgerät",
+        "position": "50% 38%",
+        "caption": "Persönlicher Kontakt für Ihre Reinigung."
+      },
+      "points": [
+        "Betroffene Fläche eindeutig benennen",
+        "Aufgaben am Leistungsplan prüfen",
+        "Änderungen vor der Ausführung abstimmen"
+      ]
+    },
+    "processSteps": [
+      {
+        "title": "Gebäude beschreiben",
+        "text": "Teilen Sie uns Standort, Anzahl der Eingänge und Etagen sowie Ihren gewünschten Turnus mit. Das reicht für das erste Gespräch."
+      },
+      {
+        "title": "Umfang gemeinsam aufnehmen",
+        "text": "Wir klären Beläge, zusätzliche Bereiche und den Zugang. Bei Bedarf sehen wir uns das Treppenhaus vor Ort an."
+      },
+      {
+        "title": "Mit einem klaren Plan starten",
+        "text": "Nach Angebotsfreigabe stehen Aufgaben, Intervalle und Rückmeldeweg fest. Den möglichen Beginn stimmen wir persönlich mit Ihnen ab."
+      }
+    ],
+    "cost": {
+      "title": "Was kostet die Treppenhausreinigung?",
+      "text": "Die Kosten der Treppenhausreinigung hängen vom tatsächlichen Aufwand ab. Zwei Gebäude mit gleich vielen Etagen können sehr unterschiedliche Eingänge, Flure und Beläge haben. Ein aussagekräftiges Angebot nennt deshalb die Aufgaben und den Turnus. Glasreinigung oder eine einmalige Grundreinigung werden gesondert beschrieben.",
+      "factors": [
+        "Eingänge, Etagen und zusätzliche Flächen",
+        "Bodenmaterial, Nutzung und Zugänglichkeit",
+        "Reinigungsturnus und vereinbarte Ergänzungen"
+      ]
+    },
+    "faqs": [
+      {
+        "question": "Kann eine Hausverwaltung die Reinigung für mehrere Gebäude anfragen?",
+        "answer": "Ja. Nennen Sie Standorte und Gebäude getrennt. Wir nehmen den Umfang je Objekt auf, damit Aufgaben und Rückmeldungen später zugeordnet bleiben."
+      },
+      {
+        "question": "Ist ein wöchentlicher Turnus vorgesehen?",
+        "answer": "Sie können einen wöchentlichen Rhythmus anfragen. Ob er zum Objekt und zur Nutzung passt, klären wir gemeinsam. Der vereinbarte Turnus steht im Leistungsplan."
+      },
+      {
+        "question": "Sind Fenster und Keller automatisch enthalten?",
+        "answer": "Diese Bereiche werden ausdrücklich aufgenommen. Ein eigener Eintrag im Angebot zeigt, welche Fenster, Rahmen, Kellerzugänge oder zusätzlichen Flächen dazugehören und wie häufig sie gereinigt werden."
+      },
+      {
+        "question": "Wie erhalten wir ein Angebot zur Treppenhausreinigung?",
+        "answer": "Beschreiben Sie Ihr Gebäude und den gewünschten Umfang über das Formular. Anschließend besprechen wir offene Angaben und gegebenenfalls eine Besichtigung. Sie erhalten ein Angebot für die vereinbarten Aufgaben."
+      }
+    ],
+    "inquiry": {
+      "title": "Ihr Treppenhaus. Ihr passender Reinigungsplan.",
+      "text": "Nennen Sie uns Ihr Objekt und die gewünschte Reinigung. Die Einzelheiten klären wir im persönlichen Gespräch.",
+      "checklist": [
+        "Standort, Eingänge und Etagen",
+        "Zusätzliche Gemeinschaftsflächen",
+        "Gewünschter Turnus und Zugang"
+      ],
+      "topic": "Treppenhausreinigung"
+    },
+    "serviceAreaText": "Perla’s sitzt in Sulzbach (Taunus). Für Ihr Gebäude in Frankfurt und im Rhein-Main-Gebiet stimmen wir Umfang, Zugang und mögliche Einsätze objektbezogen ab.",
+    "relatedLinks": [
+      {
+        "label": "Gesamtes Reinigungsangebot",
+        "path": "/leistungen/gebaeudereinigung/"
+      },
+      {
+        "label": "Alle Leistungen im Überblick",
+        "path": "/leistungen/"
+      },
+      {
+        "label": "Reinigung im laufenden Betrieb planen",
+        "path": "/blog/gebaeudereinigung-im-laufenden-betrieb/"
+      }
+    ]
+  },
+  {
+    "slug": "heckenschnitt",
+    "path": "/leistungen/heckenschnitt/",
+    "serviceSlug": "gartenpflege",
+    "parentLabel": "Garten- & Außenanlagenpflege",
+    "eyebrow": "Für gepflegte Wohn- und Gewerbegrundstücke",
+    "locality": "Rhein-Main",
+    "region": "Frankfurt & Rhein-Main",
+    "primaryKeyword": "heckenschnitt firma",
+    "guideSlugs": [
+      "hausmeisterservice-objektbetreuung-frankfurt-umgebung"
+    ],
+    "seoTitle": "Heckenschnitt in Rhein-Main: Angebot & Ablauf | Perla’s",
+    "seoDescription": "Hecke schneiden lassen in Rhein-Main: Schnittumfang, Zugang und Schnittgut gemeinsam planen. Perla’s aus Sulzbach erstellt Ihr passendes Angebot.",
+    "heading": "Heckenschnitt.",
+    "heroPromise": "Eine klare Form. Ein sauber geplanter Auftrag.",
+    "heroHighlights": [
+      "Schnittumfang vorab klären",
+      "Zugang und Schnittgut einplanen",
+      "Einzeltermin oder laufende Pflege"
+    ],
+    "intro": "Sie suchen eine Firma für den Heckenschnitt an Ihrer Wohnanlage oder Ihrem Gewerbegrundstück? Perla’s aus Sulzbach plant den Schnitt geeigneter Hecken und Sträucher in Rhein-Main. Schnittform, Zugang und Schnittgut werden vorab abgestimmt.",
+    "ctaText": "Heckenschnitt anfragen",
+    "updatedOn": "2026-11-16",
+    "heroImage": {
+      "src": "kundenbilder/leistungen/projektfotos/Gartenpflege_Arbeitsgeraet_am_Heckenweg.jpg",
+      "alt": "Arbeitsgerät auf einem Gartenweg zwischen Hecken aus dem Perla’s Bildbestand",
+      "position": "50% 50%",
+      "caption": "Einblick in die Pflege von Hecken und Gartenwegen."
+    },
+    "scopeTitle": "Von der gewünschten Form zum passenden Umfang.",
+    "scopeIntro": "Länge, Höhe, Schnittseiten und Zugang bestimmen den Auftrag. Wir betrachten diese Angaben zusammen.",
+    "scopeCards": [
+      {
+        "title": "Hecke und Schnittziel aufnehmen",
+        "text": "Wir erfassen die Heckenabschnitte und die gewünschte Form. Zustand und Bepflanzung fließen in die Abstimmung ein. Größere Maßnahmen werden gesondert betrachtet.",
+        "items": [
+          "Länge, Höhe und Breite erfassen",
+          "Gewünschte Schnittseiten benennen"
+        ]
+      },
+      {
+        "title": "Zugang für die Arbeit vorbereiten",
+        "text": "Ein schmaler Durchgang oder eine einseitig erreichbare Hecke beeinflusst den Ablauf. Wir besprechen Arbeitsbereiche, Zufahrt und Hindernisse. Den möglichen Termin stimmen wir persönlich ab.",
+        "items": [
+          "Erreichbarkeit der Hecke prüfen",
+          "Zufahrt und Arbeitsfläche abstimmen"
+        ]
+      },
+      {
+        "title": "Schnittgut und Abschluss vereinbaren",
+        "text": "Auch der Abschluss gehört in den Plan. Sammlung, Aufnahme und möglicher Abtransport des Schnittguts erhalten einen eigenen Umfang. Die bearbeiteten Wege werden benannt.",
+        "items": [
+          "Umgang mit dem Schnittgut klären",
+          "Abschlussarbeiten ausdrücklich aufnehmen"
+        ]
+      }
+    ],
+    "planning": {
+      "title": "Ihre kurze Checkliste für den Heckenschnitt.",
+      "intro": "Ungefähre Maße und Fotos erleichtern die erste Einschätzung. Damit können wir gezielt nachfragen und bei Bedarf eine Besichtigung abstimmen.",
+      "headers": [
+        "Angabe",
+        "Was uns hilft",
+        "Warum es wichtig ist"
+      ],
+      "rows": [
+        [
+          "Hecke",
+          "Ungefähre Länge, Höhe, Breite und Fotos",
+          "Schnittumfang einschätzen"
+        ],
+        [
+          "Zugang",
+          "Erreichbare Seiten, Durchgänge und Zufahrt",
+          "Ausführung vorbereiten"
+        ],
+        [
+          "Schnittgut",
+          "Sammlung vor Ort oder gewünschter Abtransport",
+          "Auftrag vollständig beschreiben"
+        ]
+      ],
+      "note": "Schnittziel, geeigneter Zeitpunkt und mögliche Ausführung werden vor der Beauftragung abgestimmt."
+    },
+    "detail": {
+      "title": "Ein einzelner Schnitt oder Pflege über das Jahr.",
+      "text": "Bei einem Einzelauftrag beschreiben wir Schnitt und Abschluss. In der laufenden Außenanlagenpflege kann der Heckenschnitt mit Rasenpflege, Laubaufnahme und Wegen geplant werden. Jede Aufgabe behält ihren vereinbarten Umfang.",
+      "image": {
+        "src": "kundenbilder/leistungen/gartenpflege_hecke_01.png",
+        "alt": "Perla’s Mitarbeiter bei der Pflege einer Hecke",
+        "position": "50% 45%",
+        "caption": "Heckenpflege aus dem vorhandenen Perla’s Bildbestand."
+      },
+      "points": [
+        "Einzelauftrag mit klarem Schnittziel",
+        "Saisonale Aufgaben gemeinsam planen",
+        "Zusätzliche Arbeiten vorher besprechen"
+      ]
+    },
+    "processSteps": [
+      {
+        "title": "Hecke kurz beschreiben",
+        "text": "Nennen Sie Standort und ungefähre Maße. Beschreiben Sie den gewünschten Schnitt und ob die Hecke von beiden Seiten erreichbar ist."
+      },
+      {
+        "title": "Ausführung und Abschluss klären",
+        "text": "Wir besprechen Zustand, Zugang, Schnittziel und Schnittgut. Bei Bedarf sehen wir uns die Hecke und die Arbeitsflächen vor Ort an."
+      },
+      {
+        "title": "Termin und Umfang vereinbaren",
+        "text": "Sie erhalten ein Angebot für die abgestimmten Arbeiten. Nach Freigabe klären wir den möglichen Termin und die Vorbereitung des Zugangs."
+      }
+    ],
+    "cost": {
+      "title": "Was kostet es, eine Hecke schneiden zu lassen?",
+      "text": "Neben der Länge zählen Höhe, Breite, Erreichbarkeit und Schnittumfang. Ein enger Durchgang erzeugt einen anderen Ablauf als eine beidseitig zugängliche Hecke. Sammlung oder Abtransport des Schnittguts werden im Angebot erkennbar berücksichtigt.",
+      "factors": [
+        "Maße, Zustand und gewünschte Schnittseiten",
+        "Zugang und verfügbare Arbeitsfläche",
+        "Sammlung, Abtransport und Abschlussarbeiten"
+      ]
+    },
+    "faqs": [
+      {
+        "question": "Können wir nur einen Heckenschnitt beauftragen?",
+        "answer": "Ja. Sie können einen einzelnen Schnitt anfragen. Wir klären den geeigneten Umfang, den Zugang und den Abschluss. Eine laufende Gartenpflege ist dafür nicht automatisch Bestandteil des Auftrags."
+      },
+      {
+        "question": "Reichen Fotos für ein Angebot?",
+        "answer": "Fotos zusammen mit ungefähren Maßen helfen bei der ersten Einschätzung. Ob weitere Angaben oder eine Besichtigung nötig sind, hängt von Zustand, Zugang und gewünschter Arbeit ab."
+      },
+      {
+        "question": "Wird das Schnittgut mitgenommen?",
+        "answer": "Den gewünschten Umgang mit dem Schnittgut vereinbaren wir ausdrücklich. Teilen Sie uns mit, ob eine Sammlung auf dem Grundstück möglich ist oder Sie einen Abtransport anfragen möchten."
+      },
+      {
+        "question": "Kann Heckenschnitt Teil der Außenanlagenpflege sein?",
+        "answer": "Ja. Für Wohnanlagen und Gewerbegrundstücke lässt sich der Schnitt in einen abgestimmten Pflegeplan aufnehmen. Rasenpflege, Wege und weitere saisonale Aufgaben werden dabei einzeln beschrieben."
+      }
+    ],
+    "inquiry": {
+      "title": "Ihre Hecke. Ein übersichtliches Angebot.",
+      "text": "Beschreiben Sie die Hecke und das gewünschte Ergebnis. Wir klären mit Ihnen den passenden Umfang und die nächsten Schritte.",
+      "checklist": [
+        "Standort und ungefähre Maße",
+        "Zugang und gewünschte Schnittseiten",
+        "Wunsch zum Umgang mit Schnittgut"
+      ],
+      "topic": "Heckenschnitt"
+    },
+    "serviceAreaText": "Perla’s hat seinen Sitz in Sulzbach (Taunus). Für Grundstücke in Frankfurt und im Rhein-Main-Gebiet stimmen wir die mögliche Ausführung und den Leistungsumfang persönlich ab.",
+    "relatedLinks": [
+      {
+        "label": "Garten- und Außenanlagenpflege",
+        "path": "/leistungen/gartenpflege/"
+      },
+      {
+        "label": "Alle Leistungen im Überblick",
+        "path": "/leistungen/"
+      },
+      {
+        "label": "Objektbetreuung in Frankfurt und Umgebung",
+        "path": "/blog/hausmeisterservice-objektbetreuung-frankfurt-umgebung/"
+      }
+    ]
+  },
+  {
+    "slug": "winterdienst-gewerbe",
+    "path": "/leistungen/winterdienst-gewerbe/",
+    "serviceSlug": "winterdienst",
+    "parentLabel": "Winterdienst",
+    "eyebrow": "Für Gewerbeobjekte und Unternehmensstandorte",
+    "locality": "Rhein-Main",
+    "region": "Frankfurt & Rhein-Main",
+    "primaryKeyword": "winterdienst gewerbe",
+    "guideSlugs": [
+      "winterdienst-richtig-planen"
+    ],
+    "seoTitle": "Winterdienst für Gewerbe in Rhein-Main | Perla’s",
+    "seoDescription": "Winterdienst für Gewerbeobjekte in Rhein-Main: Wege, Eingänge, Prioritäten und Einsatzdokumentation vereinbaren. Jetzt Flächen und Bedarf anfragen.",
+    "heading": "Winterdienst für Gewerbe.",
+    "heroPromise": "Wichtige Wege zuerst. Der Umfang steht im Plan.",
+    "heroHighlights": [
+      "Flächen vorab aufnehmen",
+      "Betriebliche Zugänge berücksichtigen",
+      "Einsätze nachvollziehbar festhalten"
+    ],
+    "intro": "Besuchereingang, Mitarbeiterweg oder Zugang zum Nebengebäude: Winterdienst am Gewerbestandort braucht eine eindeutige Flächenzuordnung. Perla’s aus Sulzbach plant Räumen und Streuen für vereinbarte Bereiche in Rhein-Main. Prioritäten, Zugänge und Einsatzbedingungen stimmen wir persönlich ab.",
+    "ctaText": "Winterdienstangebot anfragen",
+    "updatedOn": "2026-11-16",
+    "heroImage": {
+      "src": "kundenbilder/leistungen/winterdienst_team.png",
+      "alt": "Perla’s Team bei einem Winterdiensteinsatz im Schnee",
+      "position": "50% 50%",
+      "caption": "Einblick in den Perla’s Winterdienst."
+    },
+    "scopeTitle": "Ein Flächenplan für Ihren Standort.",
+    "scopeIntro": "Wir besprechen den betrieblichen Bedarf anhand der tatsächlichen Wege. So erhält jede vereinbarte Fläche einen nachvollziehbaren Platz im Auftrag.",
+    "scopeCards": [
+      {
+        "title": "Wege und Eingänge zuordnen",
+        "text": "Laufwege, Eingänge und vereinbarte Zufahrten werden aufgenommen. Unterschiedliche Nutzungsbereiche erhalten eigene Einträge. Ein vorhandener Lageplan oder eine Skizze unterstützt die gemeinsame Flächenaufnahme.",
+        "items": [
+          "Mitarbeiter- und Besuchereingänge",
+          "Vereinbarte Wege und Zufahrten"
+        ]
+      },
+      {
+        "title": "Zugang und Prioritäten abstimmen",
+        "text": "Betriebszeiten, Tore und wichtige Verbindungen beeinflussen die Vorbereitung. Wir klären Reihenfolge und Zugang. Die möglichen Einsatzbedingungen werden vorab vereinbart.",
+        "items": [
+          "Häufig genutzte Zugänge priorisieren",
+          "Schlüssel, Tore und Kontaktperson klären"
+        ]
+      },
+      {
+        "title": "Räumen, Streuen und rückmelden",
+        "text": "Die aufgenommenen Bereiche werden nach dem vereinbarten Umfang bearbeitet. Streubereiche und geeignete Mittel stimmen wir objektbezogen ab. Zeitpunkt, Flächen und besondere Hinweise können anschließend festgehalten werden.",
+        "items": [
+          "Vereinbarte Räum- und Streubereiche",
+          "Zeitpunkt und bearbeitete Flächen dokumentieren"
+        ]
+      }
+    ],
+    "planning": {
+      "title": "Drei Zonen, die Sie getrennt beschreiben sollten.",
+      "intro": "Diese Einteilung ist eine Vorbereitungshilfe. Sie zeigt, welche Angaben bei einem Gewerbestandort oft unterschiedliche Rückfragen auslösen.",
+      "headers": [
+        "Zone",
+        "Im Plan festhalten",
+        "Vor dem Start klären"
+      ],
+      "rows": [
+        [
+          "Gebäudeeingänge",
+          "Genutzte Türen und vorgelagerte Flächen",
+          "Priorität und Zugänglichkeit"
+        ],
+        [
+          "Verbindungswege",
+          "Verlauf, Übergänge und besondere Stellen",
+          "Gewünschte Reihenfolge"
+        ],
+        [
+          "Zufahrten und Nebenflächen",
+          "Ausdrücklich beauftragte Abschnitte",
+          "Tore, Hindernisse und Kontaktperson"
+        ]
+      ],
+      "note": "Flächen, Einsatzbedingungen und Zuständigkeiten werden für das konkrete Objekt vereinbart."
+    },
+    "detail": {
+      "title": "Dokumentation mit Bezug zur Fläche.",
+      "text": "Eine verständliche Rückmeldung verbindet den Einsatz mit dem Objektplan. Datum, Zeitpunkt, bearbeitete Bereiche und besondere Bedingungen machen den Umfang nachvollziehbar. Ändert sich ein Zugang oder die Flächennutzung, besprechen wir die Anpassung der Betreuung.",
+      "image": {
+        "src": "kundenbilder/fahrzeuge/perlas_fahrzeug_gewerbe_01.png",
+        "alt": "Perla’s Servicefahrzeug an einem Gewerbestandort",
+        "position": "50% 55%",
+        "caption": "Gewerbliche Standorte objektbezogen betreuen."
+      },
+      "points": [
+        "Flächen im Lageplan eindeutig benennen",
+        "Besondere Bedingungen nachvollziehbar melden",
+        "Änderungen am Zugang frühzeitig mitteilen"
+      ]
+    },
+    "processSteps": [
+      {
+        "title": "Standort und Bedarf nennen",
+        "text": "Senden Sie uns den Standort und eine kurze Beschreibung Ihrer Wege, Eingänge und gewünschten Flächen. Ein Lageplan hilft beim ersten Gespräch."
+      },
+      {
+        "title": "Flächen und Bedingungen aufnehmen",
+        "text": "Wir klären vor Ort oder anhand Ihrer Unterlagen Zugang, Prioritäten, Streubereiche und die vorgesehenen Einsatzbedingungen. Offene Zuständigkeiten werden besprochen."
+      },
+      {
+        "title": "Umfang verbindlich abstimmen",
+        "text": "Sie erhalten ein Angebot für den vereinbarten Plan. Den möglichen Beginn, die Kommunikation und Änderungen an den Flächen stimmen wir persönlich ab."
+      }
+    ],
+    "cost": {
+      "title": "Was gehört in ein Winterdienstangebot?",
+      "text": "Ein Angebot wird anhand Ihrer Flächen und des vereinbarten Einsatzumfangs erstellt. Für den Vergleich sollten Wege, Eingänge, Zufahrten und Bedingungen auf derselben Grundlage beschrieben sein. Auch Zugang, Streumittel und Dokumentationsbedarf gehören in die Abstimmung. Einen pauschalen Preis ohne Objektbezug nennen wir deshalb nicht.",
+      "factors": [
+        "Größe und Aufteilung der beauftragten Flächen",
+        "Zugang, Prioritäten und Einsatzbedingungen",
+        "Vereinbarte Streumittel und Dokumentation"
+      ]
+    },
+    "faqs": [
+      {
+        "question": "Ist der Winterdienst auch als einzelne Leistung möglich?",
+        "answer": "Ja. Sie können Winterdienst für einen Gewerbestandort gesondert anfragen. Ergänzende Leistungen werden eigenständig vereinbart."
+      },
+      {
+        "question": "Werden alle Park- und Zufahrtsflächen betreut?",
+        "answer": "Der Auftrag umfasst die ausdrücklich aufgenommenen Bereiche. Beschreiben Sie gewünschte Stell- oder Zufahrtsflächen getrennt, damit Größe, Zugang und mögliche Ausführung geprüft werden können."
+      },
+      {
+        "question": "Welche Einsatzzeiten können wir vereinbaren?",
+        "answer": "Teilen Sie uns Ihren betrieblichen Bedarf und die Zugangsbedingungen mit. Wir prüfen die Einsatzmöglichkeit und besprechen die konkreten Bedingungen vor der Beauftragung. Eine Anfrage bestätigt noch keinen Einsatztermin."
+      },
+      {
+        "question": "Welche Angaben helfen für das erste Gespräch?",
+        "answer": "Hilfreich sind Standort, Lageplan oder Fotos, ungefähre Flächen sowie Ihre Kontaktperson. Beschreiben Sie wichtige Eingänge, verschlossene Zugänge und Bereiche, die für Ihren Betrieb besonders relevant sind."
+      }
+    ],
+    "inquiry": {
+      "title": "Den Winterdienst für Ihren Standort vorbereiten.",
+      "text": "Nennen Sie uns Ihre Flächen und den betrieblichen Bedarf. Wir klären den möglichen Umfang und die nächsten Schritte mit Ihnen.",
+      "checklist": [
+        "Standort und Lageplan oder Flächenübersicht",
+        "Wichtige Zugänge und Betriebszeiten",
+        "Kontaktperson und gewünschter Umfang"
+      ],
+      "topic": "Winterdienst für Gewerbe"
+    },
+    "serviceAreaText": "Perla’s sitzt in Sulzbach (Taunus). Für Gewerbestandorte in Frankfurt und im Rhein-Main-Gebiet prüfen wir den gewünschten Winterdienst objektbezogen und stimmen mögliche Einsätze persönlich ab.",
+    "relatedLinks": [
+      {
+        "label": "Gesamtes Winterdienstangebot",
+        "path": "/leistungen/winterdienst/"
+      },
+      {
+        "label": "Alle Leistungen im Überblick",
+        "path": "/leistungen/"
+      },
+      {
+        "label": "Winterdienst richtig vorbereiten",
+        "path": "/blog/winterdienst-richtig-planen/"
+      }
+    ]
+  },
+  {
+    "slug": "hausmeisterservice-gewerbe",
+    "path": "/leistungen/hausmeisterservice-gewerbe/",
+    "serviceSlug": "objektpflege",
+    "parentLabel": "Objektbetreuung",
+    "eyebrow": "Für Bürogebäude und Gewerbestandorte",
+    "locality": "Rhein-Main",
+    "region": "Frankfurt & Rhein-Main",
+    "primaryKeyword": "hausmeisterservice gewerbe",
+    "guideSlugs": [
+      "objektkontrollen-richtig-dokumentieren"
+    ],
+    "seoTitle": "Hausmeisterservice für Gewerbe in Rhein-Main | Perla’s",
+    "seoDescription": "Hausmeisterservice für Gewerbeobjekte in Rhein-Main. Kontrollgänge, kleine Aufgaben und Rückmeldungen klar vereinbaren. Jetzt Betreuung anfragen.",
+    "heading": "Hausmeisterservice für Gewerbe.",
+    "heroPromise": "Ein Kontakt vor Ort. Ein klarer Aufgabenplan.",
+    "heroHighlights": [
+      "Kontrollen nach Vereinbarung",
+      "Kleine Aufgaben klar abgrenzen",
+      "Offene Punkte verständlich melden"
+    ],
+    "intro": "Perla’s bündelt vereinbarte Kontrollgänge, einfache Hausmeisterarbeiten und Rückmeldungen für Unternehmen in Rhein-Main. Gemeinsam legen wir fest, was regelmäßig erledigt wird und wer über Zusatzmaßnahmen entscheidet. Sie erhalten einen persönlichen Kontakt für die Betreuung vor Ort.",
+    "ctaText": "Gewerbebetreuung anfragen",
+    "updatedOn": "2026-11-16",
+    "heroImage": {
+      "src": "kundenbilder/fahrzeuge/perlas_fahrzeug_gewerbe_01.png",
+      "alt": "Perla’s Servicefahrzeug vor einem Gewerbegebäude",
+      "position": "50% 55%",
+      "caption": "Persönlicher Objektservice am Gewerbestandort."
+    },
+    "scopeTitle": "Die laufenden Aufgaben gut organisiert.",
+    "scopeIntro": "Dieser Hausmeisterservice konzentriert sich auf den vereinbarten Alltag am Objekt. Aufgaben, Kontrollbereiche und Freigaben bleiben dabei übersichtlich zugeordnet.",
+    "scopeCards": [
+      {
+        "title": "Regelmäßige Kontrollgänge",
+        "text": "Wir kontrollieren benannte Eingänge, Gemeinschaftsflächen und zugängliche Nebenbereiche. Sichtbare Auffälligkeiten werden zugeordnet und an Ihren Kontakt gemeldet. Umfang und Rhythmus stehen im Betreuungsplan.",
+        "items": [
+          "Bereiche und Intervalle festhalten",
+          "Auffälligkeiten verständlich zuordnen"
+        ]
+      },
+      {
+        "title": "Kleine Aufgaben erledigen",
+        "text": "Einfache Handgriffe an Ausstattung oder der Austausch geeigneter Verbrauchsteile werden konkret vereinbart. Weitergehender Reparaturbedarf wird zur Entscheidung weitergegeben.",
+        "items": [
+          "Geeignete Direktaufgaben benennen",
+          "Zusatzmaßnahmen gesondert freigeben"
+        ]
+      },
+      {
+        "title": "Zugang und Rückmeldungen bündeln",
+        "text": "Für Fachfirmentermine können wir Zugang und Abstimmung vor Ort unterstützen. Erledigte Aufgaben und offene Punkte erhalten einen klaren Rückmeldeweg an Ihre zuständige Person.",
+        "items": [
+          "Termine und Zugänge abstimmen",
+          "Erledigung und offenen Bedarf unterscheiden"
+        ]
+      }
+    ],
+    "planning": {
+      "title": "Drei Zuständigkeiten vor dem Start klären.",
+      "intro": "Diese einfache Aufteilung hilft bei der Übernahme eines Standorts. Vorhandene Dienstleister und interne Kontakte lassen sich damit berücksichtigen.",
+      "headers": [
+        "Aufgabe",
+        "Im Betreuungsplan",
+        "Zuständigkeit klären"
+      ],
+      "rows": [
+        [
+          "Kontrollgang",
+          "Bereiche, Rhythmus und Meldungsweg",
+          "Wer erhält die Rückmeldung?"
+        ],
+        [
+          "Kleine Hausmeisterarbeit",
+          "Einzeln beschriebene Handgriffe",
+          "Was ist bereits freigegeben?"
+        ],
+        [
+          "Weiterer Reparaturbedarf",
+          "Ort, Beobachtung und offener Schritt",
+          "Wer beauftragt die Fachfirma?"
+        ]
+      ],
+      "note": "Technische Fachprüfungen und qualifikationsgebundene Arbeiten gehören nicht zu einfachen Sichtkontrollen."
+    },
+    "detail": {
+      "title": "Eine brauchbare Meldung spart Rückfragen.",
+      "text": "Eine Zustandsmeldung nennt Bereich und Beobachtung. Sie zeigt, ob eine vereinbarte Aufgabe erledigt wurde oder eine Entscheidung aussteht. Fotos können die Rückmeldung ergänzen. Form und Rhythmus stimmen wir auf Ihre betrieblichen Ansprechpartner ab.",
+      "image": {
+        "src": "kundenbilder/objekte/wohnanlage_modern_02.png",
+        "alt": "Gepflegtes Gebäude aus dem Perla’s Bildbestand als Beispiel betreuter Objektarten",
+        "position": "50% 50%",
+        "caption": "Einblick in die betreuten Objektarten."
+      },
+      "points": [
+        "Bereich und Beobachtung konkret benennen",
+        "Erledigte Aufgabe vom Zusatzbedarf trennen",
+        "Entscheidung an zuständigen Kontakt richten"
+      ]
+    },
+    "processSteps": [
+      {
+        "title": "Standort kennenlernen",
+        "text": "Wir klären Nutzung, Bereiche, bestehende Dienstleister und die Ansprechpartner in Ihrem Unternehmen. Betriebszeiten und Zugänge fließen in die Planung ein."
+      },
+      {
+        "title": "Aufgabenplan vereinbaren",
+        "text": "Kontrollgänge, kleine Aufgaben, Intervalle und Freigaben werden beschrieben. Sie sehen, welche Leistungen regelmäßig dazugehören und welche gesondert beauftragt werden."
+      },
+      {
+        "title": "Betreuung und Übergabe abstimmen",
+        "text": "Nach Freigabe des Angebots besprechen wir Beginn, Schlüssel und Rückmeldeweg. Bestehende Aufgabenlisten helfen, die Übernahme des Standorts geordnet vorzubereiten."
+      }
+    ],
+    "cost": {
+      "title": "Wie wird der Hausmeisterservice kalkuliert?",
+      "text": "Maßgeblich sind die betreuten Bereiche und die vereinbarten Aufgaben. Mehrere Eingänge, getrennte Nebenräume und häufige Kontrollgänge erzeugen unterschiedliche Aufwände. Ein aussagekräftiges Angebot beschreibt Umfang und Intervalle. Für zusätzlich gewünschte Maßnahmen wird der Bedarf besprochen, bevor sie als laufende Leistung aufgenommen werden.",
+      "factors": [
+        "Größe, Aufteilung und Zugänglichkeit des Standorts",
+        "Aufgaben, Kontrollrhythmus und Abstimmungsbedarf",
+        "Gewünschte Dokumentation und zusätzliche Leistungen"
+      ]
+    },
+    "faqs": [
+      {
+        "question": "Ist Hausmeisterservice dasselbe wie Facility Management?",
+        "answer": "Der Hausmeisterservice hier beschreibt abgegrenzte Kontrollen, kleine Aufgaben und Meldungen am Objekt. Wenn Sie zusätzlich Reinigung, Außenpflege und weitere Leistungen bündeln möchten, besprechen wir ein umfassenderes Betreuungskonzept."
+      },
+      {
+        "question": "Können vorhandene Fachfirmen weiter eingebunden bleiben?",
+        "answer": "Ja. Bestehende Zuständigkeiten werden bei der Aufnahme berücksichtigt. Auf Wunsch lassen sich Zugang und Abstimmung vor Ort vereinbaren. Die fachlichen Arbeiten bleiben dem jeweiligen Auftrag zugeordnet."
+      },
+      {
+        "question": "Übernimmt Perla’s technische Anlagenprüfungen?",
+        "answer": "Einfache Sichtkontrollen sind keine technische Fachprüfung. Qualifikationsgebundene Arbeiten werden mit geeigneten Fachbetrieben abgestimmt. Wir können deren Zugang und die organisatorische Begleitung am Objekt unterstützen."
+      },
+      {
+        "question": "Welche Unterlagen helfen für die Übernahme?",
+        "answer": "Hilfreich sind eine Flächenübersicht, bisherige Aufgabenlisten und die Kontakte der zuständigen Personen. Schlüssel, Zugänge und vorhandene Dienstleister werden vor dem Betreuungsstart gemeinsam besprochen."
+      }
+    ],
+    "inquiry": {
+      "title": "Laufende Aufgaben an Ihrem Standort ordnen.",
+      "text": "Nennen Sie uns Ihr Gewerbeobjekt und die gewünschte Betreuung. Wir besprechen die Aufgaben und einen passenden Leistungsrahmen persönlich.",
+      "checklist": [
+        "Standort, Nutzung und betreute Bereiche",
+        "Gewünschte Aufgaben und Kontrollintervalle",
+        "Ansprechpartner und bestehende Dienstleister"
+      ],
+      "topic": "Hausmeisterservice für Gewerbe"
+    },
+    "serviceAreaText": "Ihr Ansprechpartner sitzt bei Perla’s in Sulzbach (Taunus). Für Gewerbeobjekte in Frankfurt und im Rhein-Main-Gebiet stimmen wir Betreuungsumfang, Zugänge und mögliche Einsätze persönlich ab.",
+    "relatedLinks": [
+      {
+        "label": "Gesamte Objektbetreuung",
+        "path": "/leistungen/objektpflege/"
+      },
+      {
+        "label": "Alle Leistungen im Überblick",
+        "path": "/leistungen/"
+      },
+      {
+        "label": "Objektkontrollen verständlich dokumentieren",
+        "path": "/blog/objektkontrollen-richtig-dokumentieren/"
+      },
+      {
+        "label": "Leistungen für Gewerbeimmobilien bündeln",
+        "path": "/facility-management/gewerbeimmobilien/"
+      }
+    ]
+  }
+]

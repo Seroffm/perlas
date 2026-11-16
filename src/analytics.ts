@@ -22,6 +22,11 @@ const publicRoutes = new Set([
   ...audiences.map(({ id }) => `facility-management/${id}/`),
   ...posts.map(({ slug }) => `blog/${slug}/`),
   ...services.map(({ slug }) => `leistungen/${slug}/`),
+  // Focused offers are explicitly approved public pages, not arbitrary slugs.
+  'leistungen/treppenhausreinigung/',
+  'leistungen/heckenschnitt/',
+  'leistungen/winterdienst-gewerbe/',
+  'leistungen/hausmeisterservice-gewerbe/',
   // Keep local routes explicit: adding arbitrary region data must not expose
   // unapproved paths or accidentally treat customer identifiers as public URLs.
   'einsatzgebiete/objektbetreuung-eschborn/',

@@ -1,0 +1,14 @@
+.focused-offer-links{width:min(1056px,calc(100% - 48px));margin:72px auto;color:#124094}
+.focused-offer-links>p{margin:0 0 12px;font-size:14px;font-weight:800;color:#195b85}
+.focused-offer-links>h2{max-width:650px;margin:0 0 30px;font-size:clamp(28px,3vw,38px);line-height:1.15;letter-spacing:-.8px}
+.focused-offer-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.focused-offer-grid>a{display:flex;flex-direction:column;align-items:flex-start;gap:12px;min-width:0;padding:28px;border:1px solid rgb(18 64 148 / 15%);border-radius:20px;color:#124094;background:#fff;text-decoration:none;transition:border-color 160ms ease,background-color 160ms ease}
+.focused-offer-grid>a:hover{border-color:#195b85;background:rgb(25 91 133 / 3%)}
+.focused-offer-grid>a:focus-visible{outline:3px solid #195b85;outline-offset:4px}
+.focused-offer-grid>a>span{font-size:13px;line-height:1.5;color:#195b85}
+.focused-offer-grid h3{margin:0;font-size:23px;line-height:1.25;letter-spacing:-.4px}
+.focused-offer-grid p{margin:0 0 12px;font-size:16px;line-height:1.6}
+.focused-offer-grid strong{display:flex;align-items:center;gap:8px;margin-top:auto;font-size:14px;line-height:1.5}
+.focused-offer-grid svg{width:18px;height:18px}
+@media(max-width:700px){.focused-offer-links{margin:48px auto;width:calc(100% - 40px)}.focused-offer-grid{grid-template-columns:1fr}.focused-offer-grid>a{padding:24px}}
+@media(prefers-reduced-motion:reduce){.focused-offer-grid>a{transition:none}}
