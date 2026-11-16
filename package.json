@@ -3,15 +3,28 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
+  "engines": {
+    "node": ">=20.9.0"
+  },
   "scripts": {
+    "setup": "node scripts/setup-local.mjs && npm run setup:images",
+    "setup:images": "node scripts/image-reference.mjs --setup",
+    "doctor": "node scripts/doctor.mjs",
     "dev": "vite",
+    "dev:local": "vite --host 127.0.0.1 --port 5173 --strictPort",
+    "dev:api": "php -S 127.0.0.1:8080 -t server/public server/public/index.php",
     "build": "tsc -b && vite build",
     "build:pages": "npm run build && node scripts/prepare-pages.mjs",
     "preview": "vite preview",
+    "preview:local": "vite preview --host 127.0.0.1 --port 4173 --strictPort",
+    "test": "node --test src/analytics.test.mjs src/QuickContactForm.test.mjs scripts/legacy-redirects.test.mjs",
+    "test:php": "php server/tests/test.php",
+    "check": "npm test && npm run test:php && npm run build:pages && npm run check:seo && npm run check:images:reference",
     "lint": "tsc -b --pretty false",
     "check:seo": "node scripts/check-seo-build.mjs",
     "optimize:images": "node scripts/optimize-images.mjs",
-    "check:images": "node scripts/optimize-images.mjs --check"
+    "check:images": "node scripts/optimize-images.mjs --check",
+    "check:images:reference": "node scripts/image-reference.mjs --check"
   },
   "dependencies": {
     "@fontsource/inter": "^5.2.5",

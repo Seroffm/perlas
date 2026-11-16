@@ -2,6 +2,23 @@
 
 Live: https://perlas.de/
 
+## Lokal entwickeln
+
+Einrichtung und feste Start-/Prüfbefehle: [docs/DEVELOPMENT.md](docs/DEVELOPMENT.md).
+Architektur und Änderungsstellen: [docs/PROJECT_MAP.md](docs/PROJECT_MAP.md).
+Arbeitskontext für Codex: [AGENTS.md](AGENTS.md).
+
+```sh
+npm ci
+npm run setup
+npm run doctor
+npm run dev:local
+```
+
+Die isolierte Entwicklungsvorschau läuft unter `http://127.0.0.1:5173/`.
+`npm run check` bündelt Tests, vollständigen Seitenbuild, SEO- und Bildprüfung.
+Benötigt werden Node (siehe `.nvmrc`) sowie PHP ≥8.2 mit den dokumentierten Erweiterungen.
+
 ## SEO auf bestehenden Seiten
 
 Die Seite verwendet React/Vite und statisch erzeugtes HTML, nicht WordPress. `npm run build:pages` erzeugt 42 kanonische Seiten (einschließlich zehn Blogartikeln, einem Einsatzgebiete-Hub und sieben kuratierten Orts-Leistungsseiten) mit sichtbaren Inhalten, Metadaten und strukturierten Daten. Die sechs ersten Ortsseiten wurden am 07.10.2026 beauftragt; am 14.10.2026 kamen die eigenständige Frankfurt-Landingpage und ihr begleitender Blogartikel hinzu. Es gibt keine automatisch erzeugte Leistung×Stadt-Matrix.
