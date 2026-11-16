@@ -139,3 +139,10 @@ und passender Footer führen zu den neuen Seiten. `newLocalPagePaths` in der
 Keyword-Registry ist ein historischer Feldname und enthält jetzt alle 17 heute
 erstellten Angebotsseiten, auch die vier neuen Leistungspfade. Veröffentlichung
 und Google-Indexierung bleiben separate Zustände.
+
+Der 59-Seiten-Stand wurde aus Quellenstand `199496d` im Pages-Release `e5e4cba`
+veröffentlicht (Lauf `43893639104`, erfolgreich). Alle kanonischen URLs und aktuellen
+Programm-/Stildateien wurden live mit dem Build abgeglichen. In der Keyword-Registry
+sind alle 30 zugeordneten Ziel-URLs und 17 neuen Angebotsseiten als live geprüft
+geführt. Nachfolgende Pflege dieser Nachweise verändert den ausgelieferten Build
+nicht.

@@ -56,11 +56,10 @@ Volumenvarianten nicht summieren.
 
 ## Pflege und Umsetzung
 
-Vier weitere Angebotsseiten sind lokal erstellt und warten auf die abschließende
-Build-/Darstellungsprüfung und Veröffentlichung. Sie bündeln jeweils einen
+Vier weitere Angebotsseiten sind erstellt, geprüft und am 16.11.2026 veröffentlicht. Sie bündeln jeweils einen
 eigenständigen Bedarf, statt pro Formulierung eine weitere URL anzulegen:
 
-| Neue Zielseite, Veröffentlichung noch offen | Gemessene Auftragsbegriffe ohne Ortszusatz, Ø / Monat ganz Deutschland |
+| Neue Zielseite, live geprüft | Gemessene Auftragsbegriffe ohne Ortszusatz, Ø / Monat ganz Deutschland |
 | --- | --- |
 | [Treppenhausreinigung](https://perlas.de/leistungen/treppenhausreinigung/) | Kosten 590, Angebot 40, Firma 30; Varianten nicht addieren. |
 | [Heckenschnitt](https://perlas.de/leistungen/heckenschnitt/) | Hecke schneiden lassen Kosten 210; Heckenschnitt Firma 50. |
@@ -69,16 +68,17 @@ eigenständigen Bedarf, statt pro Formulierung eine weitere URL anzulegen:
 
 18 vorhandene Keyword-Zuordnungen wurden auf diese vier Ziele umgestellt. Die
 früheren Ziel- und Veröffentlichungsbefunde sind unter `previousTargetMappings`
-erhalten. Der neue Zielstatus lautet `local_only_pending_push`, ohne bestätigtes
-Live-Prüfdatum. 96 archivierte Beispielthemen und alle gemessenen Suchwerte bleiben
+erhalten. Der neue Zielstatus lautet `live_verified`, geprüft am 16.11.2026 im Pages-Release
+`e5e4cba` aus Quellenstand `199496d` (erfolgreicher Lauf `43893639104`). 96 archivierte Beispielthemen und alle gemessenen Suchwerte bleiben
 unverändert. Die Recherche umfasst weiterhin 433 Begriffe, davon 337 aktiv.
 
 Die 40 Begriffe stehen als `KW-394` bis `KW-433` in der
 [Registry](keyword-research-2026-11-16.json); die
 [Keyword-Übersicht](KEYWORD_OVERVIEW.md) prüft die tatsächliche Wort-/Themenabdeckung
 im vorhandenen Build. Zuordnung zu einer Live-Seite ist kein Beleg für wörtlichen
-Einbau, Ranking oder Indexierung. Die bestehende Veröffentlichung bleibt bis zum
-bestätigten Livegang bei 55 kanonischen Seiten; der neue Build soll 59 enthalten.
+Einbau, Ranking oder Indexierung. Alle 59 kanonischen Seiten wurden nach dem Livegang mit HTTP 200 und
+bytegleichem Inhalt zum geprüften Build bestätigt. Auch 13 Weiterleitungen,
+Robots/Sitemaps und die 15 aktuellen Programm-/Stildateien stimmen überein.
 Die vier neuen Leistungsseiten stehen zusätzlich zu den 13 heute zuvor erstellten
 Orts-/Angebotsseiten in `newLocalPagePaths`. Büro- und Tiefgaragenkosten erhalten
 weiterhin keine zusätzlichen nahezu gleichen URLs; ihre bestehenden Seiten
@@ -89,3 +89,9 @@ in `src/service-data.json`. Präzise Suchbegriffe dazu sind ein weiterer
 Recherchekandidat; dafür werden hier keine Suchvolumen behauptet.
 
 Quelle der Suchmetriken: [DataForSEO Google Ads Search Volume](https://docs.dataforseo.com/v3/keywords_data/google_ads/search_volume/live/).
+
+Die vier neuen Seiten wurden auf Desktop und Mobilgerät geprüft; der sichtbare
+Hauptinhalt ist nach Normalisierung der mobilen Tabellen-Bedienhilfe gleich.
+Formularpflichtfelder und FAQ funktionieren. Die aktualisierten Büro- und
+Tiefgaragenangebote enthalten konkrete Kostenfaktoren und Anfrageangaben.
+Die Veröffentlichung bestätigt noch keine Google-Indexierung.

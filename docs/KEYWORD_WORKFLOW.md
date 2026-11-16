@@ -77,6 +77,17 @@ freigegebenes Angebot behalten ihr fehlendes Ziel; sie sind inzwischen ausdrück
 als Beispielthemen aus der aktiven Planung genommen. Keine dieser Veröffentlichungsprüfungen bestätigt eine
 Google-Indexierung.
 
+Die anschließenden vier gezielten Leistungsangebote unter `/leistungen/` wurden
+ebenfalls am 16.11.2026 veröffentlicht: Pages-Release `e5e4cba` aus dem inhaltlichen
+Quellenstand `199496d`, erfolgreicher Lauf `43893639104`. Alle 59 kanonischen URLs,
+13 Weiterleitungen, Robots/Sitemaps und 15 aktuelle Programm-/Stildateien wurden
+live bytegleich zum geprüften Build bestätigt. `newLocalPagePaths` enthält jetzt
+alle 17 heute erstellten Angebotsseiten; der historische Feldname schließt auch
+die vier neuen Leistungspfade ein. Alle 30 zugeordneten Ziel-URLs sind live geprüft.
+Die bisherigen Zielbefunde der 18 neu zugeordneten Keywords bleiben unter
+`previousTargetMappings` erhalten. Eine Google-Indexierung folgt aus keinem dieser
+Veröffentlichungsbefunde.
+
 ## Google-Indexierung
 
 `googleIndex` ist unabhängig von Veröffentlichung und lokalem Inhalt:

@@ -636,8 +636,10 @@
       "optionalUnbuiltPage": false,
       "candidateSource": "service/locality hypothesis based on actual service area",
       "publication": {
-        "status": "local_only_pending_push",
-        "checkedOn": null
+        "status": "live_verified",
+        "checkedOn": "2026-11-16",
+        "release": "e5e4cba",
+        "evidence": "HTTP 200, selbstreferenzierender Canonical und bytegleich mit geprüftem 59-Seiten-Build; Pages-Lauf 43893639104."
       },
       "googleIndex": {
         "status": "not_checked_per_keyword",
@@ -3959,8 +3961,10 @@
       "optionalUnbuiltPage": false,
       "candidateSource": "commercial query hypothesis",
       "publication": {
-        "status": "local_only_pending_push",
-        "checkedOn": null
+        "status": "live_verified",
+        "checkedOn": "2026-11-16",
+        "release": "e5e4cba",
+        "evidence": "HTTP 200, selbstreferenzierender Canonical und bytegleich mit geprüftem 59-Seiten-Build; Pages-Lauf 43893639104."
       },
       "googleIndex": {
         "status": "not_checked_per_keyword",
@@ -7510,8 +7514,10 @@
       "optionalUnbuiltPage": false,
       "candidateSource": "local wording/service synonym hypothesis or existing landing query",
       "publication": {
-        "status": "local_only_pending_push",
-        "checkedOn": null
+        "status": "live_verified",
+        "checkedOn": "2026-11-16",
+        "release": "e5e4cba",
+        "evidence": "HTTP 200, selbstreferenzierender Canonical und bytegleich mit geprüftem 59-Seiten-Build; Pages-Lauf 43893639104."
       },
       "googleIndex": {
         "status": "not_checked_per_keyword",
@@ -7565,8 +7571,10 @@
       "optionalUnbuiltPage": false,
       "candidateSource": "local wording/service synonym hypothesis or existing landing query",
       "publication": {
-        "status": "local_only_pending_push",
-        "checkedOn": null
+        "status": "live_verified",
+        "checkedOn": "2026-11-16",
+        "release": "e5e4cba",
+        "evidence": "HTTP 200, selbstreferenzierender Canonical und bytegleich mit geprüftem 59-Seiten-Build; Pages-Lauf 43893639104."
       },
       "googleIndex": {
         "status": "not_checked_per_keyword",
@@ -15939,8 +15947,10 @@
       "candidateSource": "bounded buyer-intent refinement across confirmed services after clarification that marble was an example",
       "researchDisposition": "active",
       "publication": {
-        "status": "local_only_pending_push",
-        "checkedOn": null
+        "status": "live_verified",
+        "checkedOn": "2026-11-16",
+        "release": "e5e4cba",
+        "evidence": "HTTP 200, selbstreferenzierender Canonical und bytegleich mit geprüftem 59-Seiten-Build; Pages-Lauf 43893639104."
       },
       "googleIndex": {
         "status": "not_checked_per_keyword",
@@ -15996,8 +16006,10 @@
       "candidateSource": "bounded buyer-intent refinement across confirmed services after clarification that marble was an example",
       "researchDisposition": "active",
       "publication": {
-        "status": "local_only_pending_push",
-        "checkedOn": null
+        "status": "live_verified",
+        "checkedOn": "2026-11-16",
+        "release": "e5e4cba",
+        "evidence": "HTTP 200, selbstreferenzierender Canonical und bytegleich mit geprüftem 59-Seiten-Build; Pages-Lauf 43893639104."
       },
       "googleIndex": {
         "status": "not_checked_per_keyword",
@@ -16053,8 +16065,10 @@
       "candidateSource": "bounded buyer-intent refinement across confirmed services after clarification that marble was an example",
       "researchDisposition": "active",
       "publication": {
-        "status": "local_only_pending_push",
-        "checkedOn": null
+        "status": "live_verified",
+        "checkedOn": "2026-11-16",
+        "release": "e5e4cba",
+        "evidence": "HTTP 200, selbstreferenzierender Canonical und bytegleich mit geprüftem 59-Seiten-Build; Pages-Lauf 43893639104."
       },
       "googleIndex": {
         "status": "not_checked_per_keyword",
@@ -16110,8 +16124,10 @@
       "candidateSource": "bounded buyer-intent refinement across confirmed services after clarification that marble was an example",
       "researchDisposition": "active",
       "publication": {
-        "status": "local_only_pending_push",
-        "checkedOn": null
+        "status": "live_verified",
+        "checkedOn": "2026-11-16",
+        "release": "e5e4cba",
+        "evidence": "HTTP 200, selbstreferenzierender Canonical und bytegleich mit geprüftem 59-Seiten-Build; Pages-Lauf 43893639104."
       },
       "googleIndex": {
         "status": "not_checked_per_keyword",
@@ -16167,8 +16183,10 @@
       "candidateSource": "bounded buyer-intent refinement across confirmed services after clarification that marble was an example",
       "researchDisposition": "active",
       "publication": {
-        "status": "local_only_pending_push",
-        "checkedOn": null
+        "status": "live_verified",
+        "checkedOn": "2026-11-16",
+        "release": "e5e4cba",
+        "evidence": "HTTP 200, selbstreferenzierender Canonical und bytegleich mit geprüftem 59-Seiten-Build; Pages-Lauf 43893639104."
       },
       "googleIndex": {
         "status": "not_checked_per_keyword",
@@ -16224,8 +16242,10 @@
       "candidateSource": "bounded buyer-intent refinement across confirmed services after clarification that marble was an example",
       "researchDisposition": "active",
       "publication": {
-        "status": "local_only_pending_push",
-        "checkedOn": null
+        "status": "live_verified",
+        "checkedOn": "2026-11-16",
+        "release": "e5e4cba",
+        "evidence": "HTTP 200, selbstreferenzierender Canonical und bytegleich mit geprüftem 59-Seiten-Build; Pages-Lauf 43893639104."
       },
       "googleIndex": {
         "status": "not_checked_per_keyword",
@@ -16281,8 +16301,10 @@
       "candidateSource": "bounded buyer-intent refinement across confirmed services after clarification that marble was an example",
       "researchDisposition": "active",
       "publication": {
-        "status": "local_only_pending_push",
-        "checkedOn": null
+        "status": "live_verified",
+        "checkedOn": "2026-11-16",
+        "release": "e5e4cba",
+        "evidence": "HTTP 200, selbstreferenzierender Canonical und bytegleich mit geprüftem 59-Seiten-Build; Pages-Lauf 43893639104."
       },
       "googleIndex": {
         "status": "not_checked_per_keyword",
@@ -16338,8 +16360,10 @@
       "candidateSource": "bounded buyer-intent refinement across confirmed services after clarification that marble was an example",
       "researchDisposition": "active",
       "publication": {
-        "status": "local_only_pending_push",
-        "checkedOn": null
+        "status": "live_verified",
+        "checkedOn": "2026-11-16",
+        "release": "e5e4cba",
+        "evidence": "HTTP 200, selbstreferenzierender Canonical und bytegleich mit geprüftem 59-Seiten-Build; Pages-Lauf 43893639104."
       },
       "googleIndex": {
         "status": "not_checked_per_keyword",
@@ -16928,8 +16952,10 @@
       "candidateSource": "bounded buyer-intent refinement across confirmed services after clarification that marble was an example",
       "researchDisposition": "active",
       "publication": {
-        "status": "local_only_pending_push",
-        "checkedOn": null
+        "status": "live_verified",
+        "checkedOn": "2026-11-16",
+        "release": "e5e4cba",
+        "evidence": "HTTP 200, selbstreferenzierender Canonical und bytegleich mit geprüftem 59-Seiten-Build; Pages-Lauf 43893639104."
       },
       "googleIndex": {
         "status": "not_checked_per_keyword",
@@ -17395,8 +17421,10 @@
       "candidateSource": "bounded buyer-intent refinement across confirmed services after clarification that marble was an example",
       "researchDisposition": "active",
       "publication": {
-        "status": "local_only_pending_push",
-        "checkedOn": null
+        "status": "live_verified",
+        "checkedOn": "2026-11-16",
+        "release": "e5e4cba",
+        "evidence": "HTTP 200, selbstreferenzierender Canonical und bytegleich mit geprüftem 59-Seiten-Build; Pages-Lauf 43893639104."
       },
       "googleIndex": {
         "status": "not_checked_per_keyword",
@@ -17452,8 +17480,10 @@
       "candidateSource": "bounded buyer-intent refinement across confirmed services after clarification that marble was an example",
       "researchDisposition": "active",
       "publication": {
-        "status": "local_only_pending_push",
-        "checkedOn": null
+        "status": "live_verified",
+        "checkedOn": "2026-11-16",
+        "release": "e5e4cba",
+        "evidence": "HTTP 200, selbstreferenzierender Canonical und bytegleich mit geprüftem 59-Seiten-Build; Pages-Lauf 43893639104."
       },
       "googleIndex": {
         "status": "not_checked_per_keyword",
@@ -17550,8 +17580,10 @@
       "candidateSource": "bounded buyer-intent refinement across confirmed services after clarification that marble was an example",
       "researchDisposition": "active",
       "publication": {
-        "status": "local_only_pending_push",
-        "checkedOn": null
+        "status": "live_verified",
+        "checkedOn": "2026-11-16",
+        "release": "e5e4cba",
+        "evidence": "HTTP 200, selbstreferenzierender Canonical und bytegleich mit geprüftem 59-Seiten-Build; Pages-Lauf 43893639104."
       },
       "googleIndex": {
         "status": "not_checked_per_keyword",
@@ -17607,8 +17639,10 @@
       "candidateSource": "bounded buyer-intent refinement across confirmed services after clarification that marble was an example",
       "researchDisposition": "active",
       "publication": {
-        "status": "local_only_pending_push",
-        "checkedOn": null
+        "status": "live_verified",
+        "checkedOn": "2026-11-16",
+        "release": "e5e4cba",
+        "evidence": "HTTP 200, selbstreferenzierender Canonical und bytegleich mit geprüftem 59-Seiten-Build; Pages-Lauf 43893639104."
       },
       "googleIndex": {
         "status": "not_checked_per_keyword",
@@ -17664,8 +17698,10 @@
       "candidateSource": "bounded buyer-intent refinement across confirmed services after clarification that marble was an example",
       "researchDisposition": "active",
       "publication": {
-        "status": "local_only_pending_push",
-        "checkedOn": null
+        "status": "live_verified",
+        "checkedOn": "2026-11-16",
+        "release": "e5e4cba",
+        "evidence": "HTTP 200, selbstreferenzierender Canonical und bytegleich mit geprüftem 59-Seiten-Build; Pages-Lauf 43893639104."
       },
       "googleIndex": {
         "status": "not_checked_per_keyword",
@@ -17774,39 +17810,19 @@
   ],
   "publicationVerification": {
     "checkedOn": "2026-11-16",
-    "sourceCommit": "ff36fa2",
-    "pagesRelease": "efdfa5d",
-    "pagesRun": "43886695024",
-    "canonicalRoutes": 55,
-    "result": "HTTP 200, self canonical, byte-identical to reviewed production build",
-    "checkedTargetURLs": [
-      "https://perlas.de/einsatzgebiete/hausmeisterservice-frankfurt/",
-      "https://perlas.de/leistungen/gebaeudereinigung/",
-      "https://perlas.de/einsatzgebiete/bueroreinigung-frankfurt/",
-      "https://perlas.de/einsatzgebiete/tiefgaragenreinigung-frankfurt/",
-      "https://perlas.de/leistungen/winterdienst/",
-      "https://perlas.de/leistungen/gartenpflege/",
-      "https://perlas.de/einsatzgebiete/objektbetreuung-eschborn/",
-      "https://perlas.de/einsatzgebiete/gebaeudereinigung-eschborn/",
-      "https://perlas.de/leistungen/tiefgaragenreinigung/",
-      "https://perlas.de/leistungen/objektpflege/",
-      "https://perlas.de/einsatzgebiete/hausmeisterservice-kelkheim/",
-      "https://perlas.de/einsatzgebiete/gebaeudereinigung-frankfurt-hoechst/",
-      "https://perlas.de/einsatzgebiete/bueroreinigung-frankfurt-westend/",
-      "https://perlas.de/einsatzgebiete/treppenhausreinigung-frankfurt-bockenheim/",
-      "https://perlas.de/einsatzgebiete/winterdienst-frankfurt-riedberg/",
-      "https://perlas.de/einsatzgebiete/baumpflege-baumfaellung-neu-isenburg/",
-      "https://perlas.de/facility-management/",
-      "https://perlas.de/einsatzgebiete/hausmeisterservice-ruesselsheim/",
-      "https://perlas.de/einsatzgebiete/gebaeudereinigung-ruesselsheim/",
-      "https://perlas.de/einsatzgebiete/hausmeisterservice-wiesbaden/",
-      "https://perlas.de/einsatzgebiete/gebaeudereinigung-wiesbaden/",
-      "https://perlas.de/einsatzgebiete/hausmeisterservice-taunusstein/",
-      "https://perlas.de/einsatzgebiete/gebaeudereinigung-taunusstein/",
-      "https://perlas.de/einsatzgebiete/hausmeisterservice-hanau/",
-      "https://perlas.de/einsatzgebiete/gebaeudereinigung-hanau/",
-      "https://perlas.de/einsatzgebiete/grundreinigung-frankfurt/"
-    ]
+    "pagesRelease": "e5e4cba7d6ee1fb825b9feca04d1521bb7e397c7",
+    "sourceCommit": "199496d",
+    "deploymentRunId": 43893639104,
+    "canonicalPages": 59,
+    "instantRedirects": 13,
+    "allCanonicalPagesByteIdentical": true,
+    "newFocusedPagePaths": [
+      "/leistungen/treppenhausreinigung/",
+      "/leistungen/heckenschnitt/",
+      "/leistungen/winterdienst-gewerbe/",
+      "/leistungen/hausmeisterservice-gewerbe/"
+    ],
+    "googleIndexingProven": false
   },
   "previousPublicationVerifications": [
     {
@@ -17834,6 +17850,42 @@
         "https://perlas.de/einsatzgebiete/winterdienst-frankfurt-riedberg/",
         "https://perlas.de/einsatzgebiete/baumpflege-baumfaellung-neu-isenburg/",
         "https://perlas.de/facility-management/"
+      ]
+    },
+    {
+      "checkedOn": "2026-11-16",
+      "sourceCommit": "ff36fa2",
+      "pagesRelease": "efdfa5d",
+      "pagesRun": "43886695024",
+      "canonicalRoutes": 55,
+      "result": "HTTP 200, self canonical, byte-identical to reviewed production build",
+      "checkedTargetURLs": [
+        "https://perlas.de/einsatzgebiete/hausmeisterservice-frankfurt/",
+        "https://perlas.de/leistungen/gebaeudereinigung/",
+        "https://perlas.de/einsatzgebiete/bueroreinigung-frankfurt/",
+        "https://perlas.de/einsatzgebiete/tiefgaragenreinigung-frankfurt/",
+        "https://perlas.de/leistungen/winterdienst/",
+        "https://perlas.de/leistungen/gartenpflege/",
+        "https://perlas.de/einsatzgebiete/objektbetreuung-eschborn/",
+        "https://perlas.de/einsatzgebiete/gebaeudereinigung-eschborn/",
+        "https://perlas.de/leistungen/tiefgaragenreinigung/",
+        "https://perlas.de/leistungen/objektpflege/",
+        "https://perlas.de/einsatzgebiete/hausmeisterservice-kelkheim/",
+        "https://perlas.de/einsatzgebiete/gebaeudereinigung-frankfurt-hoechst/",
+        "https://perlas.de/einsatzgebiete/bueroreinigung-frankfurt-westend/",
+        "https://perlas.de/einsatzgebiete/treppenhausreinigung-frankfurt-bockenheim/",
+        "https://perlas.de/einsatzgebiete/winterdienst-frankfurt-riedberg/",
+        "https://perlas.de/einsatzgebiete/baumpflege-baumfaellung-neu-isenburg/",
+        "https://perlas.de/facility-management/",
+        "https://perlas.de/einsatzgebiete/hausmeisterservice-ruesselsheim/",
+        "https://perlas.de/einsatzgebiete/gebaeudereinigung-ruesselsheim/",
+        "https://perlas.de/einsatzgebiete/hausmeisterservice-wiesbaden/",
+        "https://perlas.de/einsatzgebiete/gebaeudereinigung-wiesbaden/",
+        "https://perlas.de/einsatzgebiete/hausmeisterservice-taunusstein/",
+        "https://perlas.de/einsatzgebiete/gebaeudereinigung-taunusstein/",
+        "https://perlas.de/einsatzgebiete/hausmeisterservice-hanau/",
+        "https://perlas.de/einsatzgebiete/gebaeudereinigung-hanau/",
+        "https://perlas.de/einsatzgebiete/grundreinigung-frankfurt/"
       ]
     }
   ],
