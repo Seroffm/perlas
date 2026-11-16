@@ -27,6 +27,8 @@ const pageRobots = indexingEnabled ? 'index,follow,max-image-preview:large' : 'n
 const services = JSON.parse(await readFile(serviceDataPath, 'utf8'))
 const audiences = JSON.parse(await readFile(audienceDataPath, 'utf8'))
 const localLandings = JSON.parse(await readFile(new URL('../src/local-landing-data.json', import.meta.url), 'utf8'))
+const commercialLandings = JSON.parse(await readFile(new URL('../src/commercial-landing-data.json', import.meta.url), 'utf8'))
+const regionalLandings = [...localLandings, ...commercialLandings]
 const blogPosts = JSON.parse(await readFile(blogDataPath, 'utf8'))
 const jobs = JSON.parse(await readFile(jobDataPath, 'utf8'))
 const imprintContent = JSON.parse(await readFile(imprintDataPath, 'utf8'))
@@ -171,6 +173,10 @@ const businessData = {
     addressCountry: 'DE',
   },
   areaServed: seoContent.region.areaServed,
+  sameAs: [
+    'https://www.google.com/maps?cid=5731639589734766671',
+    'https://trustlocal.de/hessen/sulzbach/entrumpelung/perlas-objektbetreuung-gmbh-co-kg/',
+  ],
 }
 
 function serviceUrl(service) {
@@ -191,6 +197,17 @@ function localLandingStructuredData(landing) {
     '@context': 'https://schema.org',
     '@graph': [
       businessData,
+      {
+        '@type': 'WebPage',
+        '@id': `${url}#page`,
+        url,
+        name: landing.seoTitle,
+        description: landing.seoDescription,
+        inLanguage: 'de-DE',
+        dateModified: landing.updatedOn,
+        primaryImageOfPage: new URL(`${basePath}assets/${imageVariants[landing.heroImage.src]?.src ?? landing.heroImage.src}`, siteUrl.origin).href,
+        mainEntity: { '@id': `${url}#service` },
+      },
       {
         '@type': 'Service',
         '@id': `${url}#service`,
@@ -464,14 +481,14 @@ function regionMarkup(compact = false) {
 }
 
 function localLandingLinks(serviceSlug) {
-  const matching = localLandings.filter((landing) => landing.serviceSlug === serviceSlug)
+  const matching = regionalLandings.filter((landing) => landing.serviceSlug === serviceSlug)
   if (!matching.length) return ''
   const links = matching.map((landing) => `<li><a href="${basePath}einsatzgebiete/${landing.slug}/">${escapeHtml(landing.heading)}</a><p>${escapeHtml(landing.intro)}</p></li>`).join('')
   return `<section aria-labelledby="local-services-heading"><p>Leistung an Ihrem Standort</p><h2 id="local-services-heading">Vor Ort konkret planen.</h2><ul>${links}</ul><a href="${basePath}einsatzgebiete/">Alle lokalen Einsatzbereiche ansehen</a></section>`
 }
 
 function regionsMarkup() {
-  const cards = localLandings.map((landing) => `<article>${imageMarkup(landing.heroImage.src, landing.heroImage.alt, { sizes: gridImageSizes })}<p>${escapeHtml(landing.region)}</p><h2><a href="${basePath}einsatzgebiete/${landing.slug}/">${escapeHtml(landing.heading)}</a></h2><p>${escapeHtml(landing.intro)}</p><a href="${basePath}einsatzgebiete/${landing.slug}/">Leistung am Standort ansehen</a></article>`).join('')
+  const cards = regionalLandings.map((landing) => `<article>${imageMarkup(landing.heroImage.src, landing.heroImage.alt, { sizes: gridImageSizes })}<p>${escapeHtml(landing.region)}</p><h2><a href="${basePath}einsatzgebiete/${landing.slug}/">${escapeHtml(landing.heading)}</a></h2><p>${escapeHtml(landing.intro)}</p><a href="${basePath}einsatzgebiete/${landing.slug}/">Leistung am Standort ansehen</a></article>`).join('')
   return `${staticHeader()}<main class="seo-static-main"><nav aria-label="Brotkrümeln"><a href="${basePath}">Startseite</a> / Einsatzgebiete</nav><section class="seo-static-hero"><p>Leistungen und Standorte</p><h1>${escapeHtml(regionsSeo.heading ?? 'Leistungen für Ihren Standort.')}</h1><p>${escapeHtml(regionsSeo.intro ?? 'Von unserem Unternehmenssitz in Sulzbach (Taunus) aus stimmen wir Einsätze in Frankfurt und dem angrenzenden Rhein-Main-Gebiet objektbezogen ab. Wählen Sie eine konkrete Leistung und Ihren Standort für die erste Anfrage.')}</p><a href="${basePath}kontakt/">Standort und Bedarf anfragen</a><a href="tel:+491776867145">Direkt anrufen: 0177 68 67 145</a></section><section><h2>Konkrete Leistung, klarer Standort.</h2><p>Diese Seiten erläutern unterschiedliche Aufgaben und die Angaben, die wir für Ihr Objekt benötigen. Es handelt sich um Einsatzgebiete, nicht um zusätzliche Niederlassungen.</p><div class="seo-static-grid">${cards}</div></section><section><h2>Ihr Ort ist noch nicht dabei?</h2><p>Auch andere Standorte im Main-Taunus-Kreis und im angrenzenden Rhein-Main-Gebiet können Sie anfragen. Umfang, Anfahrt und Verfügbarkeit klären wir vor der Beauftragung persönlich.</p><a href="${basePath}leistungen/">Gesamtes Leistungsportfolio ansehen</a><a href="${basePath}kontakt/">Objekt unverbindlich anfragen</a></section></main>`
 }
 
@@ -653,7 +670,7 @@ function blogArticleMarkup(post) {
     .filter(Boolean)
     .map((service) => `<li><a href="${basePath}leistungen/${service.slug}/">${escapeHtml(service.title)}</a><p>${escapeHtml(service.text)}</p></li>`)
     .join('')
-  const localServices = localLandings.filter((landing) => landing.guideSlugs.includes(post.slug))
+  const localServices = regionalLandings.filter((landing) => landing.guideSlugs.includes(post.slug))
     .map((landing) => `<article><h3><a href="${basePath}einsatzgebiete/${landing.slug}/">${escapeHtml(landing.heading)}</a></h3><p>${escapeHtml(landing.intro)}</p><a href="${basePath}einsatzgebiete/${landing.slug}/#anfrage">${escapeHtml(landing.ctaText)}</a></article>`).join('')
   const localSection = localServices ? `<section><p>Vom Ratgeber zur Anfrage</p><h2>Passend vor Ort.</h2><div class="seo-static-grid">${localServices}</div></section>` : ''
 
@@ -899,19 +916,26 @@ await writeFile(`${distPath}einsatzgebiete/index.html`, buildPage({
 // Middleware mode loads modules during the build without opening a network port.
 const frankfurtLanding = localLandings.find((landing) => landing.slug === 'hausmeisterservice-frankfurt')
 let frankfurtInitialMarkup = ''
-if (frankfurtLanding) {
+const commercialInitialMarkup = new Map()
+if (frankfurtLanding || commercialLandings.length) {
   const renderer = await createServer({
     configFile: false,
     root: fileURLToPath(new URL('../', import.meta.url)),
     mode: 'production',
     base: basePath,
     plugins: [react()],
-    server: { middlewareMode: true, watch: null, hmr: false },
+    server: { middlewareMode: true, watch: null, hmr: false, ws: false },
     appType: 'custom',
   })
   try {
-    const { default: FrankfurtLandingPage } = await renderer.ssrLoadModule('/src/FrankfurtLandingPage.tsx')
-    frankfurtInitialMarkup = renderToStaticMarkup(createElement(FrankfurtLandingPage, { page: frankfurtLanding, staticMode: true }))
+    if (frankfurtLanding) {
+      const { default: FrankfurtLandingPage } = await renderer.ssrLoadModule('/src/FrankfurtLandingPage.tsx')
+      frankfurtInitialMarkup = renderToStaticMarkup(createElement(FrankfurtLandingPage, { page: frankfurtLanding, staticMode: true }))
+    }
+    const { default: CommercialLandingPage } = await renderer.ssrLoadModule('/src/CommercialLandingPage.tsx')
+    for (const page of commercialLandings) {
+      commercialInitialMarkup.set(page.slug, renderToStaticMarkup(createElement(CommercialLandingPage, { page, staticMode: true })))
+    }
   } finally {
     await renderer.close()
   }
@@ -926,6 +950,20 @@ await Promise.all(localLandings.map(async (landing) => {
     description: landing.seoDescription,
     url,
     markup: localLandingMarkup(landing),
+    data: localLandingStructuredData(landing),
+    ogImage: new URL(`${basePath}assets/${imageVariants[landing.heroImage.src]?.src ?? landing.heroImage.src}`, siteUrl.origin).href,
+  }))
+}))
+
+await Promise.all(commercialLandings.map(async (landing) => {
+  const targetPath = `${distPath}einsatzgebiete/${landing.slug}/`
+  const url = localLandingUrl(landing).href
+  await mkdir(targetPath, { recursive: true })
+  await writeFile(`${targetPath}index.html`, buildPage({
+    title: landing.seoTitle,
+    description: landing.seoDescription,
+    url,
+    markup: `${staticHeader()}${commercialInitialMarkup.get(landing.slug)}`,
     data: localLandingStructuredData(landing),
     ogImage: new URL(`${basePath}assets/${imageVariants[landing.heroImage.src]?.src ?? landing.heroImage.src}`, siteUrl.origin).href,
   }))
@@ -1024,7 +1062,7 @@ const sitemapUrls = [
   ...audiences.map((audience) => audienceUrl(audience).href),
   servicesUrl.href,
   regionsUrl.href,
-  ...localLandings.map((landing) => localLandingUrl(landing).href),
+  ...regionalLandings.map((landing) => localLandingUrl(landing).href),
   aboutUrl.href,
   blogUrl.href,
   ...blogPosts.map((post) => blogPostUrl(post).href),
@@ -1035,8 +1073,8 @@ const sitemapUrls = [
   ...services.map((service) => serviceUrl(service).href),
 ]
 const pageLastModified = new Map([
-  [regionsUrl.href, '2026-10-14'],
-  ...localLandings.map((landing) => [localLandingUrl(landing).href, landing.updatedOn]),
+  [regionsUrl.href, '2026-11-16'],
+  ...regionalLandings.map((landing) => [localLandingUrl(landing).href, landing.updatedOn]),
   ...blogPosts.map((post) => [blogPostUrl(post).href, blogDateToIso(post.updated)]),
   ...services.filter((service) => service.updatedOn).map((service) => [serviceUrl(service).href, service.updatedOn]),
 ])

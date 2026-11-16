@@ -22,6 +22,7 @@
     "check": "npm test && npm run test:php && npm run build:pages && npm run check:seo && npm run check:images:reference",
     "lint": "tsc -b --pretty false",
     "check:seo": "node scripts/check-seo-build.mjs",
+    "report:keywords": "node scripts/build-keyword-overview.mjs",
     "optimize:images": "node scripts/optimize-images.mjs",
     "check:images": "node scripts/optimize-images.mjs --check",
     "check:images:reference": "node scripts/image-reference.mjs --check"

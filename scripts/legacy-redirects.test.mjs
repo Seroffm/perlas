@@ -6,12 +6,32 @@ import { validateLegacyRedirects } from './prepare-legacy-redirects.mjs'
 const manifest = JSON.parse(await readFile(new URL('../src/legacy-redirects.json', import.meta.url), 'utf8'))
 const site = new URL('https://perlas.de/')
 const services = JSON.parse(await readFile(new URL('../src/service-data.json', import.meta.url), 'utf8'))
-const canonicals = ['', 'ueber-uns/', 'blog/', 'karriere/', 'facility-management/gewerbeimmobilien/', ...services.map(({ slug }) => `leistungen/${slug}/`)].map((relative) => new URL(relative, site).href)
+const canonicals = [
+  '', 'ueber-uns/', 'blog/', 'karriere/', 'facility-management/gewerbeimmobilien/',
+  'einsatzgebiete/hausmeisterservice-frankfurt/',
+  'einsatzgebiete/objektbetreuung-eschborn/',
+  'einsatzgebiete/hausmeisterservice-kelkheim/',
+  ...services.map(({ slug }) => `leistungen/${slug}/`),
+].map((relative) => new URL(relative, site).href)
 
-test('nine exact old paths resolve to existing canonical content with no chains', () => {
+test('twelve exact old paths resolve to commissioned canonical content with no chains', () => {
   const redirects = validateLegacyRedirects(manifest, site, canonicals)
-  assert.equal(redirects.length, 9)
-  assert.equal(redirects.find(({ from }) => from.pathname === '/hausmeisterservice-bad-soden-am-taunus/').target.pathname, '/leistungen/objektpflege/')
+  assert.equal(redirects.length, 12)
+  const targets = new Map(redirects.map(({ from, target }) => [from.pathname, target.pathname]))
+  assert.deepEqual(Object.fromEntries(targets), {
+    '/regelmaessige-objektpflege-in-sulzbach-frankfurt/': '/leistungen/objektpflege/',
+    '/gewerbliche-gebaeudewartung-rhein-main/': '/facility-management/gewerbeimmobilien/',
+    '/wartung-instandhaltung/': '/leistungen/wartung-instandhaltung/',
+    '/gebaudereinigung-in-sulzbach-frankfurt/': '/leistungen/gebaeudereinigung/',
+    '/gartenpflege-in-sulzbach-frankfurt/': '/leistungen/gartenpflege/',
+    '/uber-uns/': '/ueber-uns/',
+    '/unser-blog/': '/blog/',
+    '/offene-stellen/': '/karriere/',
+    '/hausmeisterservice-bad-soden-am-taunus/': '/leistungen/objektpflege/',
+    '/hausmeisterservice-frankfurt-am-main/': '/einsatzgebiete/hausmeisterservice-frankfurt/',
+    '/hausmeisterservice-eschborn/': '/einsatzgebiete/objektbetreuung-eschborn/',
+    '/hausmeisterservice-kelkheim-am-taunus/': '/einsatzgebiete/hausmeisterservice-kelkheim/',
+  })
 })
 
 test('unsafe paths, external targets, collisions, duplicates and missing targets are rejected', () => {

@@ -6,6 +6,7 @@
 - Öffentliche Website: `https://perlas.de/`.
 - React/TypeScript/Vite mit statischem Seitenbuild; separates PHP-Backend für Formulare.
 - Einstieg: `docs/DEVELOPMENT.md` für Einrichtung und Befehle, `docs/PROJECT_MAP.md` für Architektur und Änderungsstellen.
+- Keyword-Pflege: `docs/keyword-research-2026-11-16.json` ist die Recherchequelle; `npm run report:keywords` erzeugt nach dem Build die Markdown-/CSV-Übersicht. Wörtliche Phrase, thematische Abdeckung, Veröffentlichung und Indexierung getrennt halten.
 - Gestalterische Grundlage: `DESIGN_LANGUAGE.md`; Bildquellen: `BILDNACHWEIS.md`.
 
 ## Lokaler Arbeitsablauf
@@ -19,7 +20,8 @@
 
 ## Änderungen und Prüfung
 
-- Die meisten Seiten haben React-Inhalte und gesondert erzeugtes initiales HTML in `scripts/prepare-pages.mjs`. Beide Darstellungen berücksichtigen; Frankfurt verwendet eine gemeinsame React-Komponente.
+- Die meisten Seiten haben React-Inhalte und gesondert erzeugtes initiales HTML in `scripts/prepare-pages.mjs`. Beide Darstellungen berücksichtigen; Frankfurt und die vier Commercial-Landingpages verwenden gemeinsame React-Komponenten für Browser und statischen Build.
+- GitHub Pages veröffentlicht aus `gh-pages` im Rootverzeichnis mit `CNAME=perlas.de`; ein Quellcode-Push nach `main` aktualisiert diese Branch-Ausgabe nicht automatisch. Veröffentlichungen anhand der tatsächlichen Berechtigungen und des freigegebenen Arbeitsumfangs durchführen.
 - `dist/`, `node_modules/`, `.tmp-*/` und private Konfigurationen sind lokale bzw. generierte Dateien.
 - Für UI-Änderungen die betroffenen Seiten im Browser auf Desktop und Mobilgerät prüfen. Relevante bestehende Tests ausführen; vollständigen Build bei Inhalts-/Routingänderungen prüfen.
 - Routing, Canonicals, strukturierte Daten, Sitemap und Analytics-Routen müssen zusammenpassen. Neue URLs bewusst in den bestehenden Prüfungen ergänzen.

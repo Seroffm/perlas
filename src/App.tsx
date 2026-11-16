@@ -38,6 +38,7 @@ import blogContent from './blog-data.json'
 import imprintContent from './imprint-content.json'
 import jobContent from './job-data.json'
 import localLandingContent from './local-landing-data.json'
+import commercialLandingContent from './commercial-landing-data.json'
 import privacyContent from './privacy-content.json'
 import serviceContent from './service-data.json'
 import seoContent from './seo-data.json'
@@ -47,7 +48,9 @@ import './service-guides.css'
 import './inquiry-options.css'
 import './local-landings.css'
 import './frankfurt-landing.css'
+import './commercial-landings.css'
 import type { BlogPostContent, JobOpeningContent, LocalLandingContent } from './content-types'
+import type { CommercialLandingContent } from './commercial-landing-types'
 
 const ContactPage = lazy(() => import('./ContactPage'))
 const CareerPage = lazy(() => import('./CareerPage'))
@@ -56,6 +59,7 @@ const BlogArticlePage = lazy(() => import('./BlogPage').then((module) => ({ defa
 const QuoteModal = lazy(() => import('./QuoteModal'))
 const LocalLandingPage = lazy(() => import('./LocalLandingPage'))
 const FrankfurtLandingPage = lazy(() => import('./FrankfurtLandingPage'))
+const CommercialLandingPage = lazy(() => import('./CommercialLandingPage'))
 const RegionalLandingHub = lazy(() => import('./LocalLandingPage').then((module) => ({ default: module.RegionalLandingHub })))
 
 const BASE_PATH = import.meta.env.BASE_URL
@@ -101,6 +105,8 @@ type PageKind = 'home' | 'contact' | 'facility' | 'services' | 'about' | 'blog' 
 const blogPosts = blogContent as BlogPostContent[]
 const jobOpenings = jobContent as JobOpeningContent[]
 const localLandings = localLandingContent as LocalLandingContent[]
+const commercialLandings = commercialLandingContent as CommercialLandingContent[]
+const regionalLandings = [...localLandings, ...commercialLandings]
 
 type AudienceSolutionContent = {
   id: string
@@ -125,7 +131,7 @@ type AudienceSolutionContent = {
 
 type AudienceSolution = AudienceSolutionContent & { icon: LucideIcon }
 
-function usePageSeo(service?: Feature, pageKind: PageKind = 'home', audience?: AudienceSolution, article?: BlogPostContent, localLanding?: LocalLandingContent) {
+function usePageSeo(service?: Feature, pageKind: PageKind = 'home', audience?: AudienceSolution, article?: BlogPostContent, localLanding?: LocalLandingContent | CommercialLandingContent) {
   useEffect(() => {
     if (pageKind === 'notFound') {
       document.title = 'Seite nicht gefunden | Perla’s Objektbetreuung'
@@ -214,12 +220,24 @@ function usePageSeo(service?: Feature, pageKind: PageKind = 'home', audience?: A
         addressCountry: 'DE',
       },
       areaServed: seoContent.region.areaServed,
+      sameAs: ['https://www.google.com/maps?cid=5731639589734766671', TRUSTLOCAL_URL],
     }
     const structuredData = localLanding
       ? {
           '@context': 'https://schema.org',
           '@graph': [
             business,
+            {
+              '@type': 'WebPage',
+              '@id': `${pageUrl.href}#page`,
+              url: pageUrl.href,
+              name: title,
+              description,
+              inLanguage: 'de-DE',
+              dateModified: localLanding.updatedOn,
+              primaryImageOfPage: imageUrl.href,
+              mainEntity: { '@id': `${pageUrl.href}#service` },
+            },
             {
               '@type': 'Service',
               '@id': `${pageUrl.href}#service`,
@@ -2966,7 +2984,7 @@ function ServiceDetailPage({ service, onQuoteOpen }: { service: Feature; onQuote
   const serviceGuides = (service.guideSlugs ?? [])
     .map((slug) => blogPosts.find((post) => post.slug === slug))
     .filter((post): post is BlogPostContent => Boolean(post))
-  const serviceLocalLandings = localLandings.filter((landing) => landing.serviceSlug === service.slug)
+  const serviceLocalLandings = regionalLandings.filter((landing) => landing.serviceSlug === service.slug)
   const showServiceBoundary = service.slug !== 'baumpflege-baumfaellung'
 
   return (
@@ -3528,14 +3546,16 @@ export default function App() {
   const activeBlogPost = blogPosts.find((post) => post.slug === blogSlug)
   const localLandingSlug = pagePath.match(/^\/einsatzgebiete\/([^/]+)\/?$/)?.[1]
   const activeLocalLanding = localLandings.find((landing) => landing.slug === localLandingSlug)
+  const activeCommercialLanding = commercialLandings.find((landing) => landing.slug === localLandingSlug)
+  const activeRegionalLanding = activeCommercialLanding ?? activeLocalLanding
   const isKnownRoute = normalizedPagePath === '/'
     || isContactPage || isFacilityPage || isServicesPage || isAboutPage || isBlogPage
     || isCareerPage || isImprintPage || isPrivacyPage || isRegionsPage
-    || Boolean(activeService || activeAudience || activeBlogPost || activeLocalLanding)
+    || Boolean(activeService || activeAudience || activeBlogPost || activeRegionalLanding)
   const isNotFoundPage = !isKnownRoute
   const pageKind: PageKind = isContactPage
     ? 'contact'
-    : isRegionsPage || activeLocalLanding
+    : isRegionsPage || activeRegionalLanding
       ? 'regions'
     : isFacilityPage || activeAudience
       ? 'facility'
@@ -3555,7 +3575,7 @@ export default function App() {
               ? 'notFound'
               : 'home'
 
-  usePageSeo(activeService, pageKind, activeAudience, activeBlogPost, activeLocalLanding)
+  usePageSeo(activeService, pageKind, activeAudience, activeBlogPost, activeRegionalLanding)
 
   useEffect(() => {
     const onContactClick = (event: MouseEvent) => {
@@ -3571,10 +3591,10 @@ export default function App() {
   }, [])
 
   const openQuote = useCallback((service?: string) => {
-    setQuoteService(service ?? activeService?.title ?? features.find((item) => item.slug === activeLocalLanding?.serviceSlug)?.title ?? activeAudience?.navLabel)
-    setQuoteTopic(activeLocalLanding?.heading)
+    setQuoteService(service ?? activeService?.title ?? features.find((item) => item.slug === activeRegionalLanding?.serviceSlug)?.title ?? activeAudience?.navLabel)
+    setQuoteTopic(activeRegionalLanding?.heading)
     setQuoteOpen(true)
-  }, [activeService?.title, activeAudience?.navLabel, activeLocalLanding])
+  }, [activeService?.title, activeAudience?.navLabel, activeRegionalLanding])
 
   const closeQuote = useCallback(() => setQuoteOpen(false), [])
 
@@ -3582,7 +3602,9 @@ export default function App() {
     <>
       <Header activePage={pageKind} />
       <Suspense fallback={<main className="container section"><p role="status">Seite wird geladen …</p></main>}>
-      {activeLocalLanding?.slug === 'hausmeisterservice-frankfurt' ? (
+      {activeCommercialLanding ? (
+        <CommercialLandingPage page={activeCommercialLanding} />
+      ) : activeLocalLanding?.slug === 'hausmeisterservice-frankfurt' ? (
         <FrankfurtLandingPage page={activeLocalLanding} />
       ) : activeLocalLanding ? (
         <LocalLandingPage
@@ -3592,7 +3614,7 @@ export default function App() {
         />
       ) : isRegionsPage ? (
         <RegionalLandingHub
-          pages={localLandings}
+          pages={regionalLandings}
           heading={seoContent.pages.regions.heading}
           intro={seoContent.pages.regions.intro}
         />

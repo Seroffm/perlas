@@ -43,6 +43,7 @@ Keine allgemeine `.env.local` anlegen: Sie würde auch Produktionsbuilds beeinfl
 | `npm run check:seo` | Zuvor erzeugte Seiten, Links, Metadaten, Schema und Weiterleitungen prüfen. |
 | `npm run check:images:reference` | Strengen Bildvergleich in der passenden Referenzlaufzeit ausführen. |
 | `npm run check` | Tests, Produktionsbuild, SEO und Referenz-Bildvergleich nacheinander ausführen. |
+| `npm run report:keywords` | Nach dem Build Keyword-Zuordnung und Nachweise in Title, H1 und Hauptinhalt aktualisieren. |
 | `npm run preview:local` | Zuvor erzeugten Produktionsbuild auf <http://127.0.0.1:4173/> ansehen. |
 
 `npm run build` allein erzeugt nicht alle statischen Seiten. Für die vollständige
@@ -105,8 +106,12 @@ Build, TypeScript, 39 JavaScript-Tests, 150 PHP-Prüfungen und der SEO-Check fü
 42 kanonische Seiten liefen erfolgreich. Die Referenz-Bildprüfung bestätigt 73 Sets
 mit 203 Varianten. Start- und Kontaktseite wurden in der lokalen Browservorschau geöffnet.
 
-Vorhandene Befunde für die anschließende Optimierung: Vite meldet ein Hauptpaket
-über 500 kB und React beim statischen Rendern einen Hinweis zum `fetchPriority`-Attribut.
-Diese Hinweise verhindern den Build nicht. Als nächste Arbeit bieten sich ein gezielter
-Performance- und Mobilcheck und die gemeinsame Priorisierung von Nutzerführung,
-Inhalten und SEO an. Einrichtung ist keine vollständige Website-Optimierung oder Live-SEO-Prüfung.
+Der nachfolgende Optimierungsstand auf `codex/perlas-growth` umfasst 46 Seiten,
+elf lokale Angebotsseiten und zwölf Altpfad-Zuordnungen. Der React-Hinweis zum
+`fetchPriority`-Attribut wurde im gemeinsamen Bildbaustein behoben; der statische
+Renderer öffnet auch keinen WebSocket-Port mehr. Vite meldet weiterhin ein Hauptpaket
+über 500 kB. Feldmesswerte für Core Web Vitals fehlen; Paketgröße allein beweist
+kein konkretes Performanceproblem.
+
+Neue Seiten, Keyword-Pflege und Veröffentlichungsstand:
+[SEO_GROWTH_IMPLEMENTATION.md](SEO_GROWTH_IMPLEMENTATION.md).

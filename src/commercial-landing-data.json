@@ -1,0 +1,667 @@
+[
+  {
+    "slug": "bueroreinigung-frankfurt",
+    "serviceSlug": "gebaeudereinigung",
+    "locality": "Frankfurt am Main",
+    "region": "Frankfurt am Main",
+    "seoTitle": "Büroreinigung Frankfurt & Unterhaltsreinigung | Perla’s",
+    "seoDescription": "Büroreinigung in Frankfurt für Unternehmen: Räume, Aufgaben und Reinigungszeiten klar vereinbaren. Mit praktischem Plan und persönlichem Angebot.",
+    "heading": "Büroreinigung in Frankfurt. Passend zu Ihrem Arbeitsalltag.",
+    "intro": "Saubere Arbeitsplätze, gepflegte Sanitärbereiche und ein Reinigungsplan, den Ihr Team versteht. Perla’s organisiert Büro- und Unterhaltsreinigung in Frankfurt für Unternehmen und verwaltete Büroflächen. Wir klären, was regelmäßig gereinigt wird, wann Ihr Büro zugänglich ist und wer Rückmeldungen aufnimmt.",
+    "heroImage": {
+      "src": "kundenbilder/team/update-2026-09-23/mitarbeiter_reinigung_weiblich_01.png",
+      "alt": "Perla’s Mitarbeiterin mit Reinigungsgerät in einem Innenbereich",
+      "position": "50% 38%",
+      "caption": "Einblick in unser Reinigungsangebot."
+    },
+    "scopeTitle": "Ein klarer Umfang für Ihr Büro.",
+    "scopeIntro": "Büroreinigung wird vergleichbar, wenn Räume und Aufgaben einzeln benannt sind. Diese drei Bereiche können wir in einem gemeinsamen Leistungsverzeichnis zusammenführen.",
+    "scopeCards": [
+      {
+        "title": "Arbeitsplätze und Besprechungsräume",
+        "text": "Böden und freigegebene Oberflächen werden nach Material und Nutzung eingeplant. Ihr Team legt fest, welche Schreibtischflächen zugänglich sind. Unterlagen und persönliche Gegenstände bleiben an ihrem Platz.",
+        "items": [
+          "Bodenpflege passend zum Belag",
+          "Freigegebene Tisch- und Kontaktflächen",
+          "Abfallbehälter nach Vereinbarung"
+        ]
+      },
+      {
+        "title": "Sanitärbereiche und Teeküchen",
+        "text": "Wir nehmen Waschbecken, Sanitärkeramik, erreichbare Oberflächen und die vereinbarten Küchenbereiche auf. Verbrauchsmaterial und zusätzliche Aufgaben werden gesondert benannt, damit keine unklaren Erwartungen entstehen.",
+        "items": [
+          "Sanitärflächen mit festgelegtem Turnus",
+          "Teeküche und Aufenthaltsbereiche",
+          "Materialnachfüllung ausdrücklich vereinbaren"
+        ]
+      },
+      {
+        "title": "Reinigung im passenden Zeitfenster",
+        "text": "Unterhaltsreinigung braucht verlässlichen Zugang. Wir stimmen Kernarbeitszeiten, Schlüsselübergabe und Schließablauf ab. Räume mit besonderen Zutrittsregeln werden im Plan kenntlich gemacht.",
+        "items": [
+          "Abgestimmte Tage und Zugangszeiten",
+          "Schlüssel- und Schließregelung",
+          "Fester Kontakt für Rückmeldungen"
+        ]
+      }
+    ],
+    "planning": {
+      "title": "Ihr Büroreinigungsplan: vier Punkte zum Vergleichen.",
+      "intro": "Diese Übersicht hilft Ihnen, Angebote für Unterhaltsreinigung in Frankfurt auf denselben Umfang zu beziehen. Ein Quadratmeterpreis allein beschreibt die Leistung nicht.",
+      "headers": [
+        "Bereich",
+        "Im Leistungsverzeichnis festhalten",
+        "Rhythmus klären"
+      ],
+      "rows": [
+        [
+          "Arbeitsräume",
+          "Bodenart, zugängliche Oberflächen und Abfallbehälter",
+          "Nutzungstage und gewünschte Reinigungstage"
+        ],
+        [
+          "Sanitär und Teeküche",
+          "Anzahl der Räume, Ausstattung und Materialnachfüllung",
+          "Häufigkeit anhand der tatsächlichen Nutzung"
+        ],
+        [
+          "Besprechungsflächen",
+          "Böden, Tische und freigegebene Kontaktflächen",
+          "Regelmäßig oder nach festgelegten Terminen"
+        ],
+        [
+          "Zusatzarbeiten",
+          "Glas, Rahmen und Grundreinigung getrennt ausweisen",
+          "Eigener Auftrag oder eigener Turnus"
+        ]
+      ],
+      "note": "Planungshilfe für Ihre Anfrage. Die konkreten Aufgaben und Häufigkeiten werden für Ihr Büro vereinbart."
+    },
+    "detail": {
+      "title": "Rückfragen an einer Stelle bündeln.",
+      "text": "Ein Reinigungsplan muss auch dann funktionieren, wenn sich die Belegung eines Büros ändert. Teilen Sie Ihrem Ansprechpartner mit, welche Räume neu genutzt werden oder wann Termine den üblichen Ablauf verändern. So lässt sich der Auftrag gezielt anpassen.",
+      "image": {
+        "src": "kundenbilder/leistungen/gebaeudereinigung_flur.png",
+        "alt": "Perla’s Mitarbeiter bei der Reinigung eines Flurbereichs",
+        "position": "50% 45%",
+        "caption": "Reinigung von Innen- und Verkehrsflächen."
+      },
+      "points": [
+        "Bereich und gewünschte Aufgabe eindeutig benennen",
+        "Zugangshindernisse vor dem Termin mitteilen",
+        "Rückmeldungen am vereinbarten Umfang prüfen"
+      ]
+    },
+    "processSteps": [
+      {
+        "title": "Büro kurz beschreiben",
+        "text": "Nennen Sie den Frankfurter Standort, ungefähre Fläche, Raumarten und gewünschten Rhythmus. Für die erste Kontaktaufnahme reichen wenige Angaben."
+      },
+      {
+        "title": "Flächen und Zeiten abstimmen",
+        "text": "Bei Bedarf sehen wir uns Beläge, Sanitär- und Küchenbereiche sowie Zugänge an. Daraus entsteht das Leistungsverzeichnis."
+      },
+      {
+        "title": "Mit einem klaren Plan starten",
+        "text": "Nach Abstimmung von Angebot und Einsatzmöglichkeit stehen Aufgaben, Termine und Ansprechpartner fest."
+      }
+    ],
+    "cost": {
+      "title": "Was kostet Büroreinigung in Frankfurt?",
+      "text": "Entscheidend ist der vereinbarte Aufwand. Ein offenes Büro mit wenigen Nebenräumen unterscheidet sich von derselben Fläche mit vielen Sanitär- und Küchenbereichen. Wir kalkulieren den beschriebenen Umfang und grenzen Zusatzarbeiten ab.",
+      "factors": [
+        "Fläche, Raumaufteilung und Bodenbeläge",
+        "Sanitärbereiche, Teeküchen und Nutzungsintensität",
+        "Reinigungstage, Zugangszeit und Zusatzaufgaben"
+      ]
+    },
+    "faqs": [
+      {
+        "question": "Was unterscheidet Büroreinigung und Unterhaltsreinigung?",
+        "answer": "Büroreinigung beschreibt die betreuten Räume. Unterhaltsreinigung meint wiederkehrende Arbeiten in vereinbarten Intervallen. Bei einem Büroauftrag können beide Begriffe denselben regelmäßigen Reinigungsplan bezeichnen. Eine Grundreinigung wird gesondert abgegrenzt."
+      },
+      {
+        "question": "Ist Büroreinigung außerhalb unserer Arbeitszeit möglich?",
+        "answer": "Sie können ein geeignetes Zeitfenster anfragen. Wir prüfen Zugang, Schließablauf und Einsatzmöglichkeit für Ihren Standort. Die konkreten Tage und Zeiten stehen vor dem ersten Einsatz fest."
+      },
+      {
+        "question": "Müssen wir für ein Angebot schon ein Leistungsverzeichnis haben?",
+        "answer": "Nein. Angaben zu Standort, Fläche, Raumarten und gewünschtem Rhythmus helfen beim Einstieg. Einen bestehenden Plan können Sie zum Vergleich nutzen. Gemeinsam halten wir die tatsächlich gewünschten Aufgaben fest."
+      },
+      {
+        "question": "Können wir den Reinigungsumfang später anpassen?",
+        "answer": "Wenn sich Raumnutzung, Mitarbeiterzahl oder gewünschte Aufgaben ändern, besprechen wir den Aufwand neu. Änderungen an Umfang, Intervallen und Preis werden vereinbart, bevor zusätzliche Arbeiten regelmäßig übernommen werden."
+      }
+    ],
+    "inquiry": {
+      "title": "Büroreinigung für Ihren Standort anfragen.",
+      "text": "Beschreiben Sie Ihr Büro in Frankfurt und den gewünschten Reinigungsrhythmus. Wir besprechen die nächsten Schritte persönlich.",
+      "checklist": [
+        "Standort und ungefähre Bürofläche",
+        "Sanitär- und Küchenbereiche",
+        "Gewünschte Tage und Zugangszeiten"
+      ],
+      "topic": "Büroreinigung Frankfurt"
+    },
+    "serviceAreaText": "Ihr Ansprechpartner sitzt bei Perla’s in Sulzbach (Taunus). Von dort stimmen wir den Einsatz für Ihr Büro in Frankfurt objektbezogen ab.",
+    "relatedLinks": [
+      {
+        "label": "Gesamtes Reinigungsangebot",
+        "path": "/leistungen/gebaeudereinigung/"
+      },
+      {
+        "label": "Büroreinigung speziell im Westend",
+        "path": "/einsatzgebiete/bueroreinigung-frankfurt-westend/"
+      },
+      {
+        "label": "Reinigung im laufenden Betrieb planen",
+        "path": "/blog/gebaeudereinigung-im-laufenden-betrieb/"
+      }
+    ],
+    "guideSlugs": [
+      "gebaeudereinigung-im-laufenden-betrieb"
+    ],
+    "updatedOn": "2026-11-16",
+    "ctaText": "Büroreinigung anfragen"
+  },
+  {
+    "slug": "gebaeudereinigung-eschborn",
+    "serviceSlug": "gebaeudereinigung",
+    "locality": "Eschborn",
+    "region": "Main-Taunus-Kreis",
+    "seoTitle": "Gebäudereinigung Eschborn: Büro & Treppenhaus | Perla’s",
+    "seoDescription": "Gebäudereinigung in Eschborn für Büros, WEG und Gewerbe. Reinigungsumfang, Intervalle und Zugang übersichtlich planen. Jetzt Ihr Objekt anfragen.",
+    "heading": "Gebäudereinigung in Eschborn. Klar geplant, gut abgestimmt.",
+    "intro": "Sie suchen eine Reinigungsfirma in Eschborn für Ihr Büro, ein Treppenhaus oder gemeinsame Gebäudeflächen? Perla’s aus dem benachbarten Sulzbach stimmt Aufgaben, Intervalle und Zugänge mit Ihnen ab. Sie erhalten einen nachvollziehbaren Umfang für die regelmäßige Reinigung und einen festen Kontakt für Rückfragen.",
+    "heroImage": {
+      "src": "kundenbilder/leistungen/gebaeudereinigung_flur.png",
+      "alt": "Perla’s Mitarbeiter mit Reinigungsgerät in einem gemeinschaftlich genutzten Flur",
+      "position": "50% 45%",
+      "caption": "Einblick in die Reinigung gemeinsamer Verkehrsflächen."
+    },
+    "scopeTitle": "Die richtige Reinigung für die jeweilige Fläche.",
+    "scopeIntro": "In gemischt genutzten Gebäuden brauchen Büro, Treppenhaus und Nebenraum unterschiedliche Abläufe. Wir beschreiben die Bereiche getrennt, auch wenn Sie sie gemeinsam beauftragen.",
+    "scopeCards": [
+      {
+        "title": "Büroreinigung für Unternehmen",
+        "text": "Wir erfassen Büroräume, Besprechungsbereiche, Teeküchen und Sanitärflächen. Bodenbeläge, freigegebene Oberflächen und Bürozeiten bestimmen den Plan. So kann Ihr Unternehmen Angebote auf gleicher Grundlage vergleichen.",
+        "items": [
+          "Arbeits- und Besprechungsflächen",
+          "Küchen- und Sanitärbereiche",
+          "Reinigungszeiten passend zum Bürobetrieb"
+        ]
+      },
+      {
+        "title": "Treppenhausreinigung für WEG",
+        "text": "Stufen, Podeste, Eingänge und erreichbare Handläufe werden ausdrücklich aufgenommen. Kellerflure, Glas und weitere Nebenbereiche sind eigene Positionen. Ihre Verwaltung sieht dadurch, welche Aufgabe in welchem Turnus dazugehört.",
+        "items": [
+          "Etagen, Treppen und Eingangsbereiche",
+          "Freigegebene Handläufe und Kontaktflächen",
+          "Keller und Nebenflure gesondert benennen"
+        ]
+      },
+      {
+        "title": "Gemeinschaftsflächen nach Nutzung",
+        "text": "Gemeinsam genutzte Räume und Verkehrsflächen werden nach Material und Nutzung geplant. Für selten genutzte Bereiche kann ein anderer Turnus sinnvoll sein. Grundreinigung oder besondere Verschmutzungen prüfen wir separat.",
+        "items": [
+          "Flächen und Nutzung eindeutig erfassen",
+          "Turnus je Bereich festhalten",
+          "Zusatzreinigungen getrennt vereinbaren"
+        ]
+      }
+    ],
+    "planning": {
+      "title": "Drei Angaben machen Reinigungsangebote vergleichbar.",
+      "intro": "Nutzen Sie diese kleine Prüfliste für Ihr Objekt in Eschborn. Sie hilft, eine scheinbar günstige Pauschale mit einem vollständig beschriebenen Auftrag zu vergleichen.",
+      "headers": [
+        "Ihr Bereich",
+        "Für das Angebot wichtig",
+        "Vor dem Start klären"
+      ],
+      "rows": [
+        [
+          "Büro und Gewerbe",
+          "Fläche, Bodenbeläge, Raumarten und Sanitärzahl",
+          "Zugangsfenster und freigegebene Oberflächen"
+        ],
+        [
+          "WEG und Mehrfamilienhaus",
+          "Anzahl der Eingänge, Etagen und Nebenflure",
+          "Schlüssel, Bewohnerinformation und Turnus"
+        ],
+        [
+          "Gemeinschaftsräume",
+          "Nutzung, Ausstattung und gewünschte Aufgaben",
+          "Eigenes Intervall und verantwortlicher Kontakt"
+        ],
+        [
+          "Zusatzleistungen",
+          "Glas, Grundreinigung oder besondere Bereiche",
+          "Umfang und Preis getrennt bestätigen"
+        ]
+      ],
+      "note": "Ein bestehendes Leistungsverzeichnis ist hilfreich, aber für die erste Anfrage nicht erforderlich."
+    },
+    "detail": {
+      "title": "Ein Objekt, unterschiedliche Reinigungsaufgaben.",
+      "text": "Ein Treppenhaus und eine Teeküche lassen sich nicht sinnvoll über dieselbe pauschale Tätigkeitsliste beschreiben. Wir nehmen die Bereiche gemeinsam auf und halten Unterschiede fest. Bei Rückmeldungen bleibt dadurch klar, welcher Bereich und welche vereinbarte Aufgabe gemeint sind.",
+      "image": {
+        "src": "kundenbilder/team/update-2026-09-23/mitarbeiter_reinigung_weiblich_01.png",
+        "alt": "Perla’s Mitarbeiterin bei der Vorbereitung einer Innenreinigung",
+        "position": "50% 36%",
+        "caption": "Menschen und Arbeitsmittel aus dem Perla’s Bildbestand."
+      },
+      "points": [
+        "Aufgaben pro Raum oder Gebäudebereich",
+        "Erreichbare Flächen und ausgeschlossene Bereiche",
+        "Rückmeldung mit Bereich und konkretem Anliegen"
+      ]
+    },
+    "processSteps": [
+      {
+        "title": "Objekt in Eschborn nennen",
+        "text": "Teilen Sie Objektart, ungefähre Größe und die gewünschten Reinigungsbereiche mit. Für den ersten Kontakt ist keine vollständige Objektadresse Pflicht."
+      },
+      {
+        "title": "Leistungsverzeichnis vorbereiten",
+        "text": "Wir klären Flächen, Beläge, Zugang und Häufigkeiten. Eine Begehung hilft, besondere Anforderungen richtig aufzunehmen."
+      },
+      {
+        "title": "Auftrag und Rückmeldeweg festlegen",
+        "text": "Vor Beginn stimmen wir den angebotenen Umfang, die Einsatzmöglichkeit und den Ansprechpartner für Verwaltung oder Unternehmen ab."
+      }
+    ],
+    "cost": {
+      "title": "Gebäudereinigung passend zum Aufwand kalkulieren.",
+      "text": "Bei der Büroreinigung in Eschborn zählen andere Aufwandstreiber als bei einem Treppenhaus. Fläche, Anzahl der Räume, Nutzung und Zugang gehören deshalb in die Anfrage. Zusatzaufgaben bleiben im Angebot erkennbar.",
+      "factors": [
+        "Flächenumfang, Raumarten und Materialien",
+        "Nutzungsintensität und gewünschte Intervalle",
+        "Zugang, Nebenbereiche und vereinbarte Zusatzarbeiten"
+      ]
+    },
+    "faqs": [
+      {
+        "question": "Bietet Perla’s Büroreinigung in Eschborn an?",
+        "answer": "Ja. Wir stimmen Büro-, Sanitär- und Küchenbereiche sowie freigegebene Oberflächen mit Ihrem Unternehmen ab. Für den konkreten Standort prüfen wir Umfang, gewünschte Zeiten und Einsatzmöglichkeit."
+      },
+      {
+        "question": "Kann eine Hausverwaltung die Treppenhausreinigung beauftragen?",
+        "answer": "Ja. Nennen Sie die Gebäudezahl, Etagen und gewünschten Nebenbereiche. Ein vorhandener Reinigungsplan hilft beim Abgleich. Wir klären, wer den Auftrag vertritt und wie Rückmeldungen aus dem Objekt gebündelt werden."
+      },
+      {
+        "question": "Sind Fenster und Grundreinigung im regelmäßigen Auftrag enthalten?",
+        "answer": "Diese Arbeiten gehören dazu, wenn sie ausdrücklich beschrieben und vereinbart sind. Glas, Rahmen, schwer erreichbare Flächen und intensivere Reinigungen werden bei Bedarf getrennt angeboten."
+      },
+      {
+        "question": "Was passiert, wenn ein Bereich nicht zugänglich ist?",
+        "answer": "Die Zugangslösung wird vor Beginn besprochen. Ist ein vereinbarter Bereich beim Termin nicht erreichbar, wird das über den festgelegten Kontakt zurückgemeldet. Das weitere Vorgehen richtet sich nach der konkreten Vereinbarung."
+      }
+    ],
+    "inquiry": {
+      "title": "Ihr Reinigungsangebot für Eschborn.",
+      "text": "Ob Büro, WEG oder Gewerbe: Nennen Sie uns die Bereiche, die Sie regelmäßig reinigen lassen möchten.",
+      "checklist": [
+        "Objektart und ungefähre Fläche",
+        "Gewünschte Reinigungsbereiche",
+        "Turnus und mögliche Zugangszeiten"
+      ],
+      "topic": "Gebäudereinigung Eschborn"
+    },
+    "serviceAreaText": "Perla’s betreut Anfragen für Eschborn von seinem Unternehmensstandort in Sulzbach (Taunus). Den konkreten Ablauf stimmen wir für Ihr Objekt ab.",
+    "relatedLinks": [
+      {
+        "label": "Gebäudereinigung im Überblick",
+        "path": "/leistungen/gebaeudereinigung/"
+      },
+      {
+        "label": "Büroreinigung: Angebote vorbereiten",
+        "path": "/blog/bueroreinigung-eschborn-angebot-kosten/"
+      },
+      {
+        "label": "Objektbetreuung in Eschborn",
+        "path": "/einsatzgebiete/objektbetreuung-eschborn/"
+      }
+    ],
+    "guideSlugs": [
+      "bueroreinigung-eschborn-angebot-kosten"
+    ],
+    "updatedOn": "2026-11-16",
+    "ctaText": "Reinigung in Eschborn anfragen"
+  },
+  {
+    "slug": "hausmeisterservice-kelkheim",
+    "serviceSlug": "objektpflege",
+    "locality": "Kelkheim (Taunus)",
+    "region": "Main-Taunus-Kreis",
+    "seoTitle": "Hausmeisterservice Kelkheim für WEG & Gewerbe | Perla’s",
+    "seoDescription": "Hausmeisterservice in Kelkheim für WEG, Hausverwaltungen und Gewerbe. Mit Kontrollplan, klaren Aufgaben und festem Kontakt. Jetzt Betreuung anfragen.",
+    "heading": "Hausmeisterservice in Kelkheim. Das ganze Objekt im Blick.",
+    "intro": "Kontrollgänge, kleine Hausmeisteraufgaben und verständliche Rückmeldungen: Perla’s plant die laufende Objektbetreuung in Kelkheim für WEG, Hausverwaltungen und Gewerbe. Wir ordnen Aufgaben und Zuständigkeiten, damit aus vielen einzelnen Meldungen ein übersichtlicher Betreuungsplan wird.",
+    "heroImage": {
+      "src": "kundenbilder/hero/hausverwaltungen-mehrfamilienhaus.jpg",
+      "alt": "Mehrfamilienhaus mit gemeinschaftlich genutzten Außenbereichen als Beispiel für die Objektbetreuung",
+      "position": "50% 50%",
+      "caption": "Bildbeispiel für die betreuten Objektarten."
+    },
+    "scopeTitle": "Aufgaben, die Ihre Verwaltung entlasten.",
+    "scopeIntro": "Ein guter Hausmeistervertrag nennt die betreuten Flächen und unterscheidet Kontrolle, direkte Ausführung und Rückmeldung. Diese drei Bausteine stimmen wir für Ihr Objekt ab.",
+    "scopeCards": [
+      {
+        "title": "Kontrollgänge mit klarem Umfang",
+        "text": "Eingänge, Gemeinschaftsflächen, Nebenräume und vereinbarte Außenbereiche werden einem Kontrollplan zugeordnet. Auffälligkeiten zu Beleuchtung, Sauberkeit oder Zustand lassen sich so mit einem bestimmten Bereich verbinden.",
+        "items": [
+          "Betreute Gebäude und Zugänge festhalten",
+          "Kontrollpunkte und Intervalle vereinbaren",
+          "Auffälligkeiten verständlich zurückmelden"
+        ]
+      },
+      {
+        "title": "Kleine Aufgaben und klare Freigaben",
+        "text": "Einfache Hausmeisterarbeiten können im vereinbarten Rahmen direkt übernommen werden. Welche Maßnahmen freigegeben sind, wird vorher festgelegt. Arbeiten mit besonderer Zulassung gehören zum passenden Fachbetrieb.",
+        "items": [
+          "Kleine Handgriffe und Verbrauchsteile",
+          "Freigabeweg für zusätzliche Maßnahmen",
+          "Fachfirmen bei Bedarf vor Ort begleiten"
+        ]
+      },
+      {
+        "title": "Ein Kontakt für offene Punkte",
+        "text": "Meldungen aus dem Objekt, erledigte Aufgaben und weiterer Handlungsbedarf werden nachvollziehbar gebündelt. Verwaltung oder Eigentümer müssen dadurch nicht jede Rückfrage über mehrere Stellen verfolgen.",
+        "items": [
+          "Rückmeldungen nach Bereich und Anlass",
+          "Fotos bei relevanten Auffälligkeiten",
+          "Zugang und Termine mit Dritten abstimmen"
+        ]
+      }
+    ],
+    "planning": {
+      "title": "Checkliste für die Übergabe an Ihren Hausmeisterservice.",
+      "intro": "Mit diesen Unterlagen gelingt der Wechsel von einzelnen Zurufen zu einem klaren Auftrag. Die Liste eignet sich auch, wenn bereits eine Betreuung besteht und Sie Angebote vergleichen.",
+      "headers": [
+        "Baustein",
+        "Für die Übergabe vorbereiten",
+        "Im Auftrag festhalten"
+      ],
+      "rows": [
+        [
+          "Objektübersicht",
+          "Gebäude, Eingänge, Gemeinschafts- und Außenflächen",
+          "Welche Bereiche betreut werden"
+        ],
+        [
+          "Zugang",
+          "Schlüssel, Tore, freigegebene Räume und Kontakte",
+          "Wer Zugang erhält und Änderungen meldet"
+        ],
+        [
+          "Aufgabenplan",
+          "Bisherige Kontrollgänge und wiederkehrende Aufgaben",
+          "Intervall, Ausführung oder reine Zustandsmeldung"
+        ],
+        [
+          "Freigaben",
+          "Ansprechpartner und vorhandene Beauftragungen",
+          "Welche Aufgaben direkt erledigt werden dürfen"
+        ],
+        [
+          "Rückmeldung",
+          "Gewünschter Bericht und bekannte offene Punkte",
+          "Meldeweg und zuständige Person"
+        ]
+      ],
+      "note": "Für eine erste Anfrage genügt ein kurzer Überblick. Unterlagen und Einzelheiten klären wir anschließend gemeinsam."
+    },
+    "detail": {
+      "title": "Objektbetreuung soll nachvollziehbar sein.",
+      "text": "Wer eine Wohnanlage verwaltet, braucht nicht nur eine erledigte Aufgabe, sondern auch die passende Rückmeldung. Wir stimmen ab, wie Auffälligkeiten benannt und offene Maßnahmen weitergegeben werden. Reinigung, Außenpflege oder Winterdienst können ergänzend angefragt und jeweils klar abgegrenzt werden.",
+      "image": {
+        "src": "kundenbilder/hero/mitarbeiter-persoenlicher-service.jpg",
+        "alt": "Perla’s Mitarbeiter an einem Servicefahrzeug bei einem Kundeneinsatz",
+        "position": "50% 42%",
+        "caption": "Perla’s im persönlichen Objektservice."
+      },
+      "points": [
+        "Kontrollauftrag und Ausführungsauftrag unterscheiden",
+        "Zusätzliche Leistungen separat beschreiben",
+        "Offene Maßnahmen mit Verantwortlichem festhalten"
+      ]
+    },
+    "processSteps": [
+      {
+        "title": "Betreuungsbedarf beschreiben",
+        "text": "Nennen Sie den Standort in Kelkheim, die Objektart, Gebäudezahl und Aufgaben, die Sie abgeben möchten."
+      },
+      {
+        "title": "Objekt und bisherigen Ablauf ansehen",
+        "text": "Bei Bedarf prüfen wir Zugänge und Kontrollbereiche gemeinsam. Vorhandene Pläne helfen, Lücken und Doppelaufgaben zu erkennen."
+      },
+      {
+        "title": "Mit klaren Zuständigkeiten starten",
+        "text": "Angebot, Einsatzmöglichkeit und Freigaben werden abgestimmt. Danach stehen Termine, Leistungsplan und Ansprechpartner fest."
+      }
+    ],
+    "cost": {
+      "title": "Was kostet ein Hausmeisterservice in Kelkheim?",
+      "text": "Gebäudezahl und Flächengröße allein bilden den Betreuungsaufwand nicht ab. Wichtig sind Kontrollintervalle, gewünschte Handgriffe und die Abstimmung am Objekt. Ein nachvollziehbares Angebot trennt die laufende Betreuung von zusätzlichen Aufträgen.",
+      "factors": [
+        "Gebäude, Zugänge und beauftragte Bereiche",
+        "Kontrollrhythmus und direkt auszuführende Aufgaben",
+        "Zusätzliche Reinigung, Außenpflege oder Saisonleistungen"
+      ]
+    },
+    "faqs": [
+      {
+        "question": "Für welche Objekte ist die Betreuung in Kelkheim gedacht?",
+        "answer": "Sie können Wohnanlagen, Mehrfamilienhäuser und Gewerbeobjekte anfragen. Gemeinsam klären wir betreute Bereiche, Aufgaben und die Einsatzmöglichkeit. Der Leistungsplan richtet sich nach Ihrem Objekt."
+      },
+      {
+        "question": "Übernimmt Perla’s auch Reparaturen?",
+        "answer": "Kleine Hausmeisterarbeiten sind nach vorheriger Abstimmung möglich. Welche Tätigkeiten direkt freigegeben sind, steht in der Vereinbarung. Arbeiten mit erforderlicher besonderer Zulassung werden nicht durch einen allgemeinen Hausmeisterauftrag ersetzt."
+      },
+      {
+        "question": "Sind Reinigung, Gartenpflege und Winterdienst automatisch dabei?",
+        "answer": "Nein. Diese Leistungen können ergänzend angefragt werden. Die betroffenen Flächen, Aufgaben und Intervalle müssen ausdrücklich vereinbart sein, damit alle Beteiligten denselben Umfang erwarten."
+      },
+      {
+        "question": "Wie lässt sich ein Wechsel des Hausmeisterservice vorbereiten?",
+        "answer": "Hilfreich sind Objektübersicht, bisheriger Leistungsplan, Zugangsinformationen und eine Liste offener Aufgaben. Klären Sie außerdem den verantwortlichen Ansprechpartner und den gewünschten Beginn. Bestehende Vertragsfristen müssen Sie gesondert berücksichtigen."
+      }
+    ],
+    "inquiry": {
+      "title": "Objektbetreuung für Kelkheim anfragen.",
+      "text": "Beschreiben Sie kurz Ihre Immobilie und die Aufgaben, für die Sie einen Hausmeisterservice suchen.",
+      "checklist": [
+        "Standort und Anzahl der Gebäude",
+        "Gewünschte Kontrollen und Hausmeisteraufgaben",
+        "Bestehender Leistungsplan, falls vorhanden"
+      ],
+      "topic": "Hausmeisterservice Kelkheim"
+    },
+    "serviceAreaText": "Unser Unternehmensstandort ist Sulzbach (Taunus). Für Ihr Objekt in Kelkheim klären wir Leistungsumfang und Einsatzplanung vor der Beauftragung.",
+    "relatedLinks": [
+      {
+        "label": "Hausmeisterservice und Objektbetreuung",
+        "path": "/leistungen/objektpflege/"
+      },
+      {
+        "label": "Leistungsplan für WEG vorbereiten",
+        "path": "/blog/hausmeisterservice-sulzbach-weg-leistungen/"
+      },
+      {
+        "label": "Betreuung für Hausverwaltungen",
+        "path": "/facility-management/hausverwaltungen/"
+      }
+    ],
+    "guideSlugs": [
+      "hausmeisterservice-sulzbach-weg-leistungen"
+    ],
+    "updatedOn": "2026-11-16",
+    "ctaText": "Hausmeisterservice anfragen"
+  },
+  {
+    "slug": "tiefgaragenreinigung-frankfurt",
+    "serviceSlug": "tiefgaragenreinigung",
+    "locality": "Frankfurt am Main",
+    "region": "Frankfurt am Main",
+    "seoTitle": "Tiefgaragenreinigung Frankfurt für WEG & Gewerbe | Perla’s",
+    "seoDescription": "Tiefgaragenreinigung in Frankfurt: Fahrflächen, Stellplätze und Randbereiche abgestimmt reinigen. Mit Ablaufplan für WEG und Gewerbe. Angebot anfragen.",
+    "heading": "Tiefgaragenreinigung in Frankfurt. Fläche für Fläche geplant.",
+    "intro": "Für eine saubere Tiefgarage müssen Maschinen, Stellplätze und Fahrzeugverkehr zusammenpassen. Perla’s stimmt Tiefgaragen- und Parkhausreinigung in Frankfurt mit Hausverwaltungen, WEG und Gewerbe ab. Vor dem Einsatz klären wir Flächen, Zugänglichkeit und Arbeitsabschnitte.",
+    "heroImage": {
+      "src": "kundenbilder/leistungen/tiefgarage_saubere_flaeche_01.png",
+      "alt": "Helle und gereinigte Fahrfläche einer Tiefgarage aus dem Perla’s Bildbestand",
+      "position": "50% 40%",
+      "caption": "Einblick in eine gereinigte Tiefgaragenfläche."
+    },
+    "scopeTitle": "Den Reinigungsumfang vor dem Termin festlegen.",
+    "scopeIntro": "Ein Angebot sollte zeigen, welche Fahrwege und Stellplätze gereinigt werden, welche Bereiche Handarbeit brauchen und wie die Flächen erreichbar sind.",
+    "scopeCards": [
+      {
+        "title": "Fahrflächen und freie Stellplätze",
+        "text": "Wir erfassen die vereinbarten Flächen, ihre Beschaffenheit und die Nutzung. Geeignete Maschinenflächen werden im Ablauf zusammengefasst. Ein- und Ausfahrten gehören dazu, wenn sie ausdrücklich in den Umfang aufgenommen sind.",
+        "items": [
+          "Fahrwege und Stellplatzreihen zuordnen",
+          "Bodenbelag und Verschmutzung aufnehmen",
+          "Zufahrten und Übergänge vereinbaren"
+        ]
+      },
+      {
+        "title": "Ränder, Stützen und Engstellen",
+        "text": "Die Maschine erreicht nicht jede Stelle. Randzonen, Ecken und Bereiche um Stützen werden deshalb gesondert geprüft. Der Auftrag beschreibt, welche manuellen Nacharbeiten zum gewünschten Ergebnis gehören.",
+        "items": [
+          "Nicht maschinell erreichbare Bereiche",
+          "Manuelle Nacharbeiten klar abgrenzen",
+          "Besondere Verschmutzungen vorab prüfen"
+        ]
+      },
+      {
+        "title": "Ablauf mit dem Parkbetrieb abstimmen",
+        "text": "Bei genutzten Garagen müssen Zeitfenster, freizuhaltende Stellplätze und Zugänge zusammenpassen. Wir stimmen Arbeitsabschnitte mit dem verantwortlichen Kontakt ab und halten Besonderheiten bei der Ausführung fest.",
+        "items": [
+          "Arbeitsabschnitte und Zugangszeiten",
+          "Information an Nutzer durch den Auftraggeber",
+          "Rückmeldung zu bearbeiteten Bereichen"
+        ]
+      }
+    ],
+    "planning": {
+      "title": "Ablaufplan: Was vor der Garagenreinigung geklärt sein sollte.",
+      "intro": "Diese Vorbereitung hilft Ihrer Verwaltung, Ausführung und Nutzerinformation aufeinander abzustimmen. Ein Lageplan ist oft hilfreicher als die reine Stellplatzzahl.",
+      "headers": [
+        "Zeitpunkt",
+        "Vorbereiten",
+        "Gemeinsam abstimmen"
+      ],
+      "rows": [
+        [
+          "Vor dem Angebot",
+          "Fläche, Stellplätze, Fotos und Bodenbelag",
+          "Maschinenzugang, Engstellen und Nebenbereiche"
+        ],
+        [
+          "Vor dem Termin",
+          "Freizugebende Bereiche und verantwortlicher Kontakt",
+          "Arbeitsabschnitte und Information der Nutzer"
+        ],
+        [
+          "Während des Einsatzes",
+          "Zugänge und vereinbarte Arbeitsflächen erreichbar halten",
+          "Umgang mit belegten oder blockierten Zonen"
+        ],
+        [
+          "Nach der Reinigung",
+          "Ansprechpartner für die gemeinsame Rückmeldung",
+          "Bearbeitete Bereiche und offene Besonderheiten"
+        ]
+      ],
+      "note": "Der konkrete Ablauf wird an Ihre Garage angepasst. Besondere Verfahren oder weitergehende Sanierungsarbeiten sind kein pauschaler Bestandteil der Reinigung."
+    },
+    "detail": {
+      "title": "Maschinelle Reinigung und Handarbeit sinnvoll kombinieren.",
+      "text": "Große Fahrflächen und enge Randbereiche stellen unterschiedliche Anforderungen. Unser Bild zeigt einen Einblick in den Maschineneinsatz. Welches Verfahren für Ihren Boden geeignet ist und welche Nacharbeiten dazugehören, klären wir anhand der tatsächlichen Gegebenheiten.",
+      "image": {
+        "src": "kundenbilder/vorher_nachher/parkhaus_reinigung_geraet.png",
+        "alt": "Reinigungsgerät auf einer Parkhausfläche während eines Perla’s Einsatzes",
+        "position": "50% 52%",
+        "caption": "Maschinelle Reinigung von Parkflächen."
+      },
+      "points": [
+        "Bodenbelag und maschinelle Erreichbarkeit prüfen",
+        "Handarbeit an Rändern ausdrücklich einplanen",
+        "Ausführung und Besonderheiten nachvollziehbar rückmelden"
+      ]
+    },
+    "processSteps": [
+      {
+        "title": "Garage und Nutzung beschreiben",
+        "text": "Nennen Sie den Frankfurter Standort, Fläche oder Stellplatzzahl und die gewünschte Leistung. Fotos helfen bei der ersten Einordnung."
+      },
+      {
+        "title": "Vor Ort den Ablauf festlegen",
+        "text": "Wir prüfen bei Bedarf Zufahrt, Belag, freie Flächen und Engstellen. Zeitfenster und Arbeitsabschnitte werden abgestimmt."
+      },
+      {
+        "title": "Reinigen und Umfang rückmelden",
+        "text": "Nach Beauftragung bearbeiten wir die vereinbarten Flächen und halten ausgeführte Bereiche sowie Besonderheiten fest."
+      }
+    ],
+    "cost": {
+      "title": "Was bestimmt die Kosten der Tiefgaragenreinigung?",
+      "text": "Die Stellplatzzahl ist ein Anhaltspunkt. Für ein passendes Angebot zählen außerdem Fläche, Belag, Verschmutzung und Zugänglichkeit. Randbereiche und besondere Verfahren werden gesondert beschrieben.",
+      "factors": [
+        "Fläche, Bodenbelag und Verschmutzungsgrad",
+        "Maschinenzugang, Randzonen und Handarbeit",
+        "Arbeitsabschnitte, Nutzungszeiten und Intervall"
+      ]
+    },
+    "faqs": [
+      {
+        "question": "Müssen alle Fahrzeuge für die Reinigung entfernt werden?",
+        "answer": "Die zu reinigenden Stellplätze und Arbeitsbereiche müssen entsprechend dem vereinbarten Ablauf zugänglich sein. Ob abschnittsweise gearbeitet werden kann, klären wir anhand der Garage und ihrer Nutzung. Die Nutzerinformation wird mit dem Auftraggeber abgestimmt."
+      },
+      {
+        "question": "Ist auch Parkhausreinigung in Frankfurt anfragbar?",
+        "answer": "Ja. Wir nehmen auch geeignete Parkhaus- und Parkflächen auf. Zufahrten, Fahrzeugverkehr, Belag und Erreichbarkeit bestimmen den möglichen Umfang. Die konkrete Ausführung und Einsatzmöglichkeit werden vorab geprüft."
+      },
+      {
+        "question": "Werden starke Flecken oder Beschichtungsschäden beseitigt?",
+        "answer": "Besondere Verschmutzungen müssen vor dem Angebot benannt werden. Ob eine Behandlung möglich und geeignet ist, wird separat geprüft. Die Reinigung ist keine Zusage zur Sanierung beschädigter Bodenbeschichtungen."
+      },
+      {
+        "question": "Kann die Tiefgarage regelmäßig gereinigt werden?",
+        "answer": "Einmalige Einsätze und wiederkehrende Reinigungsintervalle sind anfragbar. Der sinnvolle Rhythmus richtet sich nach Nutzung und Schmutzeintrag. Umfang und Terminplanung werden objektbezogen vereinbart."
+      }
+    ],
+    "inquiry": {
+      "title": "Tiefgaragenreinigung in Frankfurt anfragen.",
+      "text": "Teilen Sie uns die wichtigsten Eckdaten Ihrer Tiefgarage oder Parkfläche mit. Wir klären Ablauf und Angebot mit Ihnen.",
+      "checklist": [
+        "Standort und Fläche oder Stellplatzzahl",
+        "Bodenbelag, Verschmutzung und mögliche Fotos",
+        "Zugangsbedingungen und gewünschter Zeitraum"
+      ],
+      "topic": "Tiefgaragenreinigung Frankfurt"
+    },
+    "serviceAreaText": "Perla’s koordiniert die Reinigung von seinem Standort in Sulzbach (Taunus). Die Leistung für Ihre Tiefgarage in Frankfurt wird vor Ort und objektbezogen abgestimmt.",
+    "relatedLinks": [
+      {
+        "label": "Tiefgaragenreinigung: gesamter Umfang",
+        "path": "/leistungen/tiefgaragenreinigung/"
+      },
+      {
+        "label": "Vorbereitung für WEG und Hausverwaltung",
+        "path": "/blog/tiefgaragenreinigung-frankfurt-weg/"
+      },
+      {
+        "label": "Weitere Gebäudereinigung",
+        "path": "/leistungen/gebaeudereinigung/"
+      }
+    ],
+    "guideSlugs": [
+      "tiefgaragenreinigung-frankfurt-weg"
+    ],
+    "updatedOn": "2026-11-16",
+    "ctaText": "Garagenreinigung anfragen"
+  }
+]

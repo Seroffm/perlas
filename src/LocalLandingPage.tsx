@@ -173,7 +173,7 @@ export default function LocalLandingPage({ page, services, guides }: {
 }
 
 export function RegionalLandingHub({ pages, heading, intro }: {
-  pages: LocalLandingContent[]
+  pages: Array<Pick<LocalLandingContent, 'slug' | 'heading' | 'locality' | 'scopeIntro' | 'heroImage'>>
   heading: string
   intro: string
 }) {

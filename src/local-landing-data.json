@@ -90,10 +90,10 @@
     "serviceSlug": "objektpflege",
     "locality": "Eschborn",
     "region": "Main-Taunus-Kreis",
-    "seoTitle": "Objektbetreuung & Hausmeisterservice Eschborn | Perla’s",
-    "seoDescription": "Objektbetreuung in Eschborn für WEG und Gewerbe: Kontrollgänge, Hausmeisteraufgaben und klare Rückmeldungen. Jetzt Ihr Objekt unverbindlich anfragen.",
-    "heading": "Objektbetreuung in Eschborn.",
-    "intro": "Wenn Meldungen aus mehreren Gebäuden bei der Verwaltung zusammenlaufen, braucht es vor Ort jemanden, der hinsieht und den nächsten Schritt klärt. Perla’s aus Sulzbach (Taunus) plant die Objektbetreuung in Eschborn für WEG, Hausverwaltungen und Gewerbeobjekte. Wir stimmen Kontrollgänge, kleine Hausmeisteraufgaben und Rückmeldungen auf Ihren Bestand ab. Die Einsatzmöglichkeit bestätigen wir für das konkrete Objekt.",
+    "seoTitle": "Hausmeisterservice Eschborn für WEG & Gewerbe | Perla’s",
+    "seoDescription": "Hausmeisterservice und Objektbetreuung in Eschborn: Kontrollgänge, kleine Aufgaben und klare Rückmeldungen für WEG und Gewerbe. Jetzt Betreuung anfragen.",
+    "heading": "Hausmeisterservice und Objektbetreuung in Eschborn.",
+    "intro": "Sie suchen einen Hausmeisterservice in Eschborn für Ihre WEG, einen verwalteten Gebäudebestand oder ein Gewerbeobjekt? Perla’s aus Sulzbach (Taunus) stimmt Kontrollgänge, kleine Hausmeisteraufgaben und Rückmeldungen auf Ihren Bedarf ab. Ein Leistungsplan hält fest, welche Bereiche betreut werden, welche Aufgaben direkt erledigt werden dürfen und wer offene Punkte erhält. Die Einsatzmöglichkeit bestätigen wir für das konkrete Objekt.",
     "heroImage": {
       "src": "kundenbilder/fahrzeuge/perlas_fahrzeug_wohnobjekt_02.png",
       "alt": "Perla’s Fahrzeug vor einem Wohngebäude als Beispiel für die Objektbetreuung",
@@ -158,8 +158,8 @@
       }
     ],
     "guideSlugs": ["hausmeisterservice-sulzbach-weg-leistungen", "objektkontrollen-richtig-dokumentieren"],
-    "updatedOn": "2026-10-07",
-    "ctaText": "Objektbetreuung in Eschborn anfragen"
+    "updatedOn": "2026-11-16",
+    "ctaText": "Hausmeisterservice in Eschborn anfragen"
   },
   {
     "slug": "gebaeudereinigung-frankfurt-hoechst",

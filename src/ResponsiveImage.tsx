@@ -17,6 +17,7 @@ export default function ResponsiveImage({
   sizes = '(max-width: 767px) calc(100vw - 40px), 600px',
   loading = 'lazy',
   decoding = 'async',
+  fetchPriority,
   ...props
 }: ResponsiveImageProps) {
   const variant = variants[asset]
@@ -27,6 +28,7 @@ export default function ResponsiveImage({
       width={variant?.width}
       height={variant?.height}
       {...props}
+      {...(fetchPriority ? { fetchpriority: fetchPriority } : {})}
       src={`${assetsPath}${variant?.src ?? asset}`}
       srcSet={srcSet}
       sizes={variant ? sizes : undefined}

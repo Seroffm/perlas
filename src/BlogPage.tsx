@@ -3,6 +3,7 @@ import { ArrowLeft, ArrowUpRight, BookOpen, CalendarDays, Clock3 } from 'lucide-
 import type { BlogPostContent } from './content-types'
 import ResponsiveImage from './ResponsiveImage'
 import localLandingContent from './local-landing-data.json'
+import commercialLandingContent from './commercial-landing-data.json'
 
 const BASE_PATH = import.meta.env.BASE_URL
 const BLOG_PATH = `${BASE_PATH}blog/`
@@ -154,7 +155,7 @@ export function BlogArticlePage({
     const score = (entry: BlogPostContent) => entry.relatedServices.filter((slug) => post.relatedServices.includes(slug)).length + Number(entry.category === post.category)
     return score(b) - score(a)
   }).slice(0, 2)
-  const localOffers = localLandingContent.filter((landing) => landing.guideSlugs.includes(post.slug))
+  const localOffers = [...localLandingContent, ...commercialLandingContent].filter((landing) => landing.guideSlugs.includes(post.slug))
 
   return (
     <main className="blog-article-page">

@@ -205,6 +205,10 @@ test('local hub and exactly the commissioned landing routes are measured without
     'bueroreinigung-frankfurt-westend', 'treppenhausreinigung-frankfurt-bockenheim',
     'winterdienst-frankfurt-riedberg', 'baumpflege-baumfaellung-neu-isenburg',
     'hausmeisterservice-frankfurt',
+    'bueroreinigung-frankfurt',
+    'gebaeudereinigung-eschborn',
+    'hausmeisterservice-kelkheim',
+    'tiefgaragenreinigung-frankfurt',
   ]
   for (const slug of slugs) {
     const expected = `https://perlas.de/einsatzgebiete/${slug ? `${slug}/` : ''}`

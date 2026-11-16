@@ -4,7 +4,8 @@
   "origin": "https://perlas.de",
   "preparedAt": "2026-10-04T16:18:40Z",
   "activatedOn": "2026-10-07",
-  "note": "Der Pages-Build erzeugt für diese fachlich passenden Altpfade sofortige HTML-Weiterleitungen (meta refresh 0) mit Ziel-Canonical und sichtbarem Ersatzlink. GitHub Pages liefert diese Dateien mit HTTP 200, nicht HTTP 301. Keine neuen Leistungsseiten und keine Altpfade in der Sitemap.",
+  "expandedOn": "2026-11-16",
+  "note": "Der Pages-Build erzeugt für diese fachlich passenden Altpfade sofortige HTML-Weiterleitungen (meta refresh 0) mit Ziel-Canonical und sichtbarem Ersatzlink. GitHub Pages liefert diese Dateien mit HTTP 200, nicht HTTP 301. Die Weiterleitungsdateien enthalten keine kopierten Leistungsinhalte; Altpfade stehen nicht in der Sitemap.",
   "redirects": [
     {
       "oldPath": "/regelmaessige-objektpflege-in-sulzbach-frankfurt/",
@@ -68,6 +69,27 @@
       "status": "active-static-refresh",
       "preferredHttpStatus": 301,
       "reason": "Die in Google bekannte alte Hausmeisterservice-Adresse wird auf das bestehende Hausmeister- und Objektbetreuungsangebot für Sulzbach und die benachbarten Orte einschließlich Bad Soden weitergeführt."
+    },
+    {
+      "oldPath": "/hausmeisterservice-frankfurt-am-main/",
+      "newPath": "/einsatzgebiete/hausmeisterservice-frankfurt/",
+      "status": "active-static-refresh",
+      "preferredHttpStatus": 301,
+      "reason": "Die historische Hausmeisterservice-Seite für Frankfurt erhält mit der bestehenden Frankfurt-Landingpage ein fachlich und örtlich passendes Ziel."
+    },
+    {
+      "oldPath": "/hausmeisterservice-eschborn/",
+      "newPath": "/einsatzgebiete/objektbetreuung-eschborn/",
+      "status": "active-static-refresh",
+      "preferredHttpStatus": 301,
+      "reason": "Die bestehende Eschborn-Landingpage führt Hausmeisterservice und laufende Objektbetreuung am gleichen Einsatzort fort."
+    },
+    {
+      "oldPath": "/hausmeisterservice-kelkheim-am-taunus/",
+      "newPath": "/einsatzgebiete/hausmeisterservice-kelkheim/",
+      "status": "active-static-refresh",
+      "preferredHttpStatus": 301,
+      "reason": "Die neue eigenständige Kelkheim-Landingpage übernimmt den Hausmeisterservice für diesen Einsatzort und erhält die fachliche Suchintention der historischen Adresse."
     }
   ]
 }
