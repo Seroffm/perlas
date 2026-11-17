@@ -1,9 +1,7 @@
 import { Fragment, useMemo, useState, type CSSProperties, type MouseEvent } from 'react'
 import { ArrowLeft, ArrowUpRight, BookOpen, CalendarDays, Clock3 } from 'lucide-react'
-import type { BlogPostContent } from './content-types'
+import type { BlogPostContent, BlogPostSummary, RegionalLandingSummary } from './content-types'
 import ResponsiveImage from './ResponsiveImage'
-import localLandingContent from './local-landing-data.json'
-import commercialLandingContent from './commercial-landing-data.json'
 
 const BASE_PATH = import.meta.env.BASE_URL
 const BLOG_PATH = `${BASE_PATH}blog/`
@@ -11,7 +9,7 @@ const CONTACT_PATH = `${BASE_PATH}kontakt/`
 const FEATURED_POST_SLUG = 'hausmeisterservice-objektbetreuung-frankfurt-umgebung'
 
 type BlogPageProps = {
-  posts: BlogPostContent[]
+  posts: BlogPostSummary[]
 }
 
 export type BlogServiceLink = {
@@ -131,11 +129,13 @@ export function BlogArticlePage({
   post,
   relatedPosts,
   services,
+  localOffers,
   onQuoteOpen,
 }: {
   post: BlogPostContent
-  relatedPosts: BlogPostContent[]
+  relatedPosts: BlogPostSummary[]
   services: BlogServiceLink[]
+  localOffers: RegionalLandingSummary[]
   onQuoteOpen?: () => void
 }) {
   const cta = post.cta ?? {
@@ -152,10 +152,9 @@ export function BlogArticlePage({
     .map((slug) => services.find((service) => service.slug === slug))
     .filter((service): service is BlogServiceLink => Boolean(service))
   const relevantPosts = [...relatedPosts].sort((a, b) => {
-    const score = (entry: BlogPostContent) => entry.relatedServices.filter((slug) => post.relatedServices.includes(slug)).length + Number(entry.category === post.category)
+    const score = (entry: BlogPostSummary) => entry.relatedServices.filter((slug) => post.relatedServices.includes(slug)).length + Number(entry.category === post.category)
     return score(b) - score(a)
   }).slice(0, 2)
-  const localOffers = [...localLandingContent, ...commercialLandingContent].filter((landing) => landing.guideSlugs.includes(post.slug))
 
   return (
     <main className="blog-article-page">

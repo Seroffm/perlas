@@ -1,4 +1,4 @@
-import { Fragment, lazy, Suspense, useCallback, useEffect, useId, useLayoutEffect, useRef, useState, type CSSProperties, type FormEvent, type ReactNode } from 'react'
+import { Fragment, lazy, Suspense, useCallback, useEffect, useId, useLayoutEffect, useMemo, useRef, useState, type CSSProperties, type FormEvent, type ReactNode } from 'react'
 import {
   ArrowUpRight,
   BriefcaseBusiness,
@@ -34,40 +34,48 @@ import ResponsiveImage from './ResponsiveImage'
 import QuickContactForm from './QuickContactForm'
 import { recordContactClick, recordPhoneClick } from './analytics'
 import { FORM_LIMITS, submitContactRequest } from './backend'
-import audienceContent from './audience-data.json'
-import blogContent from './blog-data.json'
-import imprintContent from './imprint-content.json'
-import jobContent from './job-data.json'
-import localLandingContent from './local-landing-data.json'
-import commercialLandingContent from './commercial-landing-data.json'
-import focusedServiceContent from './focused-service-data.json'
-import privacyContent from './privacy-content.json'
-import serviceContent from './service-data.json'
+import { audiences as audienceSummaries, services as serviceSummaries } from 'virtual:perlas-catalogue'
 import seoContent from './seo-data.json'
 import googleReviewData from './google-reviews-data.json'
 import imageVariantsContent from './image-variants.json'
-import './service-guides.css'
-import './inquiry-options.css'
-import './local-landings.css'
-import './frankfurt-landing.css'
-import './commercial-landings.css'
-import './focused-services.css'
-import type { BlogPostContent, JobOpeningContent, LocalLandingContent } from './content-types'
+import type { AudienceContent, AudienceSummary, BlogPostContent, BlogPostSummary, LocalLandingContent, RegionalLandingSummary, ServiceContent, ServiceSummary } from './content-types'
 import type { CommercialLandingContent } from './commercial-landing-types'
 import type { FocusedServiceContent } from './focused-service-types'
 import { isFocusedLanding } from './focused-service-types'
-import './focused-offer-links.css'
+import { getHashTarget, getPagePath as normalizePagePath } from './route-path'
+import { preparedComponent } from './prepared-component'
+import type { FocusedServiceSummary, ImprintBlock, ImprintContent, PrivacyBlock, PrivacyContent, RouteContent } from './route-content'
+import { buildPageStructuredData, type PageStructuredDataOptions } from './structured-data.mjs'
+import QuoteDialogBoundary, { QuoteContactDialog } from './QuoteDialogBoundary'
 
-const ContactPage = lazy(() => import('./ContactPage'))
-const CareerPage = lazy(() => import('./CareerPage'))
-const BlogPage = lazy(() => import('./BlogPage'))
-const BlogArticlePage = lazy(() => import('./BlogPage').then((module) => ({ default: module.BlogArticlePage })))
+const contactView = preparedComponent(() => import('./ContactPage'))
+const careerView = preparedComponent(() => import('./CareerPage'))
+const blogView = preparedComponent(() => import('./BlogPage'))
+const articleView = preparedComponent(async () => ({ default: (await import('./BlogPage')).BlogArticlePage }))
 const QuoteModal = lazy(() => import('./QuoteModal'))
-const LocalLandingPage = lazy(() => import('./LocalLandingPage'))
-const FrankfurtLandingPage = lazy(() => import('./FrankfurtLandingPage'))
-const CommercialLandingPage = lazy(() => import('./CommercialLandingPage'))
-const FocusedServiceLandingPage = lazy(() => import('./FocusedServiceLandingPage'))
-const RegionalLandingHub = lazy(() => import('./LocalLandingPage').then((module) => ({ default: module.RegionalLandingHub })))
+const localView = preparedComponent(() => import('./LocalLandingPage'))
+const frankfurtView = preparedComponent(() => import('./FrankfurtLandingPage'))
+const commercialView = preparedComponent(() => import('./CommercialLandingPage'))
+const focusedView = preparedComponent(() => import('./FocusedServiceLandingPage'))
+const regionsView = preparedComponent(async () => ({ default: (await import('./LocalLandingPage')).RegionalLandingHub }))
+const ContactPage = contactView.Component
+const CareerPage = careerView.Component
+const BlogPage = blogView.Component
+const BlogArticlePage = articleView.Component
+const LocalLandingPage = localView.Component
+const FrankfurtLandingPage = frankfurtView.Component
+const CommercialLandingPage = commercialView.Component
+const FocusedServiceLandingPage = focusedView.Component
+const RegionalLandingHub = regionsView.Component
+
+export async function prepareRouteComponents(content: RouteContent) {
+  const views = {
+    contact: contactView, career: careerView, blog: blogView, article: articleView,
+    local: localView, frankfurt: frankfurtView, commercial: commercialView,
+    focused: focusedView, regions: regionsView,
+  }
+  if (content.view !== 'standard') await views[content.view].preload()
+}
 
 const BASE_PATH = import.meta.env.BASE_URL
 const A = `${BASE_PATH}assets/`
@@ -87,13 +95,7 @@ const homeHref = (hash = '') => `${BASE_PATH}${hash}`
 const audienceHref = (id: string) => `${FACILITY_PATH}${id}/`
 
 function getPagePath() {
-  const baseWithoutTrailingSlash = BASE_PATH.replace(/\/$/, '')
-
-  if (baseWithoutTrailingSlash && window.location.pathname.startsWith(baseWithoutTrailingSlash)) {
-    return window.location.pathname.slice(baseWithoutTrailingSlash.length) || '/'
-  }
-
-  return window.location.pathname
+  return normalizePagePath(window.location.pathname, BASE_PATH)
 }
 
 function ensureMeta(selector: string, attributes: Record<string, string>) {
@@ -109,37 +111,10 @@ function ensureMeta(selector: string, attributes: Record<string, string>) {
 
 type PageKind = 'home' | 'contact' | 'facility' | 'services' | 'about' | 'blog' | 'career' | 'imprint' | 'privacy' | 'regions' | 'notFound'
 
-const blogPosts = blogContent as BlogPostContent[]
-const jobOpenings = jobContent as JobOpeningContent[]
-const localLandings = localLandingContent as LocalLandingContent[]
-const commercialLandings = commercialLandingContent as CommercialLandingContent[]
-const regionalLandings = [...localLandings, ...commercialLandings]
-const focusedServices = focusedServiceContent as FocusedServiceContent[]
+type AudienceSolution = AudienceContent & { icon: LucideIcon }
+type AudienceOverview = AudienceSummary & { icon: LucideIcon }
 
-type AudienceSolutionContent = {
-  id: string
-  title: string
-  navLabel: string
-  text: string
-  seoTitle: string
-  seoDescription: string
-  heroTitle: string
-  heroText: string
-  introTitle: string
-  introText: string
-  requirements: string[]
-  approach: string
-  services: string[]
-  image: { src: string; alt: string; position?: string }
-  detailImage?: { src: string; alt: string; position?: string }
-  scopeCards: Array<{ title: string; text: string }>
-  process: Array<{ title: string; text: string }>
-  faqs: Array<{ question: string; answer: string }>
-}
-
-type AudienceSolution = AudienceSolutionContent & { icon: LucideIcon }
-
-function usePageSeo(service?: Feature, pageKind: PageKind = 'home', audience?: AudienceSolution, article?: BlogPostContent, localLanding?: LocalLandingContent | CommercialLandingContent | FocusedServiceContent) {
+function usePageSeo(service?: ServiceDetail, pageKind: PageKind = 'home', audience?: AudienceSolution, article?: BlogPostContent, localLanding?: LocalLandingContent | CommercialLandingContent | FocusedServiceContent) {
   useEffect(() => {
     if (pageKind === 'notFound') {
       document.title = 'Seite nicht gefunden | Perla’s Objektbetreuung'
@@ -211,179 +186,44 @@ function usePageSeo(service?: Feature, pageKind: PageKind = 'home', audience?: A
     }
     canonical.href = pageUrl.href
 
-    const businessId = `${siteUrl.href}#business`
-    const business = {
-      '@type': 'LocalBusiness',
-      '@id': businessId,
-      name: 'Perla’s Objektbetreuung',
-      url: siteUrl.href,
-      telephone: '+49 177 6867145',
-      email: 'mail@perlas.de',
-      foundingDate: '1999',
-      image: new URL('assets/kundenbilder/objekte/wohnanlage_modern_02.png', siteUrl).href,
-      logo: new URL('assets/perlas-logo.svg', siteUrl).href,
-      address: {
-        '@type': 'PostalAddress',
-        streetAddress: 'Hauptstraße 1',
-        postalCode: '65843',
-        addressLocality: 'Sulzbach (Taunus)',
-        addressCountry: 'DE',
-      },
+    const pageLabel = pageKind === 'regions' ? 'Einsatzgebiete' : pageKind === 'about' ? 'Über uns'
+      : pageKind === 'services' ? 'Leistungen' : pageKind === 'facility' ? 'Facility Management'
+      : pageKind === 'blog' ? 'Blog' : pageKind === 'career' ? 'Karriere'
+      : pageKind === 'imprint' ? 'Impressum' : pageKind === 'privacy' ? 'Datenschutz' : 'Kontakt'
+    const startCrumb = { name: 'Startseite', url: siteUrl }
+    const breadcrumbs = localLanding ? [
+      startCrumb,
+      { name: isFocusedServiceOffer ? 'Leistungen' : 'Einsatzgebiete', url: new URL(isFocusedServiceOffer ? 'leistungen/' : 'einsatzgebiete/', siteUrl) },
+      { name: localLanding.heading, url: pageUrl },
+    ] : article ? [startCrumb, { name: 'Blog', url: new URL('blog/', siteUrl) }, { name: article.title, url: pageUrl }]
+      : service ? [startCrumb, { name: 'Leistungen', url: servicesUrl }, { name: service.title, url: pageUrl }]
+      : audience ? [startCrumb, { name: 'Facility Management', url: facilityUrl }, { name: audience.navLabel, url: pageUrl }]
+      : pageDefinition ? [startCrumb, { name: pageLabel, url: pageUrl }] : undefined
+    const structuredData = buildPageStructuredData({
+      siteUrl, pageUrl, title, description, imageUrl,
       areaServed: seoContent.region.areaServed,
-      sameAs: ['https://www.google.com/maps?cid=5731639589734766671', TRUSTLOCAL_URL],
-    }
-    const structuredData = localLanding
-      ? {
-          '@context': 'https://schema.org',
-          '@graph': [
-            business,
-            {
-              '@type': 'WebPage',
-              '@id': `${pageUrl.href}#page`,
-              url: pageUrl.href,
-              name: title,
-              description,
-              inLanguage: 'de-DE',
-              dateModified: localLanding.updatedOn,
-              primaryImageOfPage: imageUrl.href,
-              mainEntity: { '@id': `${pageUrl.href}#service` },
-            },
-            {
-              '@type': 'Service',
-              '@id': `${pageUrl.href}#service`,
-              name: localLanding.heading,
-              description: localLanding.seoDescription,
-              url: pageUrl.href,
-              provider: { '@id': businessId },
-              areaServed: { '@type': 'Place', name: localLanding.locality },
-            },
-            {
-              '@type': 'BreadcrumbList',
-              itemListElement: [
-                { '@type': 'ListItem', position: 1, name: 'Startseite', item: siteUrl.href },
-                { '@type': 'ListItem', position: 2, name: isFocusedServiceOffer ? 'Leistungen' : 'Einsatzgebiete', item: new URL(isFocusedServiceOffer ? 'leistungen/' : 'einsatzgebiete/', siteUrl).href },
-                { '@type': 'ListItem', position: 3, name: localLanding.heading, item: pageUrl.href },
-              ],
-            },
-          ],
-        }
-      : article
-      ? {
-          '@context': 'https://schema.org',
-          '@graph': [
-            business,
-            {
-              '@type': 'BlogPosting',
-              '@id': `${pageUrl.href}#article`,
-              headline: article.title,
-              description: article.seoDescription,
-              image: imageUrl.href,
-              datePublished: (article.published ?? '31.08.2026').split('.').reverse().join('-'),
-              dateModified: article.updated.split('.').reverse().join('-'),
-              inLanguage: 'de-DE',
-              author: { '@type': 'Organization', name: 'Perla’s Objektbetreuung GmbH & Co. KG', url: siteUrl.href },
-              publisher: { '@id': businessId },
-              mainEntityOfPage: pageUrl.href,
-            },
-            {
-              '@type': 'BreadcrumbList',
-              itemListElement: [
-                { '@type': 'ListItem', position: 1, name: 'Startseite', item: siteUrl.href },
-                { '@type': 'ListItem', position: 2, name: 'Blog', item: new URL('blog/', siteUrl).href },
-                { '@type': 'ListItem', position: 3, name: article.title, item: pageUrl.href },
-              ],
-            },
-          ],
-        }
-      : service
-      ? {
-          '@context': 'https://schema.org',
-          '@graph': [
-            business,
-            {
-              '@type': 'Service',
-              '@id': `${pageUrl.href}#service`,
-              name: service.title,
-              description: service.detail,
-              url: pageUrl.href,
-              provider: { '@id': businessId },
-              areaServed: seoContent.region.areaServed,
-            },
-            {
-              '@type': 'BreadcrumbList',
-              itemListElement: [
-                { '@type': 'ListItem', position: 1, name: 'Startseite', item: siteUrl.href },
-                { '@type': 'ListItem', position: 2, name: 'Leistungen', item: servicesUrl.href },
-                { '@type': 'ListItem', position: 3, name: service.title, item: pageUrl.href },
-              ],
-            },
-          ],
-        }
-      : audience
-        ? {
-            '@context': 'https://schema.org',
-            '@graph': [
-              business,
-              {
-                '@type': 'Service',
-                '@id': `${pageUrl.href}#service`,
-                name: `Facility Management für ${audience.navLabel}`,
-                description: audience.seoDescription,
-                url: pageUrl.href,
-                provider: { '@id': businessId },
-                areaServed: seoContent.region.areaServed,
-                audience: {
-                  '@type': 'Audience',
-                  audienceType: audience.navLabel,
-                },
-              },
-              {
-                '@type': 'BreadcrumbList',
-                itemListElement: [
-                  { '@type': 'ListItem', position: 1, name: 'Startseite', item: siteUrl.href },
-                  { '@type': 'ListItem', position: 2, name: 'Facility Management', item: facilityUrl.href },
-                  { '@type': 'ListItem', position: 3, name: audience.navLabel, item: pageUrl.href },
-                ],
-              },
-            ],
-          }
-      : pageDefinition
-        ? {
-            '@context': 'https://schema.org',
-            '@graph': [
-              business,
-              {
-                '@type': pageDefinition.schemaType,
-                '@id': `${pageUrl.href}#page`,
-                url: pageUrl.href,
-                name: title,
-                description,
-                inLanguage: 'de-DE',
-                mainEntity: { '@id': businessId },
-              },
-              {
-                '@type': 'BreadcrumbList',
-                itemListElement: [
-                  { '@type': 'ListItem', position: 1, name: 'Startseite', item: siteUrl.href },
-                  { '@type': 'ListItem', position: 2, name: pageKind === 'regions' ? 'Einsatzgebiete' : pageKind === 'about' ? 'Über uns' : pageKind === 'services' ? 'Leistungen' : pageKind === 'facility' ? 'Facility Management' : pageKind === 'blog' ? 'Blog' : pageKind === 'career' ? 'Karriere' : pageKind === 'imprint' ? 'Impressum' : pageKind === 'privacy' ? 'Datenschutz' : 'Kontakt', item: pageUrl.href },
-                ],
-              },
-            ],
-          }
-        : {
-              '@context': 'https://schema.org',
-              '@graph': [
-                business,
-                {
-                  '@type': 'WebSite',
-                  '@id': `${siteUrl.href}#website`,
-                  url: siteUrl.href,
-                  name: 'PERLAS',
-                  alternateName: 'Perla’s Objektbetreuung',
-                  inLanguage: 'de-DE',
-                },
-              ],
-            }
+      pageType: localLanding || article || service || audience ? undefined
+        : pageDefinition?.schemaType as PageStructuredDataOptions['pageType'],
+      breadcrumbs,
+      modified: localLanding?.updatedOn ?? service?.updatedOn
+        ?? (pageDefinition && 'updatedOn' in pageDefinition && typeof pageDefinition.updatedOn === 'string' ? pageDefinition.updatedOn : undefined)
+        ?? (pageKind === 'home' ? seoContent.home.updatedOn : undefined),
+      service: localLanding ? {
+        name: localLanding.heading, description: localLanding.seoDescription,
+        areaServed: { '@type': 'Place', name: localLanding.locality },
+      } : service ? {
+        name: service.title, description: service.detail, areaServed: seoContent.region.areaServed,
+      } : audience ? {
+        name: `Facility Management für ${audience.navLabel}`, description: audience.seoDescription,
+        areaServed: seoContent.region.areaServed, audienceType: audience.navLabel,
+      } : undefined,
+      article: article ? {
+        headline: article.title,
+        datePublished: (article.published ?? '31.08.2026').split('.').reverse().join('-'),
+        dateModified: article.updated.split('.').reverse().join('-'),
+        image: new URL(`assets/${article.image}`, siteUrl),
+      } : undefined,
+    })
 
     let structuredDataScript = document.head.querySelector<HTMLScriptElement>('#perlas-structured-data')
     if (!structuredDataScript) {
@@ -420,12 +260,22 @@ function useRevealAnimations(routeKey?: string) {
       })
     }, { rootMargin: '0px 0px -10% 0px', threshold: 0.12 })
 
+    // Content already visible in the initial HTML must not fade out on React mount.
+    // Read positions together before changing classes to avoid layout thrashing.
+    const viewportElements = new Set(elements.filter(element => {
+      const bounds = element.getBoundingClientRect()
+      return bounds.top < window.innerHeight && bounds.bottom > 0
+    }))
     elements.forEach((element) => {
       element.classList.add('reveal-ready')
-      observer.observe(element)
+      if (viewportElements.has(element)) element.classList.add('is-revealed')
+      else observer.observe(element)
     })
 
-    return () => observer.disconnect()
+    return () => {
+      observer.disconnect()
+      elements.forEach(element => element.classList.remove('reveal-ready', 'is-revealed'))
+    }
   }, [routeKey])
 }
 
@@ -435,7 +285,7 @@ function PageReadyEffects({ routeKey }: { routeKey: string }) {
 
   useEffect(() => {
     const scrollToCurrentSection = () => {
-      const sectionId = decodeURIComponent(window.location.hash.slice(1))
+      const sectionId = getHashTarget(window.location.hash)
       if (!sectionId) return
 
       window.requestAnimationFrame(() => {
@@ -550,10 +400,10 @@ const GOOGLE_REVIEWS_URL = googleReviewData.profileUrl
 const reviews = googleReviewData.reviews
 
 const proofStats = [
-  ['25+', 'Jahre Erfahrung'],
-  ['700+', 'abgeschlossene Projekte'],
-  ['1000+', 'glückliche Mieter & Verwaltungen'],
-  ['10+', 'Mitarbeiter'],
+  ['Seit 1999', 'für Immobilien da'],
+  ['Sulzbach', 'unser Standort'],
+  ['Rhein-Main', 'unser Einsatzgebiet'],
+  ['Persönlich', 'Aufgaben abstimmen'],
 ]
 
 type Partner = {
@@ -575,7 +425,7 @@ const partners: Partner[] = [
   },
 ]
 
-type Feature = (typeof serviceContent)[number] & {
+type ServiceDetail = ServiceContent & {
   icon: LucideIcon
   eyebrow?: string
   workflow?: string[]
@@ -588,87 +438,25 @@ type Feature = (typeof serviceContent)[number] & {
   imageDisclosure?: string
 }
 
-const featureBasics = [
-  {
-    icon: Building2,
-    slug: 'objektpflege',
-    title: 'Objektpflege',
-    text: 'Regelmäßige Kontrollgänge und eine zuverlässige Pflege für Wohn- und Gewerbeobjekte.',
-    detail: 'Wir behalten Ihr Objekt im Blick, erkennen Handlungsbedarf frühzeitig und sorgen dafür, dass Gemeinschaftsflächen und Außenbereiche dauerhaft einen gepflegten Eindruck machen.',
-    bullets: ['Regelmäßige Objektkontrollen', 'Dokumentierte Zustandsmeldungen', 'Koordination kleiner Maßnahmen'],
-    image: 'kundenbilder/fahrzeuge/perlas_fahrzeug_wohnobjekt_02.png',
-  },
-  {
-    icon: Wrench,
-    slug: 'wartung-instandhaltung',
-    title: 'Wartung & Instandhaltung',
-    text: 'Kleine Reparaturen, technische Kontrollen und präventive Maßnahmen aus einer Hand.',
-    detail: 'Von der kleinen Reparatur bis zur koordinierten Wartung kümmern wir uns schnell, nachvollziehbar und mit einem festen Ansprechpartner um den laufenden Werterhalt.',
-    bullets: ['Kleinreparaturen', 'Technische Sichtkontrollen', 'Koordination von Fachbetrieben'],
-    image: 'kundenbilder/leistungen/kleinreparatur_bohren.png',
-  },
-  {
-    icon: Sparkles,
-    slug: 'gebaeudereinigung',
-    title: 'Gebäudereinigung',
-    text: 'Saubere Treppenhäuser, Büros, Gemeinschaftsflächen und gepflegte Außenbereiche.',
-    detail: 'Individuelle Reinigungspläne sorgen für verlässlich saubere Flächen, klare Qualitätsstandards und einen überzeugenden ersten Eindruck bei Mietern und Besuchern.',
-    bullets: ['Treppenhaus- und Unterhaltsreinigung', 'Büro- und Praxisflächen', 'Kontrollierte Qualitätsstandards'],
-    image: 'kundenbilder/leistungen/gebaeudereinigung_flur.png',
-  },
-  {
-    icon: TreePine,
-    slug: 'gartenpflege',
-    title: 'Gartenpflege',
-    text: 'Professionelle Pflege von Grünanlagen, Hecken, Wegen und saisonalen Außenflächen.',
-    detail: 'Wir pflegen Grünflächen saisonal und vorausschauend, damit Wege, Hecken und Außenanlagen das ganze Jahr über sicher und repräsentativ bleiben.',
-    bullets: ['Rasen- und Heckenschnitt', 'Pflege von Beeten und Wegen', 'Saisonale Pflegeplanung'],
-    image: 'kundenbilder/leistungen/aussenanlagen_laubblasen.png',
-  },
-  {
-    icon: Snowflake,
-    slug: 'winterdienst',
-    title: 'Winterdienst',
-    text: 'Zuverlässiges Räumen und Streuen für sichere Wege und planbare Abläufe im Winter.',
-    detail: 'Mit klaren Einsatzplänen und verlässlicher Dokumentation halten wir Wege und Zugänge bei Schnee und Glätte sicher nutzbar.',
-    bullets: ['Räum- und Streudienst', 'Wetterabhängige Einsatzplanung', 'Nachvollziehbare Dokumentation'],
-    image: 'kundenbilder/leistungen/winterdienst_team.png',
-  },
-  {
-    icon: PackageCheck,
-    slug: 'muellmanagement',
-    title: 'Müllmanagement',
-    text: 'Saubere Müllplätze, koordinierte Bereitstellung und verlässliche Kontrollen für größere Immobilien.',
-    detail: 'Wir halten Müllstandorte im Blick, koordinieren vereinbarte Bereitstellungen und melden Auffälligkeiten nachvollziehbar an die Verwaltung.',
-    bullets: ['Kontrolle von Müllstandorten', 'Bereitstellung nach Vereinbarung', 'Dokumentation von Auffälligkeiten'],
-    image: 'kundenbilder/leistungen/entsorgung_kartonage.png',
-  },
-  {
-    icon: BriefcaseBusiness,
-    slug: 'einzelauftrag',
-    title: 'Einzelauftrag',
-    text: 'Klar abgegrenzte Arbeiten für kurzfristigen oder einmaligen Bedarf am Objekt.',
-    detail: 'Wir prüfen einzelne Aufgaben vor Ort, grenzen den Leistungsumfang eindeutig ab und koordinieren die Ausführung mit einem festen Ansprechpartner.',
-    bullets: ['Einmalige Zusatzarbeiten', 'Vor-Ort-Aufnahme', 'Abgestimmter Leistungsumfang'],
-    image: 'kundenbilder/leistungen/transport_umzug_lieferung.png',
-  },
-  {
-    icon: Sparkles,
-    slug: 'tiefgaragenreinigung',
-    title: 'Tiefgaragenreinigung',
-    text: 'Fahrflächen, Stellplätze und Randbereiche mit abgestimmtem Maschinen- und Handeinsatz reinigen.',
-    detail: 'Professionelle Reinigung größerer Park- und Tiefgaragenflächen mit klar abgestimmtem Umfang und passenden Intervallen.',
-    bullets: ['Fahrflächen und Stellplätze', 'Maschinelle Reinigung', 'Manuelle Nacharbeiten'],
-    image: 'kundenbilder/leistungen/tiefgarage_saubere_flaeche_01.png',
-  },
-  { icon: TreePine, slug: 'baumpflege-baumfaellung' },
-  { icon: ClipboardCheck, slug: 'spielplatzkontrolle-spielgeraetewartung' },
-  { icon: BriefcaseBusiness, slug: 'buero-einrichtungsservice' },
-]
+type Feature = ServiceSummary & { icon: LucideIcon }
 
-const features: Feature[] = serviceContent.map((service) => ({
+const featureIcons: Record<string, LucideIcon> = {
+  objektpflege: Building2,
+  'wartung-instandhaltung': Wrench,
+  gebaeudereinigung: Sparkles,
+  gartenpflege: TreePine,
+  winterdienst: Snowflake,
+  muellmanagement: PackageCheck,
+  einzelauftrag: BriefcaseBusiness,
+  tiefgaragenreinigung: Sparkles,
+  'baumpflege-baumfaellung': TreePine,
+  'spielplatzkontrolle-spielgeraetewartung': ClipboardCheck,
+  'buero-einrichtungsservice': BriefcaseBusiness,
+}
+
+const features: Feature[] = serviceSummaries.map(service => ({
   ...service,
-  icon: featureBasics.find((feature) => feature.slug === service.slug)?.icon ?? Building2,
+  icon: featureIcons[service.slug] ?? Building2,
 }))
 
 const coreServiceSlugs = [
@@ -794,7 +582,7 @@ const audienceIcons: Record<string, LucideIcon> = {
   'institutionelle-gebaeude': Hospital,
 }
 
-const audienceSolutions: AudienceSolution[] = (audienceContent as AudienceSolutionContent[]).map((audience) => ({
+const audienceSolutions: AudienceOverview[] = audienceSummaries.map((audience) => ({
   ...audience,
   icon: audienceIcons[audience.id] ?? Building2,
 }))
@@ -1791,8 +1579,8 @@ function HomeFleet() {
         <span className="eyebrow">Fuhrpark &amp; Mobilität</span>
         <h2 id="home-fleet-heading">Einsatzbereit im gesamten Rhein-Main-Gebiet.</h2>
         <p>
-          Mehrere Teams, abgestimmte Touren und ein wachsender Fuhrpark schaffen die Grundlage,
-          um Wohnanlagen, Gewerbeobjekte und institutionelle Gebäude verlässlich zu betreuen.
+          Unser Team stimmt Touren und Einsätze auf die vereinbarten Aufgaben am Objekt ab.
+          Unsere Fahrzeuge unterstützen die Betreuung von Wohnanlagen, Gewerbeobjekten und institutionellen Gebäuden.
         </p>
       </div>
       <figure className="home-fleet-visual" data-reveal="right" style={{ '--reveal-delay': '80ms' } as CSSProperties}>
@@ -1935,8 +1723,7 @@ function ServiceGroupNavigation() {
   )
 }
 
-function FocusedServiceLinks({ serviceSlug }: { serviceSlug?: string }) {
-  const pages = serviceSlug ? focusedServices.filter(page => page.serviceSlug === serviceSlug) : focusedServices
+function FocusedServiceLinks({ pages }: { pages: FocusedServiceSummary[] }) {
   if (!pages.length) return null
   return (
     <section className="focused-offer-links" aria-labelledby="focused-offer-heading">
@@ -1956,7 +1743,7 @@ function FocusedServiceLinks({ serviceSlug }: { serviceSlug?: string }) {
   )
 }
 
-function ServicesOverviewPage() {
+function ServicesOverviewPage({ focusedServices }: { focusedServices: FocusedServiceSummary[] }) {
   return (
     <main className="architecture-page services-overview-page">
       <section className="architecture-hero architecture-hero--services">
@@ -1977,7 +1764,7 @@ function ServicesOverviewPage() {
       </section>
 
       <ServiceGroupNavigation />
-      <FocusedServiceLinks />
+      <FocusedServiceLinks pages={focusedServices} />
 
       <section className="services-audience-nav" aria-labelledby="services-audience-heading">
         <div className="architecture-section-heading" data-reveal="up">
@@ -2184,12 +1971,12 @@ function AboutPage({ onQuoteOpen }: { onQuoteOpen: () => void }) {
         <div data-reveal="right" style={{ '--reveal-delay': '70ms' } as CSSProperties}>
           <p>Perla’s begann 1999 mit einem einfachen Anspruch: Immobilien persönlich kennen, Aufgaben zuverlässig erledigen und für Eigentümer sowie Verwaltungen erreichbar bleiben. Aus ersten Objektbetreuungen in Sulzbach entwickelte sich Schritt für Schritt ein fester Kundenstamm im Rhein-Main-Gebiet.</p>
           <p>Mit den betreuten Objekten wuchsen auch die Anforderungen. Gebäudereinigung, Außenanlagenpflege, Winterdienst und technische Koordination kamen hinzu. Aus einzelnen Einsätzen entstand eine Arbeitsweise, die Leistungen, Intervalle und Rückmeldungen in einem klaren Betreuungskonzept zusammenführt.</p>
-          <p>Heute arbeitet ein Team aus mehr als zehn Mitarbeitenden an Wohnanlagen, Gewerbeimmobilien und institutionellen Gebäuden. Persönliche Abstimmung bleibt dabei der Kern: Wir betrachten zuerst das konkrete Objekt und organisieren anschließend genau die Leistungen, die im Alltag wirklich gebraucht werden.</p>
-          <ol className="about-timeline" aria-label="Vorläufige Unternehmenshistorie">
-            <li><strong>1999</strong><span>Start der persönlichen Objektbetreuung im Rhein-Main-Gebiet</span></li>
-            <li><strong>2000er</strong><span>Erweiterung um Reinigung, Außenanlagen und Winterdienst</span></li>
-            <li><strong>2010er</strong><span>Mehr Koordination, feste Ansprechpartner und dokumentierte Abläufe</span></li>
-            <li><strong>Heute</strong><span>10+ Mitarbeitende für größere und professionell verwaltete Immobilien</span></li>
+          <p>Unser Team übernimmt Aufgaben in Objektbetreuung, Reinigung, Gartenpflege und Winterdienst. Persönliche Abstimmung bleibt dabei der Kern: Wir betrachten zuerst das konkrete Objekt und organisieren anschließend die vereinbarten Leistungen.</p>
+          <ol className="about-timeline" aria-label="Perla’s im Überblick">
+            <li><strong>Seit 1999</strong><span>Für Immobilien im Rhein-Main-Gebiet da</span></li>
+            <li><strong>Aus Sulzbach</strong><span>Ein fester Unternehmensstandort im Main-Taunus-Kreis</span></li>
+            <li><strong>Am Objekt</strong><span>Betreuung, Reinigung, Gartenpflege und Winterdienst</span></li>
+            <li><strong>Persönlich</strong><span>Aufgaben, Intervalle und Rückmeldungen gemeinsam abstimmen</span></li>
           </ol>
         </div>
       </section>
@@ -3001,7 +2788,13 @@ function ServiceMediaGallery({ gallery }: { gallery: ServiceGallery }) {
   )
 }
 
-function ServiceDetailPage({ service, onQuoteOpen }: { service: Feature; onQuoteOpen: (service?: string) => void }) {
+function ServiceDetailPage({ service, onQuoteOpen, blogPosts, regionalLandings, focusedServices }: {
+  service: ServiceDetail
+  onQuoteOpen: (service?: string) => void
+  blogPosts: BlogPostSummary[]
+  regionalLandings: RegionalLandingSummary[]
+  focusedServices: FocusedServiceSummary[]
+}) {
   const Icon = service.icon
   const serviceGallery = serviceGalleries[service.slug]
   const serviceImagePosition = service.imagePosition ?? serviceImagePositions[service.slug]
@@ -3015,7 +2808,7 @@ function ServiceDetailPage({ service, onQuoteOpen }: { service: Feature; onQuote
     .filter((item): item is Feature => Boolean(item))
   const serviceGuides = (service.guideSlugs ?? [])
     .map((slug) => blogPosts.find((post) => post.slug === slug))
-    .filter((post): post is BlogPostContent => Boolean(post))
+    .filter((post): post is BlogPostSummary => Boolean(post))
   const serviceLocalLandings = regionalLandings.filter((landing) => landing.serviceSlug === service.slug)
   const showServiceBoundary = service.slug !== 'baumpflege-baumfaellung'
 
@@ -3259,7 +3052,7 @@ function ServiceDetailPage({ service, onQuoteOpen }: { service: Feature; onQuote
         <ServiceContactForm subject={service.title} />
       </section>
 
-      <FocusedServiceLinks serviceSlug={service.slug} />
+      <FocusedServiceLinks pages={focusedServices} />
 
       <section className="service-more" data-reveal="up">
         <span className="eyebrow">Passende Leistungen</span>
@@ -3339,40 +3132,6 @@ function Insights() {
   )
 }
 
-type LegalPageType = 'imprint' | 'privacy'
-
-type ImprintBlock =
-  | { type: 'paragraph'; text: string }
-  | { type: 'details'; items: Array<{ label: string; value: string }> }
-  | { type: 'address'; heading: string; company: string; address: string; phone: string; phoneHref: string; email: string }
-
-type ImprintContent = {
-  lead: string
-  sections: Array<{ id: string; title: string; blocks: ImprintBlock[] }>
-}
-
-type PrivacyBlock =
-  | { type: 'paragraph'; text: string }
-  | { type: 'subheading'; text: string }
-  | { type: 'list'; items: string[] }
-  | { type: 'link'; text: string; href: string }
-  | { type: 'contact'; company: string; address: string; phone: string; phoneHref: string; email: string }
-
-type PrivacySectionContent = {
-  id: string
-  title: string
-  blocks: PrivacyBlock[]
-}
-
-type PrivacyContent = {
-  updated: string
-  lead: string
-  sections: PrivacySectionContent[]
-}
-
-const privacy = privacyContent as PrivacyContent
-const imprint = imprintContent as ImprintContent
-
 function ImprintBlockContent({ block }: { block: ImprintBlock }) {
   if (block.type === 'address') {
     return (
@@ -3431,8 +3190,8 @@ function PrivacyBlockContent({ block }: { block: PrivacyBlock }) {
   return <p>{block.text}</p>
 }
 
-function LegalPage({ type }: { type: LegalPageType }) {
-  const isImprint = type === 'imprint'
+function LegalPage({ page }: { page: { type: 'imprint'; content: ImprintContent } | { type: 'privacy'; content: PrivacyContent } }) {
+  const isImprint = page.type === 'imprint'
 
   return (
     <main className="legal-page">
@@ -3440,8 +3199,8 @@ function LegalPage({ type }: { type: LegalPageType }) {
         <PageBreadcrumb current={isImprint ? 'Impressum' : 'Datenschutz'} />
         <span className="eyebrow">Rechtliches</span>
         <h1>{isImprint ? 'Impressum' : <>Datenschutz<wbr />erklärung</>}</h1>
-        <p>{isImprint ? imprint.lead : privacy.lead}</p>
-        {!isImprint && <span className="legal-version">Stand: {privacy.updated}</span>}
+        <p>{page.content.lead}</p>
+        {!isImprint && <span className="legal-version">Stand: {page.content.updated}</span>}
       </section>
 
       <section className={`legal-content legal-content--structured${isImprint ? ' legal-content--imprint' : ' legal-content--privacy'}`}>
@@ -3450,13 +3209,13 @@ function LegalPage({ type }: { type: LegalPageType }) {
             <aside className="legal-toc">
               <strong>Inhaltsverzeichnis</strong>
               <nav aria-label="Inhaltsverzeichnis des Impressums">
-                {imprint.sections.map((section) => (
+                {page.content.sections.map((section) => (
                   <a href={`#${section.id}`} key={section.id}>{section.title}</a>
                 ))}
               </nav>
             </aside>
             <div className="legal-copy legal-copy--imprint">
-              {imprint.sections.map((section) => (
+              {page.content.sections.map((section) => (
                 <section id={section.id} key={section.id}>
                   <h2>{section.title}</h2>
                   {section.blocks.map((block, index) => (
@@ -3471,13 +3230,13 @@ function LegalPage({ type }: { type: LegalPageType }) {
             <aside className="legal-toc">
               <strong>Inhaltsverzeichnis</strong>
               <nav aria-label="Inhaltsverzeichnis der Datenschutzerklärung">
-                {privacy.sections.map((section) => (
+                {page.content.sections.map((section) => (
                   <a href={`#${section.id}`} key={section.id}>{section.title}</a>
                 ))}
               </nav>
             </aside>
             <div className="legal-copy legal-copy--privacy">
-              {privacy.sections.map((section) => (
+              {page.content.sections.map((section) => (
                 <section id={section.id} key={section.id}>
                   <h2>{section.title}</h2>
                   {section.blocks.map((block, index) => (
@@ -3497,8 +3256,10 @@ function Footer() {
   return <SiteFooter />
 }
 
-export default function App() {
+export default function App({ content }: { content: RouteContent }) {
+  const { blogPosts, jobOpenings, regionalLandings, focusedServices } = content
   const [quoteOpen, setQuoteOpen] = useState(false)
+  const [quoteUnavailable, setQuoteUnavailable] = useState(false)
   const [quoteService, setQuoteService] = useState<string | undefined>()
   const [quoteTopic, setQuoteTopic] = useState<string | undefined>()
   const pagePath = getPagePath()
@@ -3512,16 +3273,16 @@ export default function App() {
   const isPrivacyPage = /^\/datenschutz\/?$/.test(pagePath)
   const isRegionsPage = /^\/einsatzgebiete\/?$/.test(pagePath)
   const normalizedPagePath = pagePath.replace(/\/+$/, '') || '/'
-  const serviceSlug = pagePath.match(/^\/leistungen\/([^/]+)\/?$/)?.[1]
-  const activeService = features.find((service) => service.slug === serviceSlug)
-  const activeFocusedService = focusedServices.find(page => page.slug === serviceSlug)
-  const audienceSlug = pagePath.match(/^\/facility-management\/([^/]+)\/?$/)?.[1]
-  const activeAudience = audienceSolutions.find((audience) => audience.id === audienceSlug)
-  const blogSlug = pagePath.match(/^\/blog\/([^/]+)\/?$/)?.[1]
-  const activeBlogPost = blogPosts.find((post) => post.slug === blogSlug)
-  const localLandingSlug = pagePath.match(/^\/einsatzgebiete\/([^/]+)\/?$/)?.[1]
-  const activeLocalLanding = localLandings.find((landing) => landing.slug === localLandingSlug)
-  const activeCommercialLanding = commercialLandings.find((landing) => landing.slug === localLandingSlug)
+  const activeService = useMemo(() => content.activeService
+    ? { ...content.activeService, icon: featureIcons[content.activeService.slug] ?? Building2 }
+    : undefined, [content.activeService])
+  const activeFocusedService = content.activeFocusedService
+  const activeAudience = useMemo(() => content.activeAudience
+    ? { ...content.activeAudience, icon: audienceIcons[content.activeAudience.id] ?? Building2 }
+    : undefined, [content.activeAudience])
+  const activeBlogPost = content.activeBlogPost
+  const activeLocalLanding = content.activeLocalLanding
+  const activeCommercialLanding = content.activeCommercialLanding
   const activeRegionalLanding = activeCommercialLanding ?? activeLocalLanding
   const isKnownRoute = normalizedPagePath === '/'
     || isContactPage || isFacilityPage || isServicesPage || isAboutPage || isBlogPage
@@ -3598,13 +3359,14 @@ export default function App() {
           intro={seoContent.pages.regions.intro}
         />
       ) : activeService ? (
-        <ServiceDetailPage service={activeService} onQuoteOpen={openQuote} />
+        <ServiceDetailPage service={activeService} onQuoteOpen={openQuote} blogPosts={blogPosts} regionalLandings={regionalLandings} focusedServices={focusedServices} />
       ) : activeAudience ? (
         <AudienceDetailPage audience={activeAudience} onQuoteOpen={() => openQuote(activeAudience.navLabel)} />
       ) : activeBlogPost ? (
         <BlogArticlePage
           post={activeBlogPost}
           relatedPosts={blogPosts.filter((post) => post.slug !== activeBlogPost.slug)}
+          localOffers={content.localOffers}
           services={features.map(({ slug, title, text }) => ({ slug, title, text }))}
           onQuoteOpen={() => openQuote(features.find((service) => service.slug === activeBlogPost.relatedServices[0])?.title)}
         />
@@ -3613,17 +3375,17 @@ export default function App() {
       ) : isFacilityPage ? (
         <FacilityManagementPage />
       ) : isServicesPage ? (
-        <ServicesOverviewPage />
+        <ServicesOverviewPage focusedServices={focusedServices} />
       ) : isAboutPage ? (
         <AboutPage onQuoteOpen={() => openQuote()} />
       ) : isBlogPage ? (
         <BlogPage posts={blogPosts} />
       ) : isCareerPage ? (
         <CareerPage jobs={jobOpenings} />
-      ) : isImprintPage ? (
-        <LegalPage type="imprint" />
-      ) : isPrivacyPage ? (
-        <LegalPage type="privacy" />
+      ) : isImprintPage && content.imprint ? (
+        <LegalPage page={{ type: 'imprint', content: content.imprint }} />
+      ) : isPrivacyPage && content.privacy ? (
+        <LegalPage page={{ type: 'privacy', content: content.privacy }} />
       ) : isNotFoundPage ? (
         <NotFoundPage />
       ) : (
@@ -3657,7 +3419,8 @@ export default function App() {
       <ContactDock />
       <MobileIsland onQuoteOpen={() => openQuote()} />
       {quoteOpen && (
-        <Suspense fallback={null}>
+        <QuoteDialogBoundary fallback={<QuoteContactDialog onClose={closeQuote} />} onFailure={() => setQuoteUnavailable(true)}>
+        {quoteUnavailable ? <QuoteContactDialog onClose={closeQuote} /> : <Suspense fallback={<QuoteContactDialog loading onClose={closeQuote} />}>
           <QuoteModal
             isOpen={quoteOpen}
             initialService={quoteService}
@@ -3665,7 +3428,8 @@ export default function App() {
             serviceNames={features.map((service) => service.title)}
             onClose={closeQuote}
           />
-        </Suspense>
+        </Suspense>}
+        </QuoteDialogBoundary>
       )}
       <CookieConsent />
     </>

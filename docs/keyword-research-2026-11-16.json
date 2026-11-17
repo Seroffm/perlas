@@ -43,16 +43,24 @@
       "documentation": "https://docs.dataforseo.com/v3/keywords_data/google_ads/search_volume/live/",
       "retrievedOn": "2026-11-16",
       "researchSection": "targeted-local-service-expansion-2026-11-17"
+    },
+    {
+      "id": "google_ads_restored_service_areas",
+      "provider": "DataForSEO",
+      "endpoint": "/v3/keywords_data/google_ads/search_volume/live",
+      "documentation": "https://docs.dataforseo.com/v3/keywords_data/google_ads/search_volume/live/",
+      "retrievedOn": "2026-11-17",
+      "researchSection": "confirmed-old-service-areas-2026-11-17"
     }
   ],
   "provenance": {
     "discoveryIdeaRows": 200,
     "discoverySuggestionRows": 60,
-    "freshMetricKeywords": 567,
+    "freshMetricKeywords": 569,
     "reusedSameDayMetricKeywords": 8,
-    "confirmedAdditionalResearchCostUsd": 0.87104,
+    "confirmedAdditionalResearchCostUsd": 0.96104,
     "privateSearchConsoleDataIncluded": false,
-    "totalQueriedMetricKeywords": 575,
+    "totalQueriedMetricKeywords": 577,
     "completionBatch": {
       "queriedOn": "2026-11-16",
       "keywords": 39,
@@ -457,6 +465,29 @@
           "Routine practice-room cleaning is within scope; sterilization, instrument reprocessing, certified disinfection and guaranteed hygiene outcomes are not advertised.",
           "Similar keyword variants are not additive and CPC USD/Ads competition do not prove conversions or organic SEO difficulty."
         ]
+      },
+      {
+        "id": "confirmed-old-service-areas-2026-11-17",
+        "researchedOn": "2026-11-17",
+        "measuredKeywords": 2,
+        "freshMetricKeywords": 2,
+        "positiveEstimates": 1,
+        "unknownValues": 1,
+        "reportedZero": 0,
+        "confirmedResearchCostUsd": 0.09,
+        "tasks": [
+          {
+            "kind": "search_volume",
+            "endpoint": "/v3/keywords_data/google_ads/search_volume/live",
+            "taskId": "11170856-2663-0367-0000-af3c06f62515",
+            "statusCode": 20000,
+            "costUsd": 0.09,
+            "requestedKeywordCount": 2,
+            "locationCode": 2276,
+            "languageCode": "de",
+            "searchPartners": false
+          }
+        ]
       }
     ],
     "costNote": "Sum of explicitly recorded research sections; excludes early AI-optimized calls whose exact cost was not exposed and is not a complete account billing total. Suggestions, exact volumes and SERP tasks remain separately documented."
@@ -508,7 +539,9 @@
     "/einsatzgebiete/hausmeisterservice-bad-homburg/",
     "/einsatzgebiete/gebaeudereinigung-frankfurt-niederrad/",
     "/einsatzgebiete/gebaeudereinigung-frankfurt-roedelheim/",
-    "/einsatzgebiete/gebaeudereinigung-frankfurt-bornheim/"
+    "/einsatzgebiete/gebaeudereinigung-frankfurt-bornheim/",
+    "/einsatzgebiete/hausmeisterservice-niedernhausen/",
+    "/einsatzgebiete/hausmeisterservice-kelsterbach/"
   ],
   "keywords": [
     {
@@ -663,8 +696,9 @@
         "evidence": "HTTP 200, selbstreferenzierender Canonical und bytegleich mit geprüftem 75-Seiten-Build; Pages-Lauf 44040720002."
       },
       "googleIndex": {
-        "status": "not_checked_per_keyword",
-        "checkedOn": null
+        "status": "not_indexed",
+        "checkedOn": "2026-11-17",
+        "evidence": "Search-Console-URL-Prüfung am 17.11.2026: Gefunden – zurzeit nicht indexiert. Separater Smartphone-Livetest um 09:08 erfolgreich; Live-Indexierbarkeit ist keine Indexierungsbestätigung."
       },
       "previousTargetMappings": [
         {
@@ -722,8 +756,9 @@
         "evidence": "HTTP 200, selbstreferenzierender Canonical und bytegleich mit geprüftem 75-Seiten-Build; Pages-Lauf 44040720002."
       },
       "googleIndex": {
-        "status": "not_checked_per_keyword",
-        "checkedOn": null
+        "status": "not_indexed",
+        "checkedOn": "2026-11-17",
+        "evidence": "Search-Console-URL-Prüfung am 17.11.2026: Gefunden – zurzeit nicht indexiert. Separater Smartphone-Livetest um 09:08 erfolgreich; Live-Indexierbarkeit ist keine Indexierungsbestätigung."
       },
       "previousTargetMappings": [
         {
@@ -781,8 +816,9 @@
         "evidence": "HTTP 200, selbstreferenzierender Canonical und bytegleich mit geprüftem 75-Seiten-Build; Pages-Lauf 44040720002."
       },
       "googleIndex": {
-        "status": "not_checked_per_keyword",
-        "checkedOn": null
+        "status": "indexed",
+        "checkedOn": "2026-11-17",
+        "evidence": "Search-Console-URL-Prüfung am 17.11.2026: Seite ist indexiert; Smartphone-Crawl 16.11.2026, 14:57:44; Google wählt die geprüfte URL als kanonisch."
       }
     },
     {
@@ -820,8 +856,9 @@
         "evidence": "HTTP 200, selbstreferenzierender Canonical und bytegleich mit geprüftem 75-Seiten-Build; Pages-Lauf 44040720002."
       },
       "googleIndex": {
-        "status": "not_checked_per_keyword",
-        "checkedOn": null
+        "status": "indexed",
+        "checkedOn": "2026-11-17",
+        "evidence": "Search-Console-URL-Prüfung am 17.11.2026: Seite ist indexiert; Smartphone-Crawl 16.11.2026, 14:57:44; Google wählt die geprüfte URL als kanonisch."
       }
     },
     {
@@ -916,8 +953,9 @@
         "evidence": "HTTP 200, selbstreferenzierender Canonical und bytegleich mit geprüftem 75-Seiten-Build; Pages-Lauf 44040720002."
       },
       "googleIndex": {
-        "status": "not_checked_per_keyword",
-        "checkedOn": null
+        "status": "indexed",
+        "checkedOn": "2026-11-17",
+        "evidence": "Search-Console-URL-Prüfung am 17.11.2026: Seite ist indexiert; Smartphone-Crawl 16.11.2026, 15:04:18; Google wählt die geprüfte URL als kanonisch."
       }
     },
     {
@@ -1190,8 +1228,9 @@
         "evidence": "HTTP 200, selbstreferenzierender Canonical und bytegleich mit geprüftem 75-Seiten-Build; Pages-Lauf 44040720002."
       },
       "googleIndex": {
-        "status": "not_checked_per_keyword",
-        "checkedOn": null
+        "status": "indexed",
+        "checkedOn": "2026-11-17",
+        "evidence": "Search-Console-URL-Prüfung am 17.11.2026: Seite ist indexiert; Smartphone-Crawl 16.11.2026, 15:02:17; Google wählt die geprüfte URL als kanonisch."
       }
     },
     {
@@ -1229,8 +1268,9 @@
         "evidence": "HTTP 200, selbstreferenzierender Canonical und bytegleich mit geprüftem 75-Seiten-Build; Pages-Lauf 44040720002."
       },
       "googleIndex": {
-        "status": "not_checked_per_keyword",
-        "checkedOn": null
+        "status": "indexed",
+        "checkedOn": "2026-11-17",
+        "evidence": "Search-Console-URL-Prüfung am 17.11.2026: Seite ist indexiert; Smartphone-Crawl 16.11.2026, 15:02:17; Google wählt die geprüfte URL als kanonisch."
       }
     },
     {
@@ -1268,8 +1308,9 @@
         "evidence": "HTTP 200, selbstreferenzierender Canonical und bytegleich mit geprüftem 75-Seiten-Build; Pages-Lauf 44040720002."
       },
       "googleIndex": {
-        "status": "not_checked_per_keyword",
-        "checkedOn": null
+        "status": "indexed",
+        "checkedOn": "2026-11-17",
+        "evidence": "Search-Console-URL-Prüfung am 17.11.2026: Seite ist indexiert; Smartphone-Crawl 16.11.2026, 15:02:17; Google wählt die geprüfte URL als kanonisch."
       }
     },
     {
@@ -1307,8 +1348,9 @@
         "evidence": "HTTP 200, selbstreferenzierender Canonical und bytegleich mit geprüftem 75-Seiten-Build; Pages-Lauf 44040720002."
       },
       "googleIndex": {
-        "status": "not_checked_per_keyword",
-        "checkedOn": null
+        "status": "indexed",
+        "checkedOn": "2026-11-17",
+        "evidence": "Search-Console-URL-Prüfung am 17.11.2026: Seite ist indexiert; Smartphone-Crawl 16.11.2026, 15:02:17; Google wählt die geprüfte URL als kanonisch."
       }
     },
     {
@@ -1346,8 +1388,9 @@
         "evidence": "HTTP 200, selbstreferenzierender Canonical und bytegleich mit geprüftem 75-Seiten-Build; Pages-Lauf 44040720002."
       },
       "googleIndex": {
-        "status": "not_checked_per_keyword",
-        "checkedOn": null
+        "status": "indexed",
+        "checkedOn": "2026-11-17",
+        "evidence": "Search-Console-URL-Prüfung am 17.11.2026: Seite ist indexiert; Smartphone-Crawl 16.11.2026, 15:02:17; Google wählt die geprüfte URL als kanonisch."
       }
     },
     {
@@ -3218,8 +3261,9 @@
         "evidence": "HTTP 200, selbstreferenzierender Canonical und bytegleich mit geprüftem 75-Seiten-Build; Pages-Lauf 44040720002."
       },
       "googleIndex": {
-        "status": "not_checked_per_keyword",
-        "checkedOn": null
+        "status": "not_indexed",
+        "checkedOn": "2026-11-17",
+        "evidence": "Search-Console-URL-Prüfung am 17.11.2026: URL ist Google nicht bekannt. Kein bestätigter Index-Crawl; der Indexierungsantrag vom 16.11.2026 ist separat dokumentiert."
       }
     },
     {
@@ -3257,8 +3301,9 @@
         "evidence": "HTTP 200, selbstreferenzierender Canonical und bytegleich mit geprüftem 75-Seiten-Build; Pages-Lauf 44040720002."
       },
       "googleIndex": {
-        "status": "not_checked_per_keyword",
-        "checkedOn": null
+        "status": "not_indexed",
+        "checkedOn": "2026-11-17",
+        "evidence": "Search-Console-URL-Prüfung am 17.11.2026: URL ist Google nicht bekannt. Kein bestätigter Index-Crawl; der Indexierungsantrag vom 16.11.2026 ist separat dokumentiert."
       }
     },
     {
@@ -3296,8 +3341,9 @@
         "evidence": "HTTP 200, selbstreferenzierender Canonical und bytegleich mit geprüftem 75-Seiten-Build; Pages-Lauf 44040720002."
       },
       "googleIndex": {
-        "status": "not_checked_per_keyword",
-        "checkedOn": null
+        "status": "not_indexed",
+        "checkedOn": "2026-11-17",
+        "evidence": "Search-Console-URL-Prüfung am 17.11.2026: URL ist Google nicht bekannt. Kein bestätigter Index-Crawl; der Indexierungsantrag vom 16.11.2026 ist separat dokumentiert."
       }
     },
     {
@@ -4232,8 +4278,9 @@
         "evidence": "HTTP 200, selbstreferenzierender Canonical und bytegleich mit geprüftem 75-Seiten-Build; Pages-Lauf 44040720002."
       },
       "googleIndex": {
-        "status": "not_checked_per_keyword",
-        "checkedOn": null
+        "status": "indexed",
+        "checkedOn": "2026-11-17",
+        "evidence": "Search-Console-URL-Prüfung am 17.11.2026: Seite ist indexiert; Smartphone-Crawl 16.11.2026, 14:57:44; Google wählt die geprüfte URL als kanonisch."
       }
     },
     {
@@ -4271,8 +4318,9 @@
         "evidence": "HTTP 200, selbstreferenzierender Canonical und bytegleich mit geprüftem 75-Seiten-Build; Pages-Lauf 44040720002."
       },
       "googleIndex": {
-        "status": "not_checked_per_keyword",
-        "checkedOn": null
+        "status": "indexed",
+        "checkedOn": "2026-11-17",
+        "evidence": "Search-Console-URL-Prüfung am 17.11.2026: Seite ist indexiert; Smartphone-Crawl 16.11.2026, 14:57:44; Google wählt die geprüfte URL als kanonisch."
       }
     },
     {
@@ -4426,8 +4474,9 @@
         "evidence": "HTTP 200, selbstreferenzierender Canonical und bytegleich mit geprüftem 75-Seiten-Build; Pages-Lauf 44040720002."
       },
       "googleIndex": {
-        "status": "not_checked_per_keyword",
-        "checkedOn": null
+        "status": "indexed",
+        "checkedOn": "2026-11-17",
+        "evidence": "Search-Console-URL-Prüfung am 17.11.2026: Seite ist indexiert; Smartphone-Crawl 16.11.2026, 15:04:18; Google wählt die geprüfte URL als kanonisch."
       }
     },
     {
@@ -4465,8 +4514,9 @@
         "evidence": "HTTP 200, selbstreferenzierender Canonical und bytegleich mit geprüftem 75-Seiten-Build; Pages-Lauf 44040720002."
       },
       "googleIndex": {
-        "status": "not_checked_per_keyword",
-        "checkedOn": null
+        "status": "not_indexed",
+        "checkedOn": "2026-11-17",
+        "evidence": "Search-Console-URL-Prüfung am 17.11.2026: Gefunden – zurzeit nicht indexiert. Separater Smartphone-Livetest um 09:08 erfolgreich; Live-Indexierbarkeit ist keine Indexierungsbestätigung."
       },
       "previousTargetMappings": [
         {
@@ -4678,8 +4728,9 @@
         "evidence": "HTTP 200, selbstreferenzierender Canonical und bytegleich mit geprüftem 75-Seiten-Build; Pages-Lauf 44040720002."
       },
       "googleIndex": {
-        "status": "not_checked_per_keyword",
-        "checkedOn": null
+        "status": "indexed",
+        "checkedOn": "2026-11-17",
+        "evidence": "Search-Console-URL-Prüfung am 17.11.2026: Seite ist indexiert; Smartphone-Crawl 16.11.2026, 15:02:17; Google wählt die geprüfte URL als kanonisch."
       }
     },
     {
@@ -4717,8 +4768,9 @@
         "evidence": "HTTP 200, selbstreferenzierender Canonical und bytegleich mit geprüftem 75-Seiten-Build; Pages-Lauf 44040720002."
       },
       "googleIndex": {
-        "status": "not_checked_per_keyword",
-        "checkedOn": null
+        "status": "indexed",
+        "checkedOn": "2026-11-17",
+        "evidence": "Search-Console-URL-Prüfung am 17.11.2026: Seite ist indexiert; Smartphone-Crawl 16.11.2026, 15:02:17; Google wählt die geprüfte URL als kanonisch."
       }
     },
     {
@@ -4756,8 +4808,9 @@
         "evidence": "HTTP 200, selbstreferenzierender Canonical und bytegleich mit geprüftem 75-Seiten-Build; Pages-Lauf 44040720002."
       },
       "googleIndex": {
-        "status": "not_checked_per_keyword",
-        "checkedOn": null
+        "status": "indexed",
+        "checkedOn": "2026-11-17",
+        "evidence": "Search-Console-URL-Prüfung am 17.11.2026: Seite ist indexiert; Smartphone-Crawl 16.11.2026, 15:02:17; Google wählt die geprüfte URL als kanonisch."
       }
     },
     {
@@ -4873,8 +4926,9 @@
         "evidence": "HTTP 200, selbstreferenzierender Canonical und bytegleich mit geprüftem 75-Seiten-Build; Pages-Lauf 44040720002."
       },
       "googleIndex": {
-        "status": "not_checked_per_keyword",
-        "checkedOn": null
+        "status": "indexed",
+        "checkedOn": "2026-11-17",
+        "evidence": "Search-Console-URL-Prüfung am 17.11.2026: Seite ist indexiert; Smartphone-Crawl 16.11.2026, 15:02:17; Google wählt die geprüfte URL als kanonisch."
       }
     },
     {
@@ -7231,8 +7285,9 @@
         "evidence": "HTTP 200, selbstreferenzierender Canonical und bytegleich mit geprüftem 75-Seiten-Build; Pages-Lauf 44040720002."
       },
       "googleIndex": {
-        "status": "not_checked_per_keyword",
-        "checkedOn": null
+        "status": "indexed",
+        "checkedOn": "2026-11-17",
+        "evidence": "Search-Console-URL-Prüfung am 17.11.2026: Seite ist indexiert; Smartphone-Crawl 16.11.2026, 14:57:44; Google wählt die geprüfte URL als kanonisch."
       }
     },
     {
@@ -7270,8 +7325,9 @@
         "evidence": "HTTP 200, selbstreferenzierender Canonical und bytegleich mit geprüftem 75-Seiten-Build; Pages-Lauf 44040720002."
       },
       "googleIndex": {
-        "status": "not_checked_per_keyword",
-        "checkedOn": null
+        "status": "indexed",
+        "checkedOn": "2026-11-17",
+        "evidence": "Search-Console-URL-Prüfung am 17.11.2026: Seite ist indexiert; Smartphone-Crawl 16.11.2026, 14:57:44; Google wählt die geprüfte URL als kanonisch."
       }
     },
     {
@@ -7407,8 +7463,9 @@
         "evidence": "HTTP 200, selbstreferenzierender Canonical und bytegleich mit geprüftem 75-Seiten-Build; Pages-Lauf 44040720002."
       },
       "googleIndex": {
-        "status": "not_checked_per_keyword",
-        "checkedOn": null
+        "status": "indexed",
+        "checkedOn": "2026-11-17",
+        "evidence": "Search-Console-URL-Prüfung am 17.11.2026: Seite ist indexiert; Smartphone-Crawl 16.11.2026, 15:04:18; Google wählt die geprüfte URL als kanonisch."
       }
     },
     {
@@ -7446,8 +7503,9 @@
         "evidence": "HTTP 200, selbstreferenzierender Canonical und bytegleich mit geprüftem 75-Seiten-Build; Pages-Lauf 44040720002."
       },
       "googleIndex": {
-        "status": "not_checked_per_keyword",
-        "checkedOn": null
+        "status": "indexed",
+        "checkedOn": "2026-11-17",
+        "evidence": "Search-Console-URL-Prüfung am 17.11.2026: Seite ist indexiert; Smartphone-Crawl 16.11.2026, 15:04:18; Google wählt die geprüfte URL als kanonisch."
       }
     },
     {
@@ -7485,8 +7543,9 @@
         "evidence": "HTTP 200, selbstreferenzierender Canonical und bytegleich mit geprüftem 75-Seiten-Build; Pages-Lauf 44040720002."
       },
       "googleIndex": {
-        "status": "not_checked_per_keyword",
-        "checkedOn": null
+        "status": "indexed",
+        "checkedOn": "2026-11-17",
+        "evidence": "Search-Console-URL-Prüfung am 17.11.2026: Seite ist indexiert; Smartphone-Crawl 16.11.2026, 15:04:18; Google wählt die geprüfte URL als kanonisch."
       }
     },
     {
@@ -7524,8 +7583,9 @@
         "evidence": "HTTP 200, selbstreferenzierender Canonical und bytegleich mit geprüftem 75-Seiten-Build; Pages-Lauf 44040720002."
       },
       "googleIndex": {
-        "status": "not_checked_per_keyword",
-        "checkedOn": null
+        "status": "not_indexed",
+        "checkedOn": "2026-11-17",
+        "evidence": "Search-Console-URL-Prüfung am 17.11.2026: Gefunden – zurzeit nicht indexiert. Separater Smartphone-Livetest um 09:08 erfolgreich; Live-Indexierbarkeit ist keine Indexierungsbestätigung."
       },
       "previousTargetMappings": [
         {
@@ -8012,8 +8072,9 @@
         "evidence": "HTTP 200, selbstreferenzierender Canonical und bytegleich mit geprüftem 75-Seiten-Build; Pages-Lauf 44040720002."
       },
       "googleIndex": {
-        "status": "not_checked_per_keyword",
-        "checkedOn": null
+        "status": "indexed",
+        "checkedOn": "2026-11-17",
+        "evidence": "Search-Console-URL-Prüfung am 17.11.2026: Seite ist indexiert; Smartphone-Crawl 16.11.2026, 15:02:17; Google wählt die geprüfte URL als kanonisch."
       }
     },
     {
@@ -17070,8 +17131,9 @@
         "evidence": "HTTP 200, selbstreferenzierender Canonical und bytegleich mit geprüftem 75-Seiten-Build; Pages-Lauf 44040720002."
       },
       "googleIndex": {
-        "status": "not_checked_per_keyword",
-        "checkedOn": null
+        "status": "indexed",
+        "checkedOn": "2026-11-17",
+        "evidence": "Search-Console-URL-Prüfung am 17.11.2026: Seite ist indexiert; Smartphone-Crawl 16.11.2026, 14:57:44; Google wählt die geprüfte URL als kanonisch."
       }
     },
     {
@@ -17112,8 +17174,9 @@
         "evidence": "HTTP 200, selbstreferenzierender Canonical und bytegleich mit geprüftem 75-Seiten-Build; Pages-Lauf 44040720002."
       },
       "googleIndex": {
-        "status": "not_checked_per_keyword",
-        "checkedOn": null
+        "status": "indexed",
+        "checkedOn": "2026-11-17",
+        "evidence": "Search-Console-URL-Prüfung am 17.11.2026: Seite ist indexiert; Smartphone-Crawl 16.11.2026, 14:57:44; Google wählt die geprüfte URL als kanonisch."
       }
     },
     {
@@ -17154,8 +17217,9 @@
         "evidence": "HTTP 200, selbstreferenzierender Canonical und bytegleich mit geprüftem 75-Seiten-Build; Pages-Lauf 44040720002."
       },
       "googleIndex": {
-        "status": "not_checked_per_keyword",
-        "checkedOn": null
+        "status": "indexed",
+        "checkedOn": "2026-11-17",
+        "evidence": "Search-Console-URL-Prüfung am 17.11.2026: Seite ist indexiert; Smartphone-Crawl 16.11.2026, 14:57:44; Google wählt die geprüfte URL als kanonisch."
       }
     },
     {
@@ -17196,8 +17260,9 @@
         "evidence": "HTTP 200, selbstreferenzierender Canonical und bytegleich mit geprüftem 75-Seiten-Build; Pages-Lauf 44040720002."
       },
       "googleIndex": {
-        "status": "not_checked_per_keyword",
-        "checkedOn": null
+        "status": "indexed",
+        "checkedOn": "2026-11-17",
+        "evidence": "Search-Console-URL-Prüfung am 17.11.2026: Seite ist indexiert; Smartphone-Crawl 16.11.2026, 14:57:44; Google wählt die geprüfte URL als kanonisch."
       }
     },
     {
@@ -17238,8 +17303,9 @@
         "evidence": "HTTP 200, selbstreferenzierender Canonical und bytegleich mit geprüftem 75-Seiten-Build; Pages-Lauf 44040720002."
       },
       "googleIndex": {
-        "status": "not_checked_per_keyword",
-        "checkedOn": null
+        "status": "indexed",
+        "checkedOn": "2026-11-17",
+        "evidence": "Search-Console-URL-Prüfung am 17.11.2026: Seite ist indexiert; Smartphone-Crawl 16.11.2026, 14:57:44; Google wählt die geprüfte URL als kanonisch."
       }
     },
     {
@@ -17280,8 +17346,9 @@
         "evidence": "HTTP 200, selbstreferenzierender Canonical und bytegleich mit geprüftem 75-Seiten-Build; Pages-Lauf 44040720002."
       },
       "googleIndex": {
-        "status": "not_checked_per_keyword",
-        "checkedOn": null
+        "status": "indexed",
+        "checkedOn": "2026-11-17",
+        "evidence": "Search-Console-URL-Prüfung am 17.11.2026: Seite ist indexiert; Smartphone-Crawl 16.11.2026, 14:57:44; Google wählt die geprüfte URL als kanonisch."
       }
     },
     {
@@ -17322,8 +17389,9 @@
         "evidence": "HTTP 200, selbstreferenzierender Canonical und bytegleich mit geprüftem 75-Seiten-Build; Pages-Lauf 44040720002."
       },
       "googleIndex": {
-        "status": "not_checked_per_keyword",
-        "checkedOn": null
+        "status": "indexed",
+        "checkedOn": "2026-11-17",
+        "evidence": "Search-Console-URL-Prüfung am 17.11.2026: Seite ist indexiert; Smartphone-Crawl 16.11.2026, 14:57:44; Google wählt die geprüfte URL als kanonisch."
       }
     },
     {
@@ -17364,8 +17432,9 @@
         "evidence": "HTTP 200, selbstreferenzierender Canonical und bytegleich mit geprüftem 75-Seiten-Build; Pages-Lauf 44040720002."
       },
       "googleIndex": {
-        "status": "not_checked_per_keyword",
-        "checkedOn": null
+        "status": "indexed",
+        "checkedOn": "2026-11-17",
+        "evidence": "Search-Console-URL-Prüfung am 17.11.2026: Seite ist indexiert; Smartphone-Crawl 16.11.2026, 14:57:44; Google wählt die geprüfte URL als kanonisch."
       }
     },
     {
@@ -18866,8 +18935,9 @@
         "evidence": "HTTP 200, selbstreferenzierender Canonical und bytegleich mit geprüftem 75-Seiten-Build; Pages-Lauf 44040720002."
       },
       "googleIndex": {
-        "status": "not_checked_per_keyword",
-        "checkedOn": null
+        "status": "not_indexed",
+        "checkedOn": "2026-11-17",
+        "evidence": "Search-Console-URL-Prüfung am 17.11.2026: Gefunden – zurzeit nicht indexiert. Separater Smartphone-Livetest um 09:08 erfolgreich; Live-Indexierbarkeit ist keine Indexierungsbestätigung."
       },
       "targetCoverageNote": "Allgemeine vorhandene Leistungsseite als Themenbezug; keine eigenständige lokale Zielseite geplant. Lokale Abdeckung wird nicht aus vorhandenem HTML oder Nachfrage abgeleitet."
     },
@@ -18909,8 +18979,9 @@
         "evidence": "HTTP 200, selbstreferenzierender Canonical und bytegleich mit geprüftem 75-Seiten-Build; Pages-Lauf 44040720002."
       },
       "googleIndex": {
-        "status": "not_checked_per_keyword",
-        "checkedOn": null
+        "status": "not_indexed",
+        "checkedOn": "2026-11-17",
+        "evidence": "Search-Console-URL-Prüfung am 17.11.2026: Gefunden – zurzeit nicht indexiert. Separater Smartphone-Livetest um 09:08 erfolgreich; Live-Indexierbarkeit ist keine Indexierungsbestätigung."
       },
       "targetCoverageNote": "Allgemeine vorhandene Leistungsseite als Themenbezug; keine eigenständige lokale Zielseite geplant. Lokale Abdeckung wird nicht aus vorhandenem HTML oder Nachfrage abgeleitet."
     },
@@ -18952,8 +19023,9 @@
         "evidence": "HTTP 200, selbstreferenzierender Canonical und bytegleich mit geprüftem 75-Seiten-Build; Pages-Lauf 44040720002."
       },
       "googleIndex": {
-        "status": "not_checked_per_keyword",
-        "checkedOn": null
+        "status": "indexed",
+        "checkedOn": "2026-11-17",
+        "evidence": "Search-Console-URL-Prüfung am 17.11.2026: Seite ist indexiert; Smartphone-Crawl 16.11.2026, 14:57:44; Google wählt die geprüfte URL als kanonisch."
       },
       "targetCoverageNote": "Allgemeine vorhandene Leistungsseite als Themenbezug; keine eigenständige lokale Zielseite geplant. Lokale Abdeckung wird nicht aus vorhandenem HTML oder Nachfrage abgeleitet."
     },
@@ -19038,8 +19110,9 @@
         "evidence": "HTTP 200, selbstreferenzierender Canonical und bytegleich mit geprüftem 75-Seiten-Build; Pages-Lauf 44040720002."
       },
       "googleIndex": {
-        "status": "not_checked_per_keyword",
-        "checkedOn": null
+        "status": "not_indexed",
+        "checkedOn": "2026-11-17",
+        "evidence": "Search-Console-URL-Prüfung am 17.11.2026: Gefunden – zurzeit nicht indexiert. Separater Smartphone-Livetest um 09:08 erfolgreich; Live-Indexierbarkeit ist keine Indexierungsbestätigung."
       },
       "targetCoverageNote": "Allgemeine vorhandene Leistungsseite als Themenbezug; keine eigenständige lokale Zielseite geplant. Lokale Abdeckung wird nicht aus vorhandenem HTML oder Nachfrage abgeleitet."
     },
@@ -19081,8 +19154,9 @@
         "evidence": "HTTP 200, selbstreferenzierender Canonical und bytegleich mit geprüftem 75-Seiten-Build; Pages-Lauf 44040720002."
       },
       "googleIndex": {
-        "status": "not_checked_per_keyword",
-        "checkedOn": null
+        "status": "not_indexed",
+        "checkedOn": "2026-11-17",
+        "evidence": "Search-Console-URL-Prüfung am 17.11.2026: Gefunden – zurzeit nicht indexiert. Separater Smartphone-Livetest um 09:08 erfolgreich; Live-Indexierbarkeit ist keine Indexierungsbestätigung."
       },
       "targetCoverageNote": "Allgemeine vorhandene Leistungsseite als Themenbezug; keine eigenständige lokale Zielseite geplant. Lokale Abdeckung wird nicht aus vorhandenem HTML oder Nachfrage abgeleitet."
     },
@@ -19124,8 +19198,9 @@
         "evidence": "HTTP 200, selbstreferenzierender Canonical und bytegleich mit geprüftem 75-Seiten-Build; Pages-Lauf 44040720002."
       },
       "googleIndex": {
-        "status": "not_checked_per_keyword",
-        "checkedOn": null
+        "status": "indexed",
+        "checkedOn": "2026-11-17",
+        "evidence": "Search-Console-URL-Prüfung am 17.11.2026: Seite ist indexiert; Smartphone-Crawl 16.11.2026, 14:57:44; Google wählt die geprüfte URL als kanonisch."
       },
       "targetCoverageNote": "Allgemeine vorhandene Leistungsseite als Themenbezug; keine eigenständige lokale Zielseite geplant. Lokale Abdeckung wird nicht aus vorhandenem HTML oder Nachfrage abgeleitet."
     },
@@ -19210,8 +19285,9 @@
         "evidence": "HTTP 200, selbstreferenzierender Canonical und bytegleich mit geprüftem 75-Seiten-Build; Pages-Lauf 44040720002."
       },
       "googleIndex": {
-        "status": "not_checked_per_keyword",
-        "checkedOn": null
+        "status": "not_indexed",
+        "checkedOn": "2026-11-17",
+        "evidence": "Search-Console-URL-Prüfung am 17.11.2026: Gefunden – zurzeit nicht indexiert. Separater Smartphone-Livetest um 09:08 erfolgreich; Live-Indexierbarkeit ist keine Indexierungsbestätigung."
       },
       "targetCoverageNote": "Allgemeine vorhandene Leistungsseite als Themenbezug; keine eigenständige lokale Zielseite geplant. Lokale Abdeckung wird nicht aus vorhandenem HTML oder Nachfrage abgeleitet."
     },
@@ -19253,8 +19329,9 @@
         "evidence": "HTTP 200, selbstreferenzierender Canonical und bytegleich mit geprüftem 75-Seiten-Build; Pages-Lauf 44040720002."
       },
       "googleIndex": {
-        "status": "not_checked_per_keyword",
-        "checkedOn": null
+        "status": "not_indexed",
+        "checkedOn": "2026-11-17",
+        "evidence": "Search-Console-URL-Prüfung am 17.11.2026: Gefunden – zurzeit nicht indexiert. Separater Smartphone-Livetest um 09:08 erfolgreich; Live-Indexierbarkeit ist keine Indexierungsbestätigung."
       },
       "targetCoverageNote": "Allgemeine vorhandene Leistungsseite als Themenbezug; keine eigenständige lokale Zielseite geplant. Lokale Abdeckung wird nicht aus vorhandenem HTML oder Nachfrage abgeleitet."
     },
@@ -19296,8 +19373,9 @@
         "evidence": "HTTP 200, selbstreferenzierender Canonical und bytegleich mit geprüftem 75-Seiten-Build; Pages-Lauf 44040720002."
       },
       "googleIndex": {
-        "status": "not_checked_per_keyword",
-        "checkedOn": null
+        "status": "indexed",
+        "checkedOn": "2026-11-17",
+        "evidence": "Search-Console-URL-Prüfung am 17.11.2026: Seite ist indexiert; Smartphone-Crawl 16.11.2026, 14:57:44; Google wählt die geprüfte URL als kanonisch."
       },
       "targetCoverageNote": "Allgemeine vorhandene Leistungsseite als Themenbezug; keine eigenständige lokale Zielseite geplant. Lokale Abdeckung wird nicht aus vorhandenem HTML oder Nachfrage abgeleitet."
     },
@@ -19557,8 +19635,9 @@
         "evidence": "HTTP 200, selbstreferenzierender Canonical und bytegleich mit geprüftem 75-Seiten-Build; Pages-Lauf 44040720002."
       },
       "googleIndex": {
-        "status": "not_checked_per_keyword",
-        "checkedOn": null
+        "status": "not_indexed",
+        "checkedOn": "2026-11-17",
+        "evidence": "Search-Console-URL-Prüfung am 17.11.2026: Gefunden – zurzeit nicht indexiert. Separater Smartphone-Livetest um 09:08 erfolgreich; Live-Indexierbarkeit ist keine Indexierungsbestätigung."
       },
       "targetCoverageNote": "Allgemeine vorhandene Leistungsseite als Themenbezug; keine eigenständige lokale Zielseite geplant. Lokale Abdeckung wird nicht aus vorhandenem HTML oder Nachfrage abgeleitet."
     },
@@ -19600,8 +19679,9 @@
         "evidence": "HTTP 200, selbstreferenzierender Canonical und bytegleich mit geprüftem 75-Seiten-Build; Pages-Lauf 44040720002."
       },
       "googleIndex": {
-        "status": "not_checked_per_keyword",
-        "checkedOn": null
+        "status": "not_indexed",
+        "checkedOn": "2026-11-17",
+        "evidence": "Search-Console-URL-Prüfung am 17.11.2026: Gefunden – zurzeit nicht indexiert. Separater Smartphone-Livetest um 09:08 erfolgreich; Live-Indexierbarkeit ist keine Indexierungsbestätigung."
       },
       "targetCoverageNote": "Allgemeine vorhandene Leistungsseite als Themenbezug; keine eigenständige lokale Zielseite geplant. Lokale Abdeckung wird nicht aus vorhandenem HTML oder Nachfrage abgeleitet."
     },
@@ -19643,8 +19723,9 @@
         "evidence": "HTTP 200, selbstreferenzierender Canonical und bytegleich mit geprüftem 75-Seiten-Build; Pages-Lauf 44040720002."
       },
       "googleIndex": {
-        "status": "not_checked_per_keyword",
-        "checkedOn": null
+        "status": "indexed",
+        "checkedOn": "2026-11-17",
+        "evidence": "Search-Console-URL-Prüfung am 17.11.2026: Seite ist indexiert; Smartphone-Crawl 16.11.2026, 14:57:44; Google wählt die geprüfte URL als kanonisch."
       },
       "targetCoverageNote": "Allgemeine vorhandene Leistungsseite als Themenbezug; keine eigenständige lokale Zielseite geplant. Lokale Abdeckung wird nicht aus vorhandenem HTML oder Nachfrage abgeleitet."
     },
@@ -19686,8 +19767,9 @@
         "evidence": "HTTP 200, selbstreferenzierender Canonical und bytegleich mit geprüftem 75-Seiten-Build; Pages-Lauf 44040720002."
       },
       "googleIndex": {
-        "status": "not_checked_per_keyword",
-        "checkedOn": null
+        "status": "not_indexed",
+        "checkedOn": "2026-11-17",
+        "evidence": "Search-Console-URL-Prüfung am 17.11.2026: Gefunden – zurzeit nicht indexiert. Separater Smartphone-Livetest um 09:08 erfolgreich; Live-Indexierbarkeit ist keine Indexierungsbestätigung."
       },
       "targetCoverageNote": "Allgemeine vorhandene Leistungsseite als Themenbezug; keine eigenständige lokale Zielseite geplant. Lokale Abdeckung wird nicht aus vorhandenem HTML oder Nachfrage abgeleitet."
     },
@@ -19729,8 +19811,9 @@
         "evidence": "HTTP 200, selbstreferenzierender Canonical und bytegleich mit geprüftem 75-Seiten-Build; Pages-Lauf 44040720002."
       },
       "googleIndex": {
-        "status": "not_checked_per_keyword",
-        "checkedOn": null
+        "status": "not_indexed",
+        "checkedOn": "2026-11-17",
+        "evidence": "Search-Console-URL-Prüfung am 17.11.2026: Gefunden – zurzeit nicht indexiert. Separater Smartphone-Livetest um 09:08 erfolgreich; Live-Indexierbarkeit ist keine Indexierungsbestätigung."
       },
       "targetCoverageNote": "Allgemeine vorhandene Leistungsseite als Themenbezug; keine eigenständige lokale Zielseite geplant. Lokale Abdeckung wird nicht aus vorhandenem HTML oder Nachfrage abgeleitet."
     },
@@ -19815,8 +19898,9 @@
         "evidence": "HTTP 200, selbstreferenzierender Canonical und bytegleich mit geprüftem 75-Seiten-Build; Pages-Lauf 44040720002."
       },
       "googleIndex": {
-        "status": "not_checked_per_keyword",
-        "checkedOn": null
+        "status": "indexed",
+        "checkedOn": "2026-11-17",
+        "evidence": "Search-Console-URL-Prüfung am 17.11.2026: Seite ist indexiert; Smartphone-Crawl 16.11.2026, 14:57:44; Google wählt die geprüfte URL als kanonisch."
       },
       "targetCoverageNote": "Allgemeine vorhandene Leistungsseite als Themenbezug; keine eigenständige lokale Zielseite geplant. Lokale Abdeckung wird nicht aus vorhandenem HTML oder Nachfrage abgeleitet."
     },
@@ -23002,8 +23086,9 @@
         "evidence": "HTTP 200, selbstreferenzierender Canonical und bytegleich mit geprüftem 75-Seiten-Build; Pages-Lauf 44040720002."
       },
       "googleIndex": {
-        "status": "not_checked_per_keyword",
-        "checkedOn": null
+        "status": "indexed",
+        "checkedOn": "2026-11-17",
+        "evidence": "Search-Console-URL-Prüfung am 17.11.2026: Seite ist indexiert; Smartphone-Crawl 16.11.2026, 15:02:17; Google wählt die geprüfte URL als kanonisch."
       }
     },
     {
@@ -23044,8 +23129,9 @@
         "evidence": "HTTP 200, selbstreferenzierender Canonical und bytegleich mit geprüftem 75-Seiten-Build; Pages-Lauf 44040720002."
       },
       "googleIndex": {
-        "status": "not_checked_per_keyword",
-        "checkedOn": null
+        "status": "indexed",
+        "checkedOn": "2026-11-17",
+        "evidence": "Search-Console-URL-Prüfung am 17.11.2026: Seite ist indexiert; Smartphone-Crawl 16.11.2026, 15:02:17; Google wählt die geprüfte URL als kanonisch."
       }
     },
     {
@@ -23086,8 +23172,9 @@
         "evidence": "HTTP 200, selbstreferenzierender Canonical und bytegleich mit geprüftem 75-Seiten-Build; Pages-Lauf 44040720002."
       },
       "googleIndex": {
-        "status": "not_checked_per_keyword",
-        "checkedOn": null
+        "status": "not_indexed",
+        "checkedOn": "2026-11-17",
+        "evidence": "Search-Console-URL-Prüfung am 17.11.2026: Gefunden – zurzeit nicht indexiert. Separater Smartphone-Livetest um 09:08 erfolgreich; Live-Indexierbarkeit ist keine Indexierungsbestätigung."
       },
       "growthFocusRank": 4,
       "growthFocusReason": "Konkrete lokale Anbietersuche für Gebäudereinigung; Varianten gemeinsam über einen abgegrenzten Leistungs- und Angebotsvergleich bedienen."
@@ -23130,8 +23217,9 @@
         "evidence": "HTTP 200, selbstreferenzierender Canonical und bytegleich mit geprüftem 75-Seiten-Build; Pages-Lauf 44040720002."
       },
       "googleIndex": {
-        "status": "not_checked_per_keyword",
-        "checkedOn": null
+        "status": "not_indexed",
+        "checkedOn": "2026-11-17",
+        "evidence": "Search-Console-URL-Prüfung am 17.11.2026: Gefunden – zurzeit nicht indexiert. Separater Smartphone-Livetest um 09:08 erfolgreich; Live-Indexierbarkeit ist keine Indexierungsbestätigung."
       }
     },
     {
@@ -23981,8 +24069,9 @@
         "evidence": "HTTP 200, selbstreferenzierender Canonical und bytegleich mit geprüftem 75-Seiten-Build; Pages-Lauf 44040720002."
       },
       "googleIndex": {
-        "status": "not_checked_per_keyword",
-        "checkedOn": null
+        "status": "not_indexed",
+        "checkedOn": "2026-11-17",
+        "evidence": "Search-Console-URL-Prüfung am 17.11.2026: Gefunden – zurzeit nicht indexiert. Separater Smartphone-Livetest um 09:08 erfolgreich; Live-Indexierbarkeit ist keine Indexierungsbestätigung."
       }
     },
     {
@@ -24575,6 +24664,86 @@
         "status": "not_checked_per_keyword",
         "checkedOn": null
       }
+    },
+    {
+      "id": "KW-576",
+      "keyword": "hausmeisterservice niedernhausen",
+      "priority": "P1",
+      "priorityRationale": "Wiederanbindung eines früheren Angebots nach ausdrücklicher Bestätigung des fortbestehenden Hausmeisterservices durch den Betrieb am 17.11.2026. Suchvolumen ist ein ergänzender Messwert, keine Klickprognose.",
+      "commercialIntent": "Hausmeisterservice vor Ort beauftragen oder Anbieter wechseln",
+      "intentIsInferred": true,
+      "queryLocality": "Niedernhausen",
+      "ambiguousScope": false,
+      "estimatedMonthlyVolume": null,
+      "measurementStatus": "unknown",
+      "measuredOn": "2026-11-17",
+      "sourcePeriod": null,
+      "sourceId": "google_ads_restored_service_areas",
+      "sourceTaskId": "11170856-2663-0367-0000-af3c06f62515",
+      "cpcUsd": null,
+      "competitionAds": {
+        "level": null,
+        "index": null,
+        "isOrganicDifficulty": false
+      },
+      "cluster": "hausmeisterservice-niedernhausen",
+      "targetURL": "https://perlas.de/einsatzgebiete/hausmeisterservice-niedernhausen/",
+      "originalExistingURL": "https://perlas.de/hausmeisterservice-niedernhausen/",
+      "originalCoverage": "confirmed_legacy_service_restoration",
+      "newLocalPagePlanned": true,
+      "optionalUnbuiltPage": false,
+      "scopeApprovalRequired": false,
+      "scopeApprovalNote": "Hausmeisterservice in Niedernhausen und Kelsterbach vom Nutzer am 17.11.2026 ausdrücklich bestätigt. Keine neue Niederlassung.",
+      "candidateSource": "Confirmed existing service area and restoration of former URLs; exact search volume queried17November2026.",
+      "researchDisposition": "active",
+      "publication": {
+        "status": "local_only_pending_push",
+        "checkedOn": null
+      },
+      "googleIndex": {
+        "status": "not_checked_per_keyword",
+        "checkedOn": null
+      }
+    },
+    {
+      "id": "KW-577",
+      "keyword": "hausmeisterservice kelsterbach",
+      "priority": "P1",
+      "priorityRationale": "Wiederanbindung eines früheren Angebots nach ausdrücklicher Bestätigung des fortbestehenden Hausmeisterservices durch den Betrieb am 17.11.2026. Suchvolumen ist ein ergänzender Messwert, keine Klickprognose.",
+      "commercialIntent": "Hausmeisterservice vor Ort beauftragen oder Anbieter wechseln",
+      "intentIsInferred": true,
+      "queryLocality": "Kelsterbach",
+      "ambiguousScope": false,
+      "estimatedMonthlyVolume": 10,
+      "measurementStatus": "positive_estimate",
+      "measuredOn": "2026-11-17",
+      "sourcePeriod": "2025-11 to 2026-10",
+      "sourceId": "google_ads_restored_service_areas",
+      "sourceTaskId": "11170856-2663-0367-0000-af3c06f62515",
+      "cpcUsd": 2.07,
+      "competitionAds": {
+        "level": "HIGH",
+        "index": 100,
+        "isOrganicDifficulty": false
+      },
+      "cluster": "hausmeisterservice-kelsterbach",
+      "targetURL": "https://perlas.de/einsatzgebiete/hausmeisterservice-kelsterbach/",
+      "originalExistingURL": "https://perlas.de/hausmeisterservice-kelsterbach/",
+      "originalCoverage": "confirmed_legacy_service_restoration",
+      "newLocalPagePlanned": true,
+      "optionalUnbuiltPage": false,
+      "scopeApprovalRequired": false,
+      "scopeApprovalNote": "Hausmeisterservice in Niedernhausen und Kelsterbach vom Nutzer am 17.11.2026 ausdrücklich bestätigt. Keine neue Niederlassung.",
+      "candidateSource": "Confirmed existing service area and restoration of former URLs; exact search volume queried17November2026.",
+      "researchDisposition": "active",
+      "publication": {
+        "status": "local_only_pending_push",
+        "checkedOn": null
+      },
+      "googleIndex": {
+        "status": "not_checked_per_keyword",
+        "checkedOn": null
+      }
     }
   ],
   "publicationVerification": {
@@ -24723,12 +24892,12 @@
     "activeServices": "Vorhandene Objektbetreuung, Büro-/Treppenhaus-/Grund-/Tiefgaragen-/Glas-/Fensterreinigung, abgestimmte laufende Praxisraumreinigung, Außenanlagenpflege und Winterdienst.",
     "excludedExampleKeywords": 96,
     "excludedExampleReason": "Marmor war ein Beispiel für präzise Suchbegriffe, kein Auftrag zur Bewerbung von Spezialverfahren. Kein offener Klärungsbedarf.",
-    "activeKeywordCount": 479,
-    "measuredKeywordCount": 575,
+    "activeKeywordCount": 481,
+    "measuredKeywordCount": 577,
     "updatedOn": "2026-11-17",
     "selectedGrowthFocusKeywords": 40,
     "selectedGrowthFocusTargets": 16,
-    "plannedCanonicalPagesAfterExpansion": 75
+    "plannedCanonicalPagesAfterExpansion": 77
   },
   "growthFocus": {
     "selectedOn": "2026-11-17",
@@ -24755,9 +24924,9 @@
       "/einsatzgebiete/gebaeudereinigung-frankfurt-bornheim/"
     ],
     "publicationStatusAtSelection": "local_only_pending_push",
-    "totalCampaignNewPageCount": 33,
+    "totalCampaignNewPageCount": 35,
     "campaignPagesCreatedOn2026_11_16": 17,
-    "campaignPagesCreatedOn2026_11_17": 16,
+    "campaignPagesCreatedOn2026_11_17": 18,
     "publicationVerifiedOn": "2026-11-17",
     "publicationVerifiedRelease": "783f1de"
   },

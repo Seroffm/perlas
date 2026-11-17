@@ -1,5 +1,6 @@
 {
   "home": {
+    "updatedOn": "2026-11-17",
     "title": "Facility Management Sulzbach (Taunus) | Perla’s",
     "description": "Perla’s aus Sulzbach (Taunus): Facility Management und Objektbetreuung für Unternehmen, Privatkunden und WEG im Rhein-Main-Gebiet. Jetzt anfragen.",
     "heading": "Facility Management aus Sulzbach (Taunus).",
@@ -33,6 +34,7 @@
       "schemaType": "CollectionPage"
     },
     "about": {
+      "updatedOn": "2026-11-17",
       "path": "ueber-uns/",
       "title": "Perla’s aus Sulzbach | Objektbetreuung seit 1999",
       "description": "Perla’s aus Sulzbach (Taunus): Lernen Sie das Team und die Arbeitsweise hinter der Objektbetreuung im Rhein-Main-Gebiet kennen. Jetzt Kontakt aufnehmen.",

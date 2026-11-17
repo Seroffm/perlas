@@ -2,7 +2,7 @@ import { useRef, useState } from 'react'
 import { ArrowUpRight, CheckCircle2, Phone } from 'lucide-react'
 import QuickContactForm from './QuickContactForm'
 import ResponsiveImage from './ResponsiveImage'
-import type { BlogPostContent, LocalLandingContent } from './content-types'
+import type { BlogPostSummary, LocalLandingContent } from './content-types'
 
 const BASE_PATH = import.meta.env.BASE_URL
 const REGIONS_PATH = `${BASE_PATH}einsatzgebiete/`
@@ -25,12 +25,12 @@ function PhoneLink({ light = false }: { light?: boolean }) {
 export default function LocalLandingPage({ page, services, guides }: {
   page: LocalLandingContent
   services: ServiceLink[]
-  guides: BlogPostContent[]
+  guides: BlogPostSummary[]
 }) {
   const service = services.find((entry) => entry.slug === page.serviceSlug)
   const relatedGuides = page.guideSlugs
     .map((slug) => guides.find((guide) => guide.slug === slug))
-    .filter((guide): guide is BlogPostContent => Boolean(guide))
+    .filter((guide): guide is BlogPostSummary => Boolean(guide))
   const updated = new Intl.DateTimeFormat('de-DE', {
     day: 'numeric', month: 'long', year: 'numeric', timeZone: 'Europe/Berlin',
   }).format(new Date(`${page.updatedOn}T12:00:00Z`))

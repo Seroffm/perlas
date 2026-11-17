@@ -49,6 +49,18 @@ Die bisherigen Referenzen auf `perlas-hero.png`, `perlas-office.png`, `perlas-pr
 
 Die Auswahl setzt echte Einsätze, Mitarbeitende, Fahrzeuge und betreute Objekte gezielt ein, ohne jede Seite mit ähnlichen Bildern zu überladen.
 
+## Arbeitsbelege auf Angebotsseiten, 17.11.2026
+
+Der gemeinsame Baustein `WorkEvidence.tsx` zeigt vorhandene Kundenbilder auf
+32 passenden Angebotsseiten: Objektbetreuung, Reinigung, Tiefgaragenreinigung
+und Gartenpflege. Der Vergleich des Außenbereichs verwendet das oben belegte
+Vorher-/Nachher-Paar desselben Objekts. Die Parkhausbilder zeigen Geräteeinsatz
+und eine gereinigte Fläche und werden weiterhin nicht als gleicher
+Vorher-/Nachher-Blickwinkel bezeichnet. Andere Aufnahmen zeigen Mitarbeitende,
+Innenhöfe und Zugänge. Aus den Fotos wird kein Auftrag in der jeweils beworbenen
+Stadt und keine zusätzliche Qualifikation oder Kundenreferenz abgeleitet.
+Die Bilder werden unverändert aus den bestehenden responsiven Varianten geladen.
+
 ## KI-Visualisierung
 
 | Datei | Einsatz auf der Website | Grundlage und Kennzeichnung |

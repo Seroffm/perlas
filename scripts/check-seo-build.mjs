@@ -20,7 +20,7 @@ const urls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => new UR
 const sitemapIndex = await readFile(path.join(dist, 'sitemap_index.xml'), 'utf8')
 assert(sitemapIndex.includes('<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'), 'Valid compatibility sitemap index required')
 assert.deepEqual([...sitemapIndex.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]), [new URL('sitemap.xml', site).href], 'Sitemap index must point only to the current canonical sitemap')
-// Keep the route allowlist independent of content collections. The thirty-six local
+// Keep the route allowlist independent of content collections. The thirty-eight local
 // service pages, four focused service offers and ten articles have each been
 // explicitly commissioned.
 const existingPaths = [
@@ -40,6 +40,8 @@ const existingPaths = [
   'einsatzgebiete/baumpflege-baumfaellung-neu-isenburg/',
   'einsatzgebiete/hausmeisterservice-frankfurt/',
   'einsatzgebiete/hausmeisterservice-kelkheim/',
+  'einsatzgebiete/hausmeisterservice-niedernhausen/',
+  'einsatzgebiete/hausmeisterservice-kelsterbach/',
   'einsatzgebiete/bueroreinigung-frankfurt/',
   'einsatzgebiete/gebaeudereinigung-eschborn/',
   'einsatzgebiete/tiefgaragenreinigung-frankfurt/',
@@ -101,8 +103,25 @@ const existingPaths = [
   'leistungen/hausmeisterservice-gewerbe/',
 ]
 const expectedUrls = existingPaths.map((relative) => new URL(relative, site).href).sort()
-assert.equal(expectedUrls.length, 75, 'Exactly 75 commissioned canonical pages required')
-assert.deepEqual(urls.map((url) => url.href).sort(), expectedUrls, 'Only the 75 explicitly commissioned canonical routes are allowed')
+assert.equal(expectedUrls.length, 77, 'Exactly 77 commissioned canonical pages required')
+assert.deepEqual(urls.map((url) => url.href).sort(), expectedUrls, 'Only the 77 explicitly commissioned canonical routes are allowed')
+const favicon = await readFile(path.join(dist, 'favicon.ico'))
+assert.deepEqual(favicon, await readFile(path.join(workspace, 'public/favicon.ico')), 'Build must preserve the committed favicon')
+assert.equal(favicon.readUInt16LE(0), 0, 'Valid ICO header required')
+assert.equal(favicon.readUInt16LE(2), 1, 'Favicon must contain icon frames')
+const faviconSizes = [16, 32, 48, 64, 128, 256]
+assert.equal(favicon.readUInt16LE(4), faviconSizes.length, 'Keep the supplied small and large favicon frames')
+for (const [index, size] of faviconSizes.entries()) {
+  const frame = 6 + index * 16
+  assert.equal(favicon[frame] || 256, size, 'Favicon frame width')
+  assert.equal(favicon[frame + 1] || 256, size, 'Favicon frame must be square')
+  const bytes = favicon.readUInt32LE(frame + 8)
+  const offset = favicon.readUInt32LE(frame + 12)
+  assert(offset >= 6 + faviconSizes.length * 16 && offset + bytes <= favicon.length, 'Favicon frame must lie inside its file')
+  assert.deepEqual([...favicon.subarray(offset, offset + 8)], [137, 80, 78, 71, 13, 10, 26, 10], 'Favicon frame must contain a PNG')
+  assert.equal(favicon.readUInt32BE(offset + 16), size, 'PNG width must match its ICO frame')
+  assert.equal(favicon.readUInt32BE(offset + 20), size, 'PNG height must match its ICO frame')
+}
 const robotsFile = await readFile(path.join(dist, 'robots.txt'), 'utf8')
 const robotsGroups = []
 let robotsGroup
@@ -124,14 +143,29 @@ for (const rawLine of robotsFile.split(/\r?\n/)) {
 }
 const wildcardGroups = robotsGroups.filter((group) => group.agents.includes('*'))
 assert.equal(wildcardGroups.length, 1, 'One unambiguous wildcard robots group required')
-const robotsAllows = (pathname) => {
-  const matching = wildcardGroups[0].rules.filter((rule) => {
+const retrievalBots = ['oai-searchbot', 'claude-searchbot', 'perplexitybot']
+if (indexingEnabled) {
+  for (const agent of retrievalBots) {
+    assert.equal(robotsGroups.filter((group) => group.agents.includes(agent)).length, 1, `Document one explicit retrieval policy for ${agent}`)
+  }
+}
+const robotsAllows = (pathname, agent = '*') => {
+  const specificGroups = robotsGroups.filter((group) => group.agents.some((name) => name !== '*' && agent.includes(name)))
+  const longestAgent = Math.max(0, ...specificGroups.flatMap((group) => group.agents.filter((name) => agent.includes(name)).map((name) => name.length)))
+  const selectedGroups = specificGroups.length
+    ? specificGroups.filter((group) => group.agents.some((name) => name.length === longestAgent && agent.includes(name)))
+    : wildcardGroups
+  const matching = selectedGroups.flatMap((group) => group.rules).filter((rule) => {
     const expression = rule.path.replace(/[.+?^{}()|[\]\\]/g, '\\$&').replaceAll('*', '.*')
     return new RegExp(`^${expression}`).test(pathname)
   }).sort((left, right) => right.path.length - left.path.length || Number(right.directive === 'allow') - Number(left.directive === 'allow'))
   return !matching.length || matching[0].directive === 'allow'
 }
-for (const url of urls) assert.equal(robotsAllows(url.pathname), indexingEnabled, `robots.txt must match the configured indexability for ${url}`)
+for (const url of urls) {
+  for (const agent of ['*', 'googlebot', ...retrievalBots, 'gptbot', 'claudebot', 'google-extended']) {
+    assert.equal(robotsAllows(url.pathname, agent), indexingEnabled, `robots.txt must preserve the configured access for ${agent}: ${url}`)
+  }
+}
 const advertisedSitemaps = [...robotsFile.matchAll(/^\s*sitemap\s*:\s*(\S+)\s*$/gim)].map((match) => match[1])
 assert.deepEqual(advertisedSitemaps, indexingEnabled ? [new URL('sitemap.xml', site).href] : [], 'robots.txt sitemap advertisement must match the configured canonical site and indexing mode')
 const blogContent = JSON.parse(await readFile(path.join(workspace, 'src/blog-data.json'), 'utf8'))
@@ -147,6 +181,8 @@ const commercialByUrl = new Map(commercialContent.map((landing) => [new URL(`ein
 const focusedByUrl = new Map(focusedContent.map((landing) => [new URL(landing.path.replace(/^\//, ''), site).href, landing]))
 const cleanByUrl = new Map([...focusedByUrl, ...[...commercialByUrl].filter(([, landing]) => landing.layout === 'focused')])
 const seoContent = JSON.parse(await readFile(path.join(workspace, 'src/seo-data.json'), 'utf8'))
+assert.equal(seoContent.home.updatedOn, '2026-11-17', 'Home copy was substantively corrected on 17 November, never roll this date with builds')
+assert.equal(seoContent.pages.about.updatedOn, '2026-11-17', 'About copy was substantively corrected on 17 November, never roll this date with builds')
 const googleReviews = JSON.parse(await readFile(path.join(workspace, 'src/google-reviews-data.json'), 'utf8'))
 const imageVariants = JSON.parse(await readFile(path.join(workspace, 'src/image-variants.json'), 'utf8'))
 const footerGroups = JSON.parse(await readFile(path.join(workspace, 'src/footer-links.json'), 'utf8')).groups
@@ -157,9 +193,10 @@ const frankfurtArticleSlug = 'hausmeisterservice-objektbetreuung-frankfurt-umgeb
 const frankfurtLandingUrl = new URL(`einsatzgebiete/${frankfurtLandingSlug}/`, site).href
 const frankfurtArticleUrl = new URL(`blog/${frankfurtArticleSlug}/`, site).href
 assert.equal(localContent.length, 7, 'Keep the seven established local service pages')
-assert.equal(commercialByUrl.size, 29, 'Exactly twenty-nine unique commissioned commercial landing pages required')
+assert.equal(commercialByUrl.size, 31, 'Exactly thirty-one unique commissioned commercial landing pages required')
 assert.deepEqual([...commercialByUrl.keys()].sort(), [
   'hausmeisterservice-kelkheim', 'bueroreinigung-frankfurt',
+  'hausmeisterservice-niedernhausen', 'hausmeisterservice-kelsterbach',
   'gebaeudereinigung-eschborn', 'tiefgaragenreinigung-frankfurt',
   'hausmeisterservice-wiesbaden',
   'gebaeudereinigung-wiesbaden',
@@ -186,9 +223,9 @@ assert.deepEqual([...commercialByUrl.keys()].sort(), [
   'gebaeudereinigung-frankfurt-niederrad',
   'gebaeudereinigung-frankfurt-roedelheim',
   'gebaeudereinigung-frankfurt-bornheim',
-].map((slug) => new URL(`einsatzgebiete/${slug}/`, site).href).sort(), 'Only the twenty-nine explicitly commissioned commercial landing routes are allowed')
-assert.equal(allLocalContent.length, 36, 'Exactly thirty-six local content entries required, without slug collisions')
-assert.equal(localByUrl.size, 36, 'Exactly thirty-six unique commissioned local service pages required')
+].map((slug) => new URL(`einsatzgebiete/${slug}/`, site).href).sort(), 'Only the thirty-one explicitly commissioned commercial landing routes are allowed')
+assert.equal(allLocalContent.length, 38, 'Exactly thirty-eight local content entries required, without slug collisions')
+assert.equal(localByUrl.size, 38, 'Exactly thirty-eight unique commissioned local service pages required')
 assert.deepEqual([...localByUrl.keys()].sort(), expectedUrls.filter((url) => url.startsWith(regionsUrl) && url !== regionsUrl), 'Local data and independently allowed routes must agree')
 const newCommercialSlugs = new Set([
   'gebaeudereinigung-frankfurt', 'glasreinigung-frankfurt', 'praxisreinigung-frankfurt',
@@ -197,15 +234,17 @@ const newCommercialSlugs = new Set([
   'gebaeudereinigung-neu-isenburg', 'gebaeudereinigung-bad-homburg', 'winterdienst-oberursel',
   'hausmeisterservice-bad-homburg', 'gebaeudereinigung-frankfurt-niederrad',
   'gebaeudereinigung-frankfurt-roedelheim', 'gebaeudereinigung-frankfurt-bornheim',
+  'hausmeisterservice-niedernhausen', 'hausmeisterservice-kelsterbach',
 ])
 const newCleanRegionalContent = commercialContent.filter((landing) => landing.layout === 'focused')
-assert.deepEqual(newCleanRegionalContent.map((landing) => landing.slug).sort(), [...newCommercialSlugs].sort(), 'Exactly the sixteen new regional offers use the clean renderer')
-assert.equal(cleanByUrl.size, 20, 'Keep four focused service offers plus sixteen new clean regional offers')
+assert.deepEqual(newCleanRegionalContent.map((landing) => landing.slug).sort(), [...newCommercialSlugs].sort(), 'Exactly the eighteen commissioned regional offers use the clean renderer')
+assert.equal(cleanByUrl.size, 22, 'Keep four focused service offers plus eighteen clean regional offers')
 for (const landing of newCleanRegionalContent) {
   assert.equal(landing.path, `/einsatzgebiete/${landing.slug}/`, `Clean regional path must match its approved slug: ${landing.slug}`)
   assert(landing.eyebrow && landing.parentLabel && landing.heroPromise, `Clean regional identity and offer copy required: ${landing.slug}`)
 }
 assert.equal(focusedContent.length, 4, 'Exactly four individually commissioned focused service offers required')
+assert.equal(allLocalContent.length + focusedContent.length, 42, 'Exactly forty-two commissioned service/location offers required')
 assert.equal(focusedByUrl.size, 4, 'Focused service paths must be unique')
 assert.deepEqual([...focusedByUrl.keys()].sort(), [
   'leistungen/treppenhausreinigung/',
@@ -236,13 +275,13 @@ for (const landing of allLocalContent) {
 }
 for (const landing of localContent) {
   assert(typeof landing.audience === 'string' && landing.audience.length > 30, `Specific local audience required: ${landing.slug}`)
-  const expectedUpdate = landing.slug === frankfurtLandingSlug ? '2026-10-14'
+  const expectedUpdate = landing.slug === frankfurtLandingSlug ? '2026-11-17'
     : landing.slug === 'objektbetreuung-eschborn' ? '2026-11-16' : '2026-10-07'
   assert.equal(landing.updatedOn, expectedUpdate, `Keep the actual local substantive update date, never a rolling date: ${landing.slug}`)
 }
 for (const landing of [...commercialContent, ...focusedContent]) {
-  const expectedUpdate = newCommercialSlugs.has(landing.slug) ? '2026-11-17' : '2026-11-16'
-  assert.equal(landing.updatedOn, expectedUpdate, `Keep the actual commercial publication date: ${landing.slug}`)
+  const expectedUpdate = landing.slug === 'winterdienst-gewerbe' ? '2026-11-16' : '2026-11-17'
+  assert.equal(landing.updatedOn, expectedUpdate, `Keep the actual commercial content update date: ${landing.slug}`)
   assert(landing.scopeTitle && landing.scopeIntro && landing.serviceAreaText, `Commercial scope and genuine service area required: ${landing.slug}`)
   assert(landing.planning?.title && landing.planning.intro && landing.planning.headers.length >= 2 && landing.planning.rows.length >= 3, `Useful planning comparison required: ${landing.slug}`)
   assert(landing.planning.rows.every((row) => row.length === landing.planning.headers.length), `Rectangular commercial planning table required: ${landing.slug}`)
@@ -327,6 +366,30 @@ function checkStructuredData(html, url) {
     assert.equal(data['@context'], 'https://schema.org', `Schema context: ${url}`)
     return data['@graph'] ?? [data]
   })
+  const pageTypes = new Set(['WebPage', 'ContactPage', 'AboutPage', 'CollectionPage'])
+  const pageNodes = entries.filter((entry) => schemaTypes(entry).some((type) => pageTypes.has(type)))
+  assert.equal(pageNodes.length, 1, `Exactly one page entity required: ${url}`)
+  const page = pageNodes[0]
+  assert.equal(page['@id'], `${url.href}#page`, `Stable page identity: ${url}`)
+  assert.equal(page.url, url.href, `Page entity must use the canonical URL: ${url}`)
+  assert.equal(page.name, decodeEntities(html.match(/<title>([\s\S]*?)<\/title>/)?.[1] ?? ''), `Page entity must describe the current page title: ${url}`)
+  assert.equal(page.description, decodeEntities(markup(html, 'meta').find((meta) => meta.name === 'description')?.content ?? ''), `Page entity must describe the current page: ${url}`)
+  assert.equal(page.inLanguage, 'de-DE', `Page language: ${url}`)
+  assert.equal(page.isPartOf?.['@id'], `${site.href}#website`, `Page belongs to the canonical website: ${url}`)
+  assert.equal(page.about?.['@id'], businessId, `Page must retain the actual business identity: ${url}`)
+  const generalDefinition = url.href === site.href ? seoContent.home : Object.values(seoContent.pages).find((definition) => new URL(definition.path, site).href === url.href)
+  if (generalDefinition?.updatedOn) assert.equal(page.dateModified, generalDefinition.updatedOn, `Page schema must retain its actual substantive update date: ${url}`)
+  const entityIds = entries.map((entry) => entry['@id'])
+  assert(entityIds.every((id) => typeof id === 'string' && id.startsWith(site.href)), `Every graph node needs a stable site identity: ${url}`)
+  assert.equal(new Set(entityIds).size, entityIds.length, `Duplicate graph entities: ${url}`)
+  const mainEntity = entries.find((entry) => entry['@id'] === page.mainEntity?.['@id'])
+  assert(mainEntity, `The main entity must exist in the page graph: ${url}`)
+  const breadcrumbNodes = entries.filter((entry) => schemaTypes(entry).includes('BreadcrumbList'))
+  assert.equal(breadcrumbNodes.length, url.href === site.href ? 0 : 1, `One real breadcrumb hierarchy on each child page, none on home: ${url}`)
+  if (url.href !== site.href) {
+    assert.equal(breadcrumbNodes[0]['@id'], `${url.href}#breadcrumb`, `Stable breadcrumb identity: ${url}`)
+    assert.equal(page.breadcrumb?.['@id'], breadcrumbNodes[0]['@id'], `Page must identify its breadcrumb: ${url}`)
+  }
   if (blogByUrl.has(url.href)) {
     assert.equal(entries.filter((entry) => schemaTypes(entry).includes('BlogPosting')).length, 1, `Exactly one Article schema required: ${url}`)
   }
@@ -373,6 +436,9 @@ function checkStructuredData(html, url) {
   assert.equal(business.address?.addressCountry, 'DE', `Business country: ${url}`)
   assert(!Object.hasOwn(business, 'aggregateRating'), `Do not add self-serving LocalBusiness review markup: ${url}`)
   assert(Array.isArray(business.areaServed) && business.areaServed.length > 0, `Service area absent: ${url}`)
+  for (const profile of ['https://www.google.com/maps?cid=5731639589734766671', 'https://www.youtube.com/@perlasobjektbetreuung', 'https://www.linkedin.com/company/97661595/', 'https://www.instagram.com/perlas_objektbetreuung/']) {
+    assert(business.sameAs?.includes(profile), `Keep the verified business profile: ${url} -> ${profile}`)
+  }
   if (sharedBusiness) assert.deepEqual(business, sharedBusiness, `Business data differs between pages: ${url}`)
   else sharedBusiness = business
 
@@ -418,6 +484,10 @@ for (const url of urls) {
   const title = titleMarkup && decodeEntities(titleMarkup)
   const description = descriptionMarkup && decodeEntities(descriptionMarkup)
   const canonical = markup(html, 'link').filter((link) => link.rel === 'canonical')
+  const icons = markup(html, 'link').filter((link) => link.rel === 'icon')
+  assert.equal(icons.length, 1, `One stable favicon required: ${url}`)
+  assert.equal(icons[0].href, `${site.pathname}favicon.ico`, `Favicon path must respect the site base: ${url}`)
+  assert.equal(icons[0].type, 'image/x-icon', `Favicon MIME declaration: ${url}`)
   assert(title && !titles.has(title), `Missing or duplicated title: ${url}`)
   assert(description && !descriptions.has(description), `Missing or duplicated description: ${url}`)
   assert([...title].length <= 60, `Title exceeds the agreed 60-character copy limit: ${url}`)
@@ -490,6 +560,8 @@ for (const url of urls) {
     const updated = serviceByUrl.get(url.href).updatedOn
     assert(/^\d{4}-\d{2}-\d{2}$/.test(updated) && updated <= today && new Date(`${updated}T00:00:00Z`).toISOString().slice(0, 10) === updated, `Invalid actual service update date: ${url}`)
     assert.equal(sitemapLastmods.get(url.href), updated, `Service lastmod must match the stored substantive update: ${url}`)
+  } else if (url.href === site.href || url.href === new URL('ueber-uns/', site).href) {
+    assert.equal(sitemapLastmods.get(url.href), '2026-11-17', `Home/About sitemap lastmod must reflect the actual copy correction: ${url}`)
   } else {
     assert.equal(sitemapLastmods.get(url.href), undefined, `Do not invent lastmod on unchanged non-blog pages: ${url}`)
   }
@@ -660,7 +732,8 @@ const commissionedBlogs = blogContent.filter((post) => ['07.10.2026', '14.10.202
 for (const post of commissionedBlogs) assert(serviceContent.some((service) => service.guideSlugs?.includes(post.slug)), `New article requires a contextual service incoming link: ${post.slug}`)
 const legacyManifest = JSON.parse(await readFile(path.join(workspace, 'src/legacy-redirects.json'), 'utf8'))
 const redirects = validateLegacyRedirects(legacyManifest, site, expectedUrls)
-assert.equal(redirects.length, 13, 'Only the thirteen approved legacy redirects are allowed')
+// The separately tested manifest owns the exact approved migration map. Every
+// validated entry below must have a working generated redirect and canonical target.
 for (const redirect of redirects) {
   const html = await readFile(fileForUrl(redirect.from), 'utf8')
   assert(!expectedUrls.includes(redirect.from.href), 'Redirects must not be in the sitemap')

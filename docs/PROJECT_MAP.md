@@ -1,6 +1,10 @@
 # Projektübersicht
 
 Perlas ist eine statisch ausgelieferte Website mit React 18, TypeScript und Vite.
+
+Aktuell: 77 kanonische Seiten, 38 regionale und vier allgemeine Angebote,
+21 genaue Altpfadzuordnungen. Technische Änderungen und Grenzen:
+[TECHNICAL_SEO_POLISH_2026-11-17.md](TECHNICAL_SEO_POLISH_2026-11-17.md).
 Die Formular-API ist ein getrenntes PHP-System. Es gibt kein WordPress, kein CMS
 und keine Datenbank im Website-Projekt. Einrichtung und Befehle: [DEVELOPMENT.md](DEVELOPMENT.md).
 
@@ -8,13 +12,17 @@ und keine Datenbank im Website-Projekt. Einrichtung und Befehle: [DEVELOPMENT.md
 
 | Datei | Verantwortung / Ansatzpunkt für Änderungen |
 | --- | --- |
-| `src/main.tsx` | Lädt Schrift und globale Styles, initialisiert Analytics und startet React mit `createRoot`. |
+| `src/main.tsx` | Lädt Schrift und globale Styles, initialisiert Analytics, lädt aktive Seitendaten und Ansicht vor und startet React erst nach deren Bereitschaft. Das initiale HTML bleibt währenddessen sichtbar. |
+| `vite-route-content.mjs`, `src/route-content.ts`, `src/route-path.ts` | Erzeugen aus den bestehenden JSON-Quellen getrennte Browserdaten je URL. Normale Pfade und dokumentierte `index.html`-Aliasse werden gemeinsam normalisiert; unbekannte Pfade bleiben Fehlerseiten. |
+| `src/prepared-component.tsx` | Lädt die aktive React-Ansicht vor dem ersten Mount; optionale spätere Dialoge bleiben nachladbar. |
 | `src/App.tsx` | Ermittelt die Seite aus `window.location.pathname` und Vites Basispfad; gemeinsame Navigation, Footer, Kontaktaktionen, Startseite, Leistungs-/Zielgruppenseiten und Rechtstexte. Kein Router-Paket. |
 | `src/ContactPage.tsx`, `src/CareerPage.tsx`, `src/BlogPage.tsx` | Nachgeladene Kontakt-, Karriere-, Blogübersichts- und Artikelansichten. |
 | `src/LocalLandingPage.tsx` | Einsatzgebiete-Hub und allgemeine lokale Leistungsseiten. |
 | `src/FrankfurtLandingPage.tsx` | Eigene Gestaltung für `hausmeisterservice-frankfurt`; dieselbe Komponente wird auch statisch gerendert. |
 | `src/CommercialLandingPage.tsx` | Angebotsansicht für die ersten 13 recherchierten Themen-/Ortsseiten mit individueller Planungstabelle und Kurzformular; dieselbe Komponente rendert das initiale HTML. |
-| `src/FocusedServiceLandingPage.tsx` | Reduzierte Angebotsansicht für vier Leistungsseiten und 16 weitere Orts-/Stadtteilangebote; Browser und initiales HTML nutzen dieselbe Komponente. |
+| `src/FocusedServiceLandingPage.tsx` | Reduzierte Angebotsansicht für vier Leistungsseiten und 18 weitere Orts-/Stadtteilangebote; Browser und initiales HTML nutzen dieselbe Komponente. |
+| `src/WorkEvidence.tsx`, `src/work-evidence.css` | Vorhandene echte Arbeitsbilder auf 32 passenden Angebotsseiten; keine erfundene Zuordnung zu lokalen Aufträgen. |
+| `src/structured-data.mjs` | Gemeinsamer reiner Schema-Builder für Browser und Build: Unternehmensidentität, Seitentyp, Leistung/Artikel, echte Breadcrumbs und Datierung. |
 | `src/QuickContactForm.tsx`, `src/QuoteModal.tsx` | Kurzanfrage und ausführliche Angebotsanfrage; weitere Kontaktformulare liegen in `App.tsx` und den Seitenkomponenten. |
 | `src/styles.css` | Globale Gestaltung und viele bestehende Seiten-/Komponentenregeln; spätere Regeln und Medienabfragen bei Änderungen mitprüfen. |
 | Weitere `src/*.css` | Ergänzungen für Kurzanfrage, Anfrageauswahl, Ratgeberverweise sowie lokale und Frankfurter Landingpages. |
@@ -30,7 +38,7 @@ zusammenpassen; die lokale Analytics-Routenliste ist zusätzlich ausdrücklich b
 | `src/seo-data.json` | Gemeinsame Metadaten, Übersichtsseiten, Region und Leistungsgruppen. |
 | `src/service-data.json`, `src/audience-data.json` | Leistungen und Zielgruppen einschließlich Slugs, Seitentexten, Bildern, SEO und FAQs. |
 | `src/local-landing-data.json` | Einzeln ausgewählte lokale Seiten; keine automatisch erzeugte Stadt-Leistungs-Matrix. |
-| `src/commercial-landing-data.json` | 29 recherchierte Angebote: 13 im bisherigen Layout und 16 mit `layout: "focused"`; Typen in `src/commercial-landing-types.ts`. |
+| `src/commercial-landing-data.json` | 31 recherchierte Angebote: 13 im bisherigen Layout und 18 mit `layout: "focused"`; Typen in `src/commercial-landing-types.ts`. |
 | `src/focused-service-data.json` | Vier einzeln ausgewählte Angebote zu Treppenhausreinigung, Heckenschnitt, Gewerbe-Winterdienst und Gewerbe-Hausmeisterservice; eigene Typen und `focused-services.css`. |
 | `src/blog-data.json`, `src/job-data.json` | Artikel und Stellenbereiche; gemeinsame Typen in `src/content-types.ts`. |
 | `src/imprint-content.json`, `src/privacy-content.json` | Impressum und Datenschutztexte. |
@@ -46,10 +54,11 @@ zusammenpassen; die lokale Analytics-Routenliste ist zusätzlich ausdrücklich b
 
 - `npm run build` prüft TypeScript und erzeugt mit Vite die Browserdateien in `dist/`.
 - `npm run build:pages` führt zusätzlich `scripts/prepare-pages.mjs` aus: sichtbares initiales HTML, Metadaten, Canonicals, Schema, Sitemap, Robots-Datei, Fehlerseite und Hostingdateien.
-- Die meisten statischen Seiten werden durch eigene HTML-Vorlagen im Skript erzeugt. React ersetzt diese Inhalte beim Start; es findet keine allgemeine React-Hydration statt. Inhaltliche Änderungen deshalb in beiden Darstellungen prüfen.
+- Die meisten statischen Seiten werden durch eigene HTML-Vorlagen im Skript erzeugt. React übernimmt nach dem Laden der aktiven Daten und Ansicht; bis dahin bleibt das statische HTML erhalten. Es findet keine allgemeine React-Hydration statt. Inhaltliche Änderungen deshalb in beiden Darstellungen prüfen.
 - Die Frankfurtseite, die Angebotsseiten in beiden Layouts und der Footer verwenden jeweils dieselbe React-Komponente im Browser und im Build. Vite lädt sie ohne Netzwerkport; `renderToStaticMarkup` rendert sie mit `staticMode`. Formulare erhalten dann direkte Kontaktalternativen. Die Styles der gezielten Seiten werden bereits im initialen Stylesheet geladen.
 - `vite.config.ts` und die Buildskripte verwenden `PERLAS_SITE_URL` für Basispfad und öffentliche URLs sowie `PERLAS_INDEX_SITE` für Indexierung. Das Browser-SEO wird zusätzlich in `App.tsx` aktualisiert.
 - `src/legacy-redirects.json` und `scripts/prepare-legacy-redirects.mjs` erzeugen sofortige HTML-Weiterleitungen. Unter GitHub Pages sind das HTTP-200-Seiten mit Meta-Refresh, keine HTTP-301-Antworten.
+- `public/favicon.ico` enthält quadratische Varianten des vorhandenen Markenzeichens; `scripts/prepare-favicon.mjs` erzeugt sie bei einer bewussten Logoänderung, nicht bei jedem Build.
 - `dist/` ist ein Buildprodukt. Änderungen gehören in Quellen; `public/CNAME` und die konfigurierte Zieldomain müssen zum Hosting passen.
 
 ## Formulare und externe Integrationen
@@ -70,7 +79,7 @@ große Klickziele. Bestehende Styles und Abweichungen am konkreten Bauteil prüf
 mobile Darstellung, Tastaturbedienung und reduzierte Bewegung erhalten.
 
 - `npm run lint`: TypeScript-Prüfung; kein separater ESLint-Lauf.
-- `npm run check:seo`: prüft den zuvor erzeugten Build, einschließlich der ausdrücklich erlaubten 75 kanonischen Seiten, interner Links, Metadaten, Schema, Robots-Datei und 13 Altpfad-Zuordnungen. Bei neuen freigegebenen Seiten die unabhängige Routenliste bewusst aktualisieren.
+- `npm run check:seo`: prüft den zuvor erzeugten Build, einschließlich der ausdrücklich erlaubten 77 kanonischen Seiten, interner Links, Metadaten, Schema, effektiver Botregeln, Favicon und 21 freigegebener Altpfad-Zuordnungen. Bei neuen freigegebenen Seiten die unabhängige Routenliste bewusst aktualisieren.
 - `npm run check:images`: prüft Bildmanifest und generierte Bilddateien.
 - `node --test src/*.test.mjs scripts/*.test.mjs`: vorhandene Offlineprüfungen für Analytics/Einwilligung, Kurzanfrage/Transport und Altpfad-Zuordnung.
 - `php server/tests/test.php`: Backendprüfungen mit Mocktransport ohne echten Versand; PHP ≥8.2 und die dokumentierten Erweiterungen erforderlich.

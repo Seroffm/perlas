@@ -1,6 +1,7 @@
 import { ArrowRight, ArrowUpRight, Check, CheckCircle2, ClipboardCheck, Mail, MapPin, Phone, Star } from 'lucide-react'
 import QuickContactForm from './QuickContactForm'
 import ResponsiveImage from './ResponsiveImage'
+import WorkEvidence from './WorkEvidence'
 import googleReviewData from './google-reviews-data.json'
 import type { LocalLandingContent } from './content-types'
 import './frankfurt-landing.css'
@@ -79,7 +80,7 @@ export default function FrankfurtLandingPage({ page, staticMode = false }: { pag
 
       <section className="ff-container ff-proof" aria-label="Perla’s auf einen Blick">
         <div><strong>Seit 1999</strong><span>Erfahrung in der Objektbetreuung</span></div>
-        <div><strong>10+</strong><span>Mitarbeitende im Team</span></div>
+        <div><strong>Ein Team</strong><span>für die Aufgaben an Ihrem Objekt</span></div>
         <div><strong>Ein Kontakt</strong><span>für Ihre laufende Betreuung</span></div>
         <div><strong>Rhein-Main</strong><span>aus Sulzbach für Ihre Immobilie</span></div>
       </section>
@@ -159,6 +160,8 @@ export default function FrankfurtLandingPage({ page, staticMode = false }: { pag
           <a className="ff-text-link" href="#anfrage">Individuelles Angebot anfragen <ArrowRight aria-hidden="true" /></a>
         </div>
       </section>
+
+      <WorkEvidence serviceSlug={page.serviceSlug} id="ff-praxis" className="ff-container" />
 
       <section className="ff-container ff-faq" aria-labelledby="ff-faq-heading">
         <div className="ff-section-heading"><span className="ff-eyebrow">Gut zu wissen</span><h2 id="ff-faq-heading">Kurz gefragt.<br />Klar beantwortet.</h2></div>

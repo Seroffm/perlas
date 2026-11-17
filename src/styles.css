@@ -1,3 +1,5 @@
+@import './work-evidence.css';
+
 :root {
   font-family: 'Inter', Arial, sans-serif;
   color: #0a0b0d;
@@ -7788,8 +7790,10 @@ p {
 
 .home-trust-stats strong {
   color: #fff;
-  font-size: 42px;
-  line-height: 1;
+  max-width: 100%;
+  font-size: clamp(24px, 2.6vw, 34px);
+  line-height: 1.15;
+  overflow-wrap: anywhere;
 }
 
 .home-trust-stats span {
@@ -8542,7 +8546,7 @@ p {
   }
 
   .home-trust-stats strong {
-    font-size: 34px;
+    font-size: clamp(20px, 5.4vw, 25px);
   }
 
   .home-contact-teaser,
@@ -10856,6 +10860,8 @@ body {
   font-size: clamp(46px, 5.2vw, 72px);
   line-height: 1.02;
   letter-spacing: -2.2px;
+  overflow-wrap: break-word;
+  hyphens: auto;
 }
 
 .blog-hero-copy h1 {
@@ -11159,6 +11165,10 @@ body {
   grid-template-columns: minmax(0, 0.94fr) minmax(440px, 1.06fr);
   align-items: center;
   gap: 76px;
+}
+
+.blog-article-hero-copy {
+  min-width: 0;
 }
 
 .blog-article-hero-copy .eyebrow {

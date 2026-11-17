@@ -1,6 +1,7 @@
 import { ArrowRight, ArrowUpRight, Building2, Check, ClipboardCheck, Mail, MapPin, Phone, Plus, Star, UsersRound } from 'lucide-react'
 import QuickContactForm from './QuickContactForm'
 import ResponsiveImage from './ResponsiveImage'
+import WorkEvidence from './WorkEvidence'
 import googleReviewData from './google-reviews-data.json'
 import type { CommercialLandingContent } from './commercial-landing-types'
 import './commercial-landings.css'
@@ -189,6 +190,8 @@ export default function CommercialLandingPage({ page, staticMode = false }: {
         <div className="cl-local-copy"><p className="cl-eyebrow"><MapPin aria-hidden="true" />{page.locality} & Rhein-Main</p><h2 id={`${id}-local-heading`}>Nah am Objekt.<br />Direkt im Gespräch.</h2><p>{page.serviceAreaText}</p><address>Perla’s Objektbetreuung · Hauptstraße 1 · 65843 Sulzbach (Taunus)</address><a className="cl-text-link" href={localPath('/ueber-uns/')}>Team und Arbeitsweise kennenlernen <ArrowRight aria-hidden="true" /></a></div>
         {customerVoice && <figure className="cl-customer-voice"><span className="cl-voice-label">Eine Stimme über Perla’s</span><div className="cl-review-stars" role="img" aria-label={`${customerVoice.rating} von 5 Sternen`}>{Array.from({length:customerVoice.rating},(_,i)=><Star key={i} aria-hidden="true" />)}</div><blockquote>„{customerVoice.text}“</blockquote><figcaption><strong>{customerVoice.author}</strong><span>Google-Rezension über Perla’s insgesamt</span></figcaption><a href={googleReviewData.profileUrl} target="_blank" rel="noreferrer">Kundenstimmen bei Google <ArrowUpRight aria-hidden="true" /></a></figure>}
       </section>
+
+      <WorkEvidence serviceSlug={page.serviceSlug} id={`${id}-praxis`} className="cl-container" />
 
       <section className="cl-container cl-section cl-faq" id={`${id}-fragen`} aria-labelledby={`${id}-faq-heading`}>
         <div className="cl-section-heading">

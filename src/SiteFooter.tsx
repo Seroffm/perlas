@@ -44,6 +44,11 @@ export default function SiteFooter({ staticMode = false }: SiteFooterProps) {
             <a className="sf-profile" href={TRUSTLOCAL_URL} target="_blank" rel="noreferrer">
               Profil auf Trustlocal<ArrowUpRight aria-hidden="true" />
             </a>
+            <nav className="sf-social" aria-label="Perla’s in sozialen Netzwerken">
+              <a href="https://www.linkedin.com/company/97661595/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+              <a href="https://www.instagram.com/perlas_objektbetreuung/" target="_blank" rel="noopener noreferrer">Instagram</a>
+              <a href="https://www.youtube.com/@perlasobjektbetreuung" target="_blank" rel="noopener noreferrer">YouTube</a>
+            </nav>
           </section>
 
           {groups.map((group) => (

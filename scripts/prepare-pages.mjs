@@ -5,6 +5,7 @@ import react from '@vitejs/plugin-react'
 import { createElement } from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
 import { prepareLegacyRedirects } from './prepare-legacy-redirects.mjs'
+import { buildPageStructuredData } from '../src/structured-data.mjs'
 
 const distPath = fileURLToPath(new URL('../dist/', import.meta.url))
 const indexPath = fileURLToPath(new URL('../dist/index.html', import.meta.url))
@@ -155,29 +156,17 @@ function imageMarkup(src, alt, { sizes, loading = 'lazy', fetchPriority, classNa
   return `<img${classAttribute} src="${escapeHtml(imageSrc)}" alt="${escapeHtml(alt)}"${responsiveAttributes}${dimensions} loading="${escapeHtml(loading)}" decoding="async"${priorityAttribute}${positionAttribute}>`
 }
 
-const businessId = `${siteUrl.href}#business`
-const businessData = {
-  '@type': 'LocalBusiness',
-  '@id': businessId,
-  name: 'Perla’s Objektbetreuung',
-  url: siteUrl.href,
-  telephone: '+49 177 6867145',
-  email: 'mail@perlas.de',
-  foundingDate: '1999',
-  image: new URL(`${basePath}assets/kundenbilder/objekte/wohnanlage_modern_02.png`, siteUrl.origin).href,
-  logo: new URL(`${basePath}assets/perlas-logo.svg`, siteUrl.origin).href,
-  address: {
-    '@type': 'PostalAddress',
-    streetAddress: 'Hauptstraße 1',
-    postalCode: '65843',
-    addressLocality: 'Sulzbach (Taunus)',
-    addressCountry: 'DE',
-  },
-  areaServed: seoContent.region.areaServed,
-  sameAs: [
-    'https://www.google.com/maps?cid=5731639589734766671',
-    'https://trustlocal.de/hessen/sulzbach/entrumpelung/perlas-objektbetreuung-gmbh-co-kg/',
-  ],
+function schemaImageUrl(asset = 'kundenbilder/objekte/wohnanlage_modern_02.png') {
+  return new URL(`${basePath}assets/${imageVariants[asset]?.src ?? asset}`, siteUrl.origin).href
+}
+
+function pageSchema(options) {
+  return buildPageStructuredData({
+    siteUrl,
+    areaServed: seoContent.region.areaServed,
+    imageUrl: schemaImageUrl(),
+    ...options,
+  })
 }
 
 function serviceUrl(service) {
@@ -194,40 +183,24 @@ function localLandingUrl(landing) {
 
 function localLandingStructuredData(landing) {
   const url = localLandingUrl(landing).href
-  return {
-    '@context': 'https://schema.org',
-    '@graph': [
-      businessData,
-      {
-        '@type': 'WebPage',
-        '@id': `${url}#page`,
-        url,
-        name: landing.seoTitle,
-        description: landing.seoDescription,
-        inLanguage: 'de-DE',
-        dateModified: landing.updatedOn,
-        primaryImageOfPage: new URL(`${basePath}assets/${imageVariants[landing.heroImage.src]?.src ?? landing.heroImage.src}`, siteUrl.origin).href,
-        mainEntity: { '@id': `${url}#service` },
-      },
-      {
-        '@type': 'Service',
-        '@id': `${url}#service`,
-        name: landing.heading,
-        description: landing.seoDescription,
-        url,
-        provider: { '@id': businessId },
-        areaServed: { '@type': 'Place', name: landing.locality },
-      },
-      {
-        '@type': 'BreadcrumbList',
-        itemListElement: [
-          { '@type': 'ListItem', position: 1, name: 'Startseite', item: siteUrl.href },
-          { '@type': 'ListItem', position: 2, name: landing.path?.startsWith('/leistungen/') ? 'Leistungen' : 'Einsatzgebiete', item: landing.path?.startsWith('/leistungen/') ? servicesUrl.href : regionsUrl.href },
-          { '@type': 'ListItem', position: 3, name: landing.heading, item: url },
-        ],
-      },
+  const isFocusedService = landing.path?.startsWith('/leistungen/')
+  return pageSchema({
+    pageUrl: url,
+    title: landing.seoTitle,
+    description: landing.seoDescription,
+    modified: landing.updatedOn,
+    imageUrl: schemaImageUrl(landing.heroImage.src),
+    service: {
+      name: landing.heading,
+      description: landing.seoDescription,
+      areaServed: { '@type': 'Place', name: landing.locality },
+    },
+    breadcrumbs: [
+      { name: 'Startseite', url: siteUrl.href },
+      { name: isFocusedService ? 'Leistungen' : 'Einsatzgebiete', url: isFocusedService ? servicesUrl.href : regionsUrl.href },
+      { name: landing.heading, url },
     ],
-  }
+  })
 }
 
 function blogPostUrl(post) {
@@ -261,138 +234,60 @@ function relatedBlogPosts(post) {
 
 function audienceStructuredData(audience) {
   const url = audienceUrl(audience).href
-  return {
-    '@context': 'https://schema.org',
-    '@graph': [
-      businessData,
-      {
-        '@type': 'Service',
-        '@id': `${url}#service`,
-        name: `Facility Management für ${audience.navLabel}`,
-        description: audience.seoDescription,
-        url,
-        provider: { '@id': businessId },
-        areaServed: seoContent.region.areaServed,
-        audience: {
-          '@type': 'Audience',
-          audienceType: audience.navLabel,
-        },
-      },
-      {
-        '@type': 'BreadcrumbList',
-        itemListElement: [
-          { '@type': 'ListItem', position: 1, name: 'Startseite', item: siteUrl.href },
-          { '@type': 'ListItem', position: 2, name: 'Facility Management', item: facilityUrl.href },
-          { '@type': 'ListItem', position: 3, name: audience.navLabel, item: url },
-        ],
-      },
+  return pageSchema({
+    pageUrl: url,
+    title: audience.seoTitle,
+    description: audience.seoDescription,
+    imageUrl: schemaImageUrl(audience.detailImage?.src ?? audience.image.src),
+    service: {
+      name: `Facility Management für ${audience.navLabel}`,
+      description: audience.seoDescription,
+      areaServed: seoContent.region.areaServed,
+      audienceType: audience.navLabel,
+    },
+    breadcrumbs: [
+      { name: 'Startseite', url: siteUrl.href },
+      { name: 'Facility Management', url: facilityUrl.href },
+      { name: audience.navLabel, url },
     ],
-  }
+  })
 }
 
 function structuredData(service) {
-  if (!service) {
-    return {
-      '@context': 'https://schema.org',
-      '@graph': [
-        businessData,
-        {
-          '@type': 'WebSite',
-          '@id': `${siteUrl.href}#website`,
-          url: siteUrl.href,
-          name: 'PERLAS',
-          alternateName: 'Perla’s Objektbetreuung',
-          inLanguage: 'de-DE',
-        },
-      ],
-    }
-  }
-
+  if (!service) return pageSchema({ pageUrl: siteUrl.href, title: homeSeo.title, description: homeSeo.description, modified: seoContent.home.updatedOn })
   const url = serviceUrl(service).href
-  return {
-    '@context': 'https://schema.org',
-    '@graph': [
-      businessData,
-      {
-        '@type': 'Service',
-        '@id': `${url}#service`,
-        name: service.title,
-        description: service.detail,
-        url,
-        provider: { '@id': businessId },
-        areaServed: seoContent.region.areaServed,
-      },
-      {
-        '@type': 'BreadcrumbList',
-        itemListElement: [
-          { '@type': 'ListItem', position: 1, name: 'Startseite', item: siteUrl.href },
-          { '@type': 'ListItem', position: 2, name: 'Leistungen', item: servicesUrl.href },
-          { '@type': 'ListItem', position: 3, name: service.title, item: url },
-        ],
-      },
+  return pageSchema({
+    pageUrl: url,
+    title: service.seoTitle,
+    description: service.seoDescription,
+    imageUrl: schemaImageUrl(service.image),
+    service: { name: service.title, description: service.detail, areaServed: seoContent.region.areaServed },
+    breadcrumbs: [
+      { name: 'Startseite', url: siteUrl.href },
+      { name: 'Leistungen', url: servicesUrl.href },
+      { name: service.title, url },
     ],
-  }
+  })
 }
 
 function contactStructuredData() {
-  return {
-    '@context': 'https://schema.org',
-    '@graph': [
-      businessData,
-      {
-        '@type': 'ContactPage',
-        '@id': `${contactUrl.href}#page`,
-        url: contactUrl.href,
-        name: contactSeo.title,
-        description: contactSeo.description,
-        inLanguage: 'de-DE',
-        mainEntity: { '@id': businessId },
-      },
-    ],
-  }
+  return pageStructuredData({ type: 'ContactPage', url: contactUrl.href, name: 'Kontakt', description: contactSeo.description })
 }
 
 function facilityStructuredData() {
-  return {
-    '@context': 'https://schema.org',
-    '@graph': [
-      businessData,
-      {
-        '@type': 'WebPage',
-        '@id': `${facilityUrl.href}#page`,
-        url: facilityUrl.href,
-        name: facilitySeo.title,
-        description: facilitySeo.description,
-        inLanguage: 'de-DE',
-        mainEntity: { '@id': businessId },
-      },
-    ],
-  }
+  return pageStructuredData({ type: 'WebPage', url: facilityUrl.href, name: 'Facility Management', description: facilitySeo.description })
 }
 
 function pageStructuredData({ type, url, name, description }) {
-  return {
-    '@context': 'https://schema.org',
-    '@graph': [
-      businessData,
-      {
-        '@type': type,
-        '@id': `${url}#page`,
-        url,
-        name,
-        description,
-        inLanguage: 'de-DE',
-        mainEntity: { '@id': businessId },
-      },
-      {
-        '@type': 'BreadcrumbList',
-        itemListElement: [
-          { '@type': 'ListItem', position: 1, name: 'Startseite', item: siteUrl.href },
-          { '@type': 'ListItem', position: 2, name, item: url },
-        ],
-      },
-    ],
-  }
+  const definition = Object.values(seoContent.pages).find((page) => new URL(page.path, siteUrl).href === url)
+  return pageSchema({
+    pageType: type,
+    pageUrl: url,
+    title: definition?.title ?? name,
+    description,
+    modified: definition?.updatedOn,
+    breadcrumbs: [{ name: 'Startseite', url: siteUrl.href }, { name, url }],
+  })
 }
 
 function serviceLinks(currentSlug, coreOnly = false) {
@@ -426,33 +321,23 @@ function notFoundMarkup() {
 
 function blogPostStructuredData(post) {
   const url = blogPostUrl(post).href
-  return {
-    '@context': 'https://schema.org',
-    '@graph': [
-      businessData,
-      {
-        '@type': 'BlogPosting',
-        '@id': `${url}#article`,
-        headline: post.title,
-        description: post.seoDescription,
-        image: new URL(`${basePath}assets/${post.image}`, siteUrl.origin).href,
-        datePublished: blogDateToIso(post.published ?? '31.08.2026'),
-        dateModified: blogDateToIso(post.updated),
-        inLanguage: 'de-DE',
-        author: { '@type': 'Organization', name: 'Perla’s Objektbetreuung GmbH & Co. KG', url: siteUrl.href },
-        publisher: { '@id': businessId },
-        mainEntityOfPage: url,
-      },
-      {
-        '@type': 'BreadcrumbList',
-        itemListElement: [
-          { '@type': 'ListItem', position: 1, name: 'Startseite', item: siteUrl.href },
-          { '@type': 'ListItem', position: 2, name: 'Blog', item: blogUrl.href },
-          { '@type': 'ListItem', position: 3, name: post.title, item: url },
-        ],
-      },
+  return pageSchema({
+    pageUrl: url,
+    title: post.seoTitle,
+    description: post.seoDescription,
+    imageUrl: schemaImageUrl(post.image),
+    article: {
+      headline: post.title,
+      image: new URL(`${basePath}assets/${post.image}`, siteUrl.origin).href,
+      datePublished: blogDateToIso(post.published ?? '31.08.2026'),
+      dateModified: blogDateToIso(post.updated),
+    },
+    breadcrumbs: [
+      { name: 'Startseite', url: siteUrl.href },
+      { name: 'Blog', url: blogUrl.href },
+      { name: post.title, url },
     ],
-  }
+  })
 }
 
 function selectedServiceLinks(slugs) {
@@ -552,8 +437,8 @@ function homeMarkup() {
     `<section><p>Perla’s im Überblick</p><h2>Der passende Weg für Ihr Objekt.</h2><ul class="seo-static-links"><li><a href="${basePath}facility-management/">Facility Management ansehen</a><p>Mehrere Leistungen abgestimmt betreuen.</p></li><li><a href="${basePath}leistungen/">Alle Leistungen</a><p>Einzelleistungen gezielt auswählen.</p></li><li><a href="${basePath}ueber-uns/">Über uns</a><p>Perla’s persönlich kennenlernen.</p></li><li><a href="${basePath}kontakt/">Kontakt aufnehmen</a><p>Ihr Objekt persönlich besprechen.</p></li></ul></section>`,
     `<section><p>Facility Management nach Objektart</p><h2>Facility Management für professionell verwaltete Immobilien.</h2><p>Perla’s koordiniert wiederkehrende Aufgaben, Zuständigkeiten und Rückmeldungen für Hausverwaltungen, Wohnanlagen, Gewerbeimmobilien und institutionelle Gebäude.</p><ul class="seo-static-links">${audienceLinks}</ul><a href="${basePath}facility-management/">Alle Objektbereiche ansehen</a></section>`,
     `<section><p>Spezialisierte Zusatzleistungen</p><h2>Baumpflege und Spielplatzbetreuung.</h2><p>Die erforderliche Fachkunde und der vereinbarte Prüfumfang werden vor der Beauftragung transparent festgehalten.</p><ul class="seo-static-links">${certifiedServices}</ul><a href="${basePath}kontakt/">Spezialleistung anfragen</a></section>`,
-    `<section><p>Kernleistungen</p><h2>Unsere Kernleistungen.</h2><p>Die wichtigsten Leistungen stehen am Anfang; weitere Bereiche lassen sich im Frontend bei Bedarf einblenden.</p><ul class="seo-static-links">${coreServices}</ul><a href="${basePath}leistungen/">Alle Leistungen ansehen</a></section>`,
-    `<section><h2>Einsatzbereit im Rhein-Main-Gebiet</h2><p>10+ Mitarbeitende, abgestimmte Touren und ein wachsender Fuhrpark unterstützen die verlässliche Betreuung größerer Immobilien.</p>${imageMarkup('kundenbilder/fahrzeuge/perlas_fuhrpark_real.png', 'Perla’s Servicefahrzeuge und Lkw vor einer Wohnanlage')}</section>`,
+    `<section><p>Kernleistungen</p><h2>Unsere Kernleistungen.</h2><p>Wählen Sie die passende Unterstützung für Ihre Immobilie: von der Reinigung bis zur Pflege von Außenanlagen.</p><ul class="seo-static-links">${coreServices}</ul><a href="${basePath}leistungen/">Alle Leistungen ansehen</a></section>`,
+    `<section><h2>Einsatzbereit im Rhein-Main-Gebiet</h2><p>Unser Team stimmt Touren und Einsätze auf die vereinbarten Aufgaben am Objekt ab.</p>${imageMarkup('kundenbilder/fahrzeuge/perlas_fuhrpark_real.png', 'Perla’s Servicefahrzeuge und Lkw vor einer Wohnanlage')}</section>`,
     `<section><h2>Erfahrung und klare Abläufe</h2><p>Perla’s schafft Übersicht über wiederkehrende Aufgaben und hält Rückmeldungen zu Zustand, Leistung und Handlungsbedarf an einer Stelle zusammen.</p></section></main>`,
   ].join('').replace(
     '<section><h2>Einsatzbereit im Rhein-Main-Gebiet</h2>',
@@ -617,7 +502,7 @@ function aboutMarkup() {
     ['Petra', 'kundenbilder/team/update-2026-09-23/mitarbeiter_rechts_unten_ersetzen.png', 'Mitarbeiterin von Perla’s im Büro', 'Büro & Organisation'],
   ].map(([name, image, alt, role]) => `<figure>${imageMarkup(image, alt, { sizes: gridImageSizes })}<figcaption><strong>${escapeHtml(name)}</strong><span>${escapeHtml(role)}</span></figcaption></figure>`).join('')
 
-  return `${staticHeader()}<main class="seo-static-main"><nav aria-label="Brotkrümeln"><a href="${basePath}">Startseite</a> / Über uns</nav><section class="seo-static-hero"><p>Perla’s Objektbetreuung</p><h1>Seit 1999 für Immobilien im Rhein-Main-Gebiet da.</h1><p>Perla’s verbindet persönliche Abstimmung mit planbarer Objektbetreuung. Wir erfassen Aufgaben vor Ort, koordinieren wiederkehrende Einsätze und halten Rückmeldungen verständlich zusammen.</p><a href="${basePath}kontakt/">Persönlich kennenlernen</a></section><section><p>Vorbereiteter Entwurf. Kundendaten werden noch finalisiert.</p><h2>Aus Nähe zum Objekt ist verlässliche Betreuung gewachsen</h2><p>Perla’s begann 1999 mit dem Anspruch, Immobilien persönlich zu kennen, Aufgaben zuverlässig zu erledigen und für Verwaltungen erreichbar zu bleiben. Mit den betreuten Objekten kamen Gebäudereinigung, Außenanlagenpflege, Winterdienst und technische Koordination hinzu.</p><p>Heute arbeitet ein Team aus mehr als zehn Mitarbeitenden an Wohnanlagen, Gewerbeimmobilien und institutionellen Gebäuden im Rhein-Main-Gebiet.</p><ol><li>1999: Start der persönlichen Objektbetreuung</li><li>2000er: Erweiterung der Facility Services</li><li>2010er: Feste Ansprechpartner und dokumentierte Abläufe</li><li>Heute: 10+ Mitarbeitende für größere Immobilien</li></ol></section><section><h2>Menschen hinter Perla’s</h2><p>Acht Mitarbeitende zeigen die heutige Breite des Teams.</p><div class="seo-static-grid">${team}</div></section><section><h2>Wofür wir stehen</h2><div class="seo-static-grid">${values}</div></section><section><h2>Vom Objektbedarf zum klaren Ablauf</h2><ol><li>Objekt verstehen</li><li>Leistungen festlegen</li><li>Betreuung koordinieren</li></ol></section></main>`
+  return `${staticHeader()}<main class="seo-static-main"><nav aria-label="Brotkrümeln"><a href="${basePath}">Startseite</a> / Über uns</nav><section class="seo-static-hero"><p>Perla’s Objektbetreuung</p><h1>Seit 1999 für Immobilien im Rhein-Main-Gebiet da.</h1><p>Perla’s verbindet persönliche Abstimmung mit planbarer Objektbetreuung. Wir erfassen Aufgaben vor Ort, koordinieren wiederkehrende Einsätze und halten Rückmeldungen verständlich zusammen.</p><a href="${basePath}kontakt/">Persönlich kennenlernen</a></section><section><h2>Persönlich am Objekt. Klar in der Abstimmung.</h2><p>Perla’s ist seit 1999 für Immobilien im Rhein-Main-Gebiet da. Zum Leistungsangebot gehören Objektbetreuung, Gebäudereinigung, Außenanlagenpflege und Winterdienst.</p><p>Wir besprechen den tatsächlichen Objektbedarf und legen Aufgaben, Intervalle und Ansprechpartner gemeinsam fest. So erhalten Hausverwaltungen, WEG und Unternehmen einen nachvollziehbaren Rahmen für die Betreuung.</p></section><section><h2>Menschen hinter Perla’s</h2><p>Acht Mitarbeitende zeigen die heutige Breite des Teams.</p><div class="seo-static-grid">${team}</div></section><section><h2>Wofür wir stehen</h2><div class="seo-static-grid">${values}</div></section><section><h2>Vom Objektbedarf zum klaren Ablauf</h2><ol><li>Objekt verstehen</li><li>Leistungen festlegen</li><li>Betreuung koordinieren</li></ol></section></main>`
 }
 
 function blogMarkup() {
@@ -862,6 +747,9 @@ const focusedInitialMarkup = new Map()
     mode: 'production',
     base: basePath,
     plugins: [react()],
+    // Only ssrLoadModule is used here. Do not scan the browser entry, whose
+    // virtual route-content module belongs to the separate production build.
+    optimizeDeps: { noDiscovery: true, include: [] },
     server: { middlewareMode: true, watch: null, hmr: false, ws: false },
     appType: 'custom',
   })
@@ -1095,6 +983,8 @@ const sitemapUrls = [
   ...services.map((service) => serviceUrl(service).href),
 ]
 const pageLastModified = new Map([
+  [siteUrl.href, seoContent.home.updatedOn],
+  ...Object.values(seoContent.pages).filter((page) => page.updatedOn).map((page) => [new URL(page.path, siteUrl).href, page.updatedOn]),
   [regionsUrl.href, '2026-11-17'],
   ...regionalLandings.map((landing) => [localLandingUrl(landing).href, landing.updatedOn]),
   ...focusedServices.map(page => [localLandingUrl(page).href, page.updatedOn]),
@@ -1107,7 +997,18 @@ ${sitemapUrls.map((url) => `  <url><loc>${url}</loc>${pageLastModified.has(url) 
 </urlset>
 `
 const robots = indexingEnabled
-  ? `User-agent: *
+  ? `# Public search and retrieval access; existing wildcard access is unchanged.
+# Training crawlers continue to follow the existing wildcard rule below.
+User-agent: OAI-SearchBot
+Allow: ${basePath}
+
+User-agent: Claude-SearchBot
+Allow: ${basePath}
+
+User-agent: PerplexityBot
+Allow: ${basePath}
+
+User-agent: *
 Allow: ${basePath}
 
 Sitemap: ${new URL(`${basePath}sitemap.xml`, siteUrl.origin).href}

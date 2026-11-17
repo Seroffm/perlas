@@ -1,5 +1,6 @@
 import { defineConfig, loadEnv } from 'vite'
 import react from '@vitejs/plugin-react'
+import routeContentPlugin from './vite-route-content.mjs'
 
 function productionBase(siteUrl?: string) {
   if (!siteUrl) return '/perlas/'
@@ -12,7 +13,7 @@ export default defineConfig(({ command, isPreview, mode }) => {
   const env = loadEnv(mode, '.', '')
 
   return {
-    plugins: [react()],
+    plugins: [react(), routeContentPlugin()],
     define: {
       'import.meta.env.VITE_PERLAS_SITE_URL': JSON.stringify(env.PERLAS_SITE_URL || 'https://seroffm.github.io/perlas/'),
       'import.meta.env.VITE_PERLAS_INDEX_SITE': JSON.stringify(env.PERLAS_INDEX_SITE ?? ''),

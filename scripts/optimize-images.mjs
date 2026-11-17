@@ -19,6 +19,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createRequire } from 'node:module';
 import { createHash } from 'node:crypto';
+import { restrictToRasterImages } from './raster-safety.mjs';
 
 const require = createRequire(import.meta.url);
 let sharp;
@@ -27,6 +28,7 @@ try {
 } catch {
   throw new Error('Sharp is required. Set PERLAS_SHARP_MODULE to an existing Sharp module, or install Sharp as a development dependency before running this generator.');
 }
+restrictToRasterImages(sharp);
 const checkOnly = process.argv.includes('--check');
 if (process.argv.slice(2).some(argument => argument !== '--check')) {
   throw new Error('Usage: node scripts/optimize-images.mjs [--check]');

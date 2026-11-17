@@ -78,3 +78,5 @@
   .sf-footer .sf-bottom { display: grid; gap: 9px; padding-top: 16px; }
   .sf-footer .sf-legal { gap: 4px 18px; }
 }
+.sf-social { display: flex; flex-wrap: wrap; gap: 0 14px; margin-top: 12px; }
+.sf-social a { display: inline-flex; align-items: center; min-height: 44px; font-size: 12px; text-underline-offset: 4px; }

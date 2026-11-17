@@ -1,7 +1,7 @@
 {
-  "_note": "Manuelle Pflege dieser Datei: Rating, Review-Anzahl, Google-Profillink und Rezensionen. Keine automatische Google-API-Anbindung.",
+  "_note": "Manuell gepflegte öffentliche Google-Rezensionen. Gesamtbewertung und 42 Rezensionen am 17.11.2026 direkt im Google-Unternehmensprofil geprüft; keine automatische Anbindung. Relative Altersangaben werden ohne belegtes absolutes Rezensionsdatum nicht veröffentlicht.",
   "rating": "5,0",
-  "reviewCount": 41,
+  "reviewCount": 42,
   "profileUrl": "https://www.google.com/search?q=Perla%27s+Objektbetreuung+GmbH+%26+Co.+KG+Sulzbach+Rezensionen",
   "reviews": [
     {
@@ -17,32 +17,28 @@
     {
       "author": "Amanda L.",
       "text": "Freundlich, hilfsbereit und zuverlässig.",
-      "date": "vor 2 Monaten",
       "rating": 5
     },
     {
       "author": "Alexis S.",
       "text": "Kommunikation ist unkompliziert.",
-      "date": "vor einem Jahr",
       "rating": 5
     },
     {
       "author": "Challenge 4 Change",
       "text": "Schnell, zuverlässig und immer erreichbar.",
-      "date": "vor einem Jahr",
       "rating": 5
     },
     {
       "author": "Z D",
       "text": "Zuverlässig und sorgfältig.",
-      "date": "vor einem Jahr",
       "rating": 5
     },
     {
       "author": "Gabriele D.",
       "text": "Sehr professionelle und saubere Arbeit.",
-      "date": "vor 7 Monaten",
       "rating": 5
     }
-  ]
+  ],
+  "verifiedOn": "2026-11-17"
 }

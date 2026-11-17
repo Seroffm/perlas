@@ -4,6 +4,12 @@ Repository: <https://github.com/Seroffm/perlas>, Produktion: <https://perlas.de/
 Die Architektur und Änderungsstellen stehen in [PROJECT_MAP.md](PROJECT_MAP.md).
 [AGENTS.md](../AGENTS.md) erhält den Arbeitskontext für folgende Codex-Sitzungen.
 
+Aktueller technischer Stand: [Optimierung vom 17.11.2026](TECHNICAL_SEO_POLISH_2026-11-17.md).
+Der Build enthält 77 kanonische Seiten und 21 genaue Altpfadzuordnungen.
+Seitendaten und aktive Ansicht laden vor dem ersten React-Mount; statisches
+HTML bleibt bis dahin sichtbar. Änderungen an Inhalts-JSON werden durch das
+Vite-Routenplugin auch in der lokalen Vorschau neu geladen.
+
 ## Einrichtung
 
 Benötigt: Node ≥20.9 (für diese Arbeitsumgebung Node 24, siehe `.nvmrc`), npm sowie
@@ -80,6 +86,18 @@ eine vorhandene passende Version wird erhalten. Voraussetzung sind Rosetta und e
 x64-fähige Node-Laufzeit (auf diesem Mac vorhanden). Der Referenzprüfer startet Node
 über `arch -x86_64` und verwendet ausschließlich dieses isolierte Sharp-Modul.
 Auf anderen Plattformen verwendet er die native Installation.
+
+Sharp bleibt für diese vorhandenen Encoder-Bytes auf 0.35.4 festgelegt. Der
+Rastergenerator sperrt SVG-Decodierung vor dem Metadatenlesen gemäß dem
+[Hersteller-Workaround für GHSA-wq5f-xc86-pv6w](https://github.com/advisories/GHSA-wq5f-xc86-pv6w).
+Ein Funktionstest prüft die Sperre; alle 203 bestehenden Varianten bleiben exakt
+unverändert. Der getrennte manuelle Favicon-Generator akzeptiert ausschließlich
+begrenzte numerische Geometrie des eingecheckten Markenzeichens, keine freien
+SVG-Dateien oder externen Inhalte. `npm audit` meldet die Versionswarnung trotz
+des anwendungsbezogenen Workarounds weiterhin; sie ist keine Frontendabhängigkeit.
+Ein späteres Encoderupdate erfordert einen bewusst geprüften Referenzwechsel,
+keine Abschwächung des Bytevergleichs. Vite und source-map-js wurden auf die
+passenden gepatchten Versionen aktualisiert.
 
 `npm run check:images` bleibt der ursprüngliche native Vergleich und kann auf ARM64
 abweichen. Bild-Neugenerierung ist eine separate Änderung: dafür eine zur Referenz

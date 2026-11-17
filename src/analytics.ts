@@ -1,7 +1,3 @@
-import audiences from './audience-data.json'
-import posts from './blog-data.json'
-import services from './service-data.json'
-
 const CONSENT_STORAGE_KEY = 'perlas-cookie-consent-v3'
 const DATA_LAYER_NAME = 'perlasAnalyticsDataLayer'
 const MEASUREMENT_ID_PATTERN = /^G-[A-Z0-9]{10}$/
@@ -19,9 +15,31 @@ const searchReferrers: Record<string, { origin: string; source: string }> = {
 const publicRoutes = new Set([
   '', 'facility-management/', 'leistungen/', 'einsatzgebiete/', 'ueber-uns/', 'blog/',
   'karriere/', 'kontakt/', 'impressum/', 'datenschutz/',
-  ...audiences.map(({ id }) => `facility-management/${id}/`),
-  ...posts.map(({ slug }) => `blog/${slug}/`),
-  ...services.map(({ slug }) => `leistungen/${slug}/`),
+  'facility-management/hausverwaltungen/',
+  'facility-management/wohnanlagen/',
+  'facility-management/gewerbeimmobilien/',
+  'facility-management/institutionelle-gebaeude/',
+  'blog/hausmeisterservice-objektbetreuung-frankfurt-umgebung/',
+  'blog/baumfaellung-neu-isenburg-genehmigung-firma/',
+  'blog/hausmeisterservice-sulzbach-weg-leistungen/',
+  'blog/spielplatzkontrolle-main-taunus-hausverwaltungen/',
+  'blog/bueroreinigung-eschborn-angebot-kosten/',
+  'blog/gebaeudereinigung-wiesbaden-erbenheim-leistungsverzeichnis/',
+  'blog/tiefgaragenreinigung-frankfurt-weg/',
+  'blog/winterdienst-richtig-planen/',
+  'blog/objektkontrollen-richtig-dokumentieren/',
+  'blog/gebaeudereinigung-im-laufenden-betrieb/',
+  'leistungen/objektpflege/',
+  'leistungen/wartung-instandhaltung/',
+  'leistungen/gebaeudereinigung/',
+  'leistungen/gartenpflege/',
+  'leistungen/winterdienst/',
+  'leistungen/tiefgaragenreinigung/',
+  'leistungen/muellmanagement/',
+  'leistungen/einzelauftrag/',
+  'leistungen/baumpflege-baumfaellung/',
+  'leistungen/spielplatzkontrolle-spielgeraetewartung/',
+  'leistungen/buero-einrichtungsservice/',
   // Focused offers are explicitly approved public pages, not arbitrary slugs.
   'leistungen/treppenhausreinigung/',
   'leistungen/heckenschnitt/',
@@ -65,6 +83,8 @@ const publicRoutes = new Set([
   'einsatzgebiete/gebaeudereinigung-frankfurt-niederrad/',
   'einsatzgebiete/gebaeudereinigung-frankfurt-roedelheim/',
   'einsatzgebiete/gebaeudereinigung-frankfurt-bornheim/',
+  'einsatzgebiete/hausmeisterservice-niedernhausen/',
+  'einsatzgebiete/hausmeisterservice-kelsterbach/',
 ])
 
 type AnalyticsWindow = Window & {
@@ -150,7 +170,7 @@ function safeAttribution() {
 
 function safePageValues(basePath: string) {
   const base = new URL(basePath, window.location.origin).pathname.replace(/\/?$/, '/')
-  const pathname = window.location.pathname
+  const pathname = window.location.pathname.replace(/\/index\.html$/, '/')
   const relativePath = pathname === base.slice(0, -1) ? ''
     : pathname.startsWith(base) ? pathname.slice(base.length).replace(/\/?$/, '/') : null
   const route = relativePath === '/' ? '' : relativePath

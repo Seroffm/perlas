@@ -20,6 +20,20 @@ const validConsent = (analytics = true) => ({
   savedAt: '2026-10-06T10:00:00.000Z', version: 3,
 })
 
+test('documented HTML aliases measure their approved canonical route without widening the allowlist', () => {
+  for (const [path, expected] of [
+    ['/index.html', '/'],
+    ['/leistungen/index.html', '/leistungen/'],
+    ['/einsatzgebiete/glasreinigung-frankfurt/index.html', '/einsatzgebiete/glasreinigung-frankfurt/'],
+    ['/customer-private-id/index.html', '/404/'],
+  ]) {
+    const instance = fixture({ consent: validConsent(), url: `https://perlas.de${path}?email=private@example.test` })
+    instance.initializeAnalytics(measurementId)
+    instance.scripts[0].onload()
+    assert.equal(instance.pageViews()[0][2].page_location, `https://perlas.de${expected}`)
+  }
+})
+
 function fixture({
   consent,
   url = 'https://www.perlas.de/kontakt/?email=private%40example.test#secret',
@@ -257,6 +271,8 @@ test('local hub and exactly the commissioned landing routes are measured without
     'gebaeudereinigung-frankfurt-niederrad',
     'gebaeudereinigung-frankfurt-roedelheim',
     'gebaeudereinigung-frankfurt-bornheim',
+    'hausmeisterservice-niedernhausen',
+    'hausmeisterservice-kelsterbach',
   ]
   for (const slug of slugs) {
     const expected = `https://perlas.de/einsatzgebiete/${slug ? `${slug}/` : ''}`

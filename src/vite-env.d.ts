@@ -10,3 +10,12 @@ interface ImportMetaEnv {
 interface ImportMeta {
   readonly env: ImportMetaEnv
 }
+
+declare module 'virtual:perlas-route-content' {
+  export function loadRouteContent(path: string): Promise<import('./route-content').RouteContent>
+}
+
+declare module 'virtual:perlas-catalogue' {
+  export const services: import('./content-types').ServiceSummary[]
+  export const audiences: import('./content-types').AudienceSummary[]
+}

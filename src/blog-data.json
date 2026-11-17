@@ -14,7 +14,7 @@
     "seoDescription": "So betreut Perla’s Immobilien in Frankfurt und Umgebung: Hausmeisteraufgaben, Reinigung und Außenanlagen nach Plan. Jetzt Objektbetreuung anfragen.",
     "image": "kundenbilder/fahrzeuge/perlas_fahrzeug_wohnobjekt_02.png",
     "alt": "Perla’s Servicefahrzeug vor einem Wohngebäude",
-    "readTime": "5 Min. Lesezeit",
+    "readTime": "6 Min. Lesezeit",
     "published": "14.10.2026",
     "updated": "17.11.2026",
     "intro": "Perla’s bietet Hausmeisterservice und laufende Objektbetreuung für Immobilien in Frankfurt am Main und Umgebung. Von unserem Unternehmensstandort in Sulzbach (Taunus) aus unterstützen wir Hausverwaltungen, Wohnungseigentümergemeinschaften und Gewerbekunden. Wir verbinden vereinbarte Kontrollgänge, kleine Hausmeisteraufgaben und verständliche Rückmeldungen. Gebäudereinigung, Müllmanagement und Außenanlagenpflege können ergänzend eingeplant werden. Welche Betreuung zu Ihrem Objekt passt, klären wir anhand der Adresse, der Nutzung und der gewünschten Aufgaben.",
@@ -57,6 +57,41 @@
           "Hausmeisterservice umfasst die vereinbarten praktischen Aufgaben am Objekt. Die kaufmännische WEG-Verwaltung mit Abrechnungen oder Eigentümerversammlungen ist damit nicht verbunden. Elektroarbeiten, Arbeiten an Heizungsanlagen und andere Aufgaben für qualifizierte Fachbetriebe führen wir nicht selbst aus. Auf Wunsch unterstützen wir bei Termin, Zugang und Begleitung vor Ort.",
           "Auch Erreichbarkeit, Vertretung und der Umgang mit dringenden Meldungen sollten vor der Beauftragung besprochen werden. Die laufende Objektbetreuung beinhaltet nicht automatisch einen 24-Stunden-Notdienst. Ein klarer Leistungsplan macht diese Grenzen für Verwaltung und Nutzer verständlich."
         ]
+      },
+      {
+        "title": "Einen Hausmeisterservice nachvollziehbar vergleichen",
+        "paragraphs": [
+          "Geben Sie mehreren Anbietern dieselbe Beschreibung Ihres Objekts. Erst wenn Flächen, Aufgaben und Intervalle übereinstimmen, lassen sich Angebote sinnvoll vergleichen. Ein niedrigerer Gesamtpreis kann sonst auch weniger Einsätze oder ausgeschlossene Zusatzleistungen bedeuten.",
+          "Fragen Sie nach Erfahrungen mit vergleichbaren Objektarten und den dabei ausgeführten Aufgaben. Referenzen und Bewertungen geben Anhaltspunkte; entscheidend bleibt, ob die angebotene Betreuung zu Ihrer Immobilie passt. Für technische Facharbeiten sollten Sie klären, welcher Betrieb sie tatsächlich ausführt und welche erforderlichen Qualifikationen dieser nachweisen kann."
+        ],
+        "table": {
+          "headers": [
+            "Prüfpunkt",
+            "Vor Beauftragung klären"
+          ],
+          "rows": [
+            [
+              "Erfahrung",
+              "Welche vergleichbaren Wohn- oder Gewerbeobjekte und Aufgaben kann der Anbieter erläutern?"
+            ],
+            [
+              "Qualifikationen",
+              "Was übernimmt der Hausmeisterservice selbst, was bleibt beim geeigneten Fachbetrieb?"
+            ],
+            [
+              "Leistungsumfang",
+              "Welche Bereiche, Kontrollgänge, Pflegeaufgaben und Intervalle stehen ausdrücklich im Angebot?"
+            ],
+            [
+              "Erreichbarkeit",
+              "Welche Kontaktzeiten, Vertretungen und Meldewege sind vereinbart? Ein Notdienst ist gesondert zu klären."
+            ],
+            [
+              "Angebot und Vertrag",
+              "Wie werden Zusatzarbeiten freigegeben und berechnet? Welche Laufzeit und Kündigungsregeln sind schriftlich festgehalten?"
+            ]
+          ]
+        }
       },
       {
         "title": "Mit diesen Angaben wird Ihre Anfrage konkret",

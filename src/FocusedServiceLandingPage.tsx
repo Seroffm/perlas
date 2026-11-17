@@ -1,6 +1,7 @@
 import { ArrowRight, ArrowUpRight, Check, Mail, Phone, Plus } from 'lucide-react'
 import QuickContactForm from './QuickContactForm'
 import ResponsiveImage from './ResponsiveImage'
+import WorkEvidence from './WorkEvidence'
 import type { FocusedServiceContent } from './focused-service-types'
 import './focused-services.css'
 
@@ -147,6 +148,8 @@ export default function FocusedServiceLandingPage({ page, staticMode = false }: 
           <a className="fs-text-link" href="#anfrage">Passendes Angebot anfragen<ArrowRight aria-hidden="true" /></a>
         </aside>
       </section>
+
+      <WorkEvidence serviceSlug={page.serviceSlug} id={`${id}-praxis`} className="fs-container" />
 
       <section className="fs-container fs-faq fs-section" id={`${id}-fragen`} aria-labelledby={`${id}-faq-heading`}>
         <div className="fs-section-heading">

@@ -22,7 +22,7 @@
     ],
     "intro": "Ein gepflegter Eingang ist jeden Tag sichtbar. Perla’s übernimmt Treppenhausreinigung für Hausverwaltungen und WEG in Frankfurt und Rhein-Main. Wir vereinbaren Flächen, Aufgaben und Intervalle. So entsteht ein nachvollziehbarer Reinigungsplan für Ihr Gebäude.",
     "ctaText": "Treppenhausreinigung anfragen",
-    "updatedOn": "2026-11-16",
+    "updatedOn": "2026-11-17",
     "heroImage": {
       "src": "kundenbilder/leistungen/gebaeudereinigung_flur.png",
       "alt": "Perla’s Mitarbeiter bei der Reinigung einer gemeinschaftlich genutzten Innenfläche",
@@ -189,7 +189,7 @@
     ],
     "intro": "Sie suchen eine Firma für den Heckenschnitt an Ihrer Wohnanlage oder Ihrem Gewerbegrundstück? Perla’s aus Sulzbach plant den Schnitt geeigneter Hecken und Sträucher in Rhein-Main. Schnittform, Zugang und Schnittgut werden vorab abgestimmt.",
     "ctaText": "Heckenschnitt anfragen",
-    "updatedOn": "2026-11-16",
+    "updatedOn": "2026-11-17",
     "heroImage": {
       "src": "kundenbilder/leistungen/projektfotos/Gartenpflege_Arbeitsgeraet_am_Heckenweg.jpg",
       "alt": "Arbeitsgerät auf einem Gartenweg zwischen Hecken aus dem Perla’s Bildbestand",
@@ -523,7 +523,7 @@
     ],
     "intro": "Perla’s bündelt vereinbarte Kontrollgänge, einfache Hausmeisterarbeiten und Rückmeldungen für Unternehmen in Rhein-Main. Gemeinsam legen wir fest, was regelmäßig erledigt wird und wer über Zusatzmaßnahmen entscheidet. Sie erhalten einen persönlichen Kontakt für die Betreuung vor Ort.",
     "ctaText": "Gewerbebetreuung anfragen",
-    "updatedOn": "2026-11-16",
+    "updatedOn": "2026-11-17",
     "heroImage": {
       "src": "kundenbilder/fahrzeuge/perlas_fahrzeug_gewerbe_01.png",
       "alt": "Perla’s Servicefahrzeug vor einem Gewerbegebäude",
@@ -635,6 +635,10 @@
       {
         "question": "Übernimmt Perla’s technische Anlagenprüfungen?",
         "answer": "Einfache Sichtkontrollen sind keine technische Fachprüfung. Qualifikationsgebundene Arbeiten werden mit geeigneten Fachbetrieben abgestimmt. Wir können deren Zugang und die organisatorische Begleitung am Objekt unterstützen."
+      },
+      {
+        "question": "Wie werden Erreichbarkeit und dringende Meldungen vereinbart?",
+        "answer": "Kontaktzeiten, Meldewege und zuständige Personen werden vor Betreuungsbeginn vereinbart. Laufender Hausmeisterservice enthält keinen automatischen 24-Stunden-Notdienst und keine pauschalen Sofortfristen. Bei weitergehendem Bedarf klären wir, welche Erreichbarkeit angeboten werden kann und welche Fachfirmen zuständig bleiben."
       },
       {
         "question": "Welche Unterlagen helfen für die Übernahme?",

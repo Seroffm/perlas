@@ -4,7 +4,7 @@
   "origin": "https://perlas.de",
   "preparedAt": "2026-10-04T16:18:40Z",
   "activatedOn": "2026-10-07",
-  "expandedOn": "2026-11-16",
+  "expandedOn": "2026-11-17",
   "note": "Der Pages-Build erzeugt für diese fachlich passenden Altpfade sofortige HTML-Weiterleitungen (meta refresh 0) mit Ziel-Canonical und sichtbarem Ersatzlink. GitHub Pages liefert diese Dateien mit HTTP 200, nicht HTTP 301. Die Weiterleitungsdateien enthalten keine kopierten Leistungsinhalte; Altpfade stehen nicht in der Sitemap.",
   "redirects": [
     {
@@ -95,6 +95,62 @@
       "oldPath": "/hausmeisterservice-wiesbaden/",
       "newPath": "/einsatzgebiete/hausmeisterservice-wiesbaden/",
       "reason": "Eigenständiges Hausmeisterangebot für Wiesbaden ersetzt die historische Angebotsadresse.",
+      "status": "active-static-refresh",
+      "preferredHttpStatus": 301
+    },
+    {
+      "oldPath": "/hausmeisterservice-schwalbach-am-taunus/",
+      "newPath": "/leistungen/objektpflege/",
+      "reason": "Die aktuelle Hausmeister- und Objektbetreuungsseite beschreibt die fortgeführte Betreuung für Schwalbach ausdrücklich. Das bestehende Angebot mit Kontrollgängen, Hausmeisteraufgaben und dokumentierten Rückmeldungen ist der passende fachliche Nachfolger.",
+      "status": "active-static-refresh",
+      "preferredHttpStatus": 301
+    },
+    {
+      "oldPath": "/category/unser-blog/",
+      "newPath": "/blog/",
+      "reason": "Der historische WordPress-Kategoriepfad für die Blogübersicht wird in der aktuellen Blogübersicht fortgeführt. Einzelne frühere Artikel werden dadurch nicht pauschal umgeleitet.",
+      "status": "active-static-refresh",
+      "preferredHttpStatus": 301
+    },
+    {
+      "oldPath": "/cookie-richtlinie-eu/",
+      "newPath": "/datenschutz/",
+      "reason": "Die heutige Datenschutzerklärung enthält die aktuellen Informationen zu Einwilligung, lokaler Speicherung, Analytics und externen Medien sowie zum Widerruf. Sie übernimmt den Informationszweck der früheren Cookie-Seite.",
+      "status": "active-static-refresh",
+      "preferredHttpStatus": 301
+    },
+    {
+      "oldPath": "/hausmeisterservice-fuer-gewerbeimmobilien-das-ist-wichtig/",
+      "newPath": "/leistungen/hausmeisterservice-gewerbe/",
+      "reason": "Der am 21.07.2026 archivierte Gewerbe-Ratgeber behandelt Aufgaben, abgestimmte Betreuung, Erreichbarkeit, Dokumentation und das Einsatzgebiet Sulzbach/Frankfurt. Diese Themen sind im aktuellen Gewerbe-Hausmeisterangebot mit Planungshilfe und ausdrücklichen Leistungsgrenzen zusammengeführt. Frühere pauschale Notdienst- oder Fachprüfungsversprechen werden nicht übernommen.",
+      "status": "active-static-refresh",
+      "preferredHttpStatus": 301
+    },
+    {
+      "oldPath": "/den-richtigen-hausmeisterservice-finden-tipps-und-hinweise/",
+      "newPath": "/blog/hausmeisterservice-objektbetreuung-frankfurt-umgebung/",
+      "reason": "Der am 13.08.2026 archivierte Auswahlratgeber ist im heutigen Hausmeister-Ratgeber für Frankfurt und Umgebung zusammengeführt. Die ergänzte Vergleichstabelle behandelt Referenzen, tatsächliche Qualifikationen, Umfang, Erreichbarkeit und vergleichbare Angebote ohne unbelegte Leistungsversprechen.",
+      "status": "active-static-refresh",
+      "preferredHttpStatus": 301
+    },
+    {
+      "oldPath": "/regelmaessige-objektpflege-der-schluessel-zum-werterhalt/",
+      "newPath": "/leistungen/objektpflege/",
+      "reason": "Der am 11.06.2026 archivierte Objektpflege-Ratgeber beschreibt laufende Innen- und Außenpflege, frühe Mängelmeldungen und einen Pflegeplan. Die heutige ausführliche Objektbetreuungsseite führt diesen Umfang mit Aufgaben, Intervallen, Dokumentation und klarer Abgrenzung technischer Facharbeiten fort.",
+      "status": "active-static-refresh",
+      "preferredHttpStatus": 301
+    },
+    {
+      "oldPath": "/hausmeisterservice-niedernhausen/",
+      "newPath": "/einsatzgebiete/hausmeisterservice-niedernhausen/",
+      "reason": "Der weiterhin angebotene Hausmeisterservice in Niedernhausen wurde am 17.11.2026 vom Auftraggeber bestätigt. Die eigenständige Nachfolgeseite erhält die örtliche und fachliche Anfrageintention und bietet eine praktische Übergabe- und Aufgabenplanung.",
+      "status": "active-static-refresh",
+      "preferredHttpStatus": 301
+    },
+    {
+      "oldPath": "/hausmeisterservice-kelsterbach/",
+      "newPath": "/einsatzgebiete/hausmeisterservice-kelsterbach/",
+      "reason": "Der weiterhin angebotene Hausmeisterservice in Kelsterbach wurde am 17.11.2026 vom Auftraggeber bestätigt. Die eigenständige Nachfolgeseite behandelt Hausmeisteraufgaben für Wohn- und Gewerbeobjekte mit klarer Flächen- und Zuständigkeitsaufteilung.",
       "status": "active-static-refresh",
       "preferredHttpStatus": 301
     }

@@ -17,7 +17,7 @@
     "build:pages": "npm run build && node scripts/prepare-pages.mjs",
     "preview": "vite preview",
     "preview:local": "vite preview --host 127.0.0.1 --port 4173 --strictPort",
-    "test": "node --test src/analytics.test.mjs src/QuickContactForm.test.mjs scripts/legacy-redirects.test.mjs",
+    "test": "node --test src/analytics.test.mjs src/QuickContactForm.test.mjs src/QuoteDialogBoundary.test.mjs src/structured-data.test.mjs scripts/legacy-redirects.test.mjs scripts/route-content.test.mjs scripts/raster-safety.test.mjs",
     "test:php": "php server/tests/test.php",
     "check": "npm test && npm run test:php && npm run build:pages && npm run check:seo && npm run check:images:reference",
     "lint": "tsc -b --pretty false",
@@ -37,6 +37,7 @@
     "@types/react": "^18.3.18",
     "@types/react-dom": "^18.3.5",
     "@vitejs/plugin-react": "^4.3.4",
+    "react-test-renderer": "18.3.1",
     "sharp": "0.35.4",
     "typescript": "^5.7.3",
     "vite": "^6.1.0"
