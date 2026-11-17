@@ -116,3 +116,72 @@ Rankings. GitHub Pages bestimmt HTTP-Cacheheader und Hostweiterleitungen;
 eine zusätzliche Hostingmigration wurde für diese Verbesserungen nicht benötigt.
 Eine vollständige Indexaufnahme und das Ziel 100 monatlicher Klicks hängen auch
 von Google, Nachfrage, Inhaltsnutzen und externen Unternehmenssignalen ab.
+
+
+## Veröffentlichter und überprüfter Stand
+
+Inhaltlicher Quellstand: `866b2b4`, Pages-Ausgabe: `985fcf3`.
+[Pages-Lauf 44054505869](https://github.com/Seroffm/perlas/actions/runs/44054505869)
+ist erfolgreich abgeschlossen. Nach dem Livegang wurden 198 aktuelle
+HTML-/Programm-/Stil-/Discovery-/Icondateien bytegenau verglichen; alle stimmen.
+77 kanonische URLs liefern 200, 21 freigegebene Altpfade ihre erwartete sofortige
+Weiterleitung. Vier neue unbekannte URL-Familien liefern echte 404 und noindex.
+Eine unabhängige erneute 12-Seiten-Stichprobe einschließlich beider neuer Orte
+bestätigt die Ausgabe.
+
+Der vollständige Prüfablauf bestand 53 JavaScript- und 150 PHP-Mockprüfungen,
+Produktionsbuild/SEO und alle 203 unveränderten Bildvarianten. Beide 77er
+Browserläufe (Desktop 1440/Mobil 390) sind ohne Befund; Haupttextparität besteht
+nach Normalisierung reiner Umbrüche und responsiver Tabellenhinweise ebenfalls
+für alle 77 Seiten. Die API-Routingprüfung `/health` war 200/ok; es wurden keine
+realen Test-E-Mails versandt und damit keine vollständige E-Mail-Zustellung
+behauptet.
+
+Die mobile Nachher-Labormessung für **Gebäudereinigung Frankfurt** vom 17.11.2026,
+10:22 MEZ, liefert 98 Leistung und jeweils 100 in den automatischen Kategorien
+Barrierefreiheit, Best Practices und Lighthouse SEO. FCP/LCP jeweils 1,1 s,
+TBT 10 ms, CLS 0, Speed Index 3,9 s. Der Vorher-Performancewert war ebenfalls 98;
+der Paketvergleich ist daher keine behauptete gemessene Beschleunigung.
+
+Die aktualisierte 77-URL-Sitemap wurde erfolgreich eingereicht. Die Search
+Console zeigt in der noch nicht aktualisierten Erkennungszählung weiterhin 75;
+diese Zahl darf weder als aktueller Seitenbestand noch als Indexquote gelten.
+Für Niedernhausen und Kelsterbach wurden die URL-Prüfungen durchgeführt und
+beide Indexierungsanträge von Google bestätigt. Ein bestätigter Antrag ist
+keine Bestätigung erfolgter Indexierung. Die Keyword-Übersicht führt 48 live
+geprüfte Ziel-URLs und sieben einzeln datierte Indexzustände getrennt.
+
+## Technische Bewertung nach Abnahme
+
+77/77 Seiten vollständig technisch und im Browser geprüft, zusätzlich unabhängige
+Nachprüfung. Dies sind Auditwerte, keine Google-Scores oder Rankinggarantien.
+Nachfrage, Wettbewerb, externe Links und Originalität der Inhalte sind nicht als
+Rankingwirkung eingerechnet; tatsächliche Indexierung und Feld-CWV bleiben separat.
+
+| SEO-Kategorie | Punkte / Maximum |
+| --- | ---: |
+| Crawl- und Indexierbarkeitsgrundlage | 23 / 25 |
+| Rendering und mobile Parität | 20 / 20 |
+| Strukturierte Daten | 15 / 15 |
+| Metadaten, einsprachig | 20 / 20 |
+| Überschriften, Semantik und Links | 10 / 10 |
+| Bilder | 5 / 5 |
+| Core Web Vitals: Heuristik, kein Feldnachweis | 3 / 5 |
+| Technische SEO-Bereitschaft | 96 / 100 |
+
+| GEO-Kategorie | Punkte / Maximum |
+| --- | ---: |
+| Dokumentierte Crawler-Zugangsentscheidung | 20 / 20 |
+| Extrahierbares Rendering | 20 / 20 |
+| Extrahierbare Inhaltsstruktur | 13 / 15 |
+| Entitätsbelege auf der Website | 16 / 20 |
+| Technische SEO-Voraussetzung | 14 / 15 |
+| Keine unbelegten GEO-Maßnahmen | 10 / 10 |
+| Technische GEO-Bereitschaft | 93 / 100 |
+
+Die frühere technische Bewertung für 75 Seiten war SEO 91/GEO 60; die Differenz
+beträgt +5/+33 Auditpunkte. Beim GEO-Wert entfällt insbesondere die methodische
+Begrenzung wegen zuvor nicht dokumentierter Crawlerentscheidung. Der reale
+Wildcardzugang war schon vorher offen. Diese Differenz ist ausdrücklich keine
+behauptete Steigerung von Google-Rankings oder KI-Erwähnungen. Verbleibende
+technische Abzüge betreffen Host-/Alias-Konsolidierung und fehlende Feld-CWV.

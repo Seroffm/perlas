@@ -186,3 +186,13 @@ Die 75-Seiten-Erweiterung wurde aus Quellenstand `e5e9eb0` im Pages-Release
 und aktuellen Programm-/Stildateien wurden live mit dem Build abgeglichen. Die
 aktualisierte Sitemap wurde in Search Console eingereicht und mit 75 erkannten
 Seiten angezeigt. Keyword- und Google-Indexierungsnachweise bleiben getrennt.
+
+
+## Technische Optimierung und Wiederanbindung am 17.11.2026
+
+Der nachfolgende 77-Seiten-Stand aus `866b2b4` wurde mit Pages-Ausgabe `985fcf3`
+veröffentlicht (Lauf 44054505869, erfolgreich). 198 aktuelle Dateien sind live
+bytegleich; unbekannte Pfade liefern weiterhin echte 404. Die neue Sitemap ist
+eingereicht, die beiden bestätigten Ortsnachfolger zur Indexierung angemeldet.
+Der Google-Berichtszähler wird unabhängig aktualisiert. Details und Prüfgrenzen:
+[Technischer Abschluss](TECHNICAL_SEO_POLISH_2026-11-17.md).
