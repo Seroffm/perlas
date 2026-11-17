@@ -2,7 +2,7 @@
 
 Planungsstand: 17.11.2026. Die Erweiterung bündelt **40 positiv gemessene lokale Fokusbegriffe auf 16 neue Angebotsseiten**. Die Seiten richten sich an konkrete Leistungs-, Anbieter- und Angebotsfragen. Mehrere Varianten derselben Suchintention bleiben auf einer gemeinsamen Zielseite.
 
-Die Kampagne umfasst damit 33 ergänzte Angebotsseiten: 17 wurden am 16.11.2026 erstellt, weitere 16 am 17.11.2026. Nach Integration sind 75 kanonische Seiten und 40 Orts-/Leistungsangebote vorgesehen. Die zusätzlichen 16 Zielseiten sind zunächst lokal umgesetzt; Veröffentlichung und Google-Indexierung brauchen eigene Nachweise. Der aktuelle Status wird in der [Keyword-Übersicht](KEYWORD_OVERVIEW.md) und der [Registry](keyword-research-2026-11-16.json) geführt.
+Die Kampagne umfasst damit 33 ergänzte Angebotsseiten: 17 wurden am 16.11.2026 erstellt, weitere 16 am 17.11.2026. Der veröffentlichte Stand umfasst 75 kanonische Seiten und 40 Orts-/Leistungsangebote. Die 16 zusätzlichen Zielseiten sind am 17.11.2026 live geprüft; Google-Indexierung bleibt ein eigener Nachweis. Der aktuelle Status wird in der [Keyword-Übersicht](KEYWORD_OVERVIEW.md) und der [Registry](keyword-research-2026-11-16.json) geführt.
 
 ## Markt und Datenbasis
 
@@ -99,3 +99,25 @@ Quelle der Suchmetriken: [DataForSEO Google Ads Search Volume](https://docs.data
 Die bestehenden gezielten Angebote für Höchst, Bockenheim und Riedberg sowie
 die spezialisierte Treppenhausreinigung behalten ihre bisherigen Keyword-Ziele.
 Die allgemeinere Frankfurt-Seite übernimmt diese engeren Suchabsichten nicht.
+
+## Bestätigte Veröffentlichung am 17.11.2026
+
+Der inhaltliche Quellenstand `e5e9eb0` ist im Pages-Release `783f1de` veröffentlicht,
+Lauf `44040720002` erfolgreich. Alle 75 kanonischen Seiten, 13 genaue
+Sofortweiterleitungen, Robots/Sitemaps und 15 aktuelle Programm-/Stildateien wurden
+live bytegleich zum geprüften Build bestätigt. Alle 46 zugeordneten Ziel-URLs und
+33 seit Kampagnenbeginn ergänzten Angebotsseiten sind live geprüft. Alle 40
+Fokusbegriffe sind auf ihren 16 zugeordneten Zielseiten wörtlich oder thematisch
+abgedeckt; die Übersicht unterscheidet diese Nachweise ausdrücklich.
+
+Die aktualisierte Sitemap wurde in Search Console eingereicht; die Bestätigung
+wurde beobachtet. Die Sitemap-Tabelle zeigte anschließend 75 erkannte Seiten.
+Das bestätigt die Sitemap-Verarbeitung, nicht die Google-Indexierung aller URLs
+oder ein bestimmtes Ranking. Das ursprüngliche Veröffentlichungsdatum alter
+Artikel bleibt erhalten; sechs tatsächlich um neue Angebotsverweise ergänzte
+Ratgeber sind auf den 17.11.2026 datiert.
+
+Die Ortsübersicht bietet Filter nach Ort/Stadtteil und Leistung. Standardmäßig
+bleiben alle 36 regionalen Angebote verlinkt; vier weitere Leistungsangebote
+stehen unter `/leistungen/`. Alle 16 neuen Seiten wurden auf Desktop und Mobilgerät
+geprüft, ohne Dokumentüberlauf und mit übereinstimmendem Hauptinhalt.

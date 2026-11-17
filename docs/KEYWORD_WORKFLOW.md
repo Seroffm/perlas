@@ -165,3 +165,19 @@ Unbekannte Statuscodes, ungültige Daten, widersprüchliche Angaben zur selben
 Ziel-URL sowie bestätigte Indexzustände ohne datierten Nachweis stoppen den Bericht.
 Die Registry wird nicht durch den Build überschrieben. Der Veröffentlichungs- und
 Indexierungsstand der Arbeitsmappe stammt aus denselben Berichtszeilen.
+
+## Bestätigter 75-Seiten-Live-Stand vom 17.11.2026
+
+Pages-Release `783f1de` aus dem inhaltlichen Quellenstand `e5e9eb0`, erfolgreicher
+Lauf `44040720002`: alle 75 kanonischen Seiten, 13 Weiterleitungen, Robots/Sitemaps
+und 15 aktuelle Programm-/Stildateien sind live bytegleich zum geprüften Build.
+Alle 46 aktuellen Keyword-Ziel-URLs führen `live_verified` mit Datum 17.11.2026.
+Alle 33 seit Kampagnenbeginn ergänzten Angebotsseiten sind veröffentlicht. Die
+40 positiven Fokusbegriffe sind wörtlich oder thematisch abgedeckt; die einzelnen
+Nachweise und 16 zugehörigen Zielseiten stehen im Fokusvergleich.
+
+Die aktualisierte Sitemap wurde in Search Console erneut eingereicht und mit
+75 erkannten Seiten angezeigt. Das ist kein Nachweis der Google-Indexierung
+jeder URL. Vorherige Veröffentlichungs- und Zielzuordnungen bleiben historisiert;
+Höchst, Bockenheim, Riedberg und Treppenhausreinigung behalten ihre spezifischen
+bestehenden Zuordnungen.

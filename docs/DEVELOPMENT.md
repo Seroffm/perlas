@@ -162,3 +162,9 @@ ihre Veröffentlichungsdaten bleiben erhalten, ihre Änderungsdaten sind ausdrü
 aktualisiert und in der SEO-Prüfung belegt. Die Keyword-Registry führt historische
 Recherchewerte, den aktiven 40-Keyword-Fokus und die einzelnen Veröffentlichungs-
 und Indexzustände getrennt. Details: [SEARCH_EXPANSION_2026-11-17.md](SEARCH_EXPANSION_2026-11-17.md).
+
+Die 75-Seiten-Erweiterung wurde aus Quellenstand `e5e9eb0` im Pages-Release
+`783f1de` veröffentlicht (Lauf `44040720002`, erfolgreich). Alle kanonischen URLs
+und aktuellen Programm-/Stildateien wurden live mit dem Build abgeglichen. Die
+aktualisierte Sitemap wurde in Search Console eingereicht und mit 75 erkannten
+Seiten angezeigt. Keyword- und Google-Indexierungsnachweise bleiben getrennt.
