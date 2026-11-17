@@ -146,3 +146,19 @@ Programm-/Stildateien wurden live mit dem Build abgeglichen. In der Keyword-Regi
 sind alle 30 zugeordneten Ziel-URLs und 17 neuen Angebotsseiten als live geprüft
 geführt. Nachfolgende Pflege dieser Nachweise verändert den ausgelieferten Build
 nicht.
+
+## Erweiterung auf 40 Angebotsseiten am 17.11.2026
+
+16 weitere Orts-/Stadtteilangebote erhöhen den Build auf 75 kanonische Seiten.
+Die regionale Sammlung umfasst 36 Einträge, ergänzt um vier übergreifende
+Leistungsangebote unter `/leistungen/`. Die zusätzlichen Inhalte stehen als
+`layout: "focused"` in `commercial-landing-data.json`; App und statischer Renderer
+verwenden dafür `FocusedServiceLandingPage.tsx`. Die ersten 13 Commercial-Einträge
+bleiben im bisherigen Layout. Breadcrumbs richten sich nach dem tatsächlichen
+Pfadpräfix. Neue Datierungen sind fest auf den 17.11.2026 gesetzt.
+
+Sechs bestehende Ratgeber erhalten an diesem Tag tatsächlich neue Angebotsverweise;
+ihre Veröffentlichungsdaten bleiben erhalten, ihre Änderungsdaten sind ausdrücklich
+aktualisiert und in der SEO-Prüfung belegt. Die Keyword-Registry führt historische
+Recherchewerte, den aktiven 40-Keyword-Fokus und die einzelnen Veröffentlichungs-
+und Indexzustände getrennt. Details: [SEARCH_EXPANSION_2026-11-17.md](SEARCH_EXPANSION_2026-11-17.md).

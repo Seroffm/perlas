@@ -23,6 +23,9 @@ export default function FocusedServiceLandingPage({ page, staticMode = false }: 
 }) {
   const id = `fs-${page.slug}`
   const topic = page.inquiry.topic ?? page.heading.replace(/\.$/, '')
+  const isServiceOffer = page.path.startsWith('/leistungen/')
+  const hubPath = isServiceOffer ? '/leistungen/' : '/einsatzgebiete/'
+  const hubLabel = isServiceOffer ? 'Leistungen' : 'Einsatzgebiete'
   const updated = new Intl.DateTimeFormat('de-DE', {
     day: 'numeric', month: 'long', year: 'numeric', timeZone: 'Europe/Berlin',
   }).format(new Date(`${page.updatedOn}T12:00:00Z`))
@@ -32,7 +35,7 @@ export default function FocusedServiceLandingPage({ page, staticMode = false }: 
       <nav className="fs-container fs-breadcrumb" aria-label="Brotkrümeln">
         <ol>
           <li><a href={BASE_PATH}>Startseite</a></li>
-          <li><a href={localPath('/leistungen/')}>Leistungen</a></li>
+          <li><a href={localPath(hubPath)}>{hubLabel}</a></li>
           <li><span aria-current="page">{topic}</span></li>
         </ol>
       </nav>

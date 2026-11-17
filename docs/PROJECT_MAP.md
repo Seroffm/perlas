@@ -13,8 +13,8 @@ und keine Datenbank im Website-Projekt. Einrichtung und Befehle: [DEVELOPMENT.md
 | `src/ContactPage.tsx`, `src/CareerPage.tsx`, `src/BlogPage.tsx` | Nachgeladene Kontakt-, Karriere-, Blogübersichts- und Artikelansichten. |
 | `src/LocalLandingPage.tsx` | Einsatzgebiete-Hub und allgemeine lokale Leistungsseiten. |
 | `src/FrankfurtLandingPage.tsx` | Eigene Gestaltung für `hausmeisterservice-frankfurt`; dieselbe Komponente wird auch statisch gerendert. |
-| `src/CommercialLandingPage.tsx` | Gemeinsame Angebotsansicht für 13 recherchierte Themen-/Ortsseiten mit individueller Planungstabelle und Kurzformular; dieselbe Komponente rendert das initiale HTML. |
-| `src/FocusedServiceLandingPage.tsx` | Reduzierte Angebotsansicht für vier gezielte Leistungsseiten unter `/leistungen/`; Browser und initiales HTML nutzen dieselbe Komponente. |
+| `src/CommercialLandingPage.tsx` | Angebotsansicht für die ersten 13 recherchierten Themen-/Ortsseiten mit individueller Planungstabelle und Kurzformular; dieselbe Komponente rendert das initiale HTML. |
+| `src/FocusedServiceLandingPage.tsx` | Reduzierte Angebotsansicht für vier Leistungsseiten und 16 weitere Orts-/Stadtteilangebote; Browser und initiales HTML nutzen dieselbe Komponente. |
 | `src/QuickContactForm.tsx`, `src/QuoteModal.tsx` | Kurzanfrage und ausführliche Angebotsanfrage; weitere Kontaktformulare liegen in `App.tsx` und den Seitenkomponenten. |
 | `src/styles.css` | Globale Gestaltung und viele bestehende Seiten-/Komponentenregeln; spätere Regeln und Medienabfragen bei Änderungen mitprüfen. |
 | Weitere `src/*.css` | Ergänzungen für Kurzanfrage, Anfrageauswahl, Ratgeberverweise sowie lokale und Frankfurter Landingpages. |
@@ -30,7 +30,7 @@ zusammenpassen; die lokale Analytics-Routenliste ist zusätzlich ausdrücklich b
 | `src/seo-data.json` | Gemeinsame Metadaten, Übersichtsseiten, Region und Leistungsgruppen. |
 | `src/service-data.json`, `src/audience-data.json` | Leistungen und Zielgruppen einschließlich Slugs, Seitentexten, Bildern, SEO und FAQs. |
 | `src/local-landing-data.json` | Einzeln ausgewählte lokale Seiten; keine automatisch erzeugte Stadt-Leistungs-Matrix. |
-| `src/commercial-landing-data.json` | 13 weitere Angebotsseiten; Typen in `src/commercial-landing-types.ts`, Gestaltung in `src/commercial-landings.css`. |
+| `src/commercial-landing-data.json` | 29 recherchierte Angebote: 13 im bisherigen Layout und 16 mit `layout: "focused"`; Typen in `src/commercial-landing-types.ts`. |
 | `src/focused-service-data.json` | Vier einzeln ausgewählte Angebote zu Treppenhausreinigung, Heckenschnitt, Gewerbe-Winterdienst und Gewerbe-Hausmeisterservice; eigene Typen und `focused-services.css`. |
 | `src/blog-data.json`, `src/job-data.json` | Artikel und Stellenbereiche; gemeinsame Typen in `src/content-types.ts`. |
 | `src/imprint-content.json`, `src/privacy-content.json` | Impressum und Datenschutztexte. |
@@ -47,7 +47,7 @@ zusammenpassen; die lokale Analytics-Routenliste ist zusätzlich ausdrücklich b
 - `npm run build` prüft TypeScript und erzeugt mit Vite die Browserdateien in `dist/`.
 - `npm run build:pages` führt zusätzlich `scripts/prepare-pages.mjs` aus: sichtbares initiales HTML, Metadaten, Canonicals, Schema, Sitemap, Robots-Datei, Fehlerseite und Hostingdateien.
 - Die meisten statischen Seiten werden durch eigene HTML-Vorlagen im Skript erzeugt. React ersetzt diese Inhalte beim Start; es findet keine allgemeine React-Hydration statt. Inhaltliche Änderungen deshalb in beiden Darstellungen prüfen.
-- Die Frankfurtseite, die 13 Commercial-Landingpages, die vier gezielten Leistungsseiten und der Footer verwenden jeweils dieselbe React-Komponente im Browser und im Build. Vite lädt sie ohne Netzwerkport; `renderToStaticMarkup` rendert sie mit `staticMode`. Formulare erhalten dann direkte Kontaktalternativen. Die Styles der gezielten Seiten werden bereits im initialen Stylesheet geladen.
+- Die Frankfurtseite, die Angebotsseiten in beiden Layouts und der Footer verwenden jeweils dieselbe React-Komponente im Browser und im Build. Vite lädt sie ohne Netzwerkport; `renderToStaticMarkup` rendert sie mit `staticMode`. Formulare erhalten dann direkte Kontaktalternativen. Die Styles der gezielten Seiten werden bereits im initialen Stylesheet geladen.
 - `vite.config.ts` und die Buildskripte verwenden `PERLAS_SITE_URL` für Basispfad und öffentliche URLs sowie `PERLAS_INDEX_SITE` für Indexierung. Das Browser-SEO wird zusätzlich in `App.tsx` aktualisiert.
 - `src/legacy-redirects.json` und `scripts/prepare-legacy-redirects.mjs` erzeugen sofortige HTML-Weiterleitungen. Unter GitHub Pages sind das HTTP-200-Seiten mit Meta-Refresh, keine HTTP-301-Antworten.
 - `dist/` ist ein Buildprodukt. Änderungen gehören in Quellen; `public/CNAME` und die konfigurierte Zieldomain müssen zum Hosting passen.
@@ -70,7 +70,7 @@ große Klickziele. Bestehende Styles und Abweichungen am konkreten Bauteil prüf
 mobile Darstellung, Tastaturbedienung und reduzierte Bewegung erhalten.
 
 - `npm run lint`: TypeScript-Prüfung; kein separater ESLint-Lauf.
-- `npm run check:seo`: prüft den zuvor erzeugten Build, einschließlich der ausdrücklich erlaubten 59 kanonischen Seiten, interner Links, Metadaten, Schema, Robots-Datei und 13 Altpfad-Zuordnungen. Bei neuen freigegebenen Seiten die unabhängige Routenliste bewusst aktualisieren.
+- `npm run check:seo`: prüft den zuvor erzeugten Build, einschließlich der ausdrücklich erlaubten 75 kanonischen Seiten, interner Links, Metadaten, Schema, Robots-Datei und 13 Altpfad-Zuordnungen. Bei neuen freigegebenen Seiten die unabhängige Routenliste bewusst aktualisieren.
 - `npm run check:images`: prüft Bildmanifest und generierte Bilddateien.
 - `node --test src/*.test.mjs scripts/*.test.mjs`: vorhandene Offlineprüfungen für Analytics/Einwilligung, Kurzanfrage/Transport und Altpfad-Zuordnung.
 - `php server/tests/test.php`: Backendprüfungen mit Mocktransport ohne echten Versand; PHP ≥8.2 und die dokumentierten Erweiterungen erforderlich.
@@ -94,3 +94,13 @@ Elternleistung verlinken sie über dieselben Inhaltsdaten. Das neue Layout verwe
 schlichtere Flächen, kurze Überschriften und größere Abstände; die Markenfarben,
 Schrift und bestehenden Formularkomponenten bleiben erhalten. Auswahl und
 Keyword-Zuordnung: [PURCHASE_INTENT_PLAN.md](PURCHASE_INTENT_PLAN.md).
+
+## Erweiterung am 17.11.2026
+
+16 weitere kuratierte Orts-/Stadtteilangebote verwenden `layout: "focused"` in
+`commercial-landing-data.json`. App und statischer Build wählen dieselbe reduzierte
+Ansicht. Der tatsächliche Pfad bestimmt die Breadcrumb-Hierarchie; ein vorhandenes
+`path`-Feld allein bedeutet nicht, dass die Seite unter `/leistungen/` liegt.
+Die regionale Sammlung umfasst jetzt 36 Angebote; zusammen mit den vier
+übergreifenden Leistungsangeboten sind es 40. Auswahl und 40 priorisierte
+Suchphrasen: [SEARCH_EXPANSION_2026-11-17.md](SEARCH_EXPANSION_2026-11-17.md).

@@ -241,6 +241,22 @@ test('local hub and exactly the commissioned landing routes are measured without
     'hausmeisterservice-ruesselsheim',
     'gebaeudereinigung-ruesselsheim',
     'grundreinigung-frankfurt',
+    'gebaeudereinigung-frankfurt',
+    'glasreinigung-frankfurt',
+    'praxisreinigung-frankfurt',
+    'winterdienst-frankfurt',
+    'gartenpflege-frankfurt',
+    'bueroreinigung-wiesbaden',
+    'winterdienst-wiesbaden',
+    'hausmeisterservice-offenbach',
+    'gebaeudereinigung-offenbach',
+    'gebaeudereinigung-neu-isenburg',
+    'gebaeudereinigung-bad-homburg',
+    'winterdienst-oberursel',
+    'hausmeisterservice-bad-homburg',
+    'gebaeudereinigung-frankfurt-niederrad',
+    'gebaeudereinigung-frankfurt-roedelheim',
+    'gebaeudereinigung-frankfurt-bornheim',
   ]
   for (const slug of slugs) {
     const expected = `https://perlas.de/einsatzgebiete/${slug ? `${slug}/` : ''}`
@@ -254,7 +270,7 @@ test('local hub and exactly the commissioned landing routes are measured without
     assert.equal(JSON.stringify(instance.commands()).includes('private'), false)
     assert.equal(JSON.stringify(instance.commands()).includes('#anfrage'), false)
   }
-  for (const path of ['einsatzgebiete/private@example.test/', 'einsatzgebiete/unapproved-city/', 'einsatzgebiete/objektbetreuung-eschborn/private@example.test/']) {
+  for (const path of ['einsatzgebiete/private@example.test/', 'einsatzgebiete/unapproved-city/', 'einsatzgebiete/objektbetreuung-eschborn/private@example.test/', 'einsatzgebiete/gebaeudereinigung-frankfurt/private@example.test/']) {
     const instance = fixture({ consent: validConsent(), url: `https://perlas.de/${path}` })
     instance.initializeAnalytics(measurementId)
     instance.scripts[0].onload()

@@ -55,6 +55,7 @@ import './focused-services.css'
 import type { BlogPostContent, JobOpeningContent, LocalLandingContent } from './content-types'
 import type { CommercialLandingContent } from './commercial-landing-types'
 import type { FocusedServiceContent } from './focused-service-types'
+import { isFocusedLanding } from './focused-service-types'
 import './focused-offer-links.css'
 
 const ContactPage = lazy(() => import('./ContactPage'))
@@ -158,8 +159,10 @@ function usePageSeo(service?: Feature, pageKind: PageKind = 'home', audience?: A
     const facilityUrl = new URL('facility-management/', siteUrl)
     const pageDefinitions = seoContent.pages
     const pageDefinition = pageKind === 'home' ? undefined : pageDefinitions[pageKind]
+    const landingPath = localLanding && 'path' in localLanding ? localLanding.path : undefined
+    const isFocusedServiceOffer = landingPath?.startsWith('/leistungen/') === true
     const pageUrl = localLanding
-      ? new URL('path' in localLanding ? localLanding.path.replace(/^\//, '') : `einsatzgebiete/${localLanding.slug}/`, siteUrl)
+      ? new URL(landingPath ? landingPath.replace(/^\//, '') : `einsatzgebiete/${localLanding.slug}/`, siteUrl)
       : article
       ? new URL(`blog/${article.slug}/`, siteUrl)
       : service
@@ -258,7 +261,7 @@ function usePageSeo(service?: Feature, pageKind: PageKind = 'home', audience?: A
               '@type': 'BreadcrumbList',
               itemListElement: [
                 { '@type': 'ListItem', position: 1, name: 'Startseite', item: siteUrl.href },
-                { '@type': 'ListItem', position: 2, name: 'path' in localLanding ? 'Leistungen' : 'Einsatzgebiete', item: new URL('path' in localLanding ? 'leistungen/' : 'einsatzgebiete/', siteUrl).href },
+                { '@type': 'ListItem', position: 2, name: isFocusedServiceOffer ? 'Leistungen' : 'Einsatzgebiete', item: new URL(isFocusedServiceOffer ? 'leistungen/' : 'einsatzgebiete/', siteUrl).href },
                 { '@type': 'ListItem', position: 3, name: localLanding.heading, item: pageUrl.href },
               ],
             },
@@ -3577,7 +3580,9 @@ export default function App() {
       {activeFocusedService ? (
         <FocusedServiceLandingPage page={activeFocusedService} />
       ) : activeCommercialLanding ? (
-        <CommercialLandingPage page={activeCommercialLanding} />
+        isFocusedLanding(activeCommercialLanding)
+          ? <FocusedServiceLandingPage page={activeCommercialLanding} />
+          : <CommercialLandingPage page={activeCommercialLanding} />
       ) : activeLocalLanding?.slug === 'hausmeisterservice-frankfurt' ? (
         <FrankfurtLandingPage page={activeLocalLanding} />
       ) : activeLocalLanding ? (

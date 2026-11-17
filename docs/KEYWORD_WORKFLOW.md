@@ -6,8 +6,8 @@ der Keywords zu Zielseiten. Nach einem vollständigen Seitenbuild erzeugt
 [CSV](keyword-overview.csv). Der Bericht prüft Title, H1 und sichtbaren Hauptinhalt
 im Build. Eine fehlende exakte Phrase verlangt nicht automatisch eine neue Seite.
 
-Die Registry enthält 433 eindeutige Begriffe mit dauerhaften IDs `KW-001` bis
-`KW-433`. Davon gehören 337 zur aktiven Planung; 96 bleiben als Beispielthemen
+Die Registry enthält 575 eindeutige Begriffe mit dauerhaften IDs `KW-001` bis
+`KW-575`. Davon gehören 479 zur aktiven Planung; 96 bleiben als Beispielthemen
 archiviert. Die ursprünglichen 197 Zeilen bleiben erhalten. Der Erweiterungsabschnitt
 vom 16.11.2026 ergänzt 196 neue Begriffe für vier Städte, Grundreinigung und
 ursprünglich untersuchte Spezialbodenleistungen. Nach der Klarstellung, dass
@@ -17,6 +17,41 @@ Rechercheabschnitte, Mess-Tasks und tatsächlich gemeldeten Kosten stehen unter
 `provenance.researchSections`. Unbekannte Suchdaten bleiben `null`/`unknown`;
 ein ausdrücklicher Anbieterwert 0 hat den Status `reported_zero`. Ähnliche Varianten
 werden nicht summiert. CPC und Anzeigenwettbewerb sind Google-Ads-Metriken.
+
+Die Erweiterung vom 17.11.2026 ergänzt 142 exakt abgefragte Begriffe für weitere
+Orte, drei ausgewählte Frankfurter Stadtteile und konkrete vorhandene Leistungen.
+Die Suchmetriken wurden am 16.11.2026 abgefragt: 79 positive Schätzwerte,
+60 unbekannte Werte und drei ausdrücklich numerische Nullwerte. Vier
+Entdeckungsabfragen und fünf mobile SERP-Stichproben sind mit Task-ID und
+tatsächlich gemeldeten Kosten separat dokumentiert. Die Stichproben sind auf
+Deutschland ausgerichtet; sie belegen weder eine konkrete Position aus dem
+Stadtgebiet noch eine geringe organische Ranking-Schwierigkeit.
+
+## 40 lokale Fokusbegriffe und 16 neue Zielseiten
+
+`growthFocusRank` kennzeichnet genau 40 positiv gemessene lokale Suchbegriffe.
+`growthFocusReason` nennt den fachlichen Auswahlgrund. `growthFocus` enthält
+Planungsdatum, erwartete Anzahl, 16 gemeinsame Zielseiten und den Messzeitraum.
+Der Bericht zeigt zuerst einen vollständigen Vergleich dieser 40 Begriffe und
+sortiert anschließend den aktiven Gesamtbestand. Die Rohdaten und das CSV führen
+Rang und Auswahlgrund auch für die Arbeitsmappe. Die Validierung verlangt positive
+Suchmetriken, Ortsbezug, Ziel-URL, vollständige eindeutige Ränge und die erwarteten
+16 Ziele. Suchvolumen und CPC werden nicht zu einer angeblichen Abschlussquote
+oder organischen Schwierigkeit umgerechnet. Ähnliche Varianten teilen eine Seite.
+
+Die Auswahl und der eigenständige Nutzen jeder Seite stehen in
+[SEARCH_EXPANSION_2026-11-17.md](SEARCH_EXPANSION_2026-11-17.md). Nicht ausgewählte
+Orte können auf eine vorhandene Leistungsseite als Themenbezug verweisen.
+`optionalUnbuiltPage: true` verhindert dabei, dass ein allgemeines Angebot als
+umgesetzte lokale Zielseite gezählt wird. Bei Frankfurter Stadtteilanfragen muss
+der tatsächliche Stadtteil im Hauptinhalt vorkommen; die bloße Erwähnung von
+Frankfurt reicht für die thematische Ortsabdeckung nicht aus.
+
+Die 16 zusätzlichen Pfade führen zunächst `local_only_pending_push` mit
+`checkedOn: null`. Der Status wird erst nach belegter Live-Prüfung aktualisiert.
+Umgezogene Zuordnungen bewahren den bisherigen Ziel-, Veröffentlichungs- und
+Indexierungsbefund in `previousTargetMappings`; Suchmetriken werden nicht durch
+eine neue Zuordnung verändert.
 
 ## Aktive Planung, archivierte Beispiele und fehlendes Ziel
 
@@ -82,11 +117,19 @@ ebenfalls am 16.11.2026 veröffentlicht: Pages-Release `e5e4cba` aus dem inhaltl
 Quellenstand `199496d`, erfolgreicher Lauf `43893639104`. Alle 59 kanonischen URLs,
 13 Weiterleitungen, Robots/Sitemaps und 15 aktuelle Programm-/Stildateien wurden
 live bytegleich zum geprüften Build bestätigt. `newLocalPagePaths` enthält jetzt
-alle 17 heute erstellten Angebotsseiten; der historische Feldname schließt auch
+alle 17 am 16.11.2026 erstellten Angebotsseiten; der historische Feldname schließt auch
 die vier neuen Leistungspfade ein. Alle 30 zugeordneten Ziel-URLs sind live geprüft.
 Die bisherigen Zielbefunde der 18 neu zugeordneten Keywords bleiben unter
 `previousTargetMappings` erhalten. Eine Google-Indexierung folgt aus keinem dieser
 Veröffentlichungsbefunde.
+
+Die Erweiterung vom 17.11.2026 ergänzt 16 weitere Angebotsseiten.
+`newLocalPagePaths` enthält damit 33 Pfade seit Kampagnenbeginn: 17 vom
+16.11.2026 und 16 vom 17.11.2026. Das ist keine Zahl der allein heute erstellten
+Seiten. Die geplante Gesamtzahl beträgt 75 kanonische Seiten; ein lokaler Build
+ist ausdrücklich kein Nachweis ihrer Veröffentlichung oder Google-Indexierung.
+Der letzte belegte Live-Release bleibt unter `publicationVerification` stehen,
+bis ein neuer Abgleich erfolgreich dokumentiert ist.
 
 ## Google-Indexierung
 

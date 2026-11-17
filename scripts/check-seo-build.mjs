@@ -20,7 +20,7 @@ const urls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => new UR
 const sitemapIndex = await readFile(path.join(dist, 'sitemap_index.xml'), 'utf8')
 assert(sitemapIndex.includes('<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'), 'Valid compatibility sitemap index required')
 assert.deepEqual([...sitemapIndex.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]), [new URL('sitemap.xml', site).href], 'Sitemap index must point only to the current canonical sitemap')
-// Keep the route allowlist independent of content collections. The twenty local
+// Keep the route allowlist independent of content collections. The thirty-six local
 // service pages, four focused service offers and ten articles have each been
 // explicitly commissioned.
 const existingPaths = [
@@ -52,6 +52,22 @@ const existingPaths = [
   'einsatzgebiete/hausmeisterservice-ruesselsheim/',
   'einsatzgebiete/gebaeudereinigung-ruesselsheim/',
   'einsatzgebiete/grundreinigung-frankfurt/',
+  'einsatzgebiete/gebaeudereinigung-frankfurt/',
+  'einsatzgebiete/glasreinigung-frankfurt/',
+  'einsatzgebiete/praxisreinigung-frankfurt/',
+  'einsatzgebiete/winterdienst-frankfurt/',
+  'einsatzgebiete/gartenpflege-frankfurt/',
+  'einsatzgebiete/bueroreinigung-wiesbaden/',
+  'einsatzgebiete/winterdienst-wiesbaden/',
+  'einsatzgebiete/hausmeisterservice-offenbach/',
+  'einsatzgebiete/gebaeudereinigung-offenbach/',
+  'einsatzgebiete/gebaeudereinigung-neu-isenburg/',
+  'einsatzgebiete/gebaeudereinigung-bad-homburg/',
+  'einsatzgebiete/winterdienst-oberursel/',
+  'einsatzgebiete/hausmeisterservice-bad-homburg/',
+  'einsatzgebiete/gebaeudereinigung-frankfurt-niederrad/',
+  'einsatzgebiete/gebaeudereinigung-frankfurt-roedelheim/',
+  'einsatzgebiete/gebaeudereinigung-frankfurt-bornheim/',
   'ueber-uns/',
   'blog/',
   'blog/winterdienst-richtig-planen/',
@@ -85,8 +101,8 @@ const existingPaths = [
   'leistungen/hausmeisterservice-gewerbe/',
 ]
 const expectedUrls = existingPaths.map((relative) => new URL(relative, site).href).sort()
-assert.equal(expectedUrls.length, 59, 'Exactly 59 commissioned canonical pages required')
-assert.deepEqual(urls.map((url) => url.href).sort(), expectedUrls, 'Only the 59 explicitly commissioned canonical routes are allowed')
+assert.equal(expectedUrls.length, 75, 'Exactly 75 commissioned canonical pages required')
+assert.deepEqual(urls.map((url) => url.href).sort(), expectedUrls, 'Only the 75 explicitly commissioned canonical routes are allowed')
 const robotsFile = await readFile(path.join(dist, 'robots.txt'), 'utf8')
 const robotsGroups = []
 let robotsGroup
@@ -129,6 +145,7 @@ const allLocalContent = [...localContent, ...commercialContent]
 const localByUrl = new Map(allLocalContent.map((landing) => [new URL(`einsatzgebiete/${landing.slug}/`, site).href, landing]))
 const commercialByUrl = new Map(commercialContent.map((landing) => [new URL(`einsatzgebiete/${landing.slug}/`, site).href, landing]))
 const focusedByUrl = new Map(focusedContent.map((landing) => [new URL(landing.path.replace(/^\//, ''), site).href, landing]))
+const cleanByUrl = new Map([...focusedByUrl, ...[...commercialByUrl].filter(([, landing]) => landing.layout === 'focused')])
 const seoContent = JSON.parse(await readFile(path.join(workspace, 'src/seo-data.json'), 'utf8'))
 const googleReviews = JSON.parse(await readFile(path.join(workspace, 'src/google-reviews-data.json'), 'utf8'))
 const imageVariants = JSON.parse(await readFile(path.join(workspace, 'src/image-variants.json'), 'utf8'))
@@ -140,7 +157,7 @@ const frankfurtArticleSlug = 'hausmeisterservice-objektbetreuung-frankfurt-umgeb
 const frankfurtLandingUrl = new URL(`einsatzgebiete/${frankfurtLandingSlug}/`, site).href
 const frankfurtArticleUrl = new URL(`blog/${frankfurtArticleSlug}/`, site).href
 assert.equal(localContent.length, 7, 'Keep the seven established local service pages')
-assert.equal(commercialByUrl.size, 13, 'Exactly thirteen unique commissioned commercial landing pages required')
+assert.equal(commercialByUrl.size, 29, 'Exactly twenty-nine unique commissioned commercial landing pages required')
 assert.deepEqual([...commercialByUrl.keys()].sort(), [
   'hausmeisterservice-kelkheim', 'bueroreinigung-frankfurt',
   'gebaeudereinigung-eschborn', 'tiefgaragenreinigung-frankfurt',
@@ -153,10 +170,41 @@ assert.deepEqual([...commercialByUrl.keys()].sort(), [
   'hausmeisterservice-ruesselsheim',
   'gebaeudereinigung-ruesselsheim',
   'grundreinigung-frankfurt',
-].map((slug) => new URL(`einsatzgebiete/${slug}/`, site).href).sort(), 'Only the thirteen explicitly commissioned commercial landing routes are allowed')
-assert.equal(allLocalContent.length, 20, 'Exactly twenty local content entries required, without slug collisions')
-assert.equal(localByUrl.size, 20, 'Exactly twenty unique commissioned local service pages required')
+  'gebaeudereinigung-frankfurt',
+  'glasreinigung-frankfurt',
+  'praxisreinigung-frankfurt',
+  'winterdienst-frankfurt',
+  'gartenpflege-frankfurt',
+  'bueroreinigung-wiesbaden',
+  'winterdienst-wiesbaden',
+  'hausmeisterservice-offenbach',
+  'gebaeudereinigung-offenbach',
+  'gebaeudereinigung-neu-isenburg',
+  'gebaeudereinigung-bad-homburg',
+  'winterdienst-oberursel',
+  'hausmeisterservice-bad-homburg',
+  'gebaeudereinigung-frankfurt-niederrad',
+  'gebaeudereinigung-frankfurt-roedelheim',
+  'gebaeudereinigung-frankfurt-bornheim',
+].map((slug) => new URL(`einsatzgebiete/${slug}/`, site).href).sort(), 'Only the twenty-nine explicitly commissioned commercial landing routes are allowed')
+assert.equal(allLocalContent.length, 36, 'Exactly thirty-six local content entries required, without slug collisions')
+assert.equal(localByUrl.size, 36, 'Exactly thirty-six unique commissioned local service pages required')
 assert.deepEqual([...localByUrl.keys()].sort(), expectedUrls.filter((url) => url.startsWith(regionsUrl) && url !== regionsUrl), 'Local data and independently allowed routes must agree')
+const newCommercialSlugs = new Set([
+  'gebaeudereinigung-frankfurt', 'glasreinigung-frankfurt', 'praxisreinigung-frankfurt',
+  'winterdienst-frankfurt', 'gartenpflege-frankfurt', 'bueroreinigung-wiesbaden',
+  'winterdienst-wiesbaden', 'hausmeisterservice-offenbach', 'gebaeudereinigung-offenbach',
+  'gebaeudereinigung-neu-isenburg', 'gebaeudereinigung-bad-homburg', 'winterdienst-oberursel',
+  'hausmeisterservice-bad-homburg', 'gebaeudereinigung-frankfurt-niederrad',
+  'gebaeudereinigung-frankfurt-roedelheim', 'gebaeudereinigung-frankfurt-bornheim',
+])
+const newCleanRegionalContent = commercialContent.filter((landing) => landing.layout === 'focused')
+assert.deepEqual(newCleanRegionalContent.map((landing) => landing.slug).sort(), [...newCommercialSlugs].sort(), 'Exactly the sixteen new regional offers use the clean renderer')
+assert.equal(cleanByUrl.size, 20, 'Keep four focused service offers plus sixteen new clean regional offers')
+for (const landing of newCleanRegionalContent) {
+  assert.equal(landing.path, `/einsatzgebiete/${landing.slug}/`, `Clean regional path must match its approved slug: ${landing.slug}`)
+  assert(landing.eyebrow && landing.parentLabel && landing.heroPromise, `Clean regional identity and offer copy required: ${landing.slug}`)
+}
 assert.equal(focusedContent.length, 4, 'Exactly four individually commissioned focused service offers required')
 assert.equal(focusedByUrl.size, 4, 'Focused service paths must be unique')
 assert.deepEqual([...focusedByUrl.keys()].sort(), [
@@ -193,7 +241,8 @@ for (const landing of localContent) {
   assert.equal(landing.updatedOn, expectedUpdate, `Keep the actual local substantive update date, never a rolling date: ${landing.slug}`)
 }
 for (const landing of [...commercialContent, ...focusedContent]) {
-  assert.equal(landing.updatedOn, '2026-11-16', `Keep the actual commercial publication date: ${landing.slug}`)
+  const expectedUpdate = newCommercialSlugs.has(landing.slug) ? '2026-11-17' : '2026-11-16'
+  assert.equal(landing.updatedOn, expectedUpdate, `Keep the actual commercial publication date: ${landing.slug}`)
   assert(landing.scopeTitle && landing.scopeIntro && landing.serviceAreaText, `Commercial scope and genuine service area required: ${landing.slug}`)
   assert(landing.planning?.title && landing.planning.intro && landing.planning.headers.length >= 2 && landing.planning.rows.length >= 3, `Useful planning comparison required: ${landing.slug}`)
   assert(landing.planning.rows.every((row) => row.length === landing.planning.headers.length), `Rectangular commercial planning table required: ${landing.slug}`)
@@ -206,7 +255,18 @@ for (const landing of [...commercialContent, ...focusedContent]) {
 assert.equal(blogByUrl.size, 10, 'Exactly ten unique blog articles required')
 assert.deepEqual([...blogByUrl.keys()].sort(), expectedUrls.filter((url) => url.startsWith(new URL('blog/', site).href) && url !== new URL('blog/', site).href), 'Blog data and allowed article routes must agree')
 assert.equal(blogByUrl.get(frankfurtArticleUrl)?.published, '14.10.2026', 'Keep the Frankfurt article’s actual publication date')
-assert.equal(blogByUrl.get(frankfurtArticleUrl)?.updated, '14.10.2026', 'Keep the Frankfurt article’s substantive update date')
+const expandedGuideSlugs = [
+  'bueroreinigung-eschborn-angebot-kosten',
+  'gebaeudereinigung-im-laufenden-betrieb',
+  'gebaeudereinigung-wiesbaden-erbenheim-leistungsverzeichnis',
+  'hausmeisterservice-objektbetreuung-frankfurt-umgebung',
+  'objektkontrollen-richtig-dokumentieren',
+  'winterdienst-richtig-planen',
+]
+for (const slug of expandedGuideSlugs) {
+  assert(newCleanRegionalContent.some((landing) => landing.guideSlugs.includes(slug)), `The recorded guide update must have an actual new regional service panel: ${slug}`)
+  assert.equal(blogByUrl.get(new URL(`blog/${slug}/`, site).href)?.updated, '17.11.2026', `Keep the dated new regional-panel update: ${slug}`)
+}
 assert.equal(localByUrl.get(frankfurtLandingUrl)?.serviceSlug, 'objektpflege', 'Frankfurt landing must belong to the actual housekeeper service')
 assert(localByUrl.get(frankfurtLandingUrl)?.guideSlugs.includes(frankfurtArticleSlug), 'Frankfurt landing and its commissioned article must be contextually linked')
 const sitemapLastmods = new Map([...sitemap.matchAll(/<url>([\s\S]*?)<\/url>/g)].map((match) => [
@@ -270,7 +330,7 @@ function checkStructuredData(html, url) {
   if (blogByUrl.has(url.href)) {
     assert.equal(entries.filter((entry) => schemaTypes(entry).includes('BlogPosting')).length, 1, `Exactly one Article schema required: ${url}`)
   }
-  const focused = focusedByUrl.get(url.href)
+  const focused = cleanByUrl.get(url.href)
   const local = localByUrl.get(url.href) ?? focused
   if (local) {
     const localService = entries.filter((entry) => schemaTypes(entry).includes('Service'))
@@ -279,7 +339,7 @@ function checkStructuredData(html, url) {
     assert.equal(localService[0].description, local.seoDescription, `Local Service description: ${url}`)
     assert.deepEqual(localService[0].areaServed, { '@type': 'Place', name: local.locality }, `Local service area must not invent a branch office: ${url}`)
     const breadcrumb = entries.find((entry) => schemaTypes(entry).includes('BreadcrumbList'))
-    assert.deepEqual(breadcrumb?.itemListElement?.map((item) => item.item), [site.href, focused ? servicesUrl : regionsUrl, url.href], `Service breadcrumb hierarchy: ${url}`)
+    assert.deepEqual(breadcrumb?.itemListElement?.map((item) => item.item), [site.href, focused?.path.startsWith('/leistungen/') ? servicesUrl : regionsUrl, url.href], `Service breadcrumb hierarchy: ${url}`)
     if (focused) {
       const webPages = entries.filter((entry) => schemaTypes(entry).includes('WebPage'))
       assert.equal(webPages.length, 1, `Exactly one focused WebPage schema required: ${url}`)
@@ -423,7 +483,7 @@ for (const url of urls) {
     assert.equal(sitemapLastmods.get(url.href), updated, `Article sitemap lastmod differs from actual update: ${url}`)
     await access(path.join(dist, 'assets', post.image))
   } else if (localByUrl.has(url.href) || focusedByUrl.has(url.href) || url.href === regionsUrl) {
-    const updated = localByUrl.get(url.href)?.updatedOn ?? focusedByUrl.get(url.href)?.updatedOn ?? '2026-11-16'
+    const updated = localByUrl.get(url.href)?.updatedOn ?? focusedByUrl.get(url.href)?.updatedOn ?? '2026-11-17'
     assert(updated <= today, `Future local publication date: ${url}`)
     assert.equal(sitemapLastmods.get(url.href), updated, `Local sitemap lastmod must match actual publication: ${url}`)
   } else if (serviceByUrl.get(url.href)?.updatedOn) {
@@ -445,7 +505,7 @@ for (const url of urls) {
   assert(links.includes(`${site.pathname}datenschutz/`), `Privacy link absent: ${url}`)
   assert(links.includes(`${site.pathname}einsatzgebiete/`), `Crawlable regional hub link absent: ${url}`)
   pages.set(url.href, { html, ids, links })
-  const focused = focusedByUrl.get(url.href)
+  const focused = cleanByUrl.get(url.href)
   const local = localByUrl.get(url.href) ?? focused
   if (local) {
     const commercial = commercialByUrl.get(url.href) ?? focused
@@ -476,7 +536,7 @@ for (const url of urls) {
     assert(mainLinks.includes('#anfrage') && ids.has('anfrage'), `Local on-page inquiry CTA absent: ${url}`)
     assert(mainLinks.includes('tel:+491776867145') && mainLinks.includes('mailto:mail@perlas.de'), `Local no-JavaScript contact alternatives absent: ${url}`)
     assert(mainLinks.includes(`${site.pathname}leistungen/${local.serviceSlug}/`), `Local parent service link absent: ${url}`)
-    assert(mainLinks.includes(`${site.pathname}${focused ? 'leistungen/' : 'einsatzgebiete/'}`), `Service hub link absent from the main content: ${url}`)
+    assert(mainLinks.includes(`${site.pathname}${focused?.path.startsWith('/leistungen/') ? 'leistungen/' : 'einsatzgebiete/'}`), `Service hub link absent from the main content: ${url}`)
     if (focused) {
       assert(/<main\b[^>]*class="[^"]*\bfs-landing\b/.test(html), `Focused offer must use the shared clean landing renderer: ${url}`)
       assert(mainText.includes(focused.inquiry.topic ?? focused.heading), `Focused inquiry topic absent from static fallback: ${url}`)

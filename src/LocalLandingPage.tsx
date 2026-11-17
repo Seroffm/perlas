@@ -1,3 +1,4 @@
+import { useRef, useState } from 'react'
 import { ArrowUpRight, CheckCircle2, Phone } from 'lucide-react'
 import QuickContactForm from './QuickContactForm'
 import ResponsiveImage from './ResponsiveImage'
@@ -7,6 +8,14 @@ const BASE_PATH = import.meta.env.BASE_URL
 const REGIONS_PATH = `${BASE_PATH}einsatzgebiete/`
 const PHONE_HREF = 'tel:+491776867145'
 type ServiceLink = { slug: string; title: string; text: string }
+const hubServiceLabels: Record<string, string> = {
+  objektpflege: 'Objektbetreuung & Hausmeisterservice',
+  gebaeudereinigung: 'Gebäude- & Büroreinigung',
+  gartenpflege: 'Garten- & Außenanlagenpflege',
+  winterdienst: 'Winterdienst',
+  tiefgaragenreinigung: 'Tiefgaragenreinigung',
+  'baumpflege-baumfaellung': 'Baumpflege & Baumfällung',
+}
 
 function PhoneLink({ light = false }: { light?: boolean }) {
   // The shared contact-click listener measures this exact public telephone link.
@@ -173,10 +182,25 @@ export default function LocalLandingPage({ page, services, guides }: {
 }
 
 export function RegionalLandingHub({ pages, heading, intro }: {
-  pages: Array<Pick<LocalLandingContent, 'slug' | 'heading' | 'locality' | 'scopeIntro' | 'heroImage'>>
+  pages: Array<Pick<LocalLandingContent, 'slug' | 'serviceSlug' | 'heading' | 'locality' | 'scopeIntro' | 'heroImage'>>
   heading: string
   intro: string
 }) {
+  const [locality, setLocality] = useState('')
+  const [serviceSlug, setServiceSlug] = useState('')
+  const localityRef = useRef<HTMLSelectElement>(null)
+  const localities = [...new Set(pages.map(page => page.locality))].sort((a, b) => a.localeCompare(b, 'de'))
+  const services = [...new Set(pages.map(page => page.serviceSlug))]
+    .map(slug => ({ slug, label: hubServiceLabels[slug] ?? 'Weitere Leistungen' }))
+    .sort((a, b) => a.label.localeCompare(b.label, 'de'))
+  const filteredPages = pages.filter(page => (!locality || page.locality === locality) && (!serviceSlug || page.serviceSlug === serviceSlug))
+  const isFiltered = Boolean(locality || serviceSlug)
+  const resetFilters = () => {
+    setLocality('')
+    setServiceSlug('')
+    localityRef.current?.focus()
+  }
+
   return (
     <main className="local-landing-page local-region-hub">
       <nav className="local-breadcrumb" aria-label="Brotkrümeln">
@@ -190,14 +214,41 @@ export function RegionalLandingHub({ pages, heading, intro }: {
       </section>
       <section className="local-section" aria-labelledby="local-hub-options-heading">
         <div className="local-section-heading"><span className="local-eyebrow">Passenden Bereich auswählen</span><h2 id="local-hub-options-heading">Auf Ihre Aufgaben abgestimmt.</h2></div>
-        <div className="local-hub-grid">
-          {pages.map((page) => (
+        <div className="local-hub-filters" role="group" aria-label="Angebote nach Ort und Leistung filtern">
+          <div className="local-hub-filter-controls">
+            <label htmlFor="local-hub-locality">
+              <span>Ort / Stadtteil</span>
+              <select id="local-hub-locality" ref={localityRef} value={locality} onChange={event => setLocality(event.target.value)} aria-controls="local-hub-results">
+                <option value="">Alle Orte und Stadtteile</option>
+                {localities.map(option => <option value={option} key={option}>{option}</option>)}
+              </select>
+            </label>
+            <label htmlFor="local-hub-service">
+              <span>Leistung</span>
+              <select id="local-hub-service" value={serviceSlug} onChange={event => setServiceSlug(event.target.value)} aria-controls="local-hub-results">
+                <option value="">Alle Leistungen</option>
+                {services.map(option => <option value={option.slug} key={option.slug}>{option.label}</option>)}
+              </select>
+            </label>
+          </div>
+          <div className="local-hub-filter-summary">
+            <p className="local-hub-result-count" role="status" aria-live="polite" aria-atomic="true">{filteredPages.length} von {pages.length} Angeboten</p>
+            {isFiltered && <button type="button" onClick={resetFilters}>Filter zurücksetzen</button>}
+          </div>
+        </div>
+        <div className="local-hub-grid" id="local-hub-results">
+          {filteredPages.map((page) => (
             <a className="local-hub-card" href={`${REGIONS_PATH}${page.slug}/`} key={page.slug}>
               <ResponsiveImage asset={page.heroImage.src} alt={page.heroImage.alt} sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 1100px) 50vw, 540px" style={{ objectPosition: page.heroImage.position ?? '50% 50%' }} />
               <div><span>{page.locality}</span><h3>{page.heading}</h3><p>{page.scopeIntro}</p><strong>Leistung vor Ort besprechen <ArrowUpRight aria-hidden="true" /></strong></div>
             </a>
           ))}
         </div>
+        {filteredPages.length === 0 && <div className="local-hub-empty">
+          <h3>Für diese Auswahl ist noch kein Angebot aufgeführt.</h3>
+          <p>Wir besprechen Ihren Standort und den gewünschten Umfang gerne persönlich.</p>
+          <a className="local-action" href={`${BASE_PATH}kontakt/`}>Passende Leistung anfragen <ArrowUpRight aria-hidden="true" /></a>
+        </div>}
         <p className="local-photo-note">Die Bilder geben Einblicke in unseren Bildbestand und sind keine ortsspezifischen Referenzen.</p>
       </section>
       <section className="local-section local-hub-contact" aria-labelledby="local-hub-contact-heading">

@@ -7,6 +7,10 @@ export type CommercialLandingImage = {
 
 export type CommercialLandingContent = {
   slug: string
+  layout?: 'focused'
+  path?: `/leistungen/${string}/` | `/einsatzgebiete/${string}/`
+  eyebrow?: string
+  parentLabel?: string
   serviceSlug: string
   locality: string
   region?: string

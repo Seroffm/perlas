@@ -222,7 +222,7 @@ function localLandingStructuredData(landing) {
         '@type': 'BreadcrumbList',
         itemListElement: [
           { '@type': 'ListItem', position: 1, name: 'Startseite', item: siteUrl.href },
-          { '@type': 'ListItem', position: 2, name: landing.path ? 'Leistungen' : 'Einsatzgebiete', item: landing.path ? servicesUrl.href : regionsUrl.href },
+          { '@type': 'ListItem', position: 2, name: landing.path?.startsWith('/leistungen/') ? 'Leistungen' : 'Einsatzgebiete', item: landing.path?.startsWith('/leistungen/') ? servicesUrl.href : regionsUrl.href },
           { '@type': 'ListItem', position: 3, name: landing.heading, item: url },
         ],
       },
@@ -877,8 +877,10 @@ const focusedInitialMarkup = new Map()
       focusedInitialMarkup.set(page.slug, renderToStaticMarkup(createElement(FocusedServiceLandingPage, { page, staticMode: true })))
     }
     const { default: CommercialLandingPage } = await renderer.ssrLoadModule('/src/CommercialLandingPage.tsx')
+    const { isFocusedLanding } = await renderer.ssrLoadModule('/src/focused-service-types.ts')
     for (const page of commercialLandings) {
-      commercialInitialMarkup.set(page.slug, renderToStaticMarkup(createElement(CommercialLandingPage, { page, staticMode: true })))
+      const Component = isFocusedLanding(page) ? FocusedServiceLandingPage : CommercialLandingPage
+      commercialInitialMarkup.set(page.slug, renderToStaticMarkup(createElement(Component, { page, staticMode: true })))
     }
   } finally {
     await renderer.close()
@@ -1093,7 +1095,7 @@ const sitemapUrls = [
   ...services.map((service) => serviceUrl(service).href),
 ]
 const pageLastModified = new Map([
-  [regionsUrl.href, '2026-11-16'],
+  [regionsUrl.href, '2026-11-17'],
   ...regionalLandings.map((landing) => [localLandingUrl(landing).href, landing.updatedOn]),
   ...focusedServices.map(page => [localLandingUrl(page).href, page.updatedOn]),
   ...blogPosts.map((post) => [blogPostUrl(post).href, blogDateToIso(post.updated)]),

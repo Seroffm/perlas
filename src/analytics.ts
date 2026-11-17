@@ -49,6 +49,22 @@ const publicRoutes = new Set([
   'einsatzgebiete/hausmeisterservice-ruesselsheim/',
   'einsatzgebiete/gebaeudereinigung-ruesselsheim/',
   'einsatzgebiete/grundreinigung-frankfurt/',
+  'einsatzgebiete/gebaeudereinigung-frankfurt/',
+  'einsatzgebiete/glasreinigung-frankfurt/',
+  'einsatzgebiete/praxisreinigung-frankfurt/',
+  'einsatzgebiete/winterdienst-frankfurt/',
+  'einsatzgebiete/gartenpflege-frankfurt/',
+  'einsatzgebiete/bueroreinigung-wiesbaden/',
+  'einsatzgebiete/winterdienst-wiesbaden/',
+  'einsatzgebiete/hausmeisterservice-offenbach/',
+  'einsatzgebiete/gebaeudereinigung-offenbach/',
+  'einsatzgebiete/gebaeudereinigung-neu-isenburg/',
+  'einsatzgebiete/gebaeudereinigung-bad-homburg/',
+  'einsatzgebiete/winterdienst-oberursel/',
+  'einsatzgebiete/hausmeisterservice-bad-homburg/',
+  'einsatzgebiete/gebaeudereinigung-frankfurt-niederrad/',
+  'einsatzgebiete/gebaeudereinigung-frankfurt-roedelheim/',
+  'einsatzgebiete/gebaeudereinigung-frankfurt-bornheim/',
 ])
 
 type AnalyticsWindow = Window & {
