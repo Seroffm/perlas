@@ -61,6 +61,13 @@ Innenhöfe und Zugänge. Aus den Fotos wird kein Auftrag in der jeweils beworben
 Stadt und keine zusätzliche Qualifikation oder Kundenreferenz abgeleitet.
 Die Bilder werden unverändert aus den bestehenden responsiven Varianten geladen.
 
+Am 18.11.2026 kamen acht Angebotsseiten mit bereits vorhandenen passenden
+Motiven und unveränderten responsiven Varianten hinzu. Fünf zusätzliche Angebote
+nutzen den gemeinsamen Arbeitsbeleg-Baustein; damit erscheint er auf 37 Seiten.
+Daraus entsteht weiterhin kein Nachweis eines Auftrags in der genannten Stadt.
+Für diese Erweiterung wurden keine neuen Bilder generiert oder vorhandene
+Bilddateien verändert.
+
 ## KI-Visualisierung
 
 | Datei | Einsatz auf der Website | Grundlage und Kennzeichnung |

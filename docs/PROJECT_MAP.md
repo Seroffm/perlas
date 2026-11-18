@@ -23,8 +23,8 @@ und keine Datenbank im Website-Projekt. Einrichtung und Befehle: [DEVELOPMENT.md
 | `src/LocalLandingPage.tsx` | Einsatzgebiete-Hub und allgemeine lokale Leistungsseiten. |
 | `src/FrankfurtLandingPage.tsx` | Eigene Gestaltung für `hausmeisterservice-frankfurt`; dieselbe Komponente wird auch statisch gerendert. |
 | `src/CommercialLandingPage.tsx` | Angebotsansicht für die ersten 13 recherchierten Themen-/Ortsseiten mit individueller Planungstabelle und Kurzformular; dieselbe Komponente rendert das initiale HTML. |
-| `src/FocusedServiceLandingPage.tsx` | Reduzierte Angebotsansicht für vier Leistungsseiten und 18 weitere Orts-/Stadtteilangebote; Browser und initiales HTML nutzen dieselbe Komponente. |
-| `src/WorkEvidence.tsx`, `src/work-evidence.css` | Vorhandene echte Arbeitsbilder auf 32 passenden Angebotsseiten; keine erfundene Zuordnung zu lokalen Aufträgen. |
+| `src/FocusedServiceLandingPage.tsx` | Reduzierte Angebotsansicht für sechs Leistungsseiten und 24 Orts-/Stadtteilangebote; Browser und initiales HTML nutzen dieselbe Komponente. |
+| `src/WorkEvidence.tsx`, `src/work-evidence.css` | Vorhandene echte Arbeitsbilder auf 37 passenden Angebotsseiten; keine erfundene Zuordnung zu lokalen Aufträgen. |
 | `src/structured-data.mjs` | Gemeinsamer reiner Schema-Builder für Browser und Build: Unternehmensidentität, Seitentyp, Leistung/Artikel, echte Breadcrumbs und Datierung. |
 | `src/QuickContactForm.tsx`, `src/QuoteModal.tsx` | Kurzanfrage und ausführliche Angebotsanfrage; weitere Kontaktformulare liegen in `App.tsx` und den Seitenkomponenten. |
 | `src/styles.css` | Globale Gestaltung und viele bestehende Seiten-/Komponentenregeln; spätere Regeln und Medienabfragen bei Änderungen mitprüfen. |
@@ -82,7 +82,7 @@ große Klickziele. Bestehende Styles und Abweichungen am konkreten Bauteil prüf
 mobile Darstellung, Tastaturbedienung und reduzierte Bewegung erhalten.
 
 - `npm run lint`: TypeScript-Prüfung; kein separater ESLint-Lauf.
-- `npm run check:seo`: prüft den zuvor erzeugten Build, einschließlich der ausdrücklich erlaubten 77 kanonischen Seiten, interner Links, Metadaten, Schema, effektiver Botregeln, Favicon und 21 freigegebener Altpfad-Zuordnungen. Bei neuen freigegebenen Seiten die unabhängige Routenliste bewusst aktualisieren.
+- `npm run check:seo`: prüft den zuvor erzeugten Build, einschließlich der ausdrücklich erlaubten 85 kanonischen Seiten, interner Links, Metadaten, Schema, effektiver Botregeln, Favicon und 21 freigegebener Altpfad-Zuordnungen. Bei neuen freigegebenen Seiten die unabhängige Routenliste bewusst aktualisieren.
 - `npm run check:images`: prüft Bildmanifest und generierte Bilddateien.
 - `node --test src/*.test.mjs scripts/*.test.mjs`: vorhandene Offlineprüfungen für Analytics/Einwilligung, Kurzanfrage/Transport und Altpfad-Zuordnung.
 - `php server/tests/test.php`: Backendprüfungen mit Mocktransport ohne echten Versand; PHP ≥8.2 und die dokumentierten Erweiterungen erforderlich.
@@ -94,12 +94,12 @@ nachvollziehbarer Grundlage anpassen. Recherchekontext steht in
 
 ## Regionale Erweiterung
 
-`SiteFooter.tsx` und `footer-links.json` sind die gemeinsame Quelle für den Browser- und SSR-Footer. Der Vite-Renderer erstellt ihn vor dem ersten Seitenbuild. `commercial-landing-data.json` enthält 13 gestaltete Angebotsseiten einschließlich der neun regionalen/spezifischen Erweiterungen; Details: [REGIONAL_EXPANSION.md](REGIONAL_EXPANSION.md).
+`SiteFooter.tsx` und `footer-links.json` sind die gemeinsame Quelle für den Browser- und SSR-Footer. Der Vite-Renderer erstellt ihn vor dem ersten Seitenbuild. `commercial-landing-data.json` enthält 37 gestaltete Angebotsseiten: 13 im ursprünglichen Layout und 24 im reduzierten Focused-Layout. Zum ersten Ausbau: [REGIONAL_EXPANSION.md](REGIONAL_EXPANSION.md); zum aktuellen Stand: [LEAD_EXPANSION_2026-11-18.md](LEAD_EXPANSION_2026-11-18.md).
 
 ## Gezielte Leistungsseiten
 
-Die vier Einträge in `focused-service-data.json` besitzen ausdrücklich gespeicherte
-`path`-Werte unter `/leistungen/`. Sie bleiben von den 20 lokalen Seiten getrennt.
+Die sechs Einträge in `focused-service-data.json` besitzen ausdrücklich gespeicherte
+`path`-Werte unter `/leistungen/`. Sie bleiben von den 44 regionalen Angeboten getrennt.
 `App.tsx` und `prepare-pages.mjs` berücksichtigen diese Pfade gemeinsam bei
 Routing, Canonicals und Breadcrumbs. Die Leistungsübersicht und die jeweilige
 Elternleistung verlinken sie über dieselben Inhaltsdaten. Das neue Layout verwendet
