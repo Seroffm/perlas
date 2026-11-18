@@ -105,13 +105,74 @@ Formularthema, erreichbarer Telefonkontakt und die Pflichtfeldprüfung mit Fokus
 auf das erste fehlerhafte Feld bestätigt; es wurden dabei keine echten Anfragen
 versandt.
 
-Ein gekennzeichneter produktiver Versandtest wird getrennt vorbereitet. Er würde
-echte interne und Bestätigungs-E-Mails erzeugen und benötigt deshalb eine
-konkrete Versandfreigabe. Bis zu tatsächlicher Zustellprüfung wird keine
-vollständige E-Mail-Zustellung behauptet.
+Nach konkreter Versandfreigabe wurde zusätzlich eine klar gekennzeichnete
+Testanfrage über das Live-Kontaktformular abgeschickt. Der Server hat sie
+angenommen; die Oberfläche bestätigt die Annahme und meldet die
+Eingangsbestätigung als gesendet. Analyse-Einwilligung war dabei deaktiviert.
+Der Auftraggeber hat den Eingang im Perlas-Postfach anschließend bestätigt.
+Damit sind Formularannahme und Postfacheingang für diesen Test nachvollzogen;
+der Postfachnachweis beruht auf seiner Bestätigung. Testdaten und
+Vorgangskennung werden nicht in Git übernommen.
 
 Livegang, Indexaufnahme und Nachfragewirkung benötigen jeweils eigene Nachweise.
 Das Ziel von 100 monatlichen Suchklicks ist kein Ergebnis dieser Veröffentlichung.
 Die technischen Hosting- und Feldmessungsgrenzen aus dem
 [vollständigen technischen Audit](TECHNICAL_SEO_POLISH_2026-11-17.md) gelten weiter;
 zusätzliche Seiten allein begründen keinen höheren Audit- oder Rankingwert.
+
+## Veröffentlichung und unabhängige Nachprüfung
+
+Inhaltlicher Quellstand: `2968885`, Pages-Ausgabe: `445608a`.
+[Pages-Lauf 44270228135](https://github.com/Seroffm/perlas/actions/runs/44270228135)
+ist erfolgreich abgeschlossen. Alle 85 kanonischen Seiten und insgesamt
+215 aktuelle HTML-/Programm-/Stil-/Discovery-/Icondateien wurden live bytegenau
+mit dem Build abgeglichen; alle stimmen. 28 unveränderte JS-/CSS-Dateien der
+unmittelbar vorherigen geprüften Generation bleiben für bereits geöffnete oder
+zwischengespeicherte Seiten erreichbar und wurden zusätzlich abgeglichen.
+Ältere, nicht mehr referenzierte Generationen werden nicht fortgeschrieben.
+Vier unbekannte URL-Familien liefern echte 404 und `noindex`.
+
+Die 85-URL-Sitemap wurde am 18.11.2026 erneut eingereicht; Google bestätigt den
+Eingang. Der Bericht zeigt bei Abnahme noch 77 erkannte Seiten aus dem vorherigen
+Abruf. Das ist weder eine Ablehnung der neuen Sitemap noch ein Nachweis, dass
+alle neuen Seiten bereits indexiert sind. Die Keyword-Übersicht enthält
+58 live geprüfte Ziel-URLs und weiterhin sieben einzeln datierte Indexnachweise.
+
+Ein zusätzlicher unabhängiger Crawler meldete bei einer Artikel-URL einmal
+HTTP 503. Die Einzel-Nachprüfung lieferte HTTP 200 und bytegleichen Inhalt;
+auch der vollständige separate Livevergleich war erfolgreich. Der Rohbefund
+bleibt in der lokalen Prüfdokumentation erhalten. Seine Hinweise zu einem
+fehlenden `@type` am reinen `@context`/`@graph`-Container sind Fehlalarme:
+Der Container ist nach dem [JSON-LD-Standard](https://www.w3.org/TR/json-ld11/#node-objects)
+kein Knotenobjekt. Alle 330 tatsächlichen Graph-Entitäten auf den 85 Seiten sind
+typisiert. Das gültige Markup wurde nicht durch künstliche Typangaben verändert.
+
+## Technische Bewertung nach Abnahme
+
+Vollständige technische HTML-/HTTP-Abdeckung: 85/85. Die aktuellen UI-Prüfungen
+umfassen die acht neuen Seiten sowie fünf geänderte Leistungen/Übersichten auf
+Desktop und Mobilgerät. Die Bewertung verwendet dieselbe Kategorieverteilung
+wie der vorherige vollständige Audit; zusätzliche Seiten erhöhen sie nicht
+automatisch. Es sind eigene Prüfwerte, keine Google-Scores. Wettbewerb,
+Backlinks und die tatsächliche Rankingwirkung von Inhalten sind nicht bewertet.
+
+| SEO-Kategorie | Punkte / Maximum |
+| --- | ---: |
+| Crawl- und Indexierbarkeitsgrundlage | 23 / 25 |
+| Rendering und mobile Parität | 20 / 20 |
+| Strukturierte Daten | 15 / 15 |
+| Metadaten, einsprachig | 20 / 20 |
+| Überschriften, Semantik und Links | 10 / 10 |
+| Bilder | 5 / 5 |
+| Core Web Vitals: Heuristik, kein Feldnachweis | 3 / 5 |
+| Technische SEO-Bereitschaft | 96 / 100 |
+
+| GEO-Kategorie | Punkte / Maximum |
+| --- | ---: |
+| Dokumentierte Crawler-Zugangsentscheidung | 20 / 20 |
+| Extrahierbares Rendering | 20 / 20 |
+| Extrahierbare Inhaltsstruktur | 13 / 15 |
+| Entitätsbelege auf der Website | 16 / 20 |
+| Technische SEO-Voraussetzung | 14 / 15 |
+| Keine unbelegten GEO-Maßnahmen | 10 / 10 |
+| Technische GEO-Bereitschaft | 93 / 100 |
