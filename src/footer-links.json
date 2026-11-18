@@ -13,12 +13,16 @@
           "path": "leistungen/gebaeudereinigung/"
         },
         {
+          "label": "Unterhaltsreinigung",
+          "path": "leistungen/unterhaltsreinigung/"
+        },
+        {
           "label": "Treppenhausreinigung",
           "path": "leistungen/treppenhausreinigung/"
         },
         {
-          "label": "Grundreinigung Frankfurt",
-          "path": "einsatzgebiete/grundreinigung-frankfurt/"
+          "label": "Grundreinigung",
+          "path": "leistungen/grundreinigung/"
         },
         {
           "label": "Tiefgaragenreinigung",

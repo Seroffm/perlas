@@ -1,5 +1,6 @@
 import { useEffect, useId, useRef, useState, type FormEvent } from 'react'
 import { FORM_LIMITS, submitContactRequest } from './backend'
+import { recordFormStart, recordFormSubmitError } from './analytics'
 import './QuickContactForm.css'
 
 type QuickContactFormProps = {
@@ -20,6 +21,7 @@ export default function QuickContactForm({ topic, onBusyChange }: QuickContactFo
   const feedbackRef = useRef<HTMLParagraphElement>(null)
   const successRef = useRef<HTMLHeadingElement>(null)
   const submittingRef = useRef(false)
+  const startedRef = useRef(false)
   const mountedRef = useRef(true)
   const [status, setStatus] = useState<Status>('idle')
   const [result, setResult] = useState<SubmissionResult | null>(null)
@@ -92,6 +94,7 @@ export default function QuickContactForm({ topic, onBusyChange }: QuickContactFo
       setStatus('success')
     } catch (error) {
       if (!mountedRef.current) return
+      recordFormSubmitError('quick_contact')
       setStatus('error')
       setFeedback(error instanceof Error
         ? error.message
@@ -103,6 +106,7 @@ export default function QuickContactForm({ topic, onBusyChange }: QuickContactFo
   }
 
   const startAnotherRequest = () => {
+    startedRef.current = false
     setStatus('idle')
     setResult(null)
     setFeedback('')
@@ -133,7 +137,11 @@ export default function QuickContactForm({ topic, onBusyChange }: QuickContactFo
   }
 
   return (
-    <form className="quick-contact-form" ref={formRef} onSubmit={handleSubmit} noValidate aria-labelledby={`${id}-heading`} aria-busy={status === 'submitting'}>
+    <form className="quick-contact-form" ref={formRef} onSubmit={handleSubmit} onChangeCapture={(event) => {
+      if (startedRef.current || (event.target as HTMLInputElement).name === 'website') return
+      startedRef.current = true
+      recordFormStart('quick_contact')
+    }} noValidate aria-labelledby={`${id}-heading`} aria-busy={status === 'submitting'}>
       <div className="quick-contact-heading">
         <h3 id={`${id}-heading`}>Kurze Anfrage</h3>
         <p>Name und E-Mail reichen für den ersten Kontakt. Die genaue Objektadresse und weitere Details klären wir anschließend persönlich.</p>

@@ -9,7 +9,7 @@ const sources = readContentSources()
 const paths = contentRoutes(sources)
 
 test('every approved content route has one exact payload and preserves its active full content', () => {
-  assert.equal(paths.length, 77)
+  assert.equal(paths.length, 85)
   assert.equal(new Set(paths).size, paths.length)
   for (const path of paths) {
     const payload = routePayload(path, sources)
@@ -60,8 +60,8 @@ test('summaries retain every intentional service, region and article connection'
       [...sources.local, ...sources.commercial].filter(page => page.guideSlugs?.includes(post.slug)).map(page => page.slug))
     assert.equal(payload.blogPosts.length, sources.posts.length)
   }
-  assert.equal(routePayload('/einsatzgebiete/', sources).regionalLandings.length, 38)
-  assert.equal(routePayload('/leistungen/', sources).focusedServices.length, 4)
+  assert.equal(routePayload('/einsatzgebiete/', sources).regionalLandings.length, 44)
+  assert.equal(routePayload('/leistungen/', sources).focusedServices.length, 6)
 })
 
 test('unrelated full texts are absent and legal details are route-scoped', () => {

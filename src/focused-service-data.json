@@ -674,5 +674,370 @@
         "path": "/facility-management/gewerbeimmobilien/"
       }
     ]
+  },
+  {
+    "slug": "unterhaltsreinigung",
+    "layout": "focused",
+    "path": "/leistungen/unterhaltsreinigung/",
+    "serviceSlug": "gebaeudereinigung",
+    "parentLabel": "Gebäudereinigung",
+    "eyebrow": "Für Unternehmen, Hausverwaltungen und WEG",
+    "locality": "Rhein-Main",
+    "region": "Frankfurt & Rhein-Main",
+    "primaryKeyword": "unterhaltsreinigung",
+    "guideSlugs": [
+      "gebaeudereinigung-im-laufenden-betrieb"
+    ],
+    "seoTitle": "Unterhaltsreinigung für Ihre Immobilien | Perla’s",
+    "seoDescription": "Unterhaltsreinigung für Büros, Wohnanlagen und Gewerbe in Rhein-Main. Räume, Aufgaben und Turnus passend vereinbaren. Jetzt Angebot anfragen.",
+    "heading": "Unterhaltsreinigung.",
+    "heroPromise": "Regelmäßig sauber. Auf Ihr Gebäude abgestimmt.",
+    "heroHighlights": [
+      "Aufgaben pro Raumart",
+      "Turnus nach Nutzung",
+      "Ein persönlicher Kontakt"
+    ],
+    "intro": "Empfang, Treppenhaus und Sanitärbereich brauchen unterschiedliche Reinigungsroutinen. Perla’s übernimmt Unterhaltsreinigung für Unternehmen, Hausverwaltungen und WEG im Rhein-Main-Gebiet. Wir halten fest, welche Flächen gereinigt werden, welche Tätigkeiten dazugehören und wann der Zugang möglich ist. So erhalten Sie ein Angebot für den tatsächlichen Bedarf Ihrer Immobilie.",
+    "ctaText": "Unterhaltsreinigung anfragen",
+    "updatedOn": "2026-11-18",
+    "heroImage": {
+      "src": "kundenbilder/leistungen/gebaeudereinigung_flur.png",
+      "alt": "Perla’s Mitarbeiter bei der Reinigung einer Innenfläche",
+      "position": "50% 48%",
+      "caption": "Einblick in die Reinigung von Innenflächen durch Perla’s."
+    },
+    "scopeTitle": "Jeder Bereich bekommt die passende Routine.",
+    "scopeIntro": "Unterhaltsreinigung bezeichnet wiederkehrende Reinigungsarbeiten. Der vereinbarte Turnus kann sich von Raum zu Raum unterscheiden. Die folgende Einteilung hilft, den Auftrag vollständig und ohne doppelte Aufgaben zu beschreiben.",
+    "scopeCards": [
+      {
+        "title": "Arbeits- und Gemeinschaftsräume",
+        "text": "Für Büros, Besprechungsräume und gemeinsam genutzte Flächen erfassen wir Bodenbeläge, erreichbare Oberflächen und die tägliche Nutzung. Arbeitsplätze müssen für vereinbarte Tätigkeiten zugänglich sein. Persönliche Unterlagen und empfindliche Geräte bleiben dabei gesondert abzugrenzen.",
+        "items": [
+          "Böden und vereinbarte Oberflächen",
+          "Besprechungs- und Aufenthaltsbereiche",
+          "Abfallbehälter nach Vereinbarung"
+        ]
+      },
+      {
+        "title": "Eingänge und Verkehrsflächen",
+        "text": "Eingänge, Flure und Treppenhäuser verbinden die verschiedenen Nutzungsbereiche. Wir benennen die einzelnen Abschnitte und berücksichtigen, wann sie begangen werden. So lassen sich Reinigungszeiten mit Mietern, Beschäftigten und Besuchern abstimmen.",
+        "items": [
+          "Eingangsbereiche, Flure und Podeste",
+          "Handläufe und erreichbare Kontaktflächen",
+          "Zugänge und Nutzungszeiten"
+        ]
+      },
+      {
+        "title": "Sanitär- und Küchenbereiche",
+        "text": "Waschräume, Toiletten und Teeküchen werden mit eigenen Aufgaben aufgenommen. Dazu gehören die vereinbarten Oberflächen und Einrichtungen. Besondere Anforderungen oder zusätzliches Verbrauchsmaterial besprechen wir vor dem Start.",
+        "items": [
+          "Sanitärkeramik und Waschbecken",
+          "Teeküchen und vereinbarte Oberflächen",
+          "Material und Zusatzaufgaben gesondert klären"
+        ]
+      }
+    ],
+    "planning": {
+      "title": "Ihre Raum- und Turnusübersicht.",
+      "intro": "Sie benötigen für die erste Anfrage kein fertiges Leistungsverzeichnis. Notieren Sie die vorhandenen Bereiche und markieren Sie, wo der Bedarf noch offen ist. Ungefähre Angaben reichen für das erste Gespräch.",
+      "headers": [
+        "Bereich",
+        "Tätigkeit",
+        "Turnus und Zugang",
+        "Zusatzbedarf"
+      ],
+      "rows": [
+        [
+          "Büro / Besprechung",
+          "Böden, erreichbare Flächen, Behälter",
+          "Gewünschte Tage und verfügbare Zeitfenster",
+          "Sensible Geräte oder verschlossene Räume benennen"
+        ],
+        [
+          "Eingang / Treppenhaus",
+          "Beläge, Stufen, Podeste, Handläufe",
+          "Nutzung und Zugang je Abschnitt",
+          "Glas und zusätzliche Flure gesondert aufnehmen"
+        ],
+        [
+          "Sanitär / Teeküche",
+          "Vereinbarte Einrichtungen und Oberflächen",
+          "Häufigkeit je Nutzung besprechen",
+          "Verbrauchsmaterial und besondere Anforderungen klären"
+        ],
+        [
+          "Weitere Flächen",
+          "Aufgaben zunächst beschreiben",
+          "Regelmäßig oder einzelner Termin",
+          "Grundreinigung oder Glasreinigung getrennt anfragen"
+        ]
+      ],
+      "note": "Die Übersicht dient der Vorbereitung. Verbindlich sind die Aufgaben, Intervalle und Zugänge im gemeinsam vereinbarten Leistungsumfang."
+    },
+    "detail": {
+      "title": "Ein Plan, der im Alltag funktioniert.",
+      "text": "Ein Reinigungsplan sollte auch den Umgang mit Änderungen beschreiben. Wird ein Besprechungsraum anders genutzt oder bleibt ein Zugang verschlossen, braucht Ihr Ansprechpartner eine konkrete Rückmeldung. Benennen Sie Gebäude, Bereich und Abweichung. Wir prüfen den vereinbarten Umfang und besprechen eine Anpassung, bevor zusätzliche Aufgaben dauerhaft entstehen.",
+      "image": {
+        "src": "kundenbilder/team/update-2026-09-23/mitarbeiter_reinigung_weiblich_01.png",
+        "alt": "Perla’s Mitarbeiterin mit Reinigungsgerät",
+        "position": "50% 38%",
+        "caption": "Mitarbeiterin aus dem Perla’s Team."
+      },
+      "points": [
+        "Aufgaben je Raum statt pauschaler Formulierungen",
+        "Schlüssel und Zugangszeiten vor Beginn abstimmen",
+        "Änderungen und Rückmeldungen beim Ansprechpartner bündeln"
+      ]
+    },
+    "processSteps": [
+      {
+        "title": "Objekt und Bedarf nennen",
+        "text": "Teilen Sie uns Standort, Objektart, ungefähre Fläche und die gewünschten Reinigungstage mit. Ein vorhandener Raumplan oder eine Aufgabenliste kann das Gespräch ergänzen."
+      },
+      {
+        "title": "Räume und Abläufe aufnehmen",
+        "text": "Wir besprechen Materialien, Nutzung, Zugang und besondere Bereiche. Bei einer Besichtigung können offene Fragen direkt an der jeweiligen Fläche geklärt werden."
+      },
+      {
+        "title": "Mit vereinbarten Aufgaben starten",
+        "text": "Das Angebot nennt den vorgesehenen Umfang und Turnus. Nach Freigabe stimmen wir den möglichen Beginn und den Rückmeldeweg mit Ihnen ab."
+      }
+    ],
+    "cost": {
+      "title": "Was kostet die Unterhaltsreinigung?",
+      "text": "Fläche allein reicht für einen belastbaren Preis nicht aus. Raumaufteilung, Ausstattung, Nutzung und Reinigungsrhythmus bestimmen den Aufwand. Wenn Sie eine Firma für Unterhaltsreinigung suchen, vergleichen Sie deshalb Angebote mit denselben Aufgaben und Intervallen. Eine erstmalige Intensivreinigung oder zusätzliche Glasflächen werden gesondert beschrieben.",
+      "factors": [
+        "Flächen, Raumarten und Bodenbeläge",
+        "Tätigkeiten und Häufigkeit je Bereich",
+        "Zugänge, Arbeitszeiten und zusätzliche Aufgaben"
+      ]
+    },
+    "faqs": [
+      {
+        "question": "Was gehört zur Unterhaltsreinigung?",
+        "answer": "Wiederkehrende Arbeiten an den vereinbarten Böden, Oberflächen, Sanitärbereichen und weiteren Einrichtungen. Welche Tätigkeiten tatsächlich enthalten sind, steht im Leistungsumfang für Ihr Objekt."
+      },
+      {
+        "question": "Ist die Reinigung auch für mehrere Gebäude möglich?",
+        "answer": "Sie können mehrere Standorte gemeinsam anfragen. Listen Sie Gebäude, Raumarten und gewünschten Turnus getrennt auf, damit Umfang und Rückmeldungen je Objekt zugeordnet bleiben."
+      },
+      {
+        "question": "Kann außerhalb unserer Bürozeiten gereinigt werden?",
+        "answer": "Nennen Sie Ihre nutzbaren Zeitfenster. Wir prüfen den Zugang und die möglichen Einsätze gemeinsam. Die abgestimmten Zeiten werden vor Beginn festgehalten."
+      },
+      {
+        "question": "Ist eine Grundreinigung automatisch enthalten?",
+        "answer": "Eine einmalige Intensivreinigung ist eine gesonderte Aufgabe. Falls vor dem regelmäßigen Start ein höherer Reinigungsbedarf besteht, besprechen wir diese Flächen separat."
+      }
+    ],
+    "inquiry": {
+      "title": "Welche Bereiche sollen regelmäßig sauber bleiben?",
+      "text": "Nennen Sie uns Ihre Immobilie und den gewünschten Rhythmus. Fehlende Einzelheiten klären wir im persönlichen Gespräch.",
+      "checklist": [
+        "Standort und Objektart",
+        "Ungefähre Fläche und Raumarten",
+        "Gewünschter Turnus und verfügbare Zeitfenster"
+      ],
+      "topic": "Unterhaltsreinigung"
+    },
+    "serviceAreaText": "Perla’s hat seinen Standort in Sulzbach (Taunus) und betreut Immobilien im Rhein-Main-Gebiet. Umfang und mögliche Einsätze für Ihren Standort stimmen wir objektbezogen ab.",
+    "relatedLinks": [
+      {
+        "label": "Gebäudereinigung im Überblick",
+        "path": "/leistungen/gebaeudereinigung/"
+      },
+      {
+        "label": "Einmalige Grundreinigung",
+        "path": "/leistungen/grundreinigung/"
+      },
+      {
+        "label": "Büroreinigung in Frankfurt",
+        "path": "/einsatzgebiete/bueroreinigung-frankfurt/"
+      },
+      {
+        "label": "Reinigung im laufenden Betrieb vorbereiten",
+        "path": "/blog/gebaeudereinigung-im-laufenden-betrieb/"
+      }
+    ]
+  },
+  {
+    "slug": "grundreinigung",
+    "layout": "focused",
+    "path": "/leistungen/grundreinigung/",
+    "serviceSlug": "gebaeudereinigung",
+    "parentLabel": "Gebäudereinigung",
+    "eyebrow": "Einmalige Reinigung für Wohn- und Gewerbeimmobilien",
+    "locality": "Rhein-Main",
+    "region": "Frankfurt & Rhein-Main",
+    "primaryKeyword": "grundreinigung",
+    "guideSlugs": [
+      "gebaeudereinigung-im-laufenden-betrieb"
+    ],
+    "seoTitle": "Grundreinigung für Böden & Innenflächen | Perla’s",
+    "seoDescription": "Grundreinigung geeigneter Böden und Innenflächen in Rhein-Main. Zustand, Zugang und Übergabe vorab besprechen. Jetzt Ihr Angebot anfragen.",
+    "heading": "Grundreinigung.",
+    "heroPromise": "Intensiver reinigen. Die passende Ausführung vorher prüfen.",
+    "heroHighlights": [
+      "Material und Zustand aufnehmen",
+      "Vorbereitung gemeinsam klären",
+      "Ein Angebot für Ihren Umfang"
+    ],
+    "intro": "Nach längerer Nutzung, Renovierungsarbeiten oder vor einer Übergabe benötigen manche Flächen mehr als die regelmäßige Reinigung. Perla’s übernimmt die vereinbarte Grundreinigung geeigneter Böden und Innenflächen im Rhein-Main-Gebiet. Wir besprechen Material, Zustand und gewünschtes Ergebnis vor der Ausführung. So wissen Sie, welche Arbeiten für Ihr Objekt vorgesehen sind.",
+    "ctaText": "Grundreinigung anfragen",
+    "updatedOn": "2026-11-18",
+    "heroImage": {
+      "src": "kundenbilder/team/update-2026-09-23/mitarbeiter_reinigung_maennlich_01.png",
+      "alt": "Perla’s Mitarbeiter mit Reinigungsgerät",
+      "position": "50% 40%",
+      "caption": "Mitarbeiter aus dem Perla’s Reinigungsteam."
+    },
+    "scopeTitle": "Erst die Fläche ansehen. Dann die Arbeit festlegen.",
+    "scopeIntro": "Eine Grundreinigung ist ein einzelner, abgestimmter Reinigungsauftrag. Belag, vorhandene Pflege, Verschmutzung und Zugang bestimmen die geeignete Ausführung. Eine professionelle Bodenreinigung beginnt deshalb mit einer möglichst genauen Beschreibung der Fläche.",
+    "scopeCards": [
+      {
+        "title": "Böden und Innenflächen",
+        "text": "Wir erfassen den bekannten Bodenbelag und sehen uns den aktuellen Zustand an. Auch vorhandene Beschädigungen oder unbekannte Pflegeprodukte sind wichtige Angaben. Welche Flächen und erreichbaren Bereiche bearbeitet werden, wird vor dem Termin festgehalten.",
+        "items": [
+          "Material und Zustand aufnehmen",
+          "Verschmutzung und bisherige Pflege beschreiben",
+          "Geeigneten Umfang objektbezogen prüfen"
+        ]
+      },
+      {
+        "title": "Vorbereitung und Zugang",
+        "text": "Möblierte und freie Räume unterscheiden sich im Aufwand. Vorab besprechen wir, welche Gegenstände entfernt werden, welche Bereiche erreichbar bleiben und wer den Zugang ermöglicht. Das Räumen von Möbeln oder zusätzliche Transportaufgaben werden ausdrücklich vereinbart.",
+        "items": [
+          "Freie und verstellte Bereiche unterscheiden",
+          "Empfindliche Gegenstände und Geräte benennen",
+          "Zugang und Nutzungsunterbrechung abstimmen"
+        ]
+      },
+      {
+        "title": "Übergabe und weitere Nutzung",
+        "text": "Bei einem Nutzerwechsel oder vor dem Neubezug zählt der vereinbarte Übergabezustand. Benennen Sie, welche Räume benötigt werden und wann sie wieder genutzt werden sollen. Trocknung, Zugänglichkeit und offene Zusatzaufgaben werden im Ablauf berücksichtigt.",
+        "items": [
+          "Betroffene Räume einzeln festhalten",
+          "Gewünschten Termin und Nutzung besprechen",
+          "Ergebnis am vereinbarten Umfang prüfen"
+        ]
+      }
+    ],
+    "planning": {
+      "title": "Mit diesen Angaben lässt sich Ihre Reinigung einordnen.",
+      "intro": "Für die erste Anfrage dürfen Angaben offenbleiben. Übersichtsfotos und Detailaufnahmen können Sie nach Absprache ergänzen.",
+      "headers": [
+        "Angabe",
+        "Was Sie beschreiben können",
+        "Vor dem Termin klären"
+      ],
+      "rows": [
+        [
+          "Material und Zustand",
+          "Belag, sichtbare Spuren, bekannte Schäden und bisherige Pflege",
+          "Bei unbekanntem Material zunächst vor Ort prüfen"
+        ],
+        [
+          "Fläche und Einrichtung",
+          "Ungefähre Größe, einzelne Räume, möbliert oder leer",
+          "Welche Bereiche frei und tatsächlich erreichbar sein werden"
+        ],
+        [
+          "Zugang und Zeit",
+          "Türen, Ansprechpartner, laufende Nutzung und Terminwunsch",
+          "Schlüssel, Arbeitszeitfenster und erforderliche Unterbrechungen"
+        ],
+        [
+          "Übergabe und Ergänzungen",
+          "Gewünschter Zustand und anschließende Nutzung",
+          "Möbel, Glasflächen oder weitere Aufgaben getrennt aufnehmen"
+        ]
+      ],
+      "note": "Die Vorbereitungshilfe ersetzt keine Prüfung von Material und Zustand. Welche Verfahren und Aufgaben geeignet sind, wird vor der Ausführung abgestimmt."
+    },
+    "detail": {
+      "title": "Das Angebot beschreibt ein überprüfbares Ergebnis.",
+      "text": "Beschreiben Sie bei der Anfrage, was Sie an der Fläche stört und wofür sie anschließend genutzt werden soll. Sichtbare Spuren können von Verschmutzung, Abnutzung oder einer Beschädigung stammen. Diese Unterschiede besprechen wir bei der Aufnahme. Eine Reinigung stellt beschädigte Materialien nicht automatisch wieder her; besondere Verfahren werden separat auf Eignung geprüft.",
+      "image": {
+        "src": "kundenbilder/leistungen/gebaeudereinigung_flur.png",
+        "alt": "Perla’s Mitarbeiter bei Reinigungsarbeiten in einem Innenbereich",
+        "position": "50% 48%",
+        "caption": "Einblick in Reinigungsarbeiten aus dem Perla’s Leistungsangebot."
+      },
+      "points": [
+        "Zustand vor der Ausführung gemeinsam erfassen",
+        "Reinigungsaufgaben und Vorbereitungen im Angebot benennen",
+        "Übergabe anhand des vereinbarten Umfangs besprechen"
+      ]
+    },
+    "processSteps": [
+      {
+        "title": "Fläche und Anlass beschreiben",
+        "text": "Nennen Sie Standort, ungefähre Größe, Raumart und den Anlass der Grundreinigung. Ergänzen Sie Ihren Terminwunsch und ob die Räume eingerichtet sind."
+      },
+      {
+        "title": "Eignung und Vorbereitung prüfen",
+        "text": "Wir klären Material, Zustand, Zugang und gewünschtes Ergebnis. Eine Besichtigung hilft, offene Punkte zu prüfen und den erforderlichen Umfang zu bestimmen."
+      },
+      {
+        "title": "Reinigen und Fläche übergeben",
+        "text": "Nach Freigabe führen wir die vereinbarten Arbeiten aus. Bei der Übergabe gleichen wir den Umfang ab und besprechen Hinweise zur weiteren Nutzung."
+      }
+    ],
+    "cost": {
+      "title": "Was kostet eine Grundreinigung?",
+      "text": "Die Kosten einer Grundreinigung richten sich nach Fläche, Zustand, Material und Zugänglichkeit. Eine kleine, stark verstellte Fläche kann mehr Vorbereitung benötigen als ein größerer leerer Raum. Wenn Sie Firmen für die Grundreinigung vergleichen, achten Sie auf dieselben enthaltenen Arbeiten und Vorbereitungen. Ein konkreter Preis entsteht nach Aufnahme des tatsächlichen Bedarfs.",
+      "factors": [
+        "Flächengröße, Material und aktueller Zustand",
+        "Möblierung, erreichbare Bereiche und Vorbereitung",
+        "Abgestimmte Ausführung und gesonderte Zusatzaufgaben"
+      ]
+    },
+    "faqs": [
+      {
+        "question": "Was unterscheidet Grundreinigung und Unterhaltsreinigung?",
+        "answer": "Unterhaltsreinigung umfasst wiederkehrende Arbeiten in einem vereinbarten Turnus. Grundreinigung ist eine gesonderte, intensivere Reinigung bestimmter Flächen. Anlass und Umfang werden für den einzelnen Auftrag festgelegt."
+      },
+      {
+        "question": "Müssen die Räume vollständig leer sein?",
+        "answer": "Das hängt von der vereinbarten Arbeit ab. Nennen Sie Möbel und andere Hindernisse vorab. Wir besprechen, welche Bereiche freigemacht werden und wer die Vorbereitung übernimmt."
+      },
+      {
+        "question": "Sind alle Bodenarten für dieselbe Reinigung geeignet?",
+        "answer": "Materialien und vorhandene Pflege unterscheiden sich. Vor der Ausführung prüfen wir den Belag und den geeigneten Umfang. Spezialverfahren oder eine Wiederherstellung beschädigter Oberflächen sind nicht pauschal zugesagt."
+      },
+      {
+        "question": "Ist die Reinigung nach Renovierungsarbeiten möglich?",
+        "answer": "Sie können die betroffenen Innenflächen anfragen. Beschreiben Sie die abgeschlossenen Arbeiten und den Zustand. Wir prüfen die geeignete Reinigung; zusätzliche Aufgaben und besondere Rückstände werden separat abgestimmt."
+      }
+    ],
+    "inquiry": {
+      "title": "Welche Fläche braucht eine intensivere Reinigung?",
+      "text": "Beschreiben Sie Ihren Bedarf und den gewünschten Termin. Gemeinsam klären wir Eignung, Vorbereitung und Umfang.",
+      "checklist": [
+        "Standort, Raumart und ungefähre Fläche",
+        "Material, Zustand und Möblierung",
+        "Anlass, Terminwunsch und gewünschte Übergabe"
+      ],
+      "topic": "Grundreinigung"
+    },
+    "serviceAreaText": "Von unserem Standort in Sulzbach (Taunus) aus stimmen wir Grundreinigungen für Immobilien im Rhein-Main-Gebiet ab. Verfügbarkeit und Ausführung werden für das jeweilige Objekt besprochen.",
+    "relatedLinks": [
+      {
+        "label": "Regelmäßige Unterhaltsreinigung",
+        "path": "/leistungen/unterhaltsreinigung/"
+      },
+      {
+        "label": "Grundreinigung in Frankfurt",
+        "path": "/einsatzgebiete/grundreinigung-frankfurt/"
+      },
+      {
+        "label": "Gesamtes Reinigungsangebot",
+        "path": "/leistungen/gebaeudereinigung/"
+      },
+      {
+        "label": "Reinigung im laufenden Betrieb vorbereiten",
+        "path": "/blog/gebaeudereinigung-im-laufenden-betrieb/"
+      }
+    ]
   }
 ]

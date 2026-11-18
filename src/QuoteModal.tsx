@@ -1,6 +1,7 @@
 import { useEffect, useId, useRef, useState, type FormEvent } from 'react'
 import { ArrowLeft, ArrowRight, Check, CheckCircle2, X } from 'lucide-react'
 import { FORM_LIMITS, submitQuoteRequest, type QuoteSubmissionResult } from './backend'
+import { recordFormStart, recordFormSubmitError } from './analytics'
 import QuickContactForm from './QuickContactForm'
 
 type QuoteModalProps = {
@@ -24,6 +25,7 @@ export default function QuoteModal({ isOpen, initialService, initialTopic, initi
   const dialogRef = useRef<HTMLElement>(null)
   const openerRef = useRef<HTMLElement | null>(null)
   const submittingRef = useRef(false)
+  const startedRef = useRef(false)
   const [step, setStep] = useState(0)
   const [mode, setMode] = useState<'quick' | 'detailed'>(initialMode)
   const [quickBusy, setQuickBusy] = useState(false)
@@ -46,6 +48,7 @@ export default function QuoteModal({ isOpen, initialService, initialTopic, initi
     if (!isOpen) return
 
     openerRef.current = document.activeElement instanceof HTMLElement ? document.activeElement : null
+    startedRef.current = false
     setStep(0)
     setMode(initialMode)
     setQuickBusy(false)
@@ -150,6 +153,12 @@ export default function QuoteModal({ isOpen, initialService, initialTopic, initi
 
   if (!isOpen) return null
 
+  const recordFirstInteraction = () => {
+    if (startedRef.current) return
+    startedRef.current = true
+    recordFormStart('quote')
+  }
+
   const toggleService = (service: string) => {
     setSelectedServices((current) =>
       current.includes(service)
@@ -218,6 +227,7 @@ export default function QuoteModal({ isOpen, initialService, initialTopic, initi
       setSubmissionResult(result)
       setSubmissionStatus('success')
     } catch (submissionError) {
+      recordFormSubmitError('quote')
       setSubmissionStatus('error')
       setError(submissionError instanceof Error
         ? submissionError.message
@@ -228,6 +238,7 @@ export default function QuoteModal({ isOpen, initialService, initialTopic, initi
   }
 
   const startAnotherRequest = () => {
+    startedRef.current = false
     setStep(0)
     setSubmissionStatus('idle')
     setSubmissionResult(null)
@@ -308,7 +319,9 @@ export default function QuoteModal({ isOpen, initialService, initialTopic, initi
               </div>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} noValidate aria-busy={submissionStatus === 'submitting'}>
+            <form onSubmit={handleSubmit} onChangeCapture={(event) => {
+              if ((event.target as HTMLInputElement).name !== 'website') recordFirstInteraction()
+            }} noValidate aria-busy={submissionStatus === 'submitting'}>
               <label className="form-honeypot" aria-hidden="true">
                 Website
                 <input type="text" name="website" autoComplete="off" tabIndex={-1} maxLength={200} />
@@ -335,7 +348,7 @@ export default function QuoteModal({ isOpen, initialService, initialTopic, initi
                           type="button"
                           className={propertyType === type ? 'choice-card is-selected' : 'choice-card'}
                           aria-pressed={propertyType === type}
-                          onClick={() => setPropertyType(type)}
+                          onClick={() => { recordFirstInteraction(); setPropertyType(type) }}
                           key={type}
                         >
                           <span>{type}</span>

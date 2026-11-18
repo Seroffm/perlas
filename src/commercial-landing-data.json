@@ -5310,5 +5310,1049 @@
         "path": "/einsatzgebiete/"
       }
     ]
+  },
+  {
+    "slug": "winterdienst-offenbach",
+    "path": "/einsatzgebiete/winterdienst-offenbach/",
+    "layout": "focused",
+    "serviceSlug": "winterdienst",
+    "parentLabel": "Winterdienst",
+    "locality": "Offenbach am Main",
+    "region": "Frankfurt & Rhein-Main",
+    "primaryKeyword": "winterdienst offenbach",
+    "seoTitle": "Winterdienst Offenbach für Wohnanlagen & Firmen | Perla’s",
+    "seoDescription": "Winterdienst in Offenbach: Wege, Eingänge und Übergänge gemeinsam aufnehmen. Räumen und Streuen für vereinbarte Flächen. Jetzt Saisonangebot anfragen.",
+    "heading": "Winterdienst Offenbach.",
+    "heroPromise": "Durchgehende Wege beginnen mit gut abgestimmten Übergängen.",
+    "eyebrow": "Für Hausverwaltungen, WEG und Gewerbe",
+    "intro": "Sie suchen einen Winterdienst in Offenbach für eine Wohnanlage oder ein Gewerbegrundstück? Perla’s übernimmt Räumen und Streuen auf vereinbarten Flächen. Wir betrachten nicht nur einzelne Eingänge, sondern auch die Übergänge zu weiteren Wegen, Zufahrten und angrenzenden Bereichen. So erkennen Sie vor Beginn, welche Abschnitte Ihr Auftrag umfasst und wo noch eine Abstimmung fehlt.",
+    "ctaText": "Winterdienst-Angebot anfragen",
+    "updatedOn": "2026-11-18",
+    "heroImage": {
+      "src": "kundenbilder/leistungen/winterdienst_team.png",
+      "alt": "Perla’s Team bei einem Winterdiensteinsatz im Schnee",
+      "position": "50% 50%",
+      "caption": "Einblick in den Perla’s Winterdienst."
+    },
+    "heroHighlights": [
+      "Räumflächen einzeln benennen",
+      "Übergänge gemeinsam prüfen",
+      "Ansprechpartner festlegen"
+    ],
+    "scopeTitle": "Die gesamte Wegverbindung im Blick.",
+    "scopeIntro": "Ein Weg kann durch mehrere Grundstücksteile oder Arbeitsbereiche führen. Für das Angebot erfassen wir jeden gewünschten Abschnitt mit seiner Bezeichnung und dem vorgesehenen Umfang.",
+    "scopeCards": [
+      {
+        "title": "Wege und Hauseingänge",
+        "text": "Hauptzugang, Nebeneingang und Verbindung zum Stellplatz erhalten eigene Einträge. Nennen Sie auch gewünschte Zugänge zu Müllplätzen oder anderen Nebenflächen. Ein Foto oder eine einfache Skizze erleichtert die Zuordnung.",
+        "items": [
+          "Laufwege mit Anfang und Ende benennen",
+          "Eingänge und Nebenflächen ergänzen"
+        ]
+      },
+      {
+        "title": "Übergänge ohne offene Fragen",
+        "text": "An der Grenze zweier Flächen sollte erkennbar sein, wo die vereinbarte Bearbeitung endet. Wir besprechen Übergänge zu Nachbarbereichen und zu Leistungen anderer Beteiligter. Die tatsächliche Aufgabenverteilung wird mit Ihnen festgehalten.",
+        "items": [
+          "Grenzen im Flächenplan markieren",
+          "Offene Abstimmungen kenntlich machen"
+        ]
+      },
+      {
+        "title": "Zugang und Rückmeldung",
+        "text": "Tore, abgestellte Fahrzeuge oder geänderte Wege können einen Einsatz erschweren. Wir halten fest, wie die aufgenommenen Bereiche erreichbar sind und welche Kontaktperson Rückfragen oder Veränderungen am Objekt bündelt.",
+        "items": [
+          "Zugänge und Hindernisse aufnehmen",
+          "Rückmeldeweg vor Beginn vereinbaren"
+        ]
+      }
+    ],
+    "planning": {
+      "title": "Ihr Übergangsblatt für die Räumflächen.",
+      "intro": "Gehen Sie die gewünschte Verbindung vom äußeren Zugang bis zum Gebäudeeingang durch. Diese Tabelle dient als Gesprächsgrundlage; sie ersetzt keine Prüfung rechtlicher Zuständigkeiten.",
+      "headers": [
+        "Wegabschnitt",
+        "Übergang beschreiben",
+        "Vor Beginn abstimmen"
+      ],
+      "rows": [
+        [
+          "Zugang zum Grundstück",
+          "Anfang, Ende und Verbindung zum nächsten Weg",
+          "Welche Teilfläche wird beauftragt?"
+        ],
+        [
+          "Eingang und Verbindung",
+          "Türbereich, Stufen oder angrenzender Laufweg",
+          "Wo schließt eine weitere Fläche an?"
+        ],
+        [
+          "Zufahrt oder Nebenbereich",
+          "Gewünschte Fläche und erkennbare Grenze",
+          "Wer klärt offene Schnittstellen?"
+        ]
+      ],
+      "note": "Räumumfang, Prioritäten und Einsatzbedingungen werden für Ihr Objekt ausdrücklich vereinbart."
+    },
+    "detail": {
+      "title": "Auch Änderungen brauchen einen Platz im Plan.",
+      "text": "Wird ein Zugang während der Saison verlegt oder eine Fläche gesperrt, hilft eine kurze, eindeutige Rückmeldung. Nennen Sie den betroffenen Abschnitt und die Änderung. Gemeinsam besprechen wir, ob Flächenplan, Zugang oder vereinbarter Umfang angepasst werden müssen.",
+      "image": {
+        "src": "kundenbilder/objekte/wohnanlage_eingang_02.png",
+        "alt": "Eingangsbereich einer Wohnanlage aus dem Perla’s Bildbestand",
+        "position": "50% 50%",
+        "caption": "Beispiel für die betreuten Objektarten."
+      },
+      "points": [
+        "Betroffenen Wegabschnitt nennen",
+        "Neue Hindernisse frühzeitig mitteilen",
+        "Ergänzungen vor der Ausführung abstimmen"
+      ]
+    },
+    "processSteps": [
+      {
+        "title": "Flächen in Offenbach vorstellen",
+        "text": "Nennen Sie Objektart, Adresse und gewünschte Wege. Eine Skizze und Hinweise zu angrenzenden Bereichen helfen beim ersten Gespräch."
+      },
+      {
+        "title": "Umfang am Objekt abstimmen",
+        "text": "Wir erfassen Flächen, Zugänge, Übergänge und Prioritäten. Offene Punkte werden vor der Beauftragung geklärt."
+      },
+      {
+        "title": "Saisonvereinbarung treffen",
+        "text": "Das Angebot beschreibt Räumen und Streuen im vereinbarten Umfang. Beginn, Einsatzbedingungen und Rückmeldung stimmen wir persönlich ab."
+      }
+    ],
+    "cost": {
+      "title": "Was kostet Winterdienst in Offenbach?",
+      "text": "Für die Winterdienstkosten zählen die tatsächlich aufgenommenen Flächen und deren Bearbeitung. Viele kurze Wegabschnitte oder erschwerte Zugänge können anderen Aufwand verursachen als eine zusammenhängende Fläche. Vergleichen Sie deshalb Umfang und Einsatzbedingungen gemeinsam.",
+      "factors": [
+        "Länge, Größe und Aufteilung der Räumflächen",
+        "Erreichbarkeit und Übergänge am Objekt",
+        "Vereinbarte Prioritäten und Einsatzbedingungen"
+      ]
+    },
+    "faqs": [
+      {
+        "question": "Können mehrere Häuser gemeinsam angefragt werden?",
+        "answer": "Ja. Beschreiben Sie jedes Gebäude und die Verbindungen dazwischen. Wir ordnen den gewünschten Umfang den einzelnen Flächen zu, damit der gemeinsame Auftrag nachvollziehbar bleibt."
+      },
+      {
+        "question": "Gehört eine angrenzende Fläche automatisch dazu?",
+        "answer": "Der Auftrag umfasst die ausdrücklich aufgenommenen Bereiche. Gewünschte Ergänzungen und Übergänge sprechen wir vor Beginn durch und halten sie im Angebot fest."
+      },
+      {
+        "question": "Wie wird mit einem verschlossenen Tor umgegangen?",
+        "answer": "Tore und weitere Zugangshindernisse werden bei der Aufnahme berücksichtigt. Die geeignete Zugangsregelung und einen Kontakt für Rückfragen vereinbaren wir vor der Ausführung."
+      },
+      {
+        "question": "Kann ich für diesen Winter noch anfragen?",
+        "answer": "Sie können Ihren Bedarf für Offenbach anfragen. Die konkrete Einsatzmöglichkeit und einen möglichen Beginn bestätigen wir nach Abstimmung von Standort, Flächen und Umfang."
+      }
+    ],
+    "inquiry": {
+      "title": "Winterdienst für Ihr Offenbacher Objekt.",
+      "text": "Beschreiben Sie die gewünschten Wege und Übergänge. Wir besprechen den passenden Umfang für Ihr Saisonangebot.",
+      "checklist": [
+        "Objektadresse und gewünschte Räumflächen",
+        "Übergänge und bekannte Zugangshindernisse",
+        "Gewünschter Beginn und zuständiger Kontakt"
+      ],
+      "topic": "Winterdienst Offenbach"
+    },
+    "serviceAreaText": "Perla’s sitzt in Sulzbach (Taunus). Für Wohn- und Gewerbeobjekte in Offenbach am Main nehmen wir Ihren Bedarf auf und stimmen Winterdiensteinsätze objektbezogen mit Ihnen ab.",
+    "guideSlugs": [
+      "winterdienst-richtig-planen"
+    ],
+    "relatedLinks": [
+      {
+        "label": "Winterdienst im Überblick",
+        "path": "/leistungen/winterdienst/"
+      },
+      {
+        "label": "Winterdienst für Gewerbeobjekte",
+        "path": "/leistungen/winterdienst-gewerbe/"
+      },
+      {
+        "label": "Hausmeisterservice in Offenbach",
+        "path": "/einsatzgebiete/hausmeisterservice-offenbach/"
+      },
+      {
+        "label": "Winterdienst vorbereiten",
+        "path": "/blog/winterdienst-richtig-planen/"
+      }
+    ]
+  },
+  {
+    "slug": "winterdienst-bad-homburg",
+    "path": "/einsatzgebiete/winterdienst-bad-homburg/",
+    "layout": "focused",
+    "serviceSlug": "winterdienst",
+    "parentLabel": "Winterdienst",
+    "locality": "Bad Homburg vor der Höhe",
+    "region": "Frankfurt & Rhein-Main",
+    "primaryKeyword": "winterdienst bad homburg",
+    "seoTitle": "Winterdienst Bad Homburg für Ihr Grundstück | Perla’s",
+    "seoDescription": "Winterdienst in Bad Homburg: Wege, Stufen, Rampen und Zugänge am Objekt erfassen. Räumumfang und Einsatzbedingungen abstimmen. Jetzt Angebot anfragen.",
+    "heading": "Winterdienst Bad Homburg.",
+    "heroPromise": "Der Räumplan passt zu den Wegen an Ihrem Objekt.",
+    "eyebrow": "Für verwaltete Wohn- und Gewerbegrundstücke",
+    "intro": "Winterdienst lässt sich besser vorbereiten, wenn auch schwer erreichbare Abschnitte bekannt sind. Perla’s plant Räumen und Streuen für vereinbarte Flächen in Bad Homburg. Gemeinsam prüfen wir, ob Ihr Objekt beispielsweise Stufen, Rampen, Engstellen oder verschlossene Tore hat. Aus Ihren Angaben entsteht ein Angebot für den tatsächlichen Arbeitsbereich.",
+    "ctaText": "Winterdienst für Ihr Objekt anfragen",
+    "updatedOn": "2026-11-18",
+    "heroImage": {
+      "src": "kundenbilder/leistungen/winterdienst_team.png",
+      "alt": "Perla’s Team bei einem Winterdiensteinsatz im Schnee",
+      "position": "50% 50%",
+      "caption": "Einblick in den Perla’s Winterdienst."
+    },
+    "heroHighlights": [
+      "Besondere Wegabschnitte aufnehmen",
+      "Zugang vor dem Einsatz klären",
+      "Flächen und Bedingungen vereinbaren"
+    ],
+    "scopeTitle": "Besonderheiten vor der Saison aufnehmen.",
+    "scopeIntro": "Nicht jedes Grundstück hat dieselben Arbeitswege. Diese Punkte helfen, die Bedingungen an Ihrem konkreten Objekt zu beschreiben, bevor ein Winterdienst-Vertrag vereinbart wird.",
+    "scopeCards": [
+      {
+        "title": "Laufwege und Verbindungen",
+        "text": "Welche Wege verbinden Eingänge, Stellplätze und Nebenbereiche? Wir erfassen die gewünschten Abschnitte mit ihrer Nutzung. Ein kurzer Hinweis zur ungefähren Breite und zu wechselnden Belägen hilft, die Bearbeitung einzuordnen.",
+        "items": [
+          "Wege und Eingänge bezeichnen",
+          "Gewünschte Nebenflächen ergänzen"
+        ]
+      },
+      {
+        "title": "Stufen, Rampen und Engstellen",
+        "text": "Falls solche Bereiche vorhanden sind, werden sie einzeln aufgenommen. Zugang und mögliche Arbeitsweise müssen zum Objekt passen. Die Eignung von Hilfsmitteln und der tatsächliche Umfang werden vor einem Angebot geprüft.",
+        "items": [
+          "Vorhandene Hindernisse beschreiben",
+          "Erforderliche Arbeitswege abstimmen"
+        ]
+      },
+      {
+        "title": "Tore und freie Arbeitsbereiche",
+        "text": "Ein Schlüsselzugang, ein schmaler Durchgang oder abgestellte Gegenstände können für den Einsatz wichtig sein. Wir besprechen, welche Vorbereitungen nötig sind und wer Zugangshindernisse am Objekt melden kann.",
+        "items": [
+          "Zutritt und Schließabläufe festhalten",
+          "Kontakt für Veränderungen benennen"
+        ]
+      }
+    ],
+    "planning": {
+      "title": "Der Zugangscheck für Ihr Grundstück.",
+      "intro": "Mit dieser Übersicht können Sie einen Rundgang vorbereiten. Tragen Sie nur die Punkte zusammen, die an Ihrem Standort tatsächlich vorhanden sind.",
+      "headers": [
+        "Prüfpunkt",
+        "Am Objekt ansehen",
+        "Für die Anfrage notieren"
+      ],
+      "rows": [
+        [
+          "Treppen oder Rampen",
+          "Verlauf, Breite und Verbindung zum Eingang",
+          "Welche Abschnitte sollen bearbeitet werden?"
+        ],
+        [
+          "Engstelle oder Tor",
+          "Durchgang, Öffnung und Schließablauf",
+          "Wie wird der Arbeitsbereich erreicht?"
+        ],
+        [
+          "Abstell- und Nebenfläche",
+          "Freier Zugang und gewünschte Begrenzung",
+          "Was muss vor dem Einsatz vorbereitet sein?"
+        ]
+      ],
+      "note": "Die Übersicht ist eine Aufnahmehilfe. Flächen, Prioritäten und Einsatzbedingungen stehen später im vereinbarten Auftrag."
+    },
+    "detail": {
+      "title": "Ein Foto erklärt den schwierigen Abschnitt.",
+      "text": "Für die erste Abstimmung kann eine Übersicht des Zugangs zusammen mit einer Aufnahme der Engstelle hilfreich sein. Fotografieren Sie nur den betreffenden Arbeitsbereich. Personen, Kennzeichen und private Unterlagen werden dafür nicht benötigt. Einzelheiten und passende Unterlagen besprechen wir persönlich.",
+      "image": {
+        "src": "kundenbilder/objekte/wohnanlage_eingang_02.png",
+        "alt": "Eingangsbereich einer Wohnanlage aus dem Perla’s Bildbestand",
+        "position": "50% 50%",
+        "caption": "Beispiel für die betreuten Objektarten."
+      },
+      "points": [
+        "Übersicht und betroffenen Abschnitt zeigen",
+        "Weg zum Arbeitsbereich beschreiben",
+        "Offene Zugangsfragen vor Beginn lösen"
+      ]
+    },
+    "processSteps": [
+      {
+        "title": "Standort und Bedarf nennen",
+        "text": "Teilen Sie uns die Adresse in Bad Homburg, die Objektart und die gewünschten Räumflächen mit. Bekannte Hindernisse können Sie direkt erwähnen."
+      },
+      {
+        "title": "Arbeitsbedingungen gemeinsam prüfen",
+        "text": "Wir besprechen die Zugänge und sehen uns erforderliche Details am Objekt an. Bereiche und Prioritäten werden eindeutig zugeordnet."
+      },
+      {
+        "title": "Ausführung passend vereinbaren",
+        "text": "Nach Freigabe des Angebots stimmen wir Beginn, Einsatzbedingungen und Rückmeldewege ab. Änderungen am Grundstück werden anschließend aufgenommen."
+      }
+    ],
+    "cost": {
+      "title": "Wie werden die Winterdienstkosten ermittelt?",
+      "text": "Neben der Flächengröße beeinflussen Aufteilung und Zugänglichkeit den Aufwand. Ein kurzer Weg mit mehreren Hindernissen kann anders zu bearbeiten sein als eine freie Fläche. Das Angebot benennt die aufgenommenen Bereiche und die vereinbarten Bedingungen.",
+      "factors": [
+        "Art und Größe der gewünschten Flächen",
+        "Stufen, Engstellen und vorhandene Zugänge",
+        "Abgestimmter Umfang und Einsatzbedingungen"
+      ]
+    },
+    "faqs": [
+      {
+        "question": "Muss ich die Flächen vorab genau ausmessen?",
+        "answer": "Ungefähre Angaben helfen für das erste Gespräch. Die für den Auftrag benötigten Flächen und Arbeitsbedingungen werden gemeinsam aufgenommen und vor der Beauftragung abgestimmt."
+      },
+      {
+        "question": "Können auch Stufen und Rampen angefragt werden?",
+        "answer": "Ja, nennen Sie diese Bereiche ausdrücklich. Wir prüfen Zugang, Arbeitsbedingungen und den geeigneten Umfang am Objekt, bevor die Ausführung vereinbart wird."
+      },
+      {
+        "question": "Was passiert bei geänderten Zugängen?",
+        "answer": "Melden Sie die betroffene Stelle und die Änderung möglichst früh. Wir besprechen, wie Zugang und Flächenplan angepasst werden können und ob sich der vereinbarte Umfang ändert."
+      },
+      {
+        "question": "Ist eine Anfrage für die laufende Saison möglich?",
+        "answer": "Sie können einen neuen Winterdienst-Vertrag für Bad Homburg anfragen. Ob und ab wann der konkrete Standort übernommen werden kann, bestätigen wir nach persönlicher Abstimmung."
+      }
+    ],
+    "inquiry": {
+      "title": "Ihr Grundstück für den Winter vorbereiten.",
+      "text": "Nennen Sie die gewünschten Flächen und Besonderheiten der Zugänge. Wir prüfen Ihren Winterdienstbedarf in Bad Homburg.",
+      "checklist": [
+        "Standort und gewünschte Wegabschnitte",
+        "Stufen, Rampen, Tore oder andere Hindernisse",
+        "Gewünschter Beginn und Ansprechpartner"
+      ],
+      "topic": "Winterdienst Bad Homburg"
+    },
+    "serviceAreaText": "Vom Unternehmenssitz in Sulzbach (Taunus) betreut Perla’s Objekte im Rhein-Main-Gebiet. Winterdienst für Ihren Standort in Bad Homburg vor der Höhe stimmen wir anhand des Grundstücks und des gewünschten Umfangs ab.",
+    "guideSlugs": [
+      "winterdienst-richtig-planen"
+    ],
+    "relatedLinks": [
+      {
+        "label": "Winterdienst im Überblick",
+        "path": "/leistungen/winterdienst/"
+      },
+      {
+        "label": "Winterdienst für Gewerbe",
+        "path": "/leistungen/winterdienst-gewerbe/"
+      },
+      {
+        "label": "Hausmeisterservice Bad Homburg",
+        "path": "/einsatzgebiete/hausmeisterservice-bad-homburg/"
+      },
+      {
+        "label": "Winterdienst richtig planen",
+        "path": "/blog/winterdienst-richtig-planen/"
+      }
+    ]
+  },
+  {
+    "slug": "baumpflege-baumfaellung-frankfurt",
+    "path": "/einsatzgebiete/baumpflege-baumfaellung-frankfurt/",
+    "layout": "focused",
+    "serviceSlug": "baumpflege-baumfaellung",
+    "parentLabel": "Baumpflege & Baumfällung",
+    "locality": "Frankfurt am Main",
+    "region": "Frankfurt & Rhein-Main",
+    "primaryKeyword": "baumpflege frankfurt",
+    "seoTitle": "Baumpflege & Baumfällung Frankfurt | Perla’s",
+    "seoDescription": "Baumpflege und Baumfällung in Frankfurt: Bestand, Zugang, Arbeitsbereich und Schnittgut vorab prüfen. Für Wohn- und Gewerbeobjekte. Jetzt anfragen.",
+    "heading": "Baumpflege & Baumfällung Frankfurt.",
+    "heroPromise": "Ihr Baumauftrag beginnt mit einem Blick auf das Umfeld.",
+    "eyebrow": "Für Eigentümer, Hausverwaltungen und Gewerbe",
+    "intro": "Ein Baum steht selten ohne Hindernisse im freien Gelände. Gebäude, Wege und Zufahrten gehören deshalb schon in die erste Abstimmung. Perla’s nimmt Pflege-, Rückschnitt- und Fällaufträge für betreute Außenanlagen in Frankfurt auf. Wir prüfen Bestand, gewünschtes Ergebnis und Zugang. Die passende Ausführung und erforderliche Fachkunde werden für den konkreten Auftrag geklärt.",
+    "ctaText": "Baumarbeiten besprechen",
+    "updatedOn": "2026-11-18",
+    "heroImage": {
+      "src": "kundenbilder/leistungen/baumpflege/baumfaellung_chainsaw_01.png",
+      "alt": "Fachkraft mit Schutzkleidung und Motorsäge bei einer Baumfällarbeit",
+      "position": "43% 50%",
+      "caption": "Vorhandene Aufnahme aus dem Perla’s Leistungsbereich Baumarbeiten."
+    },
+    "heroHighlights": [
+      "Pflegeziel und Bestand aufnehmen",
+      "Zugang und Umfeld berücksichtigen",
+      "Schnittgut gesondert vereinbaren"
+    ],
+    "scopeTitle": "Pflege und Fällung passend einordnen.",
+    "scopeIntro": "Beschreiben Sie zunächst den gewünschten Anlass und das Ergebnis. Ob Pflege, Rückschnitt oder eine Fällung in Betracht kommt, wird anhand des Bestands und der Arbeitsbedingungen geprüft.",
+    "scopeCards": [
+      {
+        "title": "Baum und Pflegeziel beschreiben",
+        "text": "Nennen Sie die Anzahl der Bäume oder größeren Gehölze und den Anlass Ihrer Anfrage. Eine ungefähre Größenangabe hilft. Falls Ihnen die Baumart nicht bekannt ist, reichen für den Einstieg Beschreibung und Fotos des Bestands.",
+        "items": [
+          "Baumanzahl und Standort benennen",
+          "Gewünschtes Ergebnis erläutern"
+        ]
+      },
+      {
+        "title": "Arbeitsbereich und Zugang prüfen",
+        "text": "Wege, Nachbarflächen, Gebäude und parkende Fahrzeuge können die Vorbereitung beeinflussen. Beschreiben Sie den Zugang vom Grundstückseingang bis zum Baum. Sicherung, Arbeitsweise und gegebenenfalls besondere Technik werden objektbezogen eingeordnet.",
+        "items": [
+          "Zufahrt und Arbeitsweg aufnehmen",
+          "Angrenzende Nutzungen berücksichtigen"
+        ]
+      },
+      {
+        "title": "Freigaben und Schnittgut abstimmen",
+        "text": "Eigentümerfreigabe und gegebenenfalls erforderliche Genehmigungen müssen vor der Ausführung geklärt sein. Auch das Sammeln, der Verbleib oder ein vereinbarter Abtransport des Materials gehören in den Auftrag. Wurzelstockarbeiten sind eine getrennte Aufgabe.",
+        "items": [
+          "Vorliegende und offene Freigaben benennen",
+          "Schnittgut und Zusatzarbeiten abgrenzen"
+        ]
+      }
+    ],
+    "planning": {
+      "title": "Drei Fotoansichten für das erste Gespräch.",
+      "intro": "Gute Aufnahmen helfen, den Bedarf einzuordnen; sie ersetzen keine erforderliche Prüfung am Standort. Übermitteln Sie Unterlagen erst nach persönlicher Abstimmung über den passenden Kontaktweg.",
+      "headers": [
+        "Ansicht",
+        "Was zu erkennen sein sollte",
+        "Ergänzende Angabe"
+      ],
+      "rows": [
+        [
+          "Baum im Ganzen",
+          "Stamm, Krone und nähere Umgebung",
+          "Anzahl und gewünschtes Pflegeziel"
+        ],
+        [
+          "Umfeld am Boden",
+          "Gebäude, Wege und angrenzende Nutzungen",
+          "Was muss während der Arbeit berücksichtigt werden?"
+        ],
+        [
+          "Zugang zum Baum",
+          "Tor, Zufahrt und Arbeitsweg",
+          "Gibt es enge oder verschlossene Abschnitte?"
+        ]
+      ],
+      "note": "Fotos des Arbeitsbereichs genügen. Personen, Kennzeichen oder private Dokumente werden für diese Aufnahmehilfe nicht benötigt."
+    },
+    "detail": {
+      "title": "Das Ergebnis umfasst auch den Abschluss.",
+      "text": "Für einen vergleichbaren Auftrag sollte erkennbar sein, was nach den Baumarbeiten mit Ästen und Stammstücken passiert. Legen Sie eine mögliche Sammelstelle fest und benennen Sie zusätzliche Wünsche. Eine vollständige Wurzelstockentfernung oder zusätzliche Flächenarbeiten sind nicht automatisch eingeschlossen.",
+      "image": {
+        "src": "kundenbilder/leistungen/aussenanlagen_laubblasen.png",
+        "alt": "Perla’s Mitarbeiter bei der Pflege einer Außenfläche",
+        "position": "50% 50%",
+        "caption": "Weiterführende Außenanlagenpflege kann gesondert abgestimmt werden."
+      },
+      "points": [
+        "Verbleib oder Abtransport benennen",
+        "Geeignete Sammelstelle abstimmen",
+        "Zusatzaufgaben ausdrücklich aufnehmen"
+      ]
+    },
+    "processSteps": [
+      {
+        "title": "Bestand in Frankfurt vorstellen",
+        "text": "Beschreiben Sie Standort, Baumanzahl und Anlass. Informationen zu Zugang, Umgebung und vorhandenen Freigaben helfen uns bei der ersten Einordnung."
+      },
+      {
+        "title": "Ausführung am Objekt prüfen",
+        "text": "Wir klären Arbeitsbereich, passende Fachkunde und Sicherungsbedarf. Erforderliche Freigaben und offene Fragen werden vor der Durchführung besprochen."
+      },
+      {
+        "title": "Umfang beauftragen und übergeben",
+        "text": "Das Angebot hält die vereinbarten Arbeiten und den Umgang mit dem Material fest. Termin und Flächenübergabe stimmen wir persönlich ab."
+      }
+    ],
+    "cost": {
+      "title": "Was kosten Baumpflege oder Baumfällung?",
+      "text": "Ein Baumauftrag lässt sich nicht allein nach der Anzahl der Bäume kalkulieren. Größe, Zustand, Umfeld und erreichbarer Arbeitsbereich beeinflussen den Aufwand. Im Angebot sollten Pflege- oder Fällumfang sowie Schnittgut und Zusatzleistungen getrennt erkennbar sein.",
+      "factors": [
+        "Größe, Bestand und gewünschter Eingriff",
+        "Zugang, Umfeld und erforderliche Arbeitsweise",
+        "Materialverbleib und ausdrücklich vereinbarte Ergänzungen"
+      ]
+    },
+    "faqs": [
+      {
+        "question": "Kann ich Pflege und eine mögliche Fällung gemeinsam besprechen?",
+        "answer": "Ja. Beschreiben Sie Anlass und gewünschtes Ergebnis. Wir ordnen die Arbeiten anhand des Bestands ein und besprechen den geeigneten Umfang sowie die Voraussetzungen am Objekt."
+      },
+      {
+        "question": "Reichen Fotos für ein verbindliches Angebot?",
+        "answer": "Fotos unterstützen die erste Einschätzung. Ob weitere Angaben oder eine Besichtigung erforderlich sind, hängt vom Bestand und den Arbeitsbedingungen ab. Eine Ausführung wird erst nach Prüfung vereinbart."
+      },
+      {
+        "question": "Übernimmt Perla’s automatisch alle Genehmigungen?",
+        "answer": "Vor der Ausführung wird besprochen, welche Freigaben erforderlich und bereits vorhanden sind und wer offene Punkte klärt. Eine pauschale Genehmigungsübernahme wird hier nicht zugesagt."
+      },
+      {
+        "question": "Sind Abtransport und Wurzelstockentfernung enthalten?",
+        "answer": "Der Umgang mit Schnittgut und Stammteilen wird ausdrücklich vereinbart. Wurzelstockentfernung, Spezialtechnik und weitere Zusatzarbeiten werden bei Bedarf gesondert geprüft und angeboten."
+      }
+    ],
+    "inquiry": {
+      "title": "Baumarbeiten für Ihr Frankfurter Objekt anfragen.",
+      "text": "Teilen Sie uns Bestand und gewünschten Anlass mit. Zugang, Ausführung und mögliche nächste Schritte besprechen wir persönlich.",
+      "checklist": [
+        "Standort, Baumanzahl und ungefähre Größe",
+        "Pflegeziel oder Anlass einer möglichen Fällung",
+        "Zugang, Umfeld und Umgang mit Schnittgut"
+      ],
+      "topic": "Baumpflege und Baumfällung Frankfurt"
+    },
+    "serviceAreaText": "Perla’s hat seinen Unternehmenssitz in Sulzbach (Taunus). Baumarbeiten an Außenanlagen in Frankfurt am Main werden anhand von Bestand, Zugang und konkretem Auftragsumfang geprüft und abgestimmt.",
+    "guideSlugs": [
+      "baumfaellung-neu-isenburg-genehmigung-firma"
+    ],
+    "relatedLinks": [
+      {
+        "label": "Baumpflege und Baumfällung im Überblick",
+        "path": "/leistungen/baumpflege-baumfaellung/"
+      },
+      {
+        "label": "Gartenpflege in Frankfurt",
+        "path": "/einsatzgebiete/gartenpflege-frankfurt/"
+      },
+      {
+        "label": "Heckenschnitt anfragen",
+        "path": "/leistungen/heckenschnitt/"
+      },
+      {
+        "label": "Weitere Einsatzgebiete",
+        "path": "/einsatzgebiete/"
+      },
+      {
+        "label": "Baumarbeiten vorbereiten: Beispiel Neu-Isenburg",
+        "path": "/blog/baumfaellung-neu-isenburg-genehmigung-firma/"
+      }
+    ]
+  },
+  {
+    "slug": "praxisreinigung-wiesbaden",
+    "path": "/einsatzgebiete/praxisreinigung-wiesbaden/",
+    "layout": "focused",
+    "serviceSlug": "gebaeudereinigung",
+    "parentLabel": "Gebäudereinigung",
+    "locality": "Wiesbaden",
+    "region": "Frankfurt & Rhein-Main",
+    "primaryKeyword": "praxisreinigung wiesbaden",
+    "seoTitle": "Praxisreinigung Wiesbaden für Ihre Räume | Perla’s",
+    "seoDescription": "Praxisreinigung in Wiesbaden für vereinbarte Innen- und Sanitärflächen. Bereiche, Zugang und Zeitfenster zum Praxisbetrieb abstimmen. Jetzt anfragen.",
+    "heading": "Praxisreinigung Wiesbaden.",
+    "heroPromise": "Gepflegte allgemeine Praxisflächen, passend zu Ihrem Tagesablauf.",
+    "eyebrow": "Für Praxisverantwortliche und Gebäudeverwaltungen",
+    "intro": "Sie möchten die Reinigung allgemeiner Praxisflächen in Wiesbaden organisieren? Perla’s nimmt Empfangs-, Warte-, Personal- und Sanitärbereiche im vereinbarten Umfang auf. Wir verbinden die Aufgaben mit den freigegebenen Räumen und verfügbaren Zeitfenstern. Besondere Anforderungen werden vor einem Angebot gesondert geprüft, damit das Team vor Ort weiß, welche Flächen tatsächlich übernommen werden.",
+    "ctaText": "Praxisflächen anfragen",
+    "updatedOn": "2026-11-18",
+    "heroImage": {
+      "src": "kundenbilder/team/update-2026-09-23/mitarbeiter_reinigung_weiblich_01.png",
+      "alt": "Perla’s Mitarbeiterin mit Reinigungsgerät",
+      "position": "50% 38%",
+      "caption": "Einblick in das Perla’s Reinigungsteam."
+    },
+    "heroHighlights": [
+      "Räume und Freigaben aufnehmen",
+      "Passende Zeitfenster vereinbaren",
+      "Besondere Anforderungen vorab einordnen"
+    ],
+    "scopeTitle": "Raumnutzung und Reinigung zusammenbringen.",
+    "scopeIntro": "Eine Raumliste allein sagt noch nicht, wann und wie ein Bereich gereinigt werden kann. Wir besprechen Nutzung, zugängliche Flächen und den gewünschten Rhythmus gemeinsam.",
+    "scopeCards": [
+      {
+        "title": "Empfang und Wartebereich",
+        "text": "Böden und freigegebene, gut erreichbare Oberflächen werden mit ihren Aufgaben aufgenommen. Es wird besprochen, wann diese Bereiche für die Reinigung zur Verfügung stehen. Unterlagen und Arbeitsmittel bleiben außerhalb der zu reinigenden Flächen.",
+        "items": [
+          "Freigegebene Oberflächen benennen",
+          "Nutzbare Zeitfenster festhalten"
+        ]
+      },
+      {
+        "title": "Sanitär- und Personalräume",
+        "text": "Für Waschbecken, Sanitärkeramik, Spiegel und weitere vereinbarte Flächen wird eine passende Routine beschrieben. Ausstattung, Materialien und der Umgang mit bereitgestellten Verbrauchsmitteln werden im Angebot ausdrücklich eingeordnet.",
+        "items": [
+          "Tätigkeiten je Raum erfassen",
+          "Material und Bereitstellung abstimmen"
+        ]
+      },
+      {
+        "title": "Sonderbereiche abgrenzen",
+        "text": "Räume oder Aufgaben mit besonderen Anforderungen werden getrennt aufgeführt. Diese Seite beschreibt allgemeine Reinigung und sagt keine medizinischen Desinfektions- oder Sterilitätsverfahren zu. Zuständigkeiten und erforderliche Verfahren werden vor einer Beauftragung geklärt.",
+        "items": [
+          "Besondere Anforderungen vorab nennen",
+          "Übernommene und getrennte Aufgaben festhalten"
+        ]
+      }
+    ],
+    "planning": {
+      "title": "Ihre Bereichs- und Zeitfensterliste.",
+      "intro": "Mit dieser Übersicht lassen sich Reinigungsbedarf und Praxisbetrieb gemeinsam vorbereiten. Für die erste Anfrage benötigen wir keine Patienteninformationen oder sensiblen Unterlagen.",
+      "headers": [
+        "Bereich",
+        "Gewünschte Reinigung",
+        "Zugang und Freigabe"
+      ],
+      "rows": [
+        [
+          "Empfang und Warten",
+          "Böden und freigegebene Oberflächen",
+          "Wann sind die Flächen nutzbar?"
+        ],
+        [
+          "Sanitär- und Personalraum",
+          "Ausstattung, Tätigkeiten und Rhythmus",
+          "Welche Räume und Materialien sind vorgesehen?"
+        ],
+        [
+          "Weitere Räume",
+          "Besondere Anforderungen getrennt benennen",
+          "Wer klärt Eignung und Zuständigkeit?"
+        ]
+      ],
+      "note": "Die konkrete Übernahme wird nach Prüfung des geeigneten Umfangs vereinbart; besondere Verfahren sind keine automatische Ergänzung."
+    },
+    "detail": {
+      "title": "Ein Zeitfenster, das im Alltag funktioniert.",
+      "text": "Benennen Sie gewünschte Tage und Zeiten sowie notwendige Schließabläufe. Wenn sich Sprechzeiten oder die Raumnutzung ändern, sollte die zuständige Kontaktperson das weitergeben können. So lässt sich besprechen, ob der Reinigungsplan oder ein Zugang angepasst werden muss.",
+      "image": {
+        "src": "kundenbilder/leistungen/gebaeudereinigung_flur.png",
+        "alt": "Perla’s Mitarbeiter bei der Reinigung einer gemeinschaftlich genutzten Innenfläche",
+        "position": "50% 45%",
+        "caption": "Vorhandene Aufnahme aus der Perla’s Gebäudereinigung."
+      },
+      "points": [
+        "Nutzbare Zeiten je Bereich angeben",
+        "Schlüssel und Zutritt vorab regeln",
+        "Änderungen über einen festen Kontakt bündeln"
+      ]
+    },
+    "processSteps": [
+      {
+        "title": "Praxis in Wiesbaden beschreiben",
+        "text": "Nennen Sie Standort, allgemeine Raumarten und den gewünschten Rhythmus. Besondere Anforderungen können Sie ohne sensible Inhalte kurz erwähnen."
+      },
+      {
+        "title": "Räume und Zeitfenster aufnehmen",
+        "text": "Wir klären Materialien, zugängliche Flächen und geeignete Aufgaben. Besichtigung und benötigte Unterlagen stimmen wir bei Bedarf persönlich ab."
+      },
+      {
+        "title": "Reinigungsumfang vereinbaren",
+        "text": "Das Angebot beschreibt die übernommenen Räume und Tätigkeiten. Freigaben, Zugang und mögliche Einsatzzeiten stehen vor dem Start fest."
+      }
+    ],
+    "cost": {
+      "title": "Was beeinflusst den Preis der Praxisreinigung?",
+      "text": "Die Kalkulation folgt den geeigneten, tatsächlich übernommenen Aufgaben. Raumaufteilung, Ausstattung, Rhythmus und nutzbare Reinigungszeiten beeinflussen den Aufwand. Ein vergleichbares Angebot zeigt, welche Flächen gereinigt werden und welche besonderen Anforderungen getrennt zu klären sind.",
+      "factors": [
+        "Raumarten, Ausstattung und zugängliche Flächen",
+        "Gewünschte Tätigkeiten und Reinigungsturnus",
+        "Zeitfenster, Zutritt und gesonderte Anforderungen"
+      ]
+    },
+    "faqs": [
+      {
+        "question": "Ist eine Reinigung außerhalb der Sprechzeiten möglich?",
+        "answer": "Teilen Sie uns Ihre gewünschten Zeitfenster mit. Wir besprechen den möglichen Einsatz, verfügbare Zugänge und die freigegebenen Räume vor der Beauftragung."
+      },
+      {
+        "question": "Welche Informationen reichen für die erste Anfrage?",
+        "answer": "Standort in Wiesbaden, allgemeine Raumarten, gewünschter Rhythmus und bevorzugte Zeiten reichen für den Einstieg. Patientenangaben oder andere sensible Unterlagen werden nicht benötigt."
+      },
+      {
+        "question": "Sind medizinische Desinfektionsleistungen enthalten?",
+        "answer": "Diese Seite beschreibt die vereinbarte allgemeine Innen- und Sanitärreinigung. Medizinische Desinfektion und Sterilitätsleistungen werden nicht zugesagt; besondere Anforderungen und Zuständigkeiten müssen gesondert geklärt werden."
+      },
+      {
+        "question": "Können Aufgaben in Sanitärbereichen ergänzt werden?",
+        "answer": "Gewünschte Ergänzungen wie der Umgang mit bereitgestellten Verbrauchsmitteln können besprochen werden. Wir halten Tätigkeiten, Material und Bereitstellung im vereinbarten Umfang fest."
+      }
+    ],
+    "inquiry": {
+      "title": "Die Reinigung Ihrer Praxis besprechen.",
+      "text": "Beschreiben Sie allgemeine Flächen und die gewünschten Zeiten. Gemeinsam prüfen wir den geeigneten Umfang für Ihren Standort in Wiesbaden.",
+      "checklist": [
+        "Standort und allgemeine Raumarten",
+        "Gewünschte Aufgaben und Reinigungsturnus",
+        "Bevorzugte Zeitfenster und besondere Anforderungen"
+      ],
+      "topic": "Praxisreinigung Wiesbaden"
+    },
+    "serviceAreaText": "Ihr Ansprechpartner bei Perla’s sitzt in Sulzbach (Taunus). Allgemeine Praxisreinigung in Wiesbaden wird anhand der Räume, Anforderungen und möglichen Einsatzzeiten persönlich mit Ihnen abgestimmt.",
+    "guideSlugs": [
+      "gebaeudereinigung-im-laufenden-betrieb"
+    ],
+    "relatedLinks": [
+      {
+        "label": "Gebäudereinigung in Wiesbaden",
+        "path": "/einsatzgebiete/gebaeudereinigung-wiesbaden/"
+      },
+      {
+        "label": "Büroreinigung Wiesbaden",
+        "path": "/einsatzgebiete/bueroreinigung-wiesbaden/"
+      },
+      {
+        "label": "Laufende Reinigung organisieren",
+        "path": "/leistungen/unterhaltsreinigung/"
+      },
+      {
+        "label": "Reinigung im laufenden Betrieb",
+        "path": "/blog/gebaeudereinigung-im-laufenden-betrieb/"
+      }
+    ]
+  },
+  {
+    "slug": "gartenpflege-wiesbaden",
+    "path": "/einsatzgebiete/gartenpflege-wiesbaden/",
+    "layout": "focused",
+    "serviceSlug": "gartenpflege",
+    "parentLabel": "Garten- und Außenanlagenpflege",
+    "locality": "Wiesbaden",
+    "region": "Frankfurt & Rhein-Main",
+    "primaryKeyword": "gartenpflege wiesbaden",
+    "seoTitle": "Gartenpflege Wiesbaden für Wohnanlagen | Perla’s",
+    "seoDescription": "Gartenpflege in Wiesbaden: Rasen, Hecken, Beete und Wege betreuen. Einmaligen Startbedarf und laufende Pflege getrennt abstimmen. Jetzt Angebot anfragen.",
+    "heading": "Gartenpflege Wiesbaden.",
+    "heroPromise": "Erst den Bestand aufnehmen. Dann die laufende Pflege passend gestalten.",
+    "eyebrow": "Für Wohnanlagen, Eigentümer und Gewerbegrundstücke",
+    "intro": "Ein Garten, der länger wenig gepflegt wurde, braucht einen anderen Start als eine bereits regelmäßig betreute Außenanlage. Perla’s übernimmt vereinbarte Gartenpflege in Wiesbaden für Wohn- und Gewerbegrundstücke. Wir unterscheiden den einmaligen Pflegebedarf zum Einstieg von wiederkehrenden Arbeiten. Rasen, Hecken, Beete und Wege werden mit ihrem aktuellen Zustand aufgenommen.",
+    "ctaText": "Gartenpflege-Angebot anfragen",
+    "updatedOn": "2026-11-18",
+    "heroImage": {
+      "src": "kundenbilder/leistungen/aussenanlagen_laubblasen.png",
+      "alt": "Perla’s Mitarbeiter bei der Pflege eines Außenbereichs",
+      "position": "50% 50%",
+      "caption": "Vorhandene Aufnahme aus der Perla’s Außenanlagenpflege."
+    },
+    "heroHighlights": [
+      "Einmaligen Startbedarf einordnen",
+      "Laufende Aufgaben festlegen",
+      "Schnittgut und Zugang berücksichtigen"
+    ],
+    "scopeTitle": "Vom aktuellen Zustand zur passenden Betreuung.",
+    "scopeIntro": "Bei der Aufnahme geht es um das gewünschte Erscheinungsbild und den Weg dorthin. Eine Erstpflege und regelmäßige Folgearbeiten werden deshalb getrennt beschrieben.",
+    "scopeCards": [
+      {
+        "title": "Rasenflächen und ihre Ränder",
+        "text": "Wir besprechen Größe, Zustand und Hindernisse auf den gewünschten Flächen. Falls zum Beginn zusätzliche Arbeiten erforderlich sind, werden diese vor einem laufenden Mähturnus eingeordnet. Rasenkanten und der Umgang mit Schnittgut erhalten eigene Angaben.",
+        "items": [
+          "Flächen und Ausgangszustand beschreiben",
+          "Startaufwand vom Turnus trennen"
+        ]
+      },
+      {
+        "title": "Hecken, Sträucher und Beete",
+        "text": "Schnittform, vorhandene Bepflanzung und gewünschte Beetpflege werden gemeinsam aufgenommen. Ein einmaliger Rückschnitt ist nicht dasselbe wie regelmäßige Pflege. Geeigneter Umfang und mögliche Termine werden vor der Beauftragung abgestimmt.",
+        "items": [
+          "Gewünschtes Pflegeergebnis benennen",
+          "Einmalige und wiederkehrende Aufgaben unterscheiden"
+        ]
+      },
+      {
+        "title": "Wege und saisonaler Bedarf",
+        "text": "Laub und loser Schmutz auf vereinbarten Wegen können in die Außenpflege einbezogen werden. Zusätzlicher Saisonbedarf erhält einen eigenen Eintrag. Arbeitswege, Sammelstellen und der vereinbarte Materialverbleib gehören bereits in die Vorbereitung.",
+        "items": [
+          "Gewünschte Wege und Randbereiche aufnehmen",
+          "Saisonaufgaben und Schnittgut vereinbaren"
+        ]
+      }
+    ],
+    "planning": {
+      "title": "Ihre Bestandsaufnahme für die Gartenpflege.",
+      "intro": "Die Übersicht hilft, einen einmaligen Pflegeeinsatz mit einem späteren laufenden Auftrag zu vergleichen. Ungefähre Angaben genügen für den ersten Kontakt.",
+      "headers": [
+        "Flächenart",
+        "Aktueller Bedarf",
+        "Laufende Betreuung"
+      ],
+      "rows": [
+        [
+          "Rasen und Kanten",
+          "Zustand, Hindernisse und Startaufgaben",
+          "Gewünschtes Erscheinungsbild und Mähbedarf"
+        ],
+        [
+          "Hecken und Beete",
+          "Rückschnitt, Form und vorhandener Bewuchs",
+          "Wiederkehrende Pflege je Bereich"
+        ],
+        [
+          "Wege und Nebenflächen",
+          "Laub, loser Schmutz und Zugänglichkeit",
+          "Saisontermine und vereinbarte Ergänzungen"
+        ]
+      ],
+      "note": "Intervalle richten sich nach Fläche, Vegetation und Jahreszeit. Baumarbeiten werden separat geprüft."
+    },
+    "detail": {
+      "title": "Schnittgut vor dem ersten Einsatz besprechen.",
+      "text": "Nennen Sie vorhandene Sammelmöglichkeiten und Ihren Wunsch zum weiteren Umgang mit dem Material. Abtransport oder Verbleib werden ausdrücklich vereinbart. So bleibt beim Vergleich zwischen Erstpflege und laufender Betreuung erkennbar, welche Aufgabe und welcher Materialaufwand enthalten sind.",
+      "image": {
+        "src": "kundenbilder/leistungen/gartenpflege_hecke_01.png",
+        "alt": "Perla’s Mitarbeiter bei der Pflege einer Hecke",
+        "position": "50% 45%",
+        "caption": "Heckenpflege aus dem vorhandenen Perla’s Bildbestand."
+      },
+      "points": [
+        "Geeignete Sammelstelle benennen",
+        "Materialverbleib oder Abtransport abstimmen",
+        "Freie Arbeitswege rechtzeitig vorbereiten"
+      ]
+    },
+    "processSteps": [
+      {
+        "title": "Grundstück in Wiesbaden vorstellen",
+        "text": "Beschreiben Sie Rasen, Gehölze, Beete und Wege sowie den aktuellen Pflegezustand. Ein einmaliger Bedarf kann ebenso angefragt werden wie regelmäßige Betreuung."
+      },
+      {
+        "title": "Startumfang und Folgearbeiten aufnehmen",
+        "text": "Wir betrachten Flächen, Zugang und gewünschtes Ergebnis. Zusätzlicher Anfangsbedarf und wiederkehrende Aufgaben werden voneinander getrennt."
+      },
+      {
+        "title": "Pflege und mögliche Termine vereinbaren",
+        "text": "Sie erhalten ein Angebot für den besprochenen Umfang. Rhythmus, Saisonaufgaben und Materialverbleib werden vor der Ausführung abgestimmt."
+      }
+    ],
+    "cost": {
+      "title": "Was kostet Gartenpflege in Wiesbaden?",
+      "text": "Flächengröße und Ausgangszustand bestimmen den Aufwand gemeinsam. Ein stärkerer Anfangsbedarf kann eine eigene Position erhalten, während die laufende Betreuung nach den vereinbarten Tätigkeiten kalkuliert wird. Schnittgut und Saisonaufgaben sollten im Angebot erkennbar bleiben.",
+      "factors": [
+        "Flächenaufteilung und aktueller Pflegezustand",
+        "Einmalige Aufgaben und gewünschte Folgepflege",
+        "Zugang, Schnittgut und saisonale Ergänzungen"
+      ]
+    },
+    "faqs": [
+      {
+        "question": "Kann ich zunächst eine einmalige Gartenpflege beauftragen?",
+        "answer": "Ja. Nennen Sie den konkreten Bedarf und das gewünschte Ergebnis. Ob anschließend laufende Pflege sinnvoll und möglich ist, besprechen wir anhand Ihres Grundstücks."
+      },
+      {
+        "question": "Wie wird ein laufender Pflegeplan festgelegt?",
+        "answer": "Wir ordnen den Flächen passende Aufgaben zu. Rhythmus und Termine werden anhand von Vegetation, Jahreszeit und gewünschtem Erscheinungsbild abgestimmt und bei Veränderungen besprochen."
+      },
+      {
+        "question": "Sind große Baumarbeiten Teil der Gartenpflege?",
+        "answer": "Größere Baumarbeiten und Fällungen erhalten eine eigene Prüfung von Bestand, Zugang und erforderlicher Ausführung. Sie gehören nicht automatisch zum vereinbarten Gartenpflegeumfang."
+      },
+      {
+        "question": "Was sollte vor dem ersten Termin zugänglich sein?",
+        "answer": "Teilen Sie uns Tore, verschlossene Durchgänge und sonstige Hindernisse mit. Freie Arbeitswege und abgestimmte Sammelstellen werden passend zum vereinbarten Einsatz vorbereitet."
+      }
+    ],
+    "inquiry": {
+      "title": "Ihre Außenanlage in Wiesbaden vorstellen.",
+      "text": "Beschreiben Sie den aktuellen Zustand und Ihren Pflegewunsch. Wir besprechen Erstpflege und mögliche laufende Betreuung.",
+      "checklist": [
+        "Standort, Flächenarten und ungefähre Größe",
+        "Aktueller Zustand und gewünschtes Ergebnis",
+        "Einmaliger Bedarf oder regelmäßige Pflege"
+      ],
+      "topic": "Gartenpflege Wiesbaden"
+    },
+    "serviceAreaText": "Perla’s ist in Sulzbach (Taunus) ansässig. Garten- und Außenanlagenpflege für Ihr Grundstück in Wiesbaden wird nach Bestandsaufnahme und Abstimmung der möglichen Einsätze vereinbart.",
+    "guideSlugs": [
+      "hausmeisterservice-objektbetreuung-frankfurt-umgebung"
+    ],
+    "relatedLinks": [
+      {
+        "label": "Garten- und Außenanlagenpflege",
+        "path": "/leistungen/gartenpflege/"
+      },
+      {
+        "label": "Heckenschnitt gezielt anfragen",
+        "path": "/leistungen/heckenschnitt/"
+      },
+      {
+        "label": "Baumpflege und Baumfällung",
+        "path": "/leistungen/baumpflege-baumfaellung/"
+      },
+      {
+        "label": "Hausmeisterservice Wiesbaden",
+        "path": "/einsatzgebiete/hausmeisterservice-wiesbaden/"
+      },
+      {
+        "label": "Hausmeisterservice für Frankfurt: So betreut Perla’s Ihr Objekt",
+        "path": "/blog/hausmeisterservice-objektbetreuung-frankfurt-umgebung/"
+      }
+    ]
+  },
+  {
+    "slug": "gebaeudereinigung-oberursel",
+    "path": "/einsatzgebiete/gebaeudereinigung-oberursel/",
+    "layout": "focused",
+    "serviceSlug": "gebaeudereinigung",
+    "parentLabel": "Gebäudereinigung",
+    "locality": "Oberursel (Taunus)",
+    "region": "Frankfurt & Rhein-Main",
+    "primaryKeyword": "gebäudereinigung oberursel",
+    "seoTitle": "Gebäudereinigung Oberursel für Firmen & WEG | Perla’s",
+    "seoDescription": "Gebäudereinigung in Oberursel für Firmen, WEG und Verwaltungen. Räume, Aufgaben und Turnus je Gebäudeteil aufnehmen. Jetzt ein passendes Angebot anfragen.",
+    "heading": "Gebäudereinigung Oberursel.",
+    "heroPromise": "Mehrere Gebäudeteile. Ein Angebot mit nachvollziehbarem Umfang.",
+    "eyebrow": "Für Unternehmen, WEG und Hausverwaltungen",
+    "intro": "Sie suchen eine Reinigungsfirma in Oberursel für Büros, Treppenhäuser oder gemeinsam genutzte Flächen? Perla’s nimmt den Bedarf je Gebäude und Bereich auf. Das ist besonders hilfreich, wenn mehrere Eingänge oder unterschiedlich genutzte Gebäudeteile zusammen angefragt werden. Räume, Tätigkeiten und gewünschte Intervalle bleiben im Angebot einzeln zugeordnet.",
+    "ctaText": "Reinigungsangebot anfragen",
+    "updatedOn": "2026-11-18",
+    "heroImage": {
+      "src": "kundenbilder/leistungen/gebaeudereinigung_flur.png",
+      "alt": "Perla’s Mitarbeiter bei der Reinigung einer gemeinschaftlich genutzten Innenfläche",
+      "position": "50% 45%",
+      "caption": "Vorhandene Aufnahme aus der Perla’s Gebäudereinigung."
+    },
+    "heroHighlights": [
+      "Gebäudeteile einzeln aufnehmen",
+      "Aufgaben je Raumart festlegen",
+      "Gemeinsames Angebot vorbereiten"
+    ],
+    "scopeTitle": "Jeder Gebäudeteil erhält seinen Umfang.",
+    "scopeIntro": "Für eine vergleichbare Gebäudereinigung zählen mehr Angaben als die Gesamtfläche. Wir verbinden Nutzung, gewünschte Aufgaben und Zugang mit dem jeweiligen Bereich.",
+    "scopeCards": [
+      {
+        "title": "Büros und Arbeitsbereiche",
+        "text": "Böden, freigegebene Oberflächen und vereinbarte Nebenräume werden passend zur Nutzung aufgenommen. Teeküchen oder Aufenthaltsbereiche erhalten eigene Aufgaben. Unterschiedliche Raumarten müssen nicht automatisch denselben Reinigungsturnus erhalten.",
+        "items": [
+          "Raumarten und Tätigkeiten zuordnen",
+          "Zeitfenster je Gebäudeteil angeben"
+        ]
+      },
+      {
+        "title": "Treppenhäuser und Gemeinschaftsflächen",
+        "text": "Eingänge, Etagen, Flure und weitere gewünschte Verkehrsflächen werden getrennt erfasst. Material und Zugänglichkeit beeinflussen den Aufwand. Handläufe, Eingangstüren oder erreichbare Kontaktflächen gehören dazu, wenn sie ausdrücklich vereinbart sind.",
+        "items": [
+          "Eingänge und Etagen verständlich bezeichnen",
+          "Zusätzliche Flächen im Umfang benennen"
+        ]
+      },
+      {
+        "title": "Sanitärbereiche und Ergänzungen",
+        "text": "Die gewünschte Routine für allgemeine Sanitärflächen wird mit Ausstattung und Materialien abgestimmt. Glasreinigung oder intensiverer einmaliger Bedarf können gesondert besprochen werden. Damit bleibt sichtbar, welche Tätigkeiten regelmäßig und welche zusätzlich vorgesehen sind.",
+        "items": [
+          "Regelmäßige Aufgaben festhalten",
+          "Einmalige Ergänzungen getrennt aufnehmen"
+        ]
+      }
+    ],
+    "planning": {
+      "title": "Ihre Objektliste für ein gemeinsames Angebot.",
+      "intro": "Verwenden Sie für alle angefragten Gebäude dieselben Angaben. Auch eine kurze Liste ohne genaue Flächenmaße hilft uns beim ersten Gespräch.",
+      "headers": [
+        "Gebäudeteil",
+        "Umfang beschreiben",
+        "Organisation ergänzen"
+      ],
+      "rows": [
+        [
+          "Büro oder Gewerbebereich",
+          "Nutzung, Raumarten und ungefähre Größe",
+          "Gewünschter Turnus und freigegebene Zeiten"
+        ],
+        [
+          "Treppenhaus oder Eingang",
+          "Eingänge, Etagen und zusätzliche Flure",
+          "Zugangsweg und zuständige Kontaktperson"
+        ],
+        [
+          "Sanitär- oder Nebenbereich",
+          "Ausstattung und gewünschte Aufgaben",
+          "Gleicher oder gesonderter Rhythmus"
+        ]
+      ],
+      "note": "Ein gemeinsames Angebot kann mehrere Bereiche umfassen; die vereinbarten Leistungen bleiben je Objekt zugeordnet."
+    },
+    "detail": {
+      "title": "Ein Kontakt bündelt die Rückfragen.",
+      "text": "Bei mehreren Gebäudeteilen hilft eine einheitliche Bezeichnung: zum Beispiel Haus, Eingang und Etage. Hinweise zur Reinigung lassen sich so der betroffenen Fläche zuordnen. Benennen Sie eine Kontaktperson, die Aufgabenänderungen, Zugangsfragen und Rückmeldungen zusammenführt.",
+      "image": {
+        "src": "kundenbilder/team/update-2026-09-23/mitarbeiter_reinigung_weiblich_01.png",
+        "alt": "Perla’s Mitarbeiterin mit Reinigungsgerät",
+        "position": "50% 38%",
+        "caption": "Einblick in das Perla’s Reinigungsteam."
+      },
+      "points": [
+        "Gebäudeteile einheitlich benennen",
+        "Rückfragen mit Ortsangabe weitergeben",
+        "Änderungen am Leistungsumfang abstimmen"
+      ]
+    },
+    "processSteps": [
+      {
+        "title": "Objekte in Oberursel nennen",
+        "text": "Schicken Sie uns die Standorte oder Gebäudeteile und beschreiben Sie Nutzung sowie gewünschte Reinigung. Eine bestehende Aufgabenliste kann als Grundlage dienen."
+      },
+      {
+        "title": "Flächen und Tätigkeiten abgleichen",
+        "text": "Wir klären Materialien, Raumaufteilung und Zugang. Bei Bedarf erfolgt eine Besichtigung, damit Aufgaben und Intervalle passend zugeordnet werden."
+      },
+      {
+        "title": "Angebot und Beginn vereinbaren",
+        "text": "Das Angebot zeigt den Umfang je Bereich. Nach Freigabe stimmen wir mögliche Einsatzzeiten, Zugang und den persönlichen Rückmeldeweg ab."
+      }
+    ],
+    "cost": {
+      "title": "Wie entsteht der Preis für die Gebäudereinigung?",
+      "text": "Eine Gesamtfläche allein macht Angebote noch nicht vergleichbar. Raumaufteilung, Nutzung und Tätigkeiten bestimmen den Aufwand mit. Werden mehrere Gebäude angefragt, sollten Umfang und Turnus je Standort sichtbar bleiben. Zusätzliche Grund- oder Glasreinigung wird separat beschrieben.",
+      "factors": [
+        "Nutzung, Raumaufteilung und Material",
+        "Aufgaben und Reinigungsturnus je Bereich",
+        "Zugang, Zeitfenster und gewünschte Ergänzungen"
+      ]
+    },
+    "faqs": [
+      {
+        "question": "Können wir mehrere Gebäude gemeinsam anfragen?",
+        "answer": "Ja. Nennen Sie Standorte und Gebäudeteile getrennt und beschreiben Sie den Bedarf je Objekt. Wir besprechen, wie ein gemeinsames Angebot mit zugeordneten Aufgaben aufgebaut werden kann."
+      },
+      {
+        "question": "Ist ein vorhandenes Leistungsverzeichnis hilfreich?",
+        "answer": "Ja. Es lässt sich mit den aktuellen Räumen und Ihren Wünschen abgleichen. Markieren Sie gewünschte Änderungen, damit der bisherige und der angefragte Umfang vergleichbar werden."
+      },
+      {
+        "question": "Sind Büro- und Treppenhausreinigung kombinierbar?",
+        "answer": "Sie können beide Bereiche für Ihr Objekt in Oberursel anfragen. Die jeweiligen Räume, Tätigkeiten und Intervalle werden getrennt aufgenommen und im vereinbarten Umfang beschrieben."
+      },
+      {
+        "question": "Ist vor dem regelmäßigen Start eine Grundreinigung nötig?",
+        "answer": "Das hängt vom Zustand und dem gewünschten Ergebnis ab. Ein intensiverer einmaliger Bedarf wird bei der Aufnahme geprüft und gegebenenfalls getrennt vom laufenden Reinigungsauftrag angeboten."
+      }
+    ],
+    "inquiry": {
+      "title": "Ihr Reinigungsbedarf in Oberursel.",
+      "text": "Nennen Sie die gewünschten Gebäude und Bereiche. Wir besprechen Aufgaben und Turnus für ein passendes Angebot.",
+      "checklist": [
+        "Standorte oder Gebäudeteile und ihre Nutzung",
+        "Gewünschte Räume und Reinigungsaufgaben",
+        "Reinigungsturnus, Zugang und mögliche Zeiten"
+      ],
+      "topic": "Gebäudereinigung Oberursel"
+    },
+    "serviceAreaText": "Perla’s hat seinen Unternehmenssitz in Sulzbach (Taunus). Für Firmen, WEG und Hausverwaltungen in Oberursel stimmen wir den Reinigungsumfang und mögliche Einsätze objektbezogen ab.",
+    "guideSlugs": [
+      "gebaeudereinigung-im-laufenden-betrieb"
+    ],
+    "relatedLinks": [
+      {
+        "label": "Gebäudereinigung im Überblick",
+        "path": "/leistungen/gebaeudereinigung/"
+      },
+      {
+        "label": "Regelmäßige Unterhaltsreinigung",
+        "path": "/leistungen/unterhaltsreinigung/"
+      },
+      {
+        "label": "Einmalige Grundreinigung",
+        "path": "/leistungen/grundreinigung/"
+      },
+      {
+        "label": "Winterdienst Oberursel",
+        "path": "/einsatzgebiete/winterdienst-oberursel/"
+      },
+      {
+        "label": "Gebäudereinigung im laufenden Betrieb sinnvoll abstimmen",
+        "path": "/blog/gebaeudereinigung-im-laufenden-betrieb/"
+      }
+    ]
   }
 ]

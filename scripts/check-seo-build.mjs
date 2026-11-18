@@ -70,6 +70,12 @@ const existingPaths = [
   'einsatzgebiete/gebaeudereinigung-frankfurt-niederrad/',
   'einsatzgebiete/gebaeudereinigung-frankfurt-roedelheim/',
   'einsatzgebiete/gebaeudereinigung-frankfurt-bornheim/',
+  'einsatzgebiete/winterdienst-offenbach/',
+  'einsatzgebiete/winterdienst-bad-homburg/',
+  'einsatzgebiete/baumpflege-baumfaellung-frankfurt/',
+  'einsatzgebiete/praxisreinigung-wiesbaden/',
+  'einsatzgebiete/gartenpflege-wiesbaden/',
+  'einsatzgebiete/gebaeudereinigung-oberursel/',
   'ueber-uns/',
   'blog/',
   'blog/winterdienst-richtig-planen/',
@@ -101,10 +107,12 @@ const existingPaths = [
   'leistungen/heckenschnitt/',
   'leistungen/winterdienst-gewerbe/',
   'leistungen/hausmeisterservice-gewerbe/',
+  'leistungen/unterhaltsreinigung/',
+  'leistungen/grundreinigung/',
 ]
 const expectedUrls = existingPaths.map((relative) => new URL(relative, site).href).sort()
-assert.equal(expectedUrls.length, 77, 'Exactly 77 commissioned canonical pages required')
-assert.deepEqual(urls.map((url) => url.href).sort(), expectedUrls, 'Only the 77 explicitly commissioned canonical routes are allowed')
+assert.equal(expectedUrls.length, 85, 'Exactly 85 commissioned canonical pages required')
+assert.deepEqual(urls.map((url) => url.href).sort(), expectedUrls, 'Only the 85 explicitly commissioned canonical routes are allowed')
 const favicon = await readFile(path.join(dist, 'favicon.ico'))
 assert.deepEqual(favicon, await readFile(path.join(workspace, 'public/favicon.ico')), 'Build must preserve the committed favicon')
 assert.equal(favicon.readUInt16LE(0), 0, 'Valid ICO header required')
@@ -193,7 +201,7 @@ const frankfurtArticleSlug = 'hausmeisterservice-objektbetreuung-frankfurt-umgeb
 const frankfurtLandingUrl = new URL(`einsatzgebiete/${frankfurtLandingSlug}/`, site).href
 const frankfurtArticleUrl = new URL(`blog/${frankfurtArticleSlug}/`, site).href
 assert.equal(localContent.length, 7, 'Keep the seven established local service pages')
-assert.equal(commercialByUrl.size, 31, 'Exactly thirty-one unique commissioned commercial landing pages required')
+assert.equal(commercialByUrl.size, 37, 'Exactly thirty-seven unique commissioned commercial landing pages required')
 assert.deepEqual([...commercialByUrl.keys()].sort(), [
   'hausmeisterservice-kelkheim', 'bueroreinigung-frankfurt',
   'hausmeisterservice-niedernhausen', 'hausmeisterservice-kelsterbach',
@@ -223,9 +231,15 @@ assert.deepEqual([...commercialByUrl.keys()].sort(), [
   'gebaeudereinigung-frankfurt-niederrad',
   'gebaeudereinigung-frankfurt-roedelheim',
   'gebaeudereinigung-frankfurt-bornheim',
-].map((slug) => new URL(`einsatzgebiete/${slug}/`, site).href).sort(), 'Only the thirty-one explicitly commissioned commercial landing routes are allowed')
-assert.equal(allLocalContent.length, 38, 'Exactly thirty-eight local content entries required, without slug collisions')
-assert.equal(localByUrl.size, 38, 'Exactly thirty-eight unique commissioned local service pages required')
+  'winterdienst-offenbach',
+  'winterdienst-bad-homburg',
+  'baumpflege-baumfaellung-frankfurt',
+  'praxisreinigung-wiesbaden',
+  'gartenpflege-wiesbaden',
+  'gebaeudereinigung-oberursel',
+].map((slug) => new URL(`einsatzgebiete/${slug}/`, site).href).sort(), 'Only the thirty-seven explicitly commissioned commercial landing routes are allowed')
+assert.equal(allLocalContent.length, 44, 'Exactly forty-four local content entries required, without slug collisions')
+assert.equal(localByUrl.size, 44, 'Exactly forty-four unique commissioned local service pages required')
 assert.deepEqual([...localByUrl.keys()].sort(), expectedUrls.filter((url) => url.startsWith(regionsUrl) && url !== regionsUrl), 'Local data and independently allowed routes must agree')
 const newCommercialSlugs = new Set([
   'gebaeudereinigung-frankfurt', 'glasreinigung-frankfurt', 'praxisreinigung-frankfurt',
@@ -235,23 +249,31 @@ const newCommercialSlugs = new Set([
   'hausmeisterservice-bad-homburg', 'gebaeudereinigung-frankfurt-niederrad',
   'gebaeudereinigung-frankfurt-roedelheim', 'gebaeudereinigung-frankfurt-bornheim',
   'hausmeisterservice-niedernhausen', 'hausmeisterservice-kelsterbach',
+  'winterdienst-offenbach',
+  'winterdienst-bad-homburg',
+  'baumpflege-baumfaellung-frankfurt',
+  'praxisreinigung-wiesbaden',
+  'gartenpflege-wiesbaden',
+  'gebaeudereinigung-oberursel',
 ])
 const newCleanRegionalContent = commercialContent.filter((landing) => landing.layout === 'focused')
-assert.deepEqual(newCleanRegionalContent.map((landing) => landing.slug).sort(), [...newCommercialSlugs].sort(), 'Exactly the eighteen commissioned regional offers use the clean renderer')
-assert.equal(cleanByUrl.size, 22, 'Keep four focused service offers plus eighteen clean regional offers')
+assert.deepEqual(newCleanRegionalContent.map((landing) => landing.slug).sort(), [...newCommercialSlugs].sort(), 'Exactly the twenty-four commissioned regional offers use the clean renderer')
+assert.equal(cleanByUrl.size, 30, 'Keep six focused service offers plus twenty-four clean regional offers')
 for (const landing of newCleanRegionalContent) {
   assert.equal(landing.path, `/einsatzgebiete/${landing.slug}/`, `Clean regional path must match its approved slug: ${landing.slug}`)
   assert(landing.eyebrow && landing.parentLabel && landing.heroPromise, `Clean regional identity and offer copy required: ${landing.slug}`)
 }
-assert.equal(focusedContent.length, 4, 'Exactly four individually commissioned focused service offers required')
-assert.equal(allLocalContent.length + focusedContent.length, 42, 'Exactly forty-two commissioned service/location offers required')
-assert.equal(focusedByUrl.size, 4, 'Focused service paths must be unique')
+assert.equal(focusedContent.length, 6, 'Exactly six individually commissioned focused service offers required')
+assert.equal(allLocalContent.length + focusedContent.length, 50, 'Exactly fifty commissioned service/location offers required')
+assert.equal(focusedByUrl.size, 6, 'Focused service paths must be unique')
 assert.deepEqual([...focusedByUrl.keys()].sort(), [
   'leistungen/treppenhausreinigung/',
   'leistungen/heckenschnitt/',
   'leistungen/winterdienst-gewerbe/',
   'leistungen/hausmeisterservice-gewerbe/',
-].map((relative) => new URL(relative, site).href).sort(), 'Only the four explicitly commissioned focused service routes are allowed')
+  'leistungen/unterhaltsreinigung/',
+  'leistungen/grundreinigung/',
+].map((relative) => new URL(relative, site).href).sort(), 'Only the six explicitly commissioned focused service routes are allowed')
 for (const landing of focusedContent) {
   assert(/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(landing.slug), `Safe focused service slug required: ${landing.slug}`)
   assert.equal(landing.path, `/leistungen/${landing.slug}/`, `Focused service path must match its approved slug: ${landing.slug}`)
@@ -279,8 +301,14 @@ for (const landing of localContent) {
     : landing.slug === 'objektbetreuung-eschborn' ? '2026-11-16' : '2026-10-07'
   assert.equal(landing.updatedOn, expectedUpdate, `Keep the actual local substantive update date, never a rolling date: ${landing.slug}`)
 }
+const leadExpansionSlugs = new Set([
+  'unterhaltsreinigung', 'grundreinigung', 'winterdienst-offenbach',
+  'winterdienst-bad-homburg', 'baumpflege-baumfaellung-frankfurt',
+  'praxisreinigung-wiesbaden', 'gartenpflege-wiesbaden', 'gebaeudereinigung-oberursel',
+])
 for (const landing of [...commercialContent, ...focusedContent]) {
-  const expectedUpdate = landing.slug === 'winterdienst-gewerbe' ? '2026-11-16' : '2026-11-17'
+  const expectedUpdate = leadExpansionSlugs.has(landing.slug) ? '2026-11-18'
+    : landing.slug === 'winterdienst-gewerbe' ? '2026-11-16' : '2026-11-17'
   assert.equal(landing.updatedOn, expectedUpdate, `Keep the actual commercial content update date: ${landing.slug}`)
   assert(landing.scopeTitle && landing.scopeIntro && landing.serviceAreaText, `Commercial scope and genuine service area required: ${landing.slug}`)
   assert(landing.planning?.title && landing.planning.intro && landing.planning.headers.length >= 2 && landing.planning.rows.length >= 3, `Useful planning comparison required: ${landing.slug}`)

@@ -132,7 +132,7 @@
   },
   {
     "slug": "gebaeudereinigung",
-    "updatedOn": "2026-11-16",
+    "updatedOn": "2026-11-18",
     "title": "Gebäudereinigung",
     "heading": "Gebäude- & Büroreinigung in Sulzbach.",
     "text": "Reinigung für Treppenhäuser, Büros, Gemeinschaftsflächen und Parkbereiche nach einem festen Plan.",
@@ -140,7 +140,7 @@
     "image": "kundenbilder/team/update-2026-09-23/mitarbeiter_reinigung_weiblich_01.png",
     "seoTitle": "Gebäude- & Büroreinigung Sulzbach & Eschborn | Perla’s",
     "seoDescription": "Gebäude-, Büro- und Treppenhausreinigung in Sulzbach und Eschborn: klare Aufgaben und abgestimmte Intervalle. Jetzt Ihr Objekt anfragen.",
-    "scopeIntro": "Ein kleines Büro braucht einen anderen Reinigungsablauf als ein stark genutztes Treppenhaus oder eine große Wohnanlage. Bei der Besichtigung erfassen wir Räume, Materialien und Nutzung. Daraus entstehen konkrete Aufgaben, Reinigungszeiten und Intervalle.",
+    "scopeIntro": "Regelmäßige Unterhaltsreinigung und einmalige Grundreinigung erfüllen unterschiedliche Aufgaben. Bei der Besichtigung erfassen wir Räume, Materialien und Nutzung. Anschließend halten wir fest, welche Arbeiten wiederkehren und welche Flächen einen gesonderten intensiveren Termin benötigen.",
     "scopeCards": [
       {
         "title": "Treppenhausreinigung",
@@ -148,8 +148,8 @@
         "items": ["Böden, Stufen und Podeste", "Handläufe und gut erreichbare Flächen", "Eingangstüren und Briefkastenbereiche"]
       },
       {
-        "title": "Büroreinigung",
-        "text": "Die Reinigung planen wir so, dass der Arbeitsalltag möglichst wenig gestört wird. Im Leistungsverzeichnis steht, welche Böden, Oberflächen, Küchen und Nebenräume dazugehören.",
+        "title": "Büro- und Unterhaltsreinigung",
+        "text": "Regelmäßige Büro- und Unterhaltsreinigung wird auf die Nutzung des Gebäudes abgestimmt. Im Leistungsverzeichnis stehen die vereinbarten Böden, Oberflächen, Küchen und Nebenräume mit ihren Aufgaben und Intervallen.",
         "items": ["Boden- und Oberflächenreinigung", "Teeküchen und Aufenthaltsbereiche", "Abfallbehälter nach Vereinbarung"]
       },
       {
@@ -169,7 +169,7 @@
       },
       {
         "title": "Grund- und Übergabereinigung",
-        "text": "Nach Umbauten, Nutzerwechseln oder längerer Nutzung reicht eine normale Unterhaltsreinigung oft nicht aus. Wir besichtigen die Fläche und besprechen, welche Bereiche intensiver gereinigt werden müssen.",
+        "text": "Nach Umbauten, Nutzerwechseln oder längerer Nutzung können bestimmte Flächen eine einmalige Grundreinigung benötigen. Wir prüfen Material, Zustand und Zugang, bevor der intensivere Umfang und eine gewünschte Übergabe vereinbart werden.",
         "items": ["Grundreinigung geeigneter Böden", "Reinigung nach Renovierungsarbeiten", "Vorbereitung für Übergabe oder Neubezug"]
       }
     ],
@@ -396,13 +396,15 @@
   },
   {
     "slug": "muellmanagement",
-    "title": "Müllmanagement",
-    "text": "Saubere Müllplätze, koordinierte Bereitstellung und verlässliche Kontrollen für größere Immobilien.",
-    "detail": "Für Immobilien in Sulzbach und im Rhein-Main-Gebiet strukturieren wir wiederkehrende Aufgaben rund um Müllstandorte, Mülltonnen und vereinbarte Bereitstellungen. Auffälligkeiten werden dokumentiert und an Verwaltung oder Entsorgungsbetrieb weitergegeben.",
+    "updatedOn": "2026-11-18",
+    "heading": "Mülltonnenservice für Ihre Immobilie.",
+    "title": "Mülltonnenservice & Müllmanagement",
+    "text": "Tonnen herausstellen und zurückbringen, Müllplätze pflegen und Abholtermine am Objekt koordinieren.",
+    "detail": "Perla’s übernimmt Mülltonnenservice für Wohnanlagen und Gewerbeimmobilien in Sulzbach und im Rhein-Main-Gebiet. Wir stellen die vereinbarten Tonnen nach Abholkalender bereit und bringen sie an ihren Standort zurück. Müllplatzpflege, Kontrollen und Rückmeldungen können ergänzend aufgenommen werden. So erhält Ihre Verwaltung einen nachvollziehbaren Ablauf für jedes Objekt.",
     "image": "kundenbilder/leistungen/muellmanagement/muellmanagement_tonne_bewegen_01.png",
-    "seoTitle": "Müllmanagement Rhein-Main | Perla’s",
-    "seoDescription": "Mülltonnenservice und Müllplatzpflege für Wohnanlagen und Gewerbe in Sulzbach und Rhein-Main. Bereitstellung und Kontrollen vereinbaren. Jetzt anfragen.",
-    "scopeIntro": "Zu Beginn nehmen wir Müllplätze, Mülltonnen, Zugänge, Abholrhythmen und typische Auffälligkeiten am Objekt auf. Daraus entsteht ein verständlicher Ablauf für Kontrollen, Bereitstellungen und Rückmeldungen.",
+    "seoTitle": "Mülltonnenservice & Bereitstellung Rhein-Main | Perla’s",
+    "seoDescription": "Mülltonnenservice für Wohnanlagen und Gewerbe in Rhein-Main: Tonnen bereitstellen, zurückbringen und Müllplätze pflegen. Jetzt Angebot anfragen.",
+    "scopeIntro": "Für die Mülltonnenbereitstellung erfassen wir Anzahl und Größe der Behälter, Müllplätze, Bereitstellungswege und die gewünschten Rückstelltermine. Abholkalender, verschlossene Zugänge und Änderungen im laufenden Betrieb werden vor dem Start abgestimmt.",
     "scopeCards": [
       {
         "title": "Müllstandorte kontrollieren",
@@ -411,8 +413,8 @@
       },
       {
         "title": "Mülltonnen bereitstellen",
-        "text": "Mülltonnen können nach festgelegtem Plan für die Abholung bereitgestellt und anschließend an ihren Standort zurückgebracht werden.",
-        "items": ["Abholkalender berücksichtigen", "Bereitstellungswege festlegen", "Rückstellung nach Vereinbarung"]
+        "text": "Zum vereinbarten Abholtermin stellen wir die aufgenommenen Tonnen am abgestimmten Bereitstellungsort heraus. Anschließend bringen wir sie im vereinbarten Zeitfenster zurück. Zugang und Bereitstellungsweg gehören zur Aufgabenbeschreibung.",
+        "items": ["Abholkalender und Terminänderungen abstimmen", "Tonnen am vereinbarten Ort bereitstellen", "Rückstellzeit und Zugang festhalten"]
       },
       {
         "title": "Sauberkeit im Umfeld sichern",
@@ -450,11 +452,34 @@
     "boundaryText": "Perla’s übernimmt die vereinbarten Kontrollen, Bereitstellungen und Reinigungsaufgaben. Abtransport, Verwertung sowie gefährliche oder genehmigungspflichtige Abfälle bleiben Aufgabe zugelassener Entsorgungsfachbetriebe und werden bei Bedarf separat koordiniert.",
     "relatedServices": ["objektpflege", "gebaeudereinigung", "einzelauftrag"],
     "faqs": [
-      { "question": "Was gehört zum Müllmanagement?", "answer": "Je nach Objekt können Kontrollen der Müllstandorte, Mülltonnenbereitstellung, leichte Reinigung, Fotodokumentation und die Abstimmung bei Auffälligkeiten vereinbart werden." },
-      { "question": "Übernimmt Perla’s auch die Entsorgung?", "answer": "Die reguläre Entsorgung und besondere Abfälle bleiben bei zugelassenen Entsorgungsbetrieben. Perla’s kann Zugänge, Bereitstellungen und Rückmeldungen koordinieren." },
-      { "question": "Wie oft werden Müllplätze kontrolliert?", "answer": "Das Intervall richtet sich nach Objektgröße, Abholrhythmus und tatsächlichem Bedarf. Es wird vor Beginn eindeutig im Leistungsumfang festgelegt." },
-      { "question": "Werden Sperrmüll und Fehlwürfe dokumentiert?", "answer": "Ja, wenn dies vereinbart ist. Standort, Umfang und Fotos können an die Verwaltung weitergegeben werden, damit das weitere Vorgehen entschieden werden kann." },
-      { "question": "Welche Angaben werden für ein Mülltonnenservice-Angebot benötigt?", "answer": "Nennen Sie Standort, Anzahl und Größe der Tonnen, Abholtage und die gewünschten Aufgaben. Bereitstellungswege, Zugänge, Reinigungsbedarf und Kontrollrhythmus beeinflussen den Aufwand. Reguläre Entsorgung und Sonderabholungen werden davon getrennt betrachtet." }
+      {
+        "question": "Was gehört zum Mülltonnenservice?",
+        "answer": "Je nach Vereinbarung stellen wir Mülltonnen nach Abholkalender bereit und bringen sie zurück. Kontrollen der Müllstandorte, leichte Müllplatzpflege und Rückmeldungen bei Auffälligkeiten können ergänzt werden. Anzahl der Tonnen, Wege und Termine stehen im Leistungsumfang."
+      },
+      {
+        "question": "Übernimmt Perla’s auch die Entsorgung?",
+        "answer": "Die reguläre Entsorgung und besondere Abfälle bleiben bei zugelassenen Entsorgungsbetrieben. Perla’s kann Zugänge, Bereitstellungen und Rückmeldungen koordinieren."
+      },
+      {
+        "question": "Wie oft werden Müllplätze kontrolliert?",
+        "answer": "Das Intervall richtet sich nach Objektgröße, Abholrhythmus und tatsächlichem Bedarf. Es wird vor Beginn eindeutig im Leistungsumfang festgelegt."
+      },
+      {
+        "question": "Werden Sperrmüll und Fehlwürfe dokumentiert?",
+        "answer": "Ja, wenn dies vereinbart ist. Standort, Umfang und Fotos können an die Verwaltung weitergegeben werden, damit das weitere Vorgehen entschieden werden kann."
+      },
+      {
+        "question": "Welche Angaben werden für ein Mülltonnenservice-Angebot benötigt?",
+        "answer": "Nennen Sie Standort, Anzahl und Größe der Tonnen, Abholtage und die gewünschten Aufgaben. Bereitstellungswege, Zugänge, Reinigungsbedarf und Kontrollrhythmus beeinflussen den Aufwand. Reguläre Entsorgung und Sonderabholungen werden davon getrennt betrachtet."
+      },
+      {
+        "question": "Wovon hängen die Kosten für den Mülltonnenservice ab?",
+        "answer": "Anzahl und Größe der Tonnen, Wegstrecke, Stufen oder Tore, Abholrhythmus und Rückstellzeit beeinflussen den Aufwand. Auch Kontrollen und Müllplatzpflege werden einzeln berücksichtigt. Das Angebot trennt diese Betreuungsaufgaben von regulären Entsorgungsgebühren und gesonderten Abholungen."
+      },
+      {
+        "question": "Was passiert bei geänderten Abholtagen oder einem verschlossenen Zugang?",
+        "answer": "Wir stimmen den verwendeten Abholkalender und den Informationsweg für Terminänderungen vor Beginn ab. Für verschlossene Zugänge werden Ansprechpartner und Zugangsmöglichkeiten benannt. Fällt ein Hindernis auf, melden wir es zur weiteren Abstimmung; eine Entleerung durch den Entsorgungsbetrieb können wir nicht garantieren."
+      }
     ]
   },
   {
@@ -592,18 +617,18 @@
   },
   {
     "slug": "spielplatzkontrolle-spielgeraetewartung",
-    "updatedOn": "2026-10-07",
+    "updatedOn": "2026-11-18",
     "title": "Spielplatzkontrolle & Spielgerätewartung",
-    "text": "Planbare Betreuung, vereinbarte Sichtkontrollen, nachvollziehbare Dokumentation sowie Reinigung und Pflege für Spielbereiche.",
-    "detail": "Perla’s betreut Spielbereiche in Sulzbach und im Rhein-Main-Gebiet mit vereinbarten Sichtkontrollen, nachvollziehbarer Dokumentation sowie Reinigung und Pflege. Auffälligkeiten und notwendiger Handlungsbedarf werden eindeutig festgehalten. Sind weiterführende Arbeiten oder besondere Fachkenntnisse erforderlich, koordinieren wir die weitere Bearbeitung mit dem Auftraggeber und geeigneten Partnerbetrieben.",
+    "text": "Spielplatzreinigung, Pflege und vereinbarte Sichtkontrollen mit dokumentierten Rückmeldungen für Betreiber und Verwaltungen.",
+    "detail": "Perla’s betreut Spielbereiche in Sulzbach und im Rhein-Main-Gebiet mit vereinbarten Sichtkontrollen, Spielplatzreinigung und laufender Spielplatzpflege. Wir erfassen Geräte, Flächen und Nutzungszeiten und dokumentieren sichtbare Auffälligkeiten. Für weiterführende Prüfungen oder Arbeiten mit besonderen fachlichen Anforderungen stimmen wir die weitere Bearbeitung mit dem Auftraggeber und geeigneten Partnerbetrieben ab.",
     "image": "kundenbilder/spielplatz/spielplatz_aussen_01.png",
     "imageAlt": "Heller und gepflegter Außenspielplatz mit modernen Spielgeräten",
     "imageDisplay": "landscape",
     "imagePosition": "50% 58%",
     "certified": false,
     "certificationLabel": "Spezialisierte Fachleistung",
-    "seoTitle": "Spielplatzkontrolle Rhein-Main | Perla’s",
-    "seoDescription": "Spielplatzbetreuung in Sulzbach und Rhein-Main: vereinbarte Sichtkontrollen, Pflege und Dokumentation. Weiteren Wartungsbedarf abstimmen. Jetzt anfragen.",
+    "seoTitle": "Spielplatzkontrolle & Spielplatzreinigung | Perla’s",
+    "seoDescription": "Spielplatzreinigung und Pflege in Rhein-Main mit vereinbarten Sichtkontrollen und dokumentierten Rückmeldungen. Jetzt den Betreuungsumfang anfragen.",
     "scopeIntro": "Vor dem Start erfassen wir Anlage, Geräte, Flächen, Zugänge und Nutzung. Danach werden Art und Intervall der vereinbarten Sichtkontrollen, die Dokumentation sowie der Umfang von Reinigung und Pflege verbindlich festgelegt. Für weiterführende Arbeiten kann ein geeigneter Partnerbetrieb eingebunden werden.",
     "scopeCards": [
       {
@@ -627,8 +652,8 @@
         "items": ["Vereinbarte Pflege- und Wartungsaufgaben einordnen", "Reparatur- und Materialbedarf dokumentieren", "Geeigneten Partnerbetrieb bei Bedarf koordinieren"]
       },
       {
-        "title": "Reinigung und Pflege von Spielbereichen",
-        "text": "Spielplatzflächen, Aufenthaltsbereiche und Spielgeräte können im vereinbarten Umfang gereinigt und sauber gehalten werden. Auffälligkeiten werden dabei direkt in die Rückmeldung aufgenommen.",
+        "title": "Spielplatzreinigung und Spielplatzpflege",
+        "text": "Für die Spielplatzreinigung werden erreichbare Gerätebereiche, Aufenthaltsflächen und der Umgang mit losen Verunreinigungen konkret benannt. Bei der Spielplatzpflege stimmen wir geeignete Aufgaben und Zeitfenster mit dem Betreiber ab. Besondere Rückstände oder Verfahren werden vor der Ausführung separat geprüft.",
         "items": ["Lose Verunreinigungen entfernen", "Spielgeräte vereinbarungsgemäß reinigen", "Fallschutz- und Aufenthaltsflächen auf sichtbare Verunreinigungen kontrollieren und reinigen"]
       },
       {
@@ -659,12 +684,34 @@
     "relatedServices": ["objektpflege", "gartenpflege", "wartung-instandhaltung"],
     "guideSlugs": ["spielplatzkontrolle-main-taunus-hausverwaltungen"],
     "faqs": [
-      { "question": "Was wird bei einer Spielplatzkontrolle betrachtet?", "answer": "Der Umfang der vereinbarten Sichtkontrolle wird vorab festgelegt. Typisch sind sichtbare Veränderungen an Geräten, zugänglichen Bauteilen, Fallschutzflächen und dem direkten Spielplatzumfeld. Weitergehende fachliche Prüfungen werden bei Bedarf mit einem geeigneten Partnerbetrieb abgestimmt." },
-      { "question": "Wie häufig finden Kontrollen statt?", "answer": "Das Intervall richtet sich nach Nutzung, Anlage und vereinbartem Leistungsumfang. Termine und Häufigkeit werden vor Beginn eindeutig dokumentiert." },
-      { "question": "Wie werden Auffälligkeiten gemeldet?", "answer": "Der betroffene Standort oder das Gerät, der sichtbare Zustand und der abzustimmende nächste Schritt werden verständlich beschrieben. Fotos können die Rückmeldung ergänzen." },
-      { "question": "Kann Perla’s Spielbereiche auch reinigen?", "answer": "Ja. Spielplatzflächen, lose Verunreinigungen, vereinbarte Bereiche an Spielgeräten sowie Fallschutz- und Aufenthaltsflächen können im festgelegten Umfang gereinigt und sauber gehalten werden. Besondere Reinigungsverfahren sind nur nach gesonderter Prüfung und Vereinbarung enthalten." },
-      { "question": "Sind Reparaturen automatisch enthalten?", "answer": "Nein. Einfache Pflege- oder Wartungsaufgaben können ausdrücklich vereinbart werden. Reparaturen, Ersatzteile und Arbeiten mit besonderen fachlichen Anforderungen werden separat abgestimmt und können durch Perla’s mit einem geeigneten Partnerbetrieb koordiniert werden." },
-      { "question": "Wie wird ein Angebot für die Spielplatzbetreuung erstellt?", "answer": "Standort, Anzahl der Geräte, Flächen, Nutzung und gewünschte Kontrollintervalle bilden die Grundlage. Reinigung und Pflege werden konkret abgegrenzt. Weitergehende Prüfungen, Reparaturen und Ersatzteile sind keine pauschal enthaltene Betreuungsleistung, sondern werden separat abgestimmt." }
+      {
+        "question": "Was wird bei einer Spielplatzkontrolle betrachtet?",
+        "answer": "Der Umfang der vereinbarten Sichtkontrolle wird vorab festgelegt. Typisch sind sichtbare Veränderungen an Geräten, zugänglichen Bauteilen, Fallschutzflächen und dem direkten Spielplatzumfeld. Weitergehende fachliche Prüfungen werden bei Bedarf mit einem geeigneten Partnerbetrieb abgestimmt."
+      },
+      {
+        "question": "Wie häufig finden Kontrollen statt?",
+        "answer": "Das Intervall richtet sich nach Nutzung, Anlage und vereinbartem Leistungsumfang. Termine und Häufigkeit werden vor Beginn eindeutig dokumentiert."
+      },
+      {
+        "question": "Wie werden Auffälligkeiten gemeldet?",
+        "answer": "Der betroffene Standort oder das Gerät, der sichtbare Zustand und der abzustimmende nächste Schritt werden verständlich beschrieben. Fotos können die Rückmeldung ergänzen."
+      },
+      {
+        "question": "Was umfasst die Spielplatzreinigung?",
+        "answer": "Im vereinbarten Umfang entfernen wir lose Verunreinigungen und reinigen erreichbare Bereiche an Spielgeräten sowie Aufenthalts- und Fallschutzflächen. Material, Zustand und Zugang werden vorher geprüft. Der Austausch von Fallschutzmaterial, besondere Reinigungsverfahren und weitergehende Prüfungen sind separat abzustimmen."
+      },
+      {
+        "question": "Sind Reparaturen automatisch enthalten?",
+        "answer": "Nein. Einfache Pflege- oder Wartungsaufgaben können ausdrücklich vereinbart werden. Reparaturen, Ersatzteile und Arbeiten mit besonderen fachlichen Anforderungen werden separat abgestimmt und können durch Perla’s mit einem geeigneten Partnerbetrieb koordiniert werden."
+      },
+      {
+        "question": "Wie wird ein Angebot für die Spielplatzbetreuung erstellt?",
+        "answer": "Standort, Anzahl der Geräte, Flächen, Nutzung und gewünschte Kontrollintervalle bilden die Grundlage. Reinigung und Pflege werden konkret abgegrenzt. Weitergehende Prüfungen, Reparaturen und Ersatzteile sind keine pauschal enthaltene Betreuungsleistung, sondern werden separat abgestimmt."
+      },
+      {
+        "question": "Wie lässt sich die Spielplatzpflege mit der Nutzung abstimmen?",
+        "answer": "Nennen Sie regelmäßige Nutzungszeiten, zugängliche Flächen und den Ansprechpartner vor Ort. Wir besprechen geeignete Zeitfenster und den vereinbarten Pflegeumfang. Wenn eine Einschränkung der Nutzung nötig ist, wird der Ablauf vorher mit dem Betreiber abgestimmt."
+      }
     ]
   },
   {

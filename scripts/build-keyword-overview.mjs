@@ -36,10 +36,11 @@ function themePresent(row, mainText) {
   const body = normalize(mainText)
   let aliases
   if (/hausmeister|objektbetreuung/.test(k)) aliases = ['hausmeisterservice', 'hausmeisterdienst', 'objektbetreuung']
-  else if (/tiefgarage|parkhaus|garagenreinigung/.test(k)) aliases = ['tiefgaragenreinigung', 'parkhausreinigung', 'tiefgarage']
+  else if (/tiefgarage|parkhaus|parkplatzreinigung|garagenreinigung/.test(k)) aliases = ['tiefgaragenreinigung', 'parkhausreinigung', 'parkplatzreinigung', 'tiefgarage', 'parkflachen']
   else if (/praxisreinigung|arztpraxis/.test(k)) aliases = ['praxisreinigung', 'praxisraume', 'praxis']
   else if (/glasreinigung|fensterreinigung|fensterputzer|fenster putzen|schaufenster/.test(k)) aliases = ['glasreinigung', 'fensterreinigung', 'fenster']
-  else if (/mull/.test(k)) aliases = ['mulltonnenservice', 'mulltonnen', 'mullplatzreinigung', 'mullplatze']
+  else if (/mull|tonnenbereitstellung/.test(k)) aliases = ['mulltonnenservice', 'mulltonnen', 'mullplatzreinigung', 'mullplatze', 'mulltonnenbereitstellung']
+  else if (/spielplatz/.test(k)) aliases = ['spielplatzbetreuung', 'spielplatzpflege', 'spielplatzreinigung', 'sichtkontrollen']
   else if (/winterdienst/.test(k)) aliases = ['winterdienst']
   else if (/heckenschnitt|hecke schneiden/.test(k)) aliases = ['heckenschnitt', 'hecke schneiden']
   else if (/gartenpflege|rasen|grunanlagen|aussenanlagen/.test(k)) aliases = ['gartenpflege', 'aussenanlagenpflege', 'rasenpflege']

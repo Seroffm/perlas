@@ -4,8 +4,9 @@ Repository: <https://github.com/Seroffm/perlas>, Produktion: <https://perlas.de/
 Die Architektur und Änderungsstellen stehen in [PROJECT_MAP.md](PROJECT_MAP.md).
 [AGENTS.md](../AGENTS.md) erhält den Arbeitskontext für folgende Codex-Sitzungen.
 
-Aktueller technischer Stand: [Optimierung vom 17.11.2026](TECHNICAL_SEO_POLISH_2026-11-17.md).
-Der Build enthält 77 kanonische Seiten und 21 genaue Altpfadzuordnungen.
+Aktueller Erweiterungsstand: [Angebote und Formularmessung vom 18.11.2026](LEAD_EXPANSION_2026-11-18.md).
+Technische Grundlage: [Optimierung vom 17.11.2026](TECHNICAL_SEO_POLISH_2026-11-17.md).
+Der Build enthält 85 kanonische Seiten und 21 genaue Altpfadzuordnungen.
 Seitendaten und aktive Ansicht laden vor dem ersten React-Mount; statisches
 HTML bleibt bis dahin sichtbar. Änderungen an Inhalts-JSON werden durch das
 Vite-Routenplugin auch in der lokalen Vorschau neu geladen.

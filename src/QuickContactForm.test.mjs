@@ -9,6 +9,7 @@ import test from 'node:test'
 import vm from 'node:vm'
 import ts from 'typescript'
 import React from 'react'
+import TestRenderer from 'react-test-renderer'
 import { renderToStaticMarkup } from 'react-dom/server'
 
 const directory = path.dirname(fileURLToPath(import.meta.url))
@@ -22,9 +23,10 @@ function compile(filename) {
 const componentCode = compile('QuickContactForm.tsx')
 const backendCode = compile('backend.ts')
 
-function transport({ apiConfigured = true, responseKind = 'success', confirmationEmailSent = false, gate } = {}) {
+function transport({ apiConfigured = true, responseKind = 'success', confirmationEmailSent = false, gate, endpoint = 'contact-requests' } = {}) {
   const requests = []
   const leads = []
+  const progress = []
   const exports = {}
   const instance = { responseKind }
   vm.runInNewContext(backendCode, {
@@ -37,24 +39,28 @@ function transport({ apiConfigured = true, responseKind = 'success', confirmatio
       throw new Error(`Unexpected dependency: ${filename}`)
     },
     fetch: async (url, options) => {
-      assert.equal(url, 'https://api.example.test/contact-requests')
+      assert.equal(url, `https://api.example.test/${endpoint}`)
       requests.push({ url, fields: Object.fromEntries(options.body), options })
       if (gate) await gate
       if (instance.responseKind === 'network-error') throw new TypeError('Offline network failure')
+      if (instance.responseKind === 'timeout') throw Object.assign(new Error('Offline timeout'), { name: 'AbortError' })
       const rejected = instance.responseKind === 'rejected' || options.body.get('website') !== ''
       return {
         ok: !rejected, status: rejected ? 422 : 200,
         headers: { get: () => 'application/json' },
-        json: async () => rejected ? { message: 'Simulierte Ablehnung. Bitte prüfen Sie Ihre Angaben.' } : {
+        json: async () => {
+          if (instance.responseKind === 'invalid-json') throw new SyntaxError('Offline invalid JSON')
+          return rejected ? { message: 'Simulierte Ablehnung. Bitte prüfen Sie Ihre Angaben.' } : {
           ok: true,
           requestId: options.body.get('requestId'),
           reference: 'P-ABCDEF1234',
           confirmationEmailSent: instance.responseKind === 'unconfirmed' ? 'invalid' : confirmationEmailSent,
+          }
         },
       }
     },
   }, { filename: 'backend.ts' })
-  return Object.assign(instance, exports, { requests, leads })
+  return Object.assign(instance, exports, { requests, leads, progress })
 }
 
 function loadComponent(react, runtime, backend, FormDataClass = FormData, window = {}) {
@@ -66,6 +72,10 @@ function loadComponent(react, runtime, backend, FormDataClass = FormData, window
       if (filename === 'react') return react
       if (filename === 'react/jsx-runtime') return runtime
       if (filename === './backend') return backend
+      if (filename === './analytics') return {
+        recordFormStart: formType => backend.progress.push(['form_start', formType]),
+        recordFormSubmitError: formType => backend.progress.push(['form_submit_error', formType]),
+      }
       if (filename === './QuickContactForm.css') return {}
       throw new Error(`Unexpected component dependency: ${filename}`)
     },
@@ -157,6 +167,7 @@ function fixture({ topic, ...transportOptions } = {}) {
     set(name, value) {
       const field = this.field(name)
       assert.ok(field, name)
+      visit(tree, node => node.type === 'form').props.onChangeCapture({ target: { name } })
       field.props.onChange({ target: { value, checked: value } })
       this.render()
     },
@@ -197,9 +208,11 @@ test('real React markup has labelled fields, only name/email/privacy required an
 
 test('invalid minimum fields never call the API and focus the first labelled error', async () => {
   const instance = fixture()
+  assert.deepEqual(instance.backend.progress, [])
   await instance.submit()
   instance.render()
   assert.equal(instance.backend.requests.length, 0)
+  assert.deepEqual(instance.backend.progress, [])
   for (const name of ['name', 'email', 'privacy']) assert.equal(instance.field(name).props['aria-invalid'], true)
   assert.equal(instance.focused.at(-1), 'name')
   instance.set('name', 'Test')
@@ -208,6 +221,7 @@ test('invalid minimum fields never call the API and focus the first labelled err
   await instance.submit()
   instance.render()
   assert.equal(instance.backend.requests.length, 0)
+  assert.deepEqual(instance.backend.progress, [['form_start', 'quick_contact']])
   assert.equal(instance.focused.at(-1), 'email')
 })
 
@@ -226,6 +240,7 @@ test('minimum request uses existing contact API with blank optional addresses an
   assert.equal(fields.website, '')
   assert.match(fields.message, /Kurze Anfrage/)
   assert.deepEqual(instance.backend.leads, ['quick_contact'])
+  assert.deepEqual(instance.backend.progress, [['form_start', 'quick_contact']])
   assert.match(instance.text(), /P-ABCDEF1234/)
   assert.match(instance.text(), /eine E-Mail-Bestätigung konnte jedoch nicht gesendet werden/)
   assert.doesNotMatch(instance.text(), /Eine Eingangsbestätigung wurde an/)
@@ -263,22 +278,25 @@ test('rejected response retains values and permits a same-ID retry without prema
   assert.equal(instance.find(node => node.props?.role === 'alert') !== null, true)
   assert.equal(instance.focused.at(-1), 'p')
   assert.equal(instance.backend.leads.length, 0)
+  assert.deepEqual(instance.backend.progress, [['form_start', 'quick_contact'], ['form_submit_error', 'quick_contact']])
   const requestId = instance.backend.requests[0].fields.requestId
   instance.backend.responseKind = 'success'
   await instance.submit()
   instance.render()
   assert.equal(instance.backend.requests[1].fields.requestId, requestId)
   assert.deepEqual(instance.backend.leads, ['quick_contact'])
+  assert.deepEqual(instance.backend.progress, [['form_start', 'quick_contact'], ['form_submit_error', 'quick_contact']])
 })
 
-test('missing API, network error and malformed confirmation never show success or record a lead', async () => {
-  for (const options of [{ apiConfigured: false }, { responseKind: 'network-error' }, { responseKind: 'unconfirmed' }]) {
+test('missing API, network error, timeout, invalid JSON and malformed confirmation record one failure without a lead', async () => {
+  for (const options of [{ apiConfigured: false }, { responseKind: 'network-error' }, { responseKind: 'timeout' }, { responseKind: 'invalid-json' }, { responseKind: 'unconfirmed' }]) {
     const instance = fixture(options)
     fillMinimum(instance)
     await instance.submit()
     instance.render()
     assert.ok(instance.field('name'))
     assert.equal(instance.backend.leads.length, 0)
+    assert.deepEqual(instance.backend.progress, [['form_start', 'quick_contact'], ['form_submit_error', 'quick_contact']])
     assert.match(instance.text(), /Ihre Eingaben bleiben erhalten/)
     assert.doesNotMatch(instance.text(), /Vorgang P-/)
   }
@@ -313,6 +331,23 @@ test('confirmed acknowledgment is accurately shown and another request clears an
   assert.equal(instance.field('email').props.value, '')
   assert.equal(instance.field('privacy').props.checked, false)
   assert.equal(instance.focused.at(-1), 'name')
+  assert.deepEqual(instance.backend.progress, [['form_start', 'quick_contact']])
+  instance.set('name', 'Nächste Verwaltung')
+  instance.set('phone', '0123456789')
+  assert.deepEqual(instance.backend.progress, [['form_start', 'quick_contact'], ['form_start', 'quick_contact']])
+})
+
+test('rendering, topic prefilling and honeypot changes are not first field interactions', () => {
+  const instance = fixture({ topic: 'Unterhaltsreinigung' })
+  instance.render()
+  instance.render()
+  const form = instance.find(node => node.type === 'form')
+  form.props.onChangeCapture({ target: { name: 'website', value: 'private@example.test' } })
+  assert.deepEqual(instance.backend.progress, [])
+  instance.set('role', 'Hausverwaltung')
+  instance.set('name', 'Private Person')
+  instance.set('email', 'private@example.test')
+  assert.deepEqual(instance.backend.progress, [['form_start', 'quick_contact']])
 })
 
 test('honeypot reaches the existing validator and its rejection cannot become a successful lead', async () => {
@@ -323,4 +358,110 @@ test('honeypot reaches the existing validator and its rejection cannot become a 
   assert.equal(instance.backend.requests[0].fields.website, 'https://spam.example.test')
   assert.equal(instance.backend.leads.length, 0)
   assert.ok(instance.field('name'))
+})
+
+// The detailed dialog uses real React state/effects, while its transport and browser
+// surface remain local mocks. This verifies the actual multi-step submission path.
+async function detailedQuoteFixture(options = {}) {
+  const backend = transport({ ...options, endpoint: 'quote-requests' })
+  class Element {
+    focus() {}
+  }
+  const document = {
+    activeElement: null,
+    body: { style: {}, classList: { add() {}, remove() {} } },
+    documentElement: { style: {}, clientWidth: 1000 },
+    getElementById() { return { children: [] } },
+  }
+  const window = {
+    scrollY: 0, innerWidth: 1000,
+    addEventListener() {}, removeEventListener() {}, scrollTo() {},
+    requestAnimationFrame(callback) { callback() },
+  }
+  class MockFormData {
+    get() { return '' }
+  }
+  const exports = {}
+  vm.runInNewContext(compile('QuoteModal.tsx'), {
+    exports, document, window, HTMLElement: Element, FormData: MockFormData, Error,
+    __testEnvironment: { BASE_URL: '/' },
+    require: filename => {
+      if (filename === './backend') return backend
+      if (filename === './analytics') return {
+        recordFormStart: formType => backend.progress.push(['form_start', formType]),
+        recordFormSubmitError: formType => backend.progress.push(['form_submit_error', formType]),
+      }
+      if (filename === './QuickContactForm') return { default: () => null }
+      return require(filename)
+    },
+  }, { filename: 'QuoteModal.tsx' })
+  const props = {
+    isOpen: true, initialMode: 'detailed', initialService: 'Gebäudereinigung',
+    initialTopic: 'Unterhaltsreinigung', serviceNames: ['Gebäudereinigung'], onClose() {},
+  }
+  let renderer
+  await TestRenderer.act(async () => {
+    renderer = TestRenderer.create(React.createElement(exports.default, props), { createNodeMock: () => new Element() })
+  })
+  return {
+    backend, renderer,
+    form() { return renderer.root.findByType('form') },
+    async change(field, value) {
+      await TestRenderer.act(async () => {
+        this.form().props.onChangeCapture({ target: { name: field.props.name ?? '' } })
+        field.props.onChange({ target: { value, checked: value } })
+      })
+    },
+    async submit() {
+      await TestRenderer.act(async () => this.form().props.onSubmit({ preventDefault() {}, currentTarget: {} }))
+    },
+    async reopen() {
+      await TestRenderer.act(async () => renderer.update(React.createElement(exports.default, { ...props, isOpen: false })))
+      await TestRenderer.act(async () => renderer.update(React.createElement(exports.default, props)))
+    },
+    async close() { await TestRenderer.act(async () => renderer.unmount()) },
+  }
+}
+
+test('detailed quote prefill and validation stay silent; actual choices start once per opening', async () => {
+  const f = await detailedQuoteFixture()
+  assert.deepEqual(f.backend.progress, [])
+  await f.submit()
+  assert.equal(f.backend.requests.length, 0)
+  assert.deepEqual(f.backend.progress, [])
+  f.form().props.onChangeCapture({ target: { name: 'website' } })
+  assert.deepEqual(f.backend.progress, [])
+  const choice = () => f.renderer.root.findAllByType('button').find(node => node.props.className?.includes('choice-card'))
+  await TestRenderer.act(async () => choice().props.onClick())
+  await f.change(f.renderer.root.findByProps({ autoComplete: 'street-address' }), 'Teststraße 1')
+  assert.deepEqual(f.backend.progress, [['form_start', 'quote']])
+  await f.reopen()
+  assert.deepEqual(f.backend.progress, [['form_start', 'quote']])
+  await TestRenderer.act(async () => choice().props.onClick())
+  assert.deepEqual(f.backend.progress, [['form_start', 'quote'], ['form_start', 'quote']])
+  await f.close()
+})
+
+test('detailed quote failure retains state, counts no lead, and successful retry adds no failure', async () => {
+  const f = await detailedQuoteFixture({ responseKind: 'rejected' })
+  await TestRenderer.act(async () => f.renderer.root.findAllByType('button').find(node => node.props.className?.includes('choice-card')).props.onClick())
+  await f.change(f.renderer.root.findByProps({ autoComplete: 'street-address' }), 'Teststraße 1')
+  await f.change(f.renderer.root.findByProps({ autoComplete: 'address-level2' }), '65843 Sulzbach')
+  await f.submit()
+  await f.change(f.renderer.root.findAllByType('input').find(node => node.props.type === 'radio'), true)
+  await f.submit()
+  await f.change(f.renderer.root.findByProps({ autoComplete: 'name' }), 'Test Verwaltung')
+  await f.change(f.renderer.root.findByProps({ autoComplete: 'email' }), 'private@example.test')
+  await f.change(f.renderer.root.findAllByType('input').find(node => node.props.type === 'checkbox'), true)
+  await f.submit()
+  assert.equal(f.backend.requests.length, 1)
+  assert.deepEqual(f.backend.leads, [])
+  assert.deepEqual(f.backend.progress, [['form_start', 'quote'], ['form_submit_error', 'quote']])
+  assert.equal(f.renderer.root.findByProps({ autoComplete: 'email' }).props.value, 'private@example.test')
+  f.backend.responseKind = 'success'
+  await f.submit()
+  assert.equal(f.backend.requests.length, 2)
+  assert.deepEqual(f.backend.leads, ['quote'])
+  assert.deepEqual(f.backend.progress, [['form_start', 'quote'], ['form_submit_error', 'quote']])
+  await f.close()
 })

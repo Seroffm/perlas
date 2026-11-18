@@ -32,7 +32,7 @@ import CookieConsent from './CookieConsent'
 import SiteFooter from './SiteFooter'
 import ResponsiveImage from './ResponsiveImage'
 import QuickContactForm from './QuickContactForm'
-import { recordContactClick, recordPhoneClick } from './analytics'
+import { recordContactClick, recordPhoneClick, recordFormStart, recordFormSubmitError } from './analytics'
 import { FORM_LIMITS, submitContactRequest } from './backend'
 import { audiences as audienceSummaries, services as serviceSummaries } from 'virtual:perlas-catalogue'
 import seoContent from './seo-data.json'
@@ -2654,6 +2654,7 @@ function ServiceContactForm({ subject }: { subject: string }) {
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle')
   const [feedback, setFeedback] = useState('')
   const submittingRef = useRef(false)
+  const formStartedRef = useRef(false)
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -2682,7 +2683,9 @@ function ServiceContactForm({ subject }: { subject: string }) {
         ? `Vielen Dank. Ihre Anfrage wurde angenommen. Vorgang ${result.reference}. Die Eingangsbestätigung wurde per E-Mail gesendet.`
         : `Ihre Anfrage wurde angenommen. Vorgang ${result.reference}. Die Bestätigung konnte nicht versendet werden. Bitte prüfen Sie Ihre E-Mail-Adresse. Bei Fragen: mail@perlas.de.`)
       form.reset()
+      formStartedRef.current = false
     } catch (error) {
+      recordFormSubmitError('contact')
       setStatus('error')
       setFeedback(error instanceof Error ? error.message : 'Die Übermittlung war nicht möglich. Ihre Eingaben bleiben erhalten. Bitte versuchen Sie es erneut.')
     } finally {
@@ -2700,7 +2703,12 @@ function ServiceContactForm({ subject }: { subject: string }) {
         <QuickContactForm topic={subject} onBusyChange={setQuickBusy} />
       </div>
       <div className="quote-form-panel" id={`${panelId}-detailed`} hidden={mode !== 'detailed'}>
-    <form className="service-contact-form" onSubmit={handleSubmit} aria-busy={status === 'submitting'}>
+    <form className="service-contact-form" onSubmit={handleSubmit} onChangeCapture={(event) => {
+      const target = event.target as HTMLInputElement
+      if (target.name === 'website' || formStartedRef.current) return
+      formStartedRef.current = true
+      recordFormStart('contact')
+    }} aria-busy={status === 'submitting'}>
       <label className="form-honeypot" aria-hidden="true">
         Website
         <input type="text" name="website" autoComplete="off" tabIndex={-1} maxLength={200} />

@@ -2,8 +2,11 @@
 
 Perlas ist eine statisch ausgelieferte Website mit React 18, TypeScript und Vite.
 
-Aktuell: 77 kanonische Seiten, 38 regionale und vier allgemeine Angebote,
-21 genaue Altpfadzuordnungen. Technische Änderungen und Grenzen:
+Aktuell: 85 kanonische Seiten, 44 regionale und sechs gezielte allgemeine Angebote,
+21 genaue Altpfadzuordnungen. Die elf bestehenden allgemeinen Leistungsseiten
+kommen zu diesen 50 gezielten Angebotsseiten hinzu. Erweiterung und Messung:
+[LEAD_EXPANSION_2026-11-18.md](LEAD_EXPANSION_2026-11-18.md).
+Technische Grundlage und verbleibende Hostinggrenzen:
 [TECHNICAL_SEO_POLISH_2026-11-17.md](TECHNICAL_SEO_POLISH_2026-11-17.md).
 Die Formular-API ist ein getrenntes PHP-System. Es gibt kein WordPress, kein CMS
 und keine Datenbank im Website-Projekt. Einrichtung und Befehle: [DEVELOPMENT.md](DEVELOPMENT.md).
@@ -38,8 +41,8 @@ zusammenpassen; die lokale Analytics-Routenliste ist zusätzlich ausdrücklich b
 | `src/seo-data.json` | Gemeinsame Metadaten, Übersichtsseiten, Region und Leistungsgruppen. |
 | `src/service-data.json`, `src/audience-data.json` | Leistungen und Zielgruppen einschließlich Slugs, Seitentexten, Bildern, SEO und FAQs. |
 | `src/local-landing-data.json` | Einzeln ausgewählte lokale Seiten; keine automatisch erzeugte Stadt-Leistungs-Matrix. |
-| `src/commercial-landing-data.json` | 31 recherchierte Angebote: 13 im bisherigen Layout und 18 mit `layout: "focused"`; Typen in `src/commercial-landing-types.ts`. |
-| `src/focused-service-data.json` | Vier einzeln ausgewählte Angebote zu Treppenhausreinigung, Heckenschnitt, Gewerbe-Winterdienst und Gewerbe-Hausmeisterservice; eigene Typen und `focused-services.css`. |
+| `src/commercial-landing-data.json` | 37 recherchierte Angebote: 13 im bisherigen Layout und 24 mit `layout: "focused"`; Typen in `src/commercial-landing-types.ts`. |
+| `src/focused-service-data.json` | Sechs einzeln ausgewählte Angebote einschließlich Unterhalts- und Grundreinigung; eigene Typen und `focused-services.css`. |
 | `src/blog-data.json`, `src/job-data.json` | Artikel und Stellenbereiche; gemeinsame Typen in `src/content-types.ts`. |
 | `src/imprint-content.json`, `src/privacy-content.json` | Impressum und Datenschutztexte. |
 | `src/google-reviews-data.json` | Hinterlegte Bewertungsangaben und Originalauszüge; keine Live-Abfrage. |
@@ -67,7 +70,7 @@ zusammenpassen; die lokale Analytics-Routenliste ist zusätzlich ausdrücklich b
 - `server/public/index.php`: PHP-API mit Validierung, festen erlaubten Origins, Ratenlimits und Versand über Resend. `mail-templates.php` und das lokale E-Mail-Logo gestalten die Nachrichten. Nur `server/public/` gehört in den öffentlichen Dokumentroot.
 - Private Schlüssel, Konfiguration und Retry-Zustand gehören ausschließlich außerhalb des öffentlichen Roots. Details: [Backend-Anbindung](../BACKEND_INTEGRATION.md), [Serverbetrieb](../server/README.md). Echte Versandtests erzeugen interne E-Mails und Kundenbestätigungen.
 - `src/config.ts`: Der Entwicklungs-Demomodus simuliert ausschließlich die Angebotsanfrage. Kontakt-/Kurzanfragen benötigen die API; Bewerbungen können bei fehlender API eine vorbereitete E-Mail öffnen.
-- `src/CookieConsent.tsx` und `src/analytics.ts`: optionale GA4-Messung erst mit gültiger Analyse-Einwilligung. Feste Ereignisse unterscheiden bestätigte Anfragen von Telefon-/E-Mail-/WhatsApp-Klicks; keine Formularinhalte oder Vorgangsnummern übermitteln.
+- `src/CookieConsent.tsx` und `src/analytics.ts`: optionale GA4-Messung erst mit gültiger Analyse-Einwilligung. `form_start` zählt die erste tatsächliche Interaktion je Anfrage, `form_submit_error` einen fehlgeschlagenen Übermittlungsversuch; `generate_lead` bleibt ausschließlich serverbestätigten Anfragen vorbehalten. Telefon-/E-Mail-/WhatsApp-Klicks bleiben getrennt. Ereignisse verwenden nur freigegebene öffentliche Routen und feste Formularkategorien; keine Formularinhalte, Fehlertexte oder Vorgangsnummern übermitteln. Bewerbungen gehören nicht zum Anfrage-Funnel.
 - Das Startseitenvideo lädt YouTube erst nach Marketing-Einwilligung. Telefon, E-Mail, WhatsApp und Bewertungsprofile sind feste externe Kontakt-/Profilverweise.
 
 ## Leitplanken und vorhandene Prüfungen

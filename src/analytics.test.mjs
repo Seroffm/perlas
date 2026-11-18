@@ -214,7 +214,7 @@ test('known public detail pages work with a deployment base; unknown paths canno
 })
 
 test('focused service routes are measured while private or unapproved adjacent paths stay sanitized', () => {
-  const slugs = ['treppenhausreinigung', 'heckenschnitt', 'winterdienst-gewerbe', 'hausmeisterservice-gewerbe']
+  const slugs = ['treppenhausreinigung', 'heckenschnitt', 'winterdienst-gewerbe', 'hausmeisterservice-gewerbe', 'unterhaltsreinigung', 'grundreinigung']
   for (const slug of slugs) {
     const expected = `https://www.perlas.de/perlas/leistungen/${slug}/`
     const instance = fixture({ consent: validConsent(), url: `${expected}?email=private%40example.test#anfrage` })
@@ -273,6 +273,12 @@ test('local hub and exactly the commissioned landing routes are measured without
     'gebaeudereinigung-frankfurt-bornheim',
     'hausmeisterservice-niedernhausen',
     'hausmeisterservice-kelsterbach',
+    'winterdienst-offenbach',
+    'winterdienst-bad-homburg',
+    'baumpflege-baumfaellung-frankfurt',
+    'praxisreinigung-wiesbaden',
+    'gartenpflege-wiesbaden',
+    'gebaeudereinigung-oberursel',
   ]
   for (const slug of slugs) {
     const expected = `https://perlas.de/einsatzgebiete/${slug ? `${slug}/` : ''}`
@@ -553,6 +559,79 @@ test('optional lead measurement cannot throw into the successful form flow', () 
   instance.window.perlasAnalyticsDataLayer.push = () => { throw new Error('Optional measurement failed') }
   assert.doesNotThrow(() => instance.recordLead('contact'))
   assert.doesNotThrow(() => instance.recordPhoneClick())
+  assert.doesNotThrow(() => instance.recordFormStart('contact'))
+  assert.doesNotThrow(() => instance.recordFormSubmitError('contact'))
+})
+
+test('form progress has no pre-consent or pending-loader queue and never becomes a lead', () => {
+  const instance = fixture()
+  const progress = () => instance.commands().filter(command => command[0] === 'event' && /^form_(start|submit_error)$/.test(command[1]))
+  instance.recordFormStart('contact')
+  instance.recordFormSubmitError('quote')
+  instance.initializeAnalytics(measurementId)
+  instance.recordFormStart('quick_contact')
+  instance.recordFormSubmitError('contact')
+  assert.equal(instance.commands().length, 0)
+  instance.save(true)
+  instance.recordFormStart('contact')
+  instance.recordFormSubmitError('quote')
+  instance.scripts[0].onload()
+  assert.equal(progress().length, 0, 'first interactions before consent/loading are not replayed')
+  instance.recordFormStart('quick_contact')
+  instance.recordFormSubmitError('quick_contact')
+  assert.deepEqual(progress().map(command => command[1]), ['form_start', 'form_submit_error'])
+  assert.equal(instance.leads().length, 0)
+})
+
+test('form progress accepts only fixed categories and sanitized context, never field or error values', () => {
+  const instance = fixture({ consent: validConsent(), url: 'https://perlas.de/private@example.test/?requestId=private#secret' })
+  instance.initializeAnalytics(measurementId)
+  instance.scripts[0].onload()
+  for (const value of [undefined, null, '', 'career', 'contact-requests', 'private@example.test', {}, ['quote'], new String('contact')]) {
+    instance.recordFormStart(value)
+    instance.recordFormSubmitError(value)
+  }
+  const progress = () => instance.commands().filter(command => command[0] === 'event' && /^form_(start|submit_error)$/.test(command[1]))
+  assert.equal(progress().length, 0)
+  for (const formType of ['contact', 'quote', 'quick_contact']) {
+    instance.recordFormStart(formType, { email: 'private@example.test', requestId: 'private' })
+    instance.recordFormSubmitError(formType, 'Private network/error message')
+  }
+  assert.equal(progress().length, 6)
+  for (const command of progress()) {
+    assert.equal(command[2].page_location, 'https://perlas.de/404/')
+    assert.equal(command[2].send_to, measurementId)
+    assert.deepEqual(Object.keys(command[2]).sort(), [
+      'campaign_medium', 'campaign_source', 'form_type', 'page_location', 'page_referrer', 'page_title', 'send_to',
+    ])
+  }
+  assert.equal(instance.leads().length, 0)
+  assert.doesNotMatch(JSON.stringify(instance.commands()), /private|Private/)
+})
+
+test('form progress stops on fresh storage denial, explicit revocation and cleanup', () => {
+  const instance = fixture({ consent: validConsent() })
+  const cleanup = instance.initializeAnalytics(measurementId)
+  instance.scripts[0].onload()
+  const progress = () => instance.commands().filter(command => command[0] === 'event' && /^form_(start|submit_error)$/.test(command[1]))
+  instance.recordFormStart('contact')
+  assert.equal(progress().length, 1)
+  instance.storage.set(consentKey, JSON.stringify(validConsent(false)))
+  instance.recordFormSubmitError('contact')
+  assert.equal(progress().length, 1)
+  instance.save(true)
+  instance.dispatch('perlas:consent-change', { detail: validConsent(false) })
+  instance.recordFormStart('quote')
+  instance.recordFormSubmitError('quote')
+  assert.equal(progress().length, 1)
+  instance.save(true)
+  assert.equal(progress().length, 1, 're-consent cannot replay withdrawn events')
+  instance.recordFormSubmitError('quick_contact')
+  assert.equal(progress().length, 2)
+  cleanup()
+  instance.recordFormStart('contact')
+  instance.recordFormSubmitError('contact')
+  assert.equal(progress().length, 2)
 })
 
 test('phone clicks are suppressed before consent and loading without later replay', () => {

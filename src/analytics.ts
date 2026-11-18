@@ -45,6 +45,8 @@ const publicRoutes = new Set([
   'leistungen/heckenschnitt/',
   'leistungen/winterdienst-gewerbe/',
   'leistungen/hausmeisterservice-gewerbe/',
+  'leistungen/unterhaltsreinigung/',
+  'leistungen/grundreinigung/',
   // Keep local routes explicit: adding arbitrary region data must not expose
   // unapproved paths or accidentally treat customer identifiers as public URLs.
   'einsatzgebiete/objektbetreuung-eschborn/',
@@ -85,6 +87,12 @@ const publicRoutes = new Set([
   'einsatzgebiete/gebaeudereinigung-frankfurt-bornheim/',
   'einsatzgebiete/hausmeisterservice-niedernhausen/',
   'einsatzgebiete/hausmeisterservice-kelsterbach/',
+  'einsatzgebiete/winterdienst-offenbach/',
+  'einsatzgebiete/winterdienst-bad-homburg/',
+  'einsatzgebiete/baumpflege-baumfaellung-frankfurt/',
+  'einsatzgebiete/praxisreinigung-wiesbaden/',
+  'einsatzgebiete/gartenpflege-wiesbaden/',
+  'einsatzgebiete/gebaeudereinigung-oberursel/',
 ])
 
 type AnalyticsWindow = Window & {
@@ -102,7 +110,9 @@ type ConsentPreferences = {
 
 let activeCleanup: (() => void) | undefined
 type LeadFormType = 'contact' | 'quote' | 'quick_contact'
+type FormProgressEvent = 'form_start' | 'form_submit_error'
 let activeLeadRecorder: ((formType: LeadFormType) => void) | undefined
+let activeFormProgressRecorder: ((event: FormProgressEvent, formType: LeadFormType) => void) | undefined
 let activePhoneRecorder: (() => void) | undefined
 let activeContactRecorder: ((kind: 'email' | 'whatsapp') => void) | undefined
 
@@ -111,6 +121,18 @@ export function recordLead(formType: LeadFormType) {
   if (formType !== 'contact' && formType !== 'quote' && formType !== 'quick_contact') return
   // Measurement must never turn a successfully delivered inquiry into a form error.
   try { activeLeadRecorder?.(formType) } catch { /* Analytics remains optional. */ }
+}
+
+/** A first field interaction is not an enquiry; callers deduplicate per form opening. */
+export function recordFormStart(formType: LeadFormType) {
+  if (formType !== 'contact' && formType !== 'quote' && formType !== 'quick_contact') return
+  try { activeFormProgressRecorder?.('form_start', formType) } catch { /* Analytics remains optional. */ }
+}
+
+/** Only attempted submission failures; never accept error text, fields or identifiers. */
+export function recordFormSubmitError(formType: LeadFormType) {
+  if (formType !== 'contact' && formType !== 'quote' && formType !== 'quick_contact') return
+  try { activeFormProgressRecorder?.('form_submit_error', formType) } catch { /* Analytics remains optional. */ }
 }
 
 /** Records a click, not a completed phone call; accepts no link data or parameters. */
@@ -204,7 +226,7 @@ function clearOwnCookies(measurementId: string) {
 
 /**
  * Basic consent mode: no Google script, request or ping before analytics consent.
- * Only manual page views, fixed successful-inquiry categories and contact-link clicks are added;
+ * Only manual page views, fixed form progress/success categories and contact-link clicks are added;
  * never expose a general-purpose event/form API or queue pre-consent conversions.
  * Before activation, disable Enhanced Measurement (including history tracking),
  * user-provided data, Google Signals and advertising destinations in the GA4 UI.
@@ -284,6 +306,12 @@ export function initializeAnalytics(measurementId?: string, basePath = '/') {
     // Callers cannot supply values, subjects, contact details or identifiers.
     // https://developers.google.com/analytics/devguides/collection/ga4/reference/events#generate_lead
     gtag('event', 'generate_lead', {
+      ...safePageValues(basePath), form_type: formType, send_to: measurementId,
+    })
+  }
+  activeFormProgressRecorder = (event, formType) => {
+    if (!canRecordEvent()) return
+    gtag('event', event, {
       ...safePageValues(basePath), form_type: formType, send_to: measurementId,
     })
   }
@@ -399,6 +427,7 @@ export function initializeAnalytics(measurementId?: string, basePath = '/') {
     window.removeEventListener('storage', onStorage)
     window.removeEventListener('focus', reconcileConsent)
     activeLeadRecorder = undefined
+    activeFormProgressRecorder = undefined
     activePhoneRecorder = undefined
     activeContactRecorder = undefined
     activeCleanup = undefined
